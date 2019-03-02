@@ -28,64 +28,105 @@ turns such as revealing hidden picks/bans) and an action.
 
 The following actions are available:
 
-- **pick**: select one of the civilisations for play
-- **ban**: prevent the opponent from picking the selected civilisation in 
-  a future turn
-- **global pick**: select one of the civilisations for play, it cannot be
-  picked again by any player in a future turn 
-- **global ban**: prevent any player from picking the selected 
-  civilisation in a future turn
-- **exclusive pick**: select one of the civilisations for play; it cannot
-  be picked again by the same player in a future turn
-- **exclusive ban**: prevent the opponent from picking the selected 
-  civilisation in a future turn; it cannot be banned again by the same 
-  player in a future turn
-- **hidden pick**: select one of the civilisations for play without showing
-  it to the opponent yet
-- **hidden ban**: prevent the opponent from picking the selected 
-  civilisation in a future turn without showing it to the opponent yet
-- **hidden global ban**: prevent any player from picking the selected 
-  civilisation in a future turn without showing it to the opponent yet
-- **exclusive hidden pick**: select one of the civilisations for play
-  without showing it to the opponent yet; it cannot be picked again by 
-  the same player in a future turn
-- **exclusive hidden ban**: prevent the opponent from picking the selected 
-  civilisation in a future turn without showing it to the opponent yet;
-  it cannot be banned again by the same player in a future turn
-- **snipe**: Ban one of the opponent's picks; the same pick cannot be 
-  sniped twice
-- **hidden snipe**: Ban one of the opponent's picks without showing it to 
-  the opponent yet; the same pick cannot be sniped twice
-- **reveal picks**: show all hidden picks to all players
-- **reveal bans**: show all hidden bans to all players; should be done 
-  after hidden bans before the next picks
-- **reveal snipes**: show all hidden snipes to all players
-- **reveal all**: reveal picks, bans, and snipes
+### User Actions
+
+These actions are usually executed by the users (Host & Guest).
+
+### pick
+select one of the civilisations for play
+
+### ban
+prevent the opponent from picking the selected civilisation in 
+a future turn
+
+### global pick
+select one of the civilisations for play, it cannot be
+picked again by any player in a future turn 
+
+### global ban
+prevent any player from picking the selected 
+civilisation in a future turn
+
+### exclusive pick
+select one of the civilisations for play; it cannot
+be picked again by the same player in a future turn
+
+### exclusive ban
+prevent the opponent from picking the selected 
+civilisation in a future turn; it cannot be banned again by the same 
+player in a future turn
+
+### hidden pick
+select one of the civilisations for play without showing
+it to the opponent yet
+
+### hidden ban
+prevent the opponent from picking the selected 
+civilisation in a future turn without showing it to the opponent yet
+
+### hidden global ban
+prevent any player from picking the selected 
+civilisation in a future turn without showing it to the opponent yet
+
+### exclusive hidden pick
+select one of the civilisations for play
+without showing it to the opponent yet; it cannot be picked again by 
+the same player in a future turn
+
+### exclusive hidden ban
+prevent the opponent from picking the selected 
+civilisation in a future turn without showing it to the opponent yet;
+it cannot be banned again by the same player in a future turn
+
+### snipe
+Ban one of the opponent's picks; the same pick cannot be sniped twice
+
+### hidden snipe
+Ban one of the opponent's picks without showing it to 
+the opponent yet; the same pick cannot be sniped twice
+
+### Admin actions
+
+These actions can only be executed by the server.
+
+### reveal picks
+show all hidden picks to all players
+
+### reveal bans
+show all hidden bans to all players; should be done 
+after hidden bans before the next picks
+
+### reveal snipes
+show all hidden snipes to all players
+
+### reveal all
+reveal picks, bans, and snipes
+
+## Validations
+
+Each action gets validated by the server before it is broadcasted.
+If one or more validations fail, an error is returned to the player and the
+action is not broadcasted.
+
+### Validations for all actions:
+- `VLD_000`: Acting user is supposed to act according to preset 
+- `VLD_001`: Action is expected according to preset
+
+### Validations for PICKs: 
+- `VLD_100`: Civilisation has not been banned globally before
+- `VLD_101`: Civilisation has not been banned before for same player
+- `VLD_102`: Civilisation has not been exclusively picked before by the same player
+- `VLD_103`: Civilisation has not been globally picked before by either player
+
+### Validations for BANs:
+- `VLD_200`: Civilisation has not been exclusively banned before by same player
+
+### Validations for SNIPEs:
+- `VLD_300`: Civilisation has been picked before by opponent
+- `VLD_301`: The opponent has a non-sniped pick of the civilisation
 
 
 ## Messages
 
-### Clients
-
-Request: `create()`  
-Response: `SUCCESS(draft_id)` | `ERROR`
-
-Request: `join(draft_id)`  
-Response: `SUCCESS(host/guest)` | `ERROR(Draft not found)` | `ERROR(Draft full)`
-
-Request: `act(action{pick/ban/snipe}, civilisation)`  
-Response: `SUCCESS` | `ERROR(Invalid action according to preset)` | 
-`ERROR(Invalid Civilisation for action according to preset)`
-
-### Server
-
-Request: `start()`  
-Response: `ACK` | `ERROR`
-
-Request: `turn(player, action{pick/ban/snipe}, civilisation{civ/hidden}, is_random)`  
-Response: `ACK` | `ERROR(Unexpected action according to preset)`
-
-Request: `abort(message)`  
-Response: `ACK`
-
+![Sequence diagram of a session](session.png)
 

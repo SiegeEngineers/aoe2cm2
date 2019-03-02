@@ -1,0 +1,62 @@
+@startuml
+actor Host #teal
+participant Server
+actor Guest #yellow
+collections Spectators
+
+group Setup
+Host -> Server : create(preset)
+Host <-- Server : id
+
+loop 0..n
+Spectators -> Server : spectate()
+Spectators <-- Server : preset
+end
+
+Host -> Server : join(name)
+Host <-- Server : preset
+Server -> Spectators : player_joined(host, name)
+Host <- Server : player_joined(host)
+
+Guest -> Server : join(name)
+Guest <-- Server : preset
+Host <- Server : player_joined(guest, name)
+Server -> Spectators : player_joined(guest, name)
+Guest <- Server : player_joined(guest, name)
+end
+
+group Start
+Guest -> Server: start()
+Host <- Server: start()
+Host -> Server: start()
+Guest <- Server: start()
+Server -> Spectators: start()
+end
+
+loop 0..n
+alt Host action
+Host -> Server: act(action, civ)
+Host <- Server: act(action, civ)
+Guest <- Server: act(action, civ)
+Spectators <- Server: act(action, civ)
+
+else Guest action
+Guest -> Server: act(action, civ)
+Guest <- Server: act(action, civ)
+Host <- Server: act(action, civ)
+Spectators <- Server: act(action, civ)
+
+else Server action
+Host <- Server: act(action, civ, additionalData)
+Guest <- Server: act(action, civ, additionalData)
+Spectators <- Server: act(action, civ, additionalData)
+end
+end
+
+group End
+Host <- Server: end()
+Guest <- Server: end()
+Spectators <- Server: end()
+end
+
+@enduml
