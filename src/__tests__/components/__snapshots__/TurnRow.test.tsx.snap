@@ -1,0 +1,202 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CivGrid renders correctly 1`] = `
+<div
+  className="turn-row"
+>
+  <div
+    className="pure-g"
+  >
+    <div
+      className="pure-u-1-24 arrow-start"
+    >
+      <div>
+        Start
+      </div>
+    </div>
+    <Turn
+      turn={
+        Turn {
+          "action": "GLOBAL_BAN",
+          "player": "HOST",
+        }
+      }
+    />
+    <Turn
+      turn={
+        Turn {
+          "action": "GLOBAL_BAN",
+          "player": "GUEST",
+        }
+      }
+    />
+    <Turn
+      turn={
+        Turn {
+          "action": "HIDDEN_BAN",
+          "player": "HOST",
+        }
+      }
+    />
+    <Turn
+      turn={
+        Turn {
+          "action": "HIDDEN_BAN",
+          "player": "GUEST",
+        }
+      }
+    />
+    <Turn
+      turn={
+        Turn {
+          "action": "REVEAL_BANS",
+          "player": "NONE",
+        }
+      }
+    />
+    <Turn
+      turn={
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "HOST",
+        }
+      }
+    />
+    <Turn
+      turn={
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "GUEST",
+        }
+      }
+    />
+    <Turn
+      turn={
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "HOST",
+        }
+      }
+    />
+    <Turn
+      turn={
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "GUEST",
+        }
+      }
+    />
+    <Turn
+      turn={
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "HOST",
+        }
+      }
+    />
+    <Turn
+      turn={
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "GUEST",
+        }
+      }
+    />
+    <Turn
+      turn={
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "HOST",
+        }
+      }
+    />
+    <Turn
+      turn={
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "GUEST",
+        }
+      }
+    />
+    <Turn
+      turn={
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "HOST",
+        }
+      }
+    />
+    <Turn
+      turn={
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "GUEST",
+        }
+      }
+    />
+    <Turn
+      turn={
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "HOST",
+        }
+      }
+    />
+    <Turn
+      turn={
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "GUEST",
+        }
+      }
+    />
+    <Turn
+      turn={
+        Turn {
+          "action": "REVEAL_PICKS",
+          "player": "NONE",
+        }
+      }
+    />
+    <Turn
+      turn={
+        Turn {
+          "action": "HIDDEN_SNIPE",
+          "player": "HOST",
+        }
+      }
+    />
+    <Turn
+      turn={
+        Turn {
+          "action": "HIDDEN_SNIPE",
+          "player": "GUEST",
+        }
+      }
+    />
+    <Turn
+      turn={
+        Turn {
+          "action": "REVEAL_ALL",
+          "player": "NONE",
+        }
+      }
+    />
+    <div
+      className="pure-u-1-24 arrow-end"
+    >
+      <div>
+        <span>
+          End
+        </span>
+      </div>
+    </div>
+    <div
+      className="pure-u-1-24"
+      id="firefox-bug"
+    >
+       
+    </div>
+  </div>
+</div>
+`;

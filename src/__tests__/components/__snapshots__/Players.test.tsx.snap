@@ -1,0 +1,464 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CivGrid renders correctly 1`] = `
+<div
+  className="pure-g players"
+>
+  <Player
+    name="Sneaky Saladin"
+    player="HOST"
+    preset={
+      Preset {
+        "civilisations": Array [
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Britons",
+          },
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Byzantines",
+          },
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Celts",
+          },
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Chinese",
+          },
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Franks",
+          },
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Goths",
+          },
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Japanese",
+          },
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Mongols",
+          },
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Persians",
+          },
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Saracens",
+          },
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Teutons",
+          },
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Turks",
+          },
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Vikings",
+          },
+          Civilisation {
+            "gameVersion": 2,
+            "name": "Aztecs",
+          },
+          Civilisation {
+            "gameVersion": 2,
+            "name": "Huns",
+          },
+          Civilisation {
+            "gameVersion": 2,
+            "name": "Koreans",
+          },
+          Civilisation {
+            "gameVersion": 2,
+            "name": "Mayans",
+          },
+          Civilisation {
+            "gameVersion": 2,
+            "name": "Spanish",
+          },
+          Civilisation {
+            "gameVersion": 3,
+            "name": "Italians",
+          },
+          Civilisation {
+            "gameVersion": 3,
+            "name": "Incas",
+          },
+          Civilisation {
+            "gameVersion": 3,
+            "name": "Indians",
+          },
+          Civilisation {
+            "gameVersion": 3,
+            "name": "Magyars",
+          },
+          Civilisation {
+            "gameVersion": 3,
+            "name": "Slavs",
+          },
+          Civilisation {
+            "gameVersion": 4,
+            "name": "Berbers",
+          },
+          Civilisation {
+            "gameVersion": 4,
+            "name": "Ethiopians",
+          },
+          Civilisation {
+            "gameVersion": 4,
+            "name": "Malians",
+          },
+          Civilisation {
+            "gameVersion": 4,
+            "name": "Portuguese",
+          },
+          Civilisation {
+            "gameVersion": 5,
+            "name": "Burmese",
+          },
+          Civilisation {
+            "gameVersion": 5,
+            "name": "Khmer",
+          },
+          Civilisation {
+            "gameVersion": 5,
+            "name": "Malay",
+          },
+          Civilisation {
+            "gameVersion": 5,
+            "name": "Vietnamese",
+          },
+        ],
+        "name": "Default Preset",
+        "turns": Array [
+          Turn {
+            "action": "GLOBAL_BAN",
+            "player": "HOST",
+          },
+          Turn {
+            "action": "GLOBAL_BAN",
+            "player": "GUEST",
+          },
+          Turn {
+            "action": "HIDDEN_BAN",
+            "player": "HOST",
+          },
+          Turn {
+            "action": "HIDDEN_BAN",
+            "player": "GUEST",
+          },
+          Turn {
+            "action": "REVEAL_BANS",
+            "player": "NONE",
+          },
+          Turn {
+            "action": "HIDDEN_PICK",
+            "player": "HOST",
+          },
+          Turn {
+            "action": "HIDDEN_PICK",
+            "player": "GUEST",
+          },
+          Turn {
+            "action": "HIDDEN_PICK",
+            "player": "HOST",
+          },
+          Turn {
+            "action": "HIDDEN_PICK",
+            "player": "GUEST",
+          },
+          Turn {
+            "action": "HIDDEN_PICK",
+            "player": "HOST",
+          },
+          Turn {
+            "action": "HIDDEN_PICK",
+            "player": "GUEST",
+          },
+          Turn {
+            "action": "HIDDEN_PICK",
+            "player": "HOST",
+          },
+          Turn {
+            "action": "HIDDEN_PICK",
+            "player": "GUEST",
+          },
+          Turn {
+            "action": "HIDDEN_PICK",
+            "player": "HOST",
+          },
+          Turn {
+            "action": "HIDDEN_PICK",
+            "player": "GUEST",
+          },
+          Turn {
+            "action": "HIDDEN_PICK",
+            "player": "HOST",
+          },
+          Turn {
+            "action": "HIDDEN_PICK",
+            "player": "GUEST",
+          },
+          Turn {
+            "action": "REVEAL_PICKS",
+            "player": "NONE",
+          },
+          Turn {
+            "action": "HIDDEN_SNIPE",
+            "player": "HOST",
+          },
+          Turn {
+            "action": "HIDDEN_SNIPE",
+            "player": "GUEST",
+          },
+          Turn {
+            "action": "REVEAL_ALL",
+            "player": "NONE",
+          },
+        ],
+      }
+    }
+  />
+  <Player
+    name="Beastly Barbarossa"
+    player="GUEST"
+    preset={
+      Preset {
+        "civilisations": Array [
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Britons",
+          },
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Byzantines",
+          },
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Celts",
+          },
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Chinese",
+          },
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Franks",
+          },
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Goths",
+          },
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Japanese",
+          },
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Mongols",
+          },
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Persians",
+          },
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Saracens",
+          },
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Teutons",
+          },
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Turks",
+          },
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Vikings",
+          },
+          Civilisation {
+            "gameVersion": 2,
+            "name": "Aztecs",
+          },
+          Civilisation {
+            "gameVersion": 2,
+            "name": "Huns",
+          },
+          Civilisation {
+            "gameVersion": 2,
+            "name": "Koreans",
+          },
+          Civilisation {
+            "gameVersion": 2,
+            "name": "Mayans",
+          },
+          Civilisation {
+            "gameVersion": 2,
+            "name": "Spanish",
+          },
+          Civilisation {
+            "gameVersion": 3,
+            "name": "Italians",
+          },
+          Civilisation {
+            "gameVersion": 3,
+            "name": "Incas",
+          },
+          Civilisation {
+            "gameVersion": 3,
+            "name": "Indians",
+          },
+          Civilisation {
+            "gameVersion": 3,
+            "name": "Magyars",
+          },
+          Civilisation {
+            "gameVersion": 3,
+            "name": "Slavs",
+          },
+          Civilisation {
+            "gameVersion": 4,
+            "name": "Berbers",
+          },
+          Civilisation {
+            "gameVersion": 4,
+            "name": "Ethiopians",
+          },
+          Civilisation {
+            "gameVersion": 4,
+            "name": "Malians",
+          },
+          Civilisation {
+            "gameVersion": 4,
+            "name": "Portuguese",
+          },
+          Civilisation {
+            "gameVersion": 5,
+            "name": "Burmese",
+          },
+          Civilisation {
+            "gameVersion": 5,
+            "name": "Khmer",
+          },
+          Civilisation {
+            "gameVersion": 5,
+            "name": "Malay",
+          },
+          Civilisation {
+            "gameVersion": 5,
+            "name": "Vietnamese",
+          },
+        ],
+        "name": "Default Preset",
+        "turns": Array [
+          Turn {
+            "action": "GLOBAL_BAN",
+            "player": "HOST",
+          },
+          Turn {
+            "action": "GLOBAL_BAN",
+            "player": "GUEST",
+          },
+          Turn {
+            "action": "HIDDEN_BAN",
+            "player": "HOST",
+          },
+          Turn {
+            "action": "HIDDEN_BAN",
+            "player": "GUEST",
+          },
+          Turn {
+            "action": "REVEAL_BANS",
+            "player": "NONE",
+          },
+          Turn {
+            "action": "HIDDEN_PICK",
+            "player": "HOST",
+          },
+          Turn {
+            "action": "HIDDEN_PICK",
+            "player": "GUEST",
+          },
+          Turn {
+            "action": "HIDDEN_PICK",
+            "player": "HOST",
+          },
+          Turn {
+            "action": "HIDDEN_PICK",
+            "player": "GUEST",
+          },
+          Turn {
+            "action": "HIDDEN_PICK",
+            "player": "HOST",
+          },
+          Turn {
+            "action": "HIDDEN_PICK",
+            "player": "GUEST",
+          },
+          Turn {
+            "action": "HIDDEN_PICK",
+            "player": "HOST",
+          },
+          Turn {
+            "action": "HIDDEN_PICK",
+            "player": "GUEST",
+          },
+          Turn {
+            "action": "HIDDEN_PICK",
+            "player": "HOST",
+          },
+          Turn {
+            "action": "HIDDEN_PICK",
+            "player": "GUEST",
+          },
+          Turn {
+            "action": "HIDDEN_PICK",
+            "player": "HOST",
+          },
+          Turn {
+            "action": "HIDDEN_PICK",
+            "player": "GUEST",
+          },
+          Turn {
+            "action": "REVEAL_PICKS",
+            "player": "NONE",
+          },
+          Turn {
+            "action": "HIDDEN_SNIPE",
+            "player": "HOST",
+          },
+          Turn {
+            "action": "HIDDEN_SNIPE",
+            "player": "GUEST",
+          },
+          Turn {
+            "action": "REVEAL_ALL",
+            "player": "NONE",
+          },
+        ],
+      }
+    }
+  />
+  <div
+    className="hidden"
+  >
+    <span
+      id="drafter_msg_host_captain"
+    >
+      Host Captain
+    </span>
+    <span
+      id="drafter_msg_guest_captain"
+    >
+      Guest Captain
+    </span>
+  </div>
+</div>
+`;

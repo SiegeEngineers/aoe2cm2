@@ -1,0 +1,1725 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BAN CivPanels render correctly 1`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/britons_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Britons
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BAN CivPanels render correctly 2`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/byzantines_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Byzantines
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BAN CivPanels render correctly 3`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/celts_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Celts
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BAN CivPanels render correctly 4`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/chinese_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Chinese
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BAN CivPanels render correctly 5`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/franks_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Franks
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BAN CivPanels render correctly 6`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/goths_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Goths
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BAN CivPanels render correctly 7`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/japanese_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Japanese
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BAN CivPanels render correctly 8`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/mongols_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Mongols
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BAN CivPanels render correctly 9`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/persians_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Persians
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BAN CivPanels render correctly 10`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/saracens_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Saracens
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BAN CivPanels render correctly 11`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/teutons_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Teutons
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BAN CivPanels render correctly 12`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/turks_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Turks
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BAN CivPanels render correctly 13`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/vikings_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Vikings
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BAN CivPanels render correctly 14`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/aztecs_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Aztecs
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BAN CivPanels render correctly 15`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/huns_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Huns
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BAN CivPanels render correctly 16`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/koreans_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Koreans
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BAN CivPanels render correctly 17`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/mayans_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Mayans
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BAN CivPanels render correctly 18`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/spanish_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Spanish
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BAN CivPanels render correctly 19`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/italians_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Italians
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BAN CivPanels render correctly 20`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/incas_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Incas
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BAN CivPanels render correctly 21`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/indians_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Indians
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BAN CivPanels render correctly 22`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/magyars_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Magyars
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BAN CivPanels render correctly 23`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/slavs_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Slavs
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BAN CivPanels render correctly 24`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/berbers_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Berbers
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BAN CivPanels render correctly 25`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/ethiopians_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Ethiopians
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BAN CivPanels render correctly 26`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/malians_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Malians
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BAN CivPanels render correctly 27`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/portuguese_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Portuguese
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BAN CivPanels render correctly 28`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/burmese_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Burmese
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BAN CivPanels render correctly 29`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/khmer_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Khmer
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BAN CivPanels render correctly 30`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/malay_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Malay
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BAN CivPanels render correctly 31`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/vietnamese_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Vietnamese
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PICK CivPanels render correctly 1`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/britons_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Britons
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PICK CivPanels render correctly 2`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/byzantines_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Byzantines
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PICK CivPanels render correctly 3`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/celts_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Celts
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PICK CivPanels render correctly 4`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/chinese_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Chinese
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PICK CivPanels render correctly 5`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/franks_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Franks
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PICK CivPanels render correctly 6`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/goths_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Goths
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PICK CivPanels render correctly 7`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/japanese_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Japanese
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PICK CivPanels render correctly 8`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/mongols_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Mongols
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PICK CivPanels render correctly 9`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/persians_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Persians
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PICK CivPanels render correctly 10`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/saracens_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Saracens
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PICK CivPanels render correctly 11`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/teutons_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Teutons
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PICK CivPanels render correctly 12`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/turks_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Turks
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PICK CivPanels render correctly 13`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/vikings_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Vikings
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PICK CivPanels render correctly 14`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/aztecs_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Aztecs
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PICK CivPanels render correctly 15`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/huns_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Huns
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PICK CivPanels render correctly 16`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/koreans_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Koreans
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PICK CivPanels render correctly 17`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/mayans_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Mayans
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PICK CivPanels render correctly 18`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/spanish_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Spanish
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PICK CivPanels render correctly 19`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/italians_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Italians
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PICK CivPanels render correctly 20`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/incas_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Incas
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PICK CivPanels render correctly 21`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/indians_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Indians
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PICK CivPanels render correctly 22`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/magyars_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Magyars
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PICK CivPanels render correctly 23`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/slavs_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Slavs
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PICK CivPanels render correctly 24`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/berbers_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Berbers
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PICK CivPanels render correctly 25`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/ethiopians_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Ethiopians
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PICK CivPanels render correctly 26`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/malians_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Malians
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PICK CivPanels render correctly 27`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/portuguese_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Portuguese
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PICK CivPanels render correctly 28`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/burmese_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Burmese
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PICK CivPanels render correctly 29`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/khmer_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Khmer
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PICK CivPanels render correctly 30`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/malay_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Malay
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PICK CivPanels render correctly 31`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src="images/civs/vietnamese_orig.png"
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      >
+        Vietnamese
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`empty BAN CivPanel renders correctly 1`] = `
+<div
+  className="ban card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src=""
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`empty PICK CivPanel renders correctly 1`] = `
+<div
+  className="pick card"
+>
+  <div
+    className="box-content"
+  >
+    <div
+      className="stretchy-wrapper"
+    >
+      <div
+        className="stretchy-image"
+      >
+        <img
+          src=""
+        />
+      </div>
+      <div
+        className="stretchy-text"
+      />
+    </div>
+  </div>
+</div>
+`;
