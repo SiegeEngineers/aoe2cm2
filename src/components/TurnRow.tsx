@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {ComponentElement} from 'react';
 import {default as ModelTurn} from "../models/Turn";
 import '../pure-min.css'
 import '../style2.css'
@@ -9,12 +10,15 @@ interface IProps {
 }
 
 class TurnRow extends React.Component<IProps, object> {
+
     public render() {
 
-        const items = this.props.turns.map(turn => {
-            return React.createElement(Turn, {turn});
-        });
+        const items: Array<ComponentElement<any, any>> = [];
 
+        for (let i = 0; i < this.props.turns.length; i++) {
+            const turn = this.props.turns[i];
+            items.push(React.createElement(Turn, {turn, turnNumber: i}));
+        }
 
         return (
             <div className="turn-row">

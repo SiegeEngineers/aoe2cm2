@@ -2,12 +2,33 @@ import * as React from 'react';
 import {default as ModelTurn} from '../models/Turn'
 import '../pure-min.css'
 import '../style2.css'
+import {connect} from "react-redux";
+import {IStoreState} from "../types";
 
-interface ITurn {
+interface IProps {
     turn: ModelTurn;
+    turnNumber: number;
+    nextAction?: number;
 }
 
-class Turn extends React.Component<ITurn, object> {
+interface IState {
+    active: boolean;
+}
+
+class Turn extends React.Component<IProps, IState> {
+
+    constructor(props: IProps) {
+        super(props);
+        this.state = {
+            active: props.nextAction ? props.nextAction === props.turnNumber : false
+        };
+    }
+
+    public componentWillReceiveProps(nextProps: Readonly<IProps>, nextContext: any): void {
+        const active = nextProps.nextAction ? nextProps.nextAction === nextProps.turnNumber : false;
+        this.setState({...this.state, active});
+    }
+
     public render() {
         const turn: ModelTurn = this.props.turn;
 
@@ -36,14 +57,27 @@ class Turn extends React.Component<ITurn, object> {
         if (turn.action.includes('HIDDEN')) {
             turnClassName += ' turn-hidden';
         }
+        let activeClass = '';
+        if (this.state.active) {
+            activeClass = 'active';
+        }
         return (
             <div className="pure-u-1-24 turn">
                 <div className={turnClassName}>
-                    <span><b>{prefix}</b>{action}</span>
+                    <span className={activeClass}><b>{prefix}</b>{action}</span>
                 </div>
             </div>
         );
     }
 }
 
-export default Turn;
+const mapStateToProps = (state: IStoreState) => {
+    return {
+        nextAction: state.nextAction
+    };
+};
+
+const mapDispatchToProps = () => {
+    return {};
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Turn);

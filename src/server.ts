@@ -22,8 +22,18 @@ nsp.on("connection", (socket: socketio.Socket) => {
         // console.log("player joined:", message);
         nsp.emit("player_joined", message);
     });
+
+    socket.on("act", (message: any) => {
+        if (validate(message)) {
+            nsp.emit("act", message);
+        }
+    });
 });
 
 server.listen(3000, () => {
     // console.log("listening on *:3000");
 });
+
+function validate(message: any) {
+    return true;
+}

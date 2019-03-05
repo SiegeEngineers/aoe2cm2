@@ -1,20 +1,22 @@
 import * as React from 'react';
-import {default as ModelDraft} from '../models/Draft';
 import {default as ModelPlayer} from '../models/Player';
 import '../pure-min.css'
 import '../style2.css'
 import Player from "./Player";
+import Preset from "../models/Preset";
 
 interface IProps {
-    config: ModelDraft;
+    nameHost: string;
+    nameGuest: string;
+    preset: Preset;
 }
 
 class Players extends React.Component<IProps, object> {
     public render() {
         return (
             <div className="pure-g players">
-                <Player preset={this.props.config.preset} player={ModelPlayer.HOST} name={this.props.config.nameHost}/>
-                <Player preset={this.props.config.preset} player={ModelPlayer.GUEST} name={this.props.config.nameGuest}/>
+                <Player preset={this.props.preset} player={ModelPlayer.HOST} name={this.props.nameHost}/>
+                <Player preset={this.props.preset} player={ModelPlayer.GUEST} name={this.props.nameGuest}/>
 
                 <div className="hidden">
                     <span id="drafter_msg_host_captain">Host Captain</span>

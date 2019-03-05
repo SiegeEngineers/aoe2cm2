@@ -11,6 +11,10 @@ html, body {
 	padding: 0;
 }
 
+.active {
+    background-color: yellow;
+}
+
 .wrapper {
     min-height: 100%;
     height: auto !important;
@@ -698,7 +702,7 @@ input[type="checkbox"]:checked + label span
 
 .inset-input::-moz-selection {
 	background: #009688;
-	color: #fff; 
+    color: #fff;
 }
 
 
@@ -1159,7 +1163,7 @@ input[type="checkbox"]:checked + label span
 
 
 .player-inactive .player-head {
-	opacity: 0.26;	
+    opacity: 0.26;
 }
 
 #player-host {
@@ -1447,11 +1451,11 @@ a.shadowbutton:hover {
 }
 
 .choice-chosen {
-	background-color: rgba(76, 175, 80, 0.6); 
+    background-color: rgba(76, 175, 80, 0.6);
 }
 
 .choice-banned {
-	background-color: rgba(244, 67, 54, 0.6); 
+    background-color: rgba(244, 67, 54, 0.6);
 }
 
 .choice-banned, .choice-chosen {
@@ -1459,11 +1463,11 @@ a.shadowbutton:hover {
 }
 
 .choice-ban:hover {
-	background-color: #f44336; 
+    background-color: #f44336;
 }
 
 .choice-pick:hover {
-	background-color: #4caf50; 
+    background-color: #4caf50;
 }
 
 .choice-gbanned
@@ -1594,45 +1598,45 @@ img {
     padding: 0;
     margin: 16px auto;
 }
- 
+
 .tabs:after {
     content: '';
     display: table;
     clear: both;
 }
- 
+
 .tabs input[type=radio] {
     display:none;
 }
- 
+
 .tabs label {
     display: block;
     float: left;
     width: 25%;
- 
-	color: rgba(0, 0, 0, 0.38);
+
+    color: rgba(0, 0, 0, 0.38);
     font-size: 24px;
     font-weight: normal;
     text-decoration: none;
     text-align: center;
     line-height: 2;
- 
+
     cursor: pointer;
- 
+
     -webkit-transition: color 0.25s; /* Safari 3.1 to 6.0 */
     transition: color 0.25s;
 }
 
- 
+
 .tabs label i {
     padding: 5px;
     margin-right: 0;
 }
- 
+
 .tabs label:hover {
     color: #009688;
 }
- 
+
 .tab-content {
     display: none;
     width: 100%;
@@ -1644,7 +1648,7 @@ img {
 .tabs [id^="tab"]:checked + label {
     color: #009688;
 }
- 
+
 #tab1:checked ~ #tab-content1,
 #tab2:checked ~ #tab-content2,
 #tab3:checked ~ #tab-content3,
@@ -1661,13 +1665,13 @@ img {
     }
 }
 
-@media (min-width: 1023px) {   
+@media (min-width: 1023px) {
     .tabs i {
         padding: 5px;
         margin-right: 10px;
     }
- 
- 
+
+
     .tabs {
 	   max-width: 1000px;
 	   margin: 16px auto;
@@ -1705,9 +1709,9 @@ img {
 	top: 50%;
 	margin-top: -15px;
 	z-index: 10;
-	
 
-	-webkit-transition: all 250ms;
+
+    -webkit-transition: all 250ms;
 	-moz-transition: all 250ms;
 	transition: all 250ms;
 }

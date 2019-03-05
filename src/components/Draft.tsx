@@ -1,39 +1,66 @@
 import * as React from "react";
 import * as io from "socket.io-client"
-import {default as ModelDraft} from '../models/Draft'
 import '../pure-min.css'
 import '../style2.css'
 import CivGrid from "./CivGrid";
 import Messages from "./Messages";
 import Players from "./Players";
 import TurnRow from "./TurnRow";
+import Action from "../models/Action";
+import Civilisation from "../models/Civilisation";
+import Player from "../models/Player";
+import Preset from "../models/Preset";
 
 interface IProps {
-    config: ModelDraft;
+    nameHost: string;
+    nameGuest: string;
+    whoAmI: Player;
+    preset: Preset;
+    nextAction: number;
+    events: Event[];
+
+    onNextAction?: () => void;
+    onSetNameHostAction?: () => void;
+    onSetNameGuestAction?: () => void;
 }
 
-class Draft extends React.Component<IProps, object> {
+interface IState {
+    nextStep: number;
+}
+
+class Draft extends React.Component<IProps, IState> {
     private socket = io("http://localhost:3000/gQkQ");
 
-    public render() {
-        const presetName: string = this.props.config.preset.name;
-        const turns = this.props.config.preset.turns;
+    constructor(props: IProps) {
+        super(props);
 
-
-        this.socket.on("player_joined", (data:any) => {
-            alert(JSON.stringify(data));
+        this.socket.on("player_joined", (data: any) => {
+            alert("player_joined\n\n" + JSON.stringify(data));
         });
+
+        this.socket.on("act", (message: any) => {
+            alert("act\n\n" + JSON.stringify(message));
+        });
+    }
+
+    public render() {
+        const presetName: string = this.props.preset.name;
+        const turns = this.props.preset.turns;
 
         return (
             <div className="draft-content">
 
-                <button onClick={this.talk}>click me</button>
+                <button onClick={this.talk}>join</button>
+                <button onClick={this.act}>act</button>
+                <button onClick={this.props.onNextAction}>nextAction</button>
+                <button onClick={this.props.onSetNameHostAction}>setNameHost</button>
+                <button onClick={this.props.onSetNameGuestAction}>setNameGuest</button>
 
                 <div id="draft-title" className="centered text-primary info-card">{presetName}</div>
 
                 <TurnRow turns={turns}/>
 
-                <Players config={this.props.config}/>
+                <Players nameHost={this.props.nameHost} nameGuest={this.props.nameGuest} preset={this.props.preset}/>
 
                 <Messages/>
 
@@ -44,7 +71,11 @@ class Draft extends React.Component<IProps, object> {
     }
 
     private talk = () => {
-        this.socket.emit("join", {"name":"Joyful Joan"});
+        this.socket.emit("join", {"name": "Joyful Joan"});
+    };
+
+    private act = () => {
+        this.socket.emit("act", {action: Action.PICK, civilisation: Civilisation.AZTECS});
     };
 
 }

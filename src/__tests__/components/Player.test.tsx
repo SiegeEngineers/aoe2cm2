@@ -1,8 +1,8 @@
 import {shallow} from "enzyme";
 import * as React from "react";
 import Player from "../../components/Player";
-import Preset from "../../models/Preset";
 import {default as ModelPlayer} from "../../models/Player";
+import Preset from "../../models/Preset";
 
 
 it('Player renders correctly', () => {
