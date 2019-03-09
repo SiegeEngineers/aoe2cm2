@@ -14,173 +14,194 @@ exports[`CivGrid renders correctly 1`] = `
         Start
       </div>
     </div>
-    <Turn
+    <Connect(Turn)
       turn={
         Turn {
           "action": "GLOBAL_BAN",
           "player": "HOST",
         }
       }
+      turnNumber={0}
     />
-    <Turn
+    <Connect(Turn)
       turn={
         Turn {
           "action": "GLOBAL_BAN",
           "player": "GUEST",
         }
       }
+      turnNumber={1}
     />
-    <Turn
+    <Connect(Turn)
       turn={
         Turn {
           "action": "HIDDEN_BAN",
           "player": "HOST",
         }
       }
+      turnNumber={2}
     />
-    <Turn
+    <Connect(Turn)
       turn={
         Turn {
           "action": "HIDDEN_BAN",
           "player": "GUEST",
         }
       }
+      turnNumber={3}
     />
-    <Turn
+    <Connect(Turn)
       turn={
         Turn {
           "action": "REVEAL_BANS",
           "player": "NONE",
         }
       }
+      turnNumber={4}
     />
-    <Turn
+    <Connect(Turn)
       turn={
         Turn {
           "action": "HIDDEN_PICK",
           "player": "HOST",
         }
       }
+      turnNumber={5}
     />
-    <Turn
+    <Connect(Turn)
       turn={
         Turn {
           "action": "HIDDEN_PICK",
           "player": "GUEST",
         }
       }
+      turnNumber={6}
     />
-    <Turn
+    <Connect(Turn)
       turn={
         Turn {
           "action": "HIDDEN_PICK",
           "player": "HOST",
         }
       }
+      turnNumber={7}
     />
-    <Turn
+    <Connect(Turn)
       turn={
         Turn {
           "action": "HIDDEN_PICK",
           "player": "GUEST",
         }
       }
+      turnNumber={8}
     />
-    <Turn
+    <Connect(Turn)
       turn={
         Turn {
           "action": "HIDDEN_PICK",
           "player": "HOST",
         }
       }
+      turnNumber={9}
     />
-    <Turn
+    <Connect(Turn)
       turn={
         Turn {
           "action": "HIDDEN_PICK",
           "player": "GUEST",
         }
       }
+      turnNumber={10}
     />
-    <Turn
+    <Connect(Turn)
       turn={
         Turn {
           "action": "HIDDEN_PICK",
           "player": "HOST",
         }
       }
+      turnNumber={11}
     />
-    <Turn
+    <Connect(Turn)
       turn={
         Turn {
           "action": "HIDDEN_PICK",
           "player": "GUEST",
         }
       }
+      turnNumber={12}
     />
-    <Turn
+    <Connect(Turn)
       turn={
         Turn {
           "action": "HIDDEN_PICK",
           "player": "HOST",
         }
       }
+      turnNumber={13}
     />
-    <Turn
+    <Connect(Turn)
       turn={
         Turn {
           "action": "HIDDEN_PICK",
           "player": "GUEST",
         }
       }
+      turnNumber={14}
     />
-    <Turn
+    <Connect(Turn)
       turn={
         Turn {
           "action": "HIDDEN_PICK",
           "player": "HOST",
         }
       }
+      turnNumber={15}
     />
-    <Turn
+    <Connect(Turn)
       turn={
         Turn {
           "action": "HIDDEN_PICK",
           "player": "GUEST",
         }
       }
+      turnNumber={16}
     />
-    <Turn
+    <Connect(Turn)
       turn={
         Turn {
           "action": "REVEAL_PICKS",
           "player": "NONE",
         }
       }
+      turnNumber={17}
     />
-    <Turn
+    <Connect(Turn)
       turn={
         Turn {
           "action": "HIDDEN_SNIPE",
           "player": "HOST",
         }
       }
+      turnNumber={18}
     />
-    <Turn
+    <Connect(Turn)
       turn={
         Turn {
           "action": "HIDDEN_SNIPE",
           "player": "GUEST",
         }
       }
+      turnNumber={19}
     />
-    <Turn
+    <Connect(Turn)
       turn={
         Turn {
           "action": "REVEAL_ALL",
           "player": "NONE",
         }
       }
+      turnNumber={20}
     />
     <div
       className="pure-u-1-24 arrow-end"

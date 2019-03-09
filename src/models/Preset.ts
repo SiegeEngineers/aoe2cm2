@@ -3,6 +3,13 @@ import Turn from "./Turn";
 
 class Preset {
 
+    public static readonly SIMPLE: Preset = new Preset('Simple Preset', Civilisation.ALL, [
+        Turn.HOST_BAN,
+        Turn.GUEST_BAN,
+        Turn.GUEST_PICK,
+        Turn.HOST_PICK
+    ]);
+
     public static readonly SAMPLE: Preset = new Preset('Default Preset', Civilisation.ALL, [
         Turn.HOST_GLOBAL_BAN,
         Turn.GUEST_GLOBAL_BAN,

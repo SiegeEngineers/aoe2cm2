@@ -1,6 +1,7 @@
 import Preset from "./Preset";
 import {IStoreState} from "../types";
 import Player from "./Player";
+import {DraftEvent} from "./DraftEvent";
 
 class Draft implements IStoreState {
     public readonly nameHost: string;
@@ -8,7 +9,7 @@ class Draft implements IStoreState {
     public whoAmI: Player;
     public readonly preset: Preset;
     public nextAction: number = 0;
-    public events: Event[] = [];
+    public events: DraftEvent[] = [];
 
     constructor(nameHost: string, nameGuest: string, preset: Preset) {
         this.nameHost = nameHost;

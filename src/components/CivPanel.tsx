@@ -24,9 +24,13 @@ class CivPanel extends React.Component<IProps, object> {
         if(this.props.active){
             className += " active-choice";
         }
+        let contentClass: string = "box-content";
+        if (this.props.civilisation !== undefined) {
+            contentClass += " visible";
+        }
         return (
             <div className={className}>
-                <div className="box-content">
+                <div className={contentClass}>
                     <div className="stretchy-wrapper">
                         <div className="stretchy-image">
                             <img src={imageSrc}/>

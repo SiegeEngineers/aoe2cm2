@@ -10,6 +10,7 @@ import Action from "../models/Action";
 import Civilisation from "../models/Civilisation";
 import Player from "../models/Player";
 import Preset from "../models/Preset";
+import "../models/DraftEvent";
 
 interface IProps {
     nameHost: string;
@@ -17,7 +18,6 @@ interface IProps {
     whoAmI: Player;
     preset: Preset;
     nextAction: number;
-    events: Event[];
 
     onNextAction?: () => void;
     onSetNameHostAction?: () => void;

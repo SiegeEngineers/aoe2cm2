@@ -1,38 +1,28 @@
-import * as constants from '../constants';
+import {Actions} from '../constants';
+import Player from "../models/Player";
 
 export interface IActionCompleted {
-    type: constants.ACTION_COMPLETED;
+    type: Actions.ACTION_COMPLETED;
 }
 
-export interface ISetNameHost {
-    type: constants.SET_NAME_HOST;
-    value: string;
+export interface ISetName {
+    player: Player,
+    type: Actions.SET_NAME,
+    value: string
 }
 
-export interface ISetNameGuest {
-    type: constants.SET_NAME_GUEST;
-    value: string;
-}
-
-export type SetNameAction = ISetNameGuest | ISetNameHost;
-export type Action = ISetNameGuest | ISetNameHost | IActionCompleted | SetNameAction;
+export type Action = ISetName | IActionCompleted;
 
 export function completeAction(): IActionCompleted {
     return {
-        type: constants.ACTION_COMPLETED
+        type: Actions.ACTION_COMPLETED
     }
 }
 
-export function setNameHost(value: string): SetNameAction {
+export function setName(player: Player, value: string): ISetName {
     return {
-        type: constants.SET_NAME_HOST,
-        value
-    }
-}
-
-export function setNameGuest(value: string): SetNameAction {
-    return {
-        type: constants.SET_NAME_GUEST,
+        player,
+        type: Actions.SET_NAME,
         value
     }
 }

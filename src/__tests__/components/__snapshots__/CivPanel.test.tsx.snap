@@ -5,7 +5,7 @@ exports[`BAN CivPanels render correctly 1`] = `
   className="ban card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -32,7 +32,7 @@ exports[`BAN CivPanels render correctly 2`] = `
   className="ban card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -59,7 +59,7 @@ exports[`BAN CivPanels render correctly 3`] = `
   className="ban card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -86,7 +86,7 @@ exports[`BAN CivPanels render correctly 4`] = `
   className="ban card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -113,7 +113,7 @@ exports[`BAN CivPanels render correctly 5`] = `
   className="ban card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -140,7 +140,7 @@ exports[`BAN CivPanels render correctly 6`] = `
   className="ban card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -167,7 +167,7 @@ exports[`BAN CivPanels render correctly 7`] = `
   className="ban card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -194,7 +194,7 @@ exports[`BAN CivPanels render correctly 8`] = `
   className="ban card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -221,7 +221,7 @@ exports[`BAN CivPanels render correctly 9`] = `
   className="ban card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -248,7 +248,7 @@ exports[`BAN CivPanels render correctly 10`] = `
   className="ban card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -275,7 +275,7 @@ exports[`BAN CivPanels render correctly 11`] = `
   className="ban card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -302,7 +302,7 @@ exports[`BAN CivPanels render correctly 12`] = `
   className="ban card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -329,7 +329,7 @@ exports[`BAN CivPanels render correctly 13`] = `
   className="ban card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -356,7 +356,7 @@ exports[`BAN CivPanels render correctly 14`] = `
   className="ban card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -383,7 +383,7 @@ exports[`BAN CivPanels render correctly 15`] = `
   className="ban card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -410,7 +410,7 @@ exports[`BAN CivPanels render correctly 16`] = `
   className="ban card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -437,7 +437,7 @@ exports[`BAN CivPanels render correctly 17`] = `
   className="ban card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -464,7 +464,7 @@ exports[`BAN CivPanels render correctly 18`] = `
   className="ban card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -491,7 +491,7 @@ exports[`BAN CivPanels render correctly 19`] = `
   className="ban card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -518,7 +518,7 @@ exports[`BAN CivPanels render correctly 20`] = `
   className="ban card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -545,7 +545,7 @@ exports[`BAN CivPanels render correctly 21`] = `
   className="ban card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -572,7 +572,7 @@ exports[`BAN CivPanels render correctly 22`] = `
   className="ban card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -599,7 +599,7 @@ exports[`BAN CivPanels render correctly 23`] = `
   className="ban card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -626,7 +626,7 @@ exports[`BAN CivPanels render correctly 24`] = `
   className="ban card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -653,7 +653,7 @@ exports[`BAN CivPanels render correctly 25`] = `
   className="ban card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -680,7 +680,7 @@ exports[`BAN CivPanels render correctly 26`] = `
   className="ban card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -707,7 +707,7 @@ exports[`BAN CivPanels render correctly 27`] = `
   className="ban card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -734,7 +734,7 @@ exports[`BAN CivPanels render correctly 28`] = `
   className="ban card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -761,7 +761,7 @@ exports[`BAN CivPanels render correctly 29`] = `
   className="ban card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -788,7 +788,7 @@ exports[`BAN CivPanels render correctly 30`] = `
   className="ban card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -815,7 +815,7 @@ exports[`BAN CivPanels render correctly 31`] = `
   className="ban card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -842,7 +842,7 @@ exports[`PICK CivPanels render correctly 1`] = `
   className="pick card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -869,7 +869,7 @@ exports[`PICK CivPanels render correctly 2`] = `
   className="pick card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -896,7 +896,7 @@ exports[`PICK CivPanels render correctly 3`] = `
   className="pick card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -923,7 +923,7 @@ exports[`PICK CivPanels render correctly 4`] = `
   className="pick card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -950,7 +950,7 @@ exports[`PICK CivPanels render correctly 5`] = `
   className="pick card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -977,7 +977,7 @@ exports[`PICK CivPanels render correctly 6`] = `
   className="pick card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -1004,7 +1004,7 @@ exports[`PICK CivPanels render correctly 7`] = `
   className="pick card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -1031,7 +1031,7 @@ exports[`PICK CivPanels render correctly 8`] = `
   className="pick card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -1058,7 +1058,7 @@ exports[`PICK CivPanels render correctly 9`] = `
   className="pick card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -1085,7 +1085,7 @@ exports[`PICK CivPanels render correctly 10`] = `
   className="pick card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -1112,7 +1112,7 @@ exports[`PICK CivPanels render correctly 11`] = `
   className="pick card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -1139,7 +1139,7 @@ exports[`PICK CivPanels render correctly 12`] = `
   className="pick card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -1166,7 +1166,7 @@ exports[`PICK CivPanels render correctly 13`] = `
   className="pick card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -1193,7 +1193,7 @@ exports[`PICK CivPanels render correctly 14`] = `
   className="pick card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -1220,7 +1220,7 @@ exports[`PICK CivPanels render correctly 15`] = `
   className="pick card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -1247,7 +1247,7 @@ exports[`PICK CivPanels render correctly 16`] = `
   className="pick card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -1274,7 +1274,7 @@ exports[`PICK CivPanels render correctly 17`] = `
   className="pick card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -1301,7 +1301,7 @@ exports[`PICK CivPanels render correctly 18`] = `
   className="pick card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -1328,7 +1328,7 @@ exports[`PICK CivPanels render correctly 19`] = `
   className="pick card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -1355,7 +1355,7 @@ exports[`PICK CivPanels render correctly 20`] = `
   className="pick card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -1382,7 +1382,7 @@ exports[`PICK CivPanels render correctly 21`] = `
   className="pick card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -1409,7 +1409,7 @@ exports[`PICK CivPanels render correctly 22`] = `
   className="pick card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -1436,7 +1436,7 @@ exports[`PICK CivPanels render correctly 23`] = `
   className="pick card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -1463,7 +1463,7 @@ exports[`PICK CivPanels render correctly 24`] = `
   className="pick card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -1490,7 +1490,7 @@ exports[`PICK CivPanels render correctly 25`] = `
   className="pick card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -1517,7 +1517,7 @@ exports[`PICK CivPanels render correctly 26`] = `
   className="pick card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -1544,7 +1544,7 @@ exports[`PICK CivPanels render correctly 27`] = `
   className="pick card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -1571,7 +1571,7 @@ exports[`PICK CivPanels render correctly 28`] = `
   className="pick card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -1598,7 +1598,7 @@ exports[`PICK CivPanels render correctly 29`] = `
   className="pick card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -1625,7 +1625,7 @@ exports[`PICK CivPanels render correctly 30`] = `
   className="pick card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"
@@ -1652,7 +1652,7 @@ exports[`PICK CivPanels render correctly 31`] = `
   className="pick card"
 >
   <div
-    className="box-content"
+    className="box-content visible"
   >
     <div
       className="stretchy-wrapper"

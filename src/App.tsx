@@ -8,8 +8,8 @@ class App extends React.Component {
     public render() {
         return (
             <div id={'wrapper'} className={'wrapper'}>
-                <Draft preset={Preset.SAMPLE} nameGuest={'Beastly Barbarossa'} nameHost={'Sneaky Saladin'}
-                       events={[]} nextAction={0} whoAmI={Player.HOST}/>
+                <Draft preset={Preset.SIMPLE} nameGuest={'Beastly Barbarossa'} nameHost={'Sneaky Saladin'}
+                       nextAction={0} whoAmI={Player.HOST}/>
             </div>
         );
     }

@@ -1,5 +1,6 @@
 import Preset from "../models/Preset";
 import Player from "../models/Player";
+import {DraftEvent} from "../models/DraftEvent";
 
 export interface IStoreState {
     nameHost: string;
@@ -7,5 +8,5 @@ export interface IStoreState {
     whoAmI: Player;
     preset: Preset;
     nextAction: number;
-    events: Event[];
+    events: DraftEvent[];
 }

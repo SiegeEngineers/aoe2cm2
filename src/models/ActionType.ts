@@ -1,6 +1,7 @@
 enum ActionType {
     PICK= "pick",
-    BAN= "ban"
+    BAN = "ban",
+    SNIPE = "snipe",
 }
 
 export default ActionType;

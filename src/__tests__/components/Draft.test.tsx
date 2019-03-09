@@ -6,6 +6,6 @@ import Preset from "../../models/Preset";
 
 it('Draft renders correctly', () => {
     const component = shallow(<Draft preset={Preset.SAMPLE} nameGuest={'Beastly Barbarossa'} nameHost={'Sneaky Saladin'}
-                                     events={[]} nextAction={0} whoAmI={Player.HOST}/>);
+                                     nextAction={0} whoAmI={Player.HOST}/>);
     expect(component).toMatchSnapshot();
 });

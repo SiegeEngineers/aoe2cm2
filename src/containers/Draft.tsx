@@ -3,6 +3,7 @@ import * as actions from '../actions/';
 import {IStoreState} from '../types';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
+import Player from "../models/Player";
 
 export function mapStateToProps({nameHost, nameGuest, whoAmI, preset, nextAction, events}: IStoreState) {
     return {
@@ -18,8 +19,8 @@ export function mapStateToProps({nameHost, nameGuest, whoAmI, preset, nextAction
 export function mapDispatchToProps(dispatch: Dispatch<actions.Action>) {
     return {
         onNextAction: () => dispatch(actions.completeAction()),
-        onSetNameGuestAction: () => dispatch(actions.setNameGuest("Eumel Guest")),
-        onSetNameHostAction: () => dispatch(actions.setNameHost("Eumel Host")),
+        onSetNameGuestAction: () => dispatch(actions.setName(Player.GUEST, "Eumel Guest")),
+        onSetNameHostAction: () => dispatch(actions.setName(Player.HOST, "Eumel Host")),
     }
 }
 
