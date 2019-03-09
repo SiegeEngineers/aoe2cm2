@@ -25,7 +25,7 @@ class CivPanel extends React.Component<IProps, object> {
         let imageSrc: string = "";
         let civilisationName = '';
         if (civilisation !== undefined) {
-            imageSrc = "images/civs/" + civilisation.name.toLocaleLowerCase() + "_orig.png";
+            imageSrc = "/images/civs/" + civilisation.name.toLocaleLowerCase() + "_orig.png";
             civilisationName = civilisation.name;
         }
         let className: string = this.props.actionType.toString();

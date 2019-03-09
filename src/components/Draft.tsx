@@ -35,10 +35,12 @@ interface IState {
 
 class Draft extends React.Component<IProps, IState> {
 
-    private socket: Socket = io("/gQkQ");
+    private readonly socket: Socket;
 
     constructor(props: IProps) {
         super(props);
+
+        this.socket = io({query: {draftId: this.getIdFromUrl()}});
 
         this.socket.on("player_joined", (data: IJoinedMessage) => {
             console.log("player_joined", data);
@@ -64,7 +66,9 @@ class Draft extends React.Component<IProps, IState> {
             }
         });
 
-        this.socket.emit('join', {name: 'myname' + Date.now()}, (data: IDraftConfig) => {
+        const name = 'myname' + Date.now();
+        console.log('setting name to', name);
+        this.socket.emit('join', {name}, (data: IDraftConfig) => {
             console.log('thecallback', data);
             if (this.props.onDraftConfig !== undefined) {
                 const onDraftConfig = this.props.onDraftConfig as (message: IDraftConfig) => void;
@@ -93,6 +97,15 @@ class Draft extends React.Component<IProps, IState> {
 
             </div>
         );
+    }
+
+    private getIdFromUrl(): string {
+        const match: RegExpMatchArray | null = window.location.pathname.match(/\/draft\/([A-Za-z]+)\/?.*/);
+        if (match !== null) {
+            return match[1];
+        }
+        alert('Could not get draft ID from url');
+        return '';
     }
 }
 
