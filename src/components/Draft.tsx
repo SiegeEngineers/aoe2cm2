@@ -1,16 +1,19 @@
 import * as React from "react";
-import * as io from "socket.io-client"
 import '../pure-min.css'
 import '../style2.css'
 import CivGrid from "./CivGrid";
 import Messages from "./Messages";
 import Players from "./Players";
 import TurnRow from "./TurnRow";
-import Action from "../models/Action";
-import Civilisation from "../models/Civilisation";
 import Player from "../models/Player";
 import Preset from "../models/Preset";
 import "../models/DraftEvent";
+import PlayerEvent from "../models/PlayerEvent";
+import * as io from "socket.io-client";
+import {DraftEvent} from "../models/DraftEvent";
+import Socket = SocketIOClient.Socket;
+import {IDraftConfig} from "../models/IDraftConfig";
+import {IJoinedMessage} from "../models/IJoinedMessage";
 
 interface IProps {
     nameHost: string;
@@ -19,9 +22,11 @@ interface IProps {
     preset: Preset;
     nextAction: number;
 
+    onActionCompleted?: (message: DraftEvent) => void;
+    onDraftConfig?: (message: IDraftConfig) => void;
     onNextAction?: () => void;
-    onSetNameHostAction?: () => void;
-    onSetNameGuestAction?: () => void;
+    onSetNameHostAction?: (name: string) => void;
+    onSetNameGuestAction?: (name: string) => void;
 }
 
 interface IState {
@@ -29,17 +34,43 @@ interface IState {
 }
 
 class Draft extends React.Component<IProps, IState> {
-    private socket = io("http://localhost:3000/gQkQ");
+
+    private socket: Socket = io("/gQkQ");
 
     constructor(props: IProps) {
         super(props);
 
-        this.socket.on("player_joined", (data: any) => {
-            alert("player_joined\n\n" + JSON.stringify(data));
+        this.socket.on("player_joined", (data: IJoinedMessage) => {
+            console.log("player_joined", data);
+            if (data.playerType === Player.HOST) {
+                if (this.props.onSetNameHostAction !== undefined) {
+                    this.props.onSetNameHostAction(data.name);
+                }
+            }
+            if (data.playerType === Player.GUEST) {
+                if (this.props.onSetNameGuestAction !== undefined) {
+                    this.props.onSetNameGuestAction(data.name);
+                }
+            }
         });
 
-        this.socket.on("act", (message: any) => {
-            alert("act\n\n" + JSON.stringify(message));
+        this.socket.on("playerEvent", (message: PlayerEvent) => {
+            console.log('message recieved:', "[act]", JSON.stringify(message));
+            if (this.props.onActionCompleted !== undefined) {
+                const playerEvent = new PlayerEvent(message.player, message.actionType, message.civilisation);
+                const onActionCompleted = this.props.onActionCompleted as (message: DraftEvent) => void;
+                console.log('executing onActionCompleted');
+                onActionCompleted(playerEvent);
+            }
+        });
+
+        this.socket.emit('join', {name: 'myname' + Date.now()}, (data: IDraftConfig) => {
+            console.log('thecallback', data);
+            if (this.props.onDraftConfig !== undefined) {
+                const onDraftConfig = this.props.onDraftConfig as (message: IDraftConfig) => void;
+                console.log('executing onDraftConfig');
+                onDraftConfig(data);
+            }
         });
     }
 
@@ -50,12 +81,6 @@ class Draft extends React.Component<IProps, IState> {
         return (
             <div className="draft-content">
 
-                <button onClick={this.talk}>join</button>
-                <button onClick={this.act}>act</button>
-                <button onClick={this.props.onNextAction}>nextAction</button>
-                <button onClick={this.props.onSetNameHostAction}>setNameHost</button>
-                <button onClick={this.props.onSetNameGuestAction}>setNameGuest</button>
-
                 <div id="draft-title" className="centered text-primary info-card">{presetName}</div>
 
                 <TurnRow turns={turns}/>
@@ -64,20 +89,11 @@ class Draft extends React.Component<IProps, IState> {
 
                 <Messages/>
 
-                <CivGrid/>
+                <CivGrid civilisations={this.props.preset.civilisations} socket={this.socket}/>
 
             </div>
         );
     }
-
-    private talk = () => {
-        this.socket.emit("join", {"name": "Joyful Joan"});
-    };
-
-    private act = () => {
-        this.socket.emit("act", {action: Action.PICK, civilisation: Civilisation.AZTECS});
-    };
-
 }
 
 export default Draft;

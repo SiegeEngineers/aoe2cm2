@@ -15,11 +15,13 @@ class Draft implements IStoreState {
         this.nameHost = nameHost;
         this.nameGuest = nameGuest;
         this.preset = preset;
+        this.whoAmI = Player.HOST;
     }
 
     public setWhoAmI(whoAmI: Player) {
         this.whoAmI = whoAmI;
     }
+
 }
 
 export default Draft

@@ -4,6 +4,8 @@ import {IStoreState} from '../types';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
 import Player from "../models/Player";
+import {DraftEvent} from "../models/DraftEvent";
+import {IDraftConfig} from "../models/IDraftConfig";
 
 export function mapStateToProps({nameHost, nameGuest, whoAmI, preset, nextAction, events}: IStoreState) {
     return {
@@ -18,9 +20,14 @@ export function mapStateToProps({nameHost, nameGuest, whoAmI, preset, nextAction
 
 export function mapDispatchToProps(dispatch: Dispatch<actions.Action>) {
     return {
-        onNextAction: () => dispatch(actions.completeAction()),
-        onSetNameGuestAction: () => dispatch(actions.setName(Player.GUEST, "Eumel Guest")),
-        onSetNameHostAction: () => dispatch(actions.setName(Player.HOST, "Eumel Host")),
+        onActionCompleted: (draftEvent: DraftEvent) => {
+            dispatch(actions.act(draftEvent));
+        },
+        onDraftConfig: (config: IDraftConfig) => {
+            dispatch(actions.applyConfig(config));
+        },
+        onSetNameGuestAction: (name: string) => dispatch(actions.setName(Player.GUEST, name)),
+        onSetNameHostAction: (name: string) => dispatch(actions.setName(Player.HOST, name))
     }
 }
 
