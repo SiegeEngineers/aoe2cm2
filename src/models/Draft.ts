@@ -4,8 +4,8 @@ import Player from "./Player";
 import {DraftEvent} from "./DraftEvent";
 
 class Draft implements IStoreState {
-    public readonly nameHost: string;
-    public readonly nameGuest: string;
+    public nameHost: string;
+    public nameGuest: string;
     public whoAmI: Player;
     public readonly preset: Preset;
     public nextAction: number = 0;

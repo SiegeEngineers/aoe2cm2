@@ -4,25 +4,20 @@ import * as socketio from "socket.io";
 import Player from "./models/Player";
 import {IDraftConfig} from "./models/IDraftConfig";
 import {IJoinMessage} from "./models/IJoinMessage";
+import {DraftsStore} from "./models/DraftsStore";
 
 const app = express();
 app.set("port", process.env.PORT || 3000);
 
 const server = new Server(app);
 const io = socketio(server);
-const playerNames = new Map<string, Map<Player, string>>();
+const draftsStore = new DraftsStore();
 
 function setPlayerName(draftId: string, player: Player, name: string) {
-    if (!playerNames.has(draftId)) {
-        const map = new Map<Player, string>();
-        map.set(Player.HOST, '…');
-        map.set(Player.GUEST, '…');
-        playerNames.set(draftId, map);
+    if (!draftsStore.has(draftId)) {
+        draftsStore.initDraft(draftId);
     }
-    const draftNames = playerNames.get(draftId);
-    if (draftNames !== undefined) {
-        draftNames.set(player, name);
-    }
+    draftsStore.setPlayerName(draftId, player, name);
 }
 
 function newDraftId(): string {
@@ -46,17 +41,6 @@ app.use('/draft/[a-zA-Z]+', (req, res) => {
 
 app.use(express.static('build'));
 
-function getNames(draftId: string) {
-    const draftNames = playerNames.get(draftId);
-    let nameHost: string = '…';
-    let nameGuest: string = '…';
-    if (draftNames !== undefined) {
-        nameHost = draftNames.get(Player.HOST) !== undefined ? draftNames.get(Player.HOST) as string : '…';
-        nameGuest = draftNames.get(Player.GUEST) !== undefined ? draftNames.get(Player.GUEST) as string : '…';
-    }
-    return {nameHost, nameGuest};
-}
-
 io.on("connection", (socket: socketio.Socket) => {
     const draftId: string = socket.handshake.query.draftId;
 
@@ -66,7 +50,11 @@ io.on("connection", (socket: socketio.Socket) => {
 
     console.log("a user connected to the draft", draftId);
 
-    const {nameHost, nameGuest} = getNames(draftId);
+    if(!draftsStore.has(draftId)){
+        draftsStore.initDraft(draftId);
+    }
+
+    const {nameHost, nameGuest} = draftsStore.getPlayerNames(draftId);
 
     const rooms = Object.keys(socket.adapter.rooms);
     console.log('rooms', rooms);
@@ -99,12 +87,11 @@ io.on("connection", (socket: socketio.Socket) => {
             .in(roomGuest)
             .in(roomSpec)
             .emit("player_joined", {name: message.name, playerType});
-        fn({...getNames(draftId), yourPlayerType: playerType});
+        fn({...draftsStore.getPlayerNames(draftId), yourPlayerType: playerType});
     });
 
     socket.on("act", (message: any) => {
         console.log(message);
-        console.log(playerNames);
         if (validate(message)) {
             socket.nsp
                 .in(roomHost)
