@@ -65,7 +65,7 @@ class CivPanel extends React.Component<IProps, object> {
             socket.emit('act', new PlayerEvent(whoAmI, triggerAction, civilisation), (data: any) => {
                 console.log('act callback', data);
                 if (data.status !== 'ok') {
-                    alert(data.validationErrors);
+                    alert('Validation(s) failed:\n\n' + JSON.stringify(data.validationErrors));
                 }
             });
         }
