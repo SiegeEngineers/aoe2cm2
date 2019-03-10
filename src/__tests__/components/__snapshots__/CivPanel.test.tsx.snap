@@ -15,6 +15,7 @@ exports[`BAN CivPanels render correctly 1`] = `
         className="stretchy-image"
       >
         <img
+          alt="Britons"
           src="/images/civs/britons_orig.png"
         />
       </div>
@@ -43,6 +44,7 @@ exports[`BAN CivPanels render correctly 2`] = `
         className="stretchy-image"
       >
         <img
+          alt="Byzantines"
           src="/images/civs/byzantines_orig.png"
         />
       </div>
@@ -71,6 +73,7 @@ exports[`BAN CivPanels render correctly 3`] = `
         className="stretchy-image"
       >
         <img
+          alt="Celts"
           src="/images/civs/celts_orig.png"
         />
       </div>
@@ -99,6 +102,7 @@ exports[`BAN CivPanels render correctly 4`] = `
         className="stretchy-image"
       >
         <img
+          alt="Chinese"
           src="/images/civs/chinese_orig.png"
         />
       </div>
@@ -127,6 +131,7 @@ exports[`BAN CivPanels render correctly 5`] = `
         className="stretchy-image"
       >
         <img
+          alt="Franks"
           src="/images/civs/franks_orig.png"
         />
       </div>
@@ -155,6 +160,7 @@ exports[`BAN CivPanels render correctly 6`] = `
         className="stretchy-image"
       >
         <img
+          alt="Goths"
           src="/images/civs/goths_orig.png"
         />
       </div>
@@ -183,6 +189,7 @@ exports[`BAN CivPanels render correctly 7`] = `
         className="stretchy-image"
       >
         <img
+          alt="Japanese"
           src="/images/civs/japanese_orig.png"
         />
       </div>
@@ -211,6 +218,7 @@ exports[`BAN CivPanels render correctly 8`] = `
         className="stretchy-image"
       >
         <img
+          alt="Mongols"
           src="/images/civs/mongols_orig.png"
         />
       </div>
@@ -239,6 +247,7 @@ exports[`BAN CivPanels render correctly 9`] = `
         className="stretchy-image"
       >
         <img
+          alt="Persians"
           src="/images/civs/persians_orig.png"
         />
       </div>
@@ -267,6 +276,7 @@ exports[`BAN CivPanels render correctly 10`] = `
         className="stretchy-image"
       >
         <img
+          alt="Saracens"
           src="/images/civs/saracens_orig.png"
         />
       </div>
@@ -295,6 +305,7 @@ exports[`BAN CivPanels render correctly 11`] = `
         className="stretchy-image"
       >
         <img
+          alt="Teutons"
           src="/images/civs/teutons_orig.png"
         />
       </div>
@@ -323,6 +334,7 @@ exports[`BAN CivPanels render correctly 12`] = `
         className="stretchy-image"
       >
         <img
+          alt="Turks"
           src="/images/civs/turks_orig.png"
         />
       </div>
@@ -351,6 +363,7 @@ exports[`BAN CivPanels render correctly 13`] = `
         className="stretchy-image"
       >
         <img
+          alt="Vikings"
           src="/images/civs/vikings_orig.png"
         />
       </div>
@@ -379,6 +392,7 @@ exports[`BAN CivPanels render correctly 14`] = `
         className="stretchy-image"
       >
         <img
+          alt="Aztecs"
           src="/images/civs/aztecs_orig.png"
         />
       </div>
@@ -407,6 +421,7 @@ exports[`BAN CivPanels render correctly 15`] = `
         className="stretchy-image"
       >
         <img
+          alt="Huns"
           src="/images/civs/huns_orig.png"
         />
       </div>
@@ -435,6 +450,7 @@ exports[`BAN CivPanels render correctly 16`] = `
         className="stretchy-image"
       >
         <img
+          alt="Koreans"
           src="/images/civs/koreans_orig.png"
         />
       </div>
@@ -463,6 +479,7 @@ exports[`BAN CivPanels render correctly 17`] = `
         className="stretchy-image"
       >
         <img
+          alt="Mayans"
           src="/images/civs/mayans_orig.png"
         />
       </div>
@@ -491,6 +508,7 @@ exports[`BAN CivPanels render correctly 18`] = `
         className="stretchy-image"
       >
         <img
+          alt="Spanish"
           src="/images/civs/spanish_orig.png"
         />
       </div>
@@ -519,6 +537,7 @@ exports[`BAN CivPanels render correctly 19`] = `
         className="stretchy-image"
       >
         <img
+          alt="Italians"
           src="/images/civs/italians_orig.png"
         />
       </div>
@@ -547,6 +566,7 @@ exports[`BAN CivPanels render correctly 20`] = `
         className="stretchy-image"
       >
         <img
+          alt="Incas"
           src="/images/civs/incas_orig.png"
         />
       </div>
@@ -575,6 +595,7 @@ exports[`BAN CivPanels render correctly 21`] = `
         className="stretchy-image"
       >
         <img
+          alt="Indians"
           src="/images/civs/indians_orig.png"
         />
       </div>
@@ -603,6 +624,7 @@ exports[`BAN CivPanels render correctly 22`] = `
         className="stretchy-image"
       >
         <img
+          alt="Magyars"
           src="/images/civs/magyars_orig.png"
         />
       </div>
@@ -631,6 +653,7 @@ exports[`BAN CivPanels render correctly 23`] = `
         className="stretchy-image"
       >
         <img
+          alt="Slavs"
           src="/images/civs/slavs_orig.png"
         />
       </div>
@@ -659,6 +682,7 @@ exports[`BAN CivPanels render correctly 24`] = `
         className="stretchy-image"
       >
         <img
+          alt="Berbers"
           src="/images/civs/berbers_orig.png"
         />
       </div>
@@ -687,6 +711,7 @@ exports[`BAN CivPanels render correctly 25`] = `
         className="stretchy-image"
       >
         <img
+          alt="Ethiopians"
           src="/images/civs/ethiopians_orig.png"
         />
       </div>
@@ -715,6 +740,7 @@ exports[`BAN CivPanels render correctly 26`] = `
         className="stretchy-image"
       >
         <img
+          alt="Malians"
           src="/images/civs/malians_orig.png"
         />
       </div>
@@ -743,6 +769,7 @@ exports[`BAN CivPanels render correctly 27`] = `
         className="stretchy-image"
       >
         <img
+          alt="Portuguese"
           src="/images/civs/portuguese_orig.png"
         />
       </div>
@@ -771,6 +798,7 @@ exports[`BAN CivPanels render correctly 28`] = `
         className="stretchy-image"
       >
         <img
+          alt="Burmese"
           src="/images/civs/burmese_orig.png"
         />
       </div>
@@ -799,6 +827,7 @@ exports[`BAN CivPanels render correctly 29`] = `
         className="stretchy-image"
       >
         <img
+          alt="Khmer"
           src="/images/civs/khmer_orig.png"
         />
       </div>
@@ -827,6 +856,7 @@ exports[`BAN CivPanels render correctly 30`] = `
         className="stretchy-image"
       >
         <img
+          alt="Malay"
           src="/images/civs/malay_orig.png"
         />
       </div>
@@ -855,6 +885,7 @@ exports[`BAN CivPanels render correctly 31`] = `
         className="stretchy-image"
       >
         <img
+          alt="Vietnamese"
           src="/images/civs/vietnamese_orig.png"
         />
       </div>
@@ -883,6 +914,7 @@ exports[`PICK CivPanels render correctly 1`] = `
         className="stretchy-image"
       >
         <img
+          alt="Britons"
           src="/images/civs/britons_orig.png"
         />
       </div>
@@ -911,6 +943,7 @@ exports[`PICK CivPanels render correctly 2`] = `
         className="stretchy-image"
       >
         <img
+          alt="Byzantines"
           src="/images/civs/byzantines_orig.png"
         />
       </div>
@@ -939,6 +972,7 @@ exports[`PICK CivPanels render correctly 3`] = `
         className="stretchy-image"
       >
         <img
+          alt="Celts"
           src="/images/civs/celts_orig.png"
         />
       </div>
@@ -967,6 +1001,7 @@ exports[`PICK CivPanels render correctly 4`] = `
         className="stretchy-image"
       >
         <img
+          alt="Chinese"
           src="/images/civs/chinese_orig.png"
         />
       </div>
@@ -995,6 +1030,7 @@ exports[`PICK CivPanels render correctly 5`] = `
         className="stretchy-image"
       >
         <img
+          alt="Franks"
           src="/images/civs/franks_orig.png"
         />
       </div>
@@ -1023,6 +1059,7 @@ exports[`PICK CivPanels render correctly 6`] = `
         className="stretchy-image"
       >
         <img
+          alt="Goths"
           src="/images/civs/goths_orig.png"
         />
       </div>
@@ -1051,6 +1088,7 @@ exports[`PICK CivPanels render correctly 7`] = `
         className="stretchy-image"
       >
         <img
+          alt="Japanese"
           src="/images/civs/japanese_orig.png"
         />
       </div>
@@ -1079,6 +1117,7 @@ exports[`PICK CivPanels render correctly 8`] = `
         className="stretchy-image"
       >
         <img
+          alt="Mongols"
           src="/images/civs/mongols_orig.png"
         />
       </div>
@@ -1107,6 +1146,7 @@ exports[`PICK CivPanels render correctly 9`] = `
         className="stretchy-image"
       >
         <img
+          alt="Persians"
           src="/images/civs/persians_orig.png"
         />
       </div>
@@ -1135,6 +1175,7 @@ exports[`PICK CivPanels render correctly 10`] = `
         className="stretchy-image"
       >
         <img
+          alt="Saracens"
           src="/images/civs/saracens_orig.png"
         />
       </div>
@@ -1163,6 +1204,7 @@ exports[`PICK CivPanels render correctly 11`] = `
         className="stretchy-image"
       >
         <img
+          alt="Teutons"
           src="/images/civs/teutons_orig.png"
         />
       </div>
@@ -1191,6 +1233,7 @@ exports[`PICK CivPanels render correctly 12`] = `
         className="stretchy-image"
       >
         <img
+          alt="Turks"
           src="/images/civs/turks_orig.png"
         />
       </div>
@@ -1219,6 +1262,7 @@ exports[`PICK CivPanels render correctly 13`] = `
         className="stretchy-image"
       >
         <img
+          alt="Vikings"
           src="/images/civs/vikings_orig.png"
         />
       </div>
@@ -1247,6 +1291,7 @@ exports[`PICK CivPanels render correctly 14`] = `
         className="stretchy-image"
       >
         <img
+          alt="Aztecs"
           src="/images/civs/aztecs_orig.png"
         />
       </div>
@@ -1275,6 +1320,7 @@ exports[`PICK CivPanels render correctly 15`] = `
         className="stretchy-image"
       >
         <img
+          alt="Huns"
           src="/images/civs/huns_orig.png"
         />
       </div>
@@ -1303,6 +1349,7 @@ exports[`PICK CivPanels render correctly 16`] = `
         className="stretchy-image"
       >
         <img
+          alt="Koreans"
           src="/images/civs/koreans_orig.png"
         />
       </div>
@@ -1331,6 +1378,7 @@ exports[`PICK CivPanels render correctly 17`] = `
         className="stretchy-image"
       >
         <img
+          alt="Mayans"
           src="/images/civs/mayans_orig.png"
         />
       </div>
@@ -1359,6 +1407,7 @@ exports[`PICK CivPanels render correctly 18`] = `
         className="stretchy-image"
       >
         <img
+          alt="Spanish"
           src="/images/civs/spanish_orig.png"
         />
       </div>
@@ -1387,6 +1436,7 @@ exports[`PICK CivPanels render correctly 19`] = `
         className="stretchy-image"
       >
         <img
+          alt="Italians"
           src="/images/civs/italians_orig.png"
         />
       </div>
@@ -1415,6 +1465,7 @@ exports[`PICK CivPanels render correctly 20`] = `
         className="stretchy-image"
       >
         <img
+          alt="Incas"
           src="/images/civs/incas_orig.png"
         />
       </div>
@@ -1443,6 +1494,7 @@ exports[`PICK CivPanels render correctly 21`] = `
         className="stretchy-image"
       >
         <img
+          alt="Indians"
           src="/images/civs/indians_orig.png"
         />
       </div>
@@ -1471,6 +1523,7 @@ exports[`PICK CivPanels render correctly 22`] = `
         className="stretchy-image"
       >
         <img
+          alt="Magyars"
           src="/images/civs/magyars_orig.png"
         />
       </div>
@@ -1499,6 +1552,7 @@ exports[`PICK CivPanels render correctly 23`] = `
         className="stretchy-image"
       >
         <img
+          alt="Slavs"
           src="/images/civs/slavs_orig.png"
         />
       </div>
@@ -1527,6 +1581,7 @@ exports[`PICK CivPanels render correctly 24`] = `
         className="stretchy-image"
       >
         <img
+          alt="Berbers"
           src="/images/civs/berbers_orig.png"
         />
       </div>
@@ -1555,6 +1610,7 @@ exports[`PICK CivPanels render correctly 25`] = `
         className="stretchy-image"
       >
         <img
+          alt="Ethiopians"
           src="/images/civs/ethiopians_orig.png"
         />
       </div>
@@ -1583,6 +1639,7 @@ exports[`PICK CivPanels render correctly 26`] = `
         className="stretchy-image"
       >
         <img
+          alt="Malians"
           src="/images/civs/malians_orig.png"
         />
       </div>
@@ -1611,6 +1668,7 @@ exports[`PICK CivPanels render correctly 27`] = `
         className="stretchy-image"
       >
         <img
+          alt="Portuguese"
           src="/images/civs/portuguese_orig.png"
         />
       </div>
@@ -1639,6 +1697,7 @@ exports[`PICK CivPanels render correctly 28`] = `
         className="stretchy-image"
       >
         <img
+          alt="Burmese"
           src="/images/civs/burmese_orig.png"
         />
       </div>
@@ -1667,6 +1726,7 @@ exports[`PICK CivPanels render correctly 29`] = `
         className="stretchy-image"
       >
         <img
+          alt="Khmer"
           src="/images/civs/khmer_orig.png"
         />
       </div>
@@ -1695,6 +1755,7 @@ exports[`PICK CivPanels render correctly 30`] = `
         className="stretchy-image"
       >
         <img
+          alt="Malay"
           src="/images/civs/malay_orig.png"
         />
       </div>
@@ -1723,6 +1784,7 @@ exports[`PICK CivPanels render correctly 31`] = `
         className="stretchy-image"
       >
         <img
+          alt="Vietnamese"
           src="/images/civs/vietnamese_orig.png"
         />
       </div>
@@ -1751,6 +1813,7 @@ exports[`empty BAN CivPanel renders correctly 1`] = `
         className="stretchy-image"
       >
         <img
+          alt=""
           src=""
         />
       </div>
@@ -1777,6 +1840,7 @@ exports[`empty PICK CivPanel renders correctly 1`] = `
         className="stretchy-image"
       >
         <img
+          alt=""
           src=""
         />
       </div>

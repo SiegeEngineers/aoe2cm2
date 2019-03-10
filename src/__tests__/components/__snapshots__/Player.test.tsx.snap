@@ -40,28 +40,28 @@ exports[`Player renders correctly 1`] = `
             className="picks"
           >
             <Connect(CivPanel)
-              actionType="pick"
               active={false}
+              civPanelType="pick"
             />
             <Connect(CivPanel)
-              actionType="pick"
               active={false}
+              civPanelType="pick"
             />
             <Connect(CivPanel)
-              actionType="pick"
               active={false}
+              civPanelType="pick"
             />
             <Connect(CivPanel)
-              actionType="pick"
               active={false}
+              civPanelType="pick"
             />
             <Connect(CivPanel)
-              actionType="pick"
               active={false}
+              civPanelType="pick"
             />
             <Connect(CivPanel)
-              actionType="pick"
               active={false}
+              civPanelType="pick"
             />
           </div>
           <div
@@ -73,12 +73,12 @@ exports[`Player renders correctly 1`] = `
             className="bans"
           >
             <Connect(CivPanel)
-              actionType="ban"
               active={false}
+              civPanelType="ban"
             />
             <Connect(CivPanel)
-              actionType="ban"
               active={false}
+              civPanelType="ban"
             />
           </div>
         </div>

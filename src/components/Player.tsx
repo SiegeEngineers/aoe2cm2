@@ -9,6 +9,7 @@ import Civilisation from "../models/Civilisation";
 import {DraftEvent} from "../models/DraftEvent";
 import PlayerEvent from "../models/PlayerEvent";
 import Turn from "../models/Turn";
+import CivPanelType from "../models/CivPanelType";
 
 interface IProps {
     preset: ModelPreset;
@@ -54,8 +55,8 @@ class Player extends React.Component<IProps, IState> {
                     }
                     picksIndex++;
                     pickPanels.push(React.createElement(CivPanel, {
-                        actionType: ActionType.PICK,
                         active: i === this.props.nextAction,
+                        civPanelType: CivPanelType.PICK,
                         civilisation: pickedCiv
                     }));
                 } else if (actionType === ActionType.BAN) {
@@ -65,8 +66,8 @@ class Player extends React.Component<IProps, IState> {
                     }
                     bansIndex++;
                     banPanels.push(React.createElement(CivPanel, {
-                        actionType: ActionType.BAN,
                         active: i === this.props.nextAction,
+                        civPanelType: CivPanelType.BAN,
                         civilisation: bannedCiv
                     }));
 

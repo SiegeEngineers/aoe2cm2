@@ -4,7 +4,6 @@ enum ActionType {
     PICK = "pick",
     BAN = "ban",
     SNIPE = "snipe",
-    CHOICE = "choice",
     REVEAL = "reveal",
     NOTHING = "nothing"
 }

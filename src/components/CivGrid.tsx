@@ -3,7 +3,7 @@ import '../pure-min.css'
 import '../style2.css'
 import Civilisation from "../models/Civilisation";
 import CivPanel from "../containers/CivPanel";
-import ActionType from "../models/ActionType";
+import CivPanelType from "../models/CivPanelType";
 import Socket = SocketIOClient.Socket;
 
 interface IProps {
@@ -15,7 +15,7 @@ class CivGrid extends React.Component<IProps, object> {
     public render() {
 
         const civPanels = this.props.civilisations.map((civ, index) => {
-            return React.createElement(CivPanel, {actionType: ActionType.CHOICE, active: false, civilisation: civ, socket: this.props.socket});
+            return React.createElement(CivPanel, {civPanelType: CivPanelType.CHOICE, active: false, civilisation: civ, socket: this.props.socket});
         });
 
         return (

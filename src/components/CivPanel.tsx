@@ -6,11 +6,13 @@ import '../style2.css'
 import PlayerEvent from "../models/PlayerEvent";
 import Player from "../models/Player";
 import Socket = SocketIOClient.Socket;
+import CivPanelType from "../models/CivPanelType";
+import {Util} from "../models/Util";
 
 interface IProps {
     civilisation?: Civilisation;
     active: boolean;
-    actionType: ActionType;
+    civPanelType: CivPanelType;
     socket?: Socket;
     whoAmI?: Player;
     triggerAction?: ActionType;
@@ -27,8 +29,8 @@ class CivPanel extends React.Component<IProps, object> {
             imageSrc = "/images/civs/" + civilisation.name.toLocaleLowerCase() + "_orig.png";
             civilisationName = civilisation.name;
         }
-        let className: string = this.props.actionType.toString();
-        if (this.props.actionType === ActionType.CHOICE) {
+        let className: string = this.props.civPanelType.toString();
+        if (this.props.civPanelType === CivPanelType.CHOICE) {
             className += ' pure-u-1-12';
         } else {
             className += ' card';
@@ -45,7 +47,7 @@ class CivPanel extends React.Component<IProps, object> {
                 <div className={contentClass}>
                     <div className="stretchy-wrapper">
                         <div className="stretchy-image">
-                            <img src={imageSrc}/>
+                            <img src={imageSrc} alt={civilisationName}/>
                         </div>
                         <div className="stretchy-text">
                             {civilisationName}
@@ -57,7 +59,7 @@ class CivPanel extends React.Component<IProps, object> {
     }
 
     private onClickCiv = () => {
-        if (this.props.socket !== undefined && this.props.civilisation !== undefined && this.props.whoAmI !== undefined && this.props.triggerAction !== undefined) {
+        if (Util.notUndefined(this.props.socket, this.props.civilisation, this.props.whoAmI, this.props.triggerAction)) {
             const socket = this.props.socket as Socket;
             const civilisation = this.props.civilisation as Civilisation;
             const whoAmI = this.props.whoAmI as Player;
@@ -72,6 +74,4 @@ class CivPanel extends React.Component<IProps, object> {
     }
 }
 
-
 export default CivPanel;
-
