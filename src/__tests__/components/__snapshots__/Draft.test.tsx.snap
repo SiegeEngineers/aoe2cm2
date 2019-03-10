@@ -707,7 +707,7 @@ exports[`Draft renders correctly 1`] = `
             "data": Array [
               "join",
               Object {
-                "name": "myname1111111111111",
+                "name": "nolocalstorage1111111111111",
               },
             ],
             "id": 0,

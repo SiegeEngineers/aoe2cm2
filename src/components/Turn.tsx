@@ -18,7 +18,7 @@ class Turn extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
         this.state = {
-            active: props.nextAction ? props.nextAction === props.turnNumber : false
+            active: props.nextAction ? props.nextAction === props.turnNumber : 0 === props.turnNumber
         };
     }
 

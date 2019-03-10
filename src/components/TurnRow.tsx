@@ -3,7 +3,7 @@ import {ComponentElement} from 'react';
 import {default as ModelTurn} from "../models/Turn";
 import '../pure-min.css'
 import '../style2.css'
-import Turn from "./Turn";
+import Turn from "../containers/Turn";
 
 interface IProps {
     turns: ModelTurn[];

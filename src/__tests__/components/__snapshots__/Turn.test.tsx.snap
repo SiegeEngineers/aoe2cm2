@@ -8,7 +8,7 @@ exports[`gets rendered 1`] = `
     className="turn-host turn-do-0 turn-global"
   >
     <span
-      className=""
+      className="active"
     >
       <b />
       PICK
