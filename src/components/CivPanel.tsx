@@ -3,11 +3,9 @@ import ActionType from "../models/ActionType";
 import Civilisation from "../models/Civilisation";
 import '../pure-min.css'
 import '../style2.css'
-import {connect} from "react-redux";
 import PlayerEvent from "../models/PlayerEvent";
 import Player from "../models/Player";
 import Socket = SocketIOClient.Socket;
-import {IStoreState} from "../types";
 
 interface IProps {
     civilisation?: Civilisation;
@@ -68,14 +66,5 @@ class CivPanel extends React.Component<IProps, object> {
 }
 
 
-const mapStateToProps = (state: IStoreState) => {
-    return {
-        whoAmI: state.whoAmI
-    };
-};
-
-const mapDispatchToProps = () => {
-    return {};
-};
-export default connect(mapStateToProps, mapDispatchToProps)(CivPanel);
+export default CivPanel;
 

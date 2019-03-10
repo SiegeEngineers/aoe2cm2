@@ -3,6 +3,7 @@
 exports[`BAN CivPanels render correctly 1`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -14,7 +15,7 @@ exports[`BAN CivPanels render correctly 1`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/britons_orig.png"
+          src="/images/civs/britons_orig.png"
         />
       </div>
       <div
@@ -30,6 +31,7 @@ exports[`BAN CivPanels render correctly 1`] = `
 exports[`BAN CivPanels render correctly 2`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -41,7 +43,7 @@ exports[`BAN CivPanels render correctly 2`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/byzantines_orig.png"
+          src="/images/civs/byzantines_orig.png"
         />
       </div>
       <div
@@ -57,6 +59,7 @@ exports[`BAN CivPanels render correctly 2`] = `
 exports[`BAN CivPanels render correctly 3`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -68,7 +71,7 @@ exports[`BAN CivPanels render correctly 3`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/celts_orig.png"
+          src="/images/civs/celts_orig.png"
         />
       </div>
       <div
@@ -84,6 +87,7 @@ exports[`BAN CivPanels render correctly 3`] = `
 exports[`BAN CivPanels render correctly 4`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -95,7 +99,7 @@ exports[`BAN CivPanels render correctly 4`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/chinese_orig.png"
+          src="/images/civs/chinese_orig.png"
         />
       </div>
       <div
@@ -111,6 +115,7 @@ exports[`BAN CivPanels render correctly 4`] = `
 exports[`BAN CivPanels render correctly 5`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -122,7 +127,7 @@ exports[`BAN CivPanels render correctly 5`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/franks_orig.png"
+          src="/images/civs/franks_orig.png"
         />
       </div>
       <div
@@ -138,6 +143,7 @@ exports[`BAN CivPanels render correctly 5`] = `
 exports[`BAN CivPanels render correctly 6`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -149,7 +155,7 @@ exports[`BAN CivPanels render correctly 6`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/goths_orig.png"
+          src="/images/civs/goths_orig.png"
         />
       </div>
       <div
@@ -165,6 +171,7 @@ exports[`BAN CivPanels render correctly 6`] = `
 exports[`BAN CivPanels render correctly 7`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -176,7 +183,7 @@ exports[`BAN CivPanels render correctly 7`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/japanese_orig.png"
+          src="/images/civs/japanese_orig.png"
         />
       </div>
       <div
@@ -192,6 +199,7 @@ exports[`BAN CivPanels render correctly 7`] = `
 exports[`BAN CivPanels render correctly 8`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -203,7 +211,7 @@ exports[`BAN CivPanels render correctly 8`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/mongols_orig.png"
+          src="/images/civs/mongols_orig.png"
         />
       </div>
       <div
@@ -219,6 +227,7 @@ exports[`BAN CivPanels render correctly 8`] = `
 exports[`BAN CivPanels render correctly 9`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -230,7 +239,7 @@ exports[`BAN CivPanels render correctly 9`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/persians_orig.png"
+          src="/images/civs/persians_orig.png"
         />
       </div>
       <div
@@ -246,6 +255,7 @@ exports[`BAN CivPanels render correctly 9`] = `
 exports[`BAN CivPanels render correctly 10`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -257,7 +267,7 @@ exports[`BAN CivPanels render correctly 10`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/saracens_orig.png"
+          src="/images/civs/saracens_orig.png"
         />
       </div>
       <div
@@ -273,6 +283,7 @@ exports[`BAN CivPanels render correctly 10`] = `
 exports[`BAN CivPanels render correctly 11`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -284,7 +295,7 @@ exports[`BAN CivPanels render correctly 11`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/teutons_orig.png"
+          src="/images/civs/teutons_orig.png"
         />
       </div>
       <div
@@ -300,6 +311,7 @@ exports[`BAN CivPanels render correctly 11`] = `
 exports[`BAN CivPanels render correctly 12`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -311,7 +323,7 @@ exports[`BAN CivPanels render correctly 12`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/turks_orig.png"
+          src="/images/civs/turks_orig.png"
         />
       </div>
       <div
@@ -327,6 +339,7 @@ exports[`BAN CivPanels render correctly 12`] = `
 exports[`BAN CivPanels render correctly 13`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -338,7 +351,7 @@ exports[`BAN CivPanels render correctly 13`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/vikings_orig.png"
+          src="/images/civs/vikings_orig.png"
         />
       </div>
       <div
@@ -354,6 +367,7 @@ exports[`BAN CivPanels render correctly 13`] = `
 exports[`BAN CivPanels render correctly 14`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -365,7 +379,7 @@ exports[`BAN CivPanels render correctly 14`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/aztecs_orig.png"
+          src="/images/civs/aztecs_orig.png"
         />
       </div>
       <div
@@ -381,6 +395,7 @@ exports[`BAN CivPanels render correctly 14`] = `
 exports[`BAN CivPanels render correctly 15`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -392,7 +407,7 @@ exports[`BAN CivPanels render correctly 15`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/huns_orig.png"
+          src="/images/civs/huns_orig.png"
         />
       </div>
       <div
@@ -408,6 +423,7 @@ exports[`BAN CivPanels render correctly 15`] = `
 exports[`BAN CivPanels render correctly 16`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -419,7 +435,7 @@ exports[`BAN CivPanels render correctly 16`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/koreans_orig.png"
+          src="/images/civs/koreans_orig.png"
         />
       </div>
       <div
@@ -435,6 +451,7 @@ exports[`BAN CivPanels render correctly 16`] = `
 exports[`BAN CivPanels render correctly 17`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -446,7 +463,7 @@ exports[`BAN CivPanels render correctly 17`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/mayans_orig.png"
+          src="/images/civs/mayans_orig.png"
         />
       </div>
       <div
@@ -462,6 +479,7 @@ exports[`BAN CivPanels render correctly 17`] = `
 exports[`BAN CivPanels render correctly 18`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -473,7 +491,7 @@ exports[`BAN CivPanels render correctly 18`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/spanish_orig.png"
+          src="/images/civs/spanish_orig.png"
         />
       </div>
       <div
@@ -489,6 +507,7 @@ exports[`BAN CivPanels render correctly 18`] = `
 exports[`BAN CivPanels render correctly 19`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -500,7 +519,7 @@ exports[`BAN CivPanels render correctly 19`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/italians_orig.png"
+          src="/images/civs/italians_orig.png"
         />
       </div>
       <div
@@ -516,6 +535,7 @@ exports[`BAN CivPanels render correctly 19`] = `
 exports[`BAN CivPanels render correctly 20`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -527,7 +547,7 @@ exports[`BAN CivPanels render correctly 20`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/incas_orig.png"
+          src="/images/civs/incas_orig.png"
         />
       </div>
       <div
@@ -543,6 +563,7 @@ exports[`BAN CivPanels render correctly 20`] = `
 exports[`BAN CivPanels render correctly 21`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -554,7 +575,7 @@ exports[`BAN CivPanels render correctly 21`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/indians_orig.png"
+          src="/images/civs/indians_orig.png"
         />
       </div>
       <div
@@ -570,6 +591,7 @@ exports[`BAN CivPanels render correctly 21`] = `
 exports[`BAN CivPanels render correctly 22`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -581,7 +603,7 @@ exports[`BAN CivPanels render correctly 22`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/magyars_orig.png"
+          src="/images/civs/magyars_orig.png"
         />
       </div>
       <div
@@ -597,6 +619,7 @@ exports[`BAN CivPanels render correctly 22`] = `
 exports[`BAN CivPanels render correctly 23`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -608,7 +631,7 @@ exports[`BAN CivPanels render correctly 23`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/slavs_orig.png"
+          src="/images/civs/slavs_orig.png"
         />
       </div>
       <div
@@ -624,6 +647,7 @@ exports[`BAN CivPanels render correctly 23`] = `
 exports[`BAN CivPanels render correctly 24`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -635,7 +659,7 @@ exports[`BAN CivPanels render correctly 24`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/berbers_orig.png"
+          src="/images/civs/berbers_orig.png"
         />
       </div>
       <div
@@ -651,6 +675,7 @@ exports[`BAN CivPanels render correctly 24`] = `
 exports[`BAN CivPanels render correctly 25`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -662,7 +687,7 @@ exports[`BAN CivPanels render correctly 25`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/ethiopians_orig.png"
+          src="/images/civs/ethiopians_orig.png"
         />
       </div>
       <div
@@ -678,6 +703,7 @@ exports[`BAN CivPanels render correctly 25`] = `
 exports[`BAN CivPanels render correctly 26`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -689,7 +715,7 @@ exports[`BAN CivPanels render correctly 26`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/malians_orig.png"
+          src="/images/civs/malians_orig.png"
         />
       </div>
       <div
@@ -705,6 +731,7 @@ exports[`BAN CivPanels render correctly 26`] = `
 exports[`BAN CivPanels render correctly 27`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -716,7 +743,7 @@ exports[`BAN CivPanels render correctly 27`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/portuguese_orig.png"
+          src="/images/civs/portuguese_orig.png"
         />
       </div>
       <div
@@ -732,6 +759,7 @@ exports[`BAN CivPanels render correctly 27`] = `
 exports[`BAN CivPanels render correctly 28`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -743,7 +771,7 @@ exports[`BAN CivPanels render correctly 28`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/burmese_orig.png"
+          src="/images/civs/burmese_orig.png"
         />
       </div>
       <div
@@ -759,6 +787,7 @@ exports[`BAN CivPanels render correctly 28`] = `
 exports[`BAN CivPanels render correctly 29`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -770,7 +799,7 @@ exports[`BAN CivPanels render correctly 29`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/khmer_orig.png"
+          src="/images/civs/khmer_orig.png"
         />
       </div>
       <div
@@ -786,6 +815,7 @@ exports[`BAN CivPanels render correctly 29`] = `
 exports[`BAN CivPanels render correctly 30`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -797,7 +827,7 @@ exports[`BAN CivPanels render correctly 30`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/malay_orig.png"
+          src="/images/civs/malay_orig.png"
         />
       </div>
       <div
@@ -813,6 +843,7 @@ exports[`BAN CivPanels render correctly 30`] = `
 exports[`BAN CivPanels render correctly 31`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -824,7 +855,7 @@ exports[`BAN CivPanels render correctly 31`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/vietnamese_orig.png"
+          src="/images/civs/vietnamese_orig.png"
         />
       </div>
       <div
@@ -840,6 +871,7 @@ exports[`BAN CivPanels render correctly 31`] = `
 exports[`PICK CivPanels render correctly 1`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -851,7 +883,7 @@ exports[`PICK CivPanels render correctly 1`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/britons_orig.png"
+          src="/images/civs/britons_orig.png"
         />
       </div>
       <div
@@ -867,6 +899,7 @@ exports[`PICK CivPanels render correctly 1`] = `
 exports[`PICK CivPanels render correctly 2`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -878,7 +911,7 @@ exports[`PICK CivPanels render correctly 2`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/byzantines_orig.png"
+          src="/images/civs/byzantines_orig.png"
         />
       </div>
       <div
@@ -894,6 +927,7 @@ exports[`PICK CivPanels render correctly 2`] = `
 exports[`PICK CivPanels render correctly 3`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -905,7 +939,7 @@ exports[`PICK CivPanels render correctly 3`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/celts_orig.png"
+          src="/images/civs/celts_orig.png"
         />
       </div>
       <div
@@ -921,6 +955,7 @@ exports[`PICK CivPanels render correctly 3`] = `
 exports[`PICK CivPanels render correctly 4`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -932,7 +967,7 @@ exports[`PICK CivPanels render correctly 4`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/chinese_orig.png"
+          src="/images/civs/chinese_orig.png"
         />
       </div>
       <div
@@ -948,6 +983,7 @@ exports[`PICK CivPanels render correctly 4`] = `
 exports[`PICK CivPanels render correctly 5`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -959,7 +995,7 @@ exports[`PICK CivPanels render correctly 5`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/franks_orig.png"
+          src="/images/civs/franks_orig.png"
         />
       </div>
       <div
@@ -975,6 +1011,7 @@ exports[`PICK CivPanels render correctly 5`] = `
 exports[`PICK CivPanels render correctly 6`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -986,7 +1023,7 @@ exports[`PICK CivPanels render correctly 6`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/goths_orig.png"
+          src="/images/civs/goths_orig.png"
         />
       </div>
       <div
@@ -1002,6 +1039,7 @@ exports[`PICK CivPanels render correctly 6`] = `
 exports[`PICK CivPanels render correctly 7`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -1013,7 +1051,7 @@ exports[`PICK CivPanels render correctly 7`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/japanese_orig.png"
+          src="/images/civs/japanese_orig.png"
         />
       </div>
       <div
@@ -1029,6 +1067,7 @@ exports[`PICK CivPanels render correctly 7`] = `
 exports[`PICK CivPanels render correctly 8`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -1040,7 +1079,7 @@ exports[`PICK CivPanels render correctly 8`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/mongols_orig.png"
+          src="/images/civs/mongols_orig.png"
         />
       </div>
       <div
@@ -1056,6 +1095,7 @@ exports[`PICK CivPanels render correctly 8`] = `
 exports[`PICK CivPanels render correctly 9`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -1067,7 +1107,7 @@ exports[`PICK CivPanels render correctly 9`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/persians_orig.png"
+          src="/images/civs/persians_orig.png"
         />
       </div>
       <div
@@ -1083,6 +1123,7 @@ exports[`PICK CivPanels render correctly 9`] = `
 exports[`PICK CivPanels render correctly 10`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -1094,7 +1135,7 @@ exports[`PICK CivPanels render correctly 10`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/saracens_orig.png"
+          src="/images/civs/saracens_orig.png"
         />
       </div>
       <div
@@ -1110,6 +1151,7 @@ exports[`PICK CivPanels render correctly 10`] = `
 exports[`PICK CivPanels render correctly 11`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -1121,7 +1163,7 @@ exports[`PICK CivPanels render correctly 11`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/teutons_orig.png"
+          src="/images/civs/teutons_orig.png"
         />
       </div>
       <div
@@ -1137,6 +1179,7 @@ exports[`PICK CivPanels render correctly 11`] = `
 exports[`PICK CivPanels render correctly 12`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -1148,7 +1191,7 @@ exports[`PICK CivPanels render correctly 12`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/turks_orig.png"
+          src="/images/civs/turks_orig.png"
         />
       </div>
       <div
@@ -1164,6 +1207,7 @@ exports[`PICK CivPanels render correctly 12`] = `
 exports[`PICK CivPanels render correctly 13`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -1175,7 +1219,7 @@ exports[`PICK CivPanels render correctly 13`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/vikings_orig.png"
+          src="/images/civs/vikings_orig.png"
         />
       </div>
       <div
@@ -1191,6 +1235,7 @@ exports[`PICK CivPanels render correctly 13`] = `
 exports[`PICK CivPanels render correctly 14`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -1202,7 +1247,7 @@ exports[`PICK CivPanels render correctly 14`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/aztecs_orig.png"
+          src="/images/civs/aztecs_orig.png"
         />
       </div>
       <div
@@ -1218,6 +1263,7 @@ exports[`PICK CivPanels render correctly 14`] = `
 exports[`PICK CivPanels render correctly 15`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -1229,7 +1275,7 @@ exports[`PICK CivPanels render correctly 15`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/huns_orig.png"
+          src="/images/civs/huns_orig.png"
         />
       </div>
       <div
@@ -1245,6 +1291,7 @@ exports[`PICK CivPanels render correctly 15`] = `
 exports[`PICK CivPanels render correctly 16`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -1256,7 +1303,7 @@ exports[`PICK CivPanels render correctly 16`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/koreans_orig.png"
+          src="/images/civs/koreans_orig.png"
         />
       </div>
       <div
@@ -1272,6 +1319,7 @@ exports[`PICK CivPanels render correctly 16`] = `
 exports[`PICK CivPanels render correctly 17`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -1283,7 +1331,7 @@ exports[`PICK CivPanels render correctly 17`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/mayans_orig.png"
+          src="/images/civs/mayans_orig.png"
         />
       </div>
       <div
@@ -1299,6 +1347,7 @@ exports[`PICK CivPanels render correctly 17`] = `
 exports[`PICK CivPanels render correctly 18`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -1310,7 +1359,7 @@ exports[`PICK CivPanels render correctly 18`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/spanish_orig.png"
+          src="/images/civs/spanish_orig.png"
         />
       </div>
       <div
@@ -1326,6 +1375,7 @@ exports[`PICK CivPanels render correctly 18`] = `
 exports[`PICK CivPanels render correctly 19`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -1337,7 +1387,7 @@ exports[`PICK CivPanels render correctly 19`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/italians_orig.png"
+          src="/images/civs/italians_orig.png"
         />
       </div>
       <div
@@ -1353,6 +1403,7 @@ exports[`PICK CivPanels render correctly 19`] = `
 exports[`PICK CivPanels render correctly 20`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -1364,7 +1415,7 @@ exports[`PICK CivPanels render correctly 20`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/incas_orig.png"
+          src="/images/civs/incas_orig.png"
         />
       </div>
       <div
@@ -1380,6 +1431,7 @@ exports[`PICK CivPanels render correctly 20`] = `
 exports[`PICK CivPanels render correctly 21`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -1391,7 +1443,7 @@ exports[`PICK CivPanels render correctly 21`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/indians_orig.png"
+          src="/images/civs/indians_orig.png"
         />
       </div>
       <div
@@ -1407,6 +1459,7 @@ exports[`PICK CivPanels render correctly 21`] = `
 exports[`PICK CivPanels render correctly 22`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -1418,7 +1471,7 @@ exports[`PICK CivPanels render correctly 22`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/magyars_orig.png"
+          src="/images/civs/magyars_orig.png"
         />
       </div>
       <div
@@ -1434,6 +1487,7 @@ exports[`PICK CivPanels render correctly 22`] = `
 exports[`PICK CivPanels render correctly 23`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -1445,7 +1499,7 @@ exports[`PICK CivPanels render correctly 23`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/slavs_orig.png"
+          src="/images/civs/slavs_orig.png"
         />
       </div>
       <div
@@ -1461,6 +1515,7 @@ exports[`PICK CivPanels render correctly 23`] = `
 exports[`PICK CivPanels render correctly 24`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -1472,7 +1527,7 @@ exports[`PICK CivPanels render correctly 24`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/berbers_orig.png"
+          src="/images/civs/berbers_orig.png"
         />
       </div>
       <div
@@ -1488,6 +1543,7 @@ exports[`PICK CivPanels render correctly 24`] = `
 exports[`PICK CivPanels render correctly 25`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -1499,7 +1555,7 @@ exports[`PICK CivPanels render correctly 25`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/ethiopians_orig.png"
+          src="/images/civs/ethiopians_orig.png"
         />
       </div>
       <div
@@ -1515,6 +1571,7 @@ exports[`PICK CivPanels render correctly 25`] = `
 exports[`PICK CivPanels render correctly 26`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -1526,7 +1583,7 @@ exports[`PICK CivPanels render correctly 26`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/malians_orig.png"
+          src="/images/civs/malians_orig.png"
         />
       </div>
       <div
@@ -1542,6 +1599,7 @@ exports[`PICK CivPanels render correctly 26`] = `
 exports[`PICK CivPanels render correctly 27`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -1553,7 +1611,7 @@ exports[`PICK CivPanels render correctly 27`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/portuguese_orig.png"
+          src="/images/civs/portuguese_orig.png"
         />
       </div>
       <div
@@ -1569,6 +1627,7 @@ exports[`PICK CivPanels render correctly 27`] = `
 exports[`PICK CivPanels render correctly 28`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -1580,7 +1639,7 @@ exports[`PICK CivPanels render correctly 28`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/burmese_orig.png"
+          src="/images/civs/burmese_orig.png"
         />
       </div>
       <div
@@ -1596,6 +1655,7 @@ exports[`PICK CivPanels render correctly 28`] = `
 exports[`PICK CivPanels render correctly 29`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -1607,7 +1667,7 @@ exports[`PICK CivPanels render correctly 29`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/khmer_orig.png"
+          src="/images/civs/khmer_orig.png"
         />
       </div>
       <div
@@ -1623,6 +1683,7 @@ exports[`PICK CivPanels render correctly 29`] = `
 exports[`PICK CivPanels render correctly 30`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -1634,7 +1695,7 @@ exports[`PICK CivPanels render correctly 30`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/malay_orig.png"
+          src="/images/civs/malay_orig.png"
         />
       </div>
       <div
@@ -1650,6 +1711,7 @@ exports[`PICK CivPanels render correctly 30`] = `
 exports[`PICK CivPanels render correctly 31`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content visible"
@@ -1661,7 +1723,7 @@ exports[`PICK CivPanels render correctly 31`] = `
         className="stretchy-image"
       >
         <img
-          src="images/civs/vietnamese_orig.png"
+          src="/images/civs/vietnamese_orig.png"
         />
       </div>
       <div
@@ -1677,6 +1739,7 @@ exports[`PICK CivPanels render correctly 31`] = `
 exports[`empty BAN CivPanel renders correctly 1`] = `
 <div
   className="ban card"
+  onClick={[Function]}
 >
   <div
     className="box-content"
@@ -1702,6 +1765,7 @@ exports[`empty BAN CivPanel renders correctly 1`] = `
 exports[`empty PICK CivPanel renders correctly 1`] = `
 <div
   className="pick card"
+  onClick={[Function]}
 >
   <div
     className="box-content"

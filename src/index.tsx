@@ -11,7 +11,7 @@ import Draft from './containers/Draft';
 import {Provider} from 'react-redux';
 import {default as ModelDraft} from "./models/Draft";
 
-const store = createStore<IStoreState, any, any, any>(updateState, new ModelDraft('Sneaky Saladin', 'Beastly Barbarossa', Preset.SAMPLE));
+const store = createStore<IStoreState, any, any, any>(updateState, new ModelDraft('Sneaky Saladin', 'Beastly Barbarossa', Preset.SIMPLE));
 
 ReactDOM.render(
     <Provider store={store}>

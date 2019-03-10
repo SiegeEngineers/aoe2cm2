@@ -2,7 +2,7 @@ import * as React from 'react';
 import {default as ModelPlayer} from '../models/Player';
 import '../pure-min.css'
 import '../style2.css'
-import Player from "./Player";
+import Player from "../containers/Player";
 import Preset from "../models/Preset";
 
 interface IProps {

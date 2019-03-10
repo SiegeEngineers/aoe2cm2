@@ -4,10 +4,8 @@ import {default as ModelPlayer} from '../models/Player';
 import {default as ModelPreset} from '../models/Preset';
 import '../pure-min.css'
 import '../style2.css'
-import CivPanel from "./CivPanel";
+import CivPanel from "../containers/CivPanel";
 import Civilisation from "../models/Civilisation";
-import {IStoreState} from "../types";
-import {connect} from "react-redux";
 import {DraftEvent} from "../models/DraftEvent";
 import PlayerEvent from "../models/PlayerEvent";
 
@@ -119,14 +117,4 @@ function eventsToState(events: DraftEvent[] | undefined, player: ModelPlayer): I
     return {bannedCivs: bans, pickedCivs: picks, snipedCivs: snipes};
 }
 
-const mapStateToProps = (state: IStoreState) => {
-    return {
-        events: state.events
-    };
-};
-
-const mapDispatchToProps = () => {
-    return {};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Player);
+export default Player;

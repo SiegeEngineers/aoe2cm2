@@ -14,7 +14,7 @@ exports[`CivGrid renders correctly 1`] = `
         Start
       </div>
     </div>
-    <Connect(Turn)
+    <Turn
       turn={
         Turn {
           "action": "GLOBAL_BAN",
@@ -23,7 +23,7 @@ exports[`CivGrid renders correctly 1`] = `
       }
       turnNumber={0}
     />
-    <Connect(Turn)
+    <Turn
       turn={
         Turn {
           "action": "GLOBAL_BAN",
@@ -32,7 +32,7 @@ exports[`CivGrid renders correctly 1`] = `
       }
       turnNumber={1}
     />
-    <Connect(Turn)
+    <Turn
       turn={
         Turn {
           "action": "HIDDEN_BAN",
@@ -41,7 +41,7 @@ exports[`CivGrid renders correctly 1`] = `
       }
       turnNumber={2}
     />
-    <Connect(Turn)
+    <Turn
       turn={
         Turn {
           "action": "HIDDEN_BAN",
@@ -50,7 +50,7 @@ exports[`CivGrid renders correctly 1`] = `
       }
       turnNumber={3}
     />
-    <Connect(Turn)
+    <Turn
       turn={
         Turn {
           "action": "REVEAL_BANS",
@@ -59,7 +59,7 @@ exports[`CivGrid renders correctly 1`] = `
       }
       turnNumber={4}
     />
-    <Connect(Turn)
+    <Turn
       turn={
         Turn {
           "action": "HIDDEN_PICK",
@@ -68,7 +68,7 @@ exports[`CivGrid renders correctly 1`] = `
       }
       turnNumber={5}
     />
-    <Connect(Turn)
+    <Turn
       turn={
         Turn {
           "action": "HIDDEN_PICK",
@@ -77,7 +77,7 @@ exports[`CivGrid renders correctly 1`] = `
       }
       turnNumber={6}
     />
-    <Connect(Turn)
+    <Turn
       turn={
         Turn {
           "action": "HIDDEN_PICK",
@@ -86,7 +86,7 @@ exports[`CivGrid renders correctly 1`] = `
       }
       turnNumber={7}
     />
-    <Connect(Turn)
+    <Turn
       turn={
         Turn {
           "action": "HIDDEN_PICK",
@@ -95,7 +95,7 @@ exports[`CivGrid renders correctly 1`] = `
       }
       turnNumber={8}
     />
-    <Connect(Turn)
+    <Turn
       turn={
         Turn {
           "action": "HIDDEN_PICK",
@@ -104,7 +104,7 @@ exports[`CivGrid renders correctly 1`] = `
       }
       turnNumber={9}
     />
-    <Connect(Turn)
+    <Turn
       turn={
         Turn {
           "action": "HIDDEN_PICK",
@@ -113,7 +113,7 @@ exports[`CivGrid renders correctly 1`] = `
       }
       turnNumber={10}
     />
-    <Connect(Turn)
+    <Turn
       turn={
         Turn {
           "action": "HIDDEN_PICK",
@@ -122,7 +122,7 @@ exports[`CivGrid renders correctly 1`] = `
       }
       turnNumber={11}
     />
-    <Connect(Turn)
+    <Turn
       turn={
         Turn {
           "action": "HIDDEN_PICK",
@@ -131,7 +131,7 @@ exports[`CivGrid renders correctly 1`] = `
       }
       turnNumber={12}
     />
-    <Connect(Turn)
+    <Turn
       turn={
         Turn {
           "action": "HIDDEN_PICK",
@@ -140,7 +140,7 @@ exports[`CivGrid renders correctly 1`] = `
       }
       turnNumber={13}
     />
-    <Connect(Turn)
+    <Turn
       turn={
         Turn {
           "action": "HIDDEN_PICK",
@@ -149,7 +149,7 @@ exports[`CivGrid renders correctly 1`] = `
       }
       turnNumber={14}
     />
-    <Connect(Turn)
+    <Turn
       turn={
         Turn {
           "action": "HIDDEN_PICK",
@@ -158,7 +158,7 @@ exports[`CivGrid renders correctly 1`] = `
       }
       turnNumber={15}
     />
-    <Connect(Turn)
+    <Turn
       turn={
         Turn {
           "action": "HIDDEN_PICK",
@@ -167,7 +167,7 @@ exports[`CivGrid renders correctly 1`] = `
       }
       turnNumber={16}
     />
-    <Connect(Turn)
+    <Turn
       turn={
         Turn {
           "action": "REVEAL_PICKS",
@@ -176,7 +176,7 @@ exports[`CivGrid renders correctly 1`] = `
       }
       turnNumber={17}
     />
-    <Connect(Turn)
+    <Turn
       turn={
         Turn {
           "action": "HIDDEN_SNIPE",
@@ -185,7 +185,7 @@ exports[`CivGrid renders correctly 1`] = `
       }
       turnNumber={18}
     />
-    <Connect(Turn)
+    <Turn
       turn={
         Turn {
           "action": "HIDDEN_SNIPE",
@@ -194,7 +194,7 @@ exports[`CivGrid renders correctly 1`] = `
       }
       turnNumber={19}
     />
-    <Connect(Turn)
+    <Turn
       turn={
         Turn {
           "action": "REVEAL_ALL",

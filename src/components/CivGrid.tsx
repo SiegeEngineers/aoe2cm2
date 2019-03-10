@@ -2,7 +2,7 @@ import * as React from 'react';
 import '../pure-min.css'
 import '../style2.css'
 import Civilisation from "../models/Civilisation";
-import CivPanel from "./CivPanel";
+import CivPanel from "../containers/CivPanel";
 import ActionType from "../models/ActionType";
 import Socket = SocketIOClient.Socket;
 

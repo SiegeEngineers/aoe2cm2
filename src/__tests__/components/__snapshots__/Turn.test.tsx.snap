@@ -1,7 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`gets rendered 1`] = `
-<ContextConsumer>
-  <Component />
-</ContextConsumer>
+<div
+  className="pure-u-1-24 turn"
+>
+  <div
+    className="turn-host turn-do-0 turn-global"
+  >
+    <span
+      className=""
+    >
+      <b />
+      PICK
+    </span>
+  </div>
+</div>
 `;

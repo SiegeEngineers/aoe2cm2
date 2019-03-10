@@ -2,8 +2,6 @@ import * as React from 'react';
 import {default as ModelTurn} from '../models/Turn'
 import '../pure-min.css'
 import '../style2.css'
-import {connect} from "react-redux";
-import {IStoreState} from "../types";
 
 interface IProps {
     turn: ModelTurn;
@@ -71,13 +69,4 @@ class Turn extends React.Component<IProps, IState> {
     }
 }
 
-const mapStateToProps = (state: IStoreState) => {
-    return {
-        nextAction: state.nextAction
-    };
-};
-
-const mapDispatchToProps = () => {
-    return {};
-};
-export default connect(mapStateToProps, mapDispatchToProps)(Turn);
+export default Turn;
