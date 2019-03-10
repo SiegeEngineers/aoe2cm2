@@ -66,11 +66,19 @@ class Draft extends React.Component<IProps, IState> {
                 onActionCompleted(playerEvent);
             }
         });
-
-        const name = 'myname' + Date.now();
-        console.log('setting name to', name);
-        this.socket.emit('join', {name}, (data: IDraftConfig) => {
-            console.log('thecallback', data);
+        let username: string | null;
+        try {
+            username = localStorage.getItem('username');
+            if (username === null) {
+                username = 'myname' + Date.now();
+                localStorage.setItem('username', username);
+                console.log('setting username to', username);
+            }
+        } catch (e) {
+            username = 'nolocalstorage' + Date.now();
+        }
+        this.socket.emit('join', {name: username}, (data: IDraftConfig) => {
+            console.log('join callback', data);
             if (this.props.onDraftConfig !== undefined) {
                 const onDraftConfig = this.props.onDraftConfig as (message: IDraftConfig) => void;
                 console.log('executing onDraftConfig');
