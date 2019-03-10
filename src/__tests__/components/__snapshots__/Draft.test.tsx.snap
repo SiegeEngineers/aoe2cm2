@@ -107,8 +107,20 @@ exports[`Draft renders correctly 1`] = `
       Preset {
         "civilisations": Array [
           Civilisation {
+            "gameVersion": 2,
+            "name": "Aztecs",
+          },
+          Civilisation {
+            "gameVersion": 4,
+            "name": "Berbers",
+          },
+          Civilisation {
             "gameVersion": 1,
             "name": "Britons",
+          },
+          Civilisation {
+            "gameVersion": 5,
+            "name": "Burmese",
           },
           Civilisation {
             "gameVersion": 1,
@@ -123,6 +135,10 @@ exports[`Draft renders correctly 1`] = `
             "name": "Chinese",
           },
           Civilisation {
+            "gameVersion": 4,
+            "name": "Ethiopians",
+          },
+          Civilisation {
             "gameVersion": 1,
             "name": "Franks",
           },
@@ -131,56 +147,8 @@ exports[`Draft renders correctly 1`] = `
             "name": "Goths",
           },
           Civilisation {
-            "gameVersion": 1,
-            "name": "Japanese",
-          },
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Mongols",
-          },
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Persians",
-          },
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Saracens",
-          },
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Teutons",
-          },
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Turks",
-          },
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Vikings",
-          },
-          Civilisation {
-            "gameVersion": 2,
-            "name": "Aztecs",
-          },
-          Civilisation {
             "gameVersion": 2,
             "name": "Huns",
-          },
-          Civilisation {
-            "gameVersion": 2,
-            "name": "Koreans",
-          },
-          Civilisation {
-            "gameVersion": 2,
-            "name": "Mayans",
-          },
-          Civilisation {
-            "gameVersion": 2,
-            "name": "Spanish",
-          },
-          Civilisation {
-            "gameVersion": 3,
-            "name": "Italians",
           },
           Civilisation {
             "gameVersion": 3,
@@ -192,43 +160,75 @@ exports[`Draft renders correctly 1`] = `
           },
           Civilisation {
             "gameVersion": 3,
-            "name": "Magyars",
+            "name": "Italians",
           },
           Civilisation {
-            "gameVersion": 3,
-            "name": "Slavs",
-          },
-          Civilisation {
-            "gameVersion": 4,
-            "name": "Berbers",
-          },
-          Civilisation {
-            "gameVersion": 4,
-            "name": "Ethiopians",
-          },
-          Civilisation {
-            "gameVersion": 4,
-            "name": "Malians",
-          },
-          Civilisation {
-            "gameVersion": 4,
-            "name": "Portuguese",
-          },
-          Civilisation {
-            "gameVersion": 5,
-            "name": "Burmese",
+            "gameVersion": 1,
+            "name": "Japanese",
           },
           Civilisation {
             "gameVersion": 5,
             "name": "Khmer",
           },
           Civilisation {
+            "gameVersion": 2,
+            "name": "Koreans",
+          },
+          Civilisation {
+            "gameVersion": 3,
+            "name": "Magyars",
+          },
+          Civilisation {
             "gameVersion": 5,
             "name": "Malay",
           },
           Civilisation {
+            "gameVersion": 4,
+            "name": "Malians",
+          },
+          Civilisation {
+            "gameVersion": 2,
+            "name": "Mayans",
+          },
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Mongols",
+          },
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Persians",
+          },
+          Civilisation {
+            "gameVersion": 4,
+            "name": "Portuguese",
+          },
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Saracens",
+          },
+          Civilisation {
+            "gameVersion": 3,
+            "name": "Slavs",
+          },
+          Civilisation {
+            "gameVersion": 2,
+            "name": "Spanish",
+          },
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Teutons",
+          },
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Turks",
+          },
+          Civilisation {
             "gameVersion": 5,
             "name": "Vietnamese",
+          },
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Vikings",
           },
         ],
         "name": "Default Preset",
@@ -326,8 +326,20 @@ exports[`Draft renders correctly 1`] = `
     civilisations={
       Array [
         Civilisation {
+          "gameVersion": 2,
+          "name": "Aztecs",
+        },
+        Civilisation {
+          "gameVersion": 4,
+          "name": "Berbers",
+        },
+        Civilisation {
           "gameVersion": 1,
           "name": "Britons",
+        },
+        Civilisation {
+          "gameVersion": 5,
+          "name": "Burmese",
         },
         Civilisation {
           "gameVersion": 1,
@@ -342,6 +354,10 @@ exports[`Draft renders correctly 1`] = `
           "name": "Chinese",
         },
         Civilisation {
+          "gameVersion": 4,
+          "name": "Ethiopians",
+        },
+        Civilisation {
           "gameVersion": 1,
           "name": "Franks",
         },
@@ -350,56 +366,8 @@ exports[`Draft renders correctly 1`] = `
           "name": "Goths",
         },
         Civilisation {
-          "gameVersion": 1,
-          "name": "Japanese",
-        },
-        Civilisation {
-          "gameVersion": 1,
-          "name": "Mongols",
-        },
-        Civilisation {
-          "gameVersion": 1,
-          "name": "Persians",
-        },
-        Civilisation {
-          "gameVersion": 1,
-          "name": "Saracens",
-        },
-        Civilisation {
-          "gameVersion": 1,
-          "name": "Teutons",
-        },
-        Civilisation {
-          "gameVersion": 1,
-          "name": "Turks",
-        },
-        Civilisation {
-          "gameVersion": 1,
-          "name": "Vikings",
-        },
-        Civilisation {
-          "gameVersion": 2,
-          "name": "Aztecs",
-        },
-        Civilisation {
           "gameVersion": 2,
           "name": "Huns",
-        },
-        Civilisation {
-          "gameVersion": 2,
-          "name": "Koreans",
-        },
-        Civilisation {
-          "gameVersion": 2,
-          "name": "Mayans",
-        },
-        Civilisation {
-          "gameVersion": 2,
-          "name": "Spanish",
-        },
-        Civilisation {
-          "gameVersion": 3,
-          "name": "Italians",
         },
         Civilisation {
           "gameVersion": 3,
@@ -411,43 +379,75 @@ exports[`Draft renders correctly 1`] = `
         },
         Civilisation {
           "gameVersion": 3,
-          "name": "Magyars",
+          "name": "Italians",
         },
         Civilisation {
-          "gameVersion": 3,
-          "name": "Slavs",
-        },
-        Civilisation {
-          "gameVersion": 4,
-          "name": "Berbers",
-        },
-        Civilisation {
-          "gameVersion": 4,
-          "name": "Ethiopians",
-        },
-        Civilisation {
-          "gameVersion": 4,
-          "name": "Malians",
-        },
-        Civilisation {
-          "gameVersion": 4,
-          "name": "Portuguese",
-        },
-        Civilisation {
-          "gameVersion": 5,
-          "name": "Burmese",
+          "gameVersion": 1,
+          "name": "Japanese",
         },
         Civilisation {
           "gameVersion": 5,
           "name": "Khmer",
         },
         Civilisation {
+          "gameVersion": 2,
+          "name": "Koreans",
+        },
+        Civilisation {
+          "gameVersion": 3,
+          "name": "Magyars",
+        },
+        Civilisation {
           "gameVersion": 5,
           "name": "Malay",
         },
         Civilisation {
+          "gameVersion": 4,
+          "name": "Malians",
+        },
+        Civilisation {
+          "gameVersion": 2,
+          "name": "Mayans",
+        },
+        Civilisation {
+          "gameVersion": 1,
+          "name": "Mongols",
+        },
+        Civilisation {
+          "gameVersion": 1,
+          "name": "Persians",
+        },
+        Civilisation {
+          "gameVersion": 4,
+          "name": "Portuguese",
+        },
+        Civilisation {
+          "gameVersion": 1,
+          "name": "Saracens",
+        },
+        Civilisation {
+          "gameVersion": 3,
+          "name": "Slavs",
+        },
+        Civilisation {
+          "gameVersion": 2,
+          "name": "Spanish",
+        },
+        Civilisation {
+          "gameVersion": 1,
+          "name": "Teutons",
+        },
+        Civilisation {
+          "gameVersion": 1,
+          "name": "Turks",
+        },
+        Civilisation {
           "gameVersion": 5,
           "name": "Vietnamese",
+        },
+        Civilisation {
+          "gameVersion": 1,
+          "name": "Vikings",
         },
       ]
     }

@@ -1,4 +1,5 @@
 import GameVersion from "./GameVersion";
+import {Util} from "./Util";
 
 enum Name {
     BRITONS = "Britons",
@@ -108,7 +109,7 @@ class Civilisation {
         Civilisation.KHMER,
         Civilisation.MALAY,
         Civilisation.VIETNAMESE
-    ];
+    ].sort(Util.sortCivsByName);
 
     public readonly name:Name;
     public readonly gameVersion:GameVersion;

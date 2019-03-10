@@ -10,151 +10,8 @@ exports[`CivGrid renders correctly 1`] = `
       className="pure-g chooser-grid box-content"
     >
       <Connect(CivPanel)
-        actionType="choice"
         active={false}
-        civilisation={
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Britons",
-          }
-        }
-        socket={[Function]}
-      />
-      <Connect(CivPanel)
-        actionType="choice"
-        active={false}
-        civilisation={
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Byzantines",
-          }
-        }
-        socket={[Function]}
-      />
-      <Connect(CivPanel)
-        actionType="choice"
-        active={false}
-        civilisation={
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Celts",
-          }
-        }
-        socket={[Function]}
-      />
-      <Connect(CivPanel)
-        actionType="choice"
-        active={false}
-        civilisation={
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Chinese",
-          }
-        }
-        socket={[Function]}
-      />
-      <Connect(CivPanel)
-        actionType="choice"
-        active={false}
-        civilisation={
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Franks",
-          }
-        }
-        socket={[Function]}
-      />
-      <Connect(CivPanel)
-        actionType="choice"
-        active={false}
-        civilisation={
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Goths",
-          }
-        }
-        socket={[Function]}
-      />
-      <Connect(CivPanel)
-        actionType="choice"
-        active={false}
-        civilisation={
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Japanese",
-          }
-        }
-        socket={[Function]}
-      />
-      <Connect(CivPanel)
-        actionType="choice"
-        active={false}
-        civilisation={
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Mongols",
-          }
-        }
-        socket={[Function]}
-      />
-      <Connect(CivPanel)
-        actionType="choice"
-        active={false}
-        civilisation={
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Persians",
-          }
-        }
-        socket={[Function]}
-      />
-      <Connect(CivPanel)
-        actionType="choice"
-        active={false}
-        civilisation={
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Saracens",
-          }
-        }
-        socket={[Function]}
-      />
-      <Connect(CivPanel)
-        actionType="choice"
-        active={false}
-        civilisation={
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Teutons",
-          }
-        }
-        socket={[Function]}
-      />
-      <Connect(CivPanel)
-        actionType="choice"
-        active={false}
-        civilisation={
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Turks",
-          }
-        }
-        socket={[Function]}
-      />
-      <Connect(CivPanel)
-        actionType="choice"
-        active={false}
-        civilisation={
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Vikings",
-          }
-        }
-        socket={[Function]}
-      />
-      <Connect(CivPanel)
-        actionType="choice"
-        active={false}
+        civPanelType="choice"
         civilisation={
           Civilisation {
             "gameVersion": 2,
@@ -164,107 +21,8 @@ exports[`CivGrid renders correctly 1`] = `
         socket={[Function]}
       />
       <Connect(CivPanel)
-        actionType="choice"
         active={false}
-        civilisation={
-          Civilisation {
-            "gameVersion": 2,
-            "name": "Huns",
-          }
-        }
-        socket={[Function]}
-      />
-      <Connect(CivPanel)
-        actionType="choice"
-        active={false}
-        civilisation={
-          Civilisation {
-            "gameVersion": 2,
-            "name": "Koreans",
-          }
-        }
-        socket={[Function]}
-      />
-      <Connect(CivPanel)
-        actionType="choice"
-        active={false}
-        civilisation={
-          Civilisation {
-            "gameVersion": 2,
-            "name": "Mayans",
-          }
-        }
-        socket={[Function]}
-      />
-      <Connect(CivPanel)
-        actionType="choice"
-        active={false}
-        civilisation={
-          Civilisation {
-            "gameVersion": 2,
-            "name": "Spanish",
-          }
-        }
-        socket={[Function]}
-      />
-      <Connect(CivPanel)
-        actionType="choice"
-        active={false}
-        civilisation={
-          Civilisation {
-            "gameVersion": 3,
-            "name": "Italians",
-          }
-        }
-        socket={[Function]}
-      />
-      <Connect(CivPanel)
-        actionType="choice"
-        active={false}
-        civilisation={
-          Civilisation {
-            "gameVersion": 3,
-            "name": "Incas",
-          }
-        }
-        socket={[Function]}
-      />
-      <Connect(CivPanel)
-        actionType="choice"
-        active={false}
-        civilisation={
-          Civilisation {
-            "gameVersion": 3,
-            "name": "Indians",
-          }
-        }
-        socket={[Function]}
-      />
-      <Connect(CivPanel)
-        actionType="choice"
-        active={false}
-        civilisation={
-          Civilisation {
-            "gameVersion": 3,
-            "name": "Magyars",
-          }
-        }
-        socket={[Function]}
-      />
-      <Connect(CivPanel)
-        actionType="choice"
-        active={false}
-        civilisation={
-          Civilisation {
-            "gameVersion": 3,
-            "name": "Slavs",
-          }
-        }
-        socket={[Function]}
-      />
-      <Connect(CivPanel)
-        actionType="choice"
-        active={false}
+        civPanelType="choice"
         civilisation={
           Civilisation {
             "gameVersion": 4,
@@ -274,41 +32,19 @@ exports[`CivGrid renders correctly 1`] = `
         socket={[Function]}
       />
       <Connect(CivPanel)
-        actionType="choice"
         active={false}
+        civPanelType="choice"
         civilisation={
           Civilisation {
-            "gameVersion": 4,
-            "name": "Ethiopians",
+            "gameVersion": 1,
+            "name": "Britons",
           }
         }
         socket={[Function]}
       />
       <Connect(CivPanel)
-        actionType="choice"
         active={false}
-        civilisation={
-          Civilisation {
-            "gameVersion": 4,
-            "name": "Malians",
-          }
-        }
-        socket={[Function]}
-      />
-      <Connect(CivPanel)
-        actionType="choice"
-        active={false}
-        civilisation={
-          Civilisation {
-            "gameVersion": 4,
-            "name": "Portuguese",
-          }
-        }
-        socket={[Function]}
-      />
-      <Connect(CivPanel)
-        actionType="choice"
-        active={false}
+        civPanelType="choice"
         civilisation={
           Civilisation {
             "gameVersion": 5,
@@ -318,8 +54,129 @@ exports[`CivGrid renders correctly 1`] = `
         socket={[Function]}
       />
       <Connect(CivPanel)
-        actionType="choice"
         active={false}
+        civPanelType="choice"
+        civilisation={
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Byzantines",
+          }
+        }
+        socket={[Function]}
+      />
+      <Connect(CivPanel)
+        active={false}
+        civPanelType="choice"
+        civilisation={
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Celts",
+          }
+        }
+        socket={[Function]}
+      />
+      <Connect(CivPanel)
+        active={false}
+        civPanelType="choice"
+        civilisation={
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Chinese",
+          }
+        }
+        socket={[Function]}
+      />
+      <Connect(CivPanel)
+        active={false}
+        civPanelType="choice"
+        civilisation={
+          Civilisation {
+            "gameVersion": 4,
+            "name": "Ethiopians",
+          }
+        }
+        socket={[Function]}
+      />
+      <Connect(CivPanel)
+        active={false}
+        civPanelType="choice"
+        civilisation={
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Franks",
+          }
+        }
+        socket={[Function]}
+      />
+      <Connect(CivPanel)
+        active={false}
+        civPanelType="choice"
+        civilisation={
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Goths",
+          }
+        }
+        socket={[Function]}
+      />
+      <Connect(CivPanel)
+        active={false}
+        civPanelType="choice"
+        civilisation={
+          Civilisation {
+            "gameVersion": 2,
+            "name": "Huns",
+          }
+        }
+        socket={[Function]}
+      />
+      <Connect(CivPanel)
+        active={false}
+        civPanelType="choice"
+        civilisation={
+          Civilisation {
+            "gameVersion": 3,
+            "name": "Incas",
+          }
+        }
+        socket={[Function]}
+      />
+      <Connect(CivPanel)
+        active={false}
+        civPanelType="choice"
+        civilisation={
+          Civilisation {
+            "gameVersion": 3,
+            "name": "Indians",
+          }
+        }
+        socket={[Function]}
+      />
+      <Connect(CivPanel)
+        active={false}
+        civPanelType="choice"
+        civilisation={
+          Civilisation {
+            "gameVersion": 3,
+            "name": "Italians",
+          }
+        }
+        socket={[Function]}
+      />
+      <Connect(CivPanel)
+        active={false}
+        civPanelType="choice"
+        civilisation={
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Japanese",
+          }
+        }
+        socket={[Function]}
+      />
+      <Connect(CivPanel)
+        active={false}
+        civPanelType="choice"
         civilisation={
           Civilisation {
             "gameVersion": 5,
@@ -329,8 +186,30 @@ exports[`CivGrid renders correctly 1`] = `
         socket={[Function]}
       />
       <Connect(CivPanel)
-        actionType="choice"
         active={false}
+        civPanelType="choice"
+        civilisation={
+          Civilisation {
+            "gameVersion": 2,
+            "name": "Koreans",
+          }
+        }
+        socket={[Function]}
+      />
+      <Connect(CivPanel)
+        active={false}
+        civPanelType="choice"
+        civilisation={
+          Civilisation {
+            "gameVersion": 3,
+            "name": "Magyars",
+          }
+        }
+        socket={[Function]}
+      />
+      <Connect(CivPanel)
+        active={false}
+        civPanelType="choice"
         civilisation={
           Civilisation {
             "gameVersion": 5,
@@ -340,12 +219,133 @@ exports[`CivGrid renders correctly 1`] = `
         socket={[Function]}
       />
       <Connect(CivPanel)
-        actionType="choice"
         active={false}
+        civPanelType="choice"
+        civilisation={
+          Civilisation {
+            "gameVersion": 4,
+            "name": "Malians",
+          }
+        }
+        socket={[Function]}
+      />
+      <Connect(CivPanel)
+        active={false}
+        civPanelType="choice"
+        civilisation={
+          Civilisation {
+            "gameVersion": 2,
+            "name": "Mayans",
+          }
+        }
+        socket={[Function]}
+      />
+      <Connect(CivPanel)
+        active={false}
+        civPanelType="choice"
+        civilisation={
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Mongols",
+          }
+        }
+        socket={[Function]}
+      />
+      <Connect(CivPanel)
+        active={false}
+        civPanelType="choice"
+        civilisation={
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Persians",
+          }
+        }
+        socket={[Function]}
+      />
+      <Connect(CivPanel)
+        active={false}
+        civPanelType="choice"
+        civilisation={
+          Civilisation {
+            "gameVersion": 4,
+            "name": "Portuguese",
+          }
+        }
+        socket={[Function]}
+      />
+      <Connect(CivPanel)
+        active={false}
+        civPanelType="choice"
+        civilisation={
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Saracens",
+          }
+        }
+        socket={[Function]}
+      />
+      <Connect(CivPanel)
+        active={false}
+        civPanelType="choice"
+        civilisation={
+          Civilisation {
+            "gameVersion": 3,
+            "name": "Slavs",
+          }
+        }
+        socket={[Function]}
+      />
+      <Connect(CivPanel)
+        active={false}
+        civPanelType="choice"
+        civilisation={
+          Civilisation {
+            "gameVersion": 2,
+            "name": "Spanish",
+          }
+        }
+        socket={[Function]}
+      />
+      <Connect(CivPanel)
+        active={false}
+        civPanelType="choice"
+        civilisation={
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Teutons",
+          }
+        }
+        socket={[Function]}
+      />
+      <Connect(CivPanel)
+        active={false}
+        civPanelType="choice"
+        civilisation={
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Turks",
+          }
+        }
+        socket={[Function]}
+      />
+      <Connect(CivPanel)
+        active={false}
+        civPanelType="choice"
         civilisation={
           Civilisation {
             "gameVersion": 5,
             "name": "Vietnamese",
+          }
+        }
+        socket={[Function]}
+      />
+      <Connect(CivPanel)
+        active={false}
+        civPanelType="choice"
+        civilisation={
+          Civilisation {
+            "gameVersion": 1,
+            "name": "Vikings",
           }
         }
         socket={[Function]}
