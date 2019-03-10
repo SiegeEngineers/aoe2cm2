@@ -609,7 +609,7 @@ exports[`Draft renders correctly 1`] = `
                 "rejectUnauthorized": true,
                 "requestTimeout": undefined,
                 "supportsBinary": false,
-                "uri": "http://localhost/socket.io/?draftId=&EIO=3&transport=polling&t=Mbdnc1b&b64=1",
+                "uri": "http://localhost/socket.io/?draftId=&EIO=3&transport=polling&t=Mbeqfo5&b64=1",
                 "xd": true,
                 "xhr": XMLHttpRequest {
                   "DONE": 4,
@@ -644,7 +644,7 @@ exports[`Draft renders correctly 1`] = `
                 "EIO": 3,
                 "b64": 1,
                 "draftId": "",
-                "t": "Mbdnc1b",
+                "t": "Mbeqfo5",
                 "transport": "polling",
               },
               "readyState": "opening",
@@ -707,7 +707,7 @@ exports[`Draft renders correctly 1`] = `
             "data": Array [
               "join",
               Object {
-                "name": "myname1552224247909",
+                "name": "myname1111111111111",
               },
             ],
             "id": 0,

@@ -13,6 +13,7 @@ interface IProps {
     actionType: ActionType;
     socket?: Socket;
     whoAmI?: Player;
+    triggerAction?: ActionType;
 
     onClickCivilisation?: () => void;
 }
@@ -56,11 +57,17 @@ class CivPanel extends React.Component<IProps, object> {
     }
 
     private onClickCiv = () => {
-        if (this.props.socket !== undefined && this.props.civilisation !== undefined && this.props.whoAmI !== undefined) {
+        if (this.props.socket !== undefined && this.props.civilisation !== undefined && this.props.whoAmI !== undefined && this.props.triggerAction !== undefined) {
             const socket = this.props.socket as Socket;
             const civilisation = this.props.civilisation as Civilisation;
             const whoAmI = this.props.whoAmI as Player;
-            socket.emit('act', new PlayerEvent(whoAmI, ActionType.PICK, civilisation));
+            const triggerAction = this.props.triggerAction as ActionType;
+            socket.emit('act', new PlayerEvent(whoAmI, triggerAction, civilisation), (data: any) => {
+                console.log('act callback', data);
+                if (data.status !== 'ok') {
+                    alert(data.validationErrors);
+                }
+            });
         }
     }
 }

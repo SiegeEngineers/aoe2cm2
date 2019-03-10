@@ -109,8 +109,9 @@ If one or more validations fail, an error is returned to the player and the
 action is not broadcasted.
 
 ### Validations for all actions:
-- `VLD_000`: Acting user is supposed to act according to preset 
-- `VLD_001`: Action is expected according to preset
+- `VLD_000`: Draft is currently expecting actions 
+- `VLD_001`: Acting user is supposed to act according to preset 
+- `VLD_002`: Action is expected according to preset
 
 ### Validations for PICKs: 
 - `VLD_100`: Civilisation has not been banned globally before

@@ -5,6 +5,8 @@ import Player from "./models/Player";
 import {IDraftConfig} from "./models/IDraftConfig";
 import {IJoinMessage} from "./models/IJoinMessage";
 import {DraftsStore} from "./models/DraftsStore";
+import {Validator} from "./models/Validator";
+import {ValidationId} from "./models/ValidationId";
 
 const app = express();
 app.set("port", process.env.PORT || 3000);
@@ -12,6 +14,7 @@ app.set("port", process.env.PORT || 3000);
 const server = new Server(app);
 const io = socketio(server);
 const draftsStore = new DraftsStore();
+const validator = new Validator(draftsStore);
 
 function setPlayerName(draftId: string, player: Player, name: string) {
     if (!draftsStore.has(draftId)) {
@@ -90,14 +93,18 @@ io.on("connection", (socket: socketio.Socket) => {
         fn({...draftsStore.getPlayerNames(draftId), yourPlayerType: playerType});
     });
 
-    socket.on("act", (message: any) => {
+    socket.on("act", (message: any, fn: (retval:any) => void) => {
         console.log(message);
-        if (validate(message)) {
+        const validationErrors:ValidationId[] = validate(draftId, message);
+        if (validationErrors.length === 0) {
             socket.nsp
                 .in(roomHost)
                 .in(roomGuest)
                 .in(roomSpec)
                 .emit("playerEvent", message);
+            fn({status:'ok', validationErrors});
+        } else {
+            fn({status:'error', validationErrors});
         }
     });
 });
@@ -106,6 +113,6 @@ server.listen(3000, () => {
     console.log("listening on *:3000");
 });
 
-function validate(message: any) {
-    return true;
+function validate(draftId:string, message: any):ValidationId[] {
+    return validator.validateAndApply(draftId, message);
 }

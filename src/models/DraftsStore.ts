@@ -2,6 +2,7 @@ import Draft from "./Draft";
 import {DraftEvent} from "./DraftEvent";
 import Preset from "./Preset";
 import Player from "./Player";
+import Turn from "./Turn";
 
 export class DraftsStore {
     private drafts: Map<string, Draft> = new Map<string, Draft>();
@@ -17,9 +18,21 @@ export class DraftsStore {
     }
 
     public addDraftEvent(draftId: string, draftEvent: DraftEvent) {
-        this.assertDraftExists(draftId);
-        const draft: Draft = this.drafts.get(draftId) as Draft;
+        const draft: Draft = this.getDraftOrThrow(draftId);
         draft.events.push(draftEvent);
+    }
+
+    public hasNextAction(draftId: string): boolean {
+        const draft: Draft = this.getDraftOrThrow(draftId);
+        return draft.preset.turns.length > draft.events.length;
+    }
+
+    public getExpectedAction(draftId: string): Turn | null {
+        const draft: Draft = this.getDraftOrThrow(draftId);
+        if (draft.events.length < draft.preset.turns.length) {
+            return draft.preset.turns[draft.events.length];
+        }
+        return null;
     }
 
     public getDraftIds(): string[] {
@@ -31,8 +44,7 @@ export class DraftsStore {
     }
 
     public setPlayerName(draftId: string, player: Player, name: string) {
-        this.assertDraftExists(draftId);
-        const draft: Draft = this.drafts.get(draftId) as Draft;
+        const draft: Draft = this.getDraftOrThrow(draftId);
         switch (player) {
             case Player.HOST:
                 draft.nameHost = name;
@@ -44,15 +56,15 @@ export class DraftsStore {
     }
 
     public getPlayerNames(draftId: string) {
-        this.assertDraftExists(draftId);
-        const draft: Draft = this.drafts.get(draftId) as Draft;
+        const draft: Draft = this.getDraftOrThrow(draftId);
         return {nameHost: draft.nameHost, nameGuest: draft.nameGuest};
     }
 
-    private assertDraftExists(draftId: string) {
+    private getDraftOrThrow(draftId: string): Draft {
         if (!this.has(draftId)) {
             throw new Error(`Draft with id ${draftId} not found`);
         }
+        return this.drafts.get(draftId) as Draft;
     }
 
     private assertDraftDoesNotExist(draftId: string) {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ActionType from "../models/ActionType";
+import ActionType, {fromAction} from "../models/ActionType";
 import {default as ModelPlayer} from '../models/Player';
 import {default as ModelPreset} from '../models/Preset';
 import '../pure-min.css'
@@ -8,11 +8,13 @@ import CivPanel from "../containers/CivPanel";
 import Civilisation from "../models/Civilisation";
 import {DraftEvent} from "../models/DraftEvent";
 import PlayerEvent from "../models/PlayerEvent";
+import Turn from "../models/Turn";
 
 interface IProps {
     preset: ModelPreset;
     player: ModelPlayer;
     name: string;
+    nextAction?: number;
     events?: DraftEvent[];
 }
 
@@ -37,24 +39,40 @@ class Player extends React.Component<IProps, IState> {
     public render() {
         const playerId: string = 'player-' + this.props.player.toString().toLowerCase();
 
-        const pickPanels = this.props.preset.turns.filter(turn => {
-            return turn.player === this.props.player && turn.action.toString().includes('PICK');
-        }).map((turn, index) => {
-            let pickedCiv;
-            if (this.state.pickedCivs.length > index) {
-                pickedCiv = this.state.pickedCivs[index];
+        let picksIndex = 0;
+        let bansIndex = 0;
+        const pickPanels = [];
+        const banPanels = [];
+        for (let i = 0; i < this.props.preset.turns.length; i++) {
+            const turn: Turn = this.props.preset.turns[i];
+            const actionType = fromAction(turn.action);
+            if (this.props.player === turn.player) {
+                if (actionType === ActionType.PICK) {
+                    let pickedCiv;
+                    if (this.state.pickedCivs.length > picksIndex) {
+                        pickedCiv = this.state.pickedCivs[picksIndex];
+                    }
+                    picksIndex++;
+                    pickPanels.push(React.createElement(CivPanel, {
+                        actionType: ActionType.PICK,
+                        active: i === this.props.nextAction,
+                        civilisation: pickedCiv
+                    }));
+                } else if (actionType === ActionType.BAN) {
+                    let bannedCiv;
+                    if (this.state.bannedCivs.length > bansIndex) {
+                        bannedCiv = this.state.bannedCivs[bansIndex];
+                    }
+                    bansIndex++;
+                    banPanels.push(React.createElement(CivPanel, {
+                        actionType: ActionType.BAN,
+                        active: i === this.props.nextAction,
+                        civilisation: bannedCiv
+                    }));
+
+                }
             }
-            return React.createElement(CivPanel, {actionType: ActionType.PICK, active: false, civilisation: pickedCiv});
-        });
-        const banPanels = this.props.preset.turns.filter(turn => {
-            return turn.player === this.props.player && turn.action.toString().includes('BAN');
-        }).map((turn, index) => {
-            let bannedCiv;
-            if (this.state.bannedCivs.length > index) {
-                bannedCiv = this.state.bannedCivs[index];
-            }
-            return React.createElement(CivPanel, {actionType: ActionType.BAN, active: false, civilisation: bannedCiv});
-        });
+        }
 
         return (
             <div className="pure-u-1-2">

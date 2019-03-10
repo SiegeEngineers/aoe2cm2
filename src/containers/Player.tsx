@@ -5,7 +5,8 @@ import Player from "../components/Player";
 
 export function mapStateToProps(state: IStoreState) {
     return {
-        events: state.events
+        events: state.events,
+        nextAction: state.nextAction
     };
 }
 
