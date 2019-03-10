@@ -20,6 +20,7 @@ export class DraftsStore {
     public addDraftEvent(draftId: string, draftEvent: DraftEvent) {
         const draft: Draft = this.getDraftOrThrow(draftId);
         draft.events.push(draftEvent);
+        draft.nextAction++;
     }
 
     public hasNextAction(draftId: string): boolean {
@@ -70,6 +71,16 @@ export class DraftsStore {
     public getPlayerNames(draftId: string) {
         const draft: Draft = this.getDraftOrThrow(draftId);
         return {nameHost: draft.nameHost, nameGuest: draft.nameGuest};
+    }
+
+    public getEvents(draftId: string): DraftEvent[] {
+        const draft: Draft = this.getDraftOrThrow(draftId);
+        return draft.events;
+    }
+
+    public getNextAction(draftId: string): number {
+        const draft: Draft = this.getDraftOrThrow(draftId);
+        return draft.nextAction;
     }
 
     public draftCanBeStarted(draftId: string) {

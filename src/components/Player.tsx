@@ -113,8 +113,9 @@ function eventsToState(events: DraftEvent[] | undefined, player: ModelPlayer): I
     } else {
         events = events as DraftEvent[];
     }
+    // TODO: Handle AdminEvents
     const playerEvents: PlayerEvent[] = events
-        .filter(e => e instanceof PlayerEvent)
+        .filter(e => e.hasOwnProperty('actionType'))
         .map(e => e as PlayerEvent)
         .filter(e => e.player === player);
     const picks: Civilisation[] = [];

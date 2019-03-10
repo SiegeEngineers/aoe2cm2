@@ -92,7 +92,12 @@ io.on("connection", (socket: socketio.Socket) => {
             .in(roomGuest)
             .in(roomSpec)
             .emit("player_joined", {name: message.name, playerType});
-        fn({...draftsStore.getPlayerNames(draftId), yourPlayerType: playerType});
+        fn({
+            ...draftsStore.getPlayerNames(draftId),
+            events: draftsStore.getEvents(draftId),
+            nextAction: draftsStore.getNextAction(draftId),
+            yourPlayerType: playerType
+        });
     });
 
     socket.on("act", (message: any, fn: (retval:any) => void) => {

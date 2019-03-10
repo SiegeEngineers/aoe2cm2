@@ -23,8 +23,10 @@ export function updateState(state: IStoreState, action: Action): IStoreState {
             console.log(Actions.APPLY_CONFIG, action.value);
             return {
                 ...state,
+                events: action.value.events,
                 nameGuest: action.value.nameGuest,
                 nameHost: action.value.nameHost,
+                nextAction: action.value.nextAction,
                 whoAmI: action.value.yourPlayerType
             };
 
