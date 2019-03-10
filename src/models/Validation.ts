@@ -9,6 +9,9 @@ export class Validation {
         if (!draftsStore.has(draftId)) {
             return false;
         }
+        if(!draftsStore.draftCanBeStarted(draftId)){
+            return false;
+        }
         if (!draftsStore.hasNextAction(draftId)) {
             return false;
         }

@@ -55,9 +55,26 @@ export class DraftsStore {
         }
     }
 
+    public setPlayerReady(draftId: string, player: Player) {
+        const draft: Draft = this.getDraftOrThrow(draftId);
+        switch (player) {
+            case Player.HOST:
+                draft.hostReady = true;
+                break;
+            case Player.GUEST:
+                draft.guestReady = true;
+                break;
+        }
+    }
+
     public getPlayerNames(draftId: string) {
         const draft: Draft = this.getDraftOrThrow(draftId);
         return {nameHost: draft.nameHost, nameGuest: draft.nameGuest};
+    }
+
+    public draftCanBeStarted(draftId: string) {
+        const draft: Draft = this.getDraftOrThrow(draftId);
+        return draft.hostReady && draft.guestReady;
     }
 
     private getDraftOrThrow(draftId: string): Draft {
@@ -72,5 +89,4 @@ export class DraftsStore {
             throw new Error(`Draft with id ${draftId} already exists`);
         }
     }
-
 }

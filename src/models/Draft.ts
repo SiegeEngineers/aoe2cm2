@@ -6,6 +6,8 @@ import {DraftEvent} from "./DraftEvent";
 class Draft implements IStoreState {
     public nameHost: string;
     public nameGuest: string;
+    public hostReady: boolean;
+    public guestReady: boolean;
     public whoAmI: Player;
     public readonly preset: Preset;
     public nextAction: number = 0;
@@ -16,6 +18,8 @@ class Draft implements IStoreState {
         this.nameGuest = nameGuest;
         this.preset = preset;
         this.whoAmI = Player.HOST;
+        this.hostReady = false;
+        this.guestReady = false;
     }
 
     public setWhoAmI(whoAmI: Player) {

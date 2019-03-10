@@ -80,9 +80,11 @@ io.on("connection", (socket: socketio.Socket) => {
         let playerType: Player = Player.NONE;
         if (Object.keys(socket.rooms).includes(roomHost)) {
             setPlayerName(draftId, Player.HOST, message.name);
+            draftsStore.setPlayerReady(draftId, Player.HOST);
             playerType = Player.HOST;
         } else if (Object.keys(socket.rooms).includes(roomGuest)) {
             setPlayerName(draftId, Player.GUEST, message.name);
+            draftsStore.setPlayerReady(draftId, Player.GUEST);
             playerType = Player.GUEST
         }
         socket.nsp

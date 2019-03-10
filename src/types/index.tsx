@@ -4,6 +4,8 @@ import {DraftEvent} from "../models/DraftEvent";
 export interface IStoreState {
     nameHost: string;
     nameGuest: string;
+    hostReady: boolean;
+    guestReady: boolean;
     whoAmI: Player;
     preset: Preset;
     nextAction: number;
