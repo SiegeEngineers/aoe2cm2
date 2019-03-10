@@ -9,7 +9,7 @@ exports[`Messages renders correctly 1`] = `
     <div
       className="action-string info-card text-primary"
     >
-      vat
+      message content
     </div>
     <div
       className="hidden"

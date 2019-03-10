@@ -321,7 +321,7 @@ exports[`Draft renders correctly 1`] = `
       }
     }
   />
-  <Messages />
+  <Connect(Messages) />
   <CivGrid
     civilisations={
       Array [
@@ -609,7 +609,7 @@ exports[`Draft renders correctly 1`] = `
                 "rejectUnauthorized": true,
                 "requestTimeout": undefined,
                 "supportsBinary": false,
-                "uri": "http://localhost/socket.io/?draftId=&EIO=3&transport=polling&t=Mbeqfo5&b64=1",
+                "uri": "http://localhost/socket.io/?draftId=&EIO=3&transport=polling&t=MbeszI0&b64=1",
                 "xd": true,
                 "xhr": XMLHttpRequest {
                   "DONE": 4,
@@ -644,7 +644,7 @@ exports[`Draft renders correctly 1`] = `
                 "EIO": 3,
                 "b64": 1,
                 "draftId": "",
-                "t": "Mbeqfo5",
+                "t": "MbeszI0",
                 "transport": "polling",
               },
               "readyState": "opening",

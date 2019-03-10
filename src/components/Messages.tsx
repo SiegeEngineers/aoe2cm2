@@ -2,14 +2,17 @@ import * as React from 'react';
 import '../pure-min.css'
 import '../style2.css'
 
+interface IProps {
+    message: string
+}
 
-class Messages extends React.Component<object, object> {
+class Messages extends React.Component<IProps, object> {
     public render() {
         return (
             <div>
                 <div id="action-text" className="centered">
                     <div className="action-string info-card text-primary">
-                        vat
+                        {this.props.message}
                     </div>
                     <div className="hidden">
                         <span id="action_msg_error_update">Error updating the draft state.</span>

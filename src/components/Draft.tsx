@@ -2,7 +2,7 @@ import * as React from "react";
 import '../pure-min.css'
 import '../style2.css'
 import CivGrid from "./CivGrid";
-import Messages from "./Messages";
+import Messages from "../containers/Messages";
 import Players from "./Players";
 import TurnRow from "./TurnRow";
 import Player from "../models/Player";

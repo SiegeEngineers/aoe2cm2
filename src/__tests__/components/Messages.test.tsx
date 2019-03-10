@@ -4,6 +4,6 @@ import Messages from "../../components/Messages";
 
 
 it('Messages renders correctly', () => {
-    const component = shallow(<Messages/>);
+    const component = shallow(<Messages message={'message content'}/>);
     expect(component).toMatchSnapshot();
 });
