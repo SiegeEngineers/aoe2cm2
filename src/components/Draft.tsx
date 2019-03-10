@@ -14,6 +14,7 @@ import {DraftEvent} from "../models/DraftEvent";
 import Socket = SocketIOClient.Socket;
 import {IDraftConfig} from "../models/IDraftConfig";
 import {IJoinedMessage} from "../models/IJoinedMessage";
+import {Util} from "../models/Util";
 
 interface IProps {
     nameHost: string;
@@ -35,21 +36,12 @@ interface IState {
 
 class Draft extends React.Component<IProps, IState> {
 
-    private static getIdFromUrl(): string {
-        const match: RegExpMatchArray | null = window.location.pathname.match(/\/draft\/([A-Za-z]+)\/?.*/);
-        if (match !== null) {
-            return match[1];
-        }
-        alert('Could not get draft ID from url');
-        return '';
-    }
-
     private readonly socket: Socket;
 
     constructor(props: IProps) {
         super(props);
 
-        this.socket = io({query: {draftId: Draft.getIdFromUrl()}});
+        this.socket = io({query: {draftId: Util.getIdFromUrl()}});
 
         this.socket.on("player_joined", (data: IJoinedMessage) => {
             console.log("player_joined", data);
