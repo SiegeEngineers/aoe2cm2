@@ -8,7 +8,7 @@ enum ActionType {
     NOTHING = "nothing"
 }
 
-export function fromAction(action: Action) {
+export function actionTypeFromAction(action: Action) {
     switch (action) {
         case Action.PICK:
         case Action.EXCLUSIVE_PICK:

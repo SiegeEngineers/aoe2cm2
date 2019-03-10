@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ActionType, {fromAction} from "../models/ActionType";
+import ActionType, {actionTypeFromAction} from "../models/ActionType";
 import {default as ModelPlayer} from '../models/Player';
 import {default as ModelPreset} from '../models/Preset';
 import '../pure-min.css'
@@ -46,7 +46,7 @@ class Player extends React.Component<IProps, IState> {
         const banPanels = [];
         for (let i = 0; i < this.props.preset.turns.length; i++) {
             const turn: Turn = this.props.preset.turns[i];
-            const actionType = fromAction(turn.action);
+            const actionType = actionTypeFromAction(turn.action);
             if (this.props.player === turn.player) {
                 if (actionType === ActionType.PICK) {
                     let pickedCiv;

@@ -1,7 +1,7 @@
 import {ValidationId} from "./ValidationId";
 import {DraftEvent} from "./DraftEvent";
 import {DraftsStore} from "./DraftsStore";
-import {fromAction} from "./ActionType";
+import {actionTypeFromAction} from "./ActionType";
 import PlayerEvent from "./PlayerEvent";
 
 export class Validation {
@@ -27,7 +27,7 @@ export class Validation {
         if (expectedAction !== null) {
             if (draftEvent.hasOwnProperty('actionType')) {
                 const playerEvent = draftEvent as PlayerEvent;
-                const expectedActionType = fromAction(expectedAction.action);
+                const expectedActionType = actionTypeFromAction(expectedAction.action);
                 return playerEvent.actionType === expectedActionType;
             }
         }
