@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`gets rendered 1`] = `
+exports[`labels the turn with GPICK 1`] = `
 <div
   className="pure-u-1-24 turn"
 >
@@ -10,7 +10,9 @@ exports[`gets rendered 1`] = `
     <span
       className="active"
     >
-      <b />
+      <b>
+        g
+      </b>
       PICK
     </span>
   </div>
