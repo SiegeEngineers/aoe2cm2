@@ -4,18 +4,16 @@ import '../style2.css'
 import Civilisation from "../models/Civilisation";
 import CivPanel from "../containers/CivPanel";
 import CivPanelType from "../models/CivPanelType";
-import Socket = SocketIOClient.Socket;
 
 interface IProps {
-    civilisations: Civilisation[],
-    socket: Socket
+    civilisations: Civilisation[]
 }
 
 class CivGrid extends React.Component<IProps, object> {
     public render() {
 
         const civPanels = this.props.civilisations.map((civ, index) => {
-            return React.createElement(CivPanel, {civPanelType: CivPanelType.CHOICE, active: false, civilisation: civ, socket: this.props.socket});
+            return React.createElement(CivPanel, {civPanelType: CivPanelType.CHOICE, active: false, civilisation: civ});
         });
 
         return (

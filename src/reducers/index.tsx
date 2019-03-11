@@ -11,7 +11,7 @@ export function updateState(state: IStoreState, action: Action): IStoreState {
             eventsCopy.push(action.value);
             return {...state, nextAction: state.nextAction + 1, events: eventsCopy};
         case Actions.SET_NAME:
-            console.log(Actions.SET_NAME, action.value);
+            console.log(Actions.SET_NAME, action);
             if (action.player === Player.HOST) {
                 return {...state, nameHost: action.value};
             } else if (action.player === Player.GUEST) {

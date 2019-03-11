@@ -27,7 +27,8 @@ export function mapDispatchToProps(dispatch: Dispatch<actions.Action>) {
             dispatch(actions.applyConfig(config));
         },
         onSetNameGuestAction: (name: string) => dispatch(actions.setName(Player.GUEST, name)),
-        onSetNameHostAction: (name: string) => dispatch(actions.setName(Player.HOST, name))
+        onSetNameHostAction: (name: string) => dispatch(actions.setName(Player.HOST, name)),
+        triggerJoin: (name:string) => dispatch(actions.sendJoin(name))
     }
 }
 

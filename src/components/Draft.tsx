@@ -8,13 +8,8 @@ import TurnRow from "./TurnRow";
 import Player from "../models/Player";
 import Preset from "../models/Preset";
 import "../models/DraftEvent";
-import PlayerEvent from "../models/PlayerEvent";
-import * as io from "socket.io-client";
 import {DraftEvent} from "../models/DraftEvent";
-import Socket = SocketIOClient.Socket;
 import {IDraftConfig} from "../models/IDraftConfig";
-import {IJoinedMessage} from "../models/IJoinedMessage";
-import {Util} from "../models/Util";
 
 interface IProps {
     nameHost: string;
@@ -28,6 +23,7 @@ interface IProps {
     onNextAction?: () => void;
     onSetNameHostAction?: (name: string) => void;
     onSetNameGuestAction?: (name: string) => void;
+    triggerJoin?: (name: string) => void;
 }
 
 interface IState {
@@ -36,36 +32,9 @@ interface IState {
 
 class Draft extends React.Component<IProps, IState> {
 
-    private readonly socket: Socket;
-
     constructor(props: IProps) {
         super(props);
 
-        this.socket = io({query: {draftId: Util.getIdFromUrl()}});
-
-        this.socket.on("player_joined", (data: IJoinedMessage) => {
-            console.log("player_joined", data);
-            if (data.playerType === Player.HOST) {
-                if (this.props.onSetNameHostAction !== undefined) {
-                    this.props.onSetNameHostAction(data.name);
-                }
-            }
-            if (data.playerType === Player.GUEST) {
-                if (this.props.onSetNameGuestAction !== undefined) {
-                    this.props.onSetNameGuestAction(data.name);
-                }
-            }
-        });
-
-        this.socket.on("playerEvent", (message: PlayerEvent) => {
-            console.log('message recieved:', "[act]", JSON.stringify(message));
-            if (this.props.onActionCompleted !== undefined) {
-                const playerEvent = new PlayerEvent(message.player, message.actionType, message.civilisation);
-                const onActionCompleted = this.props.onActionCompleted as (message: DraftEvent) => void;
-                console.log('executing onActionCompleted');
-                onActionCompleted(playerEvent);
-            }
-        });
         let username: string | null;
         try {
             username = localStorage.getItem('username');
@@ -77,14 +46,10 @@ class Draft extends React.Component<IProps, IState> {
         } catch (e) {
             username = 'nolocalstorage' + Date.now();
         }
-        this.socket.emit('join', {name: username}, (data: IDraftConfig) => {
-            console.log('join callback', data);
-            if (this.props.onDraftConfig !== undefined) {
-                const onDraftConfig = this.props.onDraftConfig as (message: IDraftConfig) => void;
-                console.log('executing onDraftConfig');
-                onDraftConfig(data);
-            }
-        });
+        if (this.props.triggerJoin !== undefined) {
+            console.log('triggering JOIN');
+            this.props.triggerJoin(username);
+        }
     }
 
     public render() {
@@ -102,7 +67,7 @@ class Draft extends React.Component<IProps, IState> {
 
                 <Messages/>
 
-                <CivGrid civilisations={this.props.preset.civilisations} socket={this.socket}/>
+                <CivGrid civilisations={this.props.preset.civilisations}/>
 
             </div>
         );

@@ -5,7 +5,6 @@ import '../pure-min.css'
 import '../style2.css'
 import PlayerEvent from "../models/PlayerEvent";
 import Player from "../models/Player";
-import Socket = SocketIOClient.Socket;
 import CivPanelType from "../models/CivPanelType";
 import {Util} from "../models/Util";
 
@@ -13,11 +12,10 @@ interface IProps {
     civilisation?: Civilisation;
     active: boolean;
     civPanelType: CivPanelType;
-    socket?: Socket;
     whoAmI?: Player;
     triggerAction?: ActionType;
 
-    onClickCivilisation?: () => void;
+    onClickCivilisation?: (playerEvent:PlayerEvent, callback:any) => void;
 }
 
 class CivPanel extends React.Component<IProps, object> {
@@ -59,12 +57,12 @@ class CivPanel extends React.Component<IProps, object> {
     }
 
     private onClickCiv = () => {
-        if (Util.notUndefined(this.props.socket, this.props.civilisation, this.props.whoAmI, this.props.triggerAction)) {
-            const socket = this.props.socket as Socket;
+        if (Util.notUndefined(this.props.onClickCivilisation, this.props.civilisation, this.props.whoAmI, this.props.triggerAction)) {
             const civilisation = this.props.civilisation as Civilisation;
             const whoAmI = this.props.whoAmI as Player;
             const triggerAction = this.props.triggerAction as ActionType;
-            socket.emit('act', new PlayerEvent(whoAmI, triggerAction, civilisation), (data: any) => {
+            const onClickCivilisation = this.props.onClickCivilisation as (playerEvent:PlayerEvent, callback:any) => void;
+            onClickCivilisation(new PlayerEvent(whoAmI, triggerAction, civilisation), (data: any) => {
                 console.log('act callback', data);
                 if (data.status !== 'ok') {
                     alert('Validation(s) failed:\n\n' + JSON.stringify(data.validationErrors));

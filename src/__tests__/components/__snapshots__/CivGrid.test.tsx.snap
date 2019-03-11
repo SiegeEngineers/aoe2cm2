@@ -18,7 +18,6 @@ exports[`CivGrid renders correctly 1`] = `
             "name": "Aztecs",
           }
         }
-        socket={[Function]}
       />
       <Connect(CivPanel)
         active={false}
@@ -29,7 +28,6 @@ exports[`CivGrid renders correctly 1`] = `
             "name": "Berbers",
           }
         }
-        socket={[Function]}
       />
       <Connect(CivPanel)
         active={false}
@@ -40,7 +38,6 @@ exports[`CivGrid renders correctly 1`] = `
             "name": "Britons",
           }
         }
-        socket={[Function]}
       />
       <Connect(CivPanel)
         active={false}
@@ -51,7 +48,6 @@ exports[`CivGrid renders correctly 1`] = `
             "name": "Burmese",
           }
         }
-        socket={[Function]}
       />
       <Connect(CivPanel)
         active={false}
@@ -62,7 +58,6 @@ exports[`CivGrid renders correctly 1`] = `
             "name": "Byzantines",
           }
         }
-        socket={[Function]}
       />
       <Connect(CivPanel)
         active={false}
@@ -73,7 +68,6 @@ exports[`CivGrid renders correctly 1`] = `
             "name": "Celts",
           }
         }
-        socket={[Function]}
       />
       <Connect(CivPanel)
         active={false}
@@ -84,7 +78,6 @@ exports[`CivGrid renders correctly 1`] = `
             "name": "Chinese",
           }
         }
-        socket={[Function]}
       />
       <Connect(CivPanel)
         active={false}
@@ -95,7 +88,6 @@ exports[`CivGrid renders correctly 1`] = `
             "name": "Ethiopians",
           }
         }
-        socket={[Function]}
       />
       <Connect(CivPanel)
         active={false}
@@ -106,7 +98,6 @@ exports[`CivGrid renders correctly 1`] = `
             "name": "Franks",
           }
         }
-        socket={[Function]}
       />
       <Connect(CivPanel)
         active={false}
@@ -117,7 +108,6 @@ exports[`CivGrid renders correctly 1`] = `
             "name": "Goths",
           }
         }
-        socket={[Function]}
       />
       <Connect(CivPanel)
         active={false}
@@ -128,7 +118,6 @@ exports[`CivGrid renders correctly 1`] = `
             "name": "Huns",
           }
         }
-        socket={[Function]}
       />
       <Connect(CivPanel)
         active={false}
@@ -139,7 +128,6 @@ exports[`CivGrid renders correctly 1`] = `
             "name": "Incas",
           }
         }
-        socket={[Function]}
       />
       <Connect(CivPanel)
         active={false}
@@ -150,7 +138,6 @@ exports[`CivGrid renders correctly 1`] = `
             "name": "Indians",
           }
         }
-        socket={[Function]}
       />
       <Connect(CivPanel)
         active={false}
@@ -161,7 +148,6 @@ exports[`CivGrid renders correctly 1`] = `
             "name": "Italians",
           }
         }
-        socket={[Function]}
       />
       <Connect(CivPanel)
         active={false}
@@ -172,7 +158,6 @@ exports[`CivGrid renders correctly 1`] = `
             "name": "Japanese",
           }
         }
-        socket={[Function]}
       />
       <Connect(CivPanel)
         active={false}
@@ -183,7 +168,6 @@ exports[`CivGrid renders correctly 1`] = `
             "name": "Khmer",
           }
         }
-        socket={[Function]}
       />
       <Connect(CivPanel)
         active={false}
@@ -194,7 +178,6 @@ exports[`CivGrid renders correctly 1`] = `
             "name": "Koreans",
           }
         }
-        socket={[Function]}
       />
       <Connect(CivPanel)
         active={false}
@@ -205,7 +188,6 @@ exports[`CivGrid renders correctly 1`] = `
             "name": "Magyars",
           }
         }
-        socket={[Function]}
       />
       <Connect(CivPanel)
         active={false}
@@ -216,7 +198,6 @@ exports[`CivGrid renders correctly 1`] = `
             "name": "Malay",
           }
         }
-        socket={[Function]}
       />
       <Connect(CivPanel)
         active={false}
@@ -227,7 +208,6 @@ exports[`CivGrid renders correctly 1`] = `
             "name": "Malians",
           }
         }
-        socket={[Function]}
       />
       <Connect(CivPanel)
         active={false}
@@ -238,7 +218,6 @@ exports[`CivGrid renders correctly 1`] = `
             "name": "Mayans",
           }
         }
-        socket={[Function]}
       />
       <Connect(CivPanel)
         active={false}
@@ -249,7 +228,6 @@ exports[`CivGrid renders correctly 1`] = `
             "name": "Mongols",
           }
         }
-        socket={[Function]}
       />
       <Connect(CivPanel)
         active={false}
@@ -260,7 +238,6 @@ exports[`CivGrid renders correctly 1`] = `
             "name": "Persians",
           }
         }
-        socket={[Function]}
       />
       <Connect(CivPanel)
         active={false}
@@ -271,7 +248,6 @@ exports[`CivGrid renders correctly 1`] = `
             "name": "Portuguese",
           }
         }
-        socket={[Function]}
       />
       <Connect(CivPanel)
         active={false}
@@ -282,7 +258,6 @@ exports[`CivGrid renders correctly 1`] = `
             "name": "Saracens",
           }
         }
-        socket={[Function]}
       />
       <Connect(CivPanel)
         active={false}
@@ -293,7 +268,6 @@ exports[`CivGrid renders correctly 1`] = `
             "name": "Slavs",
           }
         }
-        socket={[Function]}
       />
       <Connect(CivPanel)
         active={false}
@@ -304,7 +278,6 @@ exports[`CivGrid renders correctly 1`] = `
             "name": "Spanish",
           }
         }
-        socket={[Function]}
       />
       <Connect(CivPanel)
         active={false}
@@ -315,7 +288,6 @@ exports[`CivGrid renders correctly 1`] = `
             "name": "Teutons",
           }
         }
-        socket={[Function]}
       />
       <Connect(CivPanel)
         active={false}
@@ -326,7 +298,6 @@ exports[`CivGrid renders correctly 1`] = `
             "name": "Turks",
           }
         }
-        socket={[Function]}
       />
       <Connect(CivPanel)
         active={false}
@@ -337,7 +308,6 @@ exports[`CivGrid renders correctly 1`] = `
             "name": "Vietnamese",
           }
         }
-        socket={[Function]}
       />
       <Connect(CivPanel)
         active={false}
@@ -348,7 +318,6 @@ exports[`CivGrid renders correctly 1`] = `
             "name": "Vikings",
           }
         }
-        socket={[Function]}
       />
     </div>
     <div
