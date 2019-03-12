@@ -9,7 +9,7 @@ import * as actions from "../actions";
 
 export function mapStateToProps(state: IStoreState) {
     let triggerAction: ActionType = ActionType.NOTHING;
-    if (state.nextAction < state.preset.turns.length) {
+    if (state.preset && state.nextAction < state.preset.turns.length) {
         triggerAction = actionTypeFromAction(state.preset.turns[state.nextAction].action);
     }
     return {

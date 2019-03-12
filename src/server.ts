@@ -1,6 +1,6 @@
-import * as express from "express";
+import express from "express";
 import {Server} from "http"
-import * as socketio from "socket.io";
+import socketio from "socket.io";
 import Player from "./models/Player";
 import {IDraftConfig} from "./models/IDraftConfig";
 import {IJoinMessage} from "./models/IJoinMessage";
