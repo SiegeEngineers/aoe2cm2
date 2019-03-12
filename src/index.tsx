@@ -1,23 +1,21 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-// import App from './App';
-import './index.css';
-// import registerServiceWorker from './registerServiceWorker';
 import {applyMiddleware, createStore, Store} from 'redux';
+import {Provider} from 'react-redux';
+import io from 'socket.io-client';
 import {updateState} from './reducers';
 import {IStoreState} from './types';
 import Preset from "./models/Preset";
 import Draft from './containers/Draft';
-import {Provider} from 'react-redux';
-import {default as ModelDraft} from "./models/Draft";
-import * as io from "socket.io-client";
+import ModelDraft from "./models/Draft";
 import {Util} from "./models/Util";
 import {IJoinedMessage} from "./models/IJoinedMessage";
 import Player from "./models/Player";
 import PlayerEvent from "./models/PlayerEvent";
+import {IDraftConfig} from "./models/IDraftConfig";
 import {Action, IActionCompleted, IApplyConfig, IClickOnCiv, ISendJoin, ISetName} from "./actions";
 import {Actions} from "./constants";
-import {IDraftConfig} from "./models/IDraftConfig";
+import './index.css';
 
 const createMySocketMiddleware = () => {
     return (storeAPI: { dispatch: (arg0: Action) => void; }) => {

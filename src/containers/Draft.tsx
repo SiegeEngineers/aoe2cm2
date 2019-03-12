@@ -3,6 +3,7 @@ import * as actions from '../actions/';
 import {IStoreState} from '../types';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
+import Preset from "../models/Preset";
 import Player from "../models/Player";
 import {DraftEvent} from "../models/DraftEvent";
 import {IDraftConfig} from "../models/IDraftConfig";
@@ -10,11 +11,11 @@ import {IDraftConfig} from "../models/IDraftConfig";
 export function mapStateToProps({nameHost, nameGuest, whoAmI, preset, nextAction, events}: IStoreState) {
     return {
         events,
-        nameGuest,
-        nameHost,
+        nameGuest: nameGuest as string,
+        nameHost: nameHost as string,
         nextAction,
-        preset,
-        whoAmI
+        preset: preset as Preset,
+        whoAmI: whoAmI as Player,
     }
 }
 

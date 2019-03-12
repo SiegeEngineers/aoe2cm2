@@ -3,7 +3,19 @@ import {IStoreState} from '../types';
 import Player from "../models/Player";
 import {Actions} from "../constants";
 
-export function updateState(state: IStoreState, action: Action): IStoreState {
+const initialState: IStoreState = {
+    nameHost: undefined,
+    nameGuest: undefined,
+    hostReady: false,
+    guestReady: false,
+    whoAmI: undefined,
+    preset: undefined,
+    nextAction: 0,
+    events: [],
+};
+
+export function updateState(state: IStoreState = initialState, action?: Action): IStoreState {
+    if (!action) return state;
     switch (action.type) {
         case Actions.ACTION_COMPLETED:
             console.log(Actions.ACTION_COMPLETED, state.nextAction + 1);
