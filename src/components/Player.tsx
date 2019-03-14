@@ -10,8 +10,9 @@ import {DraftEvent} from "../models/DraftEvent";
 import PlayerEvent from "../models/PlayerEvent";
 import Turn from "../models/Turn";
 import CivPanelType from "../models/CivPanelType";
+import {Trans, WithTranslation, withTranslation} from "react-i18next";
 
-interface IProps {
+interface IProps extends WithTranslation {
     preset: ModelPreset;
     player: ModelPlayer;
     name: string;
@@ -81,18 +82,18 @@ class Player extends React.Component<IProps, IState> {
                     <div className="double-inner-border">
                         <div className="player">
                             <div className="head-text">
-                                {this.props.player}
+                                <Trans>{this.props.player}</Trans>
                             </div>
                             <div className="player-head">
                                 <div className="player-name">{this.props.name}</div>
                             </div>
                             <div className="chosen">
-                                <div className="head-text">Picks</div>
+                                <div className="head-text"><Trans>Picks</Trans></div>
                                 <div className="picks">
                                     {pickPanels}
                                 </div>
 
-                                <div className="head-text">Bans</div>
+                                <div className="head-text"><Trans>Bans</Trans></div>
                                 <div className="bans">
                                     {banPanels}
                                 </div>
@@ -137,4 +138,4 @@ function eventsToState(events: DraftEvent[] | undefined, player: ModelPlayer): I
     return {bannedCivs: bans, pickedCivs: picks, snipedCivs: snipes};
 }
 
-export default Player;
+export default withTranslation()(Player);

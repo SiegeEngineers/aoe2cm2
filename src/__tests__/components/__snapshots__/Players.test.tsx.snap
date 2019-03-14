@@ -4,7 +4,7 @@ exports[`CivGrid renders correctly 1`] = `
 <div
   className="pure-g players"
 >
-  <Connect(Player)
+  <Connect(I18nextWithTranslation)
     name="Sneaky Saladin"
     player="HOST"
     preset={
@@ -225,7 +225,7 @@ exports[`CivGrid renders correctly 1`] = `
       }
     }
   />
-  <Connect(Player)
+  <Connect(I18nextWithTranslation)
     name="Beastly Barbarossa"
     player="GUEST"
     preset={

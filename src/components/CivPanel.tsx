@@ -7,8 +7,9 @@ import PlayerEvent from "../models/PlayerEvent";
 import Player from "../models/Player";
 import CivPanelType from "../models/CivPanelType";
 import {Util} from "../models/Util";
+import {Trans, WithTranslation, withTranslation} from "react-i18next";
 
-interface IProps {
+interface IProps extends WithTranslation {
     civilisation?: Civilisation;
     active: boolean;
     civPanelType: CivPanelType;
@@ -22,14 +23,18 @@ class CivPanel extends React.Component<IProps, object> {
     public render() {
         const civilisation: Civilisation | undefined = this.props.civilisation;
         let imageSrc: string = "";
+        let civilisationKey = '';
         let civilisationName = '';
         if (civilisation !== undefined) {
-            imageSrc = "/images/civs/" + civilisation.name.toLocaleLowerCase() + "_orig.png";
             civilisationName = civilisation.name;
+            imageSrc = "/images/civs/" + civilisationName.toLocaleLowerCase() + "_orig.png";
+            civilisationKey = 'civs.' + civilisationName;
         }
         let className: string = this.props.civPanelType.toString();
+        let onClickAction = () => {};
         if (this.props.civPanelType === CivPanelType.CHOICE) {
             className += ' pure-u-1-12';
+            onClickAction = this.onClickCiv;
         } else {
             className += ' card';
         }
@@ -41,14 +46,14 @@ class CivPanel extends React.Component<IProps, object> {
             contentClass += " visible";
         }
         return (
-            <div className={className} onClick={this.onClickCiv}>
+            <div className={className} onClick={onClickAction}>
                 <div className={contentClass}>
                     <div className="stretchy-wrapper">
                         <div className="stretchy-image">
                             <img src={imageSrc} alt={civilisationName}/>
                         </div>
                         <div className="stretchy-text">
-                            {civilisationName}
+                            <Trans>{civilisationKey}</Trans>
                         </div>
                     </div>
                 </div>
@@ -72,4 +77,4 @@ class CivPanel extends React.Component<IProps, object> {
     }
 }
 
-export default CivPanel;
+export default withTranslation()(CivPanel);

@@ -1,223 +1,97 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CivGrid renders correctly 1`] = `
-<div
-  className="turn-row"
->
-  <div
-    className="pure-g"
-  >
-    <div
-      className="pure-u-1-24 arrow-start"
-    >
-      <div>
-        Start
-      </div>
-    </div>
-    <Connect(Turn)
-      turn={
-        Turn {
-          "action": "GLOBAL_BAN",
-          "player": "HOST",
-        }
-      }
-      turnNumber={0}
-    />
-    <Connect(Turn)
-      turn={
-        Turn {
-          "action": "GLOBAL_BAN",
-          "player": "GUEST",
-        }
-      }
-      turnNumber={1}
-    />
-    <Connect(Turn)
-      turn={
-        Turn {
-          "action": "HIDDEN_BAN",
-          "player": "HOST",
-        }
-      }
-      turnNumber={2}
-    />
-    <Connect(Turn)
-      turn={
-        Turn {
-          "action": "HIDDEN_BAN",
-          "player": "GUEST",
-        }
-      }
-      turnNumber={3}
-    />
-    <Connect(Turn)
-      turn={
-        Turn {
-          "action": "REVEAL_BANS",
-          "player": "NONE",
-        }
-      }
-      turnNumber={4}
-    />
-    <Connect(Turn)
-      turn={
-        Turn {
-          "action": "HIDDEN_PICK",
-          "player": "HOST",
-        }
-      }
-      turnNumber={5}
-    />
-    <Connect(Turn)
-      turn={
-        Turn {
-          "action": "HIDDEN_PICK",
-          "player": "GUEST",
-        }
-      }
-      turnNumber={6}
-    />
-    <Connect(Turn)
-      turn={
-        Turn {
-          "action": "HIDDEN_PICK",
-          "player": "HOST",
-        }
-      }
-      turnNumber={7}
-    />
-    <Connect(Turn)
-      turn={
-        Turn {
-          "action": "HIDDEN_PICK",
-          "player": "GUEST",
-        }
-      }
-      turnNumber={8}
-    />
-    <Connect(Turn)
-      turn={
-        Turn {
-          "action": "HIDDEN_PICK",
-          "player": "HOST",
-        }
-      }
-      turnNumber={9}
-    />
-    <Connect(Turn)
-      turn={
-        Turn {
-          "action": "HIDDEN_PICK",
-          "player": "GUEST",
-        }
-      }
-      turnNumber={10}
-    />
-    <Connect(Turn)
-      turn={
-        Turn {
-          "action": "HIDDEN_PICK",
-          "player": "HOST",
-        }
-      }
-      turnNumber={11}
-    />
-    <Connect(Turn)
-      turn={
-        Turn {
-          "action": "HIDDEN_PICK",
-          "player": "GUEST",
-        }
-      }
-      turnNumber={12}
-    />
-    <Connect(Turn)
-      turn={
-        Turn {
-          "action": "HIDDEN_PICK",
-          "player": "HOST",
-        }
-      }
-      turnNumber={13}
-    />
-    <Connect(Turn)
-      turn={
-        Turn {
-          "action": "HIDDEN_PICK",
-          "player": "GUEST",
-        }
-      }
-      turnNumber={14}
-    />
-    <Connect(Turn)
-      turn={
-        Turn {
-          "action": "HIDDEN_PICK",
-          "player": "HOST",
-        }
-      }
-      turnNumber={15}
-    />
-    <Connect(Turn)
-      turn={
-        Turn {
-          "action": "HIDDEN_PICK",
-          "player": "GUEST",
-        }
-      }
-      turnNumber={16}
-    />
-    <Connect(Turn)
-      turn={
-        Turn {
-          "action": "REVEAL_PICKS",
-          "player": "NONE",
-        }
-      }
-      turnNumber={17}
-    />
-    <Connect(Turn)
-      turn={
-        Turn {
-          "action": "HIDDEN_SNIPE",
-          "player": "HOST",
-        }
-      }
-      turnNumber={18}
-    />
-    <Connect(Turn)
-      turn={
-        Turn {
-          "action": "HIDDEN_SNIPE",
-          "player": "GUEST",
-        }
-      }
-      turnNumber={19}
-    />
-    <Connect(Turn)
-      turn={
-        Turn {
-          "action": "REVEAL_ALL",
-          "player": "NONE",
-        }
-      }
-      turnNumber={20}
-    />
-    <div
-      className="pure-u-1-24 arrow-end"
-    >
-      <div>
-        <span>
-          End
-        </span>
-      </div>
-    </div>
-    <div
-      className="pure-u-1-24"
-      id="firefox-bug"
-    >
-       
-    </div>
-  </div>
-</div>
+<TurnRow
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+  turns={
+    Array [
+      Turn {
+        "action": "GLOBAL_BAN",
+        "player": "HOST",
+      },
+      Turn {
+        "action": "GLOBAL_BAN",
+        "player": "GUEST",
+      },
+      Turn {
+        "action": "HIDDEN_BAN",
+        "player": "HOST",
+      },
+      Turn {
+        "action": "HIDDEN_BAN",
+        "player": "GUEST",
+      },
+      Turn {
+        "action": "REVEAL_BANS",
+        "player": "NONE",
+      },
+      Turn {
+        "action": "HIDDEN_PICK",
+        "player": "HOST",
+      },
+      Turn {
+        "action": "HIDDEN_PICK",
+        "player": "GUEST",
+      },
+      Turn {
+        "action": "HIDDEN_PICK",
+        "player": "HOST",
+      },
+      Turn {
+        "action": "HIDDEN_PICK",
+        "player": "GUEST",
+      },
+      Turn {
+        "action": "HIDDEN_PICK",
+        "player": "HOST",
+      },
+      Turn {
+        "action": "HIDDEN_PICK",
+        "player": "GUEST",
+      },
+      Turn {
+        "action": "HIDDEN_PICK",
+        "player": "HOST",
+      },
+      Turn {
+        "action": "HIDDEN_PICK",
+        "player": "GUEST",
+      },
+      Turn {
+        "action": "HIDDEN_PICK",
+        "player": "HOST",
+      },
+      Turn {
+        "action": "HIDDEN_PICK",
+        "player": "GUEST",
+      },
+      Turn {
+        "action": "HIDDEN_PICK",
+        "player": "HOST",
+      },
+      Turn {
+        "action": "HIDDEN_PICK",
+        "player": "GUEST",
+      },
+      Turn {
+        "action": "REVEAL_PICKS",
+        "player": "NONE",
+      },
+      Turn {
+        "action": "HIDDEN_SNIPE",
+        "player": "HOST",
+      },
+      Turn {
+        "action": "HIDDEN_SNIPE",
+        "player": "GUEST",
+      },
+      Turn {
+        "action": "REVEAL_ALL",
+        "player": "NONE",
+      },
+    ]
+  }
+/>
 `;

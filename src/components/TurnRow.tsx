@@ -4,8 +4,9 @@ import {default as ModelTurn} from "../models/Turn";
 import '../pure-min.css'
 import '../style2.css'
 import Turn from "../containers/Turn";
+import {Trans, WithTranslation, withTranslation} from "react-i18next";
 
-interface IProps {
+interface IProps extends WithTranslation {
     turns: ModelTurn[];
 }
 
@@ -24,13 +25,13 @@ class TurnRow extends React.Component<IProps, object> {
             <div className="turn-row">
                 <div className="pure-g">
                     <div className="pure-u-1-24 arrow-start">
-                        <div>Start</div>
+                        <div><Trans>Start</Trans></div>
                     </div>
 
                     {items}
 
                     <div className="pure-u-1-24 arrow-end">
-                        <div><span>End</span></div>
+                        <div><span><Trans>End</Trans></span></div>
                     </div>
                     <div className="pure-u-1-24" id="firefox-bug">&nbsp;</div>
                 </div>
@@ -39,4 +40,4 @@ class TurnRow extends React.Component<IProps, object> {
     }
 }
 
-export default TurnRow;
+export default withTranslation()(TurnRow);

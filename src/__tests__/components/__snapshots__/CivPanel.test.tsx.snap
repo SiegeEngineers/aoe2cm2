@@ -1,1853 +1,1013 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BAN CivPanels render correctly 1`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Aztecs"
-          src="/images/civs/aztecs_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Aztecs
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 2,
+      "name": "Aztecs",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`BAN CivPanels render correctly 2`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Berbers"
-          src="/images/civs/berbers_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Berbers
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 4,
+      "name": "Berbers",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`BAN CivPanels render correctly 3`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Britons"
-          src="/images/civs/britons_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Britons
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 1,
+      "name": "Britons",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`BAN CivPanels render correctly 4`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Burmese"
-          src="/images/civs/burmese_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Burmese
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 5,
+      "name": "Burmese",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`BAN CivPanels render correctly 5`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Byzantines"
-          src="/images/civs/byzantines_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Byzantines
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 1,
+      "name": "Byzantines",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`BAN CivPanels render correctly 6`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Celts"
-          src="/images/civs/celts_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Celts
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 1,
+      "name": "Celts",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`BAN CivPanels render correctly 7`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Chinese"
-          src="/images/civs/chinese_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Chinese
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 1,
+      "name": "Chinese",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`BAN CivPanels render correctly 8`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Ethiopians"
-          src="/images/civs/ethiopians_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Ethiopians
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 4,
+      "name": "Ethiopians",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`BAN CivPanels render correctly 9`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Franks"
-          src="/images/civs/franks_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Franks
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 1,
+      "name": "Franks",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`BAN CivPanels render correctly 10`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Goths"
-          src="/images/civs/goths_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Goths
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 1,
+      "name": "Goths",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`BAN CivPanels render correctly 11`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Huns"
-          src="/images/civs/huns_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Huns
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 2,
+      "name": "Huns",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`BAN CivPanels render correctly 12`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Incas"
-          src="/images/civs/incas_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Incas
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 3,
+      "name": "Incas",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`BAN CivPanels render correctly 13`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Indians"
-          src="/images/civs/indians_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Indians
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 3,
+      "name": "Indians",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`BAN CivPanels render correctly 14`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Italians"
-          src="/images/civs/italians_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Italians
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 3,
+      "name": "Italians",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`BAN CivPanels render correctly 15`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Japanese"
-          src="/images/civs/japanese_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Japanese
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 1,
+      "name": "Japanese",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`BAN CivPanels render correctly 16`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Khmer"
-          src="/images/civs/khmer_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Khmer
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 5,
+      "name": "Khmer",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`BAN CivPanels render correctly 17`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Koreans"
-          src="/images/civs/koreans_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Koreans
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 2,
+      "name": "Koreans",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`BAN CivPanels render correctly 18`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Magyars"
-          src="/images/civs/magyars_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Magyars
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 3,
+      "name": "Magyars",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`BAN CivPanels render correctly 19`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Malay"
-          src="/images/civs/malay_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Malay
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 5,
+      "name": "Malay",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`BAN CivPanels render correctly 20`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Malians"
-          src="/images/civs/malians_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Malians
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 4,
+      "name": "Malians",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`BAN CivPanels render correctly 21`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Mayans"
-          src="/images/civs/mayans_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Mayans
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 2,
+      "name": "Mayans",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`BAN CivPanels render correctly 22`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Mongols"
-          src="/images/civs/mongols_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Mongols
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 1,
+      "name": "Mongols",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`BAN CivPanels render correctly 23`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Persians"
-          src="/images/civs/persians_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Persians
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 1,
+      "name": "Persians",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`BAN CivPanels render correctly 24`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Portuguese"
-          src="/images/civs/portuguese_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Portuguese
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 4,
+      "name": "Portuguese",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`BAN CivPanels render correctly 25`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Saracens"
-          src="/images/civs/saracens_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Saracens
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 1,
+      "name": "Saracens",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`BAN CivPanels render correctly 26`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Slavs"
-          src="/images/civs/slavs_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Slavs
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 3,
+      "name": "Slavs",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`BAN CivPanels render correctly 27`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Spanish"
-          src="/images/civs/spanish_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Spanish
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 2,
+      "name": "Spanish",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`BAN CivPanels render correctly 28`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Teutons"
-          src="/images/civs/teutons_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Teutons
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 1,
+      "name": "Teutons",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`BAN CivPanels render correctly 29`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Turks"
-          src="/images/civs/turks_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Turks
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 1,
+      "name": "Turks",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`BAN CivPanels render correctly 30`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Vietnamese"
-          src="/images/civs/vietnamese_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Vietnamese
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 5,
+      "name": "Vietnamese",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`BAN CivPanels render correctly 31`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Vikings"
-          src="/images/civs/vikings_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Vikings
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 1,
+      "name": "Vikings",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`PICK CivPanels render correctly 1`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Aztecs"
-          src="/images/civs/aztecs_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Aztecs
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 2,
+      "name": "Aztecs",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`PICK CivPanels render correctly 2`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Berbers"
-          src="/images/civs/berbers_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Berbers
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 4,
+      "name": "Berbers",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`PICK CivPanels render correctly 3`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Britons"
-          src="/images/civs/britons_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Britons
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 1,
+      "name": "Britons",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`PICK CivPanels render correctly 4`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Burmese"
-          src="/images/civs/burmese_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Burmese
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 5,
+      "name": "Burmese",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`PICK CivPanels render correctly 5`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Byzantines"
-          src="/images/civs/byzantines_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Byzantines
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 1,
+      "name": "Byzantines",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`PICK CivPanels render correctly 6`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Celts"
-          src="/images/civs/celts_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Celts
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 1,
+      "name": "Celts",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`PICK CivPanels render correctly 7`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Chinese"
-          src="/images/civs/chinese_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Chinese
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 1,
+      "name": "Chinese",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`PICK CivPanels render correctly 8`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Ethiopians"
-          src="/images/civs/ethiopians_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Ethiopians
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 4,
+      "name": "Ethiopians",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`PICK CivPanels render correctly 9`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Franks"
-          src="/images/civs/franks_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Franks
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 1,
+      "name": "Franks",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`PICK CivPanels render correctly 10`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Goths"
-          src="/images/civs/goths_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Goths
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 1,
+      "name": "Goths",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`PICK CivPanels render correctly 11`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Huns"
-          src="/images/civs/huns_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Huns
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 2,
+      "name": "Huns",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`PICK CivPanels render correctly 12`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Incas"
-          src="/images/civs/incas_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Incas
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 3,
+      "name": "Incas",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`PICK CivPanels render correctly 13`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Indians"
-          src="/images/civs/indians_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Indians
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 3,
+      "name": "Indians",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`PICK CivPanels render correctly 14`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Italians"
-          src="/images/civs/italians_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Italians
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 3,
+      "name": "Italians",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`PICK CivPanels render correctly 15`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Japanese"
-          src="/images/civs/japanese_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Japanese
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 1,
+      "name": "Japanese",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`PICK CivPanels render correctly 16`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Khmer"
-          src="/images/civs/khmer_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Khmer
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 5,
+      "name": "Khmer",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`PICK CivPanels render correctly 17`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Koreans"
-          src="/images/civs/koreans_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Koreans
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 2,
+      "name": "Koreans",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`PICK CivPanels render correctly 18`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Magyars"
-          src="/images/civs/magyars_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Magyars
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 3,
+      "name": "Magyars",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`PICK CivPanels render correctly 19`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Malay"
-          src="/images/civs/malay_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Malay
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 5,
+      "name": "Malay",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`PICK CivPanels render correctly 20`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Malians"
-          src="/images/civs/malians_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Malians
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 4,
+      "name": "Malians",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`PICK CivPanels render correctly 21`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Mayans"
-          src="/images/civs/mayans_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Mayans
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 2,
+      "name": "Mayans",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`PICK CivPanels render correctly 22`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Mongols"
-          src="/images/civs/mongols_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Mongols
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 1,
+      "name": "Mongols",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`PICK CivPanels render correctly 23`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Persians"
-          src="/images/civs/persians_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Persians
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 1,
+      "name": "Persians",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`PICK CivPanels render correctly 24`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Portuguese"
-          src="/images/civs/portuguese_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Portuguese
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 4,
+      "name": "Portuguese",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`PICK CivPanels render correctly 25`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Saracens"
-          src="/images/civs/saracens_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Saracens
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 1,
+      "name": "Saracens",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`PICK CivPanels render correctly 26`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Slavs"
-          src="/images/civs/slavs_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Slavs
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 3,
+      "name": "Slavs",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`PICK CivPanels render correctly 27`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Spanish"
-          src="/images/civs/spanish_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Spanish
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 2,
+      "name": "Spanish",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`PICK CivPanels render correctly 28`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Teutons"
-          src="/images/civs/teutons_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Teutons
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 1,
+      "name": "Teutons",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`PICK CivPanels render correctly 29`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Turks"
-          src="/images/civs/turks_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Turks
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 1,
+      "name": "Turks",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`PICK CivPanels render correctly 30`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Vietnamese"
-          src="/images/civs/vietnamese_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Vietnamese
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 5,
+      "name": "Vietnamese",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`PICK CivPanels render correctly 31`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content visible"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt="Vikings"
-          src="/images/civs/vikings_orig.png"
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      >
-        Vikings
-      </div>
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 1,
+      "name": "Vikings",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`empty BAN CivPanel renders correctly 1`] = `
-<div
-  className="ban card"
-  onClick={[Function]}
->
-  <div
-    className="box-content"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt=""
-          src=""
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      />
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;
 
 exports[`empty PICK CivPanel renders correctly 1`] = `
-<div
-  className="pick card"
-  onClick={[Function]}
->
-  <div
-    className="box-content"
-  >
-    <div
-      className="stretchy-wrapper"
-    >
-      <div
-        className="stretchy-image"
-      >
-        <img
-          alt=""
-          src=""
-        />
-      </div>
-      <div
-        className="stretchy-text"
-      />
-    </div>
-  </div>
-</div>
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
 `;

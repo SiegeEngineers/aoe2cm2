@@ -10,8 +10,9 @@ import Preset from "../models/Preset";
 import "../models/DraftEvent";
 import {DraftEvent} from "../models/DraftEvent";
 import {IDraftConfig} from "../models/IDraftConfig";
+import {WithTranslation, withTranslation} from "react-i18next";
 
-interface IProps {
+interface IProps extends WithTranslation {
     nameHost: string;
     nameGuest: string;
     whoAmI: Player;
@@ -74,4 +75,4 @@ class Draft extends React.Component<IProps, IState> {
     }
 }
 
-export default Draft;
+export default withTranslation()(Draft);

@@ -1,8 +1,9 @@
 import * as React from 'react';
 import '../pure-min.css'
 import '../style2.css'
+import {Trans, WithTranslation, withTranslation} from "react-i18next";
 
-interface IProps {
+interface IProps extends WithTranslation {
     message: string
 }
 
@@ -12,7 +13,7 @@ class Messages extends React.Component<IProps, object> {
             <div>
                 <div id="action-text" className="centered">
                     <div className="action-string info-card text-primary">
-                        {this.props.message}
+                        <Trans>{this.props.message}</Trans>
                     </div>
                     <div className="hidden">
                         <span id="action_msg_error_update">Error updating the draft state.</span>
@@ -55,4 +56,4 @@ class Messages extends React.Component<IProps, object> {
     }
 }
 
-export default Messages;
+export default withTranslation()(Messages);

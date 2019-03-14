@@ -16,6 +16,7 @@ import {IDraftConfig} from "./models/IDraftConfig";
 import {Action, IActionCompleted, IApplyConfig, IClickOnCiv, ISendJoin, ISetName} from "./actions";
 import {Actions} from "./constants";
 import './index.css';
+import './i18n';
 
 const createMySocketMiddleware = () => {
     return (storeAPI: { dispatch: (arg0: Action) => void; }) => {

@@ -1,89 +1,228 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Player renders correctly 1`] = `
-<div
-  className="pure-u-1-2"
->
-  <div
-    className="double-outer-border"
-    id="player-host"
-  >
-    <div
-      className="double-inner-border"
-    >
-      <div
-        className="player"
-      >
-        <div
-          className="head-text"
-        >
-          HOST
-        </div>
-        <div
-          className="player-head"
-        >
-          <div
-            className="player-name"
-          >
-            Host Player Name
-          </div>
-        </div>
-        <div
-          className="chosen"
-        >
-          <div
-            className="head-text"
-          >
-            Picks
-          </div>
-          <div
-            className="picks"
-          >
-            <Connect(CivPanel)
-              active={false}
-              civPanelType="pick"
-            />
-            <Connect(CivPanel)
-              active={false}
-              civPanelType="pick"
-            />
-            <Connect(CivPanel)
-              active={false}
-              civPanelType="pick"
-            />
-            <Connect(CivPanel)
-              active={false}
-              civPanelType="pick"
-            />
-            <Connect(CivPanel)
-              active={false}
-              civPanelType="pick"
-            />
-            <Connect(CivPanel)
-              active={false}
-              civPanelType="pick"
-            />
-          </div>
-          <div
-            className="head-text"
-          >
-            Bans
-          </div>
-          <div
-            className="bans"
-          >
-            <Connect(CivPanel)
-              active={false}
-              civPanelType="ban"
-            />
-            <Connect(CivPanel)
-              active={false}
-              civPanelType="ban"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<Player
+  i18n={Object {}}
+  name="Host Player Name"
+  player="HOST"
+  preset={
+    Preset {
+      "civilisations": Array [
+        Civilisation {
+          "gameVersion": 2,
+          "name": "Aztecs",
+        },
+        Civilisation {
+          "gameVersion": 4,
+          "name": "Berbers",
+        },
+        Civilisation {
+          "gameVersion": 1,
+          "name": "Britons",
+        },
+        Civilisation {
+          "gameVersion": 5,
+          "name": "Burmese",
+        },
+        Civilisation {
+          "gameVersion": 1,
+          "name": "Byzantines",
+        },
+        Civilisation {
+          "gameVersion": 1,
+          "name": "Celts",
+        },
+        Civilisation {
+          "gameVersion": 1,
+          "name": "Chinese",
+        },
+        Civilisation {
+          "gameVersion": 4,
+          "name": "Ethiopians",
+        },
+        Civilisation {
+          "gameVersion": 1,
+          "name": "Franks",
+        },
+        Civilisation {
+          "gameVersion": 1,
+          "name": "Goths",
+        },
+        Civilisation {
+          "gameVersion": 2,
+          "name": "Huns",
+        },
+        Civilisation {
+          "gameVersion": 3,
+          "name": "Incas",
+        },
+        Civilisation {
+          "gameVersion": 3,
+          "name": "Indians",
+        },
+        Civilisation {
+          "gameVersion": 3,
+          "name": "Italians",
+        },
+        Civilisation {
+          "gameVersion": 1,
+          "name": "Japanese",
+        },
+        Civilisation {
+          "gameVersion": 5,
+          "name": "Khmer",
+        },
+        Civilisation {
+          "gameVersion": 2,
+          "name": "Koreans",
+        },
+        Civilisation {
+          "gameVersion": 3,
+          "name": "Magyars",
+        },
+        Civilisation {
+          "gameVersion": 5,
+          "name": "Malay",
+        },
+        Civilisation {
+          "gameVersion": 4,
+          "name": "Malians",
+        },
+        Civilisation {
+          "gameVersion": 2,
+          "name": "Mayans",
+        },
+        Civilisation {
+          "gameVersion": 1,
+          "name": "Mongols",
+        },
+        Civilisation {
+          "gameVersion": 1,
+          "name": "Persians",
+        },
+        Civilisation {
+          "gameVersion": 4,
+          "name": "Portuguese",
+        },
+        Civilisation {
+          "gameVersion": 1,
+          "name": "Saracens",
+        },
+        Civilisation {
+          "gameVersion": 3,
+          "name": "Slavs",
+        },
+        Civilisation {
+          "gameVersion": 2,
+          "name": "Spanish",
+        },
+        Civilisation {
+          "gameVersion": 1,
+          "name": "Teutons",
+        },
+        Civilisation {
+          "gameVersion": 1,
+          "name": "Turks",
+        },
+        Civilisation {
+          "gameVersion": 5,
+          "name": "Vietnamese",
+        },
+        Civilisation {
+          "gameVersion": 1,
+          "name": "Vikings",
+        },
+      ],
+      "name": "Default Preset",
+      "turns": Array [
+        Turn {
+          "action": "GLOBAL_BAN",
+          "player": "HOST",
+        },
+        Turn {
+          "action": "GLOBAL_BAN",
+          "player": "GUEST",
+        },
+        Turn {
+          "action": "HIDDEN_BAN",
+          "player": "HOST",
+        },
+        Turn {
+          "action": "HIDDEN_BAN",
+          "player": "GUEST",
+        },
+        Turn {
+          "action": "REVEAL_BANS",
+          "player": "NONE",
+        },
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "HOST",
+        },
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "GUEST",
+        },
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "HOST",
+        },
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "GUEST",
+        },
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "HOST",
+        },
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "GUEST",
+        },
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "HOST",
+        },
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "GUEST",
+        },
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "HOST",
+        },
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "GUEST",
+        },
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "HOST",
+        },
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "GUEST",
+        },
+        Turn {
+          "action": "REVEAL_PICKS",
+          "player": "NONE",
+        },
+        Turn {
+          "action": "HIDDEN_SNIPE",
+          "player": "HOST",
+        },
+        Turn {
+          "action": "HIDDEN_SNIPE",
+          "player": "GUEST",
+        },
+        Turn {
+          "action": "REVEAL_ALL",
+          "player": "NONE",
+        },
+      ],
+    }
+  }
+  t={[Function]}
+  tReady={true}
+/>
 `;

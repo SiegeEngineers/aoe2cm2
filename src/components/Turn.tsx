@@ -2,8 +2,9 @@ import * as React from 'react';
 import {default as ModelTurn} from '../models/Turn'
 import '../pure-min.css'
 import '../style2.css'
+import {Trans, WithTranslation, withTranslation} from "react-i18next";
 
-interface IProps {
+interface IProps extends WithTranslation {
     turn: ModelTurn;
     turnNumber: number;
     nextAction?: number;
@@ -62,11 +63,11 @@ class Turn extends React.Component<IProps, IState> {
         return (
             <div className="pure-u-1-24 turn">
                 <div className={turnClassName}>
-                    <span className={activeClass}><b>{prefix}</b>{action}</span>
+                    <span className={activeClass}><Trans><b>{prefix}</b>{action}</Trans></span>
                 </div>
             </div>
         );
     }
 }
 
-export default Turn;
+export default withTranslation()(Turn);

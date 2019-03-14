@@ -1,330 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Draft renders correctly 1`] = `
-<div
-  className="draft-content"
->
-  <div
-    className="centered text-primary info-card"
-    id="draft-title"
-  >
-    Default Preset
-  </div>
-  <TurnRow
-    turns={
-      Array [
-        Turn {
-          "action": "GLOBAL_BAN",
-          "player": "HOST",
-        },
-        Turn {
-          "action": "GLOBAL_BAN",
-          "player": "GUEST",
-        },
-        Turn {
-          "action": "HIDDEN_BAN",
-          "player": "HOST",
-        },
-        Turn {
-          "action": "HIDDEN_BAN",
-          "player": "GUEST",
-        },
-        Turn {
-          "action": "REVEAL_BANS",
-          "player": "NONE",
-        },
-        Turn {
-          "action": "HIDDEN_PICK",
-          "player": "HOST",
-        },
-        Turn {
-          "action": "HIDDEN_PICK",
-          "player": "GUEST",
-        },
-        Turn {
-          "action": "HIDDEN_PICK",
-          "player": "HOST",
-        },
-        Turn {
-          "action": "HIDDEN_PICK",
-          "player": "GUEST",
-        },
-        Turn {
-          "action": "HIDDEN_PICK",
-          "player": "HOST",
-        },
-        Turn {
-          "action": "HIDDEN_PICK",
-          "player": "GUEST",
-        },
-        Turn {
-          "action": "HIDDEN_PICK",
-          "player": "HOST",
-        },
-        Turn {
-          "action": "HIDDEN_PICK",
-          "player": "GUEST",
-        },
-        Turn {
-          "action": "HIDDEN_PICK",
-          "player": "HOST",
-        },
-        Turn {
-          "action": "HIDDEN_PICK",
-          "player": "GUEST",
-        },
-        Turn {
-          "action": "HIDDEN_PICK",
-          "player": "HOST",
-        },
-        Turn {
-          "action": "HIDDEN_PICK",
-          "player": "GUEST",
-        },
-        Turn {
-          "action": "REVEAL_PICKS",
-          "player": "NONE",
-        },
-        Turn {
-          "action": "HIDDEN_SNIPE",
-          "player": "HOST",
-        },
-        Turn {
-          "action": "HIDDEN_SNIPE",
-          "player": "GUEST",
-        },
-        Turn {
-          "action": "REVEAL_ALL",
-          "player": "NONE",
-        },
-      ]
-    }
-  />
-  <Players
-    nameGuest="Beastly Barbarossa"
-    nameHost="Sneaky Saladin"
-    preset={
-      Preset {
-        "civilisations": Array [
-          Civilisation {
-            "gameVersion": 2,
-            "name": "Aztecs",
-          },
-          Civilisation {
-            "gameVersion": 4,
-            "name": "Berbers",
-          },
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Britons",
-          },
-          Civilisation {
-            "gameVersion": 5,
-            "name": "Burmese",
-          },
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Byzantines",
-          },
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Celts",
-          },
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Chinese",
-          },
-          Civilisation {
-            "gameVersion": 4,
-            "name": "Ethiopians",
-          },
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Franks",
-          },
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Goths",
-          },
-          Civilisation {
-            "gameVersion": 2,
-            "name": "Huns",
-          },
-          Civilisation {
-            "gameVersion": 3,
-            "name": "Incas",
-          },
-          Civilisation {
-            "gameVersion": 3,
-            "name": "Indians",
-          },
-          Civilisation {
-            "gameVersion": 3,
-            "name": "Italians",
-          },
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Japanese",
-          },
-          Civilisation {
-            "gameVersion": 5,
-            "name": "Khmer",
-          },
-          Civilisation {
-            "gameVersion": 2,
-            "name": "Koreans",
-          },
-          Civilisation {
-            "gameVersion": 3,
-            "name": "Magyars",
-          },
-          Civilisation {
-            "gameVersion": 5,
-            "name": "Malay",
-          },
-          Civilisation {
-            "gameVersion": 4,
-            "name": "Malians",
-          },
-          Civilisation {
-            "gameVersion": 2,
-            "name": "Mayans",
-          },
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Mongols",
-          },
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Persians",
-          },
-          Civilisation {
-            "gameVersion": 4,
-            "name": "Portuguese",
-          },
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Saracens",
-          },
-          Civilisation {
-            "gameVersion": 3,
-            "name": "Slavs",
-          },
-          Civilisation {
-            "gameVersion": 2,
-            "name": "Spanish",
-          },
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Teutons",
-          },
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Turks",
-          },
-          Civilisation {
-            "gameVersion": 5,
-            "name": "Vietnamese",
-          },
-          Civilisation {
-            "gameVersion": 1,
-            "name": "Vikings",
-          },
-        ],
-        "name": "Default Preset",
-        "turns": Array [
-          Turn {
-            "action": "GLOBAL_BAN",
-            "player": "HOST",
-          },
-          Turn {
-            "action": "GLOBAL_BAN",
-            "player": "GUEST",
-          },
-          Turn {
-            "action": "HIDDEN_BAN",
-            "player": "HOST",
-          },
-          Turn {
-            "action": "HIDDEN_BAN",
-            "player": "GUEST",
-          },
-          Turn {
-            "action": "REVEAL_BANS",
-            "player": "NONE",
-          },
-          Turn {
-            "action": "HIDDEN_PICK",
-            "player": "HOST",
-          },
-          Turn {
-            "action": "HIDDEN_PICK",
-            "player": "GUEST",
-          },
-          Turn {
-            "action": "HIDDEN_PICK",
-            "player": "HOST",
-          },
-          Turn {
-            "action": "HIDDEN_PICK",
-            "player": "GUEST",
-          },
-          Turn {
-            "action": "HIDDEN_PICK",
-            "player": "HOST",
-          },
-          Turn {
-            "action": "HIDDEN_PICK",
-            "player": "GUEST",
-          },
-          Turn {
-            "action": "HIDDEN_PICK",
-            "player": "HOST",
-          },
-          Turn {
-            "action": "HIDDEN_PICK",
-            "player": "GUEST",
-          },
-          Turn {
-            "action": "HIDDEN_PICK",
-            "player": "HOST",
-          },
-          Turn {
-            "action": "HIDDEN_PICK",
-            "player": "GUEST",
-          },
-          Turn {
-            "action": "HIDDEN_PICK",
-            "player": "HOST",
-          },
-          Turn {
-            "action": "HIDDEN_PICK",
-            "player": "GUEST",
-          },
-          Turn {
-            "action": "REVEAL_PICKS",
-            "player": "NONE",
-          },
-          Turn {
-            "action": "HIDDEN_SNIPE",
-            "player": "HOST",
-          },
-          Turn {
-            "action": "HIDDEN_SNIPE",
-            "player": "GUEST",
-          },
-          Turn {
-            "action": "REVEAL_ALL",
-            "player": "NONE",
-          },
-        ],
-      }
-    }
-  />
-  <Connect(Messages) />
-  <CivGrid
-    civilisations={
-      Array [
+<Draft
+  i18n={Object {}}
+  nameGuest="Beastly Barbarossa"
+  nameHost="Sneaky Saladin"
+  nextAction={0}
+  preset={
+    Preset {
+      "civilisations": Array [
         Civilisation {
           "gameVersion": 2,
           "name": "Aztecs",
@@ -449,8 +133,98 @@ exports[`Draft renders correctly 1`] = `
           "gameVersion": 1,
           "name": "Vikings",
         },
-      ]
+      ],
+      "name": "Default Preset",
+      "turns": Array [
+        Turn {
+          "action": "GLOBAL_BAN",
+          "player": "HOST",
+        },
+        Turn {
+          "action": "GLOBAL_BAN",
+          "player": "GUEST",
+        },
+        Turn {
+          "action": "HIDDEN_BAN",
+          "player": "HOST",
+        },
+        Turn {
+          "action": "HIDDEN_BAN",
+          "player": "GUEST",
+        },
+        Turn {
+          "action": "REVEAL_BANS",
+          "player": "NONE",
+        },
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "HOST",
+        },
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "GUEST",
+        },
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "HOST",
+        },
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "GUEST",
+        },
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "HOST",
+        },
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "GUEST",
+        },
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "HOST",
+        },
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "GUEST",
+        },
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "HOST",
+        },
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "GUEST",
+        },
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "HOST",
+        },
+        Turn {
+          "action": "HIDDEN_PICK",
+          "player": "GUEST",
+        },
+        Turn {
+          "action": "REVEAL_PICKS",
+          "player": "NONE",
+        },
+        Turn {
+          "action": "HIDDEN_SNIPE",
+          "player": "HOST",
+        },
+        Turn {
+          "action": "HIDDEN_SNIPE",
+          "player": "GUEST",
+        },
+        Turn {
+          "action": "REVEAL_ALL",
+          "player": "NONE",
+        },
+      ],
     }
-  />
-</div>
+  }
+  t={[Function]}
+  tReady={true}
+  whoAmI="HOST"
+/>
 `;

@@ -9,7 +9,7 @@ exports[`CivGrid renders correctly 1`] = `
     <div
       className="pure-g chooser-grid box-content"
     >
-      <Connect(CivPanel)
+      <Connect(I18nextWithTranslation)
         active={false}
         civPanelType="choice"
         civilisation={
@@ -19,7 +19,7 @@ exports[`CivGrid renders correctly 1`] = `
           }
         }
       />
-      <Connect(CivPanel)
+      <Connect(I18nextWithTranslation)
         active={false}
         civPanelType="choice"
         civilisation={
@@ -29,7 +29,7 @@ exports[`CivGrid renders correctly 1`] = `
           }
         }
       />
-      <Connect(CivPanel)
+      <Connect(I18nextWithTranslation)
         active={false}
         civPanelType="choice"
         civilisation={
@@ -39,7 +39,7 @@ exports[`CivGrid renders correctly 1`] = `
           }
         }
       />
-      <Connect(CivPanel)
+      <Connect(I18nextWithTranslation)
         active={false}
         civPanelType="choice"
         civilisation={
@@ -49,7 +49,7 @@ exports[`CivGrid renders correctly 1`] = `
           }
         }
       />
-      <Connect(CivPanel)
+      <Connect(I18nextWithTranslation)
         active={false}
         civPanelType="choice"
         civilisation={
@@ -59,7 +59,7 @@ exports[`CivGrid renders correctly 1`] = `
           }
         }
       />
-      <Connect(CivPanel)
+      <Connect(I18nextWithTranslation)
         active={false}
         civPanelType="choice"
         civilisation={
@@ -69,7 +69,7 @@ exports[`CivGrid renders correctly 1`] = `
           }
         }
       />
-      <Connect(CivPanel)
+      <Connect(I18nextWithTranslation)
         active={false}
         civPanelType="choice"
         civilisation={
@@ -79,7 +79,7 @@ exports[`CivGrid renders correctly 1`] = `
           }
         }
       />
-      <Connect(CivPanel)
+      <Connect(I18nextWithTranslation)
         active={false}
         civPanelType="choice"
         civilisation={
@@ -89,7 +89,7 @@ exports[`CivGrid renders correctly 1`] = `
           }
         }
       />
-      <Connect(CivPanel)
+      <Connect(I18nextWithTranslation)
         active={false}
         civPanelType="choice"
         civilisation={
@@ -99,7 +99,7 @@ exports[`CivGrid renders correctly 1`] = `
           }
         }
       />
-      <Connect(CivPanel)
+      <Connect(I18nextWithTranslation)
         active={false}
         civPanelType="choice"
         civilisation={
@@ -109,7 +109,7 @@ exports[`CivGrid renders correctly 1`] = `
           }
         }
       />
-      <Connect(CivPanel)
+      <Connect(I18nextWithTranslation)
         active={false}
         civPanelType="choice"
         civilisation={
@@ -119,7 +119,7 @@ exports[`CivGrid renders correctly 1`] = `
           }
         }
       />
-      <Connect(CivPanel)
+      <Connect(I18nextWithTranslation)
         active={false}
         civPanelType="choice"
         civilisation={
@@ -129,7 +129,7 @@ exports[`CivGrid renders correctly 1`] = `
           }
         }
       />
-      <Connect(CivPanel)
+      <Connect(I18nextWithTranslation)
         active={false}
         civPanelType="choice"
         civilisation={
@@ -139,7 +139,7 @@ exports[`CivGrid renders correctly 1`] = `
           }
         }
       />
-      <Connect(CivPanel)
+      <Connect(I18nextWithTranslation)
         active={false}
         civPanelType="choice"
         civilisation={
@@ -149,7 +149,7 @@ exports[`CivGrid renders correctly 1`] = `
           }
         }
       />
-      <Connect(CivPanel)
+      <Connect(I18nextWithTranslation)
         active={false}
         civPanelType="choice"
         civilisation={
@@ -159,7 +159,7 @@ exports[`CivGrid renders correctly 1`] = `
           }
         }
       />
-      <Connect(CivPanel)
+      <Connect(I18nextWithTranslation)
         active={false}
         civPanelType="choice"
         civilisation={
@@ -169,7 +169,7 @@ exports[`CivGrid renders correctly 1`] = `
           }
         }
       />
-      <Connect(CivPanel)
+      <Connect(I18nextWithTranslation)
         active={false}
         civPanelType="choice"
         civilisation={
@@ -179,7 +179,7 @@ exports[`CivGrid renders correctly 1`] = `
           }
         }
       />
-      <Connect(CivPanel)
+      <Connect(I18nextWithTranslation)
         active={false}
         civPanelType="choice"
         civilisation={
@@ -189,7 +189,7 @@ exports[`CivGrid renders correctly 1`] = `
           }
         }
       />
-      <Connect(CivPanel)
+      <Connect(I18nextWithTranslation)
         active={false}
         civPanelType="choice"
         civilisation={
@@ -199,7 +199,7 @@ exports[`CivGrid renders correctly 1`] = `
           }
         }
       />
-      <Connect(CivPanel)
+      <Connect(I18nextWithTranslation)
         active={false}
         civPanelType="choice"
         civilisation={
@@ -209,7 +209,7 @@ exports[`CivGrid renders correctly 1`] = `
           }
         }
       />
-      <Connect(CivPanel)
+      <Connect(I18nextWithTranslation)
         active={false}
         civPanelType="choice"
         civilisation={
@@ -219,7 +219,7 @@ exports[`CivGrid renders correctly 1`] = `
           }
         }
       />
-      <Connect(CivPanel)
+      <Connect(I18nextWithTranslation)
         active={false}
         civPanelType="choice"
         civilisation={
@@ -229,7 +229,7 @@ exports[`CivGrid renders correctly 1`] = `
           }
         }
       />
-      <Connect(CivPanel)
+      <Connect(I18nextWithTranslation)
         active={false}
         civPanelType="choice"
         civilisation={
@@ -239,7 +239,7 @@ exports[`CivGrid renders correctly 1`] = `
           }
         }
       />
-      <Connect(CivPanel)
+      <Connect(I18nextWithTranslation)
         active={false}
         civPanelType="choice"
         civilisation={
@@ -249,7 +249,7 @@ exports[`CivGrid renders correctly 1`] = `
           }
         }
       />
-      <Connect(CivPanel)
+      <Connect(I18nextWithTranslation)
         active={false}
         civPanelType="choice"
         civilisation={
@@ -259,7 +259,7 @@ exports[`CivGrid renders correctly 1`] = `
           }
         }
       />
-      <Connect(CivPanel)
+      <Connect(I18nextWithTranslation)
         active={false}
         civPanelType="choice"
         civilisation={
@@ -269,7 +269,7 @@ exports[`CivGrid renders correctly 1`] = `
           }
         }
       />
-      <Connect(CivPanel)
+      <Connect(I18nextWithTranslation)
         active={false}
         civPanelType="choice"
         civilisation={
@@ -279,7 +279,7 @@ exports[`CivGrid renders correctly 1`] = `
           }
         }
       />
-      <Connect(CivPanel)
+      <Connect(I18nextWithTranslation)
         active={false}
         civPanelType="choice"
         civilisation={
@@ -289,7 +289,7 @@ exports[`CivGrid renders correctly 1`] = `
           }
         }
       />
-      <Connect(CivPanel)
+      <Connect(I18nextWithTranslation)
         active={false}
         civPanelType="choice"
         civilisation={
@@ -299,7 +299,7 @@ exports[`CivGrid renders correctly 1`] = `
           }
         }
       />
-      <Connect(CivPanel)
+      <Connect(I18nextWithTranslation)
         active={false}
         civPanelType="choice"
         civilisation={
@@ -309,7 +309,7 @@ exports[`CivGrid renders correctly 1`] = `
           }
         }
       />
-      <Connect(CivPanel)
+      <Connect(I18nextWithTranslation)
         active={false}
         civPanelType="choice"
         civilisation={

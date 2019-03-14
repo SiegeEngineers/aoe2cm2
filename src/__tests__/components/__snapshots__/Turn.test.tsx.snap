@@ -1,20 +1,46 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`labels the turn with GPICK 1`] = `
-<div
-  className="pure-u-1-24 turn"
->
-  <div
-    className="turn-host turn-do-0 turn-global"
-  >
-    <span
-      className="active"
-    >
-      <b>
-        g
-      </b>
-      PICK
-    </span>
-  </div>
-</div>
+<Turn
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+  turn={
+    Turn {
+      "action": "GLOBAL_PICK",
+      "player": "HOST",
+    }
+  }
+  turnNumber={0}
+/>
+`;
+
+exports[`labels the turn with PICK 1`] = `
+<Turn
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+  turn={
+    Turn {
+      "action": "PICK",
+      "player": "HOST",
+    }
+  }
+  turnNumber={0}
+/>
+`;
+
+exports[`labels the turn with xPICK 1`] = `
+<Turn
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+  turn={
+    Turn {
+      "action": "HIDDEN_EXCLUSIVE_PICK",
+      "player": "HOST",
+    }
+  }
+  turnNumber={0}
+/>
 `;
