@@ -12,7 +12,7 @@ const app = express();
 app.set("port", process.env.PORT || 3000);
 
 const server = new Server(app);
-const io = socketio(server);
+const io = socketio(server, {cookie: false});
 const draftsStore = new DraftsStore();
 const validator = new Validator(draftsStore);
 
