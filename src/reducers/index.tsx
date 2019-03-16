@@ -2,6 +2,7 @@ import {Action} from '../actions';
 import {IStoreState} from '../types';
 import Player from "../models/Player";
 import {Actions} from "../constants";
+import {default as i18n} from "../i18n";
 
 const initialState: IStoreState = {
     nameHost: undefined,
@@ -12,6 +13,7 @@ const initialState: IStoreState = {
     preset: undefined,
     nextAction: 0,
     events: [],
+    language: i18n.language
 };
 
 export function updateState(state: IStoreState = initialState, action?: Action): IStoreState {
@@ -41,6 +43,13 @@ export function updateState(state: IStoreState = initialState, action?: Action):
                 nextAction: action.value.nextAction,
                 whoAmI: action.value.yourPlayerType
             };
+        case Actions.SET_LANGUAGE:
+            console.log(Actions.SET_LANGUAGE, action.language);
+            i18n.changeLanguage(action.language);
+            return {
+                ...state,
+                language: action.language
+            }
 
     }
     return state;

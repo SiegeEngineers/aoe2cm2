@@ -31,7 +31,12 @@ export interface IClickOnCiv {
     callback: any
 }
 
-export type Action = ISetName | IActionCompleted | IApplyConfig | ISendJoin | IClickOnCiv;
+export interface ISetLanguage {
+    type: Actions.SET_LANGUAGE,
+    language: string
+}
+
+export type Action = ISetName | IActionCompleted | IApplyConfig | ISendJoin | IClickOnCiv | ISetLanguage;
 
 export function setName(player: Player, value: string): ISetName {
     return {
@@ -67,5 +72,12 @@ export function clickOnCiv(playerEvent: PlayerEvent, callback: any): IClickOnCiv
         callback,
         playerEvent,
         type: Actions.CLICK_CIVILISATION
+    }
+}
+
+export function setLanguage(language: string): ISetLanguage {
+    return {
+        language,
+        type: Actions.SET_LANGUAGE
     }
 }

@@ -12,6 +12,8 @@ class Draft implements IStoreState {
     public readonly preset: Preset;
     public nextAction: number = 0;
     public events: DraftEvent[] = [];
+    public language: string = 'en-GB';
+
 
     constructor(nameHost: string, nameGuest: string, preset: Preset) {
         this.nameHost = nameHost;

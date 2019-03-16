@@ -11,6 +11,7 @@ import "../models/DraftEvent";
 import {DraftEvent} from "../models/DraftEvent";
 import {IDraftConfig} from "../models/IDraftConfig";
 import {WithTranslation, withTranslation} from "react-i18next";
+import LanguageSelector from "../containers/LanguageSelector";
 
 interface IProps extends WithTranslation {
     nameHost: string;
@@ -57,19 +58,28 @@ class Draft extends React.Component<IProps, IState> {
         const presetName: string = this.props.preset.name;
         const turns = this.props.preset.turns;
 
+
         return (
-            <div className="draft-content">
+            <div id="container">
+                <div style={{position: 'absolute', top: '8px', right: '8px'}}>
+                    <LanguageSelector language={'en-GB'}/>
+                    <LanguageSelector language={'de-DE'}/>
+                    <LanguageSelector language={'zh-CN'}/>
+                </div>
 
-                <div id="draft-title" className="centered text-primary info-card">{presetName}</div>
+                <div className="draft-content">
 
-                <TurnRow turns={turns}/>
+                    <div id="draft-title" className="centered text-primary info-card">{presetName}</div>
 
-                <Players nameHost={this.props.nameHost} nameGuest={this.props.nameGuest} preset={this.props.preset}/>
+                    <TurnRow turns={turns}/>
 
-                <Messages/>
+                    <Players nameHost={this.props.nameHost} nameGuest={this.props.nameGuest} preset={this.props.preset}/>
 
-                <CivGrid civilisations={this.props.preset.civilisations}/>
+                    <Messages/>
 
+                    <CivGrid civilisations={this.props.preset.civilisations}/>
+
+                </div>
             </div>
         );
     }

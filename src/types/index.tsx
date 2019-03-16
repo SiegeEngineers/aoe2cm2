@@ -10,4 +10,5 @@ export interface IStoreState {
     preset?: Preset;
     nextAction: number;
     events: DraftEvent[];
+    language: string;
 }

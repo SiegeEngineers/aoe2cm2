@@ -11,6 +11,10 @@ html, body {
 	padding: 0;
 }
 
+.language-selector {
+	padding-right: .5rem;
+}
+
 .active {
     background-color: yellow;
 }
