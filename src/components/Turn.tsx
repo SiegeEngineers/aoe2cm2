@@ -24,7 +24,7 @@ class Turn extends React.Component<IProps, IState> {
     }
 
     public componentWillReceiveProps(nextProps: Readonly<IProps>, nextContext: any): void {
-        const active = nextProps.nextAction ? nextProps.nextAction === nextProps.turnNumber : false;
+        const active = nextProps.nextAction ? nextProps.nextAction === nextProps.turnNumber : 0 === nextProps.turnNumber;
         this.setState({...this.state, active});
     }
 
