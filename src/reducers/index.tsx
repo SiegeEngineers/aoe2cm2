@@ -3,6 +3,7 @@ import {IStoreState} from '../types';
 import Player from "../models/Player";
 import {Actions} from "../constants";
 import {default as i18n} from "../i18n";
+import NameGenerator from "../models/NameGenerator";
 
 const initialState: IStoreState = {
     nameHost: undefined,
@@ -10,10 +11,12 @@ const initialState: IStoreState = {
     hostReady: false,
     guestReady: false,
     whoAmI: undefined,
+    ownName: NameGenerator.getNameFromLocalStorage(),
     preset: undefined,
     nextAction: 0,
     events: [],
-    language: i18n.language
+    language: i18n.language,
+    showModal: (NameGenerator.getNameFromLocalStorage() === null)
 };
 
 export function updateState(state: IStoreState = initialState, action?: Action): IStoreState {
@@ -33,6 +36,10 @@ export function updateState(state: IStoreState = initialState, action?: Action):
             } else {
                 return state;
             }
+        case Actions.CHANGE_OWN_NAME:
+            console.log(Actions.CHANGE_OWN_NAME, action);
+            NameGenerator.writeNameToLocalStorage(action.value);
+            return {...state, ownName: action.value, showModal: action.value === null};
         case Actions.APPLY_CONFIG:
             console.log(Actions.APPLY_CONFIG, action.value);
             return {

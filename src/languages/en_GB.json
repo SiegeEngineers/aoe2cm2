@@ -35,6 +35,13 @@
   "messages": {
     "finished": "Finished."
   },
+  "modal": {
+    "header": "Welcome",
+    "callToAction": "Looks like it's your first time here. First, set a captain name for yourself:",
+    "setName": "Set Name",
+    "editInfo": "You can edit this anytime in the future by clicking your name.",
+    "readTheRules": "Make sure you read the rules!"
+  },
   "HOST": "Host Captain",
   "GUEST": "Guest Captain",
   "Picks": "Picks",

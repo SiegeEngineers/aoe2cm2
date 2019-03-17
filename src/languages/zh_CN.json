@@ -35,6 +35,13 @@
   "messages": {
     "finished": "todo"
   },
+  "modal": {
+    "header": "欢迎",
+    "callToAction": "看来你是初来乍到。首先给自己起个ID：",
+    "setName": "设置ID",
+    "editInfo": "任何时候都可以点击你的ID来修改它。",
+    "readTheRules": "必读规则！"
+  },
   "HOST": "主机",
   "GUEST": "客机",
   "Picks": "选族",

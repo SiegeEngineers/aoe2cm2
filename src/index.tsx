@@ -58,6 +58,8 @@ const store: Store = createStore<IStoreState, Action, any, Store>(updateState,
     new ModelDraft('Sneaky Saladin', 'Beastly Barbarossa', Preset.SIMPLE),
     applyMiddleware(createMySocketMiddleware()));
 
+console.log(store.getState());
+
 ReactDOM.render(
     <Provider store={store}>
         <Draft/>

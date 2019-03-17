@@ -20,6 +20,11 @@ export interface ISetName {
     value: string
 }
 
+export interface IChangeOwnName {
+    type: Actions.CHANGE_OWN_NAME,
+    value: string
+}
+
 export interface ISendJoin {
     type: Actions.SEND_JOIN,
     name: string
@@ -36,12 +41,19 @@ export interface ISetLanguage {
     language: string
 }
 
-export type Action = ISetName | IActionCompleted | IApplyConfig | ISendJoin | IClickOnCiv | ISetLanguage;
+export type Action = ISetName | IChangeOwnName | IActionCompleted | IApplyConfig | ISendJoin | IClickOnCiv | ISetLanguage;
 
 export function setName(player: Player, value: string): ISetName {
     return {
         player,
         type: Actions.SET_NAME,
+        value
+    }
+}
+
+export function changeOwnName(value: string): IChangeOwnName {
+    return {
+        type: Actions.CHANGE_OWN_NAME,
         value
     }
 }

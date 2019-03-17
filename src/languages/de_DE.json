@@ -35,6 +35,13 @@
   "messages": {
     "finished": "Beendet."
   },
+  "modal": {
+    "header": "Hallöchen!",
+    "callToAction": "Sieht so aus, als habest du noch keinen Namen. Das lässt sich ändern! Wie möchtest du heißen?",
+    "setName": "Namen festlegen",
+    "editInfo": "Du kannst deinen Namen jederzeit ändern, indem du auf die Namensanzeige oben rechts klickst.",
+    "readTheRules": "Lies die Regeln, bevor du loslegst!"
+  },
   "HOST": "Host-Kapitän",
   "GUEST": "Gast-Kapitän",
   "Picks": "Ausgewählt",

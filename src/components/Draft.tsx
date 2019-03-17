@@ -12,6 +12,8 @@ import {DraftEvent} from "../models/DraftEvent";
 import {IDraftConfig} from "../models/IDraftConfig";
 import {WithTranslation, withTranslation} from "react-i18next";
 import LanguageSelector from "../containers/LanguageSelector";
+import Modal from "../containers/Modal";
+import NameGenerator from "../models/NameGenerator";
 
 interface IProps extends WithTranslation {
     nameHost: string;
@@ -37,18 +39,8 @@ class Draft extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
 
-        let username: string | null;
-        try {
-            username = localStorage.getItem('username');
-            if (username === null) {
-                username = 'myname' + Date.now();
-                localStorage.setItem('username', username);
-                console.log('setting username to', username);
-            }
-        } catch (e) {
-            username = 'nolocalstorage' + Date.now();
-        }
-        if (this.props.triggerJoin !== undefined) {
+        let username: string | null = NameGenerator.getNameFromLocalStorage();
+        if (this.props.triggerJoin !== undefined && username !== null) {
             console.log('triggering JOIN');
             this.props.triggerJoin(username);
         }
@@ -61,11 +53,13 @@ class Draft extends React.Component<IProps, IState> {
 
         return (
             <div id="container">
-                <div style={{position: 'absolute', top: '8px', right: '8px'}}>
+                <div className={'languageSelectors'}>
                     <LanguageSelector language={'en-GB'}/>
                     <LanguageSelector language={'de-DE'}/>
                     <LanguageSelector language={'zh-CN'}/>
                 </div>
+
+                <Modal/>
 
                 <div className="draft-content">
 

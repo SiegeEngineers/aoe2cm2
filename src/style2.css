@@ -15,6 +15,13 @@ html, body {
 	padding-right: .5rem;
 }
 
+.languageSelectors {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	z-index: 2000;
+}
+
 .active {
     background-color: yellow;
 }
@@ -821,7 +828,6 @@ input[type="checkbox"]:checked + label span
 #overlay {
 	position: fixed;
 	z-index: 1002;
-	display: block;
 	top: 0px;
 	left: 0px;
 	bottom: 0px;
@@ -838,7 +844,6 @@ input[type="checkbox"]:checked + label span
 
 #overlay > div {
 	z-index: 1003;
-	display: none;
 	background-color: #f5f5f5;
 	min-width:240px;
 	max-width:640px;

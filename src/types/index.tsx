@@ -7,8 +7,10 @@ export interface IStoreState {
     hostReady: boolean;
     guestReady: boolean;
     whoAmI?: Player;
+    ownName: string | null;
     preset?: Preset;
     nextAction: number;
     events: DraftEvent[];
     language: string;
+    showModal: boolean;
 }

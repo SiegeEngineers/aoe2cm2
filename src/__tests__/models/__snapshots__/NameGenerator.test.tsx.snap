@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NameGenerator yields deterministic results 1`] = `
+Array [
+  "Abundant Cid",
+  "Graceful Abraha",
+  "Fragile Toldi",
+  "Big Archbishop",
+  "Unusual Dingfang",
+  "Fragile Khosrau",
+  "Gifted Alexander",
+  "Heavy Tamerlane",
+  "Black Prithvi",
+  "Odd Raden",
+]
+`;
