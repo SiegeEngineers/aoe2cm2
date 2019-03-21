@@ -7,6 +7,8 @@ import {IJoinMessage} from "./models/IJoinMessage";
 import {DraftsStore} from "./models/DraftsStore";
 import {Validator} from "./models/Validator";
 import {ValidationId} from "./models/ValidationId";
+import PlayerEvent from "./models/PlayerEvent";
+import {DraftEvent} from "./models/DraftEvent";
 
 const app = express();
 app.set("port", process.env.PORT || 3000);
@@ -100,7 +102,7 @@ io.on("connection", (socket: socketio.Socket) => {
         });
     });
 
-    socket.on("act", (message: any, fn: (retval:any) => void) => {
+    socket.on("act", (message: PlayerEvent, fn: (retval: any) => void) => {
         console.log(message);
         const validationErrors:ValidationId[] = validate(draftId, message);
         if (validationErrors.length === 0) {
@@ -120,6 +122,6 @@ server.listen(3000, () => {
     console.log("listening on *:3000");
 });
 
-function validate(draftId:string, message: any):ValidationId[] {
+function validate(draftId: string, message: DraftEvent): ValidationId[] {
     return validator.validateAndApply(draftId, message);
 }

@@ -1,4 +1,7 @@
 import Civilisation from "./Civilisation";
+import Action from "./Action";
+import {DraftEvent} from "./DraftEvent";
+import PlayerEvent from "./PlayerEvent";
 
 export const Util = {
     notUndefined(...args: any[]): boolean {
@@ -27,5 +30,22 @@ export const Util = {
         } else {
             return 0;
         }
+    },
+
+    isPick(action: Action): boolean {
+        return (action === Action.PICK
+            || action === Action.GLOBAL_PICK
+            || action === Action.EXCLUSIVE_PICK
+            || action === Action.HIDDEN_PICK
+            || action === Action.HIDDEN_EXCLUSIVE_PICK);
+    },
+
+    isSnipe(action: Action): boolean {
+        return (action === Action.SNIPE || action === Action.HIDDEN_SNIPE);
+    },
+
+    isPlayerEvent(event: DraftEvent): event is PlayerEvent {
+        return (<PlayerEvent>event).civilisation !== undefined;
     }
+
 };

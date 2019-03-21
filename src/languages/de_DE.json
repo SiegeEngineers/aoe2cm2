@@ -49,5 +49,18 @@
   "Start": "Start",
   "End": "Ende",
   "<0></0>PICK": "PICK",
-  "<0></0>BAN": "BAN"
+  "<0></0>BAN": "BAN",
+  "validationFailed": "Validierungsfehler:",
+  "errors": {
+    "VLD_000": "Draft erwartet derzeit keine Aktion",
+    "VLD_001": "Handelnder Kapitän ist derzeit nicht an der Reihe",
+    "VLD_002": "Durchgeführte Aktion ist nicht im vorgegebenen Ablauf vorgesehen",
+    "VLD_100": "Die Zivilisation wurde bereits global gebannt",
+    "VLD_101": "Die Zivilisation wurde bereits für diesen Kapitän gebannt",
+    "VLD_102": "Die Zivilisation wurde bereits von diesem Kapitän ausgewählt",
+    "VLD_103": "Die Zivilisation wurde bereits global ausgewählt",
+    "VLD_200": "Die Zivilisation wurde bereits von diesem Kapitän exklusiv ausgewählt",
+    "VLD_300": "Die Zivilisation wurde noch nicht vom gegnerischen Kapitän ausgewählt",
+    "VLD_301": "Der gegnerische Kapitän hat diese Zivilisation nicht so oft ausgewählt, dass sie noch gesnipert werden könnte"
+  }
 }
