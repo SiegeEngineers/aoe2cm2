@@ -2,6 +2,9 @@ import Civilisation from "./Civilisation";
 import Action from "./Action";
 import {DraftEvent} from "./DraftEvent";
 import PlayerEvent from "./PlayerEvent";
+import AdminEvent from "./AdminEvent";
+import Turn from "./Turn";
+import ActionType from "./ActionType";
 
 export const Util = {
     notUndefined(...args: any[]): boolean {
@@ -22,16 +25,6 @@ export const Util = {
         return '';
     },
 
-    sortCivsByName(a: Civilisation, b: Civilisation): number {
-        if (a.name > b.name) {
-            return 1;
-        } else if (b.name > a.name) {
-            return -1;
-        } else {
-            return 0;
-        }
-    },
-
     isPick(action: Action): boolean {
         return (action === Action.PICK
             || action === Action.GLOBAL_PICK
@@ -40,12 +33,47 @@ export const Util = {
             || action === Action.HIDDEN_EXCLUSIVE_PICK);
     },
 
+    isNonglobalBan(action: Action): boolean {
+        return (action === Action.BAN
+            || action === Action.EXCLUSIVE_BAN
+            || action === Action.HIDDEN_BAN
+            || action === Action.HIDDEN_EXCLUSIVE_BAN);
+    },
+
     isSnipe(action: Action): boolean {
         return (action === Action.SNIPE || action === Action.HIDDEN_SNIPE);
     },
 
     isPlayerEvent(event: DraftEvent): event is PlayerEvent {
         return (<PlayerEvent>event).civilisation !== undefined;
+    },
+
+    isAdminEvent(event: DraftEvent): event is AdminEvent {
+        return !(<AdminEvent>event).hasOwnProperty('civilisation');
+    },
+
+    isHidden(turn: Turn): boolean {
+        return (turn.action === Action.HIDDEN_BAN
+            || turn.action === Action.HIDDEN_EXCLUSIVE_BAN
+            || turn.action === Action.HIDDEN_GLOBAL_BAN
+            || turn.action === Action.HIDDEN_PICK
+            || turn.action === Action.HIDDEN_EXCLUSIVE_PICK
+            || turn.action === Action.HIDDEN_SNIPE
+        );
+    }
+    ,
+
+    getHiddenCivilisationForActionType(actionType: ActionType): Civilisation {
+        switch (actionType) {
+            case ActionType.PICK:
+                return Civilisation.HIDDEN_PICK;
+            case ActionType.BAN:
+                return Civilisation.HIDDEN_BAN;
+            case ActionType.SNIPE:
+                return Civilisation.HIDDEN_SNIPE;
+            default:
+                return Civilisation.HIDDEN;
+        }
     }
 
 };

@@ -1,5 +1,6 @@
 import {Actions} from '../constants';
 import Player from "../models/Player";
+import {default as ModelAction} from "../models/Action";
 import {DraftEvent} from "../models/DraftEvent";
 import {IDraftConfig} from "../models/IDraftConfig";
 import PlayerEvent from "../models/PlayerEvent";
@@ -41,7 +42,20 @@ export interface ISetLanguage {
     language: string
 }
 
-export type Action = ISetName | IChangeOwnName | IActionCompleted | IApplyConfig | ISendJoin | IClickOnCiv | ISetLanguage;
+export interface ISetEvents {
+    type: Actions.SET_EVENTS,
+    value: { player: Player, action: ModelAction, events: DraftEvent[] }
+}
+
+export type Action =
+    ISetName
+    | IChangeOwnName
+    | IActionCompleted
+    | IApplyConfig
+    | ISendJoin
+    | IClickOnCiv
+    | ISetLanguage
+    | ISetEvents;
 
 export function setName(player: Player, value: string): ISetName {
     return {
@@ -91,5 +105,12 @@ export function setLanguage(language: string): ISetLanguage {
     return {
         language,
         type: Actions.SET_LANGUAGE
+    }
+}
+
+export function setEvents(value: { player: Player, action: ModelAction, events: DraftEvent[] }): ISetEvents {
+    return {
+        value,
+        type: Actions.SET_EVENTS
     }
 }

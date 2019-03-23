@@ -18,7 +18,7 @@ export class DraftsStore {
 
     public initDraft(draftId: string) {
         this.assertDraftDoesNotExist(draftId);
-        this.drafts.set(draftId, new Draft('…', '…', Preset.SIMPLE));
+        this.drafts.set(draftId, new Draft('…', '…', Preset.SAMPLE));
     }
 
     public addDraftEvent(draftId: string, draftEvent: DraftEvent) {
@@ -119,7 +119,7 @@ export class DraftsStore {
         const opponent = player === Player.HOST ? Player.GUEST : Player.HOST;
         const opponentBanTurns: boolean[] = draft.preset.turns
             .map((turn): boolean => {
-                return turn.player === opponent && (turn.action === Action.BAN || turn.action === Action.EXCLUSIVE_BAN);
+                return turn.player === opponent && Util.isNonglobalBan(turn.action);
             });
 
         const opponentBans: Civilisation[] = [];
@@ -232,5 +232,14 @@ export class DraftsStore {
         if (this.has(draftId)) {
             throw new Error(`Draft with id ${draftId} already exists`);
         }
+    }
+
+    public isLastActionHidden(draftId: string) {
+        const draft: Draft = this.getDraftOrThrow(draftId);
+        const lastAction = draft.nextAction - 1;
+        if (lastAction < 0 || lastAction >= draft.preset.turns.length) {
+            return false;
+        }
+        return Util.isHidden(draft.preset.turns[lastAction]);
     }
 }

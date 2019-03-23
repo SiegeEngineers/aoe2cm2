@@ -9,6 +9,7 @@ import {Validator} from "./models/Validator";
 import {ValidationId} from "./models/ValidationId";
 import PlayerEvent from "./models/PlayerEvent";
 import {DraftEvent} from "./models/DraftEvent";
+import {Util} from "./models/Util";
 
 const app = express();
 app.set("port", process.env.PORT || 3000);
@@ -106,12 +107,46 @@ io.on("connection", (socket: socketio.Socket) => {
         console.log(message);
         const validationErrors:ValidationId[] = validate(draftId, message);
         if (validationErrors.length === 0) {
+
+            let hostMessage = message;
+            let guestMessage = message;
+            let specMessage = message;
+
+            if (draftsStore.isLastActionHidden(draftId)) {
+                const hiddenCivilisation = Util.getHiddenCivilisationForActionType(message.actionType);
+                specMessage = new PlayerEvent(message.player, message.actionType, hiddenCivilisation);
+                if (message.player === Player.HOST) {
+                    guestMessage = specMessage;
+                }
+                if (message.player === Player.GUEST) {
+                    hostMessage = specMessage;
+                }
+            }
+
             socket.nsp
                 .in(roomHost)
+                .emit("playerEvent", hostMessage);
+            socket.nsp
                 .in(roomGuest)
+                .emit("playerEvent", guestMessage);
+            socket.nsp
                 .in(roomSpec)
-                .emit("playerEvent", message);
+                .emit("playerEvent", specMessage);
             fn({status:'ok', validationErrors});
+
+            const expectedAction = draftsStore.getExpectedAction(draftId);
+            if (expectedAction !== null) {
+                if (expectedAction.player === Player.NONE) {
+                    setTimeout(() => {
+                        socket.nsp
+                            .in(roomHost)
+                            .in(roomGuest)
+                            .in(roomSpec)
+                            .emit("adminEvent", {...expectedAction, events: draftsStore.getEvents(draftId)});
+                        draftsStore.addDraftEvent(draftId, expectedAction);
+                    }, 2000);
+                }
+            }
         } else {
             fn({status:'error', validationErrors});
         }

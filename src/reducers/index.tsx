@@ -4,6 +4,7 @@ import Player from "../models/Player";
 import {Actions} from "../constants";
 import {default as i18n} from "../i18n";
 import NameGenerator from "../models/NameGenerator";
+import AdminEvent from "../models/AdminEvent";
 
 const initialState: IStoreState = {
     nameHost: undefined,
@@ -61,6 +62,12 @@ export function updateState(state: IStoreState = initialState, action?: Action):
                 hostReady,
                 guestReady
             };
+        case Actions.SET_EVENTS:
+            console.log(Actions.SET_EVENTS, action.value);
+            const eventsCopy2 = [...action.value.events];
+            eventsCopy2.push(new AdminEvent(action.value.player, action.value.action));
+            return {...state, nextAction: state.nextAction + 1, events: eventsCopy2};
+
         case Actions.SET_LANGUAGE:
             console.log(Actions.SET_LANGUAGE, action.language);
             i18n.changeLanguage(action.language);
@@ -68,7 +75,6 @@ export function updateState(state: IStoreState = initialState, action?: Action):
                 ...state,
                 language: action.language
             }
-
     }
     return state;
 }

@@ -8,15 +8,17 @@ import {IStoreState} from './types';
 import Preset from "./models/Preset";
 import Draft from './containers/Draft';
 import ModelDraft from "./models/Draft";
+import {default as ModelAction} from "./models/Action";
 import {Util} from "./models/Util";
 import {IJoinedMessage} from "./models/IJoinedMessage";
 import Player from "./models/Player";
 import PlayerEvent from "./models/PlayerEvent";
 import {IDraftConfig} from "./models/IDraftConfig";
-import {Action, IActionCompleted, IApplyConfig, IClickOnCiv, ISendJoin, ISetName} from "./actions";
+import {Action, IActionCompleted, IApplyConfig, IClickOnCiv, ISendJoin, ISetEvents, ISetName} from "./actions";
 import {Actions} from "./constants";
 import './index.css';
 import './i18n';
+import {DraftEvent} from "./models/DraftEvent";
 
 const createMySocketMiddleware = () => {
     return (storeAPI: { dispatch: (arg0: Action) => void; }) => {
@@ -32,6 +34,11 @@ const createMySocketMiddleware = () => {
         socket.on("playerEvent", (message: PlayerEvent) => {
             console.log('message recieved:', "[act]", JSON.stringify(message));
             storeAPI.dispatch({type: Actions.ACTION_COMPLETED, value: message} as IActionCompleted);
+        });
+
+        socket.on("adminEvent", (message: { player: Player, action: ModelAction, events: DraftEvent[] }) => {
+            console.log('message recieved:', "[adminEvent]", JSON.stringify(message));
+            storeAPI.dispatch({type: Actions.SET_EVENTS, value: message} as ISetEvents);
         });
 
         return (next: (arg0: any) => void) => (action: Action) => {
@@ -55,7 +62,7 @@ const createMySocketMiddleware = () => {
 };
 
 const store: Store = createStore<IStoreState, Action, any, Store>(updateState,
-    new ModelDraft('Sneaky Saladin', 'Beastly Barbarossa', Preset.SIMPLE),
+    new ModelDraft('Sneaky Saladin', 'Beastly Barbarossa', Preset.SAMPLE),
     applyMiddleware(createMySocketMiddleware()));
 
 console.log(store.getState());

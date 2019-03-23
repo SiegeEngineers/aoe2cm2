@@ -26,9 +26,9 @@ export function actionTypeFromAction(action: Action) {
         case Action.SNIPE:
         case Action.HIDDEN_SNIPE:
             return ActionType.SNIPE;
-        case Action.REVEAL_PICKS:
-        case Action.REVEAL_BANS:
-        case Action.REVEAL_SNIPES:
+        // case Action.REVEAL_PICKS:
+        // case Action.REVEAL_BANS:
+        // case Action.REVEAL_SNIPES:
         case Action.REVEAL_ALL:
             return ActionType.REVEAL;
     }

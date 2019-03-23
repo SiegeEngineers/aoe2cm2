@@ -10,6 +10,7 @@ import {ValidationId} from "../../models/ValidationId";
 import Action from "../../models/Action";
 import Turn from "../../models/Turn";
 import {DraftEvent} from "../../models/DraftEvent";
+import AdminEvent from "../../models/AdminEvent";
 
 const NAME_HOST: string = 'Yodit';
 const NAME_GUEST: string = 'Saladin';
@@ -82,6 +83,20 @@ it('VLD_101: civ already banned for host', () => {
     let preset = new Preset("test", Civilisation.ALL, [Turn.HOST_BAN, Turn.GUEST_PICK]);
     const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS)]));
     const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS));
+    expect(errors).toEqual([ValidationId.VLD_101]);
+});
+
+it('VLD_101: civ already hidden/revealed banned for host', () => {
+    let preset = new Preset("test", Civilisation.ALL, [Turn.HOST_HIDDEN_BAN, Turn.REVEAL_ALL, Turn.GUEST_PICK]);
+    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS), new AdminEvent(Player.NONE, Action.REVEAL_ALL)]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS));
+    expect(errors).toEqual([ValidationId.VLD_101]);
+});
+
+it('VLD_101: civ already hidden/revealed banned for guest', () => {
+    let preset = new Preset("test", Civilisation.ALL, [Turn.GUEST_HIDDEN_BAN, Turn.REVEAL_ALL, Turn.HOST_PICK]);
+    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS), new AdminEvent(Player.NONE, Action.REVEAL_ALL)]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS));
     expect(errors).toEqual([ValidationId.VLD_101]);
 });
 

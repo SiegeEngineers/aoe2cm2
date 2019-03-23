@@ -154,7 +154,7 @@ exports[`CivGrid renders correctly 1`] = `
             "player": "GUEST",
           },
           Turn {
-            "action": "REVEAL_BANS",
+            "action": "REVEAL_ALL",
             "player": "NONE",
           },
           Turn {
@@ -206,7 +206,7 @@ exports[`CivGrid renders correctly 1`] = `
             "player": "GUEST",
           },
           Turn {
-            "action": "REVEAL_PICKS",
+            "action": "REVEAL_ALL",
             "player": "NONE",
           },
           Turn {
@@ -375,7 +375,7 @@ exports[`CivGrid renders correctly 1`] = `
             "player": "GUEST",
           },
           Turn {
-            "action": "REVEAL_BANS",
+            "action": "REVEAL_ALL",
             "player": "NONE",
           },
           Turn {
@@ -427,7 +427,7 @@ exports[`CivGrid renders correctly 1`] = `
             "player": "GUEST",
           },
           Turn {
-            "action": "REVEAL_PICKS",
+            "action": "REVEAL_ALL",
             "player": "NONE",
           },
           Turn {

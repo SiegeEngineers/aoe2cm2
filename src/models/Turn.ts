@@ -30,9 +30,9 @@ class Turn {
     public static readonly GUEST_SNIPE = new Turn(Player.GUEST, Action.SNIPE);
     public static readonly GUEST_HIDDEN_SNIPE = new Turn(Player.GUEST, Action.HIDDEN_SNIPE);
     
-    public static readonly REVEAL_PICKS = new Turn(Player.NONE, Action.REVEAL_PICKS);
-    public static readonly REVEAL_BANS = new Turn(Player.NONE, Action.REVEAL_BANS);
-    public static readonly REVEAL_SNIPES = new Turn(Player.NONE, Action.REVEAL_SNIPES);
+    // public static readonly REVEAL_PICKS = new Turn(Player.NONE, Action.REVEAL_PICKS);
+    // public static readonly REVEAL_BANS = new Turn(Player.NONE, Action.REVEAL_BANS);
+    // public static readonly REVEAL_SNIPES = new Turn(Player.NONE, Action.REVEAL_SNIPES);
     public static readonly REVEAL_ALL = new Turn(Player.NONE, Action.REVEAL_ALL);
 
 

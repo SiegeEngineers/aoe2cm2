@@ -1,5 +1,4 @@
 import GameVersion from "./GameVersion";
-import {Util} from "./Util";
 
 enum Name {
     BRITONS = "Britons",
@@ -36,7 +35,12 @@ enum Name {
     BURMESE = "Burmese",
     KHMER = "Khmer",
     MALAY = "Malay",
-    VIETNAMESE = "Vietnamese"
+    VIETNAMESE = "Vietnamese",
+
+    HIDDEN_PICK = "HIDDEN_PICK",
+    HIDDEN_BAN = "HIDDEN_BAN",
+    HIDDEN_SNIPE = "HIDDEN_SNIPE",
+    HIDDEN = "HIDDEN"
 }
 
 class Civilisation {
@@ -77,6 +81,11 @@ class Civilisation {
     public static readonly MALAY:Civilisation = new Civilisation(Name.MALAY, GameVersion.RISE_OF_RAJAS);
     public static readonly VIETNAMESE:Civilisation = new Civilisation(Name.VIETNAMESE, GameVersion.RISE_OF_RAJAS);
 
+    public static readonly HIDDEN_PICK: Civilisation = new Civilisation(Name.HIDDEN_PICK, GameVersion.TECHNICAL);
+    public static readonly HIDDEN_BAN: Civilisation = new Civilisation(Name.HIDDEN_BAN, GameVersion.TECHNICAL);
+    public static readonly HIDDEN_SNIPE: Civilisation = new Civilisation(Name.HIDDEN_SNIPE, GameVersion.TECHNICAL);
+    public static readonly HIDDEN: Civilisation = new Civilisation(Name.HIDDEN, GameVersion.TECHNICAL);
+
     public static readonly ALL = [
         Civilisation.BRITONS,
         Civilisation.BYZANTINES,
@@ -109,7 +118,7 @@ class Civilisation {
         Civilisation.KHMER,
         Civilisation.MALAY,
         Civilisation.VIETNAMESE
-    ].sort(Util.sortCivsByName);
+    ].sort(Civilisation.sortCivsByName);
 
     public readonly name:Name;
     public readonly gameVersion:GameVersion;
@@ -117,6 +126,16 @@ class Civilisation {
     private constructor(name:Name, gameVersion:GameVersion){
         this.name = name;
         this.gameVersion = gameVersion;
+    }
+
+    private static sortCivsByName(a: Civilisation, b: Civilisation): number {
+        if (a.name > b.name) {
+            return 1;
+        } else if (b.name > a.name) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
 }
 

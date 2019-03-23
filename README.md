@@ -89,16 +89,6 @@ the opponent yet; the same pick cannot be sniped twice
 
 These actions can only be executed by the server.
 
-### reveal picks
-show all hidden picks to all players
-
-### reveal bans
-show all hidden bans to all players; should be done 
-after hidden bans before the next picks
-
-### reveal snipes
-show all hidden snipes to all players
-
 ### reveal all
 reveal picks, bans, and snipes
 

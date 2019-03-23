@@ -30,7 +30,11 @@
     "Burmese": "Birmanen",
     "Khmer": "Khmer",
     "Malay": "Malaien",
-    "Vietnamese": "Vietnamesen"
+    "Vietnamese": "Vietnamesen",
+    "HIDDEN_PICK": "???",
+    "HIDDEN_BAN": "???",
+    "HIDDEN_SNIPE": "???",
+    "HIDDEN": "???"
   },
   "messages": {
     "finished": "Beendet."
