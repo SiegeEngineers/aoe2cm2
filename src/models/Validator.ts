@@ -13,19 +13,12 @@ export class Validator {
     }
 
     public validateAndApply(draftId: string, message: DraftEvent): ValidationId[] {
-        const validationErrors: ValidationId[] = [];
+        let validationErrors: ValidationId[] = [];
 
         if (Util.isPlayerEvent(message)) {
             const playerEvent: PlayerEvent = message as PlayerEvent;
 
-            for (const validation of Validation.ALL) {
-                const validationResult = validation.apply(draftId, this.draftsStore, playerEvent);
-                if (validationResult !== undefined) {
-                    if (!validationErrors.includes(validationResult)) {
-                        validationErrors.push(validationResult);
-                    }
-                }
-            }
+            validationErrors = Validator.checkAllValidations(draftId, this.draftsStore, playerEvent);
         }
 
         if (validationErrors.length === 0) {
@@ -33,6 +26,19 @@ export class Validator {
             this.draftsStore.addDraftEvent(draftId, message);
         }
 
+        return validationErrors;
+    }
+
+    public static checkAllValidations(draftId: string, draftsStore: DraftsStore, playerEvent: PlayerEvent) {
+        const validationErrors: ValidationId[] = [];
+        for (const validation of Validation.ALL) {
+            const validationResult = validation.apply(draftId, draftsStore, playerEvent);
+            if (validationResult !== undefined) {
+                if (!validationErrors.includes(validationResult)) {
+                    validationErrors.push(validationResult);
+                }
+            }
+        }
         return validationErrors;
     }
 }

@@ -9,6 +9,10 @@ import CivPanelType from "../models/CivPanelType";
 import {Util} from "../models/Util";
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
 import i18next from "i18next";
+import {Validator} from "../models/Validator";
+import {DraftsStore} from "../models/DraftsStore";
+import Draft from "../models/Draft";
+import {IStoreState} from "../types";
 
 interface IProps extends WithTranslation {
     civilisation?: Civilisation;
@@ -16,6 +20,7 @@ interface IProps extends WithTranslation {
     civPanelType: CivPanelType;
     whoAmI?: Player;
     triggerAction?: ActionType;
+    draft?: IStoreState;
 
     onClickCivilisation?: (playerEvent:PlayerEvent, callback:any) => void;
 }
@@ -35,7 +40,12 @@ class CivPanel extends React.Component<IProps, object> {
         let onClickAction = () => {};
         if (this.props.civPanelType === CivPanelType.CHOICE) {
             className += ' pure-u-1-12';
-            onClickAction = this.onClickCiv;
+            if (this.isValidOption()) {
+                onClickAction = this.onClickCiv;
+                className += ' choice-' + this.props.triggerAction;
+            } else {
+                className += ' choice-disabled';
+            }
         } else {
             className += ' card';
         }
@@ -84,6 +94,20 @@ class CivPanel extends React.Component<IProps, object> {
         }
         return message;
     };
+
+    private isValidOption() {
+        if (Util.notUndefined(this.props.draft, this.props.whoAmI, this.props.triggerAction, this.props.civilisation)) {
+            const draft = this.props.draft as Draft;
+            const whoAmI = this.props.whoAmI as Player;
+            const triggerAction = this.props.triggerAction as ActionType;
+            const civilisation = this.props.civilisation as Civilisation;
+            let draftsStore = new DraftsStore();
+            draftsStore.createDraft('draftId', draft);
+            const errors = Validator.checkAllValidations('draftId', draftsStore, new PlayerEvent(whoAmI, triggerAction, civilisation));
+            return errors.length === 0;
+        }
+        return false;
+    }
 }
 
 export default withTranslation()(CivPanel);

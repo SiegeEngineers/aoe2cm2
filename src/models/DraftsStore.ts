@@ -34,7 +34,7 @@ export class DraftsStore {
 
     public getExpectedAction(draftId: string): Turn | null {
         const draft: Draft = this.getDraftOrThrow(draftId);
-        if (!draft.playersAreReady()) {
+        if (!Draft.playersAreReady(draft)) {
             return null;
         }
         if (draft.events.length < draft.preset.turns.length) {

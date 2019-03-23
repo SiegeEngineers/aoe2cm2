@@ -34,8 +34,8 @@ class Draft implements IStoreState {
         this.whoAmI = whoAmI;
     }
 
-    public playersAreReady() {
-        return this.hostReady && this.guestReady;
+    public static playersAreReady(draft: IStoreState) {
+        return draft.hostReady && draft.guestReady;
     }
 
 }

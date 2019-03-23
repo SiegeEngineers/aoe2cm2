@@ -14,7 +14,8 @@ export function mapStateToProps(state: IStoreState) {
     }
     return {
         triggerAction,
-        whoAmI: state.whoAmI
+        whoAmI: state.whoAmI,
+        draft: state
     };
 }
 
