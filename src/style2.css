@@ -34,6 +34,14 @@ html, body {
 	opacity: 1.0;
 }
 
+.snipe-marker {
+	background-image: url('/images/red-cross.svg');
+}
+
+.used-marker {
+	background-image: url('/images/green-cross.svg');
+}
+
 .picks .box-content.visible,
 .bans .box-content.visible {
 	visibility: visible !important;

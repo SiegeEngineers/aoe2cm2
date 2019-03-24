@@ -45,20 +45,24 @@ class Player extends React.Component<IProps, IState> {
         let bansIndex = 0;
         const pickPanels = [];
         const banPanels = [];
+        const snipes: Civilisation[] = [...this.state.snipedCivs];
         for (let i = 0; i < this.props.preset.turns.length; i++) {
             const turn: Turn = this.props.preset.turns[i];
             const actionType = actionTypeFromAction(turn.action);
             if (this.props.player === turn.player) {
                 if (actionType === ActionType.PICK) {
                     let pickedCiv;
+                    let sniped = false;
                     if (this.state.pickedCivs.length > picksIndex) {
                         pickedCiv = this.state.pickedCivs[picksIndex];
+                        sniped = removeIfContains(snipes, pickedCiv);
                     }
                     picksIndex++;
                     pickPanels.push(React.createElement(CivPanel, {
                         active: i === this.props.nextAction,
                         civPanelType: CivPanelType.PICK,
-                        civilisation: pickedCiv
+                        civilisation: pickedCiv,
+                        sniped
                     }));
                 } else if (actionType === ActionType.BAN) {
                     let bannedCiv;
@@ -107,6 +111,17 @@ class Player extends React.Component<IProps, IState> {
     }
 }
 
+function removeIfContains(haystack: Civilisation[], needle: Civilisation): boolean {
+    const index: number = haystack.findIndex((value: Civilisation) => {
+        return value.name === needle.name && value.gameVersion === needle.gameVersion
+    });
+    if (index > -1) {
+        haystack.splice(index, 1);
+        return true;
+    }
+    return false;
+}
+
 
 function eventsToState(events: DraftEvent[] | undefined, player: ModelPlayer): IState {
     if (events === undefined) {
@@ -114,14 +129,12 @@ function eventsToState(events: DraftEvent[] | undefined, player: ModelPlayer): I
     } else {
         events = events as DraftEvent[];
     }
-    // TODO: Handle AdminEvents
     const playerEvents: PlayerEvent[] = events
         .filter(e => e.hasOwnProperty('actionType'))
         .map(e => e as PlayerEvent)
         .filter(e => e.player === player);
     const picks: Civilisation[] = [];
     const bans: Civilisation[] = [];
-    const snipes: Civilisation[] = [];
     for (const event of playerEvents) {
         switch (event.actionType) {
             case ActionType.PICK:
@@ -130,9 +143,16 @@ function eventsToState(events: DraftEvent[] | undefined, player: ModelPlayer): I
             case ActionType.BAN:
                 bans.push(event.civilisation);
                 break;
-            case ActionType.SNIPE:
-                snipes.push(event.civilisation);
-                break;
+        }
+    }
+    const opponentEvents: PlayerEvent[] = events
+        .filter(e => e.hasOwnProperty('actionType'))
+        .map(e => e as PlayerEvent)
+        .filter(e => e.player !== player);
+    const snipes: Civilisation[] = [];
+    for (const event of opponentEvents) {
+        if (event.actionType === ActionType.SNIPE) {
+            snipes.push(event.civilisation);
         }
     }
     return {bannedCivs: bans, pickedCivs: picks, snipedCivs: snipes};

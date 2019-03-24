@@ -13,10 +13,12 @@ import {Validator} from "../models/Validator";
 import {DraftsStore} from "../models/DraftsStore";
 import Draft from "../models/Draft";
 import {IStoreState} from "../types";
+import Preset from "../models/Preset";
 
 interface IProps extends WithTranslation {
     civilisation?: Civilisation;
     active: boolean;
+    sniped?: boolean;
     civPanelType: CivPanelType;
     whoAmI?: Player;
     triggerAction?: ActionType;
@@ -25,7 +27,17 @@ interface IProps extends WithTranslation {
     onClickCivilisation?: (playerEvent:PlayerEvent, callback:any) => void;
 }
 
-class CivPanel extends React.Component<IProps, object> {
+interface IState {
+    used: boolean;
+}
+
+class CivPanel extends React.Component<IProps, IState> {
+
+    constructor(props: IProps) {
+        super(props);
+        this.state = {used: false};
+    }
+
     public render() {
         const civilisation: Civilisation | undefined = this.props.civilisation;
         let imageSrc: string = "";
@@ -51,6 +63,11 @@ class CivPanel extends React.Component<IProps, object> {
                 className += ' choice-disabled';
             }
         } else {
+            if (this.props.civPanelType === CivPanelType.PICK && this.isDraftCompleted()) {
+                onClickAction = () => {
+                    this.setState({...this.state, used: !this.state.used});
+                }
+            }
             className += ' card';
         }
         if(this.props.active){
@@ -62,6 +79,14 @@ class CivPanel extends React.Component<IProps, object> {
         if (this.props.civilisation !== undefined) {
             contentClass += " visible";
         }
+        let snipeMarkerClass = "stretchy-image snipe-marker";
+        if (!this.props.sniped) {
+            snipeMarkerClass += ' hidden';
+        }
+        let usedMarkerClass = "stretchy-image used-marker";
+        if (!this.state.used) {
+            usedMarkerClass += ' hidden';
+        }
         return (
             <div className={className} onClick={onClickAction}>
                 <div className={contentClass}>
@@ -69,6 +94,8 @@ class CivPanel extends React.Component<IProps, object> {
                         <div className="stretchy-image">
                             <img src={imageSrc} alt={civilisationName}/>
                         </div>
+                        <div className={snipeMarkerClass}/>
+                        <div className={usedMarkerClass}/>
                         <div className={textClass}>
                             <Trans>{civilisationKey}</Trans>
                         </div>
@@ -113,6 +140,16 @@ class CivPanel extends React.Component<IProps, object> {
             return errors.length === 0;
         }
         return false;
+    }
+
+    private isDraftCompleted(): boolean {
+        if (this.props.draft === undefined || this.props.draft.preset === undefined) {
+            return false;
+        } else {
+            const draft = this.props.draft as IStoreState;
+            const preset = draft.preset as Preset;
+            return draft.nextAction >= preset.turns.length;
+        }
     }
 }
 
