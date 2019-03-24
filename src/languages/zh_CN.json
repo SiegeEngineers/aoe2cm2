@@ -31,10 +31,10 @@
     "Khmer": "高棉",
     "Malay": "马来",
     "Vietnamese": "越南",
-    "HIDDEN_PICK": "???",
-    "HIDDEN_BAN": "???",
-    "HIDDEN_SNIPE": "???",
-    "HIDDEN": "???"
+    "HIDDEN_PICK": "",
+    "HIDDEN_BAN": "",
+    "HIDDEN_SNIPE": "",
+    "HIDDEN": ""
   },
   "messages": {
     "finished": "todo"

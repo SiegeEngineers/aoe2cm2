@@ -31,10 +31,14 @@ class CivPanel extends React.Component<IProps, object> {
         let imageSrc: string = "";
         let civilisationKey = '';
         let civilisationName = '';
+        let textClass: string = 'stretchy-text';
         if (civilisation !== undefined) {
             civilisationName = civilisation.name;
             imageSrc = "/images/civs/" + civilisationName.toLocaleLowerCase() + "_orig.png";
             civilisationKey = 'civs.' + civilisationName;
+            if (Util.isTechnicalCivilisation(civilisation)) {
+                textClass += ' hidden';
+            }
         }
         let className: string = this.props.civPanelType.toString();
         let onClickAction = () => {};
@@ -51,6 +55,8 @@ class CivPanel extends React.Component<IProps, object> {
         }
         if(this.props.active){
             className += " active-choice";
+        } else if (civilisation !== undefined) {
+            className += ' has-value';
         }
         let contentClass: string = "box-content";
         if (this.props.civilisation !== undefined) {
@@ -63,7 +69,7 @@ class CivPanel extends React.Component<IProps, object> {
                         <div className="stretchy-image">
                             <img src={imageSrc} alt={civilisationName}/>
                         </div>
-                        <div className="stretchy-text">
+                        <div className={textClass}>
                             <Trans>{civilisationKey}</Trans>
                         </div>
                     </div>

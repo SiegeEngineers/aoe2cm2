@@ -5,6 +5,7 @@ import PlayerEvent from "./PlayerEvent";
 import AdminEvent from "./AdminEvent";
 import Turn from "./Turn";
 import ActionType from "./ActionType";
+import GameVersion from "./GameVersion";
 
 export const Util = {
     notUndefined(...args: any[]): boolean {
@@ -60,8 +61,7 @@ export const Util = {
             || turn.action === Action.HIDDEN_EXCLUSIVE_PICK
             || turn.action === Action.HIDDEN_SNIPE
         );
-    }
-    ,
+    },
 
     getHiddenCivilisationForActionType(actionType: ActionType): Civilisation {
         switch (actionType) {
@@ -74,6 +74,10 @@ export const Util = {
             default:
                 return Civilisation.HIDDEN;
         }
+    },
+
+    isTechnicalCivilisation(civilisation: Civilisation): boolean {
+        return civilisation.gameVersion === GameVersion.TECHNICAL;
     }
 
 };

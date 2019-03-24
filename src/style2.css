@@ -26,6 +26,14 @@ html, body {
     background-color: yellow;
 }
 
+.hidden {
+	display: none;
+}
+
+.card.has-value {
+	opacity: 1.0;
+}
+
 .picks .box-content.visible,
 .bans .box-content.visible {
 	visibility: visible !important;
