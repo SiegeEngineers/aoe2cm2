@@ -157,19 +157,19 @@ exports[`Draft renders correctly 1`] = `
           "player": "NONE",
         },
         Turn {
-          "action": "HIDDEN_PICK",
+          "action": "GLOBAL_PICK",
           "player": "HOST",
         },
         Turn {
-          "action": "HIDDEN_PICK",
+          "action": "GLOBAL_PICK",
           "player": "GUEST",
         },
         Turn {
-          "action": "HIDDEN_PICK",
+          "action": "EXCLUSIVE_PICK",
           "player": "HOST",
         },
         Turn {
-          "action": "HIDDEN_PICK",
+          "action": "EXCLUSIVE_PICK",
           "player": "GUEST",
         },
         Turn {
