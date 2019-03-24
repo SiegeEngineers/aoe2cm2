@@ -65,7 +65,6 @@ export class Validation {
                 return true;
             }
             const bansForPlayer = draftsStore.getBansForPlayer(draftId, playerEvent.player);
-            console.log(bansForPlayer, playerEvent.civilisation);
             if (Validation.includes(bansForPlayer, playerEvent.civilisation)) {
                 return false;
             }
