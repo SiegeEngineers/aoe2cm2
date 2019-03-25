@@ -130,7 +130,7 @@ class CivPanel extends React.Component<IProps, IState> {
 
     private isValidOption() {
         if (Util.notUndefined(this.props.draft, this.props.whoAmI, this.props.triggerAction, this.props.civilisation)) {
-            const draft = this.props.draft as Draft;
+            const draft = Draft.from(this.props.draft as Draft);
             const whoAmI = this.props.whoAmI as Player;
             const triggerAction = this.props.triggerAction as ActionType;
             const civilisation = this.props.civilisation as Civilisation;

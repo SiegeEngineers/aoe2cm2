@@ -1,36 +1,32 @@
 import {ValidationId} from "./ValidationId";
 import {DraftEvent} from "./DraftEvent";
-import {DraftsStore} from "./DraftsStore";
 import ActionType, {actionTypeFromAction} from "./ActionType";
 import PlayerEvent from "./PlayerEvent";
 import Civilisation from "./Civilisation";
 import Player from "./Player";
 import {Util} from "./Util";
+import Draft from "./Draft";
 
 export class Validation {
-    public static readonly VLD_000: Validation = new Validation(ValidationId.VLD_000, (draftId: string, draftsStore: DraftsStore, draftEvent: DraftEvent) => {
-        if (!draftsStore.has(draftId)) {
+    public static readonly VLD_000: Validation = new Validation(ValidationId.VLD_000, (draft:Draft, draftEvent: DraftEvent) => {
+        if (!draft.draftCanBeStarted()) {
             return false;
         }
-        if (!draftsStore.draftCanBeStarted(draftId)) {
-            return false;
-        }
-        if (!draftsStore.hasNextAction(draftId)) {
+        if (!draft.hasNextAction()) {
             return false;
         }
         return true;
     });
-
-    public static readonly VLD_001: Validation = new Validation(ValidationId.VLD_001, (draftId: string, draftsStore: DraftsStore, draftEvent: DraftEvent) => {
-        const expectedAction = draftsStore.getExpectedAction(draftId);
+    public static readonly VLD_001: Validation = new Validation(ValidationId.VLD_001, (draft: Draft, draftEvent: DraftEvent) => {
+        const expectedAction = draft.getExpectedAction();
         if (expectedAction !== null) {
             return expectedAction.player === draftEvent.player;
         }
         return true;
     });
 
-    public static readonly VLD_002: Validation = new Validation(ValidationId.VLD_002, (draftId: string, draftsStore: DraftsStore, draftEvent: DraftEvent) => {
-        const expectedAction = draftsStore.getExpectedAction(draftId);
+    public static readonly VLD_002: Validation = new Validation(ValidationId.VLD_002, (draft: Draft, draftEvent: DraftEvent) => {
+        const expectedAction = draft.getExpectedAction();
         if (expectedAction !== null) {
             if (Util.isPlayerEvent(draftEvent)) {
                 const playerEvent = draftEvent as PlayerEvent;
@@ -41,13 +37,13 @@ export class Validation {
         return true;
     });
 
-    public static readonly VLD_100: Validation = new Validation(ValidationId.VLD_100, (draftId: string, draftsStore: DraftsStore, draftEvent: DraftEvent) => {
-        if (!draftsStore.hasNextAction(draftId)) {
+    public static readonly VLD_100: Validation = new Validation(ValidationId.VLD_100, (draft: Draft, draftEvent: DraftEvent) => {
+        if (!draft.hasNextAction()) {
             return true;
         }
         if (Util.isPlayerEvent(draftEvent)) {
             const playerEvent = draftEvent as PlayerEvent;
-            const globalBans: Civilisation[] = draftsStore.getGlobalBans(draftId);
+            const globalBans: Civilisation[] = draft.getGlobalBans();
             if (Validation.includes(globalBans, playerEvent.civilisation)) {
                 return false;
             }
@@ -55,8 +51,8 @@ export class Validation {
         return true;
     });
 
-    public static readonly VLD_101: Validation = new Validation(ValidationId.VLD_101, (draftId: string, draftsStore: DraftsStore, draftEvent: DraftEvent) => {
-        if (!draftsStore.hasNextAction(draftId)) {
+    public static readonly VLD_101: Validation = new Validation(ValidationId.VLD_101, (draft: Draft, draftEvent: DraftEvent) => {
+        if (!draft.hasNextAction()) {
             return true;
         }
         if (Util.isPlayerEvent(draftEvent)) {
@@ -64,7 +60,7 @@ export class Validation {
             if (playerEvent.actionType !== ActionType.PICK) {
                 return true;
             }
-            const bansForPlayer = draftsStore.getBansForPlayer(draftId, playerEvent.player);
+            const bansForPlayer = draft.getBansForPlayer(playerEvent.player);
             if (Validation.includes(bansForPlayer, playerEvent.civilisation)) {
                 return false;
             }
@@ -72,8 +68,8 @@ export class Validation {
         return true;
     });
 
-    public static readonly VLD_102: Validation = new Validation(ValidationId.VLD_102, (draftId: string, draftsStore: DraftsStore, draftEvent: DraftEvent) => {
-        if (!draftsStore.hasNextAction(draftId)) {
+    public static readonly VLD_102: Validation = new Validation(ValidationId.VLD_102, (draft: Draft, draftEvent: DraftEvent) => {
+        if (!draft.hasNextAction()) {
             return true;
         }
         if (Util.isPlayerEvent(draftEvent)) {
@@ -81,7 +77,7 @@ export class Validation {
             if (playerEvent.actionType !== ActionType.PICK) {
                 return true;
             }
-            const exclusivePicks = draftsStore.getExclusivePicks(draftId, playerEvent.player);
+            const exclusivePicks = draft.getExclusivePicks(playerEvent.player);
             if (Validation.includes(exclusivePicks, playerEvent.civilisation)) {
                 return false;
             }
@@ -89,8 +85,8 @@ export class Validation {
         return true;
     });
 
-    public static readonly VLD_103: Validation = new Validation(ValidationId.VLD_103, (draftId: string, draftsStore: DraftsStore, draftEvent: DraftEvent) => {
-        if (!draftsStore.hasNextAction(draftId)) {
+    public static readonly VLD_103: Validation = new Validation(ValidationId.VLD_103, (draft: Draft, draftEvent: DraftEvent) => {
+        if (!draft.hasNextAction()) {
             return true;
         }
         if (Util.isPlayerEvent(draftEvent)) {
@@ -98,7 +94,7 @@ export class Validation {
             if (playerEvent.actionType !== ActionType.PICK) {
                 return true;
             }
-            const exclusivePicks = draftsStore.getGlobalPicks(draftId);
+            const exclusivePicks = draft.getGlobalPicks();
             if (Validation.includes(exclusivePicks, playerEvent.civilisation)) {
                 return false;
             }
@@ -106,8 +102,8 @@ export class Validation {
         return true;
     });
 
-    public static readonly VLD_200: Validation = new Validation(ValidationId.VLD_200, (draftId: string, draftsStore: DraftsStore, draftEvent: DraftEvent) => {
-        if (!draftsStore.hasNextAction(draftId)) {
+    public static readonly VLD_200: Validation = new Validation(ValidationId.VLD_200, (draft: Draft, draftEvent: DraftEvent) => {
+        if (!draft.hasNextAction()) {
             return true;
         }
         if (Util.isPlayerEvent(draftEvent)) {
@@ -115,7 +111,7 @@ export class Validation {
             if (playerEvent.actionType !== ActionType.BAN) {
                 return true;
             }
-            const exclusiveBansByPlayer = draftsStore.getExclusiveBansByPlayer(draftId, playerEvent.player);
+            const exclusiveBansByPlayer = draft.getExclusiveBansByPlayer(playerEvent.player);
             if (Validation.includes(exclusiveBansByPlayer, playerEvent.civilisation)) {
                 return false;
             }
@@ -123,8 +119,8 @@ export class Validation {
         return true;
     });
 
-    public static readonly VLD_300: Validation = new Validation(ValidationId.VLD_300, (draftId: string, draftsStore: DraftsStore, draftEvent: DraftEvent) => {
-        if (!draftsStore.hasNextAction(draftId)) {
+    public static readonly VLD_300: Validation = new Validation(ValidationId.VLD_300, (draft: Draft, draftEvent: DraftEvent) => {
+        if (!draft.hasNextAction()) {
             return true;
         }
         if (Util.isPlayerEvent(draftEvent)) {
@@ -133,7 +129,7 @@ export class Validation {
                 return true;
             }
             const opponent: Player = playerEvent.player === Player.HOST ? Player.GUEST : Player.HOST;
-            const picksByOpponent: Civilisation[] = draftsStore.getPicks(draftId, opponent);
+            const picksByOpponent: Civilisation[] = draft.getPicks(opponent);
             if (!Validation.includes(picksByOpponent, playerEvent.civilisation)) {
                 return false;
             }
@@ -141,8 +137,8 @@ export class Validation {
         return true;
     });
 
-    public static readonly VLD_301: Validation = new Validation(ValidationId.VLD_301, (draftId: string, draftsStore: DraftsStore, draftEvent: DraftEvent) => {
-        if (!draftsStore.hasNextAction(draftId)) {
+    public static readonly VLD_301: Validation = new Validation(ValidationId.VLD_301, (draft: Draft, draftEvent: DraftEvent) => {
+        if (!draft.hasNextAction()) {
             return true;
         }
         if (Util.isPlayerEvent(draftEvent)) {
@@ -151,8 +147,8 @@ export class Validation {
                 return true;
             }
             const opponent: Player = playerEvent.player === Player.HOST ? Player.GUEST : Player.HOST;
-            const picksByOpponent: Civilisation[] = draftsStore.getPicks(draftId, opponent);
-            const snipes: Civilisation[] = draftsStore.getSnipes(draftId, playerEvent.player);
+            const picksByOpponent: Civilisation[] = draft.getPicks(opponent);
+            const snipes: Civilisation[] = draft.getSnipes(playerEvent.player);
             snipes.push(playerEvent.civilisation);
             if (Validation.includes(picksByOpponent, playerEvent.civilisation)) {
                 for (let sniped of snipes) {
@@ -185,14 +181,15 @@ export class Validation {
 
     private readonly validationId: ValidationId;
 
-    private readonly validate: (draftId: string, draftsStore: DraftsStore, draftEvent: DraftEvent) => boolean;
-    constructor(validationId: ValidationId, validate: (draftId: string, draftsStore: DraftsStore, draftEvent: DraftEvent) => boolean) {
+    private readonly validate: (draft: Draft, draftEvent: DraftEvent) => boolean;
+
+    constructor(validationId: ValidationId, validate: (draft: Draft, draftEvent: DraftEvent) => boolean) {
         this.validationId = validationId;
         this.validate = validate;
     }
 
-    public apply(draftId: string, draftsStore: DraftsStore, draftEvent: DraftEvent): ValidationId | undefined {
-        if (!this.validate(draftId, draftsStore, draftEvent)) {
+    public apply(draft: Draft, draftEvent: DraftEvent): ValidationId | undefined {
+        if (!this.validate(draft, draftEvent)) {
             return this.validationId;
         }
         return undefined;
