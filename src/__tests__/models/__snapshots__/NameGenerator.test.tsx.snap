@@ -2,15 +2,15 @@
 
 exports[`NameGenerator yields deterministic results 1`] = `
 Array [
-  "Abundant Cid",
-  "Graceful Abraha",
-  "Fragile Toldi",
-  "Big Archbishop",
-  "Unusual Dingfang",
-  "Fragile Khosrau",
-  "Gifted Alexander",
-  "Heavy Tamerlane",
-  "Black Prithvi",
-  "Odd Raden",
+  "King Alfonso",
+  "Alboin",
+  "Jayaviravarman",
+  "King Alfonso",
+  "Mansa Sakura",
+  "Suleiman the Magnificent",
+  "Chimalpopoca",
+  "Cardinal Jiménez",
+  "Guyuk Khan",
+  "Manco Cápac",
 ]
 `;
