@@ -27,16 +27,16 @@ export const Util = {
     },
 
     isPick(action: Action): boolean {
-        return (action === Action.PICK
+        return (action === Action.NONEXCLUSIVE_PICK
             || action === Action.GLOBAL_PICK
-            || action === Action.EXCLUSIVE_PICK
+            || action === Action.PICK
             || action === Action.HIDDEN_PICK
             || action === Action.HIDDEN_EXCLUSIVE_PICK);
     },
 
     isNonglobalBan(action: Action): boolean {
-        return (action === Action.BAN
-            || action === Action.EXCLUSIVE_BAN
+        return (action === Action.NONEXCLUSIVE_BAN
+            || action === Action.BAN
             || action === Action.HIDDEN_BAN
             || action === Action.HIDDEN_EXCLUSIVE_BAN);
     },

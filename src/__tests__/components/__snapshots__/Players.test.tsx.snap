@@ -166,11 +166,11 @@ exports[`CivGrid renders correctly 1`] = `
             "player": "GUEST",
           },
           Turn {
-            "action": "EXCLUSIVE_PICK",
+            "action": "PICK",
             "player": "HOST",
           },
           Turn {
-            "action": "EXCLUSIVE_PICK",
+            "action": "PICK",
             "player": "GUEST",
           },
           Turn {
@@ -387,11 +387,11 @@ exports[`CivGrid renders correctly 1`] = `
             "player": "GUEST",
           },
           Turn {
-            "action": "EXCLUSIVE_PICK",
+            "action": "PICK",
             "player": "HOST",
           },
           Turn {
-            "action": "EXCLUSIVE_PICK",
+            "action": "PICK",
             "player": "GUEST",
           },
           Turn {

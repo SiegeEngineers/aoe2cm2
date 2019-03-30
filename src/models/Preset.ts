@@ -11,8 +11,8 @@ class Preset {
         Turn.REVEAL_ALL,
         Turn.HOST_GLOBAL_PICK,
         Turn.GUEST_GLOBAL_PICK,
-        Turn.HOST_EXCLUSIVE_PICK,
-        Turn.GUEST_EXCLUSIVE_PICK,
+        Turn.HOST_PICK,
+        Turn.GUEST_PICK,
         Turn.HOST_HIDDEN_PICK,
         Turn.GUEST_HIDDEN_PICK,
         Turn.HOST_HIDDEN_PICK,
@@ -28,10 +28,10 @@ class Preset {
     ]);
 
     public static readonly SIMPLE: Preset = new Preset('Simple Preset', Civilisation.ALL, [
-        Turn.HOST_BAN,
-        Turn.GUEST_BAN,
-        Turn.GUEST_PICK,
-        Turn.HOST_PICK
+        Turn.HOST_NONEXCLUSIVE_BAN,
+        Turn.GUEST_NONEXLCUSIVE_BAN,
+        Turn.GUEST_NONEXCLUSIVE_PICK,
+        Turn.HOST_NONEXCLUSIVE_PICK
     ]);
 
     public readonly name: string;

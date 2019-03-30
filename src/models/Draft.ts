@@ -111,7 +111,7 @@ class Draft implements IStoreState {
     public getExclusivePicks(player: Player): Civilisation[] {
         const exclusivePickTurns: boolean[] = this.preset.turns
             .map((turn): boolean => {
-                return turn.player === player && turn.action === Action.EXCLUSIVE_PICK;
+                return turn.player === player && turn.action === Action.PICK;
             });
 
         const exclusivePicks: Civilisation[] = [];
@@ -146,7 +146,7 @@ class Draft implements IStoreState {
         }
         const exclusiveBanTurns: boolean[] = this.preset.turns
             .map((turn): boolean => {
-                return turn.player === player && turn.action === Action.EXCLUSIVE_BAN;
+                return turn.player === player && turn.action === Action.BAN;
             });
 
         const exclusiveBans: Civilisation[] = [];

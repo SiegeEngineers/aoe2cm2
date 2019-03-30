@@ -22,7 +22,7 @@ exports[`labels the turn with PICK 1`] = `
   tReady={true}
   turn={
     Turn {
-      "action": "PICK",
+      "action": "NONEXCLUSIVE_PICK",
       "player": "HOST",
     }
   }

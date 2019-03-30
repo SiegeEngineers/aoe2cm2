@@ -33,11 +33,21 @@ The following actions are available:
 These actions are usually executed by the users (Host & Guest).
 
 ### pick
-select one of the civilisations for play
+select one of the civilisations for play; it cannot
+be picked again by the same player in a future turn
 
 ### ban
+prevent the opponent from picking the selected 
+civilisation in a future turn; it cannot be banned again by the same 
+player in a future turn
+
+### nonexclusive pick
+select one of the civilisations for play; it can be selected again in 
+a future turn.
+
+### nonexclusive ban
 prevent the opponent from picking the selected civilisation in 
-a future turn
+a future turn; it can be banned again in a future turn.
 
 ### global pick
 select one of the civilisations for play, it cannot be
@@ -46,15 +56,6 @@ picked again by any player in a future turn
 ### global ban
 prevent any player from picking the selected 
 civilisation in a future turn
-
-### exclusive pick
-select one of the civilisations for play; it cannot
-be picked again by the same player in a future turn
-
-### exclusive ban
-prevent the opponent from picking the selected 
-civilisation in a future turn; it cannot be banned again by the same 
-player in a future turn
 
 ### hidden pick
 select one of the civilisations for play without showing

@@ -4,7 +4,7 @@ import Turn from "../../components/Turn";
 import {default as ModelTurn} from "../../models/Turn";
 
 it('labels the turn with PICK', () => {
-    const turn = enzyme.shallow(<Turn turn={ModelTurn.HOST_PICK} turnNumber={0}/>);
+    const turn = enzyme.shallow(<Turn turn={ModelTurn.HOST_NONEXCLUSIVE_PICK} turnNumber={0}/>);
     expect(turn).toMatchSnapshot();
 });
 
