@@ -2,6 +2,7 @@ import * as React from 'react';
 import '../pure-min.css'
 import '../style2.css'
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
+import Countdown from "./Countdown";
 
 interface IProps extends WithTranslation {
     message: string
@@ -13,7 +14,7 @@ class Messages extends React.Component<IProps, object> {
             <div>
                 <div id="action-text" className="centered">
                     <div className="action-string info-card text-primary">
-                        <Trans>{this.props.message}</Trans>
+                        <Trans>{this.props.message}</Trans> <Countdown/>
                     </div>
                     <div className="hidden">
                         <span id="action_msg_error_update">Error updating the draft state.</span>
