@@ -1,25 +1,21 @@
 import Preset from "./Preset";
-import {IStoreState} from "../types";
+import {IDraftState} from "../types";
 import Player from "./Player";
 import {DraftEvent} from "./DraftEvent";
-import NameGenerator from "./NameGenerator";
 import Turn from "./Turn";
 import Civilisation from "./Civilisation";
 import Action from "./Action";
 import PlayerEvent from "./PlayerEvent";
 import {Util} from "./Util";
 
-class Draft implements IStoreState {
+class Draft implements IDraftState {
     public nameHost: string;
     public nameGuest: string;
     public hostReady: boolean;
     public guestReady: boolean;
-    public whoAmI: Player;
-    public ownName: string | null = null;
     public readonly preset: Preset;
     public nextAction: number = 0;
     public events: DraftEvent[] = [];
-    public showModal: boolean;
 
 
     public language: string = 'en-GB';
@@ -28,30 +24,20 @@ class Draft implements IStoreState {
         this.nameHost = nameHost;
         this.nameGuest = nameGuest;
         this.preset = preset;
-        this.whoAmI = Player.HOST;
         this.hostReady = false;
         this.guestReady = false;
-        this.ownName = NameGenerator.getNameFromLocalStorage();
-        this.showModal = this.ownName === null;
     }
 
     public static from(source: Draft): Draft {
         const draft: Draft = new Draft(source.nameHost, source.nameGuest, source.preset)
         draft.hostReady = source.hostReady;
         draft.guestReady = source.guestReady;
-        draft.whoAmI = source.whoAmI;
-        draft.ownName = source.ownName;
         draft.nextAction = source.nextAction;
         draft.events = source.events;
-        draft.showModal = source.showModal;
         return draft;
     }
 
-    public setWhoAmI(whoAmI: Player) {
-        this.whoAmI = whoAmI;
-    }
-
-    public static playersAreReady(draft: IStoreState) {
+    public static playersAreReady(draft: IDraftState) {
         return draft.hostReady && draft.guestReady;
     }
 

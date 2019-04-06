@@ -12,7 +12,7 @@ import i18next from "i18next";
 import {Validator} from "../models/Validator";
 import {DraftsStore} from "../models/DraftsStore";
 import Draft from "../models/Draft";
-import {IStoreState} from "../types";
+import {IDraftState, IStoreState} from "../types";
 import Preset from "../models/Preset";
 
 interface IProps extends WithTranslation {
@@ -22,7 +22,7 @@ interface IProps extends WithTranslation {
     civPanelType: CivPanelType;
     whoAmI?: Player;
     triggerAction?: ActionType;
-    draft?: IStoreState;
+    draft?: IDraftState;
 
     onClickCivilisation?: (playerEvent:PlayerEvent, callback:any) => void;
 }

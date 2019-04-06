@@ -5,9 +5,7 @@ import {Provider} from 'react-redux';
 import io from 'socket.io-client';
 import {updateState} from './reducers';
 import {IStoreState} from './types';
-import Preset from "./models/Preset";
 import Draft from './containers/Draft';
-import ModelDraft from "./models/Draft";
 import {default as ModelAction} from "./models/Action";
 import {Util} from "./models/Util";
 import {IJoinedMessage} from "./models/IJoinedMessage";
@@ -19,6 +17,9 @@ import {Actions} from "./constants";
 import './index.css';
 import './i18n';
 import {DraftEvent} from "./models/DraftEvent";
+import NameGenerator from "./models/NameGenerator";
+import {default as i18n} from "./i18n";
+import Preset from "./models/Preset";
 
 const createMySocketMiddleware = () => {
     return (storeAPI: { dispatch: (arg0: Action) => void; }) => {
@@ -62,7 +63,19 @@ const createMySocketMiddleware = () => {
 };
 
 const store: Store = createStore<IStoreState, Action, any, Store>(updateState,
-    new ModelDraft('Sneaky Saladin', 'Beastly Barbarossa', Preset.SAMPLE),
+    {
+        nameHost: "…",
+        nameGuest: "…",
+        hostReady: false,
+        guestReady: false,
+        whoAmI: Player.NONE,
+        ownName: NameGenerator.getNameFromLocalStorage(),
+        preset: Preset.SAMPLE,
+        nextAction: 0,
+        events: [],
+        language: i18n.language,
+        showModal: (NameGenerator.getNameFromLocalStorage() === null)
+    },
     applyMiddleware(createMySocketMiddleware()));
 
 console.log(store.getState());

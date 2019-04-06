@@ -7,8 +7,8 @@ import NameGenerator from "../models/NameGenerator";
 import AdminEvent from "../models/AdminEvent";
 
 const initialState: IStoreState = {
-    nameHost: undefined,
-    nameGuest: undefined,
+    nameHost: "…",
+    nameGuest: "…",
     hostReady: false,
     guestReady: false,
     whoAmI: undefined,
