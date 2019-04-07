@@ -6,7 +6,7 @@ import Player from "../components/Player";
 export function mapStateToProps(state: IStoreState) {
     return {
         events: state.events,
-        nextAction: state.nextAction
+        nextAction: (state.hostReady && state.guestReady) ? state.nextAction : -1
     };
 }
 
