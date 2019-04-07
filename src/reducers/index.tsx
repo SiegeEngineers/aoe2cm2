@@ -43,24 +43,15 @@ export function updateState(state: IStoreState = initialState, action?: Action):
             return {...state, ownName: action.value, showModal: action.value === null};
         case Actions.APPLY_CONFIG:
             console.log(Actions.APPLY_CONFIG, action.value);
-            let hostReady = state.hostReady;
-            let guestReady = state.guestReady;
-            if (action.value.yourPlayerType === Player.HOST) {
-                hostReady = true;
-            }
-            if (action.value.yourPlayerType === Player.GUEST) {
-                hostReady = true;
-                guestReady = true;
-            }
             return {
                 ...state,
                 events: action.value.events,
                 nameGuest: action.value.nameGuest,
                 nameHost: action.value.nameHost,
-                nextAction: action.value.nextAction,
+                nextAction: action.value.events.length,
                 whoAmI: action.value.yourPlayerType,
-                hostReady,
-                guestReady
+                hostReady: action.value.hostReady,
+                guestReady: action.value.guestReady
             };
         case Actions.SET_EVENTS:
             console.log(Actions.SET_EVENTS, action.value);

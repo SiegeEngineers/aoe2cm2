@@ -1,10 +1,6 @@
 import Player from "./Player";
-import {DraftEvent} from "./DraftEvent";
+import {IDraftState} from "../types";
 
-export interface IDraftConfig {
-    nameHost: string,
-    nameGuest: string,
-    yourPlayerType: Player,
-    events: DraftEvent[],
-    nextAction: number
+export interface IDraftConfig extends IDraftState {
+    yourPlayerType: Player
 }

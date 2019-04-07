@@ -96,9 +96,7 @@ io.on("connection", (socket: socketio.Socket) => {
             .in(roomSpec)
             .emit("player_joined", {name: message.name, playerType});
         fn({
-            ...draftsStore.getPlayerNames(draftId),
-            events: draftsStore.getEvents(draftId),
-            nextAction: draftsStore.getNextAction(draftId),
+            ...draftsStore.getDraftOrThrow(draftId),
             yourPlayerType: playerType
         });
     });
