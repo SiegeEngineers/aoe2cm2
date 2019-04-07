@@ -9,6 +9,7 @@ import {Validator} from "./models/Validator";
 import {ValidationId} from "./models/ValidationId";
 import PlayerEvent from "./models/PlayerEvent";
 import {DraftEvent} from "./models/DraftEvent";
+import Action from "./models/Action";
 
 const app = express();
 app.set("port", process.env.PORT || 3000);
@@ -120,15 +121,24 @@ io.on("connection", (socket: socketio.Socket) => {
 
             const expectedAction = draftsStore.getExpectedAction(draftId);
             if (expectedAction !== null) {
-                if (expectedAction.player === Player.NONE) {
-                    setTimeout(() => {
-                        socket.nsp
-                            .in(roomHost)
-                            .in(roomGuest)
-                            .in(roomSpec)
-                            .emit("adminEvent", {...expectedAction, events: draftsStore.getEvents(draftId)});
-                        draftsStore.addDraftEvent(draftId, expectedAction);
-                    }, 2000);
+                if (expectedAction.player === Player.NONE) { // Admin Event
+                    if (expectedAction.action === Action.REVEAL_ALL) {
+                        setTimeout(() => {
+                            draftViews.revealAll();
+                            socket.nsp
+                                .in(roomHost)
+                                .emit("adminEvent", {...expectedAction, events: draftViews.getHostDraft().events});
+                            socket.nsp
+                                .in(roomGuest)
+                                .emit("adminEvent", {...expectedAction, events: draftViews.getGuestDraft().events});
+                            socket.nsp
+                                .in(roomSpec)
+                                .emit("adminEvent", {...expectedAction, events: draftViews.getSpecDraft().events});
+                            draftsStore.addDraftEvent(draftId, expectedAction);
+                        }, 2000);
+                    } else {
+                        throw new Error("Unknown expected action!" + expectedAction);
+                    }
                 }
             }
         } else {

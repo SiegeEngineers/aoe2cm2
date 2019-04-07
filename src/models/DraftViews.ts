@@ -98,6 +98,12 @@ class DraftViews {
         return draftEvent;
     }
 
+    revealAll() {
+        this.hostEvents = [...this.actualDraft.events];
+        this.guestEvents = [...this.actualDraft.events];
+        this.specEvents = [...this.actualDraft.events];
+    }
+
     private isLastActionHidden(): boolean {
         const lastAction = this.actualDraft.nextAction - 1;
         if (lastAction < 0 || lastAction >= this.actualDraft.preset.turns.length) {
