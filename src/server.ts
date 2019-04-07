@@ -9,7 +9,6 @@ import {Validator} from "./models/Validator";
 import {ValidationId} from "./models/ValidationId";
 import PlayerEvent from "./models/PlayerEvent";
 import {DraftEvent} from "./models/DraftEvent";
-import {Util} from "./models/Util";
 
 const app = express();
 app.set("port", process.env.PORT || 3000);
@@ -103,33 +102,20 @@ io.on("connection", (socket: socketio.Socket) => {
 
     socket.on("act", (message: PlayerEvent, fn: (retval: any) => void) => {
         console.log(message);
-        const validationErrors:ValidationId[] = validate(draftId, message);
+        const validationErrors:ValidationId[] = validateAndApply(draftId, message);
         if (validationErrors.length === 0) {
 
-            let hostMessage = message;
-            let guestMessage = message;
-            let specMessage = message;
-
-            if (draftsStore.isLastActionHidden(draftId)) {
-                const hiddenCivilisation = Util.getHiddenCivilisationForActionType(message.actionType);
-                specMessage = new PlayerEvent(message.player, message.actionType, hiddenCivilisation);
-                if (message.player === Player.HOST) {
-                    guestMessage = specMessage;
-                }
-                if (message.player === Player.GUEST) {
-                    hostMessage = specMessage;
-                }
-            }
+            const draftViews = draftsStore.getDraftViewsOrThrow(draftId);
 
             socket.nsp
                 .in(roomHost)
-                .emit("playerEvent", hostMessage);
+                .emit("playerEvent", draftViews.getLastEventForHost());
             socket.nsp
                 .in(roomGuest)
-                .emit("playerEvent", guestMessage);
+                .emit("playerEvent", draftViews.getLastEventForGuest());
             socket.nsp
                 .in(roomSpec)
-                .emit("playerEvent", specMessage);
+                .emit("playerEvent", draftViews.getLastEventForSpec());
             fn({status:'ok', validationErrors});
 
             const expectedAction = draftsStore.getExpectedAction(draftId);
@@ -155,6 +141,6 @@ server.listen(3000, () => {
     console.log("listening on *:3000");
 });
 
-function validate(draftId: string, message: DraftEvent): ValidationId[] {
+function validateAndApply(draftId: string, message: DraftEvent): ValidationId[] {
     return validator.validateAndApply(draftId, message);
 }

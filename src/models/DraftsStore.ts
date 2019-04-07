@@ -2,7 +2,6 @@ import Draft from "./Draft";
 import {DraftEvent} from "./DraftEvent";
 import Preset from "./Preset";
 import Player from "./Player";
-import {Util} from "./Util";
 import Turn from "./Turn";
 import DraftViews from "./DraftViews";
 
@@ -19,8 +18,8 @@ export class DraftsStore {
     }
 
     public addDraftEvent(draftId: string, draftEvent: DraftEvent) {
-        const draft: DraftViews = this.getDraftViewsOrThrow(draftId);
-        draft.addDraftEvent(draftEvent);
+        const draftViews: DraftViews = this.getDraftViewsOrThrow(draftId);
+        draftViews.addDraftEvent(draftEvent);
     }
 
     public getExpectedAction(draftId: string): Turn | null {
@@ -94,14 +93,5 @@ export class DraftsStore {
         if (this.has(draftId)) {
             throw new Error(`Draft with id ${draftId} already exists`);
         }
-    }
-
-    public isLastActionHidden(draftId: string) {
-        const draft: Draft = this.getDraftOrThrow(draftId);
-        const lastAction = draft.nextAction - 1;
-        if (lastAction < 0 || lastAction >= draft.preset.turns.length) {
-            return false;
-        }
-        return Util.isHidden(draft.preset.turns[lastAction]);
     }
 }
