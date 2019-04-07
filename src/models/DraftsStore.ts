@@ -4,26 +4,24 @@ import Preset from "./Preset";
 import Player from "./Player";
 import {Util} from "./Util";
 import Turn from "./Turn";
+import DraftViews from "./DraftViews";
 
 export class DraftsStore {
-    private drafts: Map<string, Draft> = new Map<string, Draft>();
+    private drafts: Map<string, DraftViews> = new Map<string, DraftViews>();
 
     public createDraft(draftId: string, draft: Draft) {
         this.assertDraftDoesNotExist(draftId);
-        this.drafts.set(draftId, draft);
+        this.drafts.set(draftId, new DraftViews(draft));
     }
 
     public initDraft(draftId: string) {
-        this.assertDraftDoesNotExist(draftId);
-        this.drafts.set(draftId, new Draft('…', '…', Preset.SAMPLE));
+        this.createDraft(draftId, new Draft('…', '…', Preset.SAMPLE));
     }
 
     public addDraftEvent(draftId: string, draftEvent: DraftEvent) {
-        const draft: Draft = this.getDraftOrThrow(draftId);
-        draft.events.push(draftEvent);
-        draft.nextAction++;
+        const draft: DraftViews = this.getDraftViewsOrThrow(draftId);
+        draft.addDraftEvent(draftEvent);
     }
-
 
     public getExpectedAction(draftId: string): Turn | null {
         const draft: Draft = this.getDraftOrThrow(draftId);
@@ -81,7 +79,15 @@ export class DraftsStore {
         if (!this.has(draftId)) {
             throw new Error(`Draft with id ${draftId} not found`);
         }
-        return this.drafts.get(draftId) as Draft;
+        let draftViews = this.drafts.get(draftId) as DraftViews;
+        return draftViews.getActualDraft() as Draft;
+    }
+
+    public getDraftViewsOrThrow(draftId: string): DraftViews {
+        if (!this.has(draftId)) {
+            throw new Error(`Draft with id ${draftId} not found`);
+        }
+        return this.drafts.get(draftId) as DraftViews;
     }
 
     private assertDraftDoesNotExist(draftId: string) {
