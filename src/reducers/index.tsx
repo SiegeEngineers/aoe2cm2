@@ -20,6 +20,10 @@ const initialState: IStoreState = {
     showModal: (NameGenerator.getNameFromLocalStorage() === null)
 };
 
+function nowPlus30Seconds() {
+    return new Date(Date.now() + 30999);
+}
+
 export function updateState(state: IStoreState = initialState, action?: Action): IStoreState {
     if (!action) return state;
     switch (action.type) {
@@ -27,13 +31,18 @@ export function updateState(state: IStoreState = initialState, action?: Action):
             console.log(Actions.ACTION_COMPLETED, state.nextAction + 1);
             const eventsCopy = [...state.events];
             eventsCopy.push(action.value);
-            return {...state, nextAction: state.nextAction + 1, events: eventsCopy};
+            return {
+                ...state,
+                nextAction: state.nextAction + 1,
+                events: eventsCopy,
+                countdownUntil: nowPlus30Seconds()
+            };
         case Actions.SET_NAME:
             console.log(Actions.SET_NAME, action);
             if (action.player === Player.HOST) {
                 return {...state, nameHost: action.value, hostReady: true};
             } else if (action.player === Player.GUEST) {
-                return {...state, nameGuest: action.value, guestReady: true};
+                return {...state, nameGuest: action.value, guestReady: true, countdownUntil: nowPlus30Seconds()};
             } else {
                 return state;
             }
@@ -43,6 +52,7 @@ export function updateState(state: IStoreState = initialState, action?: Action):
             return {...state, ownName: action.value, showModal: action.value === null};
         case Actions.APPLY_CONFIG:
             console.log(Actions.APPLY_CONFIG, action.value);
+            const countdownUntil = action.value.hostReady && action.value.guestReady ? nowPlus30Seconds() : undefined;
             return {
                 ...state,
                 events: action.value.events,
@@ -51,13 +61,23 @@ export function updateState(state: IStoreState = initialState, action?: Action):
                 nextAction: action.value.events.length,
                 whoAmI: action.value.yourPlayerType,
                 hostReady: action.value.hostReady,
-                guestReady: action.value.guestReady
+                guestReady: action.value.guestReady,
+                countdownUntil
             };
         case Actions.SET_EVENTS:
             console.log(Actions.SET_EVENTS, action.value);
             const eventsCopy2 = [...action.value.events];
             eventsCopy2.push(new AdminEvent(action.value.player, action.value.action));
-            return {...state, nextAction: state.nextAction + 1, events: eventsCopy2};
+            let countdownUntil2 = undefined;
+            if (state.preset !== undefined && state.preset.turns.length > eventsCopy2.length) {
+                countdownUntil2 = nowPlus30Seconds();
+            }
+            return {
+                ...state,
+                nextAction: state.nextAction + 1,
+                events: eventsCopy2,
+                countdownUntil: countdownUntil2
+            };
 
         case Actions.SET_LANGUAGE:
             console.log(Actions.SET_LANGUAGE, action.language);

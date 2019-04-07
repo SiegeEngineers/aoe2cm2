@@ -2,7 +2,7 @@ import * as React from 'react';
 import '../pure-min.css'
 import '../style2.css'
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
-import Countdown from "./Countdown";
+import Countdown from "../containers/Countdown";
 
 interface IProps extends WithTranslation {
     message: string
