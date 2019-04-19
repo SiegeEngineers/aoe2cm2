@@ -34,7 +34,8 @@
     "HIDDEN_PICK": "",
     "HIDDEN_BAN": "",
     "HIDDEN_SNIPE": "",
-    "HIDDEN": ""
+    "HIDDEN": "",
+    "RANDOM": "Random"
   },
   "messages": {
     "finished": "Finished."

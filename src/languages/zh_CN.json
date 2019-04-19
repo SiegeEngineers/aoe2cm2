@@ -34,7 +34,8 @@
     "HIDDEN_PICK": "",
     "HIDDEN_BAN": "",
     "HIDDEN_SNIPE": "",
-    "HIDDEN": ""
+    "HIDDEN": "",
+    "RANDOM": "随机"
   },
   "messages": {
     "finished": "todo"

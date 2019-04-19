@@ -60,6 +60,10 @@ class DraftViews {
                 const hiddenCivilisation = Util.getHiddenCivilisationForActionType(draftEvent.actionType);
                 specMessage = new PlayerEvent(draftEvent.player, draftEvent.actionType, hiddenCivilisation);
             }
+            if (Util.isRandomCiv(draftEvent.civilisation)) {
+                Util.setRandomCivilisation(draftEvent, this.actualDraft);
+
+            }
             this.specEvents.push(specMessage);
             if (draftEvent.player === Player.HOST) {
                 this.hostEvents.push(draftEvent);

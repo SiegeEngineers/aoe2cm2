@@ -16,11 +16,14 @@ class CivGrid extends React.Component<IProps, object> {
             return React.createElement(CivPanel, {civPanelType: CivPanelType.CHOICE, active: false, civilisation: civ});
         });
 
+        const randomCiv = React.createElement(CivPanel, {civPanelType: CivPanelType.CHOICE, active: false, civilisation: Civilisation.RANDOM});
+
         return (
             <div>
                 <div id="civgrid" className="chooser card">
                     <div className="pure-g chooser-grid box-content">
                         {civPanels}
+                        {randomCiv}
                     </div>
                     <div className="card-background">cbg</div>
                 </div>
