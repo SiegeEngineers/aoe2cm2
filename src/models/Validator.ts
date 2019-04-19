@@ -19,6 +19,9 @@ export class Validator {
         if (Util.isPlayerEvent(message)) {
             const playerEvent: PlayerEvent = message as PlayerEvent;
 
+            if (Util.isRandomCiv(message.civilisation)) {
+                Util.setRandomCivilisation(playerEvent, draftId, this.draftsStore);
+            }
             validationErrors = Validator.checkAllValidations(draftId, this.draftsStore, playerEvent);
         }
 

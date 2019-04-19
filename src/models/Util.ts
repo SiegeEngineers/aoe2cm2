@@ -7,7 +7,6 @@ import Turn from "./Turn";
 import ActionType from "./ActionType";
 import GameVersion from "./GameVersion";
 import {Validator} from "./Validator";
-import Draft from "./Draft";
 import {DraftsStore} from "./DraftsStore";
 
 export const Util = {
@@ -87,24 +86,21 @@ export const Util = {
         return civilisation.name.toUpperCase() === "RANDOM";
     },
 
-    setRandomCivilisation(playerEvent: PlayerEvent, actualDraft: Draft) {
-        const draft = Draft.from(actualDraft);
-        const draftStore = new DraftsStore();
-        draftStore.createDraft('draftId', draft);
-
+    setRandomCivilisation(playerEvent: PlayerEvent, draftId: string, draftStore: DraftsStore) {
         const maxCivilisationIndex = Civilisation.ALL.length - 1;
         const randomCivIndex = Math.floor(Math.random() * maxCivilisationIndex);
         playerEvent.civilisation = Civilisation.ALL[randomCivIndex];
 
-        const errors = Validator.checkAllValidations('draftId', draftStore, playerEvent);
+        const errors = Validator.checkAllValidations(draftId, draftStore, playerEvent);
 
         if (errors.length === 0) {
             // random civ is set correctly.
             return;
         } else {
+            console.log("Errors:", errors, "Randomly choosen civ:", Civilisation.ALL[randomCivIndex]);
             // recursively try to set random civ
             playerEvent.civilisation = Civilisation.RANDOM;
-            this.setRandomCivilisation(playerEvent, actualDraft);
+            this.setRandomCivilisation(playerEvent, draftId, draftStore);
         }
     }
 };
