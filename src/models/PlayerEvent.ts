@@ -2,7 +2,7 @@ import Civilisation from "./Civilisation";
 import ActionType from "./ActionType";
 import Player from "./Player";
 
-export class PlayerEvent {
+class PlayerEvent {
     public readonly player: Player;
     public readonly actionType: ActionType;
     public civilisation: Civilisation;
