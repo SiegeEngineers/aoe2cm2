@@ -6,6 +6,8 @@ import AdminEvent from "./AdminEvent";
 import Turn from "./Turn";
 import ActionType from "./ActionType";
 import GameVersion from "./GameVersion";
+import {Validator} from "./Validator";
+import {DraftsStore} from "./DraftsStore";
 
 export const Util = {
     notUndefined(...args: any[]): boolean {
@@ -78,6 +80,32 @@ export const Util = {
 
     isTechnicalCivilisation(civilisation: Civilisation): boolean {
         return civilisation.gameVersion === GameVersion.TECHNICAL;
-    }
+    },
 
+    isRandomCivilisation(civilisation: Civilisation): boolean {
+        return civilisation.name.toUpperCase() === "RANDOM";
+    },
+
+    getRandomCivilisation(civilisationsList: Civilisation[]): Civilisation {
+        const maxCivilisationIndex = civilisationsList.length;
+        const randomCivIndex = Math.floor(Math.random() * maxCivilisationIndex);
+        return civilisationsList.splice(randomCivIndex)[0];
+    },
+
+    setRandomCivilisationIfNeeded(playerEvent: PlayerEvent, draftId: string,
+                                  draftStore: DraftsStore, civilisationsList: Civilisation[]): PlayerEvent {
+        if (Util.isRandomCivilisation(playerEvent.civilisation)) {
+            const randomCiv = Util.getRandomCivilisation(civilisationsList);
+            const playerEventForValidation = new PlayerEvent(playerEvent.player, playerEvent.actionType, randomCiv);
+            const errors = Validator.checkAllValidations(draftId, draftStore, playerEventForValidation);
+            if (errors.length === 0) {
+                playerEvent.civilisation = randomCiv;
+                playerEvent.civilisation.isRandomlyChosenCiv = true;
+                return playerEvent;
+            } else {
+                return this.setRandomCivilisationIfNeeded(playerEvent, draftId, draftStore, civilisationsList);
+            }
+        }
+        return playerEvent;
+    }
 };

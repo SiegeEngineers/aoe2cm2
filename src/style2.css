@@ -367,11 +367,7 @@ a:hover {
 	display: none;
 }
 
-.random-pick.card {
-	position: relative;
-}
-
-.random-pick.card .card-overlay {
+.random-pick {
 	display: block;
 	position: absolute;
 	width: 48px;

@@ -40,7 +40,8 @@ enum Name {
     HIDDEN_PICK = "HIDDEN_PICK",
     HIDDEN_BAN = "HIDDEN_BAN",
     HIDDEN_SNIPE = "HIDDEN_SNIPE",
-    HIDDEN = "HIDDEN"
+    HIDDEN = "HIDDEN",
+    RANDOM = "RANDOM"
 }
 
 class Civilisation {
@@ -58,6 +59,7 @@ class Civilisation {
     public static readonly TEUTONS:Civilisation = new Civilisation(Name.TEUTONS, GameVersion.AOK);
     public static readonly TURKS:Civilisation = new Civilisation(Name.TURKS, GameVersion.AOK);
     public static readonly VIKINGS:Civilisation = new Civilisation(Name.VIKINGS, GameVersion.AOK);
+    public static readonly RANDOM: Civilisation = new Civilisation(Name.RANDOM, GameVersion.AOK);
 
     public static readonly AZTECS:Civilisation = new Civilisation(Name.AZTECS, GameVersion.CONQUERORS);
     public static readonly HUNS:Civilisation = new Civilisation(Name.HUNS, GameVersion.CONQUERORS);
@@ -122,6 +124,7 @@ class Civilisation {
 
     public readonly name:Name;
     public readonly gameVersion:GameVersion;
+    public isRandomlyChosenCiv: boolean = false;
 
     private constructor(name:Name, gameVersion:GameVersion){
         this.name = name;
