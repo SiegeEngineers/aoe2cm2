@@ -89,7 +89,6 @@ export const Util = {
     getRandomCivilisation(civilisationsList: Civilisation[]): Civilisation {
         const maxCivilisationIndex = civilisationsList.length;
         const randomCivIndex = Math.floor(Math.random() * maxCivilisationIndex);
-        // remove the random civilisation from the list and return it
         return civilisationsList.splice(randomCivIndex)[0];
     },
 
@@ -100,12 +99,10 @@ export const Util = {
             const playerEventForValidation = new PlayerEvent(playerEvent.player, playerEvent.actionType, randomCiv);
             const errors = Validator.checkAllValidations(draftId, draftStore, playerEventForValidation);
             if (errors.length === 0) {
-                // random civ is set correctly.
                 playerEvent.civilisation = randomCiv;
                 playerEvent.civilisation.isRandomlyChosenCiv = true;
                 return playerEvent;
             } else {
-                // recursively try to set random civ
                 return this.setRandomCivilisationIfNeeded(playerEvent, draftId, draftStore, civilisationsList);
             }
         }
