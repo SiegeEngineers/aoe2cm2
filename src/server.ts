@@ -104,9 +104,7 @@ io.on("connection", (socket: socketio.Socket) => {
 
     socket.on("act", (message: PlayerEvent, fn: (retval: any) => void) => {
         console.log(message);
-        if (Util.isRandomCiv(message.civilisation)) {
-            Util.setRandomCivilisation(message, draftId, draftsStore);
-        }
+        message = Util.setRandomCivilisationIfNeeded(message, draftId, draftsStore);
         const validationErrors:ValidationId[] = validateAndApply(draftId, message);
         if (validationErrors.length === 0) {
 

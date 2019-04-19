@@ -87,9 +87,9 @@ class CivPanel extends React.Component<IProps, IState> {
         if (!this.state.used) {
             usedMarkerClass += ' hidden';
         }
-        let randomMakerClass = "random-pick";
+        let randomMarkerClass = "random-pick";
         if (!this.props.civilisation || !this.props.civilisation.isRandomlyChosenCiv) {
-            randomMakerClass += ' hidden';
+            randomMarkerClass += ' hidden';
         }
         return (
             <div className={className} onClick={onClickAction}>
@@ -98,7 +98,7 @@ class CivPanel extends React.Component<IProps, IState> {
                         <div className="stretchy-image">
                             <img src={imageSrc} alt={civilisationName}/>
                         </div>
-                        <div className={randomMakerClass}/>
+                        <div className={randomMarkerClass}/>
                         <div className={snipeMarkerClass}/>
                         <div className={usedMarkerClass}/>
                         <div className={textClass}>

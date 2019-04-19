@@ -22,8 +22,8 @@ class CivGrid extends React.Component<IProps, object> {
             <div>
                 <div id="civgrid" className="chooser card">
                     <div className="pure-g chooser-grid box-content">
-                        {civPanels}
                         {randomCiv}
+                        {civPanels}
                     </div>
                     <div className="card-background">cbg</div>
                 </div>

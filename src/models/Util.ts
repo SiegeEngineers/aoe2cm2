@@ -82,26 +82,31 @@ export const Util = {
         return civilisation.gameVersion === GameVersion.TECHNICAL;
     },
 
-    isRandomCiv(civilisation: Civilisation): boolean {
+    isRandomCivilisation(civilisation: Civilisation): boolean {
         return civilisation.name.toUpperCase() === "RANDOM";
     },
 
-    setRandomCivilisation(playerEvent: PlayerEvent, draftId: string, draftStore: DraftsStore) {
-        const maxCivilisationIndex = Civilisation.ALL.length - 1;
+    getRandomCivilisation(): Civilisation {
+        const maxCivilisationIndex = Civilisation.ALL.length;
         const randomCivIndex = Math.floor(Math.random() * maxCivilisationIndex);
-        playerEvent.civilisation = Civilisation.ALL[randomCivIndex];
+        return Civilisation.ALL[randomCivIndex];
+    },
 
-        const errors = Validator.checkAllValidations(draftId, draftStore, playerEvent);
-
-        if (errors.length === 0) {
-            // random civ is set correctly.
-            playerEvent.civilisation.isRandomlyChosenCiv = true;
-            return;
-        } else {
-            console.log("Errors:", errors, "Randomly chosen civ:", Civilisation.ALL[randomCivIndex]);
-            // recursively try to set random civ
-            playerEvent.civilisation = Civilisation.RANDOM;
-            this.setRandomCivilisation(playerEvent, draftId, draftStore);
+    setRandomCivilisationIfNeeded(playerEvent: PlayerEvent, draftId: string, draftStore: DraftsStore): PlayerEvent {
+        if (Util.isRandomCivilisation(playerEvent.civilisation)) {
+            const randomCiv = Util.getRandomCivilisation();
+            const playerEventForValidation = new PlayerEvent(playerEvent.player, playerEvent.actionType, randomCiv);
+            const errors = Validator.checkAllValidations(draftId, draftStore, playerEventForValidation);
+            if (errors.length === 0) {
+                // random civ is set correctly.
+                playerEvent.civilisation.isRandomlyChosenCiv = true;
+                playerEvent.civilisation = randomCiv;
+                return playerEvent;
+            } else {
+                // recursively try to set random civ
+                return this.setRandomCivilisationIfNeeded(playerEvent, draftId, draftStore);
+            }
         }
+        return playerEvent;
     }
 };
