@@ -20,6 +20,9 @@ import {DraftEvent} from "./models/DraftEvent";
 import NameGenerator from "./models/NameGenerator";
 import {default as i18n} from "./i18n";
 import Preset from "./models/Preset";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import Placeholder from "./components/Placeholder";
+import NotFound404 from "./components/404";
 
 const createMySocketMiddleware = () => {
     return (storeAPI: { dispatch: (arg0: Action) => void; }) => {
@@ -82,7 +85,16 @@ console.log(store.getState());
 
 ReactDOM.render(
     <Provider store={store}>
-        <Draft/>
+        <Router>
+            <Switch>
+                <Route path="/draft/:id" component={Draft}/>
+                <Route path="/presets" component={Placeholder}/>
+                <Route path="/preset/:id" component={Placeholder}/>
+                <Route path="/preset/:id/new" component={Placeholder}/>
+                <Route path="/practice" component={Placeholder}/>
+                <Route component={NotFound404}/>
+            </Switch>
+        </Router>
     </Provider>,
     document.getElementById('root') as HTMLElement
 );

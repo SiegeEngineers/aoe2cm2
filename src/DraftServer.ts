@@ -57,6 +57,9 @@ export const DraftServer = {
         });
 
         app.use(express.static('build'));
+        app.use('/', (req, res) => {
+            res.sendFile(__dirname + '/index.html');
+        });
 
         io.on("connection", (socket: socketio.Socket) => {
             const draftId: string = socket.handshake.query.draftId;
