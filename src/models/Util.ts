@@ -89,7 +89,7 @@ export const Util = {
     getRandomCivilisation(civilisationsList: Civilisation[]): Civilisation {
         const maxCivilisationIndex = civilisationsList.length;
         const randomCivIndex = Math.floor(Math.random() * maxCivilisationIndex);
-        return civilisationsList.splice(randomCivIndex)[0];
+        return civilisationsList.splice(randomCivIndex, 1)[0];
     },
 
     setRandomCivilisationIfNeeded(playerEvent: PlayerEvent, draftId: string,

@@ -12,126 +12,157 @@ exports[`CivGrid renders correctly 1`] = `
         "civilisations": Array [
           Civilisation {
             "gameVersion": 2,
+            "isRandomlyChosenCiv": false,
             "name": "Aztecs",
           },
           Civilisation {
             "gameVersion": 4,
+            "isRandomlyChosenCiv": false,
             "name": "Berbers",
           },
           Civilisation {
             "gameVersion": 1,
+            "isRandomlyChosenCiv": false,
             "name": "Britons",
           },
           Civilisation {
             "gameVersion": 5,
+            "isRandomlyChosenCiv": false,
             "name": "Burmese",
           },
           Civilisation {
             "gameVersion": 1,
+            "isRandomlyChosenCiv": false,
             "name": "Byzantines",
           },
           Civilisation {
             "gameVersion": 1,
+            "isRandomlyChosenCiv": false,
             "name": "Celts",
           },
           Civilisation {
             "gameVersion": 1,
+            "isRandomlyChosenCiv": false,
             "name": "Chinese",
           },
           Civilisation {
             "gameVersion": 4,
+            "isRandomlyChosenCiv": false,
             "name": "Ethiopians",
           },
           Civilisation {
             "gameVersion": 1,
+            "isRandomlyChosenCiv": false,
             "name": "Franks",
           },
           Civilisation {
             "gameVersion": 1,
+            "isRandomlyChosenCiv": false,
             "name": "Goths",
           },
           Civilisation {
             "gameVersion": 2,
+            "isRandomlyChosenCiv": false,
             "name": "Huns",
           },
           Civilisation {
             "gameVersion": 3,
+            "isRandomlyChosenCiv": false,
             "name": "Incas",
           },
           Civilisation {
             "gameVersion": 3,
+            "isRandomlyChosenCiv": false,
             "name": "Indians",
           },
           Civilisation {
             "gameVersion": 3,
+            "isRandomlyChosenCiv": false,
             "name": "Italians",
           },
           Civilisation {
             "gameVersion": 1,
+            "isRandomlyChosenCiv": false,
             "name": "Japanese",
           },
           Civilisation {
             "gameVersion": 5,
+            "isRandomlyChosenCiv": false,
             "name": "Khmer",
           },
           Civilisation {
             "gameVersion": 2,
+            "isRandomlyChosenCiv": false,
             "name": "Koreans",
           },
           Civilisation {
             "gameVersion": 3,
+            "isRandomlyChosenCiv": false,
             "name": "Magyars",
           },
           Civilisation {
             "gameVersion": 5,
+            "isRandomlyChosenCiv": false,
             "name": "Malay",
           },
           Civilisation {
             "gameVersion": 4,
+            "isRandomlyChosenCiv": false,
             "name": "Malians",
           },
           Civilisation {
             "gameVersion": 2,
+            "isRandomlyChosenCiv": false,
             "name": "Mayans",
           },
           Civilisation {
             "gameVersion": 1,
+            "isRandomlyChosenCiv": false,
             "name": "Mongols",
           },
           Civilisation {
             "gameVersion": 1,
+            "isRandomlyChosenCiv": false,
             "name": "Persians",
           },
           Civilisation {
             "gameVersion": 4,
+            "isRandomlyChosenCiv": false,
             "name": "Portuguese",
           },
           Civilisation {
             "gameVersion": 1,
+            "isRandomlyChosenCiv": false,
             "name": "Saracens",
           },
           Civilisation {
             "gameVersion": 3,
+            "isRandomlyChosenCiv": false,
             "name": "Slavs",
           },
           Civilisation {
             "gameVersion": 2,
+            "isRandomlyChosenCiv": false,
             "name": "Spanish",
           },
           Civilisation {
             "gameVersion": 1,
+            "isRandomlyChosenCiv": false,
             "name": "Teutons",
           },
           Civilisation {
             "gameVersion": 1,
+            "isRandomlyChosenCiv": false,
             "name": "Turks",
           },
           Civilisation {
             "gameVersion": 5,
+            "isRandomlyChosenCiv": false,
             "name": "Vietnamese",
           },
           Civilisation {
             "gameVersion": 1,
+            "isRandomlyChosenCiv": false,
             "name": "Vikings",
           },
         ],
@@ -233,126 +264,157 @@ exports[`CivGrid renders correctly 1`] = `
         "civilisations": Array [
           Civilisation {
             "gameVersion": 2,
+            "isRandomlyChosenCiv": false,
             "name": "Aztecs",
           },
           Civilisation {
             "gameVersion": 4,
+            "isRandomlyChosenCiv": false,
             "name": "Berbers",
           },
           Civilisation {
             "gameVersion": 1,
+            "isRandomlyChosenCiv": false,
             "name": "Britons",
           },
           Civilisation {
             "gameVersion": 5,
+            "isRandomlyChosenCiv": false,
             "name": "Burmese",
           },
           Civilisation {
             "gameVersion": 1,
+            "isRandomlyChosenCiv": false,
             "name": "Byzantines",
           },
           Civilisation {
             "gameVersion": 1,
+            "isRandomlyChosenCiv": false,
             "name": "Celts",
           },
           Civilisation {
             "gameVersion": 1,
+            "isRandomlyChosenCiv": false,
             "name": "Chinese",
           },
           Civilisation {
             "gameVersion": 4,
+            "isRandomlyChosenCiv": false,
             "name": "Ethiopians",
           },
           Civilisation {
             "gameVersion": 1,
+            "isRandomlyChosenCiv": false,
             "name": "Franks",
           },
           Civilisation {
             "gameVersion": 1,
+            "isRandomlyChosenCiv": false,
             "name": "Goths",
           },
           Civilisation {
             "gameVersion": 2,
+            "isRandomlyChosenCiv": false,
             "name": "Huns",
           },
           Civilisation {
             "gameVersion": 3,
+            "isRandomlyChosenCiv": false,
             "name": "Incas",
           },
           Civilisation {
             "gameVersion": 3,
+            "isRandomlyChosenCiv": false,
             "name": "Indians",
           },
           Civilisation {
             "gameVersion": 3,
+            "isRandomlyChosenCiv": false,
             "name": "Italians",
           },
           Civilisation {
             "gameVersion": 1,
+            "isRandomlyChosenCiv": false,
             "name": "Japanese",
           },
           Civilisation {
             "gameVersion": 5,
+            "isRandomlyChosenCiv": false,
             "name": "Khmer",
           },
           Civilisation {
             "gameVersion": 2,
+            "isRandomlyChosenCiv": false,
             "name": "Koreans",
           },
           Civilisation {
             "gameVersion": 3,
+            "isRandomlyChosenCiv": false,
             "name": "Magyars",
           },
           Civilisation {
             "gameVersion": 5,
+            "isRandomlyChosenCiv": false,
             "name": "Malay",
           },
           Civilisation {
             "gameVersion": 4,
+            "isRandomlyChosenCiv": false,
             "name": "Malians",
           },
           Civilisation {
             "gameVersion": 2,
+            "isRandomlyChosenCiv": false,
             "name": "Mayans",
           },
           Civilisation {
             "gameVersion": 1,
+            "isRandomlyChosenCiv": false,
             "name": "Mongols",
           },
           Civilisation {
             "gameVersion": 1,
+            "isRandomlyChosenCiv": false,
             "name": "Persians",
           },
           Civilisation {
             "gameVersion": 4,
+            "isRandomlyChosenCiv": false,
             "name": "Portuguese",
           },
           Civilisation {
             "gameVersion": 1,
+            "isRandomlyChosenCiv": false,
             "name": "Saracens",
           },
           Civilisation {
             "gameVersion": 3,
+            "isRandomlyChosenCiv": false,
             "name": "Slavs",
           },
           Civilisation {
             "gameVersion": 2,
+            "isRandomlyChosenCiv": false,
             "name": "Spanish",
           },
           Civilisation {
             "gameVersion": 1,
+            "isRandomlyChosenCiv": false,
             "name": "Teutons",
           },
           Civilisation {
             "gameVersion": 1,
+            "isRandomlyChosenCiv": false,
             "name": "Turks",
           },
           Civilisation {
             "gameVersion": 5,
+            "isRandomlyChosenCiv": false,
             "name": "Vietnamese",
           },
           Civilisation {
             "gameVersion": 1,
+            "isRandomlyChosenCiv": false,
             "name": "Vikings",
           },
         ],

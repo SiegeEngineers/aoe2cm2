@@ -7,6 +7,7 @@ exports[`BAN CivPanels render correctly 1`] = `
   civilisation={
     Civilisation {
       "gameVersion": 2,
+      "isRandomlyChosenCiv": false,
       "name": "Aztecs",
     }
   }
@@ -23,6 +24,7 @@ exports[`BAN CivPanels render correctly 2`] = `
   civilisation={
     Civilisation {
       "gameVersion": 4,
+      "isRandomlyChosenCiv": false,
       "name": "Berbers",
     }
   }
@@ -39,6 +41,7 @@ exports[`BAN CivPanels render correctly 3`] = `
   civilisation={
     Civilisation {
       "gameVersion": 1,
+      "isRandomlyChosenCiv": false,
       "name": "Britons",
     }
   }
@@ -55,6 +58,7 @@ exports[`BAN CivPanels render correctly 4`] = `
   civilisation={
     Civilisation {
       "gameVersion": 5,
+      "isRandomlyChosenCiv": false,
       "name": "Burmese",
     }
   }
@@ -71,6 +75,7 @@ exports[`BAN CivPanels render correctly 5`] = `
   civilisation={
     Civilisation {
       "gameVersion": 1,
+      "isRandomlyChosenCiv": false,
       "name": "Byzantines",
     }
   }
@@ -87,6 +92,7 @@ exports[`BAN CivPanels render correctly 6`] = `
   civilisation={
     Civilisation {
       "gameVersion": 1,
+      "isRandomlyChosenCiv": false,
       "name": "Celts",
     }
   }
@@ -103,6 +109,7 @@ exports[`BAN CivPanels render correctly 7`] = `
   civilisation={
     Civilisation {
       "gameVersion": 1,
+      "isRandomlyChosenCiv": false,
       "name": "Chinese",
     }
   }
@@ -119,6 +126,7 @@ exports[`BAN CivPanels render correctly 8`] = `
   civilisation={
     Civilisation {
       "gameVersion": 4,
+      "isRandomlyChosenCiv": false,
       "name": "Ethiopians",
     }
   }
@@ -135,6 +143,7 @@ exports[`BAN CivPanels render correctly 9`] = `
   civilisation={
     Civilisation {
       "gameVersion": 1,
+      "isRandomlyChosenCiv": false,
       "name": "Franks",
     }
   }
@@ -151,6 +160,7 @@ exports[`BAN CivPanels render correctly 10`] = `
   civilisation={
     Civilisation {
       "gameVersion": 1,
+      "isRandomlyChosenCiv": false,
       "name": "Goths",
     }
   }
@@ -167,6 +177,7 @@ exports[`BAN CivPanels render correctly 11`] = `
   civilisation={
     Civilisation {
       "gameVersion": 2,
+      "isRandomlyChosenCiv": false,
       "name": "Huns",
     }
   }
@@ -183,6 +194,7 @@ exports[`BAN CivPanels render correctly 12`] = `
   civilisation={
     Civilisation {
       "gameVersion": 3,
+      "isRandomlyChosenCiv": false,
       "name": "Incas",
     }
   }
@@ -199,6 +211,7 @@ exports[`BAN CivPanels render correctly 13`] = `
   civilisation={
     Civilisation {
       "gameVersion": 3,
+      "isRandomlyChosenCiv": false,
       "name": "Indians",
     }
   }
@@ -215,6 +228,7 @@ exports[`BAN CivPanels render correctly 14`] = `
   civilisation={
     Civilisation {
       "gameVersion": 3,
+      "isRandomlyChosenCiv": false,
       "name": "Italians",
     }
   }
@@ -231,6 +245,7 @@ exports[`BAN CivPanels render correctly 15`] = `
   civilisation={
     Civilisation {
       "gameVersion": 1,
+      "isRandomlyChosenCiv": false,
       "name": "Japanese",
     }
   }
@@ -247,6 +262,7 @@ exports[`BAN CivPanels render correctly 16`] = `
   civilisation={
     Civilisation {
       "gameVersion": 5,
+      "isRandomlyChosenCiv": false,
       "name": "Khmer",
     }
   }
@@ -263,6 +279,7 @@ exports[`BAN CivPanels render correctly 17`] = `
   civilisation={
     Civilisation {
       "gameVersion": 2,
+      "isRandomlyChosenCiv": false,
       "name": "Koreans",
     }
   }
@@ -279,6 +296,7 @@ exports[`BAN CivPanels render correctly 18`] = `
   civilisation={
     Civilisation {
       "gameVersion": 3,
+      "isRandomlyChosenCiv": false,
       "name": "Magyars",
     }
   }
@@ -295,6 +313,7 @@ exports[`BAN CivPanels render correctly 19`] = `
   civilisation={
     Civilisation {
       "gameVersion": 5,
+      "isRandomlyChosenCiv": false,
       "name": "Malay",
     }
   }
@@ -311,6 +330,7 @@ exports[`BAN CivPanels render correctly 20`] = `
   civilisation={
     Civilisation {
       "gameVersion": 4,
+      "isRandomlyChosenCiv": false,
       "name": "Malians",
     }
   }
@@ -327,6 +347,7 @@ exports[`BAN CivPanels render correctly 21`] = `
   civilisation={
     Civilisation {
       "gameVersion": 2,
+      "isRandomlyChosenCiv": false,
       "name": "Mayans",
     }
   }
@@ -343,6 +364,7 @@ exports[`BAN CivPanels render correctly 22`] = `
   civilisation={
     Civilisation {
       "gameVersion": 1,
+      "isRandomlyChosenCiv": false,
       "name": "Mongols",
     }
   }
@@ -359,6 +381,7 @@ exports[`BAN CivPanels render correctly 23`] = `
   civilisation={
     Civilisation {
       "gameVersion": 1,
+      "isRandomlyChosenCiv": false,
       "name": "Persians",
     }
   }
@@ -375,6 +398,7 @@ exports[`BAN CivPanels render correctly 24`] = `
   civilisation={
     Civilisation {
       "gameVersion": 4,
+      "isRandomlyChosenCiv": false,
       "name": "Portuguese",
     }
   }
@@ -391,6 +415,7 @@ exports[`BAN CivPanels render correctly 25`] = `
   civilisation={
     Civilisation {
       "gameVersion": 1,
+      "isRandomlyChosenCiv": false,
       "name": "Saracens",
     }
   }
@@ -407,6 +432,7 @@ exports[`BAN CivPanels render correctly 26`] = `
   civilisation={
     Civilisation {
       "gameVersion": 3,
+      "isRandomlyChosenCiv": false,
       "name": "Slavs",
     }
   }
@@ -423,6 +449,7 @@ exports[`BAN CivPanels render correctly 27`] = `
   civilisation={
     Civilisation {
       "gameVersion": 2,
+      "isRandomlyChosenCiv": false,
       "name": "Spanish",
     }
   }
@@ -439,6 +466,7 @@ exports[`BAN CivPanels render correctly 28`] = `
   civilisation={
     Civilisation {
       "gameVersion": 1,
+      "isRandomlyChosenCiv": false,
       "name": "Teutons",
     }
   }
@@ -455,6 +483,7 @@ exports[`BAN CivPanels render correctly 29`] = `
   civilisation={
     Civilisation {
       "gameVersion": 1,
+      "isRandomlyChosenCiv": false,
       "name": "Turks",
     }
   }
@@ -471,6 +500,7 @@ exports[`BAN CivPanels render correctly 30`] = `
   civilisation={
     Civilisation {
       "gameVersion": 5,
+      "isRandomlyChosenCiv": false,
       "name": "Vietnamese",
     }
   }
@@ -487,6 +517,7 @@ exports[`BAN CivPanels render correctly 31`] = `
   civilisation={
     Civilisation {
       "gameVersion": 1,
+      "isRandomlyChosenCiv": false,
       "name": "Vikings",
     }
   }
@@ -503,6 +534,7 @@ exports[`PICK CivPanels render correctly 1`] = `
   civilisation={
     Civilisation {
       "gameVersion": 2,
+      "isRandomlyChosenCiv": false,
       "name": "Aztecs",
     }
   }
@@ -519,6 +551,7 @@ exports[`PICK CivPanels render correctly 2`] = `
   civilisation={
     Civilisation {
       "gameVersion": 4,
+      "isRandomlyChosenCiv": false,
       "name": "Berbers",
     }
   }
@@ -535,6 +568,7 @@ exports[`PICK CivPanels render correctly 3`] = `
   civilisation={
     Civilisation {
       "gameVersion": 1,
+      "isRandomlyChosenCiv": false,
       "name": "Britons",
     }
   }
@@ -551,6 +585,7 @@ exports[`PICK CivPanels render correctly 4`] = `
   civilisation={
     Civilisation {
       "gameVersion": 5,
+      "isRandomlyChosenCiv": false,
       "name": "Burmese",
     }
   }
@@ -567,6 +602,7 @@ exports[`PICK CivPanels render correctly 5`] = `
   civilisation={
     Civilisation {
       "gameVersion": 1,
+      "isRandomlyChosenCiv": false,
       "name": "Byzantines",
     }
   }
@@ -583,6 +619,7 @@ exports[`PICK CivPanels render correctly 6`] = `
   civilisation={
     Civilisation {
       "gameVersion": 1,
+      "isRandomlyChosenCiv": false,
       "name": "Celts",
     }
   }
@@ -599,6 +636,7 @@ exports[`PICK CivPanels render correctly 7`] = `
   civilisation={
     Civilisation {
       "gameVersion": 1,
+      "isRandomlyChosenCiv": false,
       "name": "Chinese",
     }
   }
@@ -615,6 +653,7 @@ exports[`PICK CivPanels render correctly 8`] = `
   civilisation={
     Civilisation {
       "gameVersion": 4,
+      "isRandomlyChosenCiv": false,
       "name": "Ethiopians",
     }
   }
@@ -631,6 +670,7 @@ exports[`PICK CivPanels render correctly 9`] = `
   civilisation={
     Civilisation {
       "gameVersion": 1,
+      "isRandomlyChosenCiv": false,
       "name": "Franks",
     }
   }
@@ -647,6 +687,7 @@ exports[`PICK CivPanels render correctly 10`] = `
   civilisation={
     Civilisation {
       "gameVersion": 1,
+      "isRandomlyChosenCiv": false,
       "name": "Goths",
     }
   }
@@ -663,6 +704,7 @@ exports[`PICK CivPanels render correctly 11`] = `
   civilisation={
     Civilisation {
       "gameVersion": 2,
+      "isRandomlyChosenCiv": false,
       "name": "Huns",
     }
   }
@@ -679,6 +721,7 @@ exports[`PICK CivPanels render correctly 12`] = `
   civilisation={
     Civilisation {
       "gameVersion": 3,
+      "isRandomlyChosenCiv": false,
       "name": "Incas",
     }
   }
@@ -695,6 +738,7 @@ exports[`PICK CivPanels render correctly 13`] = `
   civilisation={
     Civilisation {
       "gameVersion": 3,
+      "isRandomlyChosenCiv": false,
       "name": "Indians",
     }
   }
@@ -711,6 +755,7 @@ exports[`PICK CivPanels render correctly 14`] = `
   civilisation={
     Civilisation {
       "gameVersion": 3,
+      "isRandomlyChosenCiv": false,
       "name": "Italians",
     }
   }
@@ -727,6 +772,7 @@ exports[`PICK CivPanels render correctly 15`] = `
   civilisation={
     Civilisation {
       "gameVersion": 1,
+      "isRandomlyChosenCiv": false,
       "name": "Japanese",
     }
   }
@@ -743,6 +789,7 @@ exports[`PICK CivPanels render correctly 16`] = `
   civilisation={
     Civilisation {
       "gameVersion": 5,
+      "isRandomlyChosenCiv": false,
       "name": "Khmer",
     }
   }
@@ -759,6 +806,7 @@ exports[`PICK CivPanels render correctly 17`] = `
   civilisation={
     Civilisation {
       "gameVersion": 2,
+      "isRandomlyChosenCiv": false,
       "name": "Koreans",
     }
   }
@@ -775,6 +823,7 @@ exports[`PICK CivPanels render correctly 18`] = `
   civilisation={
     Civilisation {
       "gameVersion": 3,
+      "isRandomlyChosenCiv": false,
       "name": "Magyars",
     }
   }
@@ -791,6 +840,7 @@ exports[`PICK CivPanels render correctly 19`] = `
   civilisation={
     Civilisation {
       "gameVersion": 5,
+      "isRandomlyChosenCiv": false,
       "name": "Malay",
     }
   }
@@ -807,6 +857,7 @@ exports[`PICK CivPanels render correctly 20`] = `
   civilisation={
     Civilisation {
       "gameVersion": 4,
+      "isRandomlyChosenCiv": false,
       "name": "Malians",
     }
   }
@@ -823,6 +874,7 @@ exports[`PICK CivPanels render correctly 21`] = `
   civilisation={
     Civilisation {
       "gameVersion": 2,
+      "isRandomlyChosenCiv": false,
       "name": "Mayans",
     }
   }
@@ -839,6 +891,7 @@ exports[`PICK CivPanels render correctly 22`] = `
   civilisation={
     Civilisation {
       "gameVersion": 1,
+      "isRandomlyChosenCiv": false,
       "name": "Mongols",
     }
   }
@@ -855,6 +908,7 @@ exports[`PICK CivPanels render correctly 23`] = `
   civilisation={
     Civilisation {
       "gameVersion": 1,
+      "isRandomlyChosenCiv": false,
       "name": "Persians",
     }
   }
@@ -871,6 +925,7 @@ exports[`PICK CivPanels render correctly 24`] = `
   civilisation={
     Civilisation {
       "gameVersion": 4,
+      "isRandomlyChosenCiv": false,
       "name": "Portuguese",
     }
   }
@@ -887,6 +942,7 @@ exports[`PICK CivPanels render correctly 25`] = `
   civilisation={
     Civilisation {
       "gameVersion": 1,
+      "isRandomlyChosenCiv": false,
       "name": "Saracens",
     }
   }
@@ -903,6 +959,7 @@ exports[`PICK CivPanels render correctly 26`] = `
   civilisation={
     Civilisation {
       "gameVersion": 3,
+      "isRandomlyChosenCiv": false,
       "name": "Slavs",
     }
   }
@@ -919,6 +976,7 @@ exports[`PICK CivPanels render correctly 27`] = `
   civilisation={
     Civilisation {
       "gameVersion": 2,
+      "isRandomlyChosenCiv": false,
       "name": "Spanish",
     }
   }
@@ -935,6 +993,7 @@ exports[`PICK CivPanels render correctly 28`] = `
   civilisation={
     Civilisation {
       "gameVersion": 1,
+      "isRandomlyChosenCiv": false,
       "name": "Teutons",
     }
   }
@@ -951,6 +1010,7 @@ exports[`PICK CivPanels render correctly 29`] = `
   civilisation={
     Civilisation {
       "gameVersion": 1,
+      "isRandomlyChosenCiv": false,
       "name": "Turks",
     }
   }
@@ -967,6 +1027,7 @@ exports[`PICK CivPanels render correctly 30`] = `
   civilisation={
     Civilisation {
       "gameVersion": 5,
+      "isRandomlyChosenCiv": false,
       "name": "Vietnamese",
     }
   }
@@ -983,6 +1044,7 @@ exports[`PICK CivPanels render correctly 31`] = `
   civilisation={
     Civilisation {
       "gameVersion": 1,
+      "isRandomlyChosenCiv": false,
       "name": "Vikings",
     }
   }
