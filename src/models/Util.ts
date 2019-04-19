@@ -86,25 +86,27 @@ export const Util = {
         return civilisation.name.toUpperCase() === "RANDOM";
     },
 
-    getRandomCivilisation(): Civilisation {
-        const maxCivilisationIndex = Civilisation.ALL.length;
+    getRandomCivilisation(civilisationsList: Civilisation[]): Civilisation {
+        const maxCivilisationIndex = civilisationsList.length;
         const randomCivIndex = Math.floor(Math.random() * maxCivilisationIndex);
-        return Civilisation.ALL[randomCivIndex];
+        // remove the random civilisation from the list and return it
+        return civilisationsList.splice(randomCivIndex)[0];
     },
 
-    setRandomCivilisationIfNeeded(playerEvent: PlayerEvent, draftId: string, draftStore: DraftsStore): PlayerEvent {
+    setRandomCivilisationIfNeeded(playerEvent: PlayerEvent, draftId: string,
+                                  draftStore: DraftsStore, civilisationsList: Civilisation[]): PlayerEvent {
         if (Util.isRandomCivilisation(playerEvent.civilisation)) {
-            const randomCiv = Util.getRandomCivilisation();
+            const randomCiv = Util.getRandomCivilisation(civilisationsList);
             const playerEventForValidation = new PlayerEvent(playerEvent.player, playerEvent.actionType, randomCiv);
             const errors = Validator.checkAllValidations(draftId, draftStore, playerEventForValidation);
             if (errors.length === 0) {
                 // random civ is set correctly.
-                playerEvent.civilisation.isRandomlyChosenCiv = true;
                 playerEvent.civilisation = randomCiv;
+                playerEvent.civilisation.isRandomlyChosenCiv = true;
                 return playerEvent;
             } else {
                 // recursively try to set random civ
-                return this.setRandomCivilisationIfNeeded(playerEvent, draftId, draftStore);
+                return this.setRandomCivilisationIfNeeded(playerEvent, draftId, draftStore, civilisationsList);
             }
         }
         return playerEvent;
