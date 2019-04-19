@@ -124,6 +124,7 @@ class Civilisation {
 
     public readonly name:Name;
     public readonly gameVersion:GameVersion;
+    public isRandomlyChosenCiv: boolean = false;
 
     private constructor(name:Name, gameVersion:GameVersion){
         this.name = name;

@@ -95,9 +95,10 @@ export const Util = {
 
         if (errors.length === 0) {
             // random civ is set correctly.
+            playerEvent.civilisation.isRandomlyChosenCiv = true;
             return;
         } else {
-            console.log("Errors:", errors, "Randomly choosen civ:", Civilisation.ALL[randomCivIndex]);
+            console.log("Errors:", errors, "Randomly chosen civ:", Civilisation.ALL[randomCivIndex]);
             // recursively try to set random civ
             playerEvent.civilisation = Civilisation.RANDOM;
             this.setRandomCivilisation(playerEvent, draftId, draftStore);
