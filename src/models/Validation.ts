@@ -128,6 +128,9 @@ export class Validation {
             if (playerEvent.actionType !== ActionType.SNIPE || playerEvent.player === Player.NONE) {
                 return true;
             }
+            if (Util.isRandomCivilisation(playerEvent.civilisation)) {
+                return true;
+            }
             const opponent: Player = playerEvent.player === Player.HOST ? Player.GUEST : Player.HOST;
             const picksByOpponent: Civilisation[] = draft.getPicks(opponent);
             if (!Validation.includes(picksByOpponent, playerEvent.civilisation)) {
@@ -155,13 +158,22 @@ export class Validation {
                     if (!Validation.includes(picksByOpponent, sniped)) {
                         return false;
                     }
-                    const index = picksByOpponent.indexOf(sniped);
-                    delete picksByOpponent[index];
+                    const index = Validation.indexOfSnipe(picksByOpponent, sniped);
+                    picksByOpponent.splice(index);
                 }
             }
         }
         return true;
     });
+
+    private static indexOfSnipe(picks: Civilisation[], sniped: Civilisation): number {
+        for (let i = 0; i < picks.length; i++) {
+            if (picks[i].name === sniped.name && picks[i].gameVersion === sniped.gameVersion) {
+                return i;
+            }
+        }
+        return -1;
+    }
 
     public static readonly ALL: Validation[] = [
         Validation.VLD_000,
