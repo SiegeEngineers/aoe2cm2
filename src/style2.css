@@ -379,6 +379,14 @@ a:hover {
     background-repeat: no-repeat;
 }
 
+.ban .random-pick {
+	top: -4px;
+	right: -4px;
+	width: 24px;
+	height: 24px;
+	background-size: 24px 24px;
+}
+
 /*
 #new_game > .pure-g {
 	margin: auto;
