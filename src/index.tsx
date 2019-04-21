@@ -25,8 +25,11 @@ import Placeholder from "./components/Placeholder";
 import NotFound404 from "./components/404";
 
 const createMySocketMiddleware = () => {
-    return (storeAPI: { dispatch: (arg0: Action) => void; }) => {
-        const socket = io({query: {draftId: Util.getIdFromUrl()}});
+    function initSocketIfFirstUse(socket: any, storeAPI: { dispatch: (arg0: Action) => void }) {
+        if (socket !== undefined) {
+            return socket;
+        }
+        socket = io({query: {draftId: Util.getIdFromUrl()}});
 
         socket.on("player_joined", (data: IJoinedMessage) => {
             console.log("player_joined", data);
@@ -44,9 +47,15 @@ const createMySocketMiddleware = () => {
             console.log('message recieved:', "[adminEvent]", JSON.stringify(message));
             storeAPI.dispatch({type: Actions.SET_EVENTS, value: message} as ISetEvents);
         });
+        return socket;
+    }
+
+    return (storeAPI: { dispatch: (arg0: Action) => void; }) => {
+        let socket: any;
 
         return (next: (arg0: any) => void) => (action: Action) => {
             if (action.type === Actions.SEND_JOIN) {
+                socket = initSocketIfFirstUse(socket, storeAPI);
                 const sendJoin = action as ISendJoin;
                 socket.emit('join', {name: sendJoin.name}, (data: IDraftConfig) => {
                     console.log('join callback', data);
@@ -56,6 +65,7 @@ const createMySocketMiddleware = () => {
             }
 
             if (action.type === Actions.CLICK_CIVILISATION) {
+                socket = initSocketIfFirstUse(socket, storeAPI);
                 const clickCivilisation = action as IClickOnCiv;
                 socket.emit('act', clickCivilisation.playerEvent, clickCivilisation.callback);
             }
