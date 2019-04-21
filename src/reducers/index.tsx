@@ -5,6 +5,7 @@ import {Actions} from "../constants";
 import {default as i18n} from "../i18n";
 import NameGenerator from "../models/NameGenerator";
 import AdminEvent from "../models/AdminEvent";
+import Preset from "../models/Preset";
 
 const initialState: IStoreState = {
     nameHost: "…",
@@ -52,6 +53,7 @@ export function updateState(state: IStoreState = initialState, action?: Action):
             return {...state, ownName: action.value, showModal: action.value === null};
         case Actions.APPLY_CONFIG:
             console.log(Actions.APPLY_CONFIG, action.value);
+            const preset = Preset.fromPojo(action.value.preset);
             const countdownUntil = action.value.hostReady && action.value.guestReady ? nowPlus30Seconds() : undefined;
             return {
                 ...state,
@@ -62,7 +64,8 @@ export function updateState(state: IStoreState = initialState, action?: Action):
                 whoAmI: action.value.yourPlayerType,
                 hostReady: action.value.hostReady,
                 guestReady: action.value.guestReady,
-                countdownUntil
+                countdownUntil,
+                preset
             };
         case Actions.SET_EVENTS:
             console.log(Actions.SET_EVENTS, action.value);

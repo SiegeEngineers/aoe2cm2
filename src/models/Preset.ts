@@ -1,5 +1,6 @@
 import Civilisation from "./Civilisation";
 import Turn from "./Turn";
+import {CivilisationEncoder} from "./CivilisationEncoder";
 
 class Preset {
 
@@ -35,17 +36,28 @@ class Preset {
     ]);
 
     public readonly name: string;
-    public readonly civilisations: Civilisation[];
+    public readonly encodedCivilisations: string;
     public readonly turns: Turn[];
 
     constructor(name: string, civilisations: Civilisation[], turns: Turn[] = []) {
         this.name = name;
-        this.civilisations = civilisations;
+        this.encodedCivilisations = CivilisationEncoder.encodeCivilisationArray(civilisations);
         this.turns = turns;
+    }
+
+    public static fromPojo(preset: { name: string, encodedCivilisations: string, turns: Turn[] } | undefined): Preset | undefined {
+        if (preset === undefined) {
+            return undefined;
+        }
+        return new Preset(preset.name, CivilisationEncoder.decodeCivilisationArray(preset.encodedCivilisations), preset.turns);
     }
 
     public addTurn(turn: Turn) {
         this.turns.push(turn);
+    }
+
+    get civilisations(): Civilisation[] {
+        return CivilisationEncoder.decodeCivilisationArray(this.encodedCivilisations);
     }
 }
 

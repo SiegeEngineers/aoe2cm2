@@ -88,39 +88,41 @@ class Civilisation {
     public static readonly HIDDEN_SNIPE: Civilisation = new Civilisation(Name.HIDDEN_SNIPE, GameVersion.TECHNICAL);
     public static readonly HIDDEN: Civilisation = new Civilisation(Name.HIDDEN, GameVersion.TECHNICAL);
 
+    // DO NOT CHANGE THE ORDER OF ELEMENTS IN THIS ARRAY!!!
+    // ONLY APPEND NEW CIVILISATIONS AT THE END!!!
     public static readonly ALL = [
+        Civilisation.AZTECS,
+        Civilisation.BERBERS,
         Civilisation.BRITONS,
+        Civilisation.BURMESE,
         Civilisation.BYZANTINES,
         Civilisation.CELTS,
         Civilisation.CHINESE,
+        Civilisation.ETHIOPIANS,
         Civilisation.FRANKS,
         Civilisation.GOTHS,
-        Civilisation.JAPANESE,
-        Civilisation.MONGOLS,
-        Civilisation.PERSIANS,
-        Civilisation.SARACENS,
-        Civilisation.TEUTONS,
-        Civilisation.TURKS,
-        Civilisation.VIKINGS,
-        Civilisation.AZTECS,
         Civilisation.HUNS,
-        Civilisation.KOREANS,
-        Civilisation.MAYANS,
-        Civilisation.SPANISH,
-        Civilisation.ITALIANS,
         Civilisation.INCAS,
         Civilisation.INDIANS,
-        Civilisation.MAGYARS,
-        Civilisation.SLAVS,
-        Civilisation.BERBERS,
-        Civilisation.ETHIOPIANS,
-        Civilisation.MALIANS,
-        Civilisation.PORTUGUESE,
-        Civilisation.BURMESE,
+        Civilisation.ITALIANS,
+        Civilisation.JAPANESE,
         Civilisation.KHMER,
+        Civilisation.KOREANS,
+        Civilisation.MAGYARS,
         Civilisation.MALAY,
-        Civilisation.VIETNAMESE
-    ].sort(Civilisation.sortCivsByName);
+        Civilisation.MALIANS,
+        Civilisation.MAYANS,
+        Civilisation.MONGOLS,
+        Civilisation.PERSIANS,
+        Civilisation.PORTUGUESE,
+        Civilisation.SARACENS,
+        Civilisation.SLAVS,
+        Civilisation.SPANISH,
+        Civilisation.TEUTONS,
+        Civilisation.TURKS,
+        Civilisation.VIETNAMESE,
+        Civilisation.VIKINGS
+    ];
 
     public readonly name:Name;
     public readonly gameVersion:GameVersion;
@@ -131,15 +133,6 @@ class Civilisation {
         this.gameVersion = gameVersion;
     }
 
-    private static sortCivsByName(a: Civilisation, b: Civilisation): number {
-        if (a.name > b.name) {
-            return 1;
-        } else if (b.name > a.name) {
-            return -1;
-        } else {
-            return 0;
-        }
-    }
 }
 
 export default Civilisation;
