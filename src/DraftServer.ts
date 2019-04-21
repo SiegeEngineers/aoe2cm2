@@ -45,6 +45,13 @@ export const DraftServer = {
             console.log('redirecting');
             res.redirect('/draft/' + newDraftId());
         });
+        app.use('/preset/new', (req, res) => {
+            const draftId = newDraftId();
+            if (!draftsStore.has(draftId)) {
+                draftsStore.initDraft(draftId);
+            }
+            res.json({draftId});
+        });
         app.use('/draft/[a-zA-Z]+', (req, res) => {
             res.sendFile(__dirname + '/index.html');
         });
