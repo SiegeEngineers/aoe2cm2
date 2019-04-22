@@ -11,9 +11,9 @@ import "../models/DraftEvent";
 import {DraftEvent} from "../models/DraftEvent";
 import {IDraftConfig} from "../models/IDraftConfig";
 import {WithTranslation, withTranslation} from "react-i18next";
-import LanguageSelector from "../containers/LanguageSelector";
 import Modal from "../containers/Modal";
 import NameGenerator from "../models/NameGenerator";
+import {Link} from "react-router-dom";
 
 interface IProps extends WithTranslation {
     nameHost: string;
@@ -53,10 +53,8 @@ class Draft extends React.Component<IProps, IState> {
 
         return (
             <div id="container">
-                <div className={'languageSelectors'}>
-                    <LanguageSelector language={'en-GB'}/>
-                    <LanguageSelector language={'de-DE'}/>
-                    <LanguageSelector language={'zh-CN'}/>
+                <div style={{position: 'absolute', top: '8px', left: '8px'}}>
+                    <span><Link to="/"><span className="back-icon header-navigation">back</span></Link></span>
                 </div>
 
                 <Modal/>

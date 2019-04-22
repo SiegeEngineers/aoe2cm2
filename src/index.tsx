@@ -21,8 +21,10 @@ import NameGenerator from "./models/NameGenerator";
 import {default as i18n} from "./i18n";
 import Preset from "./models/Preset";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import Placeholder from "./components/Placeholder";
 import NotFound404 from "./components/404";
+import Menu from "./components/Menu";
+import LanguageSelectors from "./components/LanguageSelectors";
+import Footer from "./components/Footer";
 
 const createMySocketMiddleware = () => {
     function initSocketIfFirstUse(socket: any, storeAPI: { dispatch: (arg0: Action) => void }) {
@@ -95,16 +97,20 @@ console.log(store.getState());
 
 ReactDOM.render(
     <Provider store={store}>
+        <LanguageSelectors/>
         <Router>
             <Switch>
                 <Route path="/draft/:id" component={Draft}/>
-                <Route path="/presets" component={Placeholder}/>
-                <Route path="/preset/:id" component={Placeholder}/>
-                <Route path="/preset/:id/new" component={Placeholder}/>
-                <Route path="/practice" component={Placeholder}/>
+                <Route exact path="/" component={Menu}/>
+                <Route path="/presets" component={Menu}/>
+                <Route path="/preset/:id" component={Menu}/>
+                <Route path="/preset/:id/new" component={Menu}/>
+                <Route path="/spectate" component={Menu}/>
+                <Route path="/practice" component={Menu}/>
                 <Route component={NotFound404}/>
             </Switch>
         </Router>
+        <Footer/>
     </Provider>,
     document.getElementById('root') as HTMLElement
 );

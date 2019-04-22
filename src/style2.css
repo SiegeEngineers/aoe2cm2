@@ -11,6 +11,14 @@ html, body {
 	padding: 0;
 }
 
+#root {
+	min-height: 100%;
+}
+
+.content {
+	min-height: 100%;
+}
+
 .language-selector {
 	padding-right: .5rem;
 }
@@ -75,18 +83,10 @@ html, body {
     font-size: 12px;
 }
 
-.footer form {
-	padding: 0;
-	margin: 0;
-}
-
-
-.footer form input {
-  opacity: 0.54;
-}
-
-.footer form input:hover {
-	opacity: 0.84;
+.inline-logo {
+	display: inline-block;
+	vertical-align: middle;
+	margin-bottom: .1rem;
 }
 
 #captain-name {
@@ -210,7 +210,7 @@ html, body {
 
 body {
 	background-color: #eeeeee;
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-family: "Trebuchet MS", Helvetica, sans-serif !important;
 	color: rgba(0, 0, 0, 0.87);
 }
 
@@ -247,13 +247,23 @@ a:hover {
 	padding-bottom: 16px;
 	text-align: center;
 	background: url('images/captainsmodelogo.png') no-repeat 0 16px;
-	width: 310;
-	height: 310;
+	width: 310px;
+	height: 310px;
 	box-sizing: content-box;
 }
 
 .title span {
 	display: none;
+}
+
+.main-menu {
+	font-size: 24px;
+	text-align: center;
+}
+
+.main-menu a.pure-menu-link {
+	text-decoration: none;
+	color: #009688;
 }
 
 @media screen and (max-width: 1200px) {

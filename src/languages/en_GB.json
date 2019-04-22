@@ -67,5 +67,19 @@
     "VLD_200": "Civilisation has been exclusively banned before by same player",
     "VLD_300": "Civilisation has not been picked before by opponent",
     "VLD_301": "The opponent does not have a non-sniped pick of the civilisation"
+  },
+  "menu": {
+    "welcome": "Welcome",
+    "hostOrJoin": "Host or Join",
+    "spectate": "Spectate",
+    "practice": "Practice"
+  },
+  "instructions": {
+    "title":"Instructions",
+    "1":"Captains mode is a turn-based civilization picker. Each captain can <1>pick</1> and <3>ban</3> civilizations in a predefined order. Bans prevent the opponent's captain from picking the civilizations.",
+    "2":"For each turn captains have <1>30 seconds</1>. In case of timeout a random civilization is picked for the captain or no civilization gets banned.",
+    "3":"There are also extension available for tournaments. <1>Hidden</1> option (black corners) hides the civilization choices until they are explicitly showed (visible in the timeline at the top).",
+    "4":"<0>Global</0> pick or bans disables the civilization for later turns. For other specific settings, please refer to the preset descriptions.",
+    "5":"<0>Practice</0> mode is for testing purposes, where both sides are controlled by a single player."
   }
 }

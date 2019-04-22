@@ -41,7 +41,7 @@ export const DraftServer = {
             return id;
         }
 
-        app.use(/^\/$/, (req, res) => {
+        app.use(/^\/new$/, (req, res) => {
             console.log('redirecting');
             res.redirect('/draft/' + newDraftId());
         });

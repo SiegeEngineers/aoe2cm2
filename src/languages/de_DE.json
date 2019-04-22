@@ -47,25 +47,50 @@
     "editInfo": "Du kannst deinen Namen jederzeit ändern, indem du auf die Namensanzeige oben rechts klickst.",
     "readTheRules": "Lies die Regeln, bevor du loslegst!"
   },
-  "HOST": "Host-Kapitän",
-  "GUEST": "Gast-Kapitän",
+  "HOST": "Host-Kapitänin",
+  "GUEST": "Gast-Kapitänin",
   "Picks": "Ausgewählt",
   "Bans": "Gebannt",
   "Start": "Start",
   "End": "Ende",
-  "<0></0>PICK": "PICK",
-  "<0></0>BAN": "BAN",
+  "<0></0>PICK": "WAHL",
+  "<0></0>BAN": "BANN",
   "validationFailed": "Validierungsfehler:",
   "errors": {
     "VLD_000": "Draft erwartet derzeit keine Aktion",
-    "VLD_001": "Handelnder Kapitän ist derzeit nicht an der Reihe",
+    "VLD_001": "Handelnde Kapitänin ist derzeit nicht an der Reihe",
     "VLD_002": "Durchgeführte Aktion ist nicht im vorgegebenen Ablauf vorgesehen",
     "VLD_100": "Die Zivilisation wurde bereits global gebannt",
-    "VLD_101": "Die Zivilisation wurde bereits für diesen Kapitän gebannt",
-    "VLD_102": "Die Zivilisation wurde bereits von diesem Kapitän ausgewählt",
+    "VLD_101": "Die Zivilisation wurde bereits für diese Kapitänin gebannt",
+    "VLD_102": "Die Zivilisation wurde bereits von dieser Kapitänin ausgewählt",
     "VLD_103": "Die Zivilisation wurde bereits global ausgewählt",
-    "VLD_200": "Die Zivilisation wurde bereits von diesem Kapitän exklusiv ausgewählt",
-    "VLD_300": "Die Zivilisation wurde noch nicht vom gegnerischen Kapitän ausgewählt",
-    "VLD_301": "Der gegnerische Kapitän hat diese Zivilisation nicht so oft ausgewählt, dass sie noch gesnipert werden könnte"
+    "VLD_200": "Die Zivilisation wurde bereits von dieser Kapitänin exklusiv ausgewählt",
+    "VLD_300": "Die Zivilisation wurde noch nicht von der gegnerischen Kapitänin ausgewählt",
+    "VLD_301": "Die gegnerische Kapitänin hat diese Zivilisation nicht so oft ausgewählt, dass sie noch gesnipert werden könnte"
+  },
+  "menu": {
+    "welcome": "Willkommen",
+    "hostOrJoin": "Zum Draft",
+    "spectate": "Zusehen",
+    "practice": "Üben"
+  },
+  "instructions": {
+    "title":"Instruktionen",
+    "1":"Captains mode dient der rundenbasierten Auswahl von Zivilisationen. Die Kapitäninnen <1>wählen</1> und <3>bannen</3> abwechselnd in einer vorgegebenen Reihenfolge Zivilisationen. Eine gebannte Zivilisation kann von der gegnerischen Kapitänin nicht mehr gewählt werden.",
+    "2":"Für jede Runde hat eine Kapitäin <1>30 Sekunden</1> Zeit. Läuft die Zeit ab, wird eine zufällige Auswahl für sie getroffen.",
+    "3":"Weitere Züge sind möglich: <1>Versteckt</1> (schwarze Balkenenden) zeigt ausgeführte Aktionen nicht an, bis sie explizit enthüllt werden (sichtbar in der Zeitleiste am oberen Seitenrand).",
+    "4":"<0>Globale</0> Wahl oder globaler Bann führen dazu, dass eine Zivilisation in zukünftigen Zügen von keiner Kapitänin mehr ausgewählt werden kann. Weitere Arten von Zügen können den Voreinstellungs-Beschreibungen entnommen werden.",
+    "5":"<0>Üben</0> ist ein Modus, in dem ein Testdurchlauf durchgeführt werden kann, in dem die Aktionen beider Seiten von einer Person gesteuert werden."
+  },
+  "presets": {
+    "joinTitle": "Draft beitreten",
+    "code": "Code:",
+    "join": "Beitreten",
+    "useTitle": "Verfügbare Presets"
+  },
+  "spectate": {
+    "joinTitle": "Draft zusehen",
+    "code": "Code:",
+    "join": "Zusehen"
   }
 }
