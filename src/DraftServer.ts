@@ -30,23 +30,12 @@ export const DraftServer = {
             draftsStore.setPlayerName(draftId, player, name);
         }
 
-        function newDraftId(): string {
-
-            const characters: string = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-            let id: string = '';
-            for (let i = 0; i < 5; i++) {
-
-                id += characters.charAt(Math.floor(Math.random() * characters.length));
-            }
-            return id;
-        }
-
         app.use(/^\/new$/, (req, res) => {
             console.log('redirecting');
-            res.redirect('/draft/' + newDraftId());
+            res.redirect('/draft/' + Util.newDraftId());
         });
         app.use('/preset/new', (req, res) => {
-            const draftId = newDraftId();
+            const draftId = Util.newDraftId();
             if (!draftsStore.has(draftId)) {
                 draftsStore.initDraft(draftId);
             }
