@@ -28,7 +28,7 @@ import Footer from "./components/Footer";
 
 const createMySocketMiddleware = () => {
     function initSocketIfFirstUse(socket: any, storeAPI: { dispatch: (arg0: Action) => void }) {
-        if (socket !== undefined) {
+        if (socket !== null) {
             return socket;
         }
         socket = io({query: {draftId: Util.getIdFromUrl()}});
@@ -52,8 +52,15 @@ const createMySocketMiddleware = () => {
         return socket;
     }
 
+    function disconnect(socket: any, storeAPI: { dispatch: (arg0: Action) => void }) {
+        if (socket !== null && socket.connected) {
+            socket.disconnect();
+        }
+        socket = null;
+    }
+
     return (storeAPI: { dispatch: (arg0: Action) => void; }) => {
-        let socket: any;
+        let socket: any = null;
 
         return (next: (arg0: any) => void) => (action: Action) => {
             if (action.type === Actions.SEND_JOIN) {
@@ -70,6 +77,10 @@ const createMySocketMiddleware = () => {
                 socket = initSocketIfFirstUse(socket, storeAPI);
                 const clickCivilisation = action as IClickOnCiv;
                 socket.emit('act', clickCivilisation.playerEvent, clickCivilisation.callback);
+            }
+
+            if (action.type === Actions.DISCONNECT) {
+                socket = disconnect(socket, storeAPI);
             }
 
             return next(action);

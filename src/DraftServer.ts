@@ -153,13 +153,17 @@ export const DraftServer = {
                                     draftsStore.addDraftEvent(draftId, expectedAction);
                                 }, 2000);
                             } else {
-                                throw new Error("Unknown expected action!" + expectedAction);
+                                throw new Error("Unknown expected action! " + expectedAction);
                             }
                         }
                     }
                 } else {
                     fn({status: 'error', validationErrors});
                 }
+            });
+
+            socket.on('disconnect', function () {
+                console.log('Got disconnect! draftId: ' + draftId);
             });
         });
 

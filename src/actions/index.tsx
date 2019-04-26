@@ -47,6 +47,10 @@ export interface ISetEvents {
     value: { player: Player, action: ModelAction, events: DraftEvent[] }
 }
 
+export interface IDisconnect {
+    type: Actions.DISCONNECT
+}
+
 export type Action =
     ISetName
     | IChangeOwnName
@@ -55,7 +59,8 @@ export type Action =
     | ISendJoin
     | IClickOnCiv
     | ISetLanguage
-    | ISetEvents;
+    | ISetEvents
+    | IDisconnect;
 
 export function setName(player: Player, value: string): ISetName {
     return {
@@ -112,5 +117,11 @@ export function setEvents(value: { player: Player, action: ModelAction, events: 
     return {
         value,
         type: Actions.SET_EVENTS
+    }
+}
+
+export function disconnect(): IDisconnect {
+    return {
+        type: Actions.DISCONNECT
     }
 }

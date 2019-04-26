@@ -28,6 +28,7 @@ interface IProps extends WithTranslation {
     onSetNameHostAction?: (name: string) => void;
     onSetNameGuestAction?: (name: string) => void;
     triggerJoin?: (name: string) => void;
+    triggerDisconnect?: () => void;
 }
 
 interface IState {
@@ -54,7 +55,7 @@ class Draft extends React.Component<IProps, IState> {
         return (
             <div id="container">
                 <div style={{position: 'absolute', top: '8px', left: '8px'}}>
-                    <span><Link to="/"><span className="back-icon header-navigation">back</span></Link></span>
+                    <span onClick={this.props.triggerDisconnect}><Link to="/"><span className="back-icon header-navigation">back</span></Link></span>
                 </div>
 
                 <Modal/>
