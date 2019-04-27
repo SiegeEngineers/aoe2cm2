@@ -32,10 +32,6 @@ class Menu extends React.Component<WithTranslation, object> {
                         <li className="pure-menu-item">
                             <Link to='/practice' className="pure-menu-link"><Trans>menu.practice</Trans></Link>
                         </li>
-                        <li className="pure-menu-item">
-                            {/*Todo: remove this, it is only for testing purposes during development*/}
-                            <a href='/new' className="pure-menu-link">dev:new</a>
-                        </li>
                     </ul>
                 </div>
                 <Switch>

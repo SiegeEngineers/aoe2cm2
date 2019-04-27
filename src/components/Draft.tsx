@@ -19,6 +19,7 @@ interface IProps extends WithTranslation {
     nameHost: string;
     nameGuest: string;
     whoAmI: Player;
+    ownName: string | null;
     preset: Preset;
     nextAction: number;
 
@@ -37,10 +38,9 @@ interface IState {
 
 class Draft extends React.Component<IProps, IState> {
 
-    constructor(props: IProps) {
-        super(props);
-
-        let username: string | null = NameGenerator.getNameFromLocalStorage();
+    componentDidMount(): void {
+        let username: string | null = NameGenerator.getNameFromLocalStorage(this.props.ownName);
+        console.log("componentDidMount", this.props.triggerJoin, username);
         if (this.props.triggerJoin !== undefined && username !== null) {
             console.log('triggering JOIN');
             this.props.triggerJoin(username);

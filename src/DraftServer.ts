@@ -12,11 +12,13 @@ import {DraftEvent} from "./models/DraftEvent";
 import Action from "./models/Action";
 import {Util} from "./models/Util";
 import {AddressInfo} from "net";
+import Preset from "./models/Preset";
 
 export const DraftServer = {
     serve(port: string | number | undefined):{ httpServerAddr: AddressInfo | string | null; io: SocketIO.Server; httpServer: Server } {
         const app = express();
         app.set("port", port);
+        app.use(express.json());
 
         const server = new Server(app);
         const io = socketio(server, {cookie: false});
@@ -25,7 +27,7 @@ export const DraftServer = {
 
         function setPlayerName(draftId: string, player: Player, name: string) {
             if (!draftsStore.has(draftId)) {
-                draftsStore.initDraft(draftId);
+                draftsStore.initDraft(draftId, Preset.SAMPLE);
             }
             draftsStore.setPlayerName(draftId, player, name);
         }
@@ -34,10 +36,15 @@ export const DraftServer = {
             console.log('redirecting');
             res.redirect('/draft/' + Util.newDraftId());
         });
-        app.use('/preset/new', (req, res) => {
+        app.post('/preset/new', (req, res) => {
+            console.log(req.body);
             const draftId = Util.newDraftId();
             if (!draftsStore.has(draftId)) {
-                draftsStore.initDraft(draftId);
+                const pojo: Preset = req.body.preset as Preset;
+                let preset = Preset.fromPojo(pojo);
+                if (preset !== undefined) {
+                    draftsStore.initDraft(draftId, preset);
+                }
             }
             res.json({draftId});
         });
@@ -60,7 +67,7 @@ export const DraftServer = {
             console.log("a user connected to the draft", draftId);
 
             if (!draftsStore.has(draftId)) {
-                draftsStore.initDraft(draftId);
+                draftsStore.initDraft(draftId, Preset.SAMPLE);
             }
 
             const {nameHost, nameGuest} = draftsStore.getPlayerNames(draftId);

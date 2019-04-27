@@ -4,6 +4,7 @@ import request from "request"
 import Player from "../models/Player";
 import {IDraftConfig} from "../models/IDraftConfig";
 import getPort from "get-port";
+import Preset from "../models/Preset";
 
 let hostSocket: any;
 let clientSocket: any;
@@ -30,7 +31,9 @@ afterAll((done) => {
 });
 
 beforeEach((done) => {
-    request(`http://[${httpServerAddr.address}]:${httpServerAddr.port}/preset/new`, (error, response, body) => {
+    request.post(`http://[${httpServerAddr.address}]:${httpServerAddr.port}/preset/new`,
+        {body: JSON.stringify({preset: Preset.SAMPLE}), headers: {'Content-Type': 'application/json; charset=UTF-8'}},
+        (error, response, body) => {
         const draftIdContainer: { draftId: string } = JSON.parse(body);
         draftId = draftIdContainer.draftId;
         hostSocket = io.connect(`http://[${httpServerAddr.address}]:${httpServerAddr.port}`, {

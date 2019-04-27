@@ -8,7 +8,7 @@ import Player from "../models/Player";
 import {DraftEvent} from "../models/DraftEvent";
 import {IDraftConfig} from "../models/IDraftConfig";
 
-export function mapStateToProps({nameHost, nameGuest, whoAmI, preset, nextAction, events}: IStoreState) {
+export function mapStateToProps({nameHost, nameGuest, whoAmI, ownName, preset, nextAction, events}: IStoreState) {
     return {
         events,
         nameGuest: nameGuest as string,
@@ -16,6 +16,7 @@ export function mapStateToProps({nameHost, nameGuest, whoAmI, preset, nextAction
         nextAction,
         preset: preset as Preset,
         whoAmI: whoAmI as Player,
+        ownName
     }
 }
 

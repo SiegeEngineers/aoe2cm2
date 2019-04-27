@@ -441,11 +441,11 @@ class NameGenerator {
         return this.AI_NAMES[Math.floor(this.LCG() * this.AI_NAMES.length)];
     }
 
-    public static getNameFromLocalStorage(): string | null {
+    public static getNameFromLocalStorage(defaultIfError: string | null = null): string | null {
         try {
             return localStorage.getItem('username');
         } catch (e) {
-            return null;
+            return defaultIfError;
         }
     }
 

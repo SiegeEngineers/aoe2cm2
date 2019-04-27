@@ -1,6 +1,7 @@
 import * as React from "react";
 import {Trans, withTranslation, WithTranslation} from "react-i18next";
 import {Redirect} from "react-router";
+import NewDraftButton from "./NewDraftButton";
 
 interface IState {
     draftId: string | null;
@@ -21,6 +22,9 @@ class Presets extends React.Component<WithTranslation, IState> {
 
         return (
             <div>
+                <div>
+                    <NewDraftButton/>
+                </div>
                 <div id="join_game" className="home_card box">
                     <h2><Trans i18nKey='presets.joinTitle'>Join existing draft</Trans></h2>
                     <div>

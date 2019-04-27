@@ -1,70 +1,35 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import {applyMiddleware, createStore, Store} from 'redux';
 import {Provider} from 'react-redux';
-import io from 'socket.io-client';
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {applyMiddleware, createStore, Store} from 'redux';
+import {Action, IApplyConfig, IClickOnCiv, ISendJoin} from "./actions";
+import NotFound404 from "./components/404";
+import Footer from "./components/Footer";
+import LanguageSelectors from "./components/LanguageSelectors";
+import Menu from "./components/Menu";
+import {Actions} from "./constants";
+import Draft from './containers/Draft';
+import './i18n';
+import {default as i18n} from "./i18n";
+import './index.css';
+import {IDraftConfig} from "./models/IDraftConfig";
+import NameGenerator from "./models/NameGenerator";
+import Player from "./models/Player";
+import Preset from "./models/Preset";
+import {SocketUtil} from "./models/SocketUtil";
 import {updateState} from './reducers';
 import {IStoreState} from './types';
-import Draft from './containers/Draft';
-import {default as ModelAction} from "./models/Action";
-import {Util} from "./models/Util";
-import {IJoinedMessage} from "./models/IJoinedMessage";
-import Player from "./models/Player";
-import PlayerEvent from "./models/PlayerEvent";
-import {IDraftConfig} from "./models/IDraftConfig";
-import {Action, IActionCompleted, IApplyConfig, IClickOnCiv, ISendJoin, ISetEvents, ISetName} from "./actions";
-import {Actions} from "./constants";
-import './index.css';
-import './i18n';
-import {DraftEvent} from "./models/DraftEvent";
-import NameGenerator from "./models/NameGenerator";
-import {default as i18n} from "./i18n";
-import Preset from "./models/Preset";
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import NotFound404 from "./components/404";
-import Menu from "./components/Menu";
-import LanguageSelectors from "./components/LanguageSelectors";
-import Footer from "./components/Footer";
 
 const createMySocketMiddleware = () => {
-    function initSocketIfFirstUse(socket: any, storeAPI: { dispatch: (arg0: Action) => void }) {
-        if (socket !== null) {
-            return socket;
-        }
-        socket = io({query: {draftId: Util.getIdFromUrl()}});
-
-        socket.on("player_joined", (data: IJoinedMessage) => {
-            console.log("player_joined", data);
-            if (data.playerType === Player.HOST || data.playerType === Player.GUEST) {
-                storeAPI.dispatch({type: Actions.SET_NAME, player: data.playerType, value: data.name} as ISetName);
-            }
-        });
-
-        socket.on("playerEvent", (message: PlayerEvent) => {
-            console.log('message recieved:', "[act]", JSON.stringify(message));
-            storeAPI.dispatch({type: Actions.ACTION_COMPLETED, value: message} as IActionCompleted);
-        });
-
-        socket.on("adminEvent", (message: { player: Player, action: ModelAction, events: DraftEvent[] }) => {
-            console.log('message recieved:', "[adminEvent]", JSON.stringify(message));
-            storeAPI.dispatch({type: Actions.SET_EVENTS, value: message} as ISetEvents);
-        });
-        return socket;
-    }
-
-    function disconnect(socket: any, storeAPI: { dispatch: (arg0: Action) => void }) {
-        if (socket !== null && socket.connected) {
-            socket.disconnect();
-        }
-        socket = null;
-    }
 
     return (storeAPI: { dispatch: (arg0: Action) => void; }) => {
         let socket: any = null;
 
         return (next: (arg0: any) => void) => (action: Action) => {
             if (action.type === Actions.SEND_JOIN) {
-                socket = initSocketIfFirstUse(socket, storeAPI);
+                console.log("SEND_JOIN", SocketUtil.initSocketIfFirstUse, socket, storeAPI);
+                socket = SocketUtil.initSocketIfFirstUse(socket, storeAPI);
                 const sendJoin = action as ISendJoin;
                 socket.emit('join', {name: sendJoin.name}, (data: IDraftConfig) => {
                     console.log('join callback', data);
@@ -74,13 +39,13 @@ const createMySocketMiddleware = () => {
             }
 
             if (action.type === Actions.CLICK_CIVILISATION) {
-                socket = initSocketIfFirstUse(socket, storeAPI);
+                socket = SocketUtil.initSocketIfFirstUse(socket, storeAPI);
                 const clickCivilisation = action as IClickOnCiv;
                 socket.emit('act', clickCivilisation.playerEvent, clickCivilisation.callback);
             }
 
             if (action.type === Actions.DISCONNECT) {
-                socket = disconnect(socket, storeAPI);
+                socket = SocketUtil.disconnect(socket, storeAPI);
             }
 
             return next(action);

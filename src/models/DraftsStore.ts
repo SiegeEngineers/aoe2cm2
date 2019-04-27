@@ -13,8 +13,8 @@ export class DraftsStore {
         this.drafts.set(draftId, new DraftViews(draft));
     }
 
-    public initDraft(draftId: string) {
-        this.createDraft(draftId, new Draft('…', '…', Preset.SAMPLE));
+    public initDraft(draftId: string, preset: Preset) {
+        this.createDraft(draftId, new Draft('…', '…', preset));
     }
 
     public addDraftEvent(draftId: string, draftEvent: DraftEvent) {
