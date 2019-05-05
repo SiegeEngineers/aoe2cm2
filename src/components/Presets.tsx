@@ -23,7 +23,7 @@ class Presets extends React.Component<WithTranslation, IState> {
         return (
             <div>
                 <div>
-                    <NewDraftButton/>
+                    <NewDraftButton label='dev:create_new_default_draft'/>
                 </div>
                 <div id="join_game" className="home_card box">
                     <h2><Trans i18nKey='presets.joinTitle'>Join existing draft</Trans></h2>
@@ -51,10 +51,10 @@ class Presets extends React.Component<WithTranslation, IState> {
                         <div className="card home_card">
                             <h2><Trans i18nKey='presets.useTitle'>Use preset</Trans></h2>
                             <ul>
-                                <li>Hidden 1v1</li>
-                                <li>Hidden 2v2</li>
-                                <li>Hidden 3v3</li>
-                                <li>Hidden 4v4</li>
+                                <li>Hidden 1v1 <NewDraftButton label='Create new Draft'/></li>
+                                <li>Hidden 2v2 <NewDraftButton label='Create new Draft'/></li>
+                                <li>Hidden 3v3 <NewDraftButton label='Create new Draft'/></li>
+                                <li>Hidden 4v4 <NewDraftButton label='Create new Draft'/></li>
                                 <li>Rise of the Rajas 1v1</li>
                                 <li>Rise of the Rajas 2v2</li>
                                 <li>Rise of the Rajas 3v3</li>

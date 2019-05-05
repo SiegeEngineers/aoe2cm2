@@ -1,16 +1,20 @@
 import * as React from 'react';
+import {Redirect} from "react-router";
+import Preset from "../models/Preset";
 import '../pure-min.css'
 import '../style2.css'
-import Preset from "../models/Preset";
-import {Redirect} from "react-router";
+
+interface IProps {
+    label: string;
+}
 
 interface IState {
     draftId?: string;
 }
 
-class NewDraftButton extends React.Component<object, IState> {
+class NewDraftButton extends React.Component<IProps, IState> {
 
-    constructor(props: object) {
+    constructor(props: IProps) {
         super(props);
         this.state = {};
     }
@@ -24,8 +28,8 @@ class NewDraftButton extends React.Component<object, IState> {
         }
 
         return (
-            <button onClick={this.createNewDefaultDraft}>
-                dev:create_new_default_draft
+            <button className="shadowbutton text-primary" onClick={this.createNewDefaultDraft}>
+                {this.props.label}
             </button>
         );
 
