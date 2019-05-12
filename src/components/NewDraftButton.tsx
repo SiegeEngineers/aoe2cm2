@@ -3,9 +3,10 @@ import {Redirect} from "react-router";
 import Preset from "../models/Preset";
 import '../pure-min.css'
 import '../style2.css'
+import {Trans} from "react-i18next";
 
 interface IProps {
-    label: string;
+    preset: Preset;
 }
 
 interface IState {
@@ -29,7 +30,7 @@ class NewDraftButton extends React.Component<IProps, IState> {
 
         return (
             <button className="shadowbutton text-primary" onClick={this.createNewDefaultDraft}>
-                {this.props.label}
+                <Trans i18nKey="createNewDraft">Create new Draft</Trans>
             </button>
         );
 
@@ -47,7 +48,7 @@ class NewDraftButton extends React.Component<IProps, IState> {
                 this.setState({...this.state, draftId: result.draftId});
             }
         };
-        request.send(JSON.stringify({preset: Preset.SIMPLE}));
+        request.send(JSON.stringify({preset: this.props.preset}));
     };
 }
 

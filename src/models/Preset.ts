@@ -4,6 +4,8 @@ import {CivilisationEncoder} from "./CivilisationEncoder";
 
 class Preset {
 
+    public static readonly EMPTY: Preset = new Preset('', [], []);
+
     public static readonly SAMPLE: Preset = new Preset('Default Preset', Civilisation.ALL, [
         Turn.HOST_GLOBAL_BAN,
         Turn.GUEST_GLOBAL_BAN,
@@ -33,6 +35,86 @@ class Preset {
         Turn.GUEST_NONEXLCUSIVE_BAN,
         Turn.GUEST_NONEXCLUSIVE_PICK,
         Turn.HOST_NONEXCLUSIVE_PICK
+    ]);
+
+    public static readonly HIDDEN_1V1: Preset = new Preset('Hidden 1v1', Civilisation.ALL, [
+        Turn.HOST_HIDDEN_BAN,
+        Turn.GUEST_HIDDEN_BAN,
+        Turn.GUEST_HIDDEN_BAN,
+        Turn.HOST_HIDDEN_BAN,
+        Turn.HOST_HIDDEN_BAN,
+        Turn.GUEST_HIDDEN_BAN,
+        Turn.REVEAL_ALL,
+        Turn.HOST_HIDDEN_PICK,
+        Turn.GUEST_HIDDEN_PICK,
+        Turn.REVEAL_ALL
+    ]);
+
+    public static readonly HIDDEN_2V2: Preset = new Preset('Hidden 2v2', Civilisation.ALL, [
+        Turn.HOST_HIDDEN_BAN,
+        Turn.GUEST_HIDDEN_BAN,
+        Turn.HOST_HIDDEN_BAN,
+        Turn.GUEST_HIDDEN_BAN,
+        Turn.HOST_HIDDEN_BAN,
+        Turn.GUEST_HIDDEN_BAN,
+        Turn.REVEAL_ALL,
+        Turn.HOST_HIDDEN_PICK,
+        Turn.GUEST_HIDDEN_PICK,
+        Turn.REVEAL_ALL,
+        Turn.GUEST_HIDDEN_BAN,
+        Turn.HOST_HIDDEN_BAN,
+        Turn.REVEAL_ALL,
+        Turn.GUEST_HIDDEN_PICK,
+        Turn.HOST_HIDDEN_PICK,
+        Turn.REVEAL_ALL,
+    ]);
+
+    public static readonly HIDDEN_3V3: Preset = new Preset('Hidden 3v3', Civilisation.ALL, [
+        Turn.HOST_HIDDEN_BAN,
+        Turn.GUEST_HIDDEN_BAN,
+        Turn.HOST_HIDDEN_BAN,
+        Turn.GUEST_HIDDEN_BAN,
+        Turn.REVEAL_ALL,
+        Turn.HOST_HIDDEN_PICK,
+        Turn.GUEST_HIDDEN_PICK,
+        Turn.REVEAL_ALL,
+        Turn.HOST_HIDDEN_BAN,
+        Turn.GUEST_HIDDEN_BAN,
+        Turn.REVEAL_ALL,
+        Turn.GUEST_HIDDEN_PICK,
+        Turn.HOST_HIDDEN_PICK,
+        Turn.REVEAL_ALL,
+        Turn.GUEST_HIDDEN_BAN,
+        Turn.HOST_HIDDEN_BAN,
+        Turn.REVEAL_ALL,
+        Turn.HOST_HIDDEN_PICK,
+        Turn.GUEST_HIDDEN_PICK,
+        Turn.REVEAL_ALL,
+    ]);
+
+    public static readonly HIDDEN_4V4: Preset = new Preset('Hidden 4v4', Civilisation.ALL, [
+        Turn.HOST_HIDDEN_BAN,
+        Turn.GUEST_HIDDEN_BAN,
+        Turn.HOST_HIDDEN_BAN,
+        Turn.GUEST_HIDDEN_BAN,
+        Turn.REVEAL_ALL,
+        Turn.HOST_HIDDEN_PICK,
+        Turn.GUEST_HIDDEN_PICK,
+        Turn.GUEST_HIDDEN_PICK,
+        Turn.HOST_HIDDEN_PICK,
+        Turn.REVEAL_ALL,
+        Turn.HOST_HIDDEN_BAN,
+        Turn.GUEST_HIDDEN_BAN,
+        Turn.REVEAL_ALL,
+        Turn.GUEST_HIDDEN_PICK,
+        Turn.HOST_HIDDEN_PICK,
+        Turn.REVEAL_ALL,
+        Turn.GUEST_HIDDEN_BAN,
+        Turn.HOST_HIDDEN_BAN,
+        Turn.REVEAL_ALL,
+        Turn.GUEST_HIDDEN_PICK,
+        Turn.HOST_HIDDEN_PICK,
+        Turn.REVEAL_ALL,
     ]);
 
     public readonly name: string;

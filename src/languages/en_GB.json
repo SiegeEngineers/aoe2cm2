@@ -81,5 +81,6 @@
     "3":"There are also extension available for tournaments. <1>Hidden</1> option (black corners) hides the civilization choices until they are explicitly showed (visible in the timeline at the top).",
     "4":"<0>Global</0> pick or bans disables the civilization for later turns. For other specific settings, please refer to the preset descriptions.",
     "5":"<0>Practice</0> mode is for testing purposes, where both sides are controlled by a single player."
-  }
+  },
+  "createNewDraft": "Create new draft"
 }
