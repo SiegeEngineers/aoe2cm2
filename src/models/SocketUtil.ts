@@ -31,6 +31,11 @@ export const SocketUtil = {
             console.log('message recieved:', "[adminEvent]", JSON.stringify(message));
             storeAPI.dispatch({type: Actions.SET_EVENTS, value: message} as ISetEvents);
         });
+
+        socket.on("message", (message: string) => {
+            console.log('message recieved:', "[message]", message);
+            alert(message);
+        });
         return socket;
     },
     disconnect(socket: any, storeAPI: { dispatch: (arg0: Action) => void }) {

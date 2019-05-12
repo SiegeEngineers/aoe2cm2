@@ -32,10 +32,6 @@ export const DraftServer = {
             draftsStore.setPlayerName(draftId, player, name);
         }
 
-        app.use(/^\/new$/, (req, res) => {
-            console.log('redirecting');
-            res.redirect('/draft/' + Util.newDraftId());
-        });
         app.post('/preset/new', (req, res) => {
             console.log(req.body);
             const draftId = Util.newDraftId();
@@ -67,7 +63,9 @@ export const DraftServer = {
             console.log("a user connected to the draft", draftId);
 
             if (!draftsStore.has(draftId)) {
-                draftsStore.initDraft(draftId, Preset.SAMPLE);
+                socket.emit('message', 'This draft does not exist.');
+                socket.disconnect(true);
+                return;
             }
 
             const {nameHost, nameGuest} = draftsStore.getPlayerNames(draftId);
