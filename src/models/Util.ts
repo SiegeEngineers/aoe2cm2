@@ -108,14 +108,18 @@ export const Util = {
         }
         return playerEvent;
     },
+
     newDraftId(): string {
+        const characters: string = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        let id: string = '';
+        for (let i = 0; i < 5; i++) {
+            id += characters.charAt(Math.floor(Math.random() * characters.length));
+        }
+        return id;
+    },
 
-    const characters: string = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    let id: string = '';
-    for (let i = 0; i < 5; i++) {
-
-        id += characters.charAt(Math.floor(Math.random() * characters.length));
+    randomChar(): string {
+        const characters: string = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        return characters.charAt(Math.floor(Math.random() * characters.length));
     }
-    return id;
-}
 };

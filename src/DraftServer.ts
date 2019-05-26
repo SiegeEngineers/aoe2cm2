@@ -33,14 +33,15 @@ export const DraftServer = {
         }
 
         app.post('/preset/new', (req, res) => {
-            console.log(req.body);
-            const draftId = Util.newDraftId();
-            if (!draftsStore.has(draftId)) {
-                const pojo: Preset = req.body.preset as Preset;
-                let preset = Preset.fromPojo(pojo);
-                if (preset !== undefined) {
-                    draftsStore.initDraft(draftId, preset);
-                }
+            console.log('/preset/new', req.body);
+            let draftId = Util.newDraftId();
+            while(draftsStore.has(draftId)){
+                draftId += Util.randomChar();
+            }
+            const pojo: Preset = req.body.preset as Preset;
+            let preset = Preset.fromPojo(pojo);
+            if (preset !== undefined) {
+                draftsStore.initDraft(draftId, preset);
             }
             res.json({draftId});
         });
