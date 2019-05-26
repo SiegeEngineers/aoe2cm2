@@ -1,6 +1,7 @@
 import Civilisation from "./Civilisation";
 import Turn from "./Turn";
 import {CivilisationEncoder} from "./CivilisationEncoder";
+import {Assert} from "./Assert";
 
 class Preset {
 
@@ -131,7 +132,9 @@ class Preset {
         if (preset === undefined) {
             return undefined;
         }
-        return new Preset(preset.name, CivilisationEncoder.decodeCivilisationArray(preset.encodedCivilisations), preset.turns);
+        Assert.isString(preset.name);
+        Assert.isString(preset.encodedCivilisations);
+        return new Preset(preset.name, CivilisationEncoder.decodeCivilisationArray(preset.encodedCivilisations), Turn.fromPojoArray(preset.turns));
     }
 
     public addTurn(turn: Turn) {

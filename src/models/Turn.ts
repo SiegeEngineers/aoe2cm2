@@ -1,5 +1,6 @@
 import Action from "./Action";
 import Player from "./Player";
+import {Assert} from "./Assert";
 
 class Turn {
     public static readonly HOST_NONEXCLUSIVE_PICK = new Turn(Player.HOST, Action.NONEXCLUSIVE_PICK);
@@ -42,6 +43,16 @@ class Turn {
     constructor(player: Player, action: Action) {
         this.player = player;
         this.action = action;
+    }
+
+    static fromPojoArray(turns: Turn[]) {
+        let retval: Turn[] = [];
+        for (let turn of turns) {
+            Assert.isPlayer(turn.player);
+            Assert.isAction(turn.action);
+            retval.push(new Turn(turn.player, turn.action));
+        }
+        return retval;
     }
 }
 

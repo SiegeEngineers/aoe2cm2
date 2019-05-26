@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`preset from valid pojo works 1`] = `
+Preset {
+  "encodedCivilisations": "1",
+  "name": "some-name",
+  "turns": Array [
+    Turn {
+      "action": "PICK",
+      "player": "GUEST",
+    },
+  ],
+}
+`;
