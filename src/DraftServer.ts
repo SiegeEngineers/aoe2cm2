@@ -7,12 +7,11 @@ import {IJoinMessage} from "./models/IJoinMessage";
 import {DraftsStore} from "./models/DraftsStore";
 import {Validator} from "./models/Validator";
 import {ValidationId} from "./models/ValidationId";
-import PlayerEvent from "./models/PlayerEvent";
 import {DraftEvent} from "./models/DraftEvent";
-import Action from "./models/Action";
 import {Util} from "./models/Util";
 import {AddressInfo} from "net";
 import Preset from "./models/Preset";
+import {Listeners} from "./models/Listeners";
 
 export const DraftServer = {
     serve(port: string | number | undefined):{ httpServerAddr: AddressInfo | string | null; io: SocketIO.Server; httpServer: Server } {
@@ -110,63 +109,7 @@ export const DraftServer = {
                 });
             });
 
-            socket.on("act", (message: PlayerEvent, fn: (retval: any) => void) => {
-                console.log(message);
-
-                const civilisationsList = draftsStore.getDraftOrThrow(draftId).preset.civilisations.slice();
-                message = Util.setRandomCivilisationIfNeeded(message, draftId, draftsStore, civilisationsList);
-
-                const validationErrors: ValidationId[] = validateAndApply(draftId, message);
-                if (validationErrors.length === 0) {
-
-                    const draftViews = draftsStore.getDraftViewsOrThrow(draftId);
-
-                    socket.nsp
-                        .in(roomHost)
-                        .emit("playerEvent", draftViews.getLastEventForHost());
-                    socket.nsp
-                        .in(roomGuest)
-                        .emit("playerEvent", draftViews.getLastEventForGuest());
-                    socket.nsp
-                        .in(roomSpec)
-                        .emit("playerEvent", draftViews.getLastEventForSpec());
-                    fn({status: 'ok', validationErrors});
-
-                    const expectedAction = draftsStore.getExpectedAction(draftId);
-                    if (expectedAction !== null) {
-                        if (expectedAction.player === Player.NONE) { // Admin Event
-                            if (expectedAction.action === Action.REVEAL_ALL) {
-                                setTimeout(() => {
-                                    draftViews.revealAll();
-                                    socket.nsp
-                                        .in(roomHost)
-                                        .emit("adminEvent", {
-                                            ...expectedAction,
-                                            events: draftViews.getHostDraft().events
-                                        });
-                                    socket.nsp
-                                        .in(roomGuest)
-                                        .emit("adminEvent", {
-                                            ...expectedAction,
-                                            events: draftViews.getGuestDraft().events
-                                        });
-                                    socket.nsp
-                                        .in(roomSpec)
-                                        .emit("adminEvent", {
-                                            ...expectedAction,
-                                            events: draftViews.getSpecDraft().events
-                                        });
-                                    draftsStore.addDraftEvent(draftId, expectedAction);
-                                }, 2000);
-                            } else {
-                                throw new Error("Unknown expected action! " + expectedAction);
-                            }
-                        }
-                    }
-                } else {
-                    fn({status: 'error', validationErrors});
-                }
-            });
+            socket.on("act", Listeners.actListener(draftsStore, draftId, validateAndApply, socket, roomHost, roomGuest, roomSpec));
 
             socket.on('disconnect', function () {
                 console.log('Got disconnect! draftId: ' + draftId);
