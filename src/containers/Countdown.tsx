@@ -5,7 +5,8 @@ import Countdown from "../components/Countdown";
 
 export function mapStateToProps(state: IStoreState) {
     return {
-        countdownUntil: state.countdownUntil
+        seconds: state.countdownValue,
+        visible: state.countdownVisible
     };
 }
 

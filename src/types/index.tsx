@@ -17,5 +17,11 @@ export interface IStoreState extends IDraftState {
     nextAction: number;
     language: string;
     showModal: boolean;
-    countdownUntil?: Date;
+    countdownValue: number;
+    countdownVisible: boolean;
+}
+
+export interface ICountdownValues {
+    value: number;
+    display: boolean;
 }

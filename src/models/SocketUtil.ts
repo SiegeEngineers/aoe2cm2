@@ -1,5 +1,5 @@
 import io from "socket.io-client";
-import {Action, IActionCompleted, ISetEvents, ISetName} from "../actions";
+import {Action, IActionCompleted, ICountdownEvent, ISetEvents, ISetName} from "../actions";
 import {Actions} from "../constants";
 import {default as ModelAction} from "./Action";
 import {DraftEvent} from "./DraftEvent";
@@ -7,6 +7,7 @@ import {IJoinedMessage} from "./IJoinedMessage";
 import Player from "./Player";
 import PlayerEvent from "./PlayerEvent";
 import {Util} from "./Util";
+import {ICountdownValues} from "../types";
 
 export const SocketUtil = {
     initSocketIfFirstUse(socket: any, storeAPI: { dispatch: (arg0: Action) => void }) {
@@ -37,9 +38,11 @@ export const SocketUtil = {
             alert(message);
         });
 
-        socket.on("countdown", (message: string) => {
+        socket.on("countdown", (message: ICountdownValues) => {
             console.log('message received:', "[countdown]", message);
+            storeAPI.dispatch({type: Actions.COUNTDOWN, value: message} as ICountdownEvent);
         });
+
         return socket;
     },
     disconnect(socket: any, storeAPI: { dispatch: (arg0: Action) => void }) {

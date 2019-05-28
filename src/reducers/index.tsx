@@ -18,12 +18,10 @@ const initialState: IStoreState = {
     nextAction: 0,
     events: [],
     language: i18n.language,
-    showModal: (NameGenerator.getNameFromLocalStorage() === null)
+    showModal: (NameGenerator.getNameFromLocalStorage() === null),
+    countdownValue: 0,
+    countdownVisible: false
 };
-
-function nowPlus30Seconds() {
-    return new Date(Date.now() + 30999);
-}
 
 export function updateState(state: IStoreState = initialState, action?: Action): IStoreState {
     if (!action) return state;
@@ -35,15 +33,14 @@ export function updateState(state: IStoreState = initialState, action?: Action):
             return {
                 ...state,
                 nextAction: state.nextAction + 1,
-                events: eventsCopy,
-                countdownUntil: nowPlus30Seconds()
+                events: eventsCopy
             };
         case Actions.SET_NAME:
             console.log(Actions.SET_NAME, action);
             if (action.player === Player.HOST) {
                 return {...state, nameHost: action.value, hostReady: true};
             } else if (action.player === Player.GUEST) {
-                return {...state, nameGuest: action.value, guestReady: true, countdownUntil: nowPlus30Seconds()};
+                return {...state, nameGuest: action.value, guestReady: true};
             } else {
                 return state;
             }
@@ -54,7 +51,6 @@ export function updateState(state: IStoreState = initialState, action?: Action):
         case Actions.APPLY_CONFIG:
             console.log(Actions.APPLY_CONFIG, action.value);
             const preset = Preset.fromPojo(action.value.preset);
-            const countdownUntil = action.value.hostReady && action.value.guestReady ? nowPlus30Seconds() : undefined;
             return {
                 ...state,
                 events: action.value.events,
@@ -64,22 +60,16 @@ export function updateState(state: IStoreState = initialState, action?: Action):
                 whoAmI: action.value.yourPlayerType,
                 hostReady: action.value.hostReady,
                 guestReady: action.value.guestReady,
-                countdownUntil,
                 preset
             };
         case Actions.SET_EVENTS:
             console.log(Actions.SET_EVENTS, action.value);
             const eventsCopy2 = [...action.value.events];
             eventsCopy2.push(new AdminEvent(action.value.player, action.value.action));
-            let countdownUntil2 = undefined;
-            if (state.preset !== undefined && state.preset.turns.length > eventsCopy2.length) {
-                countdownUntil2 = nowPlus30Seconds();
-            }
             return {
                 ...state,
                 nextAction: state.nextAction + 1,
                 events: eventsCopy2,
-                countdownUntil: countdownUntil2
             };
 
         case Actions.SET_LANGUAGE:
@@ -88,7 +78,15 @@ export function updateState(state: IStoreState = initialState, action?: Action):
             return {
                 ...state,
                 language: action.language
-            }
+            };
+
+        case Actions.COUNTDOWN:
+            console.log(Actions.COUNTDOWN, action.value);
+            return {
+                ...state,
+                countdownValue: action.value.value,
+                countdownVisible: action.value.display
+            };
     }
     return state;
 }

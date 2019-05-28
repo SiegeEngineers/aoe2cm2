@@ -117,14 +117,18 @@ export class DraftsStore {
             if (countdown !== undefined) {
                 const value = countdown.value;
                 const s = countdown.socket;
-                s.nsp
-                    .in(roomHost)
-                    .in(roomGuest)
-                    .in(roomSpec)
-                    .emit("countdown", {value, display: true});
                 countdown.value = value - 1;
                 this.countdowns.set(draftId, countdown);
-                if (countdown.value === 0) {
+
+                if (value >= 0) {
+                    s.nsp
+                        .in(roomHost)
+                        .in(roomGuest)
+                        .in(roomSpec)
+                        .emit("countdown", {value, display: true});
+                }
+
+                if (value === -1) {
                     const actListener = Listeners.actListener(this, draftId, (draftId: string, message: DraftEvent) => {
                         this.addDraftEvent(draftId, message);
                         return [];
@@ -136,6 +140,7 @@ export class DraftsStore {
                         });
                     }
                 }
+
             }
         }, 1000);
         this.countdowns.set(draftId, {timeout: interval, value: 30, socket});
@@ -148,6 +153,15 @@ export class DraftsStore {
             const expectedAction = this.getExpectedAction(draftId);
             if (expectedAction !== null) {
                 this.startCountdown(draftId, countdown.socket);
+            } else {
+                const roomHost: string = `${draftId}-host`;
+                const roomGuest: string = `${draftId}-guest`;
+                const roomSpec: string = `${draftId}-spec`;
+                countdown.socket.nsp
+                    .in(roomHost)
+                    .in(roomGuest)
+                    .in(roomSpec)
+                    .emit("countdown", {value: 0, display: false});
             }
         }
     }

@@ -6,7 +6,6 @@ import Modal from "../components/Modal";
 
 
 export function mapStateToProps(state: IStoreState) {
-    console.log(state);
     return {
         visible: state.showModal,
         currentName: state.ownName

@@ -4,6 +4,7 @@ import {default as ModelAction} from "../models/Action";
 import {DraftEvent} from "../models/DraftEvent";
 import {IDraftConfig} from "../models/IDraftConfig";
 import PlayerEvent from "../models/PlayerEvent";
+import {ICountdownValues} from "../types";
 
 export interface IActionCompleted {
     type: Actions.ACTION_COMPLETED,
@@ -47,6 +48,11 @@ export interface ISetEvents {
     value: { player: Player, action: ModelAction, events: DraftEvent[] }
 }
 
+export interface ICountdownEvent {
+    type: Actions.COUNTDOWN,
+    value: ICountdownValues
+}
+
 export interface IDisconnect {
     type: Actions.DISCONNECT
 }
@@ -60,7 +66,8 @@ export type Action =
     | IClickOnCiv
     | ISetLanguage
     | ISetEvents
-    | IDisconnect;
+    | IDisconnect
+    | ICountdownEvent;
 
 export function setName(player: Player, value: string): ISetName {
     return {
