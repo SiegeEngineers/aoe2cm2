@@ -36,6 +36,10 @@ export const SocketUtil = {
             console.log('message recieved:', "[message]", message);
             alert(message);
         });
+
+        socket.on("countdown", (message: string) => {
+            console.log('message received:', "[countdown]", message);
+        });
         return socket;
     },
     disconnect(socket: any, storeAPI: { dispatch: (arg0: Action) => void }) {

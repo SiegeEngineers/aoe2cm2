@@ -4,9 +4,22 @@ import Preset from "./Preset";
 import Player from "./Player";
 import Turn from "./Turn";
 import DraftViews from "./DraftViews";
+import {setInterval} from "timers";
+import socketio from "socket.io";
+import PlayerEvent from "./PlayerEvent";
+import Civilisation from "./Civilisation";
+import {actionTypeFromAction} from "./ActionType";
+import {Listeners} from "./Listeners";
+
+interface ICountdownValues {
+    timeout: NodeJS.Timeout;
+    value: number;
+    socket: socketio.Socket;
+}
 
 export class DraftsStore {
     private drafts: Map<string, DraftViews> = new Map<string, DraftViews>();
+    private countdowns: Map<String, ICountdownValues> = new Map<String, ICountdownValues>();
 
     public createDraft(draftId: string, draft: Draft) {
         this.assertDraftDoesNotExist(draftId);
@@ -92,6 +105,50 @@ export class DraftsStore {
     private assertDraftDoesNotExist(draftId: string) {
         if (this.has(draftId)) {
             throw new Error(`Draft with id ${draftId} already exists`);
+        }
+    }
+
+    public startCountdown(draftId: string, socket: socketio.Socket) {
+        const interval: NodeJS.Timeout = setInterval(() => {
+            const roomHost: string = `${draftId}-host`;
+            const roomGuest: string = `${draftId}-guest`;
+            const roomSpec: string = `${draftId}-spec`;
+            let countdown = this.countdowns.get(draftId);
+            if (countdown !== undefined) {
+                const value = countdown.value;
+                const s = countdown.socket;
+                s.nsp
+                    .in(roomHost)
+                    .in(roomGuest)
+                    .in(roomSpec)
+                    .emit("countdown", {value, display: true});
+                countdown.value = value - 1;
+                this.countdowns.set(draftId, countdown);
+                if (countdown.value === 0) {
+                    const actListener = Listeners.actListener(this, draftId, (draftId: string, message: DraftEvent) => {
+                        this.addDraftEvent(draftId, message);
+                        return [];
+                    }, socket, roomHost, roomGuest, roomSpec);
+                    const expectedAction = this.getExpectedAction(draftId);
+                    if (expectedAction !== null) {
+                        const message = new PlayerEvent(expectedAction.player, actionTypeFromAction(expectedAction.action), Civilisation.RANDOM);
+                        actListener(message, () => {
+                        });
+                    }
+                }
+            }
+        }, 1000);
+        this.countdowns.set(draftId, {timeout: interval, value: 30, socket});
+    }
+
+    public restartOrCancelCountdown(draftId: string) {
+        let countdown = this.countdowns.get(draftId);
+        if (countdown !== undefined) {
+            clearInterval(countdown.timeout);
+            const expectedAction = this.getExpectedAction(draftId);
+            if (expectedAction !== null) {
+                this.startCountdown(draftId, countdown.socket);
+            }
         }
     }
 }

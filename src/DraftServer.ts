@@ -97,6 +97,7 @@ export const DraftServer = {
                     setPlayerName(draftId, Player.GUEST, message.name);
                     draftsStore.setPlayerReady(draftId, Player.GUEST);
                     playerType = Player.GUEST
+                    draftsStore.startCountdown(draftId, socket);
                 }
                 socket.nsp
                     .in(roomHost)
