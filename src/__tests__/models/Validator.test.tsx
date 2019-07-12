@@ -11,6 +11,7 @@ import Action from "../../models/Action";
 import Turn from "../../models/Turn";
 import {DraftEvent} from "../../models/DraftEvent";
 import AdminEvent from "../../models/AdminEvent";
+import Exclusivity from "../../models/Exclusivity";
 
 const NAME_HOST: string = 'Yodit';
 const NAME_GUEST: string = 'Saladin';
@@ -60,7 +61,8 @@ it('VLD_001: wrong player to act', () => {
 it('VLD_002: wrong action', () => {
     let preset = Preset.SIMPLE;
     const validator = new Validator(prepareReadyStore(preset));
-    expect(preset.turns[0].action).toEqual(Action.NONEXCLUSIVE_BAN);
+    expect(preset.turns[0].action).toEqual(Action.BAN);
+    expect(preset.turns[0].exclusivity).toEqual(Exclusivity.NONEXCLUSIVE);
     const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS));
     expect(errors).toEqual([ValidationId.VLD_002]);
 });
@@ -101,7 +103,7 @@ it('VLD_101: civ already hidden/revealed banned for guest', () => {
 });
 
 it('VLD_101: civ already banned for guest', () => {
-    let preset = new Preset("test", Civilisation.ALL, [Turn.GUEST_NONEXLCUSIVE_BAN, Turn.HOST_NONEXCLUSIVE_PICK]);
+    let preset = new Preset("test", Civilisation.ALL, [Turn.GUEST_NONEXCLUSIVE_BAN, Turn.HOST_NONEXCLUSIVE_PICK]);
     const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS)]));
     const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS));
     expect(errors).toEqual([ValidationId.VLD_101]);
@@ -150,7 +152,7 @@ it('VLD_200: civ already banned by host', () => {
 });
 
 it('VLD_200: civ already banned by guest', () => {
-    let preset = new Preset("test", Civilisation.ALL, [Turn.GUEST_BAN, Turn.GUEST_NONEXLCUSIVE_BAN]);
+    let preset = new Preset("test", Civilisation.ALL, [Turn.GUEST_BAN, Turn.GUEST_NONEXCLUSIVE_BAN]);
     const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS)]));
     const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS));
     expect(errors).toEqual([ValidationId.VLD_200]);

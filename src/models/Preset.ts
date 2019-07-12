@@ -33,7 +33,7 @@ class Preset {
 
     public static readonly SIMPLE: Preset = new Preset('Simple Preset', Civilisation.ALL, [
         Turn.HOST_NONEXCLUSIVE_BAN,
-        Turn.GUEST_NONEXLCUSIVE_BAN,
+        Turn.GUEST_NONEXCLUSIVE_BAN,
         Turn.GUEST_NONEXCLUSIVE_PICK,
         Turn.HOST_NONEXCLUSIVE_PICK
     ]);

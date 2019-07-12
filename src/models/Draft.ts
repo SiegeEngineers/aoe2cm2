@@ -7,6 +7,7 @@ import Civilisation from "./Civilisation";
 import Action from "./Action";
 import PlayerEvent from "./PlayerEvent";
 import {Util} from "./Util";
+import Exclusivity from "./Exclusivity";
 
 class Draft implements IDraftState {
     public nameHost: string;
@@ -62,7 +63,7 @@ class Draft implements IDraftState {
     public getGlobalBans(): Civilisation[] {
         const globalBanTurns: boolean[] = this.preset.turns
             .map((turn): boolean => {
-                return turn.action === Action.GLOBAL_BAN
+                return turn.action === Action.BAN && turn.exclusivity === Exclusivity.GLOBAL;
             });
         const globalBans: Civilisation[] = [];
         this.events.forEach((draftEvent: DraftEvent, index: number) => {
@@ -81,7 +82,7 @@ class Draft implements IDraftState {
         const opponent = player === Player.HOST ? Player.GUEST : Player.HOST;
         const opponentBanTurns: boolean[] = this.preset.turns
             .map((turn): boolean => {
-                return turn.player === opponent && Util.isNonglobalBan(turn.action);
+                return turn.player === opponent && Util.isNonglobalBan(turn);
             });
 
         const opponentBans: Civilisation[] = [];
@@ -97,7 +98,7 @@ class Draft implements IDraftState {
     public getExclusivePicks(player: Player): Civilisation[] {
         const exclusivePickTurns: boolean[] = this.preset.turns
             .map((turn): boolean => {
-                return turn.player === player && turn.action === Action.PICK;
+                return turn.player === player && turn.action === Action.PICK && turn.exclusivity === Exclusivity.EXCLUSIVE;
             });
 
         const exclusivePicks: Civilisation[] = [];
@@ -113,7 +114,7 @@ class Draft implements IDraftState {
     public getGlobalPicks(): Civilisation[] {
         const globalPickTurns: boolean[] = this.preset.turns
             .map((turn): boolean => {
-                return turn.action === Action.GLOBAL_PICK;
+                return turn.action === Action.PICK && turn.exclusivity === Exclusivity.GLOBAL;
             });
 
         const globalPicks: Civilisation[] = [];

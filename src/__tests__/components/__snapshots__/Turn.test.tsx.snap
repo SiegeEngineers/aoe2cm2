@@ -7,7 +7,10 @@ exports[`labels the turn with GPICK 1`] = `
   tReady={true}
   turn={
     Turn {
-      "action": "GLOBAL_PICK",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
       "player": "HOST",
     }
   }
@@ -22,7 +25,10 @@ exports[`labels the turn with PICK 1`] = `
   tReady={true}
   turn={
     Turn {
-      "action": "NONEXCLUSIVE_PICK",
+      "action": "PICK",
+      "exclusivity": "NONEXCLUSIVE",
+      "hidden": false,
+      "parallel": false,
       "player": "HOST",
     }
   }
@@ -37,7 +43,10 @@ exports[`labels the turn with xPICK 1`] = `
   tReady={true}
   turn={
     Turn {
-      "action": "HIDDEN_EXCLUSIVE_PICK",
+      "action": "PICK",
+      "exclusivity": "EXCLUSIVE",
+      "hidden": true,
+      "parallel": false,
       "player": "HOST",
     }
   }

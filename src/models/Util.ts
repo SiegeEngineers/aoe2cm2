@@ -8,6 +8,7 @@ import ActionType from "./ActionType";
 import GameVersion from "./GameVersion";
 import {Validator} from "./Validator";
 import {DraftsStore} from "./DraftsStore";
+import Exclusivity from "./Exclusivity";
 
 export const Util = {
     notUndefined(...args: any[]): boolean {
@@ -29,22 +30,15 @@ export const Util = {
     },
 
     isPick(action: Action): boolean {
-        return (action === Action.NONEXCLUSIVE_PICK
-            || action === Action.GLOBAL_PICK
-            || action === Action.PICK
-            || action === Action.HIDDEN_PICK
-            || action === Action.HIDDEN_EXCLUSIVE_PICK);
+        return (action === Action.PICK);
     },
 
-    isNonglobalBan(action: Action): boolean {
-        return (action === Action.NONEXCLUSIVE_BAN
-            || action === Action.BAN
-            || action === Action.HIDDEN_BAN
-            || action === Action.HIDDEN_EXCLUSIVE_BAN);
+    isNonglobalBan(turn: Turn): boolean {
+        return (turn.action === Action.BAN && turn.exclusivity !== Exclusivity.GLOBAL);
     },
 
     isSnipe(action: Action): boolean {
-        return (action === Action.SNIPE || action === Action.HIDDEN_SNIPE);
+        return (action === Action.SNIPE);
     },
 
     isPlayerEvent(event: DraftEvent): event is PlayerEvent {
@@ -56,13 +50,7 @@ export const Util = {
     },
 
     isHidden(turn: Turn): boolean {
-        return (turn.action === Action.HIDDEN_BAN
-            || turn.action === Action.HIDDEN_EXCLUSIVE_BAN
-            || turn.action === Action.HIDDEN_GLOBAL_BAN
-            || turn.action === Action.HIDDEN_PICK
-            || turn.action === Action.HIDDEN_EXCLUSIVE_PICK
-            || turn.action === Action.HIDDEN_SNIPE
-        );
+        return (turn.hidden);
     },
 
     getHiddenCivilisationForActionType(actionType: ActionType): Civilisation {

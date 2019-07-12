@@ -1,48 +1,55 @@
 import Action from "./Action";
 import Player from "./Player";
 import {Assert} from "./Assert";
+import Exclusivity from "./Exclusivity";
 
 class Turn {
-    public static readonly HOST_NONEXCLUSIVE_PICK = new Turn(Player.HOST, Action.NONEXCLUSIVE_PICK);
-    public static readonly HOST_PICK = new Turn(Player.HOST, Action.PICK);
-    public static readonly HOST_GLOBAL_PICK = new Turn(Player.HOST, Action.GLOBAL_PICK);
-    public static readonly HOST_HIDDEN_PICK = new Turn(Player.HOST, Action.HIDDEN_PICK);
-    public static readonly HOST_HIDDEN_EXCLUSIVE_PICK = new Turn(Player.HOST, Action.HIDDEN_EXCLUSIVE_PICK);
-    public static readonly HOST_NONEXCLUSIVE_BAN = new Turn(Player.HOST, Action.NONEXCLUSIVE_BAN);
-    public static readonly HOST_BAN = new Turn(Player.HOST, Action.BAN);
-    public static readonly HOST_GLOBAL_BAN = new Turn(Player.HOST, Action.GLOBAL_BAN);
-    public static readonly HOST_HIDDEN_BAN = new Turn(Player.HOST, Action.HIDDEN_BAN);
-    public static readonly HOST_HIDDEN_EXCLUSIVE_BAN = new Turn(Player.HOST, Action.HIDDEN_EXCLUSIVE_BAN);
-    public static readonly HOST_HIDDEN_GLOBAL_BAN = new Turn(Player.HOST, Action.HIDDEN_GLOBAL_BAN);
-    public static readonly HOST_SNIPE = new Turn(Player.HOST, Action.SNIPE);
-    public static readonly HOST_HIDDEN_SNIPE = new Turn(Player.HOST, Action.HIDDEN_SNIPE);
+    public static readonly HOST_NONEXCLUSIVE_PICK = new Turn(Player.HOST, Action.PICK, Exclusivity.NONEXCLUSIVE);
+    public static readonly HOST_PICK = new Turn(Player.HOST, Action.PICK, Exclusivity.EXCLUSIVE);
+    public static readonly HOST_GLOBAL_PICK = new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL);
+    public static readonly HOST_HIDDEN_PICK = new Turn(Player.HOST, Action.PICK, Exclusivity.NONEXCLUSIVE, true);
+    public static readonly HOST_HIDDEN_EXCLUSIVE_PICK = new Turn(Player.HOST, Action.PICK, Exclusivity.EXCLUSIVE, true);
+    public static readonly HOST_NONEXCLUSIVE_BAN = new Turn(Player.HOST, Action.BAN, Exclusivity.NONEXCLUSIVE);
+    public static readonly HOST_BAN = new Turn(Player.HOST, Action.BAN, Exclusivity.EXCLUSIVE);
+    public static readonly HOST_GLOBAL_BAN = new Turn(Player.HOST, Action.BAN, Exclusivity.GLOBAL);
+    public static readonly HOST_HIDDEN_BAN = new Turn(Player.HOST, Action.BAN, Exclusivity.NONEXCLUSIVE, true);
+    public static readonly HOST_HIDDEN_EXCLUSIVE_BAN = new Turn(Player.HOST, Action.BAN, Exclusivity.EXCLUSIVE, true);
+    public static readonly HOST_HIDDEN_GLOBAL_BAN = new Turn(Player.HOST, Action.BAN, Exclusivity.GLOBAL, true);
+    public static readonly HOST_SNIPE = new Turn(Player.HOST, Action.SNIPE, Exclusivity.NONEXCLUSIVE);
+    public static readonly HOST_HIDDEN_SNIPE = new Turn(Player.HOST, Action.SNIPE, Exclusivity.NONEXCLUSIVE, true);
 
-    public static readonly GUEST_NONEXCLUSIVE_PICK = new Turn(Player.GUEST, Action.NONEXCLUSIVE_PICK);
-    public static readonly GUEST_PICK = new Turn(Player.GUEST, Action.PICK);
-    public static readonly GUEST_GLOBAL_PICK = new Turn(Player.GUEST, Action.GLOBAL_PICK);
-    public static readonly GUEST_HIDDEN_PICK = new Turn(Player.GUEST, Action.HIDDEN_PICK);
-    public static readonly GUEST_HIDDEN_EXCLUSIVE_PICK = new Turn(Player.GUEST, Action.HIDDEN_EXCLUSIVE_PICK);
-    public static readonly GUEST_NONEXLCUSIVE_BAN = new Turn(Player.GUEST, Action.NONEXCLUSIVE_BAN);
-    public static readonly GUEST_BAN = new Turn(Player.GUEST, Action.BAN);
-    public static readonly GUEST_GLOBAL_BAN = new Turn(Player.GUEST, Action.GLOBAL_BAN);
-    public static readonly GUEST_HIDDEN_BAN = new Turn(Player.GUEST, Action.HIDDEN_BAN);
-    public static readonly GUEST_HIDDEN_EXCLUSIVE_BAN = new Turn(Player.GUEST, Action.HIDDEN_EXCLUSIVE_BAN);
-    public static readonly GUEST_HIDDEN_GLOBAL_BAN = new Turn(Player.GUEST, Action.HIDDEN_GLOBAL_BAN);
-    public static readonly GUEST_SNIPE = new Turn(Player.GUEST, Action.SNIPE);
-    public static readonly GUEST_HIDDEN_SNIPE = new Turn(Player.GUEST, Action.HIDDEN_SNIPE);
-    
-    // public static readonly REVEAL_PICKS = new Turn(Player.NONE, Action.REVEAL_PICKS);
-    // public static readonly REVEAL_BANS = new Turn(Player.NONE, Action.REVEAL_BANS);
-    // public static readonly REVEAL_SNIPES = new Turn(Player.NONE, Action.REVEAL_SNIPES);
-    public static readonly REVEAL_ALL = new Turn(Player.NONE, Action.REVEAL_ALL);
+    public static readonly GUEST_NONEXCLUSIVE_PICK = new Turn(Player.GUEST, Action.PICK, Exclusivity.NONEXCLUSIVE);
+    public static readonly GUEST_PICK = new Turn(Player.GUEST, Action.PICK, Exclusivity.EXCLUSIVE);
+    public static readonly GUEST_GLOBAL_PICK = new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL);
+    public static readonly GUEST_HIDDEN_PICK = new Turn(Player.GUEST, Action.PICK, Exclusivity.NONEXCLUSIVE, true);
+    public static readonly GUEST_HIDDEN_EXCLUSIVE_PICK = new Turn(Player.GUEST, Action.PICK, Exclusivity.EXCLUSIVE, true);
+    public static readonly GUEST_NONEXCLUSIVE_BAN = new Turn(Player.GUEST, Action.BAN, Exclusivity.NONEXCLUSIVE);
+    public static readonly GUEST_BAN = new Turn(Player.GUEST, Action.BAN, Exclusivity.EXCLUSIVE);
+    public static readonly GUEST_GLOBAL_BAN = new Turn(Player.GUEST, Action.BAN, Exclusivity.GLOBAL);
+    public static readonly GUEST_HIDDEN_BAN = new Turn(Player.GUEST, Action.BAN, Exclusivity.NONEXCLUSIVE, true);
+    public static readonly GUEST_HIDDEN_EXCLUSIVE_BAN = new Turn(Player.GUEST, Action.BAN, Exclusivity.EXCLUSIVE, true);
+    public static readonly GUEST_HIDDEN_GLOBAL_BAN = new Turn(Player.GUEST, Action.BAN, Exclusivity.GLOBAL, true);
+    public static readonly GUEST_SNIPE = new Turn(Player.GUEST, Action.SNIPE, Exclusivity.NONEXCLUSIVE);
+    public static readonly GUEST_HIDDEN_SNIPE = new Turn(Player.GUEST, Action.SNIPE, Exclusivity.NONEXCLUSIVE, true);
+
+    public static readonly REVEAL_PICKS = new Turn(Player.NONE, Action.REVEAL_PICKS, Exclusivity.GLOBAL);
+    public static readonly REVEAL_BANS = new Turn(Player.NONE, Action.REVEAL_BANS, Exclusivity.GLOBAL);
+    public static readonly REVEAL_SNIPES = new Turn(Player.NONE, Action.REVEAL_SNIPES, Exclusivity.GLOBAL);
+    public static readonly REVEAL_ALL = new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL);
 
 
     public readonly player: Player;
     public readonly action: Action;
+    public readonly exclusivity: Exclusivity;
+    public readonly hidden: boolean;
+    public readonly parallel: boolean;
 
-    constructor(player: Player, action: Action) {
+    constructor(player: Player, action: Action, exclusivity: Exclusivity, hidden: boolean = false, parallel: boolean = false) {
         this.player = player;
         this.action = action;
+        this.exclusivity = exclusivity;
+        this.hidden = hidden;
+        this.parallel = parallel;
     }
 
     static fromPojoArray(turns: Turn[]) {
@@ -50,7 +57,10 @@ class Turn {
         for (let turn of turns) {
             Assert.isPlayer(turn.player);
             Assert.isAction(turn.action);
-            retval.push(new Turn(turn.player, turn.action));
+            Assert.isExclusivity(turn.exclusivity);
+            Assert.isBoolean(turn.hidden);
+            Assert.isBoolean(turn.parallel);
+            retval.push(new Turn(turn.player, turn.action, turn.exclusivity, turn.hidden, turn.parallel));
         }
         return retval;
     }

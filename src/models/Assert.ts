@@ -1,5 +1,6 @@
 import Player from "./Player";
 import Action from "./Action";
+import Exclusivity from "./Exclusivity";
 
 export const Assert = {
     isString(arg: any): void {
@@ -15,6 +16,16 @@ export const Assert = {
     isAction(arg: any) {
         if (!Object.keys(Action).includes(arg)) {
             throw new Error("Expected argument to be a valid Action value, but was " + arg);
+        }
+    },
+    isExclusivity(arg: any) {
+        if (!Object.keys(Exclusivity).includes(arg)) {
+            throw new Error("Expected argument to be a valid Exclusivity value, but was " + arg);
+        }
+    },
+    isBoolean(arg: any) {
+        if (![true, false].includes(arg)) {
+            throw new Error("Expected argument to be a valid boolean value, but was " + arg);
         }
     }
 };
