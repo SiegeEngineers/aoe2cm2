@@ -66,7 +66,13 @@
     "VLD_103": "Die Zivilisation wurde bereits global ausgewählt",
     "VLD_200": "Die Zivilisation wurde bereits von dieser Kapitänin exklusiv ausgewählt",
     "VLD_300": "Die Zivilisation wurde noch nicht von der gegnerischen Kapitänin ausgewählt",
-    "VLD_301": "Die gegnerische Kapitänin hat diese Zivilisation nicht so oft ausgewählt, dass sie noch gesnipert werden könnte"
+    "VLD_301": "Die gegnerische Kapitänin hat diese Zivilisation nicht so oft ausgewählt, dass sie noch gesnipert werden könnte",
+    "VLD_900": "Das Preset konnte nicht vom Server verarbeitet werden",
+    "VLD_901": "Das Preset enthält eine ungültige Abfolge von parallelen Zügen",
+    "VLD_902": "Das Preset enthält einen parallelen Zug, der keine Spielerinnen-Interaktion erfordert",
+    "VLD_903": "Das Preset enthält einen parallelen Zug, dessen Folgezug keine Spielerinnen-Interaktion erfordert",
+    "VLD_904": "Das Preset enthält einen parallelen Zug als letzten Zug, was keinen Sinn ergibt",
+    "VLD_905": "Das Preset enthält einen parallelen Zug, der von der selben Spielerin wie der folgende Zug ausgeführt werden soll"
   },
   "menu": {
     "welcome": "Willkommen",

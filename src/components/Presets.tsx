@@ -55,6 +55,8 @@ class Presets extends React.Component<WithTranslation, IState> {
                                 <PresetListElement preset={Preset.HIDDEN_2V2}/>
                                 <PresetListElement preset={Preset.HIDDEN_3V3}/>
                                 <PresetListElement preset={Preset.HIDDEN_4V4}/>
+                                <PresetListElement preset={Preset.SIMPLE_PARALLEL}/>
+                                <PresetListElement preset={Preset.ILLEGAL}/>
                                 <li>Rise of the Rajas 1v1</li>
                                 <li>Rise of the Rajas 2v2</li>
                                 <li>Rise of the Rajas 3v3</li>

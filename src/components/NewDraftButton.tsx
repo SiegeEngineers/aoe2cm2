@@ -4,6 +4,7 @@ import Preset from "../models/Preset";
 import '../pure-min.css'
 import '../style2.css'
 import {Trans} from "react-i18next";
+import {Util} from "../models/Util";
 
 interface IProps {
     preset: Preset;
@@ -45,7 +46,13 @@ class NewDraftButton extends React.Component<IProps, IState> {
             if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                 const result = JSON.parse(request.responseText);
                 console.log('createNewDefaultDraft', result);
-                this.setState({...this.state, draftId: result.draftId});
+                if (result.hasOwnProperty('status') && result.status === 'error') {
+                    if (result.status !== 'ok') {
+                        alert(Util.buildValidationErrorMessage(result));
+                    }
+                } else {
+                    this.setState({...this.state, draftId: result.draftId});
+                }
             }
         };
         request.send(JSON.stringify({preset: this.props.preset}));

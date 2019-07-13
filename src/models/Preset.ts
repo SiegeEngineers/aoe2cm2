@@ -2,6 +2,9 @@ import Civilisation from "./Civilisation";
 import Turn from "./Turn";
 import {CivilisationEncoder} from "./CivilisationEncoder";
 import {Assert} from "./Assert";
+import Player from "./Player";
+import Action from "./Action";
+import Exclusivity from "./Exclusivity";
 
 class Preset {
 
@@ -36,6 +39,20 @@ class Preset {
         Turn.GUEST_NONEXCLUSIVE_BAN,
         Turn.GUEST_NONEXCLUSIVE_PICK,
         Turn.HOST_NONEXCLUSIVE_PICK
+    ]);
+
+    public static readonly ILLEGAL: Preset = new Preset('Illegal Preset', Civilisation.ALL, [
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, true),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, false, true),
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL),
+    ]);
+
+    public static readonly SIMPLE_PARALLEL: Preset = new Preset('Simple Parallel', Civilisation.ALL, [
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, true),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL),
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, true),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL),
     ]);
 
     public static readonly HIDDEN_1V1: Preset = new Preset('Hidden 1v1', Civilisation.ALL, [

@@ -8,7 +8,6 @@ import Player from "../models/Player";
 import CivPanelType from "../models/CivPanelType";
 import {Util} from "../models/Util";
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
-import i18next from "i18next";
 import {Validator} from "../models/Validator";
 import {DraftsStore} from "../models/DraftsStore";
 import Draft from "../models/Draft";
@@ -119,19 +118,12 @@ class CivPanel extends React.Component<IProps, IState> {
             onClickCivilisation(new PlayerEvent(whoAmI, triggerAction, civilisation), (data: any) => {
                 console.log('act callback', data);
                 if (data.status !== 'ok') {
-                    alert(CivPanel.buildValidationErrorMessage(data));
+                    alert(Util.buildValidationErrorMessage(data));
                 }
             });
         }
     };
 
-    private static buildValidationErrorMessage = (data: any): string => {
-        let message = i18next.t('validationFailed') + '\n';
-        for (let validationError of data.validationErrors) {
-            message += `\n${validationError}: ${i18next.t('errors.' + validationError)}`;
-        }
-        return message;
-    };
 
     private isValidOption() {
         if (Util.notUndefined(this.props.draft, this.props.whoAmI, this.props.triggerAction, this.props.civilisation)) {

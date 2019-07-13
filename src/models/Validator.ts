@@ -5,6 +5,8 @@ import {Validation} from "./Validation";
 import {Util} from "./Util";
 import PlayerEvent from "./PlayerEvent";
 import Draft from "./Draft";
+import Preset from "./Preset";
+import {PresetValidation} from "./PresetValidation";
 
 export class Validator {
     private readonly draftsStore: DraftsStore;
@@ -38,6 +40,22 @@ export class Validator {
         const validationErrors: ValidationId[] = [];
         for (const validation of Validation.ALL) {
             const validationResult = validation.apply(draft, playerEvent);
+            if (validationResult !== undefined) {
+                if (!validationErrors.includes(validationResult)) {
+                    validationErrors.push(validationResult);
+                }
+            }
+        }
+        return validationErrors;
+    }
+
+    public static validatePreset(preset: Preset | undefined) {
+        if (preset === undefined) {
+            return [ValidationId.VLD_900];
+        }
+        const validationErrors: ValidationId[] = [];
+        for (let validation of PresetValidation.ALL) {
+            const validationResult = validation.apply(preset);
             if (validationResult !== undefined) {
                 if (!validationErrors.includes(validationResult)) {
                     validationErrors.push(validationResult);

@@ -9,6 +9,7 @@ import GameVersion from "./GameVersion";
 import {Validator} from "./Validator";
 import {DraftsStore} from "./DraftsStore";
 import Exclusivity from "./Exclusivity";
+import i18next from 'i18next';
 
 export const Util = {
     notUndefined(...args: any[]): boolean {
@@ -109,5 +110,13 @@ export const Util = {
     randomChar(): string {
         const characters: string = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         return characters.charAt(Math.floor(Math.random() * characters.length));
+    },
+
+    buildValidationErrorMessage(data: any): string {
+        let message = i18next.t('validationFailed') + '\n';
+        for (let validationError of data.validationErrors) {
+            message += `\n${validationError}: ${i18next.t('errors.' + validationError)}`;
+        }
+        return message;
     }
 };

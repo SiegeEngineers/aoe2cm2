@@ -176,6 +176,95 @@ it('VLD_301: opponent does not have a non-sniped pick of the civ to snipe', () =
     expect(errors).toEqual([ValidationId.VLD_301]);
 });
 
+it('VLD_900: preset deserialisation failed', () => {
+    const errors: ValidationId[] = Validator.validatePreset(undefined);
+    expect(errors).toEqual([ValidationId.VLD_900]);
+});
+
+it('VLD_901: no parallel turns at all', () => {
+    let preset = new Preset("test", Civilisation.ALL, [Turn.HOST_NONEXCLUSIVE_PICK, Turn.HOST_NONEXCLUSIVE_PICK, Turn.GUEST_SNIPE, Turn.GUEST_SNIPE]);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([]);
+});
+
+it('VLD_901: two parallel turns, but separate', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, true),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL),
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, true),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL),]);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([]);
+});
+
+it('VLD_901: two parallel turns right after each other', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, true),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL),
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, true),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, false, true),
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL),
+    ]);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([ValidationId.VLD_901]);
+});
+
+it('VLD_902: preset with non-player parallel turn', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, true),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL),
+        new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL, false, true),
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL),
+    ]);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([ValidationId.VLD_902]);
+});
+
+it('VLD_903: non-player turn after parallel turn', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, true),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL),
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, true),
+        new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL),
+    ]);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([ValidationId.VLD_903]);
+});
+
+it('VLD_904: last turn is parallel turn', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, true),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL),
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, false, true),
+    ]);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([ValidationId.VLD_904]);
+});
+
+it('VLD_905: parallel turns by only HOST', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, true),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL),
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, true),
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL),
+    ]);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([ValidationId.VLD_905]);
+});
+
+it('VLD_905: parallel turns by only GUEST', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, true),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, false, true),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL),
+    ]);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([ValidationId.VLD_905]);
+});
+
 const prepareStore = (preset: Preset, events: DraftEvent[] = []): DraftsStore => {
     const draft = new Draft(NAME_HOST, NAME_GUEST, preset);
     draft.events.push(...events);

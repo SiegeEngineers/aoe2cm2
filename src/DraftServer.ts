@@ -39,10 +39,13 @@ export const DraftServer = {
             }
             const pojo: Preset = req.body.preset as Preset;
             let preset = Preset.fromPojo(pojo);
-            if (preset !== undefined) {
-                draftsStore.initDraft(draftId, preset);
+            const validationErrors = Validator.validatePreset(preset);
+            if (validationErrors.length === 0) {
+                draftsStore.initDraft(draftId, preset as Preset);
+                res.json({status: 'ok', draftId});
+            } else {
+                res.json({status: 'error', validationErrors});
             }
-            res.json({draftId});
         });
         app.use('/draft/[a-zA-Z]+', (req, res) => {
             res.sendFile(__dirname + '/index.html');

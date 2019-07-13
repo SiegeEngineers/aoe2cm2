@@ -66,7 +66,13 @@
     "VLD_103": "Civilisation has been globally picked before by either player",
     "VLD_200": "Civilisation has been exclusively banned before by same player",
     "VLD_300": "Civilisation has not been picked before by opponent",
-    "VLD_301": "The opponent does not have a non-sniped pick of the civilisation"
+    "VLD_301": "The opponent does not have a non-sniped pick of the civilisation",
+    "VLD_900": "The server could not process the preset properly",
+    "VLD_901": "The preset contains an invalid sequence of parallel turns",
+    "VLD_902": "The preset contains a parallel turn that does not require player interaction",
+    "VLD_903": "The preset contains a parallel turn which is followed by a turn that does not require player interaction",
+    "VLD_904": "The last turn of the preset is a parallel turn, which is not possible",
+    "VLD_905": "The preset contains a parallel turn which is to be executed by the same player as the next turn"
   },
   "menu": {
     "welcome": "Welcome",
