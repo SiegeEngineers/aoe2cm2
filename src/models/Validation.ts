@@ -17,22 +17,33 @@ export class Validation {
         }
         return true;
     });
+
     public static readonly VLD_001: Validation = new Validation(ValidationId.VLD_001, (draft: Draft, draftEvent: DraftEvent) => {
-        const expectedAction = draft.getExpectedAction();
-        if (expectedAction !== null) {
-            return expectedAction.player === draftEvent.player;
+        const expectedActions = draft.getExpectedActions();
+        if (expectedActions.length > 0) {
+            for (let expectedAction of expectedActions) {
+                if (expectedAction.player === draftEvent.player) {
+                    return true;
+                }
+            }
+            return false;
         }
         return true;
     });
 
     public static readonly VLD_002: Validation = new Validation(ValidationId.VLD_002, (draft: Draft, draftEvent: DraftEvent) => {
-        const expectedAction = draft.getExpectedAction();
-        if (expectedAction !== null) {
-            if (Util.isPlayerEvent(draftEvent)) {
-                const playerEvent = draftEvent as PlayerEvent;
-                const expectedActionType = actionTypeFromAction(expectedAction.action);
-                return playerEvent.actionType === expectedActionType;
+        const expectedActions = draft.getExpectedActions();
+        if (expectedActions.length > 0) {
+            for (let expectedAction of expectedActions) {
+                if (Util.isPlayerEvent(draftEvent)) {
+                    const playerEvent = draftEvent as PlayerEvent;
+                    const expectedActionType = actionTypeFromAction(expectedAction.action);
+                    if (playerEvent.actionType === expectedActionType) {
+                        return true;
+                    }
+                }
             }
+            return false;
         }
         return true;
     });

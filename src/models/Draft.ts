@@ -50,14 +50,35 @@ class Draft implements IDraftState {
         return this.hostReady && this.guestReady;
     }
 
-    public getExpectedAction(): Turn | null {
+    public getExpectedActions(): Turn[] {
         if (!Draft.playersAreReady(this)) {
-            return null;
+            return [];
         }
         if (this.hasNextAction()) {
-            return this.preset.turns[this.events.length];
+            const expectedActions = [];
+            const nextIndex = this.events.length;
+            const nextTurn = this.preset.turns[nextIndex];
+
+            if (nextIndex > 0) {
+                const lastTurn = this.preset.turns[nextIndex - 1];
+                if (lastTurn.parallel) {
+                    const lastEvent = this.events[nextIndex - 1];
+                    if (lastEvent.player === lastTurn.player) {
+                        expectedActions.push(this.preset.turns[nextIndex]);
+                    } else {
+                        expectedActions.push(this.preset.turns[nextIndex - 1]);
+                    }
+                    return expectedActions;
+                }
+            }
+
+            expectedActions.push(nextTurn);
+            if (nextTurn.parallel) {
+                expectedActions.push(this.preset.turns[nextIndex + 1]);
+            }
+            return expectedActions;
         }
-        return null;
+        return [];
     }
 
     public getGlobalBans(): Civilisation[] {

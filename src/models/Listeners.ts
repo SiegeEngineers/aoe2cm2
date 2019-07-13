@@ -32,39 +32,43 @@ export const Listeners = {
                     .emit("playerEvent", draftViews.getLastEventForSpec());
                 fn({status: 'ok', validationErrors});
 
-                const expectedAction = draftsStore.getExpectedAction(draftId);
-                if (expectedAction !== null) {
-                    if (expectedAction.player === Player.NONE) { // Admin Event
-                        if (expectedAction.action === Action.REVEAL_ALL) {
-                            setTimeout(() => {
-                                draftViews.revealAll();
-                                socket.nsp
-                                    .in(roomHost)
-                                    .emit("adminEvent", {
-                                        ...expectedAction,
-                                        events: draftViews.getHostDraft().events
-                                    });
-                                socket.nsp
-                                    .in(roomGuest)
-                                    .emit("adminEvent", {
-                                        ...expectedAction,
-                                        events: draftViews.getGuestDraft().events
-                                    });
-                                socket.nsp
-                                    .in(roomSpec)
-                                    .emit("adminEvent", {
-                                        ...expectedAction,
-                                        events: draftViews.getSpecDraft().events
-                                    });
-                                draftsStore.addDraftEvent(draftId, expectedAction);
-                                draftsStore.restartOrCancelCountdown(draftId);
-                            }, 2000);
-                        } else {
-                            throw new Error("Unknown expected action! " + expectedAction);
+                const expectedActions = draftsStore.getExpectedActions(draftId);
+                if (expectedActions.length > 0) {
+                    for (let expectedAction of expectedActions) {
+                        if (expectedAction.player === Player.NONE) { // Admin Event
+                            if (expectedAction.action === Action.REVEAL_ALL) {
+                                setTimeout(() => {
+                                    draftViews.revealAll();
+                                    socket.nsp
+                                        .in(roomHost)
+                                        .emit("adminEvent", {
+                                            ...expectedAction,
+                                            events: draftViews.getHostDraft().events
+                                        });
+                                    socket.nsp
+                                        .in(roomGuest)
+                                        .emit("adminEvent", {
+                                            ...expectedAction,
+                                            events: draftViews.getGuestDraft().events
+                                        });
+                                    socket.nsp
+                                        .in(roomSpec)
+                                        .emit("adminEvent", {
+                                            ...expectedAction,
+                                            events: draftViews.getSpecDraft().events
+                                        });
+                                    draftsStore.addDraftEvent(draftId, expectedAction);
+                                    draftsStore.restartOrCancelCountdown(draftId);
+                                }, 2000);
+                            } else {
+                                throw new Error("Unknown expected action! " + expectedAction);
+                            }
                         }
                     }
                 }
-                draftsStore.restartOrCancelCountdown(draftId);
+                if (draftViews.shouldRestartOrCancelCountdown()) {
+                    draftsStore.restartOrCancelCountdown(draftId);
+                }
             } else {
                 fn({status: 'error', validationErrors});
             }

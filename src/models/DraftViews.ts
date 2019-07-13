@@ -111,6 +111,13 @@ class DraftViews {
         }
         return Util.isHidden(this.actualDraft.preset.turns[lastAction]);
     }
+
+    shouldRestartOrCancelCountdown() {
+        if (this.actualDraft.nextAction > 0) {
+            return !this.actualDraft.preset.turns[this.actualDraft.nextAction - 1].parallel;
+        }
+        return true;
+    }
 }
 
 export default DraftViews

@@ -35,9 +35,9 @@ export class DraftsStore {
         draftViews.addDraftEvent(draftEvent);
     }
 
-    public getExpectedAction(draftId: string): Turn | null {
+    public getExpectedActions(draftId: string): Turn[] {
         const draft: Draft = this.getDraftOrThrow(draftId);
-        return draft.getExpectedAction();
+        return draft.getExpectedActions();
     }
 
     public getDraftIds(): string[] {
@@ -109,59 +109,63 @@ export class DraftsStore {
     }
 
     public startCountdown(draftId: string, socket: socketio.Socket) {
-        const interval: NodeJS.Timeout = setInterval(() => {
-            const roomHost: string = `${draftId}-host`;
-            const roomGuest: string = `${draftId}-guest`;
-            const roomSpec: string = `${draftId}-spec`;
-            let countdown = this.countdowns.get(draftId);
-            if (countdown !== undefined) {
-                const value = countdown.value;
-                const s = countdown.socket;
-                countdown.value = value - 1;
-                this.countdowns.set(draftId, countdown);
+        const expectedActions = this.getExpectedActions(draftId);
+        if (expectedActions.length > 0) {
+            const interval: NodeJS.Timeout = setInterval(() => {
+                const roomHost: string = `${draftId}-host`;
+                const roomGuest: string = `${draftId}-guest`;
+                const roomSpec: string = `${draftId}-spec`;
+                let countdown = this.countdowns.get(draftId);
+                if (countdown !== undefined) {
+                    const value = countdown.value;
+                    const s = countdown.socket;
+                    countdown.value = value - 1;
+                    this.countdowns.set(draftId, countdown);
 
-                if (value >= 0) {
-                    s.nsp
-                        .in(roomHost)
-                        .in(roomGuest)
-                        .in(roomSpec)
-                        .emit("countdown", {value, display: true});
-                }
-
-                if (value === -1) {
-                    const actListener = Listeners.actListener(this, draftId, (draftId: string, message: DraftEvent) => {
-                        this.addDraftEvent(draftId, message);
-                        return [];
-                    }, socket, roomHost, roomGuest, roomSpec);
-                    const expectedAction = this.getExpectedAction(draftId);
-                    if (expectedAction !== null) {
-                        const message = new PlayerEvent(expectedAction.player, actionTypeFromAction(expectedAction.action), Civilisation.RANDOM);
-                        actListener(message, () => {
-                        });
+                    if (value >= 0) {
+                        s.nsp
+                            .in(roomHost)
+                            .in(roomGuest)
+                            .in(roomSpec)
+                            .emit("countdown", {value, display: true});
                     }
-                }
 
-            }
-        }, 1000);
-        this.countdowns.set(draftId, {timeout: interval, value: 30, socket});
+                    if (value === -1) {
+                        const actListener = Listeners.actListener(this, draftId, (draftId: string, message: DraftEvent) => {
+                            this.addDraftEvent(draftId, message);
+                            return [];
+                        }, socket, roomHost, roomGuest, roomSpec);
+                        const expectedActions = this.getExpectedActions(draftId);
+                        if (expectedActions.length > 0) {
+                            for (let expectedAction of expectedActions) {
+                                const message = new PlayerEvent(expectedAction.player, actionTypeFromAction(expectedAction.action), Civilisation.RANDOM);
+                                actListener(message, () => {
+                                });
+                            }
+                        }
+                    }
+
+                }
+            }, 1000);
+            this.countdowns.set(draftId, {timeout: interval, value: 30, socket});
+        }
     }
 
     public restartOrCancelCountdown(draftId: string) {
         let countdown = this.countdowns.get(draftId);
         if (countdown !== undefined) {
             clearInterval(countdown.timeout);
-            const expectedAction = this.getExpectedAction(draftId);
-            if (expectedAction !== null) {
+            const expectedActions = this.getExpectedActions(draftId);
+            const roomHost: string = `${draftId}-host`;
+            const roomGuest: string = `${draftId}-guest`;
+            const roomSpec: string = `${draftId}-spec`;
+            countdown.socket.nsp
+                .in(roomHost)
+                .in(roomGuest)
+                .in(roomSpec)
+                .emit("countdown", {value: 0, display: false});
+            if (expectedActions.length > 0) {
                 this.startCountdown(draftId, countdown.socket);
-            } else {
-                const roomHost: string = `${draftId}-host`;
-                const roomGuest: string = `${draftId}-guest`;
-                const roomSpec: string = `${draftId}-spec`;
-                countdown.socket.nsp
-                    .in(roomHost)
-                    .in(roomGuest)
-                    .in(roomSpec)
-                    .emit("countdown", {value: 0, display: false});
             }
         }
     }

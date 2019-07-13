@@ -59,7 +59,7 @@ class Player extends React.Component<IProps, IState> {
                     }
                     picksIndex++;
                     pickPanels.push(React.createElement(CivPanel, {
-                        active: i === this.props.nextAction,
+                        active: this.isActive(i),
                         civPanelType: CivPanelType.PICK,
                         civilisation: pickedCiv,
                         sniped
@@ -71,7 +71,7 @@ class Player extends React.Component<IProps, IState> {
                     }
                     bansIndex++;
                     banPanels.push(React.createElement(CivPanel, {
-                        active: i === this.props.nextAction,
+                        active: this.isActive(i),
                         civPanelType: CivPanelType.BAN,
                         civilisation: bannedCiv
                     }));
@@ -108,6 +108,24 @@ class Player extends React.Component<IProps, IState> {
                 </div>
             </div>
         );
+    }
+
+    private isActive(i: number) {
+        if (i === this.props.nextAction) {
+            return true;
+        }
+
+        const numberOfTurns: number = this.props.preset.turns.length;
+
+        if (i + 1 === this.props.nextAction && numberOfTurns > i && this.props.preset.turns[i].parallel) {
+            return true;
+        }
+
+        if (i - 1 === this.props.nextAction && i - 1 >= 0 && this.props.preset.turns[i - 1].parallel) {
+            return true;
+        }
+
+        return false;
     }
 }
 
