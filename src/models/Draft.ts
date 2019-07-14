@@ -42,21 +42,21 @@ class Draft implements IDraftState {
         return draft.hostReady && draft.guestReady;
     }
 
-    public hasNextAction(): boolean {
-        return this.events.length < this.preset.turns.length;
+    public hasNextAction(offset: number = 0): boolean {
+        return this.events.length + offset < this.preset.turns.length;
     }
 
     public draftCanBeStarted(): boolean {
         return this.hostReady && this.guestReady;
     }
 
-    public getExpectedActions(): Turn[] {
+    public getExpectedActions(offset: number = 0): Turn[] {
         if (!Draft.playersAreReady(this)) {
             return [];
         }
-        if (this.hasNextAction()) {
+        if (this.hasNextAction(offset)) {
             const expectedActions = [];
-            const nextIndex = this.events.length;
+            const nextIndex = this.events.length + offset;
             const nextTurn = this.preset.turns[nextIndex];
 
             if (nextIndex > 0) {

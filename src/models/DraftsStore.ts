@@ -35,9 +35,9 @@ export class DraftsStore {
         draftViews.addDraftEvent(draftEvent);
     }
 
-    public getExpectedActions(draftId: string): Turn[] {
+    public getExpectedActions(draftId: string, offset: number = 0): Turn[] {
         const draft: Draft = this.getDraftOrThrow(draftId);
-        return draft.getExpectedActions();
+        return draft.getExpectedActions(offset);
     }
 
     public getDraftIds(): string[] {

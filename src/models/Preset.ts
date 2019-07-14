@@ -55,6 +55,23 @@ class Preset {
         new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL),
     ]);
 
+    public static readonly REVEAL_TEST: Preset = new Preset('Reveal Test', Civilisation.ALL, [
+        new Turn(Player.HOST, Action.PICK, Exclusivity.NONEXCLUSIVE, true),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.NONEXCLUSIVE, true),
+        new Turn(Player.HOST, Action.BAN, Exclusivity.NONEXCLUSIVE, true),
+        new Turn(Player.GUEST, Action.BAN, Exclusivity.NONEXCLUSIVE, true),
+        new Turn(Player.NONE, Action.REVEAL_PICKS, Exclusivity.GLOBAL),
+        new Turn(Player.HOST, Action.SNIPE, Exclusivity.NONEXCLUSIVE, true),
+        new Turn(Player.GUEST, Action.SNIPE, Exclusivity.NONEXCLUSIVE, true),
+        new Turn(Player.HOST, Action.PICK, Exclusivity.NONEXCLUSIVE, true),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.NONEXCLUSIVE, true),
+        new Turn(Player.HOST, Action.BAN, Exclusivity.NONEXCLUSIVE, true),
+        new Turn(Player.GUEST, Action.BAN, Exclusivity.NONEXCLUSIVE, true),
+        new Turn(Player.NONE, Action.REVEAL_PICKS, Exclusivity.GLOBAL),
+        new Turn(Player.NONE, Action.REVEAL_BANS, Exclusivity.GLOBAL),
+        new Turn(Player.NONE, Action.REVEAL_SNIPES, Exclusivity.GLOBAL),
+    ]);
+
     public static readonly HIDDEN_1V1: Preset = new Preset('Hidden 1v1', Civilisation.ALL, [
         Turn.HOST_HIDDEN_BAN,
         Turn.GUEST_HIDDEN_BAN,

@@ -3,6 +3,8 @@ import Player from "./Player";
 import {DraftEvent} from "./DraftEvent";
 import {Util} from "./Util";
 import PlayerEvent from "./PlayerEvent";
+import Action from "./Action";
+import ActionType from "./ActionType";
 
 class DraftViews {
     public hostEvents: DraftEvent[];
@@ -98,10 +100,37 @@ class DraftViews {
         return draftEvent;
     }
 
-    revealAll() {
-        this.hostEvents = [...this.actualDraft.events];
-        this.guestEvents = [...this.actualDraft.events];
-        this.specEvents = [...this.actualDraft.events];
+    reveal(action: Action) {
+        switch (action) {
+            case Action.REVEAL_ALL:
+                this.hostEvents = [...this.actualDraft.events];
+                this.guestEvents = [...this.actualDraft.events];
+                this.specEvents = [...this.actualDraft.events];
+                break;
+            case Action.REVEAL_PICKS:
+                this.doReveal(ActionType.PICK);
+                break;
+            case Action.REVEAL_BANS:
+                this.doReveal(ActionType.BAN);
+                break;
+            case Action.REVEAL_SNIPES:
+                this.doReveal(ActionType.SNIPE);
+                break;
+            default:
+                throw new Error('Illegal/Unknown Action: ' + action);
+        }
+    }
+
+    private doReveal(actionType: ActionType) {
+        for (const view of [this.hostEvents, this.guestEvents, this.specEvents]) {
+            for (let i = 0; i < view.length; i++) {
+                let currentEvent = view[i];
+                if (Util.isPlayerEvent(currentEvent)
+                    && (currentEvent as PlayerEvent).actionType === actionType) {
+                    view[i] = this.actualDraft.events[i];
+                }
+            }
+        }
     }
 
     private isLastActionHidden(): boolean {
