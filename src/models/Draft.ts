@@ -154,7 +154,7 @@ class Draft implements IDraftState {
         }
         const exclusiveBanTurns: boolean[] = this.preset.turns
             .map((turn): boolean => {
-                return turn.player === player && turn.action === Action.BAN;
+                return turn.player === player && turn.action === Action.BAN && turn.exclusivity === Exclusivity.EXCLUSIVE;
             });
 
         const exclusiveBans: Civilisation[] = [];
