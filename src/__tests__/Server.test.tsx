@@ -5,6 +5,7 @@ import Player from "../models/Player";
 import {IDraftConfig} from "../models/IDraftConfig";
 import getPort from "get-port";
 import Preset from "../models/Preset";
+import {Barrier} from "../test/Barrier";
 
 let hostSocket: any;
 let clientSocket: any;
@@ -31,6 +32,7 @@ afterAll((done) => {
 });
 
 beforeEach((done) => {
+    const barrier = new Barrier(2, done);
     request.post(`http://[${httpServerAddr.address}]:${httpServerAddr.port}/preset/new`,
         {body: JSON.stringify({preset: Preset.SAMPLE}), headers: {'Content-Type': 'application/json; charset=UTF-8'}},
         (error, response, body) => {
@@ -43,7 +45,7 @@ beforeEach((done) => {
             transports: ['websocket'],
         });
         hostSocket.on('connect', () => {
-            done();
+            barrier.trigger();
         });
         clientSocket = io.connect(`http://[${httpServerAddr.address}]:${httpServerAddr.port}`, {
             query: {draftId: draftId},
@@ -52,7 +54,7 @@ beforeEach((done) => {
             transports: ['websocket'],
         });
         clientSocket.on('connect', () => {
-            done();
+            barrier.trigger();
         });
 
     });
@@ -78,6 +80,7 @@ it('successful join gets a draft config', (done) => {
 
 
 it('should send player_joined when player joins', (done) => {
+    const barrier = new Barrier(2, done);
     hostSocket.once("player_joined", (message: any) => {
         expect(message.name).toBe('Saladin');
         expect(message.playerType).toBe(Player.HOST);
@@ -85,15 +88,23 @@ it('should send player_joined when player joins', (done) => {
         hostSocket.once("player_joined", (message: any) => {
             expect(message.name).toBe('Barbarossa');
             expect(message.playerType).toBe(Player.GUEST);
-        });
-        clientSocket.once("player_joined", (message: any) => {
-            expect(message.name).toBe('Barbarossa');
-            expect(message.playerType).toBe(Player.GUEST);
-            done();
+            barrier.trigger();
         });
         clientSocket.emit('join', {name: 'Barbarossa'}, () => {
         });
     });
+
+    clientSocket.once("player_joined", (message: any) => {
+        expect(message.name).toBe('Saladin');
+        expect(message.playerType).toBe(Player.HOST);
+
+        clientSocket.once("player_joined", (message: any) => {
+            expect(message.name).toBe('Barbarossa');
+            expect(message.playerType).toBe(Player.GUEST);
+            barrier.trigger();
+        });
+    });
+
     hostSocket.emit('join', {name: 'Saladin'}, () => {
     });
 });
