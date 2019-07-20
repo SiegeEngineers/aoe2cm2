@@ -4,7 +4,7 @@ import {default as ModelAction} from "../models/Action";
 import {DraftEvent} from "../models/DraftEvent";
 import {IDraftConfig} from "../models/IDraftConfig";
 import PlayerEvent from "../models/PlayerEvent";
-import {ICountdownValues} from "../types";
+import {ICountdownValues, IDraftState} from "../types";
 
 export interface IActionCompleted {
     type: Actions.ACTION_COMPLETED,
@@ -61,6 +61,11 @@ export interface IShowNameModal {
     type: Actions.SHOW_NAME_MODAL
 }
 
+export interface IReplayEvent {
+    type: Actions.REPLAY
+    value: IDraftState
+}
+
 export type Action =
     ISetName
     | IChangeOwnName
@@ -72,7 +77,8 @@ export type Action =
     | ISetEvents
     | IDisconnect
     | ICountdownEvent
-    | IShowNameModal;
+    | IShowNameModal
+    | IReplayEvent;
 
 export function setName(player: Player, value: string): ISetName {
     return {
@@ -141,5 +147,12 @@ export function setEvents(value: { player: Player, action: ModelAction, events: 
 export function disconnect(): IDisconnect {
     return {
         type: Actions.DISCONNECT
+    }
+}
+
+export function replay(value: IDraftState): IReplayEvent {
+    return {
+        value,
+        type: Actions.REPLAY
     }
 }

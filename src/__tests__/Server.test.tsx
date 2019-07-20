@@ -108,3 +108,42 @@ it('should send player_joined when player joins', (done) => {
     hostSocket.emit('join', {name: 'Saladin'}, () => {
     });
 });
+
+it('fully execute sample draft', (done) => {
+    const barrier = new Barrier(2, done);
+    hostSocket.once('disconnect', () => {
+        barrier.trigger();
+    });
+    clientSocket.once('disconnect', () => {
+        barrier.trigger();
+    });
+    hostSocket.emit('join', {name: 'Saladin'}, () => {
+        clientSocket.emit('join', {name: 'Barbarossa'}, () => {
+            hostSocket.emit('act', {
+                "player": "HOST",
+                "actionType": "ban",
+                "civilisation": {"name": "Celts", "gameVersion": 1, "isRandomlyChosenCiv": false}
+            }, () => {
+                clientSocket.emit('act', {
+                    "player": "GUEST",
+                    "actionType": "ban",
+                    "civilisation": {"name": "Celts", "gameVersion": 1, "isRandomlyChosenCiv": false}
+                }, () => {
+                    clientSocket.emit('act', {
+                        "player": "GUEST",
+                        "actionType": "pick",
+                        "civilisation": {"name": "Slavs", "gameVersion": 3, "isRandomlyChosenCiv": false}
+                    }, () => {
+                        hostSocket.emit('act', {
+                            "player": "HOST",
+                            "actionType": "pick",
+                            "civilisation": {"name": "Slavs", "gameVersion": 3, "isRandomlyChosenCiv": false}
+                        }, () => {
+                            // preset done
+                        });
+                    });
+                });
+            });
+        });
+    });
+});

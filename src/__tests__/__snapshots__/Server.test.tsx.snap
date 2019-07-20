@@ -5,7 +5,6 @@ Object {
   "events": Array [],
   "guestReady": false,
   "hostReady": true,
-  "language": "en-GB",
   "nameGuest": "…",
   "nameHost": "Saladin",
   "nextAction": 0,

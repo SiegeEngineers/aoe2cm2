@@ -1,5 +1,5 @@
 import io from "socket.io-client";
-import {Action, IActionCompleted, ICountdownEvent, ISetEvents, ISetName} from "../actions";
+import {Action, IActionCompleted, ICountdownEvent, IReplayEvent, ISetEvents, ISetName} from "../actions";
 import {Actions} from "../constants";
 import {default as ModelAction} from "./Action";
 import {DraftEvent} from "./DraftEvent";
@@ -41,6 +41,11 @@ export const SocketUtil = {
         socket.on("countdown", (message: ICountdownValues) => {
             console.log('message received:', "[countdown]", message);
             storeAPI.dispatch({type: Actions.COUNTDOWN, value: message} as ICountdownEvent);
+        });
+
+        socket.on("replay", (message: any) => {
+            console.log('message received:', "[replay]", message);
+            storeAPI.dispatch({type: Actions.REPLAY, value: message} as IReplayEvent);
         });
 
         return socket;

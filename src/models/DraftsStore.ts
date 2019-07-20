@@ -174,4 +174,8 @@ export class DraftsStore {
             }
         }
     }
+
+    removeDraft(draftId: string) {
+        this.drafts.delete(draftId);
+    }
 }

@@ -12,6 +12,7 @@ import {Util} from "./models/Util";
 import {AddressInfo} from "net";
 import Preset from "./models/Preset";
 import {Listeners} from "./models/Listeners";
+import * as fs from "fs";
 
 export const DraftServer = {
     serve(port: string | number | undefined):{ httpServerAddr: AddressInfo | string | null; io: SocketIO.Server; httpServer: Server } {
@@ -67,7 +68,12 @@ export const DraftServer = {
             console.log("a user connected to the draft", draftId);
 
             if (!draftsStore.has(draftId)) {
-                socket.emit('message', 'This draft does not exist.');
+                const path = `data/${draftId}.json`;
+                if (fs.existsSync(path)) {
+                    socket.emit('replay', JSON.parse(fs.readFileSync(path).toString('utf8')));
+                } else {
+                    socket.emit('message', 'This draft does not exist.');
+                }
                 socket.disconnect(true);
                 return;
             }

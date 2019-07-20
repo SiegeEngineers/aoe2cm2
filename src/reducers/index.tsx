@@ -94,6 +94,15 @@ export function updateState(state: IStoreState = initialState, action?: Action):
                 ...state,
                 showModal: true
             };
+
+        case Actions.REPLAY:
+            console.log(Actions.REPLAY, action.value);
+            const draft = action.value;
+            draft.preset = Preset.fromPojo(draft.preset);
+            return {
+                ...state,
+                ...draft
+            }
     }
     return state;
 }
