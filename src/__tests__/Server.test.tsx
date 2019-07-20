@@ -34,7 +34,7 @@ afterAll((done) => {
 beforeEach((done) => {
     const barrier = new Barrier(2, done);
     request.post(`http://[${httpServerAddr.address}]:${httpServerAddr.port}/preset/new`,
-        {body: JSON.stringify({preset: Preset.SAMPLE}), headers: {'Content-Type': 'application/json; charset=UTF-8'}},
+        {body: JSON.stringify({preset: Preset.SIMPLE}), headers: {'Content-Type': 'application/json; charset=UTF-8'}},
         (error, response, body) => {
         const draftIdContainer: { draftId: string } = JSON.parse(body);
         draftId = draftIdContainer.draftId;
