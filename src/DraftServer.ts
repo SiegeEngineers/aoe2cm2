@@ -57,7 +57,8 @@ export const DraftServer = {
         });
 
         io.on("connection", (socket: socketio.Socket) => {
-            const draftId: string = socket.handshake.query.draftId;
+            const draftIdRaw: string = socket.handshake.query.draftId;
+            const draftId = Util.sanitizeDraftId(draftIdRaw);
 
             const roomHost: string = `${draftId}-host`;
             const roomGuest: string = `${draftId}-guest`;

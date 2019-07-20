@@ -11,6 +11,8 @@ import {DraftsStore} from "./DraftsStore";
 import Exclusivity from "./Exclusivity";
 import i18next from 'i18next';
 
+const CHARACTERS: string = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
 export const Util = {
     notUndefined(...args: any[]): boolean {
         for (const arg of args) {
@@ -99,17 +101,15 @@ export const Util = {
     },
 
     newDraftId(): string {
-        const characters: string = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         let id: string = '';
         for (let i = 0; i < 5; i++) {
-            id += characters.charAt(Math.floor(Math.random() * characters.length));
+            id += CHARACTERS.charAt(Math.floor(Math.random() * CHARACTERS.length));
         }
         return id;
     },
 
     randomChar(): string {
-        const characters: string = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-        return characters.charAt(Math.floor(Math.random() * characters.length));
+        return CHARACTERS.charAt(Math.floor(Math.random() * CHARACTERS.length));
     },
 
     buildValidationErrorMessage(data: any): string {
@@ -118,5 +118,9 @@ export const Util = {
             message += `\n${validationError}: ${i18next.t('errors.' + validationError)}`;
         }
         return message;
+    },
+
+    sanitizeDraftId(draftIdRaw: string) {
+        return draftIdRaw.replace(new RegExp(`[^${CHARACTERS}]`, 'g'), '_');
     }
 };
