@@ -20,11 +20,13 @@ class Modal extends React.Component<IProps, object> {
             <div id="overlay" className="text-primary" style={{display: display}}>
                 <div id="set-name-message" style={{display: display}}>
                     <h2><Trans>modal.header</Trans></h2>
-                    <p><Trans>modal.callToAction</Trans> <br/>
+                    <p><Trans>modal.callToAction</Trans></p>
+                    <div className='combo-form'>
                         <input id={this.INPUT_CAPTAIN_NAME} type="text" className="inset-input"
                                defaultValue={nameProposal}/>
-                        <br/>
-                        <Trans>modal.editInfo</Trans></p>
+                        <button className='contourless-button' onClick={this.newNameProposal}>🔃</button>
+                    </div>
+                    <p><Trans>modal.editInfo</Trans></p>
                     <span><a onClick={this.callback}><span
                         className="back-icon"><Trans>modal.setName</Trans></span></a></span>
                     <p><Trans>modal.readTheRules</Trans></p>
@@ -39,6 +41,11 @@ class Modal extends React.Component<IProps, object> {
             return new NameGenerator().nextName();
         }
         return nameProposal;
+    }
+
+    private newNameProposal = () => {
+        const input: HTMLInputElement = document.getElementById(this.INPUT_CAPTAIN_NAME) as HTMLInputElement;
+        input.value = new NameGenerator().nextName();
     }
 
     private callback = () => {

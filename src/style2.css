@@ -914,9 +914,19 @@ input[type="checkbox"]:checked + label span
 
 #overlay .inset-input {
 	text-align: center;
+	min-width: 40%;
+	color: rgba(0,0,0,0.87);
+}
+
+#overlay .combo-form {
+	text-align: center;
 	margin: 8px auto;
 	display: block;
-	color: rgba(0,0,0,0.87);
+}
+
+.contourless-button {
+	border: none;
+	background-color: transparent;
 }
 
 #overlay .copy-url {
