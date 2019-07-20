@@ -6,7 +6,7 @@ import {applyMiddleware, createStore, Store} from 'redux';
 import {Action, IApplyConfig, IClickOnCiv, ISendJoin} from "./actions";
 import NotFound404 from "./components/404";
 import Footer from "./components/Footer";
-import LanguageSelectors from "./components/LanguageSelectors";
+import TopRightControls from "./components/TopRightControls";
 import Menu from "./components/Menu";
 import {Actions} from "./constants";
 import Draft from './containers/Draft';
@@ -23,7 +23,7 @@ import {IStoreState} from './types';
 
 const createMySocketMiddleware = () => {
 
-    return (storeAPI: { dispatch: (arg0: Action) => void; }) => {
+    return (storeAPI: { dispatch: (arg0: Action) => void; getState: () => IStoreState }) => {
         let socket: any = null;
 
         return (next: (arg0: any) => void) => (action: Action) => {
@@ -65,7 +65,7 @@ const store: Store = createStore<IStoreState, Action, any, Store>(updateState,
         nextAction: 0,
         events: [],
         language: i18n.language,
-        showModal: (NameGenerator.getNameFromLocalStorage() === null)
+        showModal: false
     },
     applyMiddleware(createMySocketMiddleware()));
 
@@ -73,7 +73,7 @@ console.log(store.getState());
 
 ReactDOM.render(
     <Provider store={store}>
-        <LanguageSelectors/>
+        <TopRightControls/>
         <Router>
             <Switch>
                 <Route path="/draft/:id" component={Draft}/>

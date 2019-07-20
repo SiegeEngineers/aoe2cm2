@@ -72,6 +72,11 @@ export class DraftsStore {
         }
     }
 
+    public playersAreReady(draftId: string) {
+        const draft: Draft = this.getDraftOrThrow(draftId);
+        return Draft.playersAreReady(draft);
+    }
+
     public getPlayerNames(draftId: string) {
         const draft: Draft = this.getDraftOrThrow(draftId);
         return {nameHost: draft.nameHost, nameGuest: draft.nameGuest};

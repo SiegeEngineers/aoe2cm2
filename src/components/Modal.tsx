@@ -5,6 +5,7 @@ import NameGenerator from "../models/NameGenerator";
 interface IProps extends WithTranslation {
     visible: boolean;
     currentName: string | null;
+    inDraft: boolean;
     changeNameCallback?: (name: string) => void;
 }
 

@@ -1,10 +1,12 @@
 import * as React from "react";
 import LanguageSelector from "../containers/LanguageSelector";
+import UsernameSelector from "../containers/UsernameSelector";
 
-class LanguageSelectors extends React.Component<object, object> {
+class TopRightControls extends React.Component<object, object> {
     public render() {
         return (
-            <div className={'languageSelectors'}>
+            <div className={'topRightControls'}>
+                <UsernameSelector/>
                 <LanguageSelector language={'en-GB'}/>
                 <LanguageSelector language={'de-DE'}/>
                 <LanguageSelector language={'zh-CN'}/>
@@ -13,4 +15,4 @@ class LanguageSelectors extends React.Component<object, object> {
     }
 }
 
-export default LanguageSelectors;
+export default TopRightControls;

@@ -30,6 +30,7 @@ interface IProps extends WithTranslation {
     onSetNameGuestAction?: (name: string) => void;
     triggerJoin?: (name: string) => void;
     triggerDisconnect?: () => void;
+    showNameModal?: () => void;
 }
 
 interface IState {
@@ -44,6 +45,8 @@ class Draft extends React.Component<IProps, IState> {
         if (this.props.triggerJoin !== undefined && username !== null) {
             console.log('triggering JOIN');
             this.props.triggerJoin(username);
+        } else if (this.props.showNameModal !== undefined && username === null) {
+            this.props.showNameModal();
         }
     }
 
@@ -58,7 +61,7 @@ class Draft extends React.Component<IProps, IState> {
                     <span onClick={this.props.triggerDisconnect}><Link to="/"><span className="back-icon header-navigation">back</span></Link></span>
                 </div>
 
-                <Modal/>
+                <Modal inDraft={true}/>
 
                 <div className="draft-content">
 

@@ -21,13 +21,20 @@ html, body {
 
 .language-selector {
 	padding-right: .5rem;
+	height: 2rem;
+	display: inline-block;
+	vertical-align: middle;
 }
 
-.languageSelectors {
+.topRightControls {
 	position: absolute;
 	top: 8px;
 	right: 8px;
 	z-index: 2000;
+}
+
+.usernameSelector {
+	margin-right: .5rem;
 }
 
 .active {

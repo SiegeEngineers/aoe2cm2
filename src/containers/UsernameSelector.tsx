@@ -2,7 +2,7 @@ import {IStoreState} from '../types';
 import {connect} from 'react-redux';
 import {Dispatch} from "redux";
 import * as actions from "../actions";
-import Modal from "../components/Modal";
+import UsernameSelector from "../components/UsernameSelector";
 
 
 export function mapStateToProps(state: IStoreState) {
@@ -13,14 +13,12 @@ export function mapStateToProps(state: IStoreState) {
 }
 
 export function mapDispatchToProps(dispatch: Dispatch<actions.Action>, ownProps: any) {
-    console.log('ownProps', ownProps);
-    const changeNameCallback = ownProps.inDraft ? (name: string) => {
-        dispatch(actions.sendJoin(name));
-        dispatch(actions.changeOwnName(name));
-    } : (name: string) => dispatch(actions.changeOwnName(name));
+    const setNameCallback = () => {
+        dispatch(actions.showNameModal());
+    };
     return {
-        changeNameCallback
+        setNameCallback
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Modal);
+export default connect(mapStateToProps, mapDispatchToProps)(UsernameSelector);

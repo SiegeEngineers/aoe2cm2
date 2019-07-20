@@ -18,7 +18,7 @@ const initialState: IStoreState = {
     nextAction: 0,
     events: [],
     language: i18n.language,
-    showModal: (NameGenerator.getNameFromLocalStorage() === null),
+    showModal: false,
     countdownValue: 0,
     countdownVisible: false
 };
@@ -86,6 +86,13 @@ export function updateState(state: IStoreState = initialState, action?: Action):
                 ...state,
                 countdownValue: action.value.value,
                 countdownVisible: action.value.display
+            };
+
+        case Actions.SHOW_NAME_MODAL:
+            console.log(Actions.SHOW_NAME_MODAL);
+            return {
+                ...state,
+                showModal: true
             };
     }
     return state;

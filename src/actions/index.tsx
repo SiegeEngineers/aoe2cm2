@@ -57,6 +57,10 @@ export interface IDisconnect {
     type: Actions.DISCONNECT
 }
 
+export interface IShowNameModal {
+    type: Actions.SHOW_NAME_MODAL
+}
+
 export type Action =
     ISetName
     | IChangeOwnName
@@ -67,7 +71,8 @@ export type Action =
     | ISetLanguage
     | ISetEvents
     | IDisconnect
-    | ICountdownEvent;
+    | ICountdownEvent
+    | IShowNameModal;
 
 export function setName(player: Player, value: string): ISetName {
     return {
@@ -102,6 +107,12 @@ export function sendJoin(name: string): ISendJoin {
     return {
         name,
         type: Actions.SEND_JOIN
+    }
+}
+
+export function showNameModal(): IShowNameModal {
+    return {
+        type: Actions.SHOW_NAME_MODAL
     }
 }
 

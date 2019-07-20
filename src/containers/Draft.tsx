@@ -31,7 +31,8 @@ export function mapDispatchToProps(dispatch: Dispatch<actions.Action>) {
         onSetNameGuestAction: (name: string) => dispatch(actions.setName(Player.GUEST, name)),
         onSetNameHostAction: (name: string) => dispatch(actions.setName(Player.HOST, name)),
         triggerJoin: (name: string) => dispatch(actions.sendJoin(name)),
-        triggerDisconnect: () => dispatch(actions.disconnect())
+        triggerDisconnect: () => dispatch(actions.disconnect()),
+        showNameModal: () => dispatch(actions.showNameModal())
     }
 }
 

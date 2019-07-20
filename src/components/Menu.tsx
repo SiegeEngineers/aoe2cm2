@@ -8,11 +8,13 @@ import Spectate from "./Spectate";
 import '../pure-min.css'
 import '../style2.css'
 import {Trans, withTranslation, WithTranslation} from "react-i18next";
+import Modal from "../containers/Modal";
 
 class Menu extends React.Component<WithTranslation, object> {
     public render() {
         return (
             <div className="content">
+                <Modal/>
                 <div className="title">
                     <span id="aoe-title">Age of Empires II</span>
                     <span id="cm-logo"/>
