@@ -91,6 +91,7 @@ export const DraftServer = {
 
             socket.on("join", (message: IJoinMessage, fn: (dc: IDraftConfig) => void) => {
                 console.log("player joined:", message);
+                const isRejoin = draftsStore.playersAreReady(draftId);
                 let playerType: Player = Player.NONE;
                 if (Object.keys(socket.rooms).includes(roomHost)) {
                     setPlayerName(draftId, Player.HOST, message.name);
@@ -99,8 +100,10 @@ export const DraftServer = {
                 } else if (Object.keys(socket.rooms).includes(roomGuest)) {
                     setPlayerName(draftId, Player.GUEST, message.name);
                     draftsStore.setPlayerReady(draftId, Player.GUEST);
-                    playerType = Player.GUEST
-                    draftsStore.startCountdown(draftId, socket);
+                    playerType = Player.GUEST;
+                    if (!isRejoin) {
+                        draftsStore.startCountdown(draftId, socket);
+                    }
                 }
                 socket.nsp
                     .in(roomHost)
