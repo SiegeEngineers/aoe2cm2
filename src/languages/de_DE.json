@@ -100,5 +100,6 @@
     "join": "Zusehen"
   },
   "createNewDraft": "Neuen Draft erstellen",
-  "setYourName": "Wähle einen Namen"
+  "setYourName": "Wähle einen Namen",
+  "youAre": "Dein Name:"
 }

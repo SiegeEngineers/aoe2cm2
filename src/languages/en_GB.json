@@ -89,5 +89,6 @@
     "5":"<0>Practice</0> mode is for testing purposes, where both sides are controlled by a single player."
   },
   "createNewDraft": "Create new draft",
-  "setYourName": "Set your name"
+  "setYourName": "Set your name",
+  "youAre": "You are:"
 }
