@@ -19,13 +19,6 @@ html, body {
 	min-height: 100%;
 }
 
-.language-selector {
-	padding-right: .5rem;
-	height: 2rem;
-	display: inline-block;
-	vertical-align: middle;
-}
-
 .topRightControls {
 	position: absolute;
 	top: 8px;

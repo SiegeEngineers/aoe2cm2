@@ -1,10 +1,13 @@
 import * as React from 'react';
 import '../pure-min.css'
 import '../style2.css'
+import {default as i18n} from "../i18n";
+import {WithTranslation, withTranslation} from "react-i18next";
 
 
-interface IProps {
+interface IProps extends WithTranslation{
     language: string;
+    displayString: string;
     onSetLanguage?: (language: string) => void;
 }
 
@@ -18,14 +21,17 @@ class LanguageSelector extends React.Component<IProps, object> {
             }
         };
 
-        const imageSrc = '/images/flags/' + this.props.language + '.svg';
+        let className ="language-selector pure-button";
+        if(this.props.language === i18n.language){
+            className += ' pure-button-active';
+        }
 
         return (
-            <span className="language-selector" onClick={changeLanguage}>
-                <img src={imageSrc} alt={this.props.language} style={{height: '2rem'}}/>
-            </span>
+            <button className={className} onClick={changeLanguage}>
+                {this.props.displayString}
+            </button>
         );
     }
 }
 
-export default LanguageSelector;
+export default withTranslation()(LanguageSelector);

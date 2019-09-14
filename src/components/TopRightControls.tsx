@@ -7,9 +7,9 @@ class TopRightControls extends React.Component<object, object> {
         return (
             <div className={'topRightControls'}>
                 <UsernameSelector/>
-                <LanguageSelector language={'en-GB'}/>
-                <LanguageSelector language={'de-DE'}/>
-                <LanguageSelector language={'zh-CN'}/>
+                <LanguageSelector language={'en-GB'} displayString={'EN'}/>
+                <LanguageSelector language={'de-DE'} displayString={'DE'}/>
+                <LanguageSelector language={'zh-CN'} displayString={'中文'}/>
             </div>
         );
     }
