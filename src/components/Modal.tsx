@@ -14,25 +14,28 @@ class Modal extends React.Component<IProps, object> {
     private readonly INPUT_CAPTAIN_NAME: string = 'input-captain-name';
 
     public render() {
-        const display: string = this.props.visible ? 'block' : 'none';
         let nameProposal = Modal.getNameProposal();
-        return (
-            <div id="overlay" className="text-primary" style={{display: display}}>
-                <div id="set-name-message" style={{display: display}}>
-                    <h2><Trans>modal.header</Trans></h2>
-                    <p><Trans>modal.callToAction</Trans></p>
-                    <div className='combo-form'>
-                        <input id={this.INPUT_CAPTAIN_NAME} type="text" className="inset-input"
-                               defaultValue={nameProposal}/>
-                        <button className='contourless-button' onClick={this.newNameProposal}>🔃</button>
+        if (this.props.visible) {
+            return (
+                <div id="overlay" className="text-primary">
+                    <div id="set-name-message">
+                        <h2><Trans>modal.header</Trans></h2>
+                        <p><Trans>modal.callToAction</Trans></p>
+                        <div className='combo-form'>
+                            <input id={this.INPUT_CAPTAIN_NAME} type="text" className="inset-input"
+                                   defaultValue={nameProposal}/>
+                            <button className='contourless-button' onClick={this.newNameProposal}>🔃</button>
+                        </div>
+                        <p><Trans>modal.editInfo</Trans></p>
+                        <span><a onClick={this.callback}><span
+                            className="back-icon"><Trans>modal.setName</Trans></span></a></span>
+                        <p><Trans>modal.readTheRules</Trans></p>
                     </div>
-                    <p><Trans>modal.editInfo</Trans></p>
-                    <span><a onClick={this.callback}><span
-                        className="back-icon"><Trans>modal.setName</Trans></span></a></span>
-                    <p><Trans>modal.readTheRules</Trans></p>
                 </div>
-            </div>
-        );
+            );
+        } else {
+            return (<div/>);
+        }
     }
 
     private static getNameProposal(): string {
