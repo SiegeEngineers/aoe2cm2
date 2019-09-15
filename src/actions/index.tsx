@@ -22,6 +22,11 @@ export interface ISetName {
     value: string
 }
 
+export interface ISetReady {
+    player: Player,
+    type: Actions.SET_READY
+}
+
 export interface IChangeOwnName {
     type: Actions.CHANGE_OWN_NAME,
     value: string
@@ -30,6 +35,10 @@ export interface IChangeOwnName {
 export interface ISendJoin {
     type: Actions.SEND_JOIN,
     name: string
+}
+
+export interface ISendReady {
+    type: Actions.SEND_READY
 }
 
 export interface IClickOnCiv {
@@ -68,10 +77,12 @@ export interface IReplayEvent {
 
 export type Action =
     ISetName
+    | ISetReady
     | IChangeOwnName
     | IActionCompleted
     | IApplyConfig
     | ISendJoin
+    | ISendReady
     | IClickOnCiv
     | ISetLanguage
     | ISetEvents
@@ -85,6 +96,13 @@ export function setName(player: Player, value: string): ISetName {
         player,
         type: Actions.SET_NAME,
         value
+    }
+}
+
+export function setReady(player: Player): ISetReady {
+    return {
+        player,
+        type: Actions.SET_READY
     }
 }
 
@@ -113,6 +131,12 @@ export function sendJoin(name: string): ISendJoin {
     return {
         name,
         type: Actions.SEND_JOIN
+    }
+}
+
+export function sendReady(): ISendReady {
+    return {
+        type: Actions.SEND_READY
     }
 }
 

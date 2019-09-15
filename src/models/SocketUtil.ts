@@ -1,5 +1,5 @@
 import io from "socket.io-client";
-import {Action, IActionCompleted, ICountdownEvent, IReplayEvent, ISetEvents, ISetName} from "../actions";
+import {Action, IActionCompleted, ICountdownEvent, IReplayEvent, ISetEvents, ISetName, ISetReady} from "../actions";
 import {Actions} from "../constants";
 import {default as ModelAction} from "./Action";
 import {DraftEvent} from "./DraftEvent";
@@ -20,6 +20,13 @@ export const SocketUtil = {
             console.log("player_joined", data);
             if (data.playerType === Player.HOST || data.playerType === Player.GUEST) {
                 storeAPI.dispatch({type: Actions.SET_NAME, player: data.playerType, value: data.name} as ISetName);
+            }
+        });
+
+        socket.on("player_ready", (data: IJoinedMessage) => {
+            console.log("player_joined", data);
+            if (data.playerType === Player.HOST || data.playerType === Player.GUEST) {
+                storeAPI.dispatch({type: Actions.SET_READY, player: data.playerType} as ISetReady);
             }
         });
 

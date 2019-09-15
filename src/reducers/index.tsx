@@ -38,9 +38,18 @@ export function updateState(state: IStoreState = initialState, action?: Action):
         case Actions.SET_NAME:
             console.log(Actions.SET_NAME, action);
             if (action.player === Player.HOST) {
-                return {...state, nameHost: action.value, hostReady: true};
+                return {...state, nameHost: action.value};
             } else if (action.player === Player.GUEST) {
-                return {...state, nameGuest: action.value, guestReady: true};
+                return {...state, nameGuest: action.value};
+            } else {
+                return state;
+            }
+        case Actions.SET_READY:
+            console.log(Actions.SET_READY, action);
+            if (action.player === Player.HOST) {
+                return {...state, hostReady: true};
+            } else if (action.player === Player.GUEST) {
+                return {...state, guestReady: true};
             } else {
                 return state;
             }

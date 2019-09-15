@@ -12,7 +12,8 @@ interface IProps extends WithTranslation {
     hostReady: boolean,
     guestReady: boolean,
     nextTurn: Turn | null;
-    message: string
+    message: string,
+    sendReady: () => void
 }
 
 class Messages extends React.Component<IProps, object> {
@@ -27,12 +28,16 @@ class Messages extends React.Component<IProps, object> {
                 } else {
                     if (this.props.guestReady) {
                         return (
-                            <div><Trans>Your guest is ready to start. Press [ready] once you are also ready to
+                            <div><Trans>Your guest is ready to start. Press <button
+                                className={'shadowbutton text-primary'}
+                                onClick={this.props.sendReady}>Ready</button> once you are also ready to
                                 start!</Trans></div>
                         );
                     } else {
                         return (
-                            <div><Trans>Press [ready] once you are ready to start!</Trans></div>
+                            <div><Trans>Press <button className={'shadowbutton text-primary'}
+                                                      onClick={this.props.sendReady}>Ready</button> once you are ready
+                                to start!</Trans></div>
                         );
                     }
                 }
@@ -44,12 +49,16 @@ class Messages extends React.Component<IProps, object> {
                 } else {
                     if (this.props.hostReady) {
                         return (
-                            <div><Trans>Your host is ready to start. Press [ready] once you are also ready to
+                            <div><Trans>Your host is ready to start. Press <button
+                                className={'shadowbutton text-primary'}
+                                onClick={this.props.sendReady}>Ready</button> once you are also ready to
                                 start!</Trans></div>
                         );
                     } else {
                         return (
-                            <div><Trans>Press [ready] once you are ready to start!</Trans></div>
+                            <div><Trans>Press <button className={'shadowbutton text-primary'}
+                                                      onClick={this.props.sendReady}>Ready</button> once you are ready
+                                to start!</Trans></div>
                         );
                     }
                 }

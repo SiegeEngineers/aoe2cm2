@@ -119,27 +119,31 @@ it('fully execute sample draft', (done) => {
     });
     hostSocket.emit('join', {name: 'Saladin'}, () => {
         clientSocket.emit('join', {name: 'Barbarossa'}, () => {
-            hostSocket.emit('act', {
-                "player": "HOST",
-                "actionType": "ban",
-                "civilisation": {"name": "Celts", "gameVersion": 1, "isRandomlyChosenCiv": false}
-            }, () => {
-                clientSocket.emit('act', {
-                    "player": "GUEST",
-                    "actionType": "ban",
-                    "civilisation": {"name": "Celts", "gameVersion": 1, "isRandomlyChosenCiv": false}
-                }, () => {
-                    clientSocket.emit('act', {
-                        "player": "GUEST",
-                        "actionType": "pick",
-                        "civilisation": {"name": "Slavs", "gameVersion": 3, "isRandomlyChosenCiv": false}
+            clientSocket.emit('ready', {}, () => {
+                hostSocket.emit('ready', {}, () => {
+                    hostSocket.emit('act', {
+                        "player": "HOST",
+                        "actionType": "ban",
+                        "civilisation": {"name": "Celts", "gameVersion": 1, "isRandomlyChosenCiv": false}
                     }, () => {
-                        hostSocket.emit('act', {
-                            "player": "HOST",
-                            "actionType": "pick",
-                            "civilisation": {"name": "Slavs", "gameVersion": 3, "isRandomlyChosenCiv": false}
+                        clientSocket.emit('act', {
+                            "player": "GUEST",
+                            "actionType": "ban",
+                            "civilisation": {"name": "Celts", "gameVersion": 1, "isRandomlyChosenCiv": false}
                         }, () => {
-                            // preset done
+                            clientSocket.emit('act', {
+                                "player": "GUEST",
+                                "actionType": "pick",
+                                "civilisation": {"name": "Slavs", "gameVersion": 3, "isRandomlyChosenCiv": false}
+                            }, () => {
+                                hostSocket.emit('act', {
+                                    "player": "HOST",
+                                    "actionType": "pick",
+                                    "civilisation": {"name": "Slavs", "gameVersion": 3, "isRandomlyChosenCiv": false}
+                                }, () => {
+                                    // preset done
+                                });
+                            });
                         });
                     });
                 });

@@ -98,25 +98,43 @@ export const DraftServer = {
 
             socket.on("join", (message: IJoinMessage, fn: (dc: IDraftConfig) => void) => {
                 console.log("player joined:", message);
-                const isRejoin = draftsStore.playersAreReady(draftId);
                 let playerType: Player = Player.NONE;
                 if (Object.keys(socket.rooms).includes(roomHost)) {
                     setPlayerName(draftId, Player.HOST, message.name);
-                    draftsStore.setPlayerReady(draftId, Player.HOST);
                     playerType = Player.HOST;
                 } else if (Object.keys(socket.rooms).includes(roomGuest)) {
                     setPlayerName(draftId, Player.GUEST, message.name);
-                    draftsStore.setPlayerReady(draftId, Player.GUEST);
                     playerType = Player.GUEST;
-                    if (!isRejoin) {
-                        draftsStore.startCountdown(draftId, socket);
-                    }
                 }
                 socket.nsp
                     .in(roomHost)
                     .in(roomGuest)
                     .in(roomSpec)
                     .emit("player_joined", {name: message.name, playerType});
+                fn({
+                    ...draftsStore.getDraftViewsOrThrow(draftId).getDraftForPlayer(playerType),
+                    yourPlayerType: playerType
+                });
+            });
+
+            socket.on("ready", (message: {}, fn: (dc: IDraftConfig) => void) => {
+                console.log("player ready:", message);
+                let playerType: Player = Player.NONE;
+                if (Object.keys(socket.rooms).includes(roomHost)) {
+                    draftsStore.setPlayerReady(draftId, Player.HOST);
+                    playerType = Player.HOST;
+                } else if (Object.keys(socket.rooms).includes(roomGuest)) {
+                    draftsStore.setPlayerReady(draftId, Player.GUEST);
+                    playerType = Player.GUEST;
+                }
+                if(draftsStore.playersAreReady(draftId)){
+                    draftsStore.startCountdown(draftId, socket)
+                }
+                socket.nsp
+                    .in(roomHost)
+                    .in(roomGuest)
+                    .in(roomSpec)
+                    .emit("player_ready", {playerType});
                 fn({
                     ...draftsStore.getDraftViewsOrThrow(draftId).getDraftForPlayer(playerType),
                     yourPlayerType: playerType

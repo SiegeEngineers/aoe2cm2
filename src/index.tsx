@@ -37,6 +37,14 @@ const createMySocketMiddleware = () => {
                 });
                 return;
             }
+            if (action.type === Actions.SEND_READY) {
+                socket = SocketUtil.initSocketIfFirstUse(socket, storeAPI);
+                socket.emit('ready', {}, (data: IDraftConfig) => {
+                    console.log('ready callback', data);
+                    storeAPI.dispatch({type: Actions.APPLY_CONFIG, value: data} as IApplyConfig);
+                });
+                return;
+            }
 
             if (action.type === Actions.CLICK_CIVILISATION) {
                 socket = SocketUtil.initSocketIfFirstUse(socket, storeAPI);

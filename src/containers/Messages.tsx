@@ -1,6 +1,8 @@
 import {IStoreState} from '../types';
 import {connect} from 'react-redux';
 import Messages from "../components/Messages";
+import {Dispatch} from "react";
+import * as actions from "../actions";
 
 
 export function mapStateToProps(state: IStoreState) {
@@ -18,8 +20,10 @@ export function mapStateToProps(state: IStoreState) {
     };
 }
 
-export function mapDispatchToProps() {
-    return {};
+export function mapDispatchToProps(dispatch: Dispatch<actions.Action>) {
+    return {
+        sendReady: () => dispatch(actions.sendReady())
+    };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Messages);

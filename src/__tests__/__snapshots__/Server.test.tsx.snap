@@ -4,7 +4,7 @@ exports[`successful join gets a draft config 1`] = `
 Object {
   "events": Array [],
   "guestReady": false,
-  "hostReady": true,
+  "hostReady": false,
   "nameGuest": "…",
   "nameHost": "Saladin",
   "nextAction": 0,
