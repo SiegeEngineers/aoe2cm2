@@ -38,7 +38,18 @@
     "RANDOM": "Zufällig"
   },
   "messages": {
-    "finished": "Beendet."
+    "finished": "Beendet.",
+    "waitingForGuestReady": "Der Gast hat noch nicht ›Bereit‹ geklickt…",
+    "waitingForHostReady": "Der Host hat noch nicht ›Bereit‹ geklickt…",
+    "pressReadyGuestIsReady": "Dein Gast ist bereit. Klicke <1>Bereit</1> um zu beginnen!",
+    "pressReadyHostIsReady": "Dein Host ist bereit. Klicke <1>Bereit</1> um zu beginnen",
+    "pressReady": "Klicke <1>Bereit</1> sobald du bereit bist, anzufangen!",
+    "doPick": "<0><1>Wähle</1></0> eine Zivilisation!",
+    "doBan": "<0><1>Banne</1></0> eine Zivilisation!",
+    "doSnipe": "<0><1>Snipe</1></0> eine Zivilisation!",
+    "waitingForPick": "Die andere Kapitänin wählt gerade eine Zivilisation aus…",
+    "waitingForBan": "Die andere Kapitänin bannt gerade eine Zivilisation…",
+    "waitingForSnipe": "Die andere Kapitänin wählt eine deiner Zivilisationen aus, die sie snipen möchte…"
   },
   "modal": {
     "header": "Hallöchen!",

@@ -6,7 +6,6 @@ import * as actions from "../actions";
 
 
 export function mapStateToProps(state: IStoreState) {
-    let message = 'messages.finished';
     let nextTurn = null;
     if (state.preset && state.nextAction < state.preset.turns.length) {
         nextTurn = state.preset.turns[state.nextAction];
@@ -15,8 +14,7 @@ export function mapStateToProps(state: IStoreState) {
         whoAmI: state.whoAmI,
         hostReady: state.hostReady,
         guestReady: state.guestReady,
-        nextTurn,
-        message
+        nextTurn
     };
 }
 

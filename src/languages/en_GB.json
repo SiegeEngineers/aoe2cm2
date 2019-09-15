@@ -38,7 +38,18 @@
     "RANDOM": "Random"
   },
   "messages": {
-    "finished": "Finished."
+    "finished": "Finished.",
+    "waitingForGuestReady": "Waiting for Guest to press ›ready‹",
+    "waitingForHostReady": "Waiting for Host to press ›ready‹",
+    "pressReadyGuestIsReady": "Your guest is ready to start. Press <1>Ready</1> once you are also ready to start!",
+    "pressReadyHostIsReady": "Your host is ready to start. Press <1>Ready</1> once you are also ready to start!",
+    "pressReady": "Press <1>Ready</1> once you are ready to start!",
+    "doPick": "<0><1>Pick</1></0> a civilization!",
+    "doBan": "<0><1>Ban</1></0> a civilization!",
+    "doSnipe": "<0><1>Snipe</1></0> a civilization!",
+    "waitingForPick": "Waiting for the other captain to pick…",
+    "waitingForBan": "Waiting for the other captain to ban…",
+    "waitingForSnipe": "Waiting for the other captain to snipe one of your civilisations…"
   },
   "modal": {
     "header": "Welcome",

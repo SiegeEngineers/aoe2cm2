@@ -12,7 +12,6 @@ interface IProps extends WithTranslation {
     hostReady: boolean,
     guestReady: boolean,
     nextTurn: Turn | null;
-    message: string,
     sendReady: () => void
 }
 
@@ -23,20 +22,22 @@ class Messages extends React.Component<IProps, object> {
             if (this.props.whoAmI === Player.HOST) {
                 if (this.props.hostReady) {
                     return (
-                        <div><Trans>Waiting for Guest to press ›ready‹</Trans></div>
+                        <div><Trans i18nKey='messages.waitingForGuestReady'>Waiting for Guest to press ›ready‹</Trans>
+                        </div>
                     );
                 } else {
                     if (this.props.guestReady) {
                         return (
-                            <div><Trans>Your guest is ready to start. Press <button
-                                className={'shadowbutton text-primary'}
+                            <div><Trans i18nKey='messages.pressReadyGuestIsReady'>Your guest is ready to start.
+                                Press <button className={'shadowbutton text-primary'}
                                 onClick={this.props.sendReady}>Ready</button> once you are also ready to
                                 start!</Trans></div>
                         );
                     } else {
                         return (
-                            <div><Trans>Press <button className={'shadowbutton text-primary'}
-                                                      onClick={this.props.sendReady}>Ready</button> once you are ready
+                            <div><Trans i18nKey='messages.pressReady'>Press <button
+                                className={'shadowbutton text-primary'}
+                                onClick={this.props.sendReady}>Ready</button> once you are ready
                                 to start!</Trans></div>
                         );
                     }
@@ -44,20 +45,22 @@ class Messages extends React.Component<IProps, object> {
             } else {
                 if (this.props.guestReady) {
                     return (
-                        <div><Trans>Waiting for Host to press ›ready‹</Trans></div>
+                        <div><Trans i18nKey='messages.waitingForHostReady'>Waiting for Host to press ›ready‹</Trans>
+                        </div>
                     );
                 } else {
                     if (this.props.hostReady) {
                         return (
-                            <div><Trans>Your host is ready to start. Press <button
-                                className={'shadowbutton text-primary'}
+                            <div><Trans i18nKey='messages.pressReadyHostIsReady'>Your host is ready to start.
+                                Press <button className={'shadowbutton text-primary'}
                                 onClick={this.props.sendReady}>Ready</button> once you are also ready to
                                 start!</Trans></div>
                         );
                     } else {
                         return (
-                            <div><Trans>Press <button className={'shadowbutton text-primary'}
-                                                      onClick={this.props.sendReady}>Ready</button> once you are ready
+                            <div><Trans i18nKey='messages.pressReady'>Press <button
+                                className={'shadowbutton text-primary'}
+                                onClick={this.props.sendReady}>Ready</button> once you are ready
                                 to start!</Trans></div>
                         );
                     }
@@ -72,53 +75,58 @@ class Messages extends React.Component<IProps, object> {
                 switch (nextTurn.action) {
                     case Action.PICK:
                         return (
-                            <div><Trans><span className='green-glow'><b>Pick</b></span> a civilization!</Trans>
+                            <div><Trans i18nKey='messages.doPick'><span className='green-glow'><b>Pick</b></span> a
+                                civilization!</Trans>
                                 <Countdown/></div>
                         );
                     case Action.BAN:
                         return (
-                            <div><Trans><span className='red-glow'><b>Ban</b></span> a civilization!</Trans>
+                            <div><Trans i18nKey='messages.doBan'><span className='red-glow'><b>Ban</b></span> a
+                                civilization!</Trans>
                                 <Countdown/></div>
                         );
                     case Action.SNIPE:
                         return (
-                            <div><Trans><span className='yellow-glow'><b>Snipe</b></span> a civilization of the
+                            <div><Trans i18nKey='messages.doSnipe'><span className='blue-glow'><b>Snipe</b></span> a
+                                civilization of the
                                 opponent!</Trans> <Countdown/></div>
                         );
                 }
             } else if (nextTurn.player === Player.NONE) {
                 const action = nextTurn.action.toString();
                 return (
-                    <div><Trans>Admin action: {action}</Trans></div>
+                    <div><Trans i18nKey='messages.adminAction'>Admin action: {action}</Trans></div>
                 );
             } else {
                 switch (nextTurn.action) {
                     case Action.PICK:
                         return (
-                            <div><Trans>Waiting for the other captain to pick…</Trans> <Countdown/></div>
+                            <div><Trans i18nKey='messages.waitingForPick'>Waiting for the other captain to pick…</Trans>
+                                <Countdown/></div>
                         );
                     case Action.BAN:
                         return (
-                            <div><Trans>Waiting for the other captain to ban…</Trans> <Countdown/></div>
+                            <div><Trans i18nKey='messages.waitingForBan'>Waiting for the other captain to ban…</Trans>
+                                <Countdown/></div>
                         );
                     case Action.SNIPE:
                         return (
-                            <div><Trans>Waiting for the other captain to snipe one of your civilisations…</Trans>
+                            <div><Trans i18nKey='messages.waitingForSnipe'>Waiting for the other captain to snipe one of
+                                your civilisations…</Trans>
                                 <Countdown/></div>
                         );
                 }
             }
 
-
             const message = nextTurn.player.toString() + ': ' + nextTurn.action.toString();
             return (
-                <div><Trans>{message}</Trans></div>
+                <div><Trans i18nKey='messages.genericTurnMessage'>{message}</Trans></div>
+            );
+        } else {
+            return (
+                <div><Trans i18nKey='messages.finished'>Finished.</Trans></div>
             );
         }
-
-        return (
-            <div><Trans>{this.props.message}</Trans> <Countdown/></div>
-        );
     }
 }
 
