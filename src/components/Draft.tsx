@@ -71,7 +71,13 @@ class Draft extends React.Component<IProps, IState> {
 
                     <Players nameHost={this.props.nameHost} nameGuest={this.props.nameGuest} preset={this.props.preset}/>
 
-                    <Messages/>
+                    <div>
+                        <div id="action-text" className="centered">
+                            <div className="action-string info-card text-primary">
+                                <Messages/>
+                            </div>
+                        </div>
+                    </div>
 
                     <CivGrid civilisations={this.props.preset.civilisations}/>
 

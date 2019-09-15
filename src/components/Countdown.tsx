@@ -15,7 +15,7 @@ class Countdown extends React.Component<IProps, object> {
         }
 
         return (
-            <div id="countdown-timer">{Countdown.format(this.props.seconds)}</div>
+            <div id="countdown-timer">&ensp;{Countdown.format(this.props.seconds)}</div>
         );
     }
 

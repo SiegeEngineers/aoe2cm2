@@ -5,11 +5,15 @@ import Messages from "../components/Messages";
 
 export function mapStateToProps(state: IStoreState) {
     let message = 'messages.finished';
+    let nextTurn = null;
     if (state.preset && state.nextAction < state.preset.turns.length) {
-        const turn = state.preset.turns[state.nextAction];
-        message = turn.player.toString() + ': ' + turn.action.toString();
+        nextTurn = state.preset.turns[state.nextAction];
     }
     return {
+        whoAmI: state.whoAmI,
+        hostReady: state.hostReady,
+        guestReady: state.guestReady,
+        nextTurn,
         message
     };
 }

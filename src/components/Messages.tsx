@@ -3,56 +3,112 @@ import '../pure-min.css'
 import '../style2.css'
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
 import Countdown from "../containers/Countdown";
+import Player from "../models/Player";
+import Turn from "../models/Turn";
+import Action from "../models/Action";
 
 interface IProps extends WithTranslation {
+    whoAmI: Player | undefined,
+    hostReady: boolean,
+    guestReady: boolean,
+    nextTurn: Turn | null;
     message: string
 }
 
 class Messages extends React.Component<IProps, object> {
     public render() {
+
+        if (!this.props.hostReady || !this.props.guestReady) {
+            if (this.props.whoAmI === Player.HOST) {
+                if (this.props.hostReady) {
+                    return (
+                        <div><Trans>Waiting for Guest to press ›ready‹</Trans></div>
+                    );
+                } else {
+                    if (this.props.guestReady) {
+                        return (
+                            <div><Trans>Your guest is ready to start. Press [ready] once you are also ready to
+                                start!</Trans></div>
+                        );
+                    } else {
+                        return (
+                            <div><Trans>Press [ready] once you are ready to start!</Trans></div>
+                        );
+                    }
+                }
+            } else {
+                if (this.props.guestReady) {
+                    return (
+                        <div><Trans>Waiting for Host to press ›ready‹</Trans></div>
+                    );
+                } else {
+                    if (this.props.hostReady) {
+                        return (
+                            <div><Trans>Your host is ready to start. Press [ready] once you are also ready to
+                                start!</Trans></div>
+                        );
+                    } else {
+                        return (
+                            <div><Trans>Press [ready] once you are ready to start!</Trans></div>
+                        );
+                    }
+                }
+
+            }
+        }
+
+        const nextTurn = this.props.nextTurn;
+        if (nextTurn !== null) {
+            if (nextTurn.player === this.props.whoAmI) {
+                switch (nextTurn.action) {
+                    case Action.PICK:
+                        return (
+                            <div><Trans><span className='green-glow'><b>Pick</b></span> a civilization!</Trans>
+                                <Countdown/></div>
+                        );
+                    case Action.BAN:
+                        return (
+                            <div><Trans><span className='red-glow'><b>Ban</b></span> a civilization!</Trans>
+                                <Countdown/></div>
+                        );
+                    case Action.SNIPE:
+                        return (
+                            <div><Trans><span className='yellow-glow'><b>Snipe</b></span> a civilization of the
+                                opponent!</Trans> <Countdown/></div>
+                        );
+                }
+            } else if (nextTurn.player === Player.NONE) {
+                const action = nextTurn.action.toString();
+                return (
+                    <div><Trans>Admin action: {action}</Trans></div>
+                );
+            } else {
+                switch (nextTurn.action) {
+                    case Action.PICK:
+                        return (
+                            <div><Trans>Waiting for the other captain to pick…</Trans> <Countdown/></div>
+                        );
+                    case Action.BAN:
+                        return (
+                            <div><Trans>Waiting for the other captain to ban…</Trans> <Countdown/></div>
+                        );
+                    case Action.SNIPE:
+                        return (
+                            <div><Trans>Waiting for the other captain to snipe one of your civilisations…</Trans>
+                                <Countdown/></div>
+                        );
+                }
+            }
+
+
+            const message = nextTurn.player.toString() + ': ' + nextTurn.action.toString();
+            return (
+                <div><Trans>{message}</Trans></div>
+            );
+        }
+
         return (
-            <div>
-                <div id="action-text" className="centered">
-                    <div className="action-string info-card text-primary">
-                        <Trans>{this.props.message}</Trans> <Countdown/>
-                    </div>
-                    <div className="hidden">
-                        <span id="action_msg_error_update">Error updating the draft state.</span>
-                        <span id="action_msg_error_sending_ready">Error sending ready.</span>
-                        <span id="action_msg_error_starting">Error starting draft.</span>
-                        <span id="action_msg_error_pic_ban">Error picking/banning civ.</span>
-                        <span id="action_msg_error_set_name">Error setting name.</span>
-                        <span id="action_msg_text_0"><span
-                            className='green-glow'><b>Pick</b></span> a civilization!</span>
-                        <span id="action_msg_text_1"><span className='red-glow'><b>Ban</b></span> a civilization for the enemy!</span>
-                        <span id="action_msg_too_late_random">Too late. Random pick.</span>
-                        <span id="action_msg_draft_ended">Drafting ended.</span>
-                        <span
-                            id="action_msg_paste_code">Please paste this code into in-game chat: {0} for spectating later.</span>
-                        <span id="action_msg_use_code">Use this code: {0} to spectate later.</span>
-                        <span id="action_msg_ready_msg">Click {0} to let the host start the draft.</span>
-                        <span id="action_msg_ready">Ready</span>
-                        <span id="action_msg_get_ready">get ready!</span>
-                        <span id="action_msg_waiting_guest">Waiting for the guest captain to get ready.</span>
-                        <span id="action_msg_waiting_host">Waiting for the host captain to start the draft.</span>
-                        <span id="action_msg_guest_ready">Guest is ready.</span>
-                        <span id="action_msg_send_code">Send this code to spectators: {0}. </span>
-                        <span id="action_msg_click_to_begin">Click {0} to begin.</span>
-                        <span id="action_msg_start">Start</span>
-                        <span id="action_msg_starting_draft_countdown">Starting draft in... {0}</span>
-                        <span id="action_msg_waiting_other">Waiting for the other captain... {0}</span>
-                        <span id="action_msg_starting_spectating">Starting spectating in... {0}</span>
-                    </div>
-
-                </div>
-
-                <div id="action-message" className="centered">
-                    <div className="info-card text-primary">emptyy</div>
-                </div>
-                <div className="hidden">
-                    <span id="action_msg_data_connection_issues">Data connection issues.</span>
-                </div>
-            </div>
+            <div><Trans>{this.props.message}</Trans> <Countdown/></div>
         );
     }
 }
