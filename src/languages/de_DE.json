@@ -49,7 +49,13 @@
     "doSnipe": "<0><1>Snipe</1></0> eine Zivilisation!",
     "waitingForPick": "Die andere Kapitänin wählt gerade eine Zivilisation aus…",
     "waitingForBan": "Die andere Kapitänin bannt gerade eine Zivilisation…",
-    "waitingForSnipe": "Die andere Kapitänin wählt eine deiner Zivilisationen aus, die sie snipen möchte…"
+    "waitingForSnipe": "Die andere Kapitänin wählt eine deiner Zivilisationen aus, die sie snipen möchte…",
+    "waitingForBothToBeReady": "Warte, bis die Kapitäninen bereit sind…",
+    "waitingForHostToBeReady": "Warte bis die Host-Kapitänin bereit ist…",
+    "waitingForGuestToBeReady": "Warte bis die Gast-Kapitänin bereit ist…",
+    "specPick": "<1>{{playerName}}</1> <3><b4>wählt</4></3> eine Zivilisation",
+    "specBan": "<1>{{playerName}}</1> <3><b4>bannt</4></3> eine Zivilisation",
+    "specSnipe": "<1>{{playerName}}</1> wählt eine Zivilisation der Gegnerin um sie zu <3><4>snipen</4></3>"
   },
   "modal": {
     "header": "Hallöchen!",

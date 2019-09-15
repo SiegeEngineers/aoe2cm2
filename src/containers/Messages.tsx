@@ -14,6 +14,8 @@ export function mapStateToProps(state: IStoreState) {
         whoAmI: state.whoAmI,
         hostReady: state.hostReady,
         guestReady: state.guestReady,
+        nameHost: state.nameHost,
+        nameGuest: state.nameGuest,
         nextTurn
     };
 }
