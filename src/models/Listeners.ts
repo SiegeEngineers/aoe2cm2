@@ -42,23 +42,7 @@ export const Listeners = {
                 if (draftViews.shouldRestartOrCancelCountdown()) {
                     draftsStore.restartOrCancelCountdown(draftId);
                 }
-                if (!draftViews.getActualDraft().hasNextAction()) {
-                    console.log('disconnecting clients');
-                    for (let room of [roomHost, roomGuest, roomSpec]) {
-                        socket.nsp.in(room).clients((error: any, clientIds: string[]) => {
-                            if (error) throw error;
-                            for (let clientId of clientIds) {
-                                socket.nsp.connected[clientId].disconnect(true);
-                            }
-                        });
-                    }
-                    console.log('saving draft', draftId, draftsStore.getDraftOrThrow(draftId));
-                    fs.writeFile(`data/${draftId}.json`, JSON.stringify(draftsStore.getDraftOrThrow(draftId)), (err) => {
-                        if (err) throw err;
-                        console.log(`Draft saved to data/${draftId}.json`);
-                        draftsStore.removeDraft(draftId);
-                    });
-                }
+                this.finishDraftIfNoFurtherActions(draftViews, socket, draftsStore, draftId, roomHost, roomGuest, roomSpec);
             } else {
                 fn({status: 'error', validationErrors});
             }
@@ -98,10 +82,31 @@ export const Listeners = {
                         });
                     draftsStore.addDraftEvent(draftId, expectedAction);
                     draftsStore.restartOrCancelCountdown(draftId);
+                    this.finishDraftIfNoFurtherActions(draftViews, socket, draftsStore, draftId, roomHost, roomGuest, roomSpec);
                 }, adminEventCounter * 2000);
             } else {
                 throw new Error("Unknown expected action! " + expectedAction);
             }
+        }
+    },
+    finishDraftIfNoFurtherActions: function (draftViews: DraftViews, socket: socketio.Socket, draftsStore: DraftsStore,
+                                             draftId: string, roomHost: string, roomGuest: string, roomSpec: string) {
+        if (!draftViews.getActualDraft().hasNextAction()) {
+            console.log('disconnecting clients');
+            for (let room of [roomHost, roomGuest, roomSpec]) {
+                socket.nsp.in(room).clients((error: any, clientIds: string[]) => {
+                    if (error) throw error;
+                    for (let clientId of clientIds) {
+                        socket.nsp.connected[clientId].disconnect(true);
+                    }
+                });
+            }
+            console.log('saving draft', draftId, draftsStore.getDraftOrThrow(draftId));
+            fs.writeFile(`data/${draftId}.json`, JSON.stringify(draftsStore.getDraftOrThrow(draftId)), (err) => {
+                if (err) throw err;
+                console.log(`Draft saved to data/${draftId}.json`);
+                draftsStore.removeDraft(draftId);
+            });
         }
     }
 };
