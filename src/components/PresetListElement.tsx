@@ -1,7 +1,5 @@
 import * as React from 'react';
 import Preset from "../models/Preset";
-import '../pure-min.css'
-import '../style2.css'
 import NewDraftButton from "./NewDraftButton";
 
 interface IProps {

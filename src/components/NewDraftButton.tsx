@@ -1,8 +1,6 @@
 import * as React from 'react';
 import {Redirect} from "react-router";
 import Preset from "../models/Preset";
-import '../pure-min.css'
-import '../style2.css'
 import {Trans} from "react-i18next";
 import {Util} from "../models/Util";
 

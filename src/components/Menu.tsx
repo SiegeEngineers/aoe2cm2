@@ -5,8 +5,6 @@ import Presets from "./Presets";
 import Preset from "./Preset";
 import Index from "./Index";
 import Spectate from "./Spectate";
-import '../pure-min.css'
-import '../style2.css'
 import {Trans, withTranslation, WithTranslation} from "react-i18next";
 import Modal from "../containers/Modal";
 

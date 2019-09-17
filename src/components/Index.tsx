@@ -1,6 +1,4 @@
 import * as React from "react";
-import '../pure-min.css';
-import '../style2.css';
 import {Trans, withTranslation, WithTranslation} from "react-i18next";
 
 class Index extends React.Component<WithTranslation, object> {

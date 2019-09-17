@@ -1,6 +1,4 @@
 import * as React from 'react';
-import '../pure-min.css'
-import '../style2.css'
 
 interface IProps {
     seconds: number;

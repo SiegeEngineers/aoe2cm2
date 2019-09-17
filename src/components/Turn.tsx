@@ -1,7 +1,5 @@
 import * as React from 'react';
 import {default as ModelTurn} from '../models/Turn'
-import '../pure-min.css'
-import '../style2.css'
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
 
 interface IProps extends WithTranslation {

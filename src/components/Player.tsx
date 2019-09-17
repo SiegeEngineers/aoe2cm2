@@ -2,8 +2,6 @@ import * as React from 'react';
 import ActionType, {actionTypeFromAction} from "../models/ActionType";
 import {default as ModelPlayer} from '../models/Player';
 import {default as ModelPreset} from '../models/Preset';
-import '../pure-min.css'
-import '../style2.css'
 import CivPanel from "../containers/CivPanel";
 import Civilisation from "../models/Civilisation";
 import {DraftEvent} from "../models/DraftEvent";

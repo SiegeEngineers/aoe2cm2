@@ -1,14 +1,51 @@
-
-
-/** {
-	margin: 0;
-	padding: 0;
-}*/
-
 html, body {
 	height: 100%;
 	margin: 0;
 	padding: 0;
+}
+
+#root {
+	min-height: 100%;
+}
+
+.content {
+	min-height: 100%;
+}
+
+.topRightControls {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	z-index: 2000;
+}
+
+.usernameSelector {
+	margin-right: .5rem;
+}
+
+.active {
+    background-color: yellow;
+}
+
+.hidden {
+	display: none;
+}
+
+.card.has-value {
+	opacity: 1.0;
+}
+
+.snipe-marker {
+	background-image: url('/images/red-cross.svg');
+}
+
+.used-marker {
+	background-image: url('/images/green-cross.svg');
+}
+
+.picks .box-content.visible,
+.bans .box-content.visible {
+	visibility: visible !important;
 }
 
 .wrapper {
@@ -27,24 +64,22 @@ html, body {
 	padding-top: 1px;
 }
 
+.pure-g {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
 .footer, .push {
     width: 100%;
     height: 40px;
     font-size: 12px;
 }
 
-.footer form {
-	padding: 0;
-	margin: 0;
-}
-
-
-.footer form input {
-  opacity: 0.54;
-}
-
-.footer form input:hover {
-	opacity: 0.84;
+.inline-logo {
+	display: inline-block;
+	vertical-align: middle;
+	margin-bottom: .1rem;
 }
 
 #captain-name {

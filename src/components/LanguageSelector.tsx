@@ -1,6 +1,4 @@
 import * as React from 'react';
-import '../pure-min.css'
-import '../style2.css'
 import {default as i18n} from "../i18n";
 import {WithTranslation, withTranslation} from "react-i18next";
 

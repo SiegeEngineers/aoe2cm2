@@ -1,6 +1,4 @@
 import * as React from 'react';
-import '../pure-min.css'
-import '../style2.css'
 import Civilisation from "../models/Civilisation";
 import CivPanel from "../containers/CivPanel";
 import CivPanelType from "../models/CivPanelType";

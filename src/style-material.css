@@ -14,11 +14,11 @@
 	color: #FBC02D; /*yellow 700*/
 }
 
-.player-1 {
+.player-host {
 	color: #00bcd4; /*cyan */
 }
 
-.player-2 {
+.player-guest {
 	color:  #ffc107; /*amber */
 }
 
@@ -68,7 +68,7 @@
 
 body {
 	background-color: #eeeeee;
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-family: "Trebuchet MS", Helvetica, sans-serif !important;
 	color: rgba(0, 0, 0, 0.87);
 }
 
@@ -104,14 +104,24 @@ a:hover {
 	padding-top: 16px;
 	padding-bottom: 16px;
 	text-align: center;
-	background: url('images/captainsmodelogo.png') no-repeat 0 16px;
-	width: 310;
-	height: 310;
+	background: url('/images/captainsmodelogo.png') no-repeat 0 16px;
+	width: 310px;
+	height: 310px;
 	box-sizing: content-box;
 }
 
 .title span {
 	display: none;
+}
+
+.main-menu {
+	font-size: 24px;
+	text-align: center;
+}
+
+.main-menu a.pure-menu-link {
+	text-decoration: none;
+	color: #009688;
 }
 
 @media screen and (max-width: 1200px) {
@@ -188,7 +198,7 @@ a:hover {
 
 #featured_links .shadowbutton, .player-name button {
 	color: #fff;
-    background-color: #009688;
+	background-color: #009688;
 }
 
 
@@ -225,20 +235,24 @@ a:hover {
 	display: none;
 }
 
-.random-pick.card {
-	position: relative;
-}
-
-.random-pick.card .card-overlay {
+.random-pick {
 	display: block;
 	position: absolute;
 	width: 48px;
 	height: 48px;
 	top: -8px;
 	right: -8px;
-	background-image: url('images/random.png');
-    background-size: 48px 48px;
-    background-repeat: no-repeat;
+	background-image: url('/images/random.png');
+	background-size: 48px 48px;
+	background-repeat: no-repeat;
+}
+
+.ban .random-pick {
+	top: -4px;
+	right: -4px;
+	width: 24px;
+	height: 24px;
+	background-size: 24px 24px;
 }
 
 /*
@@ -333,15 +347,15 @@ a:hover {
 
 .gametype.gametype-disabled {
 
-  opacity:0.26;
-  box-shadow: none;
-  filter:grayscale(88%);
-  -webkit-filter:grayscale(88%);
-  transform: none;
+	opacity:0.26;
+	box-shadow: none;
+	filter:grayscale(88%);
+	-webkit-filter:grayscale(88%);
+	transform: none;
 }
 
 #settings-icon {
-	background-image: url("images/settings_gear_dark.png");
+	background-image: url("/images/settings_gear_dark.png");
 	background-size: 28px 28px;
 	width: 28px;
 	height: 28px;
@@ -408,7 +422,7 @@ a:hover {
 #settings .pure-g .pure-u-1-2 {
 	display: flex;
 	-webkit-align-items: center; /* Safari */
- 	align-items:         center;
+	align-items:         center;
 }
 
 #settings .pure-g .pure-u-1-1 {
@@ -444,7 +458,7 @@ a:hover {
 .home_card .styled-select .chosen-container-single .chosen-single div b
 {
 	background-position-y: 6px ;
-	background-image: url('images/chosen-sprite-dark.png');
+	background-image: url('/images/chosen-sprite-dark.png');
 }
 
 .home_card .styled-select .chosen-drop
@@ -484,7 +498,7 @@ a:hover {
 	border: none;
 	border-bottom: 2px solid rgba(0, 0, 0, 0.12);
 	outline: none;
-	background-image: url('images/chosen-sprite-dark.png');
+	background-image: url('/images/chosen-sprite-dark.png');
 }
 
 .home_card .styled-select .chosen-search input:focus {
@@ -518,7 +532,7 @@ a:hover {
 #languageswitcher.styled-select .chosen-container-single .chosen-single div b
 {
 	background-position-y: 6px ;
-	background-image: url('images/chosen-sprite-dark.png');
+	background-image: url('/images/chosen-sprite-dark.png');
 }
 
 input[type="checkbox"] {
@@ -531,7 +545,7 @@ input[type="checkbox"] + label span
 	width:20px;
 	height:20px;
 	vertical-align:middle;
-	background:url('images/check_material_sheet-dark.png') left top no-repeat;
+	background:url('/images/check_material_sheet-dark.png') left top no-repeat;
 	background-size: 40px 20px;
 	cursor:pointer;
 	margin:-1px 4px 0 0;
@@ -539,7 +553,7 @@ input[type="checkbox"] + label span
 
 input[type="checkbox"]:checked + label span
 {
-	background:url('images/check_material_sheet-dark.png') -20px top no-repeat;
+	background:url('/images/check_material_sheet-dark.png') -20px top no-repeat;
 	background-size: 40px 20px;
 }
 
@@ -592,7 +606,7 @@ input[type="checkbox"]:checked + label span
 
 .inset-input::-moz-selection {
 	background: #009688;
-	color: #fff; 
+	color: #fff;
 }
 
 
@@ -642,7 +656,7 @@ input[type="checkbox"]:checked + label span
 	height: 24px;
 	display: inline-block;
 	text-indent: -9999px;
-	background-image: url("images/admin_dark.png");
+	background-image: url("/images/admin_dark.png");
 	background-size: 24px 24px;
 	opacity: 0.54;
 
@@ -681,14 +695,14 @@ input[type="checkbox"]:checked + label span
 
 .back-icon.header-navigation
 {
-  display: inline-block;
-  content: "";
-  text-indent: -9999px;
-  width: 48px;
-  height: 48px;
-  background-image: url("images/back-icon-dark.png");
-  background-size: 48px 48px;
-  opacity: 0.54;
+	display: inline-block;
+	content: "";
+	text-indent: -9999px;
+	width: 48px;
+	height: 48px;
+	background-image: url("/images/back-icon-dark.png");
+	background-size: 48px 48px;
+	opacity: 0.54;
 
 	-webkit-transition: all 250ms;
 	-moz-transition: all 250ms;
@@ -702,7 +716,6 @@ input[type="checkbox"]:checked + label span
 #overlay {
 	position: fixed;
 	z-index: 1002;
-	display: block;
 	top: 0px;
 	left: 0px;
 	bottom: 0px;
@@ -719,7 +732,6 @@ input[type="checkbox"]:checked + label span
 
 #overlay > div {
 	z-index: 1003;
-	display: none;
 	background-color: #f5f5f5;
 	min-width:240px;
 	max-width:640px;
@@ -753,9 +765,19 @@ input[type="checkbox"]:checked + label span
 
 #overlay .inset-input {
 	text-align: center;
+	min-width: 40%;
+	color: rgba(0,0,0,0.87);
+}
+
+#overlay .combo-form {
+	text-align: center;
 	margin: 8px auto;
 	display: block;
-	color: rgba(0,0,0,0.87);
+}
+
+.contourless-button {
+	border: none;
+	background-color: transparent;
 }
 
 #overlay .copy-url {
@@ -787,8 +809,8 @@ input[type="checkbox"]:checked + label span
 
 .turn-row > div
 {
-  display:inline-block;
-  box-sizing: border-box;
+	display:inline-block;
+	box-sizing: border-box;
 }
 
 .turn-row .pure-g > div {
@@ -844,11 +866,11 @@ input[type="checkbox"]:checked + label span
 
 .turn div span {
 	display: inline;
-	line-height: 10px;
+	line-height: 28px;
 }
 
 .turn div span:before {
-	content: '\a0\a0\a0\a0';
+	/*content: '\a0\a0\a0\a0';*/
 	line-height: 5px;
 }
 
@@ -864,9 +886,9 @@ input[type="checkbox"]:checked + label span
 	margin: 0px 4px;
 	font-size: 9px;
 	font-weight: normal;
-    text-transform: uppercase;
-    font-family: Tahoma, Geneva, sans-serif;
-    text-align: center;
+	text-transform: uppercase;
+	font-family: Tahoma, Geneva, sans-serif;
+	text-align: center;
 }
 
 
@@ -876,32 +898,32 @@ input[type="checkbox"]:checked + label span
 	width: 20px;
 }
 
-.turn--1 {
+.turn-none {
 	background-color: rgba(0,0,0,0.87);
 }
 
-.turn-0 {
+.turn-host {
 	background-color: #00bcd4;
 }
 
-.turn-1 {
+.turn-guest {
 	background-color: #ffc107;
 }
 
-.turn-0.turn-parallel {
-    background: #00bcd4; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(#00bcd4, #ffc107); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#00bcd4, #ffc107); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#00bcd4, #ffc107); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#00bcd4, #ffc107); /* Standard syntax */
+.turn-host.turn-parallel {
+	background: #00bcd4; /* For browsers that do not support gradients */
+	background: -webkit-linear-gradient(#00bcd4, #ffc107); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(#00bcd4, #ffc107); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(#00bcd4, #ffc107); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(#00bcd4, #ffc107); /* Standard syntax */
 }
 
-.turn-1.turn-parallel {
-    background: #ffc107; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(#ffc107, #00bcd4); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#ffc107, #00bcd4); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#ffc107, #00bcd4); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#ffc107, #00bcd4); /* Standard syntax */
+.turn-guest.turn-parallel {
+	background: #ffc107; /* For browsers that do not support gradients */
+	background: -webkit-linear-gradient(#ffc107, #00bcd4); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(#ffc107, #00bcd4); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(#ffc107, #00bcd4); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(#ffc107, #00bcd4); /* Standard syntax */
 }
 
 .turn-do-0 {
@@ -961,10 +983,10 @@ input[type="checkbox"]:checked + label span
 	line-height: 20px;
 	font-size: 12px;
 	font-weight: 600;
-    text-transform: uppercase;
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
+	text-transform: uppercase;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
 
-    position: relative;
+	position: relative;
 }
 
 .editable-turns .turn-delete, .editable-turns .turn-add,
@@ -1053,23 +1075,23 @@ input[type="checkbox"]:checked + label span
 
 
 .player-inactive .player-head {
-	opacity: 0.26;	
+	opacity: 0.26;
 }
 
-#player-0 {
+#player-host {
 	text-align: right;
 }
 
-#player-1 {
+#player-guest {
 	text-align: left;
 }
 
 
-#player-0 .player-head {
+#player-host .player-head {
 	color: #00bcd4;
 }
 
-#player-1 .player-head {
+#player-guest .player-head {
 	color: #ffc107;
 }
 
@@ -1094,7 +1116,7 @@ input[type="checkbox"]:checked + label span
 	align-content: wrap-reverse;
 }
 
-#player-0 .picks, #player-0 .bans {
+#player-host .picks, #player-host .bans {
 	flex-direction: row-reverse;
 }
 
@@ -1141,12 +1163,12 @@ input[type="checkbox"]:checked + label span
 }
 
 .pick .chosen-hidden .stretchy-image {
-	background-image: url('images/hidden_pick.png');
+	background-image: url('/images/hidden_pick.png');
 	background-size: contain;
 }
 
 .ban .chosen-hidden .stretchy-image {
-	background-image: url('images/hidden_ban.png');
+	background-image: url('/images/hidden_ban.png');
 	background-size: contain;
 }
 
@@ -1155,23 +1177,23 @@ input[type="checkbox"]:checked + label span
 }
 
 .active-choice {
-    -webkit-animation: pulsate 1s ease-in infinite alternate;
-    -moz-animation: pulsate 1s ease-in infinite alternate;
-    -animation: pulsate 1s ease-in infinite alternate;
+	-webkit-animation: pulsate 1s ease-in infinite alternate;
+	-moz-animation: pulsate 1s ease-in infinite alternate;
+	-animation: pulsate 1s ease-in infinite alternate;
 	animation: pulsate 1s ease-in infinite alternate;
 }
 
 @-webkit-keyframes pulsate {
-    from { opacity: 1;}
-    to { opacity: 0.54;}
+	from { opacity: 1;}
+	to { opacity: 0.54;}
 }
 @-moz-keyframes pulsate {
-    from { opacity: 1; }
-    to { opacity: 0.54;}
+	from { opacity: 1; }
+	to { opacity: 0.54;}
 }
 @keyframes pulsate {
-    from { opacity: 1; }
-    to { opacity: 0.54;}
+	from { opacity: 1; }
+	to { opacity: 0.54;}
 }
 
 
@@ -1206,17 +1228,17 @@ input[type="checkbox"]:checked + label span
 
 #countdown-timer
 {
-  display:inline-block;
-  font-weight: 600;
+	display:inline-block;
+	font-weight: 600;
 }
 
 .countdown-timer-last {
 	color: #f06292;
 
-    -webkit-animation: pulsate 1s ease-in infinite alternate;
-    -moz-animation: pulsate 1s ease-in infinite alternate;
-    -animation: pulsate 1s ease-in infinite alternate;
-    animation: pulsate 1s ease-in infinite alternate;
+	-webkit-animation: pulsate 1s ease-in infinite alternate;
+	-moz-animation: pulsate 1s ease-in infinite alternate;
+	-animation: pulsate 1s ease-in infinite alternate;
+	animation: pulsate 1s ease-in infinite alternate;
 }
 
 #instructions .red-glow, .action-string .red-glow {
@@ -1257,19 +1279,19 @@ input[type="checkbox"]:checked + label span
 }
 
 #spectator-play {
-	background-image: url('images/play-dark.png');
+	background-image: url('/images/play-dark.png');
 }
 
 #spectator-pause {
-	background-image: url('images/pause-dark.png');
+	background-image: url('/images/pause-dark.png');
 }
 
 #spectator-next {
-	background-image: url('images/skip_to_next-dark.png');
+	background-image: url('/images/skip_to_next-dark.png');
 }
 
 #spectator-forward {
-	background-image: url('images/fast_forward-dark.png');
+	background-image: url('/images/fast_forward-dark.png');
 }
 
 /** admin stuff **/
@@ -1327,9 +1349,9 @@ a.shadowbutton:hover {
 .choice {
 	box-sizing: border-box;
 	width: 80px;
-    transition: all 0.25s ease;
-    margin: 4px;
-    padding: 8px;
+	transition: all 0.25s ease;
+	margin: 4px;
+	padding: 8px;
 	background: rgba(153,153,153, 0.4);
 	box-shadow: 0 0px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
@@ -1341,11 +1363,11 @@ a.shadowbutton:hover {
 }
 
 .choice-chosen {
-	background-color: rgba(76, 175, 80, 0.6); 
+	background-color: rgba(76, 175, 80, 0.6);
 }
 
 .choice-banned {
-	background-color: rgba(244, 67, 54, 0.6); 
+	background-color: rgba(244, 67, 54, 0.6);
 }
 
 .choice-banned, .choice-chosen {
@@ -1353,44 +1375,44 @@ a.shadowbutton:hover {
 }
 
 .choice-ban:hover {
-	background-color: #f44336; 
+	background-color: #f44336;
 }
 
 .choice-pick:hover {
-	background-color: #4caf50; 
+	background-color: #4caf50;
 }
 
 .choice-gbanned
 {
-  opacity:0.12 !important;
-  box-shadow: none !important;
+	opacity:0.12 !important;
+	box-shadow: none !important;
 }
 
 
 
 .choice-disabled:hover {
 	opacity: 0.54;
-  	box-shadow: none;
-  	transform: none;
+	box-shadow: none;
+	transform: none;
 }
 
 .choice-disabled, .choice-banned.choice-disabled:hover, .choice-chosen.choice-disabled:hover
 {
-  opacity:0.33;
-  box-shadow: none;
-  transform: none;
+	opacity:0.33;
+	box-shadow: none;
+	transform: none;
 }
 
 
 .choice-disabled img{
-  filter:grayscale(50%);
-  -webkit-filter:grayscale(50%);
+	filter:grayscale(50%);
+	-webkit-filter:grayscale(50%);
 }
 
 .choice-hidden img
 {
-  filter:grayscale(100%);
-  -webkit-filter:grayscale(100%);
+	filter:grayscale(100%);
+	-webkit-filter:grayscale(100%);
 }
 
 .choice-hidden, .choice-hidden:hover {
@@ -1405,167 +1427,167 @@ a.shadowbutton:hover {
 }
 
 div.stretchy-wrapper {
-    position: relative;
-    width: 100%;
-    padding-bottom: 100%;
-    overflow: hidden;
+	position: relative;
+	width: 100%;
+	padding-bottom: 100%;
+	overflow: hidden;
 }
 
 div.stretchy-wrapper > div.stretchy-image {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
 }
 
 div.stretchy-wrapper > div.stretchy-text {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 2px;
-    text-align: center;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: 2px;
+	text-align: center;
 	background: black;
 	color:#fff;
-    opacity: 0.75;
-    font-size: 12px;
-    border-radius: 4px;
-    transition: 0.1s ease-in-out;
-    font-family: Tahoma, Geneva, sans-serif;
+	opacity: 0.75;
+	font-size: 12px;
+	border-radius: 4px;
+	transition: 0.1s ease-in-out;
+	font-family: Tahoma, Geneva, sans-serif;
 }
 
 .choice img {
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
 }
 
 img {
-    border: 0;
+	border: 0;
 }
 
 /** tootltip **/
 
 .aoecm-tooltip
 {
-  border-radius:2px;
-  border: none;
-  background: #616161;
-  opacity: 0.9;
-  color:#fff;
+	border-radius:2px;
+	border: none;
+	background: #616161;
+	opacity: 0.9;
+	color:#fff;
 }
 
 .aoecm-tooltip .tooltipster-content
 {
-  font-family: "Trebuchet MS", Helvetica, sans-serif;
-  font-size: 12px;
-  line-height: 14px;
-  padding: 8px;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 14px;
+	padding: 8px;
 }
 
 .civ-title
 {
-  font-weight:bold;
+	font-weight:bold;
 }
 
 .team-bonus
 {
-  font-weight:500;
+	font-weight:500;
 }
 
 .team-bonus::before
 {
-  content:'Team bonus: ';
+	content:'Team bonus: ';
 }
 
 /* HOME TABS */
 
 .tabs {
-    max-width: 90%;
-    float: none;
-    list-style: none;
-    padding: 0;
-    margin: 16px auto;
-}
- 
-.tabs:after {
-    content: '';
-    display: table;
-    clear: both;
-}
- 
-.tabs input[type=radio] {
-    display:none;
-}
- 
-.tabs label {
-    display: block;
-    float: left;
-    width: 25%;
- 
-	color: rgba(0, 0, 0, 0.38);
-    font-size: 24px;
-    font-weight: normal;
-    text-decoration: none;
-    text-align: center;
-    line-height: 2;
- 
-    cursor: pointer;
- 
-    -webkit-transition: color 0.25s; /* Safari 3.1 to 6.0 */
-    transition: color 0.25s;
+	max-width: 90%;
+	float: none;
+	list-style: none;
+	padding: 0;
+	margin: 16px auto;
 }
 
- 
+.tabs:after {
+	content: '';
+	display: table;
+	clear: both;
+}
+
+.tabs input[type=radio] {
+	display:none;
+}
+
+.tabs label {
+	display: block;
+	float: left;
+	width: 25%;
+
+	color: rgba(0, 0, 0, 0.38);
+	font-size: 24px;
+	font-weight: normal;
+	text-decoration: none;
+	text-align: center;
+	line-height: 2;
+
+	cursor: pointer;
+
+	-webkit-transition: color 0.25s; /* Safari 3.1 to 6.0 */
+	transition: color 0.25s;
+}
+
+
 .tabs label i {
-    padding: 5px;
-    margin-right: 0;
+	padding: 5px;
+	margin-right: 0;
 }
- 
+
 .tabs label:hover {
-    color: #009688;
+	color: #009688;
 }
- 
+
 .tab-content {
-    display: none;
-    width: 100%;
-    float: left;
-    padding: 15px;
-    box-sizing: border-box;
+	display: none;
+	width: 100%;
+	float: left;
+	padding: 15px;
+	box-sizing: border-box;
 }
 
 .tabs [id^="tab"]:checked + label {
-    color: #009688;
+	color: #009688;
 }
- 
+
 #tab1:checked ~ #tab-content1,
 #tab2:checked ~ #tab-content2,
 #tab3:checked ~ #tab-content3,
 #tab4:checked ~ #tab-content4 {
-    display: block;
+	display: block;
 }
 
 @media (max-width: 640px) {
 
-    .tabs label {
-    	display: block;
-    	float: none;
-    	width: 100%;
-    }
+	.tabs label {
+		display: block;
+		float: none;
+		width: 100%;
+	}
 }
 
-@media (min-width: 1023px) {   
-    .tabs i {
-        padding: 5px;
-        margin-right: 10px;
-    }
- 
- 
-    .tabs {
-	   max-width: 1000px;
-	   margin: 16px auto;
-    }
+@media (min-width: 1023px) {
+	.tabs i {
+		padding: 5px;
+		margin-right: 10px;
+	}
+
+
+	.tabs {
+		max-width: 1000px;
+		margin: 16px auto;
+	}
 }
 
 .tournament-banner {
@@ -1594,12 +1616,12 @@ img {
 	position: absolute;
 	width: 29px;
 	height: 29px;
-	background: url('images/arrow_right.png') no-repeat center;
+	background: url('/images/arrow_right.png') no-repeat center;
 	right: 8px;
 	top: 50%;
 	margin-top: -15px;
 	z-index: 10;
-	
+
 
 	-webkit-transition: all 250ms;
 	-moz-transition: all 250ms;
@@ -1607,7 +1629,7 @@ img {
 }
 
 .tournament-banner .tournament-arrow.arrow-light {
-	background: url('images/arrow_right_white.png') no-repeat center;
+	background: url('/images/arrow_right_white.png') no-repeat center;
 }
 
 .tournament-banner:hover .tournament-arrow {

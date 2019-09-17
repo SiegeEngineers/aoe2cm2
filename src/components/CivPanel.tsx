@@ -1,8 +1,6 @@
 import * as React from 'react';
 import ActionType from "../models/ActionType";
 import Civilisation from "../models/Civilisation";
-import '../pure-min.css'
-import '../style2.css'
 import PlayerEvent from "../models/PlayerEvent";
 import Player from "../models/Player";
 import CivPanelType from "../models/CivPanelType";
