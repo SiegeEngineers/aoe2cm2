@@ -70,10 +70,13 @@ export const DraftServer = {
             if (!draftsStore.has(draftId)) {
                 const path = `data/${draftId}.json`;
                 if (fs.existsSync(path)) {
+                    console.log("Found recorded draft. Sending replay.", draftId);
                     socket.emit('replay', JSON.parse(fs.readFileSync(path).toString('utf8')));
                 } else {
+                    console.log("Did not find recorded draft.", draftId);
                     socket.emit('message', 'This draft does not exist.');
                 }
+                console.log("disconnecting.", draftId);
                 socket.disconnect(true);
                 return;
             }
