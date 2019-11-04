@@ -37,6 +37,11 @@ enum Name {
     MALAY = "Malay",
     VIETNAMESE = "Vietnamese",
 
+    BULGARIANS = "Bulgarians",
+    CUMANS = "Cumans",
+    LITHUANIANS = "Lithuanians",
+    TATARS = "Tatars",
+
     HIDDEN_PICK = "HIDDEN_PICK",
     HIDDEN_BAN = "HIDDEN_BAN",
     HIDDEN_SNIPE = "HIDDEN_SNIPE",
@@ -83,6 +88,11 @@ class Civilisation {
     public static readonly MALAY:Civilisation = new Civilisation(Name.MALAY, GameVersion.RISE_OF_RAJAS);
     public static readonly VIETNAMESE:Civilisation = new Civilisation(Name.VIETNAMESE, GameVersion.RISE_OF_RAJAS);
 
+    public static readonly BULGARIANS:Civilisation = new Civilisation(Name.BULGARIANS, GameVersion.DEFINITIVE_EDITION);
+    public static readonly CUMANS:Civilisation = new Civilisation(Name.CUMANS, GameVersion.DEFINITIVE_EDITION);
+    public static readonly LITHUANIANS:Civilisation = new Civilisation(Name.LITHUANIANS, GameVersion.DEFINITIVE_EDITION);
+    public static readonly TATARS:Civilisation = new Civilisation(Name.TATARS, GameVersion.DEFINITIVE_EDITION);
+
     public static readonly HIDDEN_PICK: Civilisation = new Civilisation(Name.HIDDEN_PICK, GameVersion.TECHNICAL);
     public static readonly HIDDEN_BAN: Civilisation = new Civilisation(Name.HIDDEN_BAN, GameVersion.TECHNICAL);
     public static readonly HIDDEN_SNIPE: Civilisation = new Civilisation(Name.HIDDEN_SNIPE, GameVersion.TECHNICAL);
@@ -121,7 +131,11 @@ class Civilisation {
         Civilisation.TEUTONS,
         Civilisation.TURKS,
         Civilisation.VIETNAMESE,
-        Civilisation.VIKINGS
+        Civilisation.VIKINGS,
+        Civilisation.BULGARIANS,
+        Civilisation.CUMANS,
+        Civilisation.LITHUANIANS,
+        Civilisation.TATARS
     ];
 
     public readonly name:Name;

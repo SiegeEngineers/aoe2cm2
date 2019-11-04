@@ -527,6 +527,74 @@ exports[`BAN CivPanels render correctly 31`] = `
 />
 `;
 
+exports[`BAN CivPanels render correctly 32`] = `
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 6,
+      "isRandomlyChosenCiv": false,
+      "name": "Bulgarians",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
+`;
+
+exports[`BAN CivPanels render correctly 33`] = `
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 6,
+      "isRandomlyChosenCiv": false,
+      "name": "Cumans",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
+`;
+
+exports[`BAN CivPanels render correctly 34`] = `
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 6,
+      "isRandomlyChosenCiv": false,
+      "name": "Lithuanians",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
+`;
+
+exports[`BAN CivPanels render correctly 35`] = `
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 6,
+      "isRandomlyChosenCiv": false,
+      "name": "Tatars",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
+`;
+
 exports[`PICK CivPanels render correctly 1`] = `
 <CivPanel
   active={false}
@@ -1046,6 +1114,74 @@ exports[`PICK CivPanels render correctly 31`] = `
       "gameVersion": 1,
       "isRandomlyChosenCiv": false,
       "name": "Vikings",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 32`] = `
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 6,
+      "isRandomlyChosenCiv": false,
+      "name": "Bulgarians",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 33`] = `
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 6,
+      "isRandomlyChosenCiv": false,
+      "name": "Cumans",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 34`] = `
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 6,
+      "isRandomlyChosenCiv": false,
+      "name": "Lithuanians",
+    }
+  }
+  i18n={Object {}}
+  t={[Function]}
+  tReady={true}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 35`] = `
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 6,
+      "isRandomlyChosenCiv": false,
+      "name": "Tatars",
     }
   }
   i18n={Object {}}

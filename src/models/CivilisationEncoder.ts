@@ -12,8 +12,10 @@ export const CivilisationEncoder = {
     },
 
     decodeCivilisationArray(encoded: string): Civilisation[] {
-        if (encoded === '7fffffff') {
-            return Civilisation.ALL;
+        if (encoded === '7ffffffff') {
+            const civilisations = [...Civilisation.ALL];
+            civilisations.sort((a, b) => a.name.localeCompare(b.name));
+            return civilisations;
         }
         try {
             const encodedNumber = parseInt(encoded, 16);
@@ -25,6 +27,7 @@ export const CivilisationEncoder = {
                     civilisations.push(Civilisation.ALL[bits.length - 1 - i]);
                 }
             }
+            civilisations.sort((a, b) => a.name.localeCompare(b.name));
             return civilisations;
         } catch (e) {
             console.log("Could not decode value as hex string: ", encoded);

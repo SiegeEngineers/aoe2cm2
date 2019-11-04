@@ -361,6 +361,50 @@ exports[`CivGrid renders correctly 1`] = `
           }
         }
       />
+      <Connect(I18nextWithTranslation)
+        active={false}
+        civPanelType="choice"
+        civilisation={
+          Civilisation {
+            "gameVersion": 6,
+            "isRandomlyChosenCiv": false,
+            "name": "Bulgarians",
+          }
+        }
+      />
+      <Connect(I18nextWithTranslation)
+        active={false}
+        civPanelType="choice"
+        civilisation={
+          Civilisation {
+            "gameVersion": 6,
+            "isRandomlyChosenCiv": false,
+            "name": "Cumans",
+          }
+        }
+      />
+      <Connect(I18nextWithTranslation)
+        active={false}
+        civPanelType="choice"
+        civilisation={
+          Civilisation {
+            "gameVersion": 6,
+            "isRandomlyChosenCiv": false,
+            "name": "Lithuanians",
+          }
+        }
+      />
+      <Connect(I18nextWithTranslation)
+        active={false}
+        civPanelType="choice"
+        civilisation={
+          Civilisation {
+            "gameVersion": 6,
+            "isRandomlyChosenCiv": false,
+            "name": "Tatars",
+          }
+        }
+      />
     </div>
     <div
       className="card-background"

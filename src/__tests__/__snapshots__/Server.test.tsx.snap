@@ -9,7 +9,7 @@ Object {
   "nameHost": "Saladin",
   "nextAction": 0,
   "preset": Object {
-    "encodedCivilisations": "7fffffff",
+    "encodedCivilisations": "7ffffffff",
     "name": "Simple Preset",
     "turns": Array [
       Object {

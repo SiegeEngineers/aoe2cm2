@@ -157,5 +157,25 @@ Array [
     "isRandomlyChosenCiv": false,
     "name": "Vikings",
   },
+  Civilisation {
+    "gameVersion": 6,
+    "isRandomlyChosenCiv": false,
+    "name": "Bulgarians",
+  },
+  Civilisation {
+    "gameVersion": 6,
+    "isRandomlyChosenCiv": false,
+    "name": "Cumans",
+  },
+  Civilisation {
+    "gameVersion": 6,
+    "isRandomlyChosenCiv": false,
+    "name": "Lithuanians",
+  },
+  Civilisation {
+    "gameVersion": 6,
+    "isRandomlyChosenCiv": false,
+    "name": "Tatars",
+  },
 ]
 `;
