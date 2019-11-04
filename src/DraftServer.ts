@@ -154,7 +154,7 @@ export const DraftServer = {
         const httpServer = server.listen(port, () => {
             console.log("listening on *:" + port);
         });
-        const httpServerAddr = httpServer.listen().address();
+        const httpServerAddr = httpServer.address();
 
 
         function validateAndApply(draftId: string, message: DraftEvent): ValidationId[] {
