@@ -1,6 +1,8 @@
 import * as React from 'react';
 import {default as ModelTurn} from '../models/Turn'
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
+import Player from "../models/Player";
+import Exclusivity from "../models/Exclusivity";
 
 interface IProps extends WithTranslation {
     turn: ModelTurn;
@@ -10,6 +12,13 @@ interface IProps extends WithTranslation {
 
 interface IState {
     active: boolean;
+}
+
+const toTitle = (turn: ModelTurn): string => {
+    if (turn.player === Player.NONE) {
+        return turn.action.toString();
+    }
+    return `${turn.player}: ${turn.action} (${turn.exclusivity})`;
 }
 
 class Turn extends React.Component<IProps, IState> {
@@ -30,39 +39,30 @@ class Turn extends React.Component<IProps, IState> {
         const turn: ModelTurn = this.props.turn;
 
         let prefix: string = '';
-        if (turn.action.toString().includes('GLOBAL')) {
-            prefix = 'g';
-        } else if (turn.action.toString().includes('EXCLUSIVE')) {
-            prefix = 'x';
-        }
-
-        let action: string = '?';
-        for (const a of ['PICK', 'BAN', 'SNIPE', 'REVEAL']) {
-            if (turn.action.toString().includes(a)) {
-                action = a;
+        if (turn.player !== Player.NONE) {
+            if (turn.exclusivity === Exclusivity.GLOBAL) {
+                prefix = 'g';
+            } else if (turn.exclusivity === Exclusivity.NONEXCLUSIVE) {
+                prefix = 'n';
             }
         }
 
-        let actionId: number = -1;
-        if (action === 'PICK') {
-            actionId = 0;
+        const player = turn.player.toString().toLowerCase();
+        let action: string = turn.action.toString().toLowerCase();
+        if (action.includes('reveal')) {
+            action = 'reveal';
         }
-        if (action === 'BAN' || action === 'SNIPE') {
-            actionId = 1;
-        }
-        let turnClassName = 'turn-' + turn.player.toString().toLowerCase() + ' turn-do-' + actionId + ' turn-global';
-        if (turn.action.includes('HIDDEN')) {
+        let turnClassName = `pure-u-1-24 turn turn-${player} turn-${action}`;
+        if (turn.hidden) {
             turnClassName += ' turn-hidden';
         }
-        let activeClass = '';
         if (this.state.active) {
-            activeClass = 'active';
+            turnClassName += ' active';
         }
         return (
-            <div className="pure-u-1-24 turn">
-                <div className={turnClassName}>
-                    <span className={activeClass}><Trans><b>{prefix}</b>{action}</Trans></span>
-                </div>
+            <div title={toTitle(turn)} className={turnClassName}>
+                <div className='bar'/>
+                <span><Trans><b>{prefix}</b>{action}</Trans></span>
             </div>
         );
     }
