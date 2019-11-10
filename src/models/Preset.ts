@@ -10,6 +10,8 @@ class Preset {
 
     public static readonly EMPTY: Preset = new Preset('', [], []);
 
+    public static readonly NEW: Preset = new Preset('Change me', Civilisation.ALL, []);
+
     public static readonly SAMPLE: Preset = new Preset('Default Preset', Civilisation.ALL, [
         Turn.HOST_GLOBAL_BAN,
         Turn.GUEST_GLOBAL_BAN,
@@ -150,6 +152,10 @@ class Preset {
         Turn.GUEST_HIDDEN_PICK,
         Turn.HOST_HIDDEN_PICK,
         Turn.REVEAL_ALL,
+    ]);
+
+    public static readonly M_CIVS: Preset = new Preset('M Civs', [Civilisation.MAGYARS, Civilisation.MALAY, Civilisation.MALIANS, Civilisation.MAYANS, Civilisation.MONGOLS], [
+        Turn.HOST_PICK, Turn.GUEST_PICK
     ]);
 
     public readonly name: string;

@@ -121,6 +121,8 @@
     "join": "Zusehen"
   },
   "createNewDraft": "Neuen Draft erstellen",
+  "customiseDraft": "Bearbeiten",
+  "createPreset": "Preset erstellen",
   "setYourName": "Wähle einen Namen",
   "youAre": "Dein Name:"
 }

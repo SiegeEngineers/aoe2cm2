@@ -3,6 +3,7 @@ import {Trans, withTranslation, WithTranslation} from "react-i18next";
 import {Redirect} from "react-router";
 import Preset from "../models/Preset";
 import PresetListElement from "./PresetListElement";
+import CustomiseButton from "./CustomiseButton";
 
 interface IState {
     draftId: string | null;
@@ -58,6 +59,7 @@ class Presets extends React.Component<WithTranslation, IState> {
                                 <PresetListElement preset={Preset.SIMPLE_PARALLEL}/>
                                 <PresetListElement preset={Preset.REVEAL_TEST}/>
                                 <PresetListElement preset={Preset.ILLEGAL}/>
+                                <PresetListElement preset={Preset.M_CIVS}/>
                                 <li>Rise of the Rajas 1v1</li>
                                 <li>Rise of the Rajas 2v2</li>
                                 <li>Rise of the Rajas 3v3</li>
@@ -98,11 +100,7 @@ class Presets extends React.Component<WithTranslation, IState> {
 
                             <div className="pure-g join-actions text-primary">
                                 <div className="pure-u-1-1">
-                                    <div className="join-action" id="host_preset_game">
-                                        <div className="shadowbutton text-primary">
-                                            <span>Host draft</span>
-                                        </div>
-                                    </div>
+                                    <CustomiseButton preset={Preset.NEW} i18nKey='createPreset'/>
                                 </div>
                             </div>
                         </div>

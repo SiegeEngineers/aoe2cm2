@@ -28,7 +28,7 @@ class NewDraftButton extends React.Component<IProps, IState> {
         }
 
         return (
-            <button className="shadowbutton text-primary" onClick={this.createNewDefaultDraft}>
+            <button className="shadowbutton text-primary" onClick={this.createDraft}>
                 <Trans i18nKey="createNewDraft">Create new Draft</Trans>
             </button>
         );
@@ -36,14 +36,14 @@ class NewDraftButton extends React.Component<IProps, IState> {
 
     }
 
-    private createNewDefaultDraft = () => {
+    private createDraft = () => {
         const request = new XMLHttpRequest();
         request.open('POST', '/preset/new', true);
         request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
         request.onreadystatechange = () => {
             if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                 const result = JSON.parse(request.responseText);
-                console.log('createNewDefaultDraft', result);
+                console.log('createDraft', result);
                 if (result.hasOwnProperty('status') && result.status === 'error') {
                     if (result.status !== 'ok') {
                         alert(Util.buildValidationErrorMessage(result));

@@ -535,6 +535,7 @@ a:hover {
 	background-image: url('/images/chosen-sprite-dark.png');
 }
 
+/*
 input[type="checkbox"] {
 	display: none;
 }
@@ -556,7 +557,7 @@ input[type="checkbox"]:checked + label span
 	background:url('/images/check_material_sheet-dark.png') -20px top no-repeat;
 	background-size: 40px 20px;
 }
-
+*/
 
 .home_card {
 	padding-bottom: 8px;

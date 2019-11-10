@@ -90,6 +90,7 @@ ReactDOM.render(
                 <Route path="/draft/:id" component={Draft}/>
                 <Route exact path="/" component={Menu}/>
                 <Route path="/presets" component={Menu}/>
+                <Route path="/preset/create" component={Menu}/>
                 <Route path="/preset/:id" component={Menu}/>
                 <Route path="/preset/:id/new" component={Menu}/>
                 <Route path="/spectate" component={Menu}/>

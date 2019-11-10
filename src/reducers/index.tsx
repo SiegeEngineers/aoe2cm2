@@ -6,6 +6,7 @@ import {default as i18n} from "../i18n";
 import NameGenerator from "../models/NameGenerator";
 import AdminEvent from "../models/AdminEvent";
 import Preset from "../models/Preset";
+import {CivilisationEncoder} from "../models/CivilisationEncoder";
 
 const initialState: IStoreState = {
     nameHost: "…",
@@ -20,7 +21,8 @@ const initialState: IStoreState = {
     language: i18n.language,
     showModal: false,
     countdownValue: 0,
-    countdownVisible: false
+    countdownVisible: false,
+    editorPreset: null
 };
 
 export function updateState(state: IStoreState = initialState, action?: Action): IStoreState {
@@ -111,7 +113,58 @@ export function updateState(state: IStoreState = initialState, action?: Action):
             return {
                 ...state,
                 ...draft
+            };
+
+        case Actions.SET_EDITOR_PRESET:
+            console.log(Actions.SET_EDITOR_PRESET, action.value);
+            return {
+                ...state,
+                editorPreset: action.value
+            };
+
+        case Actions.SET_EDITOR_TURN:
+            console.log(Actions.SET_EDITOR_TURN, action.value, action.index);
+            const editorPreset = state.editorPreset;
+            if (editorPreset === null) {
+                return state;
+            } else {
+                if (action.value === null) {
+                    if (editorPreset.turns.length > action.index) {
+                        editorPreset.turns.splice(action.index, 1);
+                    }
+                } else if (editorPreset.turns.length <= action.index) {
+                    editorPreset.turns.push(action.value);
+                } else {
+                    editorPreset.turns[action.index] = action.value;
+                }
+                return {
+                    ...state,
+                    editorPreset: Preset.fromPojo(editorPreset) as Preset
+                };
             }
+
+        case Actions.SET_EDITOR_NAME:
+            console.log(Actions.SET_EDITOR_NAME, action.value);
+            if (state.editorPreset === null) {
+                return state;
+            } else {
+                return {
+                    ...state,
+                    editorPreset: new Preset(action.value, state.editorPreset.civilisations, state.editorPreset.turns)
+                };
+            }
+
+        case Actions.SET_EDITOR_CIVILISATIONS:
+            console.log(Actions.SET_EDITOR_CIVILISATIONS, action.value);
+            if (state.editorPreset === null) {
+                return state;
+            } else {
+                return {
+                    ...state,
+                    editorPreset: new Preset(state.editorPreset.name, CivilisationEncoder.decodeCivilisationArray(action.value), state.editorPreset.turns)
+                };
+            }
+
     }
     return state;
 }

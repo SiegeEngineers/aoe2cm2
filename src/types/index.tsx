@@ -19,6 +19,7 @@ export interface IStoreState extends IDraftState {
     showModal: boolean;
     countdownValue: number;
     countdownVisible: boolean;
+    editorPreset: Preset | null;
 }
 
 export interface ICountdownValues {

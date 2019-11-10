@@ -5,6 +5,8 @@ import {DraftEvent} from "../models/DraftEvent";
 import {IDraftConfig} from "../models/IDraftConfig";
 import PlayerEvent from "../models/PlayerEvent";
 import {ICountdownValues, IDraftState} from "../types";
+import Preset from "../models/Preset";
+import Turn from "../models/Turn";
 
 export interface IActionCompleted {
     type: Actions.ACTION_COMPLETED,
@@ -75,6 +77,27 @@ export interface IReplayEvent {
     value: IDraftState
 }
 
+export interface ISetEditorPreset {
+    type: Actions.SET_EDITOR_PRESET
+    value: Preset
+}
+
+export interface ISetEditorTurn {
+    type: Actions.SET_EDITOR_TURN
+    value: Turn | null,
+    index: number
+}
+
+export interface ISetEditorName {
+    type: Actions.SET_EDITOR_NAME
+    value: string
+}
+
+export interface ISetEditorCivilisations {
+    type: Actions.SET_EDITOR_CIVILISATIONS
+    value: string
+}
+
 export type Action =
     ISetName
     | ISetReady
@@ -89,7 +112,11 @@ export type Action =
     | IDisconnect
     | ICountdownEvent
     | IShowNameModal
-    | IReplayEvent;
+    | IReplayEvent
+    | ISetEditorPreset
+    | ISetEditorTurn
+    | ISetEditorName
+    | ISetEditorCivilisations;
 
 export function setName(player: Player, value: string): ISetName {
     return {
@@ -178,5 +205,34 @@ export function replay(value: IDraftState): IReplayEvent {
     return {
         value,
         type: Actions.REPLAY
+    }
+}
+
+export function setEditorPreset(value: Preset): ISetEditorPreset {
+    return {
+        value,
+        type: Actions.SET_EDITOR_PRESET
+    }
+}
+
+export function setEditorTurn(value: Turn | null, index: number): ISetEditorTurn {
+    return {
+        value,
+        index,
+        type: Actions.SET_EDITOR_TURN
+    }
+}
+
+export function setEditorName(value: string): ISetEditorName {
+    return {
+        value,
+        type: Actions.SET_EDITOR_NAME
+    }
+}
+
+export function setEditorCivilisations(value: string): ISetEditorCivilisations {
+    return {
+        value,
+        type: Actions.SET_EDITOR_CIVILISATIONS
     }
 }

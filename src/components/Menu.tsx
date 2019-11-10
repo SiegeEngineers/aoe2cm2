@@ -7,6 +7,7 @@ import Index from "./Index";
 import Spectate from "./Spectate";
 import {Trans, withTranslation, WithTranslation} from "react-i18next";
 import Modal from "../containers/Modal";
+import PresetEditor from "./PresetEditor/PresetEditor";
 
 class Menu extends React.Component<WithTranslation, object> {
     public render() {
@@ -37,6 +38,7 @@ class Menu extends React.Component<WithTranslation, object> {
                 <Switch>
                     <Route exact path="/" component={Index}/>
                     <Route path="/presets" component={Presets}/>
+                    <Route path="/preset/create" component={PresetEditor}/>
                     <Route path="/preset/:id" component={Preset}/>
                     <Route path="/spectate" component={Spectate}/>
                     <Route path="/practice" component={Practice}/>
