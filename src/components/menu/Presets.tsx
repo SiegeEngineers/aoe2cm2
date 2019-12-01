@@ -3,7 +3,7 @@ import {Trans, withTranslation, WithTranslation} from "react-i18next";
 import {Redirect} from "react-router";
 import Preset from "../../models/Preset";
 import PresetListElement from "./PresetListElement";
-import CustomiseButton from "./CustomiseButton";
+import CustomiseButton from "../../containers/CustomiseButton";
 
 interface IState {
     draftId: string | null;

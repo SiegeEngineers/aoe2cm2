@@ -1,16 +1,11 @@
 import * as React from 'react';
 import {Redirect} from "react-router";
 import Preset from "../../models/Preset";
-import {Trans} from "react-i18next";
-import {ApplicationState} from "../../types";
-import {Dispatch} from "redux";
-import * as actions from "../../actions";
-import {ISetEditorPreset} from "../../actions";
-import {connect} from "react-redux";
+import {Trans, WithTranslation, withTranslation} from "react-i18next";
 
-interface IProps {
+interface IProps extends WithTranslation {
     preset: Preset,
-    onSetEditorPreset: (preset: Preset) => ISetEditorPreset,
+    onSetEditorPreset: (preset: Preset) => void,
     i18nKey?: string
 }
 
@@ -40,14 +35,4 @@ class CustomiseButton extends React.Component<IProps, IState> {
     }
 }
 
-export function mapStateToProps(state: ApplicationState) {
-    return {}
-}
-
-export function mapDispatchToProps(dispatch: Dispatch<actions.Action>) {
-    return {
-        onSetEditorPreset: (preset: Preset) => dispatch(actions.setEditorPreset(preset)),
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CustomiseButton);
+export default withTranslation()(CustomiseButton);

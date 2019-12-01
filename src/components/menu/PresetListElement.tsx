@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Preset from "../../models/Preset";
 import NewDraftButton from "../NewDraftButton";
-import CustomiseButton from "./CustomiseButton";
+import CustomiseButton from "../../containers/CustomiseButton";
 
 interface IProps {
     preset: Preset;
