@@ -2,9 +2,9 @@ import Civilisation from "./Civilisation";
 import Turn from "./Turn";
 import {CivilisationEncoder} from "../util/CivilisationEncoder";
 import {Assert} from "../util/Assert";
-import Player from "./Player";
-import Action from "./Action";
-import Exclusivity from "./Exclusivity";
+import Player from "../constants/Player";
+import Action from "../constants/Action";
+import Exclusivity from "../constants/Exclusivity";
 
 class Preset {
 

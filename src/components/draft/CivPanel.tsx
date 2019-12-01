@@ -1,9 +1,9 @@
 import * as React from 'react';
-import ActionType from "../../models/ActionType";
+import ActionType from "../../constants/ActionType";
 import Civilisation from "../../models/Civilisation";
 import PlayerEvent from "../../models/PlayerEvent";
-import Player from "../../models/Player";
-import CivPanelType from "../../models/CivPanelType";
+import Player from "../../constants/Player";
+import CivPanelType from "../../constants/CivPanelType";
 import {Util} from "../../util/Util";
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
 import {Validator} from "../../models/Validator";

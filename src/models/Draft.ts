@@ -1,13 +1,13 @@
 import Preset from "./Preset";
 import {IDraftState} from "../types";
-import Player from "./Player";
-import {DraftEvent} from "./DraftEvent";
+import Player from "../constants/Player";
+import {DraftEvent} from "../types/DraftEvent";
 import Turn from "./Turn";
 import Civilisation from "./Civilisation";
-import Action from "./Action";
+import Action from "../constants/Action";
 import PlayerEvent from "./PlayerEvent";
 import {Util} from "../util/Util";
-import Exclusivity from "./Exclusivity";
+import Exclusivity from "../constants/Exclusivity";
 
 class Draft implements IDraftState {
     public nameHost: string;

@@ -1,6 +1,6 @@
 import Preset from "../models/Preset";
-import Player from "../models/Player";
-import {DraftEvent} from "../models/DraftEvent";
+import Player from "../constants/Player";
+import {DraftEvent} from "./DraftEvent";
 
 export interface IDraftState {
     nameHost: string;

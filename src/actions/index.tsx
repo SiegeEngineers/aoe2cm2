@@ -1,8 +1,8 @@
 import {Actions} from '../constants';
-import Player from "../models/Player";
-import {default as ModelAction} from "../models/Action";
-import {DraftEvent} from "../models/DraftEvent";
-import {IDraftConfig} from "../models/IDraftConfig";
+import Player from "../constants/Player";
+import {default as ModelAction} from "../constants/Action";
+import {DraftEvent} from "../types/DraftEvent";
+import {IDraftConfig} from "../types/IDraftConfig";
 import PlayerEvent from "../models/PlayerEvent";
 import {ICountdownValues, IDraftState} from "../types";
 import Preset from "../models/Preset";

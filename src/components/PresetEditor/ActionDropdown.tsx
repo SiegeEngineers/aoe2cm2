@@ -1,7 +1,7 @@
 import React from "react";
-import Player from "../../models/Player";
+import Player from "../../constants/Player";
 import {Action as ReducerAction, ISetEditorTurn, setEditorTurn} from "../../actions";
-import Action from "../../models/Action";
+import Action from "../../constants/Action";
 import Turn from "../../models/Turn";
 import {Dispatch} from "redux";
 import {connect} from "react-redux";

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
 import Countdown from "../../containers/Countdown";
-import Player from "../../models/Player";
+import Player from "../../constants/Player";
 import Turn from "../../models/Turn";
-import Action from "../../models/Action";
+import Action from "../../constants/Action";
 
 interface IProps extends WithTranslation {
     whoAmI: Player | undefined,

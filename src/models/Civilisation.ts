@@ -1,4 +1,4 @@
-import GameVersion from "./GameVersion";
+import GameVersion from "../constants/GameVersion";
 
 enum Name {
     BRITONS = "Britons",

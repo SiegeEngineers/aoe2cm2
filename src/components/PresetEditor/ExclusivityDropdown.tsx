@@ -1,5 +1,5 @@
 import React from "react";
-import Exclusivity from "../../models/Exclusivity";
+import Exclusivity from "../../constants/Exclusivity";
 import Turn from "../../models/Turn";
 import {Dispatch} from "redux";
 import {connect} from "react-redux";

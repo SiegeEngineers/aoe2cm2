@@ -1,6 +1,6 @@
-import {ValidationId} from "./ValidationId";
+import {ValidationId} from "../constants/ValidationId";
 import Preset from "./Preset";
-import Player from "./Player";
+import Player from "../constants/Player";
 
 export class PresetValidation {
     public static readonly VLD_901: PresetValidation = new PresetValidation(ValidationId.VLD_901, (preset: Preset) => {

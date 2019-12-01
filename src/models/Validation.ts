@@ -1,9 +1,9 @@
-import {ValidationId} from "./ValidationId";
-import {DraftEvent} from "./DraftEvent";
-import ActionType, {actionTypeFromAction} from "./ActionType";
+import {ValidationId} from "../constants/ValidationId";
+import {DraftEvent} from "../types/DraftEvent";
+import ActionType, {actionTypeFromAction} from "../constants/ActionType";
 import PlayerEvent from "./PlayerEvent";
 import Civilisation from "./Civilisation";
-import Player from "./Player";
+import Player from "../constants/Player";
 import {Util} from "../util/Util";
 import Draft from "./Draft";
 

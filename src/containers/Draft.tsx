@@ -4,9 +4,9 @@ import {ApplicationState} from '../types';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
 import Preset from "../models/Preset";
-import Player from "../models/Player";
-import {DraftEvent} from "../models/DraftEvent";
-import {IDraftConfig} from "../models/IDraftConfig";
+import Player from "../constants/Player";
+import {DraftEvent} from "../types/DraftEvent";
+import {IDraftConfig} from "../types/IDraftConfig";
 
 export function mapStateToProps(state: ApplicationState) {
     return {

@@ -1,10 +1,10 @@
 import Draft from "./Draft";
-import Player from "./Player";
-import {DraftEvent} from "./DraftEvent";
+import Player from "../constants/Player";
+import {DraftEvent} from "../types/DraftEvent";
 import {Util} from "../util/Util";
 import PlayerEvent from "./PlayerEvent";
-import Action from "./Action";
-import ActionType from "./ActionType";
+import Action from "../constants/Action";
+import ActionType from "../constants/ActionType";
 
 class DraftViews {
     public hostEvents: DraftEvent[];

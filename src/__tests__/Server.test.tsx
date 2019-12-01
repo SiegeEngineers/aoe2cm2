@@ -1,8 +1,8 @@
 import {default as io} from "socket.io-client"
 import {DraftServer} from "../DraftServer";
 import request from "request"
-import Player from "../models/Player";
-import {IDraftConfig} from "../models/IDraftConfig";
+import Player from "../constants/Player";
+import {IDraftConfig} from "../types/IDraftConfig";
 import getPort from "get-port";
 import Preset from "../models/Preset";
 import {Barrier} from "../test/Barrier";

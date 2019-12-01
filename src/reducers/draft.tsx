@@ -2,7 +2,7 @@ import {IDraftState} from "../types";
 import {DraftAction} from "../actions";
 import {Actions} from "../constants";
 import Preset from "../models/Preset";
-import Player from "../models/Player";
+import Player from "../constants/Player";
 import AdminEvent from "../models/AdminEvent";
 
 export const initialDraftState: IDraftState = {

@@ -1,6 +1,6 @@
-import Player from "../models/Player";
-import Action from "../models/Action";
-import Exclusivity from "../models/Exclusivity";
+import Player from "../constants/Player";
+import Action from "../constants/Action";
+import Exclusivity from "../constants/Exclusivity";
 
 export const Assert = {
     isString(arg: any): void {

@@ -1,6 +1,6 @@
 import React from "react";
 import Turn from "../../models/Turn";
-import Player from "../../models/Player";
+import Player from "../../constants/Player";
 import ActionDropdown from "./ActionDropdown";
 import HiddenCheckbox from "./HiddenCheckbox";
 import ExclusivityDropdown from "./ExclusivityDropdown";

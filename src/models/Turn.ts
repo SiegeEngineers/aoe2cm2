@@ -1,7 +1,7 @@
-import Action from "./Action";
-import Player from "./Player";
+import Action from "../constants/Action";
+import Player from "../constants/Player";
 import {Assert} from "../util/Assert";
-import Exclusivity from "./Exclusivity";
+import Exclusivity from "../constants/Exclusivity";
 
 class Turn {
     public static readonly HOST_NONEXCLUSIVE_PICK = new Turn(Player.HOST, Action.PICK, Exclusivity.NONEXCLUSIVE);

@@ -1,6 +1,6 @@
 import Civilisation from "./Civilisation";
-import ActionType from "./ActionType";
-import Player from "./Player";
+import ActionType from "../constants/ActionType";
+import Player from "../constants/Player";
 
 class PlayerEvent {
     public readonly player: Player;

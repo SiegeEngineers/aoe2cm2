@@ -1,7 +1,7 @@
 import {ApplicationState} from '../types';
 import {connect} from 'react-redux';
 import CivPanel from "../components/draft/CivPanel";
-import ActionType, {actionTypeFromAction} from "../models/ActionType";
+import ActionType, {actionTypeFromAction} from "../constants/ActionType";
 import PlayerEvent from "../models/PlayerEvent";
 import {Dispatch} from "redux";
 import * as actions from "../actions";

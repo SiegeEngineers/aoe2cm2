@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {default as ModelPlayer} from '../../models/Player';
+import {default as ModelPlayer} from '../../constants/Player';
 import PlayerDraftState from "../../containers/PlayerDraftState";
 import Preset from "../../models/Preset";
 

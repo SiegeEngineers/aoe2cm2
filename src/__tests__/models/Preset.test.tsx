@@ -1,6 +1,6 @@
 import Preset from "../../models/Preset";
 import Turn from "../../models/Turn";
-import Exclusivity from "../../models/Exclusivity";
+import Exclusivity from "../../constants/Exclusivity";
 
 it('preset from invalid pojo throws', () => {
     expect(() => {

@@ -1,5 +1,5 @@
-import Player from "./Player";
-import Action from "./Action";
+import Player from "../constants/Player";
+import Action from "../constants/Action";
 
 class AdminEvent {
     public readonly player: Player;

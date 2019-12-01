@@ -2,7 +2,7 @@ import {shallow} from "enzyme";
 import * as React from 'react';
 import CivPanel from "../../components/draft/CivPanel";
 import Civilisation from "../../models/Civilisation";
-import CivPanelType from "../../models/CivPanelType";
+import CivPanelType from "../../constants/CivPanelType";
 
 it('PICK CivPanels render correctly', () => {
     Civilisation.ALL.forEach((civ: Civilisation) => {

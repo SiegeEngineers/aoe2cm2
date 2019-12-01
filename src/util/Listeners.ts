@@ -1,11 +1,11 @@
-import {DraftEvent} from "../models/DraftEvent";
+import {DraftEvent} from "../types/DraftEvent";
 import PlayerEvent from "../models/PlayerEvent";
 import {DraftsStore} from "../models/DraftsStore";
-import {ValidationId} from "../models/ValidationId";
+import {ValidationId} from "../constants/ValidationId";
 import socketio from "socket.io";
 import {Util} from "./Util";
-import Player from "../models/Player";
-import ActionType, {actionTypeFromAction} from "../models/ActionType";
+import Player from "../constants/Player";
+import ActionType, {actionTypeFromAction} from "../constants/ActionType";
 import DraftViews from "../models/DraftViews";
 import fs from "fs";
 

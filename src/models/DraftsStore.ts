@@ -1,14 +1,14 @@
 import Draft from "./Draft";
-import {DraftEvent} from "./DraftEvent";
+import {DraftEvent} from "../types/DraftEvent";
 import Preset from "./Preset";
-import Player from "./Player";
+import Player from "../constants/Player";
 import Turn from "./Turn";
 import DraftViews from "./DraftViews";
 import {setInterval} from "timers";
 import socketio from "socket.io";
 import PlayerEvent from "./PlayerEvent";
 import Civilisation from "./Civilisation";
-import {actionTypeFromAction} from "./ActionType";
+import {actionTypeFromAction} from "../constants/ActionType";
 import {Listeners} from "../util/Listeners";
 
 interface ICountdownValues {
