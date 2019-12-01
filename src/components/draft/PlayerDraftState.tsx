@@ -24,7 +24,7 @@ interface IState {
     snipedCivs: Civilisation[];
 }
 
-class Player extends React.Component<IProps, IState> {
+class PlayerDraftState extends React.Component<IProps, IState> {
 
     constructor(props: IProps) {
         super(props);
@@ -174,4 +174,4 @@ function eventsToState(events: DraftEvent[] | undefined, player: ModelPlayer): I
     return {bannedCivs: bans, pickedCivs: picks, snipedCivs: snipes};
 }
 
-export default withTranslation()(Player);
+export default withTranslation()(PlayerDraftState);

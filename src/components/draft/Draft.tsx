@@ -1,7 +1,7 @@
 import * as React from "react";
 import CivGrid from "./CivGrid";
 import Messages from "../../containers/Messages";
-import Players from "./Players";
+import DraftState from "./DraftState";
 import TurnRow from "./TurnRow";
 import Player from "../../models/Player";
 import Preset from "../../models/Preset";
@@ -67,7 +67,7 @@ class Draft extends React.Component<IProps, IState> {
 
                     <TurnRow turns={turns}/>
 
-                    <Players nameHost={this.props.nameHost} nameGuest={this.props.nameGuest} preset={this.props.preset}/>
+                    <DraftState nameHost={this.props.nameHost} nameGuest={this.props.nameGuest} preset={this.props.preset}/>
 
                     <div>
                         <div id="action-text" className="centered">

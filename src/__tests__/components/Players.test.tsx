@@ -1,11 +1,11 @@
 import {shallow} from "enzyme";
 import * as React from "react";
-import Players from "../../components/draft/Players";
+import DraftState from "../../components/draft/DraftState";
 import Preset from "../../models/Preset";
 
 
 it('CivGrid renders correctly', () => {
-    const component = shallow(<Players nameHost={'Sneaky Saladin'} nameGuest={'Beastly Barbarossa'}
-                                       preset={Preset.SAMPLE}/>);
+    const component = shallow(<DraftState nameHost={'Sneaky Saladin'} nameGuest={'Beastly Barbarossa'}
+                                          preset={Preset.SAMPLE}/>);
     expect(component).toMatchSnapshot();
 });

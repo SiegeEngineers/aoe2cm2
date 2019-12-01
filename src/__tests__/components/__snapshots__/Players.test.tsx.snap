@@ -322,19 +322,5 @@ exports[`CivGrid renders correctly 1`] = `
       }
     }
   />
-  <div
-    className="hidden"
-  >
-    <span
-      id="drafter_msg_host_captain"
-    >
-      Host Captain
-    </span>
-    <span
-      id="drafter_msg_guest_captain"
-    >
-      Guest Captain
-    </span>
-  </div>
 </div>
 `;

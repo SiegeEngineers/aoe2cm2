@@ -1,6 +1,6 @@
 import {IStoreState} from '../types';
 import {connect} from 'react-redux';
-import Player from "../components/draft/Player";
+import PlayerDraftState from "../components/draft/PlayerDraftState";
 
 
 export function mapStateToProps(state: IStoreState) {
@@ -14,4 +14,4 @@ export function mapDispatchToProps() {
     return {};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Player);
+export default connect(mapStateToProps, mapDispatchToProps)(PlayerDraftState);
