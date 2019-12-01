@@ -1,13 +1,13 @@
 import * as React from 'react';
-import ActionType, {actionTypeFromAction} from "../models/ActionType";
-import {default as ModelPlayer} from '../models/Player';
-import {default as ModelPreset} from '../models/Preset';
-import CivPanel from "../containers/CivPanel";
-import Civilisation from "../models/Civilisation";
-import {DraftEvent} from "../models/DraftEvent";
-import PlayerEvent from "../models/PlayerEvent";
-import Turn from "../models/Turn";
-import CivPanelType from "../models/CivPanelType";
+import ActionType, {actionTypeFromAction} from "../../models/ActionType";
+import {default as ModelPlayer} from '../../models/Player';
+import {default as ModelPreset} from '../../models/Preset';
+import CivPanel from "../../containers/CivPanel";
+import Civilisation from "../../models/Civilisation";
+import {DraftEvent} from "../../models/DraftEvent";
+import PlayerEvent from "../../models/PlayerEvent";
+import Turn from "../../models/Turn";
+import CivPanelType from "../../models/CivPanelType";
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
 
 interface IProps extends WithTranslation {

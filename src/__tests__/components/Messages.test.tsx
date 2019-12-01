@@ -1,6 +1,6 @@
 import {shallow} from "enzyme";
 import * as React from "react";
-import Messages from "../../components/Messages";
+import Messages from "../../components/draft/Messages";
 
 
 it('Messages renders correctly', () => {

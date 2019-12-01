@@ -1,16 +1,16 @@
 import * as React from "react";
 import CivGrid from "./CivGrid";
-import Messages from "../containers/Messages";
+import Messages from "../../containers/Messages";
 import Players from "./Players";
 import TurnRow from "./TurnRow";
-import Player from "../models/Player";
-import Preset from "../models/Preset";
-import "../models/DraftEvent";
-import {DraftEvent} from "../models/DraftEvent";
-import {IDraftConfig} from "../models/IDraftConfig";
+import Player from "../../models/Player";
+import Preset from "../../models/Preset";
+import "../../models/DraftEvent";
+import {DraftEvent} from "../../models/DraftEvent";
+import {IDraftConfig} from "../../models/IDraftConfig";
 import {WithTranslation, withTranslation} from "react-i18next";
-import Modal from "../containers/Modal";
-import NameGenerator from "../models/NameGenerator";
+import Modal from "../../containers/Modal";
+import NameGenerator from "../../models/NameGenerator";
 import {Link} from "react-router-dom";
 
 interface IProps extends WithTranslation {

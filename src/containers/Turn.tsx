@@ -1,6 +1,6 @@
 import {IStoreState} from '../types';
 import {connect} from 'react-redux';
-import Turn from "../components/Turn";
+import Turn from "../components/draft/Turn";
 
 
 export function mapStateToProps(state: IStoreState) {

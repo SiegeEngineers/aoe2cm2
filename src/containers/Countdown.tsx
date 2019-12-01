@@ -1,6 +1,6 @@
 import {IStoreState} from '../types';
 import {connect} from 'react-redux';
-import Countdown from "../components/Countdown";
+import Countdown from "../components/draft/Countdown";
 
 
 export function mapStateToProps(state: IStoreState) {

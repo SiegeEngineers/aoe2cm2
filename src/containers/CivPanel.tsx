@@ -1,6 +1,6 @@
 import {IStoreState} from '../types';
 import {connect} from 'react-redux';
-import CivPanel from "../components/CivPanel";
+import CivPanel from "../components/draft/CivPanel";
 import ActionType, {actionTypeFromAction} from "../models/ActionType";
 import PlayerEvent from "../models/PlayerEvent";
 import {Dispatch} from "redux";

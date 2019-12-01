@@ -1,6 +1,6 @@
 import * as enzyme from 'enzyme';
 import * as React from 'react';
-import Turn from "../../components/Turn";
+import Turn from "../../components/draft/Turn";
 import {default as ModelTurn} from "../../models/Turn";
 
 it('labels the turn with PICK', () => {

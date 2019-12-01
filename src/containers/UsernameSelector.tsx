@@ -2,7 +2,7 @@ import {IStoreState} from '../types';
 import {connect} from 'react-redux';
 import {Dispatch} from "redux";
 import * as actions from "../actions";
-import UsernameSelector from "../components/UsernameSelector";
+import UsernameSelector from "../components/menu/UsernameSelector";
 
 
 export function mapStateToProps(state: IStoreState) {

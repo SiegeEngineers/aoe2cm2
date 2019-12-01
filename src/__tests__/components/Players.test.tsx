@@ -1,6 +1,6 @@
 import {shallow} from "enzyme";
 import * as React from "react";
-import Players from "../../components/Players";
+import Players from "../../components/draft/Players";
 import Preset from "../../models/Preset";
 
 

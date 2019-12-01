@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
-import NameGenerator from "../models/NameGenerator";
+import NameGenerator from "../../models/NameGenerator";
 
 interface IProps extends WithTranslation {
     visible: boolean;

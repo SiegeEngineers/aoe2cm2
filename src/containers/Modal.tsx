@@ -2,7 +2,7 @@ import {IStoreState} from '../types';
 import {connect} from 'react-redux';
 import {Dispatch} from "redux";
 import * as actions from "../actions";
-import Modal from "../components/Modal";
+import Modal from "../components/menu/Modal";
 
 
 export function mapStateToProps(state: IStoreState) {

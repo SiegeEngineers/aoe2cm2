@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {default as i18n} from "../i18n";
+import {default as i18n} from "../../i18n";
 import {WithTranslation, withTranslation} from "react-i18next";
 
 

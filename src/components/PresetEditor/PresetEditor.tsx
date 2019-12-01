@@ -14,7 +14,7 @@ import Action from "../../models/Action";
 import NewDraftButton from "../NewDraftButton";
 import Civilisation from "../../models/Civilisation";
 import {CivilisationEncoder} from "../../models/CivilisationEncoder";
-import TurnRow from "../TurnRow";
+import TurnRow from "../draft/TurnRow";
 
 interface Props {
     preset: Preset | null,

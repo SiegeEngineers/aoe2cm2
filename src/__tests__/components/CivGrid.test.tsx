@@ -1,6 +1,6 @@
 import {shallow} from "enzyme";
 import * as React from "react";
-import CivGrid from "../../components/CivGrid";
+import CivGrid from "../../components/draft/CivGrid";
 import Civilisation from "../../models/Civilisation";
 
 it('CivGrid renders correctly', () => {

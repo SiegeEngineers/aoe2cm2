@@ -6,8 +6,8 @@ import Preset from "./Preset";
 import Index from "./Index";
 import Spectate from "./Spectate";
 import {Trans, withTranslation, WithTranslation} from "react-i18next";
-import Modal from "../containers/Modal";
-import PresetEditor from "./PresetEditor/PresetEditor";
+import Modal from "../../containers/Modal";
+import PresetEditor from "../PresetEditor/PresetEditor";
 
 class Menu extends React.Component<WithTranslation, object> {
     public render() {

@@ -1,16 +1,16 @@
 import * as React from 'react';
-import ActionType from "../models/ActionType";
-import Civilisation from "../models/Civilisation";
-import PlayerEvent from "../models/PlayerEvent";
-import Player from "../models/Player";
-import CivPanelType from "../models/CivPanelType";
-import {Util} from "../models/Util";
+import ActionType from "../../models/ActionType";
+import Civilisation from "../../models/Civilisation";
+import PlayerEvent from "../../models/PlayerEvent";
+import Player from "../../models/Player";
+import CivPanelType from "../../models/CivPanelType";
+import {Util} from "../../models/Util";
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
-import {Validator} from "../models/Validator";
-import {DraftsStore} from "../models/DraftsStore";
-import Draft from "../models/Draft";
-import {IDraftState, IStoreState} from "../types";
-import Preset from "../models/Preset";
+import {Validator} from "../../models/Validator";
+import {DraftsStore} from "../../models/DraftsStore";
+import Draft from "../../models/Draft";
+import {IDraftState, IStoreState} from "../../types";
+import Preset from "../../models/Preset";
 
 interface IProps extends WithTranslation {
     civilisation?: Civilisation;

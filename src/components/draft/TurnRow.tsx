@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {ComponentElement} from 'react';
-import {default as ModelTurn} from "../models/Turn";
-import Turn from "../containers/Turn";
+import {default as ModelTurn} from "../../models/Turn";
+import Turn from "../../containers/Turn";
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
 
 interface IProps extends WithTranslation {

@@ -1,6 +1,6 @@
 import * as React from "react";
-import LanguageSelector from "../containers/LanguageSelector";
-import UsernameSelector from "../containers/UsernameSelector";
+import LanguageSelector from "../../containers/LanguageSelector";
+import UsernameSelector from "../../containers/UsernameSelector";
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
 
 class TopRightControls extends React.Component<WithTranslation, object> {

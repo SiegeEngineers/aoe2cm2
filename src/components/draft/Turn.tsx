@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {default as ModelTurn} from '../models/Turn'
+import {default as ModelTurn} from '../../models/Turn'
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
-import Player from "../models/Player";
-import Exclusivity from "../models/Exclusivity";
+import Player from "../../models/Player";
+import Exclusivity from "../../models/Exclusivity";
 
 interface IProps extends WithTranslation {
     turn: ModelTurn;

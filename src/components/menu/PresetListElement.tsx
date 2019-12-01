@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Preset from "../models/Preset";
-import NewDraftButton from "./NewDraftButton";
+import Preset from "../../models/Preset";
+import NewDraftButton from "../NewDraftButton";
 import CustomiseButton from "./CustomiseButton";
 
 interface IProps {

@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {Redirect} from "react-router";
-import Preset from "../models/Preset";
+import Preset from "../../models/Preset";
 import {Trans} from "react-i18next";
-import {IStoreState} from "../types";
+import {IStoreState} from "../../types";
 import {Dispatch} from "redux";
-import * as actions from "../actions";
-import {ISetEditorPreset} from "../actions";
+import * as actions from "../../actions";
+import {ISetEditorPreset} from "../../actions";
 import {connect} from "react-redux";
 
 interface IProps {

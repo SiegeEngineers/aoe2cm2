@@ -1,4 +1,4 @@
-import Draft from '../components/Draft';
+import Draft from '../components/draft/Draft';
 import * as actions from '../actions/';
 import {IStoreState} from '../types';
 import {connect} from 'react-redux';

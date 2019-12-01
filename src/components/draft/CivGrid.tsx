@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Civilisation from "../models/Civilisation";
-import CivPanel from "../containers/CivPanel";
-import CivPanelType from "../models/CivPanelType";
+import Civilisation from "../../models/Civilisation";
+import CivPanel from "../../containers/CivPanel";
+import CivPanelType from "../../models/CivPanelType";
 
 interface IProps {
     civilisations: Civilisation[]

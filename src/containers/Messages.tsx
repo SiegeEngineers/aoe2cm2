@@ -1,6 +1,6 @@
 import {IStoreState} from '../types';
 import {connect} from 'react-redux';
-import Messages from "../components/Messages";
+import Messages from "../components/draft/Messages";
 import {Dispatch} from "react";
 import * as actions from "../actions";
 
