@@ -1,21 +1,21 @@
-import {IStoreState} from '../types';
+import {ApplicationState} from '../types';
 import {connect} from 'react-redux';
 import Messages from "../components/draft/Messages";
 import {Dispatch} from "react";
 import * as actions from "../actions";
 
 
-export function mapStateToProps(state: IStoreState) {
+export function mapStateToProps(state: ApplicationState) {
     let nextTurn = null;
-    if (state.preset && state.nextAction < state.preset.turns.length) {
-        nextTurn = state.preset.turns[state.nextAction];
+    if (state.draft.preset && state.ownProperties.nextAction < state.draft.preset.turns.length) {
+        nextTurn = state.draft.preset.turns[state.ownProperties.nextAction];
     }
     return {
-        whoAmI: state.whoAmI,
-        hostReady: state.hostReady,
-        guestReady: state.guestReady,
-        nameHost: state.nameHost,
-        nameGuest: state.nameGuest,
+        whoAmI: state.ownProperties.whoAmI,
+        hostReady: state.draft.hostReady,
+        guestReady: state.draft.guestReady,
+        nameHost: state.draft.nameHost,
+        nameGuest: state.draft.nameGuest,
         nextTurn
     };
 }

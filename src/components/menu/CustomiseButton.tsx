@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Redirect} from "react-router";
 import Preset from "../../models/Preset";
 import {Trans} from "react-i18next";
-import {IStoreState} from "../../types";
+import {ApplicationState} from "../../types";
 import {Dispatch} from "redux";
 import * as actions from "../../actions";
 import {ISetEditorPreset} from "../../actions";
@@ -40,7 +40,7 @@ class CustomiseButton extends React.Component<IProps, IState> {
     }
 }
 
-export function mapStateToProps(state: IStoreState) {
+export function mapStateToProps(state: ApplicationState) {
     return {}
 }
 

@@ -98,25 +98,41 @@ export interface ISetEditorCivilisations {
     value: string
 }
 
-export type Action =
-    ISetName
+
+export type DraftAction = ISetName
     | ISetReady
-    | IChangeOwnName
     | IActionCompleted
     | IApplyConfig
     | ISendJoin
     | ISendReady
     | IClickOnCiv
-    | ISetLanguage
     | ISetEvents
     | IDisconnect
-    | ICountdownEvent
-    | IShowNameModal
-    | IReplayEvent
-    | ISetEditorPreset
+    | IReplayEvent;
+
+export type DraftCountdownAction = ICountdownEvent;
+
+export type DraftOwnPropertiesAction = IApplyConfig
+    | IChangeOwnName
+    | IActionCompleted
+    | ISetEvents;
+
+export type LanguageAction = ISetLanguage;
+
+export type ModalAction = IShowNameModal
+    | IChangeOwnName;
+
+export type PresetEditorAction = ISetEditorPreset
     | ISetEditorTurn
     | ISetEditorName
     | ISetEditorCivilisations;
+
+export type Action = DraftAction
+    | DraftCountdownAction
+    | DraftOwnPropertiesAction
+    | LanguageAction
+    | ModalAction
+    | PresetEditorAction;
 
 export function setName(player: Player, value: string): ISetName {
     return {

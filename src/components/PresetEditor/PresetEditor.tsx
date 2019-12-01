@@ -8,7 +8,7 @@ import {Dispatch} from "redux";
 import * as actions from "../../actions";
 import {ISetEditorCivilisations, ISetEditorName, ISetEditorPreset, ISetEditorTurn} from "../../actions";
 import {connect} from "react-redux";
-import {IStoreState} from "../../types";
+import {ApplicationState} from "../../types";
 import Exclusivity from "../../models/Exclusivity";
 import Action from "../../models/Action";
 import NewDraftButton from "../NewDraftButton";
@@ -135,9 +135,9 @@ class PresetEditor extends React.Component<Props, object> {
     }
 }
 
-export function mapStateToProps(state: IStoreState) {
+export function mapStateToProps(state: ApplicationState) {
     return {
-        preset: state.editorPreset
+        preset: state.presetEditor.editorPreset
     }
 }
 

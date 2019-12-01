@@ -1,14 +1,14 @@
-import {IStoreState} from '../types';
+import {ApplicationState} from '../types';
 import {connect} from 'react-redux';
 import {Dispatch} from "redux";
 import * as actions from "../actions";
 import UsernameSelector from "../components/menu/UsernameSelector";
 
 
-export function mapStateToProps(state: IStoreState) {
+export function mapStateToProps(state: ApplicationState) {
     return {
-        visible: state.showModal,
-        currentName: state.ownName
+        visible: state.modal.showModal,
+        currentName: state.ownProperties.ownName
     };
 }
 

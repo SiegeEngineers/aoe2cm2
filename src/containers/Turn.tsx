@@ -1,11 +1,11 @@
-import {IStoreState} from '../types';
+import {ApplicationState} from '../types';
 import {connect} from 'react-redux';
 import Turn from "../components/draft/Turn";
 
 
-export function mapStateToProps(state: IStoreState) {
+export function mapStateToProps(state: ApplicationState) {
     return {
-        nextAction: state.nextAction
+        nextAction: state.ownProperties.nextAction
     };
 }
 

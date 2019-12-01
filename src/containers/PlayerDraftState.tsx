@@ -1,12 +1,12 @@
-import {IStoreState} from '../types';
+import {ApplicationState} from '../types';
 import {connect} from 'react-redux';
 import PlayerDraftState from "../components/draft/PlayerDraftState";
 
 
-export function mapStateToProps(state: IStoreState) {
+export function mapStateToProps(state: ApplicationState) {
     return {
-        events: state.events,
-        nextAction: (state.hostReady && state.guestReady) ? state.nextAction : -1
+        events: state.draft.events,
+        nextAction: (state.draft.hostReady && state.draft.guestReady) ? state.ownProperties.nextAction : -1
     };
 }
 

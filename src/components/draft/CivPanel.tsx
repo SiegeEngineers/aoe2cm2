@@ -9,7 +9,7 @@ import {Trans, WithTranslation, withTranslation} from "react-i18next";
 import {Validator} from "../../models/Validator";
 import {DraftsStore} from "../../models/DraftsStore";
 import Draft from "../../models/Draft";
-import {IDraftState, IStoreState} from "../../types";
+import {IDraftState} from "../../types";
 import Preset from "../../models/Preset";
 
 interface IProps extends WithTranslation {
@@ -20,6 +20,7 @@ interface IProps extends WithTranslation {
     whoAmI?: Player;
     triggerAction?: ActionType;
     draft?: IDraftState;
+    nextAction: number;
 
     onClickCivilisation?: (playerEvent:PlayerEvent, callback:any) => void;
 }
@@ -141,9 +142,9 @@ class CivPanel extends React.Component<IProps, IState> {
         if (this.props.draft === undefined || this.props.draft.preset === undefined) {
             return false;
         } else {
-            const draft = this.props.draft as IStoreState;
+            const draft = this.props.draft;
             const preset = draft.preset as Preset;
-            return draft.nextAction >= preset.turns.length;
+            return this.props.nextAction >= preset.turns.length;
         }
     }
 }

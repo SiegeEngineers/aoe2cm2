@@ -1,6 +1,6 @@
 import Draft from '../components/draft/Draft';
 import * as actions from '../actions/';
-import {IStoreState} from '../types';
+import {ApplicationState} from '../types';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
 import Preset from "../models/Preset";
@@ -8,15 +8,15 @@ import Player from "../models/Player";
 import {DraftEvent} from "../models/DraftEvent";
 import {IDraftConfig} from "../models/IDraftConfig";
 
-export function mapStateToProps({nameHost, nameGuest, whoAmI, ownName, preset, nextAction, events}: IStoreState) {
+export function mapStateToProps(state: ApplicationState) {
     return {
-        events,
-        nameGuest: nameGuest as string,
-        nameHost: nameHost as string,
-        nextAction,
-        preset: preset as Preset,
-        whoAmI: whoAmI as Player,
-        ownName
+        events: state.draft.events,
+        nameGuest: state.draft.nameGuest as string,
+        nameHost: state.draft.nameHost as string,
+        nextAction: state.ownProperties.nextAction,
+        preset: state.draft.preset as Preset,
+        whoAmI: state.ownProperties.whoAmI as Player,
+        ownName: state.ownProperties.ownName
     }
 }
 

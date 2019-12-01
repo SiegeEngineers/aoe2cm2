@@ -11,15 +11,36 @@ export interface IDraftState {
     events: DraftEvent[];
 }
 
-export interface IStoreState extends IDraftState {
+export interface ApplicationState {
+    draft: IDraftState,
+    countdown: ICountdownState,
+    ownProperties: IDraftOwnPropertiesState,
+    language: ILanguageState,
+    modal: IModalState,
+    presetEditor: IPresetEditorState
+}
+
+export interface IDraftOwnPropertiesState {
     whoAmI?: Player;
     ownName: string | null;
     nextAction: number;
-    language: string;
-    showModal: boolean;
+}
+
+export interface ICountdownState {
     countdownValue: number;
     countdownVisible: boolean;
+}
+
+export interface IModalState {
+    showModal: boolean;
+}
+
+export interface IPresetEditorState {
     editorPreset: Preset | null;
+}
+
+export interface ILanguageState {
+    language: string;
 }
 
 export interface ICountdownValues {

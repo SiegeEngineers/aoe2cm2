@@ -1,11 +1,11 @@
-import {IStoreState} from '../types';
+import {ApplicationState} from '../types';
 import * as actions from '../actions/';
 import {connect} from 'react-redux';
 import LanguageSelector from "../components/menu/LanguageSelector";
 import {Dispatch} from "redux";
 
 
-export function mapStateToProps(state: IStoreState) {
+export function mapStateToProps(state: ApplicationState) {
     return {};
 }
 

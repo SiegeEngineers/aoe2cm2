@@ -11,22 +11,24 @@ import Menu from "./components/menu/Menu";
 import {Actions} from "./constants";
 import Draft from './containers/Draft';
 import './i18n';
-import {default as i18n} from "./i18n";
 import './pure-min.css';
 import './style-material.css';
 import './style.css';
 import './index.css';
 import {IDraftConfig} from "./models/IDraftConfig";
-import NameGenerator from "./models/NameGenerator";
-import Player from "./models/Player";
-import Preset from "./models/Preset";
 import {SocketUtil} from "./models/SocketUtil";
-import {updateState} from './reducers';
-import {IStoreState} from './types';
+import {default as updateState} from './reducers';
+import {ApplicationState} from './types';
+import {initialDraftState} from "./reducers/draft";
+import {initialDraftCountdownState} from "./reducers/draftCountdown";
+import {initialDraftOwnPropertiesState} from "./reducers/draftOwnProperties";
+import {initialLanguageState} from "./reducers/language";
+import {initialModalState} from "./reducers/modal";
+import {initialPresetEditorState} from "./reducers/presetEditor";
 
 const createMySocketMiddleware = () => {
 
-    return (storeAPI: { dispatch: (arg0: Action) => void; getState: () => IStoreState }) => {
+    return (storeAPI: { dispatch: (arg0: Action) => void; getState: () => ApplicationState }) => {
         let socket: any = null;
 
         return (next: (arg0: any) => void) => (action: Action) => {
@@ -64,19 +66,14 @@ const createMySocketMiddleware = () => {
     }
 };
 
-const store: Store = createStore<IStoreState, Action, any, Store>(updateState,
+const store: Store = createStore<ApplicationState, Action, any, Store>(updateState,
     {
-        nameHost: "…",
-        nameGuest: "…",
-        hostReady: false,
-        guestReady: false,
-        whoAmI: Player.NONE,
-        ownName: NameGenerator.getNameFromLocalStorage(),
-        preset: Preset.EMPTY,
-        nextAction: 0,
-        events: [],
-        language: i18n.language,
-        showModal: false
+        draft: initialDraftState,
+        countdown: initialDraftCountdownState,
+        ownProperties: initialDraftOwnPropertiesState,
+        language: initialLanguageState,
+        modal: initialModalState,
+        presetEditor: initialPresetEditorState
     },
     applyMiddleware(createMySocketMiddleware()));
 

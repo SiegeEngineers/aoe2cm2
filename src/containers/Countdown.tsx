@@ -1,12 +1,12 @@
-import {IStoreState} from '../types';
+import {ApplicationState} from '../types';
 import {connect} from 'react-redux';
 import Countdown from "../components/draft/Countdown";
 
 
-export function mapStateToProps(state: IStoreState) {
+export function mapStateToProps(state: ApplicationState) {
     return {
-        seconds: state.countdownValue,
-        visible: state.countdownVisible
+        seconds: state.countdown.countdownValue,
+        visible: state.countdown.countdownVisible
     };
 }
 

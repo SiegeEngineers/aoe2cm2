@@ -1,4 +1,4 @@
-import {IStoreState} from '../types';
+import {ApplicationState} from '../types';
 import {connect} from 'react-redux';
 import CivPanel from "../components/draft/CivPanel";
 import ActionType, {actionTypeFromAction} from "../models/ActionType";
@@ -7,15 +7,16 @@ import {Dispatch} from "redux";
 import * as actions from "../actions";
 
 
-export function mapStateToProps(state: IStoreState) {
+export function mapStateToProps(state: ApplicationState) {
     let triggerAction: ActionType = ActionType.NOTHING;
-    if (state.preset && state.nextAction < state.preset.turns.length) {
-        triggerAction = actionTypeFromAction(state.preset.turns[state.nextAction].action);
+    if (state.draft.preset && state.ownProperties.nextAction < state.draft.preset.turns.length) {
+        triggerAction = actionTypeFromAction(state.draft.preset.turns[state.ownProperties.nextAction].action);
     }
     return {
         triggerAction,
-        whoAmI: state.whoAmI,
-        draft: state
+        whoAmI: state.ownProperties.whoAmI,
+        nextAction: state.ownProperties.nextAction,
+        draft: state.draft
     };
 }
 
