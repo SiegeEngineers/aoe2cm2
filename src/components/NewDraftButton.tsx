@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Redirect} from "react-router";
 import Preset from "../models/Preset";
 import {Trans} from "react-i18next";
-import {Util} from "../models/Util";
+import {Util} from "../util/Util";
 
 interface IProps {
     preset: Preset;

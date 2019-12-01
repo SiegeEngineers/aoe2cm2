@@ -4,7 +4,7 @@ import Civilisation from "../../models/Civilisation";
 import PlayerEvent from "../../models/PlayerEvent";
 import Player from "../../models/Player";
 import CivPanelType from "../../models/CivPanelType";
-import {Util} from "../../models/Util";
+import {Util} from "../../util/Util";
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
 import {Validator} from "../../models/Validator";
 import {DraftsStore} from "../../models/DraftsStore";

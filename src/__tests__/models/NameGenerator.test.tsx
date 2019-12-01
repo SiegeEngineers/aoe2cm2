@@ -1,4 +1,4 @@
-import NameGenerator from "../../models/NameGenerator";
+import NameGenerator from "../../util/NameGenerator";
 
 it('NameGenerator throws error when initialized with 0', () => {
     expect(() => {

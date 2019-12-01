@@ -1,14 +1,14 @@
-import Civilisation from "./Civilisation";
-import Action from "./Action";
-import {DraftEvent} from "./DraftEvent";
-import PlayerEvent from "./PlayerEvent";
-import AdminEvent from "./AdminEvent";
-import Turn from "./Turn";
-import ActionType from "./ActionType";
-import GameVersion from "./GameVersion";
-import {Validator} from "./Validator";
-import {DraftsStore} from "./DraftsStore";
-import Exclusivity from "./Exclusivity";
+import Civilisation from "../models/Civilisation";
+import Action from "../models/Action";
+import {DraftEvent} from "../models/DraftEvent";
+import PlayerEvent from "../models/PlayerEvent";
+import AdminEvent from "../models/AdminEvent";
+import Turn from "../models/Turn";
+import ActionType from "../models/ActionType";
+import GameVersion from "../models/GameVersion";
+import {Validator} from "../models/Validator";
+import {DraftsStore} from "../models/DraftsStore";
+import Exclusivity from "../models/Exclusivity";
 import i18next from 'i18next';
 
 const CHARACTERS: string = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";

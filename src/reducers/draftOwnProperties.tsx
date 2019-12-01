@@ -1,7 +1,7 @@
 import {IDraftOwnPropertiesState} from "../types";
 import {DraftOwnPropertiesAction} from "../actions";
 import {Actions} from "../constants";
-import NameGenerator from "../models/NameGenerator";
+import NameGenerator from "../util/NameGenerator";
 
 export const initialDraftOwnPropertiesState: IDraftOwnPropertiesState = {
     whoAmI: undefined,

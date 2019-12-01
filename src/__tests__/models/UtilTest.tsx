@@ -1,4 +1,4 @@
-import {Util} from "../../models/Util";
+import {Util} from "../../util/Util";
 
 it('sanitize handles common cases', () => {
     expect(Util.sanitizeDraftId('')).toEqual('');

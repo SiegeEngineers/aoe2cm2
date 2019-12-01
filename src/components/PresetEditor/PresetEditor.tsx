@@ -13,7 +13,7 @@ import Exclusivity from "../../models/Exclusivity";
 import Action from "../../models/Action";
 import NewDraftButton from "../NewDraftButton";
 import Civilisation from "../../models/Civilisation";
-import {CivilisationEncoder} from "../../models/CivilisationEncoder";
+import {CivilisationEncoder} from "../../util/CivilisationEncoder";
 import TurnRow from "../draft/TurnRow";
 
 interface Props {

@@ -1,4 +1,4 @@
-import {CivilisationEncoder} from "../../models/CivilisationEncoder";
+import {CivilisationEncoder} from "../../util/CivilisationEncoder";
 import Civilisation from "../../models/Civilisation";
 
 it('encode empty yields 0', () => {

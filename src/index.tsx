@@ -16,7 +16,7 @@ import './style-material.css';
 import './style.css';
 import './index.css';
 import {IDraftConfig} from "./models/IDraftConfig";
-import {SocketUtil} from "./models/SocketUtil";
+import {SocketUtil} from "./util/SocketUtil";
 import {default as updateState} from './reducers';
 import {ApplicationState} from './types';
 import {initialDraftState} from "./reducers/draft";

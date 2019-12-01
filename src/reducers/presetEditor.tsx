@@ -2,7 +2,7 @@ import {IPresetEditorState} from "../types";
 import {PresetEditorAction} from "../actions";
 import {Actions} from "../constants";
 import Preset from "../models/Preset";
-import {CivilisationEncoder} from "../models/CivilisationEncoder";
+import {CivilisationEncoder} from "../util/CivilisationEncoder";
 
 export const initialPresetEditorState: IPresetEditorState = {
     editorPreset: null

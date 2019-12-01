@@ -1,11 +1,11 @@
 import io from "socket.io-client";
 import {Action, IActionCompleted, ICountdownEvent, IReplayEvent, ISetEvents, ISetName, ISetReady} from "../actions";
 import {Actions} from "../constants";
-import {default as ModelAction} from "./Action";
-import {DraftEvent} from "./DraftEvent";
-import {IJoinedMessage} from "./IJoinedMessage";
-import Player from "./Player";
-import PlayerEvent from "./PlayerEvent";
+import {default as ModelAction} from "../models/Action";
+import {DraftEvent} from "../models/DraftEvent";
+import {IJoinedMessage} from "../models/IJoinedMessage";
+import Player from "../models/Player";
+import PlayerEvent from "../models/PlayerEvent";
 import {Util} from "./Util";
 import {ICountdownValues} from "../types";
 

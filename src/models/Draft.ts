@@ -6,7 +6,7 @@ import Turn from "./Turn";
 import Civilisation from "./Civilisation";
 import Action from "./Action";
 import PlayerEvent from "./PlayerEvent";
-import {Util} from "./Util";
+import {Util} from "../util/Util";
 import Exclusivity from "./Exclusivity";
 
 class Draft implements IDraftState {

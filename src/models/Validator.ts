@@ -2,7 +2,7 @@ import {DraftsStore} from "./DraftsStore";
 import {DraftEvent} from "./DraftEvent";
 import {ValidationId} from "./ValidationId";
 import {Validation} from "./Validation";
-import {Util} from "./Util";
+import {Util} from "../util/Util";
 import PlayerEvent from "./PlayerEvent";
 import Draft from "./Draft";
 import Preset from "./Preset";

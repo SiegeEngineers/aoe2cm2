@@ -10,7 +10,7 @@ import {DraftEvent} from "../../models/DraftEvent";
 import {IDraftConfig} from "../../models/IDraftConfig";
 import {WithTranslation, withTranslation} from "react-i18next";
 import Modal from "../../containers/Modal";
-import NameGenerator from "../../models/NameGenerator";
+import NameGenerator from "../../util/NameGenerator";
 import {Link} from "react-router-dom";
 
 interface IProps extends WithTranslation {

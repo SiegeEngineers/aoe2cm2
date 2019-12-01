@@ -4,7 +4,7 @@ import ActionType, {actionTypeFromAction} from "./ActionType";
 import PlayerEvent from "./PlayerEvent";
 import Civilisation from "./Civilisation";
 import Player from "./Player";
-import {Util} from "./Util";
+import {Util} from "../util/Util";
 import Draft from "./Draft";
 
 export class Validation {

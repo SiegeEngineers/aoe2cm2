@@ -8,10 +8,10 @@ import {DraftsStore} from "./models/DraftsStore";
 import {Validator} from "./models/Validator";
 import {ValidationId} from "./models/ValidationId";
 import {DraftEvent} from "./models/DraftEvent";
-import {Util} from "./models/Util";
+import {Util} from "./util/Util";
 import {AddressInfo} from "net";
 import Preset from "./models/Preset";
-import {Listeners} from "./models/Listeners";
+import {Listeners} from "./util/Listeners";
 import * as fs from "fs";
 
 export const DraftServer = {

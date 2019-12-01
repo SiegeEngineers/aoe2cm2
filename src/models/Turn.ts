@@ -1,6 +1,6 @@
 import Action from "./Action";
 import Player from "./Player";
-import {Assert} from "./Assert";
+import {Assert} from "../util/Assert";
 import Exclusivity from "./Exclusivity";
 
 class Turn {

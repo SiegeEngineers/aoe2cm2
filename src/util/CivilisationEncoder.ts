@@ -1,4 +1,4 @@
-import Civilisation from "./Civilisation";
+import Civilisation from "../models/Civilisation";
 
 export const CivilisationEncoder = {
     encodeCivilisationArray(civilisations: Civilisation[]): string {

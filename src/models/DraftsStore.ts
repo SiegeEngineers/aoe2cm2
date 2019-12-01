@@ -9,7 +9,7 @@ import socketio from "socket.io";
 import PlayerEvent from "./PlayerEvent";
 import Civilisation from "./Civilisation";
 import {actionTypeFromAction} from "./ActionType";
-import {Listeners} from "./Listeners";
+import {Listeners} from "../util/Listeners";
 
 interface ICountdownValues {
     timeout: NodeJS.Timeout;

@@ -1,12 +1,12 @@
-import {DraftEvent} from "./DraftEvent";
-import PlayerEvent from "./PlayerEvent";
-import {DraftsStore} from "./DraftsStore";
-import {ValidationId} from "./ValidationId";
+import {DraftEvent} from "../models/DraftEvent";
+import PlayerEvent from "../models/PlayerEvent";
+import {DraftsStore} from "../models/DraftsStore";
+import {ValidationId} from "../models/ValidationId";
 import socketio from "socket.io";
 import {Util} from "./Util";
-import Player from "./Player";
-import ActionType, {actionTypeFromAction} from "./ActionType";
-import DraftViews from "./DraftViews";
+import Player from "../models/Player";
+import ActionType, {actionTypeFromAction} from "../models/ActionType";
+import DraftViews from "../models/DraftViews";
 import fs from "fs";
 
 export const Listeners = {
