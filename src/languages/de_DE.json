@@ -68,6 +68,17 @@
     "editInfo": "Du kannst deinen Namen jederzeit ändern, indem du auf die Namensanzeige oben rechts klickst.",
     "readTheRules": "Lies die Regeln, bevor du loslegst!"
   },
+  "rolemodal": {
+    "header": "Rolle auswählen",
+    "urlCallToAction": "Sende diese URL an die andere Kapitänin und eventuelle Zuschauerinnen.",
+    "copyLabel": "Kopieren",
+    "callToAction": "Wähle deine Rolle:",
+    "role": {
+      "spectator": "Zuschauerin",
+      "host": "Host",
+      "guest": "Gast"
+    }
+  },
   "HOST": "Host-Kapitänin",
   "GUEST": "Gast-Kapitänin",
   "Picks": "Ausgewählt",

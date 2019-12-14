@@ -68,6 +68,17 @@
     "editInfo": "You can edit this anytime in the future by clicking your name.",
     "readTheRules": "Make sure you read the rules!"
   },
+  "rolemodal": {
+    "header": "Choose your role",
+    "urlCallToAction": "Send this url to the other captain and to spectators.",
+    "copyLabel": "Copy",
+    "callToAction": "Choose your role for this draft:",
+    "role": {
+      "spectator": "Spectator",
+      "host": "Host",
+      "guest": "Guest"
+    }
+  },
   "HOST": "Host Captain",
   "GUEST": "Guest Captain",
   "Picks": "Picks",

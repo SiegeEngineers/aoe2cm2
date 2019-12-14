@@ -12,6 +12,7 @@ export class Barrier {
         this.called++;
         console.log(`Barrier was triggered, is now at ${this.called} / ${this.barrier}`);
         if (this.called >= this.barrier) {
+            console.log(`Calling done()`);
             this.done();
         }
     }

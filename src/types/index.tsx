@@ -5,6 +5,8 @@ import {DraftEvent} from "./DraftEvent";
 export interface IDraftState {
     nameHost: string;
     nameGuest: string;
+    hostConnected: boolean;
+    guestConnected: boolean;
     hostReady: boolean;
     guestReady: boolean;
     preset?: Preset;
@@ -33,6 +35,7 @@ export interface ICountdownState {
 
 export interface IModalState {
     showModal: boolean;
+    showRoleModal: boolean;
 }
 
 export interface IPresetEditorState {

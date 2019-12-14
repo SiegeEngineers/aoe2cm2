@@ -39,7 +39,7 @@ beforeEach((done) => {
         const draftIdContainer: { draftId: string } = JSON.parse(body);
         draftId = draftIdContainer.draftId;
         hostSocket = io.connect(`http://[${httpServerAddr.address}]:${httpServerAddr.port}`, {
-            query: {draftId: draftId},
+            query: {draftId: draftId, role: Player.HOST},
             reconnectionDelay: 0,
             forceNew: true,
             transports: ['websocket'],
@@ -48,7 +48,7 @@ beforeEach((done) => {
             barrier.trigger();
         });
         clientSocket = io.connect(`http://[${httpServerAddr.address}]:${httpServerAddr.port}`, {
-            query: {draftId: draftId},
+            query: {draftId: draftId, role: Player.GUEST},
             reconnectionDelay: 0,
             forceNew: true,
             transports: ['websocket'],
@@ -72,40 +72,40 @@ afterEach((done) => {
 });
 
 it('successful join gets a draft config', (done) => {
-    hostSocket.emit('join', {name: 'Saladin'}, (data: IDraftConfig) => {
+    hostSocket.emit('set_role', {name: 'Saladin', role: Player.HOST}, (data: IDraftConfig) => {
         expect(data).toMatchSnapshot();
         done();
     });
 });
 
 
-it('should send player_joined when player joins', (done) => {
+it('should send player_set_role when player sets role', (done) => {
     const barrier = new Barrier(2, done);
-    hostSocket.once("player_joined", (message: any) => {
+    hostSocket.once("player_set_role", (message: any) => {
         expect(message.name).toBe('Saladin');
         expect(message.playerType).toBe(Player.HOST);
 
-        hostSocket.once("player_joined", (message: any) => {
+        hostSocket.once("player_set_role", (message: any) => {
             expect(message.name).toBe('Barbarossa');
             expect(message.playerType).toBe(Player.GUEST);
             barrier.trigger();
         });
-        clientSocket.emit('join', {name: 'Barbarossa'}, () => {
+        clientSocket.emit('set_role', {name: 'Barbarossa', role: Player.GUEST}, () => {
         });
     });
 
-    clientSocket.once("player_joined", (message: any) => {
+    clientSocket.once("player_set_role", (message: any) => {
         expect(message.name).toBe('Saladin');
         expect(message.playerType).toBe(Player.HOST);
 
-        clientSocket.once("player_joined", (message: any) => {
+        clientSocket.once("player_set_role", (message: any) => {
             expect(message.name).toBe('Barbarossa');
             expect(message.playerType).toBe(Player.GUEST);
             barrier.trigger();
         });
     });
 
-    hostSocket.emit('join', {name: 'Saladin'}, () => {
+    hostSocket.emit('set_role', {name: 'Saladin', role: Player.HOST}, () => {
     });
 });
 
@@ -117,8 +117,8 @@ it('fully execute sample draft', (done) => {
     clientSocket.once('disconnect', () => {
         barrier.trigger();
     });
-    hostSocket.emit('join', {name: 'Saladin'}, () => {
-        clientSocket.emit('join', {name: 'Barbarossa'}, () => {
+    hostSocket.emit('set_role', {name: 'Saladin', role: Player.HOST}, () => {
+        clientSocket.emit('set_role', {name: 'Barbarossa', role: Player.GUEST}, () => {
             clientSocket.emit('ready', {}, () => {
                 hostSocket.emit('ready', {}, () => {
                     hostSocket.emit('act', {

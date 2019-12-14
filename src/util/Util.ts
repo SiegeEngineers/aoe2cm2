@@ -10,6 +10,7 @@ import {Validator} from "../models/Validator";
 import {DraftsStore} from "../models/DraftsStore";
 import Exclusivity from "../constants/Exclusivity";
 import i18next from 'i18next';
+import Player from "../constants/Player";
 
 const CHARACTERS: string = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
@@ -122,5 +123,15 @@ export const Util = {
 
     sanitizeDraftId(draftIdRaw: string) {
         return draftIdRaw.replace(new RegExp(`[^${CHARACTERS}]`, 'g'), '_');
+    },
+
+    sanitizeRole(roleRaw: Player) {
+        if (roleRaw === Player.GUEST) {
+            return Player.GUEST;
+        }
+        if (roleRaw === Player.HOST) {
+            return Player.HOST;
+        }
+        return Player.NONE;
     }
 };

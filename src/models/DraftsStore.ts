@@ -48,16 +48,45 @@ export class DraftsStore {
         return this.drafts.has(draftId);
     }
 
-    public setPlayerName(draftId: string, player: Player, name: string) {
+    public connectPlayer(draftId: string, player: Player, name: string) {
         const draft: Draft = this.getDraftOrThrow(draftId);
         switch (player) {
             case Player.HOST:
                 draft.nameHost = name;
+                draft.hostConnected = true;
                 break;
             case Player.GUEST:
                 draft.nameGuest = name;
+                draft.guestConnected = true;
                 break;
         }
+    }
+
+    public disconnectPlayer(draftId: string, player: Player) {
+        const draft: Draft = this.getDraftOrThrow(draftId);
+        switch (player) {
+            case Player.HOST:
+                draft.nameHost = '…';
+                draft.hostConnected = false;
+                draft.hostReady = false;
+                break;
+            case Player.GUEST:
+                draft.nameGuest = '…';
+                draft.guestConnected = false;
+                draft.guestReady = false;
+                break;
+        }
+    }
+
+    public isPlayerConnected(draftId: string, player: Player) {
+        const draft: Draft = this.getDraftOrThrow(draftId);
+        switch (player) {
+            case Player.HOST:
+                return draft.hostConnected;
+            case Player.GUEST:
+                return draft.guestConnected;
+        }
+        return false;
     }
 
     public setPlayerReady(draftId: string, player: Player) {

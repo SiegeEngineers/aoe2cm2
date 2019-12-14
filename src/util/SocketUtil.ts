@@ -1,5 +1,14 @@
 import io from "socket.io-client";
-import {Action, IActionCompleted, ICountdownEvent, IReplayEvent, ISetEvents, ISetName, ISetReady} from "../actions";
+import {
+    Action,
+    IActionCompleted,
+    IApplyConfig,
+    ICountdownEvent,
+    IReplayEvent,
+    ISetEvents,
+    IConnectPlayer,
+    ISetReady
+} from "../actions";
 import {Actions} from "../constants";
 import {default as ModelAction} from "../constants/Action";
 import {DraftEvent} from "../types/DraftEvent";
@@ -8,23 +17,29 @@ import Player from "../constants/Player";
 import PlayerEvent from "../models/PlayerEvent";
 import {Util} from "./Util";
 import {ICountdownValues} from "../types";
+import {IDraftConfig} from "../types/IDraftConfig";
 
 export const SocketUtil = {
-    initSocketIfFirstUse(socket: any, storeAPI: { dispatch: (arg0: Action) => void }) {
+    initSocketIfFirstUse(socket: SocketIOClient.Socket | null, storeAPI: { dispatch: (arg0: Action) => void }): SocketIOClient.Socket {
         if (socket !== null) {
             return socket;
         }
         socket = io({query: {draftId: Util.getIdFromUrl()}});
 
-        socket.on("player_joined", (data: IJoinedMessage) => {
-            console.log("player_joined", data);
+        socket.on("draft_state", (data: IDraftConfig) => {
+            console.log("draft_state", data);
+            storeAPI.dispatch({type: Actions.APPLY_CONFIG, value: data} as IApplyConfig);
+        });
+
+        socket.on("player_set_role", (data: IJoinedMessage) => {
+            console.log("player_set_role", data);
             if (data.playerType === Player.HOST || data.playerType === Player.GUEST) {
-                storeAPI.dispatch({type: Actions.SET_NAME, player: data.playerType, value: data.name} as ISetName);
+                storeAPI.dispatch({type: Actions.CONNECT_PLAYER, player: data.playerType, value: data.name} as IConnectPlayer);
             }
         });
 
         socket.on("player_ready", (data: IJoinedMessage) => {
-            console.log("player_joined", data);
+            console.log("player_ready", data);
             if (data.playerType === Player.HOST || data.playerType === Player.GUEST) {
                 storeAPI.dispatch({type: Actions.SET_READY, player: data.playerType} as ISetReady);
             }

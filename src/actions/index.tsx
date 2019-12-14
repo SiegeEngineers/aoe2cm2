@@ -18,9 +18,9 @@ export interface IApplyConfig {
     value: IDraftConfig
 }
 
-export interface ISetName {
+export interface IConnectPlayer {
     player: Player,
-    type: Actions.SET_NAME,
+    type: Actions.CONNECT_PLAYER,
     value: string
 }
 
@@ -34,9 +34,15 @@ export interface IChangeOwnName {
     value: string
 }
 
-export interface ISendJoin {
-    type: Actions.SEND_JOIN,
-    name: string
+export interface ISetOwnRole {
+    type: Actions.SET_OWN_ROLE,
+    value: Player
+}
+
+export interface ISetRole {
+    type: Actions.SET_ROLE,
+    name: string,
+    role: Player
 }
 
 export interface ISendReady {
@@ -64,12 +70,20 @@ export interface ICountdownEvent {
     value: ICountdownValues
 }
 
+export interface IConnect {
+    type: Actions.CONNECT
+}
+
 export interface IDisconnect {
     type: Actions.DISCONNECT
 }
 
 export interface IShowNameModal {
     type: Actions.SHOW_NAME_MODAL
+}
+
+export interface IShowRoleModal {
+    type: Actions.SHOW_ROLE_MODAL
 }
 
 export interface IReplayEvent {
@@ -99,14 +113,15 @@ export interface ISetEditorCivilisations {
 }
 
 
-export type DraftAction = ISetName
+export type DraftAction = IConnectPlayer
     | ISetReady
     | IActionCompleted
     | IApplyConfig
-    | ISendJoin
+    | ISetRole
     | ISendReady
     | IClickOnCiv
     | ISetEvents
+    | IConnect
     | IDisconnect
     | IReplayEvent;
 
@@ -114,13 +129,17 @@ export type DraftCountdownAction = ICountdownEvent;
 
 export type DraftOwnPropertiesAction = IApplyConfig
     | IChangeOwnName
+    | ISetOwnRole
     | IActionCompleted
-    | ISetEvents;
+    | ISetEvents
+    | IReplayEvent;
 
 export type LanguageAction = ISetLanguage;
 
 export type ModalAction = IShowNameModal
-    | IChangeOwnName;
+    | IShowRoleModal
+    | IChangeOwnName
+    | ISetOwnRole;
 
 export type PresetEditorAction = ISetEditorPreset
     | ISetEditorTurn
@@ -134,10 +153,10 @@ export type Action = DraftAction
     | ModalAction
     | PresetEditorAction;
 
-export function setName(player: Player, value: string): ISetName {
+export function connectPlayer(player: Player, value: string): IConnectPlayer {
     return {
         player,
-        type: Actions.SET_NAME,
+        type: Actions.CONNECT_PLAYER,
         value
     }
 }
@@ -156,6 +175,13 @@ export function changeOwnName(value: string): IChangeOwnName {
     }
 }
 
+export function setOwnRole(value: Player): ISetOwnRole {
+    return {
+        type: Actions.SET_OWN_ROLE,
+        value
+    }
+}
+
 export function act(value: DraftEvent): IActionCompleted {
     return {
         type: Actions.ACTION_COMPLETED,
@@ -170,10 +196,11 @@ export function applyConfig(value: IDraftConfig): IApplyConfig {
     }
 }
 
-export function sendJoin(name: string): ISendJoin {
+export function setRole(name: string, role: Player): ISetRole {
     return {
         name,
-        type: Actions.SEND_JOIN
+        role,
+        type: Actions.SET_ROLE
     }
 }
 
@@ -186,6 +213,12 @@ export function sendReady(): ISendReady {
 export function showNameModal(): IShowNameModal {
     return {
         type: Actions.SHOW_NAME_MODAL
+    }
+}
+
+export function showRoleModal(): IShowRoleModal {
+    return {
+        type: Actions.SHOW_ROLE_MODAL
     }
 }
 
@@ -208,6 +241,12 @@ export function setEvents(value: { player: Player, action: ModelAction, events: 
     return {
         value,
         type: Actions.SET_EVENTS
+    }
+}
+
+export function connect(): IConnect {
+    return {
+        type: Actions.CONNECT
     }
 }
 

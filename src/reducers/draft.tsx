@@ -10,6 +10,8 @@ export const initialDraftState: IDraftState = {
     nameGuest: "…",
     hostReady: false,
     guestReady: false,
+    hostConnected: false,
+    guestConnected: false,
     preset: Preset.EMPTY,
     events: [],
 };
@@ -24,12 +26,12 @@ export const draftReducer = (state: IDraftState = initialDraftState, action: Dra
                 ...state,
                 events: eventsCopy
             };
-        case Actions.SET_NAME:
-            console.log(Actions.SET_NAME, action);
+        case Actions.CONNECT_PLAYER:
+            console.log(Actions.CONNECT_PLAYER, action);
             if (action.player === Player.HOST) {
-                return {...state, nameHost: action.value};
+                return {...state, nameHost: action.value, hostConnected: true};
             } else if (action.player === Player.GUEST) {
-                return {...state, nameGuest: action.value};
+                return {...state, nameGuest: action.value, guestConnected: true};
             } else {
                 return state;
             }
@@ -50,6 +52,8 @@ export const draftReducer = (state: IDraftState = initialDraftState, action: Dra
                 events: action.value.events,
                 nameGuest: action.value.nameGuest,
                 nameHost: action.value.nameHost,
+                hostConnected: action.value.hostConnected,
+                guestConnected: action.value.guestConnected,
                 hostReady: action.value.hostReady,
                 guestReady: action.value.guestReady,
                 preset

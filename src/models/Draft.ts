@@ -12,6 +12,8 @@ import Exclusivity from "../constants/Exclusivity";
 class Draft implements IDraftState {
     public nameHost: string;
     public nameGuest: string;
+    public hostConnected: boolean;
+    public guestConnected: boolean;
     public hostReady: boolean;
     public guestReady: boolean;
     public readonly preset: Preset;
@@ -22,12 +24,16 @@ class Draft implements IDraftState {
         this.nameHost = nameHost;
         this.nameGuest = nameGuest;
         this.preset = preset;
+        this.hostConnected = false;
+        this.guestConnected = false;
         this.hostReady = false;
         this.guestReady = false;
     }
 
     public static from(source: Draft): Draft {
-        const draft: Draft = new Draft(source.nameHost, source.nameGuest, source.preset)
+        const draft: Draft = new Draft(source.nameHost, source.nameGuest, source.preset);
+        draft.hostConnected = source.hostConnected;
+        draft.guestConnected = source.guestConnected;
         draft.hostReady = source.hostReady;
         draft.guestReady = source.guestReady;
         draft.nextAction = source.nextAction;

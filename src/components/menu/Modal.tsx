@@ -1,12 +1,14 @@
 import * as React from "react";
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
 import NameGenerator from "../../util/NameGenerator";
+import Player from "../../constants/Player";
 
 interface IProps extends WithTranslation {
     visible: boolean;
     currentName: string | null;
     inDraft: boolean;
-    changeNameCallback?: (name: string) => void;
+    role: Player | undefined,
+    changeNameCallback?: (name: string, role: Player) => void;
 }
 
 class Modal extends React.Component<IProps, object> {
@@ -49,14 +51,14 @@ class Modal extends React.Component<IProps, object> {
     private newNameProposal = () => {
         const input: HTMLInputElement = document.getElementById(this.INPUT_CAPTAIN_NAME) as HTMLInputElement;
         input.value = new NameGenerator().nextName();
-    }
+    };
 
     private callback = () => {
         if (this.props.changeNameCallback !== undefined) {
             const input: HTMLInputElement = document.getElementById(this.INPUT_CAPTAIN_NAME) as HTMLInputElement;
             const name: string = input.value;
             if (name !== '') {
-                this.props.changeNameCallback(name);
+                this.props.changeNameCallback(name, this.props.role as Player);
             }
         }
     }

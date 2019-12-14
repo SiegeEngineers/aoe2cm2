@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {applyMiddleware, createStore, Store} from 'redux';
-import {Action, IApplyConfig, IClickOnCiv, ISendJoin} from "./actions";
+import {Action, IApplyConfig, IClickOnCiv, ISetRole} from "./actions";
 import NotFound404 from "./components/404";
 import Footer from "./components/menu/Footer";
 import TopRightControls from "./components/menu/TopRightControls";
@@ -29,21 +29,36 @@ import {initialPresetEditorState} from "./reducers/presetEditor";
 const createMySocketMiddleware = () => {
 
     return (storeAPI: { dispatch: (arg0: Action) => void; getState: () => ApplicationState }) => {
-        let socket: any = null;
+        let socket: SocketIOClient.Socket | null = null;
 
         return (next: (arg0: any) => void) => (action: Action) => {
-            if (action.type === Actions.SEND_JOIN) {
-                console.log("SEND_JOIN", SocketUtil.initSocketIfFirstUse, socket, storeAPI);
-                socket = SocketUtil.initSocketIfFirstUse(socket, storeAPI);
-                const sendJoin = action as ISendJoin;
-                socket.emit('join', {name: sendJoin.name}, (data: IDraftConfig) => {
-                    console.log('join callback', data);
+
+            if (action.type === Actions.CONNECT) {
+                console.log("CONNECT", SocketUtil.initSocketIfFirstUse, socket, storeAPI);
+                if (socket === null) {
+                    socket = SocketUtil.initSocketIfFirstUse(socket, storeAPI) as SocketIOClient.Socket;
+                }
+            }
+
+            if (action.type === Actions.SET_ROLE) {
+                console.log("SET_ROLE", SocketUtil.initSocketIfFirstUse, socket, storeAPI);
+                socket = SocketUtil.initSocketIfFirstUse(socket, storeAPI) as SocketIOClient.Socket;
+                if (socket.disconnected) {
+                    return;
+                }
+                const setRole = action as ISetRole;
+                socket.emit('set_role', {name: setRole.name, role: setRole.role}, (data: IDraftConfig) => {
+                    console.log('setRole callback', data);
                     storeAPI.dispatch({type: Actions.APPLY_CONFIG, value: data} as IApplyConfig);
                 });
                 return;
             }
+
             if (action.type === Actions.SEND_READY) {
-                socket = SocketUtil.initSocketIfFirstUse(socket, storeAPI);
+                socket = SocketUtil.initSocketIfFirstUse(socket, storeAPI) as SocketIOClient.Socket;
+                if (socket.disconnected) {
+                    return;
+                }
                 socket.emit('ready', {}, (data: IDraftConfig) => {
                     console.log('ready callback', data);
                     storeAPI.dispatch({type: Actions.APPLY_CONFIG, value: data} as IApplyConfig);
@@ -52,13 +67,19 @@ const createMySocketMiddleware = () => {
             }
 
             if (action.type === Actions.CLICK_CIVILISATION) {
-                socket = SocketUtil.initSocketIfFirstUse(socket, storeAPI);
+                socket = SocketUtil.initSocketIfFirstUse(socket, storeAPI) as SocketIOClient.Socket;
+                if (socket.disconnected) {
+                    return;
+                }
                 const clickCivilisation = action as IClickOnCiv;
                 socket.emit('act', clickCivilisation.playerEvent, clickCivilisation.callback);
             }
 
             if (action.type === Actions.DISCONNECT) {
-                socket = SocketUtil.disconnect(socket, storeAPI);
+                console.log('DISCONNECT');
+                if (socket !== null && socket.connected) {
+                    socket = SocketUtil.disconnect(socket, storeAPI);
+                }
             }
 
             return next(action);
