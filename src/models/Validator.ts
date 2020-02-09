@@ -7,6 +7,7 @@ import PlayerEvent from "./PlayerEvent";
 import Draft from "./Draft";
 import Preset from "./Preset";
 import {PresetValidation} from "./PresetValidation";
+import {logger} from "../util/Logger";
 
 export class Validator {
     private readonly draftsStore: DraftsStore;
@@ -25,7 +26,7 @@ export class Validator {
         }
 
         if (validationErrors.length === 0) {
-            console.log('Applying DraftEvent', message);
+            logger.info('Applying DraftEvent', message, {draftId});
             this.draftsStore.addDraftEvent(draftId, message);
         }
 

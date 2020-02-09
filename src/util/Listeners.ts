@@ -2,21 +2,22 @@ import {DraftEvent} from "../types/DraftEvent";
 import PlayerEvent from "../models/PlayerEvent";
 import {DraftsStore} from "../models/DraftsStore";
 import {ValidationId} from "../constants/ValidationId";
-import socketio from "socket.io";
 import {Util} from "./Util";
 import Player from "../constants/Player";
 import ActionType, {actionTypeFromAction} from "../constants/ActionType";
 import DraftViews from "../models/DraftViews";
 import fs from "fs";
+import {logger} from "./Logger";
 
 export const Listeners = {
 
-    actListener(draftsStore: DraftsStore, draftId: string, validateAndApply: (draftId: string, message: DraftEvent) => ValidationId[], socket: socketio.Socket, roomHost: string, roomGuest: string, roomSpec: string) {
+    actListener(draftsStore: DraftsStore, draftId: string, validateAndApply: (draftId: string, message: DraftEvent) => ValidationId[], socket: SocketIO.Socket, roomHost: string, roomGuest: string, roomSpec: string) {
         return (message: PlayerEvent, fn: (retval: any) => void) => {
-            console.log(message);
+            logger.info("Got act message: %s", JSON.stringify(message), {draftId});
 
             const civilisationsList = draftsStore.getDraftOrThrow(draftId).preset.civilisations.slice();
             message = Util.setRandomCivilisationIfNeeded(message, draftId, draftsStore, civilisationsList);
+            logger.info("Augmented message: %s", JSON.stringify(message), {draftId});
 
             const validationErrors: ValidationId[] = validateAndApply(draftId, message);
             if (validationErrors.length === 0) {
@@ -44,6 +45,7 @@ export const Listeners = {
                 }
                 this.finishDraftIfNoFurtherActions(draftViews, socket, draftsStore, draftId, roomHost, roomGuest, roomSpec);
             } else {
+                logger.info("Validation yielded errors: %s", JSON.stringify(validationErrors), {draftId});
                 fn({status: 'error', validationErrors});
             }
         };
@@ -55,7 +57,7 @@ export const Listeners = {
         }
         return false;
     },
-    scheduleAdminEvent: function (adminEventCounter: number, draftsStore: DraftsStore, draftId: string, draftViews: DraftViews, socket: socketio.Socket, roomHost: string, roomGuest: string, roomSpec: string) {
+    scheduleAdminEvent: function (adminEventCounter: number, draftsStore: DraftsStore, draftId: string, draftViews: DraftViews, socket: SocketIO.Socket, roomHost: string, roomGuest: string, roomSpec: string) {
         const expectedActions = draftsStore.getExpectedActions(draftId, adminEventCounter - 1);
         const expectedAction = expectedActions[0];
         if (expectedAction.player === Player.NONE) { // Admin Event
@@ -89,10 +91,10 @@ export const Listeners = {
             }
         }
     },
-    finishDraftIfNoFurtherActions: function (draftViews: DraftViews, socket: socketio.Socket, draftsStore: DraftsStore,
+    finishDraftIfNoFurtherActions: function (draftViews: DraftViews, socket: SocketIO.Socket, draftsStore: DraftsStore,
                                              draftId: string, roomHost: string, roomGuest: string, roomSpec: string) {
         if (!draftViews.getActualDraft().hasNextAction()) {
-            console.log('disconnecting clients');
+            logger.info("No further action expected. Disconnecting clients.", {draftId});
             for (let room of [roomHost, roomGuest, roomSpec]) {
                 socket.nsp.in(room).clients((error: any, clientIds: string[]) => {
                     if (error) throw error;
@@ -101,10 +103,10 @@ export const Listeners = {
                     }
                 });
             }
-            console.log('saving draft', draftId, draftsStore.getDraftOrThrow(draftId));
+            logger.info("Saving draft: %s", JSON.stringify(draftsStore.getDraftOrThrow(draftId)), {draftId});
             fs.writeFile(`data/${draftId}.json`, JSON.stringify(draftsStore.getDraftOrThrow(draftId)), (err) => {
                 if (err) throw err;
-                console.log(`Draft saved to data/${draftId}.json`);
+                logger.info( `Draft saved to data/${draftId}.json`, {draftId});
                 draftsStore.removeDraft(draftId);
             });
         }

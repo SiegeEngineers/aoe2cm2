@@ -5,6 +5,7 @@ import {Util} from "../util/Util";
 import PlayerEvent from "./PlayerEvent";
 import Action from "../constants/Action";
 import ActionType from "../constants/ActionType";
+import {logger} from "../util/Logger";
 
 class DraftViews {
     public hostEvents: DraftEvent[];
@@ -80,23 +81,22 @@ class DraftViews {
 
     getLastEventForHost(): DraftEvent {
         const draft = this.getHostDraft();
-        console.log(draft);
         let draftEvent = draft.events[draft.events.length - 1];
-        console.log('getLastEventForHost: returning ', draftEvent);
+        logger.debug('getLastEventForHost: returning ', draftEvent);
         return draftEvent;
     }
 
     getLastEventForGuest(): DraftEvent {
         const draft = this.getGuestDraft();
         let draftEvent = draft.events[draft.events.length - 1];
-        console.log('getLastEventForGuest: returning ', draftEvent);
+        logger.debug('getLastEventForGuest: returning ', draftEvent);
         return draftEvent;
     }
 
     getLastEventForSpec(): DraftEvent {
         const draft = this.getSpecDraft();
         let draftEvent = draft.events[draft.events.length - 1];
-        console.log('getLastEventForSpec: returning ', draftEvent);
+        logger.debug('getLastEventForSpec: returning ', draftEvent);
         return draftEvent;
     }
 
