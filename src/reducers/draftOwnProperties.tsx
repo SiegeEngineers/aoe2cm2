@@ -1,6 +1,6 @@
 import {IDraftOwnPropertiesState} from "../types";
 import {DraftOwnPropertiesAction} from "../actions";
-import {Actions, ServerActions} from "../constants";
+import {Actions, ClientActions, ServerActions} from "../constants";
 import NameGenerator from "../util/NameGenerator";
 import Player from "../constants/Player";
 
@@ -39,7 +39,9 @@ export const draftOwnPropertiesReducer = (state: IDraftOwnPropertiesState = init
         case Actions.SET_OWN_ROLE:
             console.log(Actions.SET_OWN_ROLE, action);
             return {...state, whoAmI: action.value};
-
+        case ClientActions.DISCONNECT_FROM_SERVER:
+            console.log(ClientActions.DISCONNECT_FROM_SERVER, action);
+            return {...state, whoAmI: undefined};
         case ServerActions.APPLY_REPLAY:
             console.log(ServerActions.APPLY_REPLAY, action.value);
             return {

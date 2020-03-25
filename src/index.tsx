@@ -89,8 +89,9 @@ const createMySocketMiddleware = () => {
             if (action.type === ClientActions.DISCONNECT_FROM_SERVER) {
                 console.log('DISCONNECT');
                 if (socket !== null && socket.connected) {
-                    socket = SocketUtil.disconnect(socket, storeAPI);
+                    SocketUtil.disconnect(socket, storeAPI);
                 }
+                socket = null;
             }
 
             return next(action);

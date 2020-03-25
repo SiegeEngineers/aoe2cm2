@@ -145,7 +145,8 @@ export type DraftOwnPropertiesAction = IApplyConfig
     | ISetOwnRole
     | IActionCompleted
     | ISetEvents
-    | IReplayEvent;
+    | IReplayEvent
+    | IDisconnect;
 
 export type LanguageAction = ISetLanguage;
 
