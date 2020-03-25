@@ -20,8 +20,8 @@ export const draftOwnPropertiesReducer = (state: IDraftOwnPropertiesState = init
                 nextAction: action.value.events.length,
                 whoAmI: whoAmIValue,
             };
-        case ServerActions.ACTION_COMPLETED:
-            console.log(ServerActions.ACTION_COMPLETED, state.nextAction + 1);
+        case ServerActions.EXECUTE_ACTION:
+            console.log(ServerActions.EXECUTE_ACTION, state.nextAction + 1);
             return {
                 ...state,
                 nextAction: state.nextAction + 1,
@@ -32,16 +32,16 @@ export const draftOwnPropertiesReducer = (state: IDraftOwnPropertiesState = init
                 ...state,
                 nextAction: state.nextAction + 1,
             };
-        case Actions.CHANGE_OWN_NAME:
-            console.log(Actions.CHANGE_OWN_NAME, action);
+        case Actions.SET_OWN_NAME:
+            console.log(Actions.SET_OWN_NAME, action);
             NameGenerator.writeNameToLocalStorage(action.value);
             return {...state, ownName: action.value};
         case Actions.SET_OWN_ROLE:
             console.log(Actions.SET_OWN_ROLE, action);
             return {...state, whoAmI: action.value};
 
-        case ServerActions.REPLAY:
-            console.log(ServerActions.REPLAY, action.value);
+        case ServerActions.APPLY_REPLAY:
+            console.log(ServerActions.APPLY_REPLAY, action.value);
             return {
                 ...state,
                 whoAmI: Player.NONE,

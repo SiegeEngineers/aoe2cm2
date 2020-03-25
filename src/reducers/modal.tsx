@@ -21,8 +21,8 @@ export const modalReducer = (state: IModalState = initialModalState, action: Mod
                 ...state,
                 showRoleModal: true
             };
-        case Actions.CHANGE_OWN_NAME:
-            console.log(Actions.CHANGE_OWN_NAME, action);
+        case Actions.SET_OWN_NAME:
+            console.log(Actions.SET_OWN_NAME, action);
             return {...state, showModal: action.value === null};
         case Actions.SET_OWN_ROLE:
             console.log(Actions.SET_OWN_ROLE, action);

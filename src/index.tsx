@@ -33,14 +33,14 @@ const createMySocketMiddleware = () => {
 
         return (next: (arg0: any) => void) => (action: Action) => {
 
-            if (action.type === ClientActions.CONNECT) {
+            if (action.type === ClientActions.CONNECT_TO_SERVER) {
                 console.log("CONNECT", SocketUtil.initSocketIfFirstUse, socket, storeAPI);
                 if (socket === null) {
                     socket = SocketUtil.initSocketIfFirstUse(socket, storeAPI) as SocketIOClient.Socket;
                 }
             }
 
-            if (action.type === ClientActions.SET_ROLE) {
+            if (action.type === ClientActions.SEND_SET_ROLE) {
                 console.log("SET_ROLE", SocketUtil.initSocketIfFirstUse, socket, storeAPI);
                 socket = SocketUtil.initSocketIfFirstUse(socket, storeAPI) as SocketIOClient.Socket;
                 if (socket.disconnected) {
@@ -66,7 +66,7 @@ const createMySocketMiddleware = () => {
                 return;
             }
 
-            if (action.type === ClientActions.CLICK_CIVILISATION) {
+            if (action.type === ClientActions.SEND_CLICK_PANEL) {
                 socket = SocketUtil.initSocketIfFirstUse(socket, storeAPI) as SocketIOClient.Socket;
                 if (socket.disconnected) {
                     return;
@@ -75,7 +75,7 @@ const createMySocketMiddleware = () => {
                 socket.emit('act', clickCivilisation.playerEvent, clickCivilisation.callback);
             }
 
-            if (action.type === ClientActions.DISCONNECT) {
+            if (action.type === ClientActions.DISCONNECT_FROM_SERVER) {
                 console.log('DISCONNECT');
                 if (socket !== null && socket.connected) {
                     socket = SocketUtil.disconnect(socket, storeAPI);

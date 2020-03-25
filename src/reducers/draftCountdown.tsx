@@ -8,8 +8,8 @@ export const initialDraftCountdownState: ICountdownState = {
 };
 
 export const draftCountdownReducer = (state: ICountdownState = initialDraftCountdownState, action: DraftCountdownAction) => {
-    if (action.type === ServerActions.COUNTDOWN) {
-        console.log(ServerActions.COUNTDOWN, action.value);
+    if (action.type === ServerActions.SET_COUNTDOWN_VALUE) {
+        console.log(ServerActions.SET_COUNTDOWN_VALUE, action.value);
         return {
             ...state,
             countdownValue: action.value.value,

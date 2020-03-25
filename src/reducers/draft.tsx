@@ -18,16 +18,16 @@ export const initialDraftState: IDraftState = {
 
 export const draftReducer = (state: IDraftState = initialDraftState, action: DraftAction) => {
     switch (action.type) {
-        case ServerActions.ACTION_COMPLETED:
-            console.log(ServerActions.ACTION_COMPLETED);
+        case ServerActions.EXECUTE_ACTION:
+            console.log(ServerActions.EXECUTE_ACTION);
             const eventsCopy = [...state.events];
             eventsCopy.push(action.value);
             return {
                 ...state,
                 events: eventsCopy
             };
-        case ServerActions.CONNECT_PLAYER:
-            console.log(ServerActions.CONNECT_PLAYER, action);
+        case ServerActions.SET_PLAYER_CONNECTED:
+            console.log(ServerActions.SET_PLAYER_CONNECTED, action);
             if (action.player === Player.HOST) {
                 return {...state, nameHost: action.value, hostConnected: true};
             } else if (action.player === Player.GUEST) {
@@ -67,8 +67,8 @@ export const draftReducer = (state: IDraftState = initialDraftState, action: Dra
                 events: eventsCopy2,
             };
 
-        case ServerActions.REPLAY:
-            console.log(ServerActions.REPLAY, action.value);
+        case ServerActions.APPLY_REPLAY:
+            console.log(ServerActions.APPLY_REPLAY, action.value);
             const draft = action.value;
             draft.preset = Preset.fromPojo(draft.preset);
             return {

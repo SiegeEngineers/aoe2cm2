@@ -9,7 +9,7 @@ import Preset from "../models/Preset";
 import Turn from "../models/Turn";
 
 export interface IActionCompleted {
-    type: ServerActions.ACTION_COMPLETED,
+    type: ServerActions.EXECUTE_ACTION,
     value: DraftEvent
 }
 
@@ -20,7 +20,7 @@ export interface IApplyConfig {
 
 export interface IConnectPlayer {
     player: Player,
-    type: ServerActions.CONNECT_PLAYER,
+    type: ServerActions.SET_PLAYER_CONNECTED,
     value: string
 }
 
@@ -30,7 +30,7 @@ export interface ISetReady {
 }
 
 export interface IChangeOwnName {
-    type: Actions.CHANGE_OWN_NAME,
+    type: Actions.SET_OWN_NAME,
     value: string
 }
 
@@ -40,7 +40,7 @@ export interface ISetOwnRole {
 }
 
 export interface ISetRole {
-    type: ClientActions.SET_ROLE,
+    type: ClientActions.SEND_SET_ROLE,
     name: string,
     role: Player
 }
@@ -50,7 +50,7 @@ export interface ISendReady {
 }
 
 export interface IClickOnCiv {
-    type: ClientActions.CLICK_CIVILISATION,
+    type: ClientActions.SEND_CLICK_PANEL,
     playerEvent: PlayerEvent,
     callback: any
 }
@@ -66,16 +66,16 @@ export interface ISetEvents {
 }
 
 export interface ICountdownEvent {
-    type: ServerActions.COUNTDOWN,
+    type: ServerActions.SET_COUNTDOWN_VALUE,
     value: ICountdownValues
 }
 
 export interface IConnect {
-    type: ClientActions.CONNECT
+    type: ClientActions.CONNECT_TO_SERVER
 }
 
 export interface IDisconnect {
-    type: ClientActions.DISCONNECT
+    type: ClientActions.DISCONNECT_FROM_SERVER
 }
 
 export interface IShowNameModal {
@@ -87,7 +87,7 @@ export interface IShowRoleModal {
 }
 
 export interface IReplayEvent {
-    type: ServerActions.REPLAY
+    type: ServerActions.APPLY_REPLAY
     value: IDraftState
 }
 
@@ -156,7 +156,7 @@ export type Action = DraftAction
 export function connectPlayer(player: Player, value: string): IConnectPlayer {
     return {
         player,
-        type: ServerActions.CONNECT_PLAYER,
+        type: ServerActions.SET_PLAYER_CONNECTED,
         value
     }
 }
@@ -170,7 +170,7 @@ export function setReady(player: Player): ISetReady {
 
 export function changeOwnName(value: string): IChangeOwnName {
     return {
-        type: Actions.CHANGE_OWN_NAME,
+        type: Actions.SET_OWN_NAME,
         value
     }
 }
@@ -184,7 +184,7 @@ export function setOwnRole(value: Player): ISetOwnRole {
 
 export function act(value: DraftEvent): IActionCompleted {
     return {
-        type: ServerActions.ACTION_COMPLETED,
+        type: ServerActions.EXECUTE_ACTION,
         value
     }
 }
@@ -200,7 +200,7 @@ export function setRole(name: string, role: Player): ISetRole {
     return {
         name,
         role,
-        type: ClientActions.SET_ROLE
+        type: ClientActions.SEND_SET_ROLE
     }
 }
 
@@ -226,7 +226,7 @@ export function clickOnCiv(playerEvent: PlayerEvent, callback: any): IClickOnCiv
     return {
         callback,
         playerEvent,
-        type: ClientActions.CLICK_CIVILISATION
+        type: ClientActions.SEND_CLICK_PANEL
     }
 }
 
@@ -246,20 +246,20 @@ export function setEvents(value: { player: Player, action: ModelAction, events: 
 
 export function connect(): IConnect {
     return {
-        type: ClientActions.CONNECT
+        type: ClientActions.CONNECT_TO_SERVER
     }
 }
 
 export function disconnect(): IDisconnect {
     return {
-        type: ClientActions.DISCONNECT
+        type: ClientActions.DISCONNECT_FROM_SERVER
     }
 }
 
 export function replay(value: IDraftState): IReplayEvent {
     return {
         value,
-        type: ServerActions.REPLAY
+        type: ServerActions.APPLY_REPLAY
     }
 }
 

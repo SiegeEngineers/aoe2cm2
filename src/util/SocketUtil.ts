@@ -34,7 +34,7 @@ export const SocketUtil = {
         socket.on("player_set_role", (data: IJoinedMessage) => {
             console.log("player_set_role", data);
             if (data.playerType === Player.HOST || data.playerType === Player.GUEST) {
-                storeAPI.dispatch({type: ServerActions.CONNECT_PLAYER, player: data.playerType, value: data.name} as IConnectPlayer);
+                storeAPI.dispatch({type: ServerActions.SET_PLAYER_CONNECTED, player: data.playerType, value: data.name} as IConnectPlayer);
             }
         });
 
@@ -47,7 +47,7 @@ export const SocketUtil = {
 
         socket.on("playerEvent", (message: PlayerEvent) => {
             console.log('message recieved:', "[act]", JSON.stringify(message));
-            storeAPI.dispatch({type: ServerActions.ACTION_COMPLETED, value: message} as IActionCompleted);
+            storeAPI.dispatch({type: ServerActions.EXECUTE_ACTION, value: message} as IActionCompleted);
         });
 
         socket.on("adminEvent", (message: { player: Player, action: ModelAction, events: DraftEvent[] }) => {
@@ -62,12 +62,12 @@ export const SocketUtil = {
 
         socket.on("countdown", (message: ICountdownValues) => {
             console.log('message received:', "[countdown]", message);
-            storeAPI.dispatch({type: ServerActions.COUNTDOWN, value: message} as ICountdownEvent);
+            storeAPI.dispatch({type: ServerActions.SET_COUNTDOWN_VALUE, value: message} as ICountdownEvent);
         });
 
         socket.on("replay", (message: any) => {
             console.log('message received:', "[replay]", message);
-            storeAPI.dispatch({type: ServerActions.REPLAY, value: message} as IReplayEvent);
+            storeAPI.dispatch({type: ServerActions.APPLY_REPLAY, value: message} as IReplayEvent);
         });
 
         return socket;
