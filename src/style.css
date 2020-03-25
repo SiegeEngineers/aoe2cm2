@@ -142,3 +142,7 @@ html, body {
 .role img {
 	width: 100px;
 }
+
+.greenMarker {
+	color: #4caf50;
+}
