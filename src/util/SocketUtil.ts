@@ -3,13 +3,13 @@ import {
     Action,
     IActionCompleted,
     IApplyConfig,
+    IConnectPlayer,
     ICountdownEvent,
     IReplayEvent,
     ISetEvents,
-    IConnectPlayer,
     ISetReady
 } from "../actions";
-import {Actions} from "../constants";
+import {ServerActions} from "../constants";
 import {default as ModelAction} from "../constants/Action";
 import {DraftEvent} from "../types/DraftEvent";
 import {IJoinedMessage} from "../types/IJoinedMessage";
@@ -28,31 +28,31 @@ export const SocketUtil = {
 
         socket.on("draft_state", (data: IDraftConfig) => {
             console.log("draft_state", data);
-            storeAPI.dispatch({type: Actions.APPLY_CONFIG, value: data} as IApplyConfig);
+            storeAPI.dispatch({type: ServerActions.APPLY_CONFIG, value: data} as IApplyConfig);
         });
 
         socket.on("player_set_role", (data: IJoinedMessage) => {
             console.log("player_set_role", data);
             if (data.playerType === Player.HOST || data.playerType === Player.GUEST) {
-                storeAPI.dispatch({type: Actions.CONNECT_PLAYER, player: data.playerType, value: data.name} as IConnectPlayer);
+                storeAPI.dispatch({type: ServerActions.CONNECT_PLAYER, player: data.playerType, value: data.name} as IConnectPlayer);
             }
         });
 
         socket.on("player_ready", (data: IJoinedMessage) => {
             console.log("player_ready", data);
             if (data.playerType === Player.HOST || data.playerType === Player.GUEST) {
-                storeAPI.dispatch({type: Actions.SET_READY, player: data.playerType} as ISetReady);
+                storeAPI.dispatch({type: ServerActions.SET_READY, player: data.playerType} as ISetReady);
             }
         });
 
         socket.on("playerEvent", (message: PlayerEvent) => {
             console.log('message recieved:', "[act]", JSON.stringify(message));
-            storeAPI.dispatch({type: Actions.ACTION_COMPLETED, value: message} as IActionCompleted);
+            storeAPI.dispatch({type: ServerActions.ACTION_COMPLETED, value: message} as IActionCompleted);
         });
 
         socket.on("adminEvent", (message: { player: Player, action: ModelAction, events: DraftEvent[] }) => {
             console.log('message recieved:', "[adminEvent]", JSON.stringify(message));
-            storeAPI.dispatch({type: Actions.SET_EVENTS, value: message} as ISetEvents);
+            storeAPI.dispatch({type: ServerActions.SET_EVENTS, value: message} as ISetEvents);
         });
 
         socket.on("message", (message: string) => {
@@ -62,12 +62,12 @@ export const SocketUtil = {
 
         socket.on("countdown", (message: ICountdownValues) => {
             console.log('message received:', "[countdown]", message);
-            storeAPI.dispatch({type: Actions.COUNTDOWN, value: message} as ICountdownEvent);
+            storeAPI.dispatch({type: ServerActions.COUNTDOWN, value: message} as ICountdownEvent);
         });
 
         socket.on("replay", (message: any) => {
             console.log('message received:', "[replay]", message);
-            storeAPI.dispatch({type: Actions.REPLAY, value: message} as IReplayEvent);
+            storeAPI.dispatch({type: ServerActions.REPLAY, value: message} as IReplayEvent);
         });
 
         return socket;

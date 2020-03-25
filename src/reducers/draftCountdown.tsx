@@ -1,6 +1,6 @@
 import {ICountdownState} from "../types";
 import {DraftCountdownAction} from "../actions";
-import {Actions} from "../constants";
+import {ServerActions} from "../constants";
 
 export const initialDraftCountdownState: ICountdownState = {
     countdownValue: 0,
@@ -8,8 +8,8 @@ export const initialDraftCountdownState: ICountdownState = {
 };
 
 export const draftCountdownReducer = (state: ICountdownState = initialDraftCountdownState, action: DraftCountdownAction) => {
-    if (action.type === Actions.COUNTDOWN) {
-        console.log(Actions.COUNTDOWN, action.value);
+    if (action.type === ServerActions.COUNTDOWN) {
+        console.log(ServerActions.COUNTDOWN, action.value);
         return {
             ...state,
             countdownValue: action.value.value,

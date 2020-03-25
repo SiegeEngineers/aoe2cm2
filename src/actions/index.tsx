@@ -1,4 +1,4 @@
-import {Actions} from '../constants';
+import {Actions, ClientActions, ServerActions} from '../constants';
 import Player from "../constants/Player";
 import {default as ModelAction} from "../constants/Action";
 import {DraftEvent} from "../types/DraftEvent";
@@ -9,24 +9,24 @@ import Preset from "../models/Preset";
 import Turn from "../models/Turn";
 
 export interface IActionCompleted {
-    type: Actions.ACTION_COMPLETED,
+    type: ServerActions.ACTION_COMPLETED,
     value: DraftEvent
 }
 
 export interface IApplyConfig {
-    type: Actions.APPLY_CONFIG,
+    type: ServerActions.APPLY_CONFIG,
     value: IDraftConfig
 }
 
 export interface IConnectPlayer {
     player: Player,
-    type: Actions.CONNECT_PLAYER,
+    type: ServerActions.CONNECT_PLAYER,
     value: string
 }
 
 export interface ISetReady {
     player: Player,
-    type: Actions.SET_READY
+    type: ServerActions.SET_READY
 }
 
 export interface IChangeOwnName {
@@ -40,17 +40,17 @@ export interface ISetOwnRole {
 }
 
 export interface ISetRole {
-    type: Actions.SET_ROLE,
+    type: ClientActions.SET_ROLE,
     name: string,
     role: Player
 }
 
 export interface ISendReady {
-    type: Actions.SEND_READY
+    type: ClientActions.SEND_READY
 }
 
 export interface IClickOnCiv {
-    type: Actions.CLICK_CIVILISATION,
+    type: ClientActions.CLICK_CIVILISATION,
     playerEvent: PlayerEvent,
     callback: any
 }
@@ -61,21 +61,21 @@ export interface ISetLanguage {
 }
 
 export interface ISetEvents {
-    type: Actions.SET_EVENTS,
+    type: ServerActions.SET_EVENTS,
     value: { player: Player, action: ModelAction, events: DraftEvent[] }
 }
 
 export interface ICountdownEvent {
-    type: Actions.COUNTDOWN,
+    type: ServerActions.COUNTDOWN,
     value: ICountdownValues
 }
 
 export interface IConnect {
-    type: Actions.CONNECT
+    type: ClientActions.CONNECT
 }
 
 export interface IDisconnect {
-    type: Actions.DISCONNECT
+    type: ClientActions.DISCONNECT
 }
 
 export interface IShowNameModal {
@@ -87,7 +87,7 @@ export interface IShowRoleModal {
 }
 
 export interface IReplayEvent {
-    type: Actions.REPLAY
+    type: ServerActions.REPLAY
     value: IDraftState
 }
 
@@ -156,7 +156,7 @@ export type Action = DraftAction
 export function connectPlayer(player: Player, value: string): IConnectPlayer {
     return {
         player,
-        type: Actions.CONNECT_PLAYER,
+        type: ServerActions.CONNECT_PLAYER,
         value
     }
 }
@@ -164,7 +164,7 @@ export function connectPlayer(player: Player, value: string): IConnectPlayer {
 export function setReady(player: Player): ISetReady {
     return {
         player,
-        type: Actions.SET_READY
+        type: ServerActions.SET_READY
     }
 }
 
@@ -184,14 +184,14 @@ export function setOwnRole(value: Player): ISetOwnRole {
 
 export function act(value: DraftEvent): IActionCompleted {
     return {
-        type: Actions.ACTION_COMPLETED,
+        type: ServerActions.ACTION_COMPLETED,
         value
     }
 }
 
 export function applyConfig(value: IDraftConfig): IApplyConfig {
     return {
-        type: Actions.APPLY_CONFIG,
+        type: ServerActions.APPLY_CONFIG,
         value
     }
 }
@@ -200,13 +200,13 @@ export function setRole(name: string, role: Player): ISetRole {
     return {
         name,
         role,
-        type: Actions.SET_ROLE
+        type: ClientActions.SET_ROLE
     }
 }
 
 export function sendReady(): ISendReady {
     return {
-        type: Actions.SEND_READY
+        type: ClientActions.SEND_READY
     }
 }
 
@@ -226,7 +226,7 @@ export function clickOnCiv(playerEvent: PlayerEvent, callback: any): IClickOnCiv
     return {
         callback,
         playerEvent,
-        type: Actions.CLICK_CIVILISATION
+        type: ClientActions.CLICK_CIVILISATION
     }
 }
 
@@ -240,26 +240,26 @@ export function setLanguage(language: string): ISetLanguage {
 export function setEvents(value: { player: Player, action: ModelAction, events: DraftEvent[] }): ISetEvents {
     return {
         value,
-        type: Actions.SET_EVENTS
+        type: ServerActions.SET_EVENTS
     }
 }
 
 export function connect(): IConnect {
     return {
-        type: Actions.CONNECT
+        type: ClientActions.CONNECT
     }
 }
 
 export function disconnect(): IDisconnect {
     return {
-        type: Actions.DISCONNECT
+        type: ClientActions.DISCONNECT
     }
 }
 
 export function replay(value: IDraftState): IReplayEvent {
     return {
         value,
-        type: Actions.REPLAY
+        type: ServerActions.REPLAY
     }
 }
 

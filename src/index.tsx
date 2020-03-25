@@ -8,7 +8,7 @@ import NotFound404 from "./components/404";
 import Footer from "./components/menu/Footer";
 import TopRightControls from "./components/menu/TopRightControls";
 import Menu from "./components/menu/Menu";
-import {Actions} from "./constants";
+import {ClientActions, ServerActions} from "./constants";
 import Draft from './containers/Draft';
 import './i18n';
 import './pure-min.css';
@@ -28,19 +28,19 @@ import {initialPresetEditorState} from "./reducers/presetEditor";
 
 const createMySocketMiddleware = () => {
 
-    return (storeAPI: { dispatch: (arg0: Action) => void; getState: () => ApplicationState }) => {
+    return (storeAPI: { dispatch: (action: Action) => void; getState: () => ApplicationState }) => {
         let socket: SocketIOClient.Socket | null = null;
 
         return (next: (arg0: any) => void) => (action: Action) => {
 
-            if (action.type === Actions.CONNECT) {
+            if (action.type === ClientActions.CONNECT) {
                 console.log("CONNECT", SocketUtil.initSocketIfFirstUse, socket, storeAPI);
                 if (socket === null) {
                     socket = SocketUtil.initSocketIfFirstUse(socket, storeAPI) as SocketIOClient.Socket;
                 }
             }
 
-            if (action.type === Actions.SET_ROLE) {
+            if (action.type === ClientActions.SET_ROLE) {
                 console.log("SET_ROLE", SocketUtil.initSocketIfFirstUse, socket, storeAPI);
                 socket = SocketUtil.initSocketIfFirstUse(socket, storeAPI) as SocketIOClient.Socket;
                 if (socket.disconnected) {
@@ -49,24 +49,24 @@ const createMySocketMiddleware = () => {
                 const setRole = action as ISetRole;
                 socket.emit('set_role', {name: setRole.name, role: setRole.role}, (data: IDraftConfig) => {
                     console.log('setRole callback', data);
-                    storeAPI.dispatch({type: Actions.APPLY_CONFIG, value: data} as IApplyConfig);
+                    storeAPI.dispatch({type: ServerActions.APPLY_CONFIG, value: data} as IApplyConfig);
                 });
                 return;
             }
 
-            if (action.type === Actions.SEND_READY) {
+            if (action.type === ClientActions.SEND_READY) {
                 socket = SocketUtil.initSocketIfFirstUse(socket, storeAPI) as SocketIOClient.Socket;
                 if (socket.disconnected) {
                     return;
                 }
                 socket.emit('ready', {}, (data: IDraftConfig) => {
                     console.log('ready callback', data);
-                    storeAPI.dispatch({type: Actions.APPLY_CONFIG, value: data} as IApplyConfig);
+                    storeAPI.dispatch({type: ServerActions.APPLY_CONFIG, value: data} as IApplyConfig);
                 });
                 return;
             }
 
-            if (action.type === Actions.CLICK_CIVILISATION) {
+            if (action.type === ClientActions.CLICK_CIVILISATION) {
                 socket = SocketUtil.initSocketIfFirstUse(socket, storeAPI) as SocketIOClient.Socket;
                 if (socket.disconnected) {
                     return;
@@ -75,7 +75,7 @@ const createMySocketMiddleware = () => {
                 socket.emit('act', clickCivilisation.playerEvent, clickCivilisation.callback);
             }
 
-            if (action.type === Actions.DISCONNECT) {
+            if (action.type === ClientActions.DISCONNECT) {
                 console.log('DISCONNECT');
                 if (socket !== null && socket.connected) {
                     socket = SocketUtil.disconnect(socket, storeAPI);
