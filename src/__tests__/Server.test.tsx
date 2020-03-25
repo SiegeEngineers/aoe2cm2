@@ -39,7 +39,7 @@ beforeEach((done) => {
         const draftIdContainer: { draftId: string } = JSON.parse(body);
         draftId = draftIdContainer.draftId;
         hostSocket = io.connect(`http://[${httpServerAddr.address}]:${httpServerAddr.port}`, {
-            query: {draftId: draftId, role: Player.HOST},
+            query: {draftId: draftId},
             reconnectionDelay: 0,
             forceNew: true,
             transports: ['websocket'],
@@ -48,7 +48,7 @@ beforeEach((done) => {
             barrier.trigger();
         });
         clientSocket = io.connect(`http://[${httpServerAddr.address}]:${httpServerAddr.port}`, {
-            query: {draftId: draftId, role: Player.GUEST},
+            query: {draftId: draftId},
             reconnectionDelay: 0,
             forceNew: true,
             transports: ['websocket'],
