@@ -14,8 +14,9 @@ import Preset from "./models/Preset";
 import {Listeners} from "./util/Listeners";
 import * as fs from "fs";
 import {logger} from "./util/Logger";
+import {ISetNameMessage} from "./types/ISetNameMessage";
 
-function getAssignedRole(socket: SocketIO.Socket, roomHost: string, roomGuest: string) {
+function getAssignedRole(socket: SocketIO.Socket, roomHost: string, roomGuest: string): Player {
     let assignedRole: Player = Player.NONE;
     if (Object.keys(socket.rooms).includes(roomHost)) {
         assignedRole = Player.HOST;
@@ -44,10 +45,14 @@ export const DraftServer = {
             draftsStore.connectPlayer(draftId, player, name);
         }
 
+        function setPlayerName(draftId: string, player: Player, name: string) {
+            draftsStore.setPlayerName(draftId, player, name);
+        }
+
         app.post('/preset/new', (req, res) => {
             logger.info('Received request to create a new draft: %s', JSON.stringify(req.body));
             let draftId = Util.newDraftId();
-            while(draftsStore.has(draftId)){
+            while (draftsStore.has(draftId)) {
                 draftId += Util.randomChar();
             }
             const pojo: Preset = req.body.preset as Preset;
@@ -141,6 +146,28 @@ export const DraftServer = {
                     ...draftsStore.getDraftViewsOrThrow(draftId).getDraftForPlayer(assignedRole),
                     yourPlayerType: assignedRole,
                 });
+            });
+
+            socket.on("set_name", (message: ISetNameMessage, fn: () => void) => {
+                logger.info("Player wants to set own name: %s", JSON.stringify(message), {draftId});
+                let assignedRole = getAssignedRole(socket, roomHost, roomGuest);
+                if (assignedRole === Player.HOST) {
+                    logger.info("Setting HOST player name to: %s", message.name, {draftId});
+                    setPlayerName(draftId, Player.HOST, message.name);
+                } else if (assignedRole === Player.GUEST) {
+                    logger.info("Setting GUEST player name to: %s", message.name, {draftId});
+                    setPlayerName(draftId, Player.GUEST, message.name);
+                } else {
+                    logger.info("Player is not registered as HOST or GUEST currently. No action taken.", {draftId});
+                    return;
+                }
+
+                socket.nsp
+                    .in(roomHost)
+                    .in(roomGuest)
+                    .in(roomSpec)
+                    .emit("player_set_name", {name: message.name, playerType: assignedRole});
+                fn();
             });
 
             socket.on("ready", (message: {}, fn: (dc: IDraftConfig) => void) => {

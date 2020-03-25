@@ -24,6 +24,12 @@ export interface IConnectPlayer {
     value: string
 }
 
+export interface ISetPlayerName {
+    player: Player,
+    type: ServerActions.SET_PLAYER_NAME,
+    value: string
+}
+
 export interface ISetReady {
     player: Player,
     type: ServerActions.SET_READY
@@ -43,6 +49,11 @@ export interface ISetRole {
     type: ClientActions.SEND_SET_ROLE,
     name: string,
     role: Player
+}
+
+export interface ISetName {
+    type: ClientActions.SEND_SET_NAME,
+    name: string
 }
 
 export interface ISendReady {
@@ -114,10 +125,12 @@ export interface ISetEditorCivilisations {
 
 
 export type DraftAction = IConnectPlayer
+    | ISetPlayerName
     | ISetReady
     | IActionCompleted
     | IApplyConfig
     | ISetRole
+    | ISetName
     | ISendReady
     | IClickOnCiv
     | ISetEvents
@@ -201,6 +214,13 @@ export function setRole(name: string, role: Player): ISetRole {
         name,
         role,
         type: ClientActions.SEND_SET_ROLE
+    }
+}
+
+export function setName(name: string): ISetName {
+    return {
+        name,
+        type: ClientActions.SEND_SET_NAME
     }
 }
 

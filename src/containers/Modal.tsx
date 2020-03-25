@@ -17,7 +17,11 @@ export function mapStateToProps(state: ApplicationState) {
 export function mapDispatchToProps(dispatch: Dispatch<actions.Action>, ownProps: any) {
     console.log('ownProps', ownProps);
     const changeNameCallback = ownProps.inDraft ? (name: string, role: Player) => {
-        dispatch(actions.setRole(name, role));
+        if (role === Player.HOST || role === Player.GUEST) {
+            dispatch(actions.setName(name));
+        } else if (role === undefined) {
+            dispatch(actions.setRole(name, role));
+        }
         dispatch(actions.changeOwnName(name));
     } : (name: string, role: Player) => dispatch(actions.changeOwnName(name));
     return {

@@ -35,6 +35,15 @@ export const draftReducer = (state: IDraftState = initialDraftState, action: Dra
             } else {
                 return state;
             }
+        case ServerActions.SET_PLAYER_NAME:
+            console.log(ServerActions.SET_PLAYER_NAME, action);
+            if (action.player === Player.HOST) {
+                return {...state, nameHost: action.value};
+            } else if (action.player === Player.GUEST) {
+                return {...state, nameGuest: action.value};
+            } else {
+                return state;
+            }
         case ServerActions.SET_READY:
             console.log(ServerActions.SET_READY, action);
             if (action.player === Player.HOST) {

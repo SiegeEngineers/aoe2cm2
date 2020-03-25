@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {applyMiddleware, createStore, Store} from 'redux';
-import {Action, IApplyConfig, IClickOnCiv, ISetRole} from "./actions";
+import {Action, IApplyConfig, IClickOnCiv, ISetName, ISetRole} from "./actions";
 import NotFound404 from "./components/404";
 import Footer from "./components/menu/Footer";
 import TopRightControls from "./components/menu/TopRightControls";
@@ -51,6 +51,17 @@ const createMySocketMiddleware = () => {
                     console.log('setRole callback', data);
                     storeAPI.dispatch({type: ServerActions.APPLY_CONFIG, value: data} as IApplyConfig);
                 });
+                return;
+            }
+
+            if (action.type === ClientActions.SEND_SET_NAME) {
+                console.log("SEND_SET_NAME", SocketUtil.initSocketIfFirstUse, socket, storeAPI);
+                socket = SocketUtil.initSocketIfFirstUse(socket, storeAPI) as SocketIOClient.Socket;
+                if (socket.disconnected) {
+                    return;
+                }
+                const setName = action as ISetName;
+                socket.emit('set_name', {name: setName.name}, () => {});
                 return;
             }
 

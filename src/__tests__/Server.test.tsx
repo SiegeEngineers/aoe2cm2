@@ -9,6 +9,7 @@ import {Barrier} from "../test/Barrier";
 
 let hostSocket: any;
 let clientSocket: any;
+let spectatorSocket: any;
 let httpServer: any;
 let httpServerAddr: any;
 let ioServer: any;
@@ -31,34 +32,38 @@ afterAll((done) => {
     done();
 });
 
+function connect() {
+    return io.connect(`http://[${httpServerAddr.address}]:${httpServerAddr.port}`, {
+        query: {draftId: draftId},
+        reconnectionDelay: 0,
+        forceNew: true,
+        transports: ['websocket'],
+    });
+}
+
 beforeEach((done) => {
-    const barrier = new Barrier(2, done);
+    const barrier = new Barrier(3, done);
     request.post(`http://[${httpServerAddr.address}]:${httpServerAddr.port}/preset/new`,
         {body: JSON.stringify({preset: Preset.SIMPLE}), headers: {'Content-Type': 'application/json; charset=UTF-8'}},
         (error, response, body) => {
-        const draftIdContainer: { draftId: string } = JSON.parse(body);
-        draftId = draftIdContainer.draftId;
-        hostSocket = io.connect(`http://[${httpServerAddr.address}]:${httpServerAddr.port}`, {
-            query: {draftId: draftId},
-            reconnectionDelay: 0,
-            forceNew: true,
-            transports: ['websocket'],
-        });
-        hostSocket.on('connect', () => {
-            barrier.trigger();
-        });
-        clientSocket = io.connect(`http://[${httpServerAddr.address}]:${httpServerAddr.port}`, {
-            query: {draftId: draftId},
-            reconnectionDelay: 0,
-            forceNew: true,
-            transports: ['websocket'],
-        });
-        clientSocket.on('connect', () => {
-            barrier.trigger();
-        });
+            const draftIdContainer: { draftId: string } = JSON.parse(body);
+            draftId = draftIdContainer.draftId;
 
-    });
+            hostSocket = connect();
+            hostSocket.on('connect', () => {
+                barrier.trigger();
+            });
 
+            clientSocket = connect();
+            clientSocket.on('connect', () => {
+                barrier.trigger();
+            });
+
+            spectatorSocket = connect();
+            spectatorSocket.on('connect', () => {
+                barrier.trigger();
+            });
+        });
 });
 
 afterEach((done) => {
@@ -67,6 +72,9 @@ afterEach((done) => {
     }
     if (clientSocket.connected) {
         clientSocket.disconnect();
+    }
+    if (spectatorSocket.connected) {
+        spectatorSocket.disconnect();
     }
     done();
 });
@@ -106,6 +114,61 @@ it('should send player_set_role when player sets role', (done) => {
     });
 
     hostSocket.emit('set_role', {name: 'Saladin', role: Player.HOST}, () => {
+    });
+});
+
+it('players can change their names', (done) => {
+    const barrier = new Barrier(4, done);
+    hostSocket.once('player_set_name', (message: any) => {
+        expect(message.name).toEqual('Attila The Hun');
+        hostSocket.once('player_set_name', (message: any) => {
+            expect(message.name).toEqual('Bleda The Hun');
+            barrier.trigger();
+        });
+    });
+    clientSocket.once('player_set_name', (message: any) => {
+        expect(message.name).toEqual('Attila The Hun');
+        clientSocket.once('player_set_name', (message: any) => {
+            expect(message.name).toEqual('Bleda The Hun');
+            barrier.trigger();
+        });
+    });
+    spectatorSocket.once('player_set_name', (message: any) => {
+        expect(message.name).toEqual('Attila The Hun');
+        spectatorSocket.once('player_set_name', (message: any) => {
+            expect(message.name).toEqual('Bleda The Hun');
+            barrier.trigger();
+        });
+    });
+    const newHostName = "Attila The Hun";
+    const newGuestName = "Bleda The Hun";
+    hostSocket.emit('set_role', {name: 'Saladin', role: Player.HOST}, () => {
+        clientSocket.emit('set_role', {name: 'Barbarossa', role: Player.GUEST}, () => {
+            clientSocket.emit('ready', {}, () => {
+                hostSocket.emit('set_name', {
+                    "name": newHostName
+                }, () => {
+                    hostSocket.emit('ready', {}, () => {
+                        clientSocket.emit('set_name', {
+                            "name": newGuestName
+                        }, () => {
+                            // done
+                            const secondSpectatorSocket = io.connect(`http://[${httpServerAddr.address}]:${httpServerAddr.port}`, {
+                                query: {draftId: draftId},
+                                reconnectionDelay: 0,
+                                forceNew: true,
+                                transports: ['websocket'],
+                            });
+                            secondSpectatorSocket.once('draft_state', (message: any) => {
+                                expect(message.nameHost).toEqual(newHostName);
+                                expect(message.nameGuest).toEqual(newGuestName);
+                                barrier.trigger();
+                            });
+                        });
+                    });
+                });
+            });
+        });
     });
 });
 

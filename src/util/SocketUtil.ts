@@ -6,13 +6,13 @@ import {
     IConnectPlayer,
     ICountdownEvent,
     IReplayEvent,
-    ISetEvents,
+    ISetEvents, ISetPlayerName,
     ISetReady
 } from "../actions";
 import {ServerActions} from "../constants";
 import {default as ModelAction} from "../constants/Action";
 import {DraftEvent} from "../types/DraftEvent";
-import {IJoinedMessage} from "../types/IJoinedMessage";
+import {IPlayerWithNameMessage} from "../types/IPlayerWithNameMessage";
 import Player from "../constants/Player";
 import PlayerEvent from "../models/PlayerEvent";
 import {Util} from "./Util";
@@ -31,14 +31,21 @@ export const SocketUtil = {
             storeAPI.dispatch({type: ServerActions.APPLY_CONFIG, value: data} as IApplyConfig);
         });
 
-        socket.on("player_set_role", (data: IJoinedMessage) => {
+        socket.on("player_set_role", (data: IPlayerWithNameMessage) => {
             console.log("player_set_role", data);
             if (data.playerType === Player.HOST || data.playerType === Player.GUEST) {
                 storeAPI.dispatch({type: ServerActions.SET_PLAYER_CONNECTED, player: data.playerType, value: data.name} as IConnectPlayer);
             }
         });
 
-        socket.on("player_ready", (data: IJoinedMessage) => {
+        socket.on("player_set_name", (data: IPlayerWithNameMessage) => {
+            console.log("player_set_name", data);
+            if (data.playerType === Player.HOST || data.playerType === Player.GUEST) {
+                storeAPI.dispatch({type: ServerActions.SET_PLAYER_NAME, player: data.playerType, value: data.name} as ISetPlayerName);
+            }
+        });
+
+        socket.on("player_ready", (data: IPlayerWithNameMessage) => {
             console.log("player_ready", data);
             if (data.playerType === Player.HOST || data.playerType === Player.GUEST) {
                 storeAPI.dispatch({type: ServerActions.SET_READY, player: data.playerType} as ISetReady);

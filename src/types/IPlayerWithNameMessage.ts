@@ -1,6 +1,6 @@
 import Player from "../constants/Player";
 
-export interface IJoinedMessage {
+export interface IPlayerWithNameMessage {
     name: string,
     playerType: Player
 }

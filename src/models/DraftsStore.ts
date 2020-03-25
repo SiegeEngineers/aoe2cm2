@@ -62,6 +62,18 @@ export class DraftsStore {
         }
     }
 
+    public setPlayerName(draftId: string, player: Player, name: string) {
+        const draft: Draft = this.getDraftOrThrow(draftId);
+        switch (player) {
+            case Player.HOST:
+                draft.nameHost = name;
+                break;
+            case Player.GUEST:
+                draft.nameGuest = name;
+                break;
+        }
+    }
+
     public disconnectPlayer(draftId: string, player: Player) {
         const draft: Draft = this.getDraftOrThrow(draftId);
         switch (player) {
