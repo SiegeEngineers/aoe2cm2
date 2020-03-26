@@ -70,7 +70,8 @@
   },
   "rolemodal": {
     "header": "Rolle auswählen",
-    "urlCallToAction": "Sende diese URL an die andere Kapitänin und eventuelle Zuschauerinnen.",
+    "draftUrlCallToAction": "Sende diese URL an die andere Kapitänin.",
+    "spectateUrlCallToAction": "Sende diese URL an eventuelle Zuschauerinnen.",
     "copyLabel": "Kopieren",
     "callToAction": "Wähle deine Rolle:",
     "role": {

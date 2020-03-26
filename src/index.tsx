@@ -25,6 +25,7 @@ import {initialDraftOwnPropertiesState} from "./reducers/draftOwnProperties";
 import {initialLanguageState} from "./reducers/language";
 import {initialModalState} from "./reducers/modal";
 import {initialPresetEditorState} from "./reducers/presetEditor";
+import SpectateDraft from "./containers/SpectateDraft";
 
 const createMySocketMiddleware = () => {
 
@@ -123,6 +124,7 @@ ReactDOM.render(
                 <Route path="/preset/create" component={Menu}/>
                 <Route path="/preset/:id" component={Menu}/>
                 <Route path="/preset/:id/new" component={Menu}/>
+                <Route path="/spectate/:id" component={SpectateDraft}/>
                 <Route path="/spectate" component={Menu}/>
                 <Route path="/practice" component={Menu}/>
                 <Route component={NotFound404}/>

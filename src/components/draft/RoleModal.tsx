@@ -18,11 +18,20 @@ class RoleModal extends React.Component<IProps, object> {
                 <div id="overlay" className="text-primary">
                     <div id="get-role-message">
                         <h2><Trans>rolemodal.header</Trans></h2>
-                        <p><Trans>rolemodal.urlCallToAction</Trans></p>
+                        <p><Trans>rolemodal.draftUrlCallToAction</Trans></p>
 
                         <p>
                             <input className={'inset-input'} id='draftUrlInput' value={window.location.href}/>
-                            <button className='pure-button' onClick={RoleModal.copyUrlToClipboard}>
+                            <button className='pure-button' onClick={RoleModal.copyDraftUrlToClipboard}>
+                                <Trans>rolemodal.copyLabel</Trans></button>
+                        </p>
+
+                        <p><Trans>rolemodal.spectateUrlCallToAction</Trans></p>
+
+                        <p>
+                            <input className={'inset-input'} id='spectateUrlInput'
+                                   value={window.location.href.replace('/draft/', '/spectate/')}/>
+                            <button className='pure-button' onClick={RoleModal.copySpectateUrlToClipboard}>
                                 <Trans>rolemodal.copyLabel</Trans></button>
                         </p>
 
@@ -79,9 +88,17 @@ class RoleModal extends React.Component<IProps, object> {
         }
     }
 
-    private static copyUrlToClipboard() {
+    private static copyDraftUrlToClipboard() {
+        RoleModal.copyUrlToClipboard('draftUrlInput');
+    }
+
+    private static copySpectateUrlToClipboard() {
+        RoleModal.copyUrlToClipboard('spectateUrlInput');
+    }
+
+    private static copyUrlToClipboard(elementId: string) {
         const helper = document.createElement('textarea');
-        const draftUrlInput = document.getElementById('draftUrlInput') as HTMLInputElement;
+        const draftUrlInput = document.getElementById(elementId) as HTMLInputElement;
         helper.value = draftUrlInput.value;
         helper.setAttribute('readonly', '');
         helper.style.position = 'absolute';

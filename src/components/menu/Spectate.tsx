@@ -14,7 +14,7 @@ class Spectate extends React.Component<WithTranslation, IState> {
 
     public render() {
         if (this.state.draftId !== null) {
-            const target = '/draft/' + this.state.draftId;
+            const target = '/spectate/' + this.state.draftId;
             return (<Redirect to={target}/>);
         }
 
