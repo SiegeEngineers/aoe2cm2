@@ -5,32 +5,37 @@ actor Guest #yellow
 collections Spectators
 
 group Setup
-Host -> Server : create(preset)
-Host <-- Server : id
+Host -> Server : createPreset(preset)
+Host <-- Server : presetId
+Host -> Server : createDraft(preset)
+Host <-- Server : draftId
 
-loop 0..n
-Spectators -> Server : spectate()
-Spectators <-- Server : preset
-end
-
-Host -> Server : join(name)
-Host <-- Server : preset
+Host -> Server : join(draftId)
+Host <-- Server : Draft
+Host -> Server : set_role(HOST, name)
 Server -> Spectators : player_joined(host, name)
 Host <- Server : player_joined(host)
 
-Guest -> Server : join(name)
-Guest <-- Server : preset
+Guest -> Server : join(draftId)
+Guest <-- Server : Draft
+Guest -> Server : set_role(GUEST, name)
 Host <- Server : player_joined(guest, name)
 Server -> Spectators : player_joined(guest, name)
 Guest <- Server : player_joined(guest, name)
+
+loop 0..n
+Spectators -> Server : join(draftId)
+Spectators <-- Server : Draft
+end
 end
 
 group Start
-Guest -> Server: start()
-Host <- Server: start()
-Host -> Server: start()
-Guest <- Server: start()
-Server -> Spectators: start()
+Guest -> Server: ready()
+Host <- Server: ready(GUEST)
+Server -> Spectators: ready(GUEST)
+Host -> Server: ready()
+Guest <- Server: ready(HOST)
+Server -> Spectators: ready(HOST)
 end
 
 loop 0..n

@@ -1,7 +1,8 @@
 # aoe2cm
 Captains Mode for Age of Empires II
 
-**This is a work in progress, not yet a functioning application**
+This is a recreation of the original [aoe2cm by pip](https://github.com/aocpip/aoe2cm) 
+with additional features such as snipe turns and user generated presets.
 
 ## Setup
 
@@ -32,75 +33,58 @@ The following actions are available:
 
 These actions are usually executed by the users (Host & Guest).
 
-### pick
-select one of the civilisations for play; it cannot
-be picked again by the same player in a future turn
+#### pick
+select one of the civilisations for play
 
-### ban
-prevent the opponent from picking the selected 
-civilisation in a future turn; it cannot be banned again by the same 
-player in a future turn
-
-### nonexclusive pick
-select one of the civilisations for play; it can be selected again in 
-a future turn.
-
-### nonexclusive ban
-prevent the opponent from picking the selected civilisation in 
-a future turn; it can be banned again in a future turn.
-
-### global pick
-select one of the civilisations for play, it cannot be
-picked again by any player in a future turn 
-
-### global ban
-prevent any player from picking the selected 
+#### ban
+prevent the opponent or both players (depending on modifiers) from picking the selected 
 civilisation in a future turn
 
-### hidden pick
-select one of the civilisations for play without showing
-it to the opponent yet
+#### snipe
+Ban one of the opponent's picks
 
-### hidden ban
-prevent the opponent from picking the selected 
-civilisation in a future turn without showing it to the opponent yet
+### Modifiers
 
-### hidden global ban
-prevent any player from picking the selected 
-civilisation in a future turn without showing it to the opponent yet
+#### Exclusivity
 
-### exclusive hidden pick
-select one of the civilisations for play
-without showing it to the opponent yet; it cannot be picked again by 
-the same player in a future turn
+There are three values for Exclusivity: `NONEXCLUSIVE`, `EXCLUSIVE`, and `GOBAL`.
 
-### exclusive hidden ban
-prevent the opponent from picking the selected 
-civilisation in a future turn without showing it to the opponent yet;
-it cannot be banned again by the same player in a future turn
+A `GLOBAL` ban means that neither player may pick the civilisation in the future,  
+an `EXCLUSIVE` ban means that the player *cannot* ban the civilisation again in the future,  
+a `NONEXCLUSIVE` ban means that the player *can* ban the civilisation again in the future, 
+but that makes no sense honestly, so don't use that.
 
-### snipe
-Ban one of the opponent's picks; the same pick cannot be sniped twice
+A `GLOBAL` pick means that *neither player* may pick the civilisation *again* in the future,  
+an `EXCLUSIVE` pick means that the player *cannot* pick the civilisation again in the future,  
+a `NONEXCLUSIVE` pick means that the player *can* pick the civilisation again in the future.
 
-### hidden snipe
-Ban one of the opponent's picks without showing it to 
-the opponent yet; the same pick cannot be sniped twice
+
+#### Hidden
+
+A hidden pick or ban is not shown to the opponent or spectators until it is revealed by an admin `REVEAL` action.
+
+#### Parallel
+
+During a parallel turn, both players execute their respective action at the same time. 
+The turn is over once both players have completed their respective action or have run out of time.
+To configure a parallel turn, create two turns and mark the *first* one as parallel.
+
 
 ### Admin actions
 
 These actions can only be executed by the server.
 
-### reveal picks
-show all hidden picks to all players
+#### reveal picks
+show all hidden picks to all players and spectators
 
-### reveal bans
-show all hidden bans to all players; should be done 
+#### reveal bans
+show all hidden bans to all players and spectators; should be done 
 after hidden bans before the next picks
 
-### reveal snipes
-show all hidden snipes to all players
+#### reveal snipes
+show all hidden snipes to all players and spectators
 
-### reveal all
+#### reveal all
 reveal picks, bans, and snipes
 
 ## Validations
