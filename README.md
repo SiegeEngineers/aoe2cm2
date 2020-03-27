@@ -7,6 +7,7 @@ with additional features such as snipe turns and user generated presets.
 ## Setup
 
 ```bash
+cp presets.json.template presets.json
 npm install
 npm run build
 npm run build-server

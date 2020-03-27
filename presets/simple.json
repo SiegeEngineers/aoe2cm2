@@ -1,0 +1,34 @@
+{
+  "name": "Simple Preset",
+  "encodedCivilisations": "7ffffffff",
+  "turns": [
+    {
+      "player": "HOST",
+      "action": "BAN",
+      "exclusivity": "NONEXCLUSIVE",
+      "hidden": false,
+      "parallel": false
+    },
+    {
+      "player": "GUEST",
+      "action": "BAN",
+      "exclusivity": "NONEXCLUSIVE",
+      "hidden": false,
+      "parallel": false
+    },
+    {
+      "player": "GUEST",
+      "action": "PICK",
+      "exclusivity": "NONEXCLUSIVE",
+      "hidden": false,
+      "parallel": false
+    },
+    {
+      "player": "HOST",
+      "action": "PICK",
+      "exclusivity": "NONEXCLUSIVE",
+      "hidden": false,
+      "parallel": false
+    }
+  ]
+}

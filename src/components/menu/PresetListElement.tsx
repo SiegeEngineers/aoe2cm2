@@ -1,10 +1,9 @@
 import * as React from 'react';
-import Preset from "../../models/Preset";
-import NewDraftButton from "../NewDraftButton";
-import CustomiseButton from "../../containers/CustomiseButton";
+import {Link} from "react-router-dom";
 
 interface IProps {
-    preset: Preset;
+    name: string;
+    presetId: string;
 }
 
 class PresetListElement extends React.Component<IProps, object> {
@@ -12,9 +11,8 @@ class PresetListElement extends React.Component<IProps, object> {
     public render() {
 
         return (
-            <li>{this.props.preset.name}
-                <NewDraftButton preset={this.props.preset}/>
-                <CustomiseButton preset={this.props.preset}/>
+            <li>
+                <Link to={'/preset/' + this.props.presetId}>{this.props.name}</Link>
             </li>
         );
     }
