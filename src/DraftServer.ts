@@ -205,6 +205,7 @@ export const DraftServer = {
                 if (draftsStore.playersAreReady(draftId)) {
                     logger.info("Both Players are ready, starting countdown.", {draftId});
                     draftsStore.startCountdown(draftId, socket);
+                    draftsStore.setStartTimestamp(draftId);
                 }
                 socket.nsp
                     .in(roomHost)

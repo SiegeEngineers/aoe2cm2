@@ -11,6 +11,7 @@ export interface IDraftState {
     guestReady: boolean;
     preset?: Preset;
     events: DraftEvent[];
+    startTimestamp: number;
 }
 
 export interface ApplicationState {

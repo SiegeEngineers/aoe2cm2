@@ -8,6 +8,7 @@ import ActionType, {actionTypeFromAction} from "../constants/ActionType";
 import DraftViews from "../models/DraftViews";
 import fs from "fs";
 import {logger} from "./Logger";
+import AdminEvent from "../models/AdminEvent";
 
 export const Listeners = {
 
@@ -62,6 +63,7 @@ export const Listeners = {
         const expectedAction = expectedActions[0];
         if (expectedAction.player === Player.NONE) { // Admin Event
             if (actionTypeFromAction(expectedAction.action) === ActionType.REVEAL) {
+                const draftEvent = new AdminEvent(expectedAction.player, expectedAction.action);
                 setTimeout(() => {
                     draftViews.reveal(expectedAction.action);
                     socket.nsp
@@ -82,7 +84,7 @@ export const Listeners = {
                             ...expectedAction,
                             events: draftViews.getSpecDraft().events
                         });
-                    draftsStore.addDraftEvent(draftId, expectedAction);
+                    draftsStore.addDraftEvent(draftId, draftEvent);
                     draftsStore.restartOrCancelCountdown(draftId);
                     this.finishDraftIfNoFurtherActions(draftViews, socket, draftsStore, draftId, roomHost, roomGuest, roomSpec);
                 }, adminEventCounter * 2000);
@@ -103,8 +105,10 @@ export const Listeners = {
                     }
                 });
             }
-            logger.info("Saving draft: %s", JSON.stringify(draftsStore.getDraftOrThrow(draftId)), {draftId});
-            fs.writeFile(`data/${draftId}.json`, JSON.stringify(draftsStore.getDraftOrThrow(draftId)), (err) => {
+            const draft = draftsStore.getDraftOrThrow(draftId);
+            draft.startTimestamp = 0;
+            logger.info("Saving draft: %s", JSON.stringify(draft), {draftId});
+            fs.writeFile(`data/${draftId}.json`, JSON.stringify(draft), (err) => {
                 if (err) throw err;
                 logger.info( `Draft saved to data/${draftId}.json`, {draftId});
                 draftsStore.removeDraft(draftId);

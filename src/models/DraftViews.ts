@@ -54,6 +54,7 @@ class DraftViews {
     }
 
     addDraftEvent(draftEvent: DraftEvent) {
+        draftEvent.offset = this.actualDraft.getOffset();
         this.actualDraft.events.push(draftEvent);
         this.actualDraft.nextAction++;
 

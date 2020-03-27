@@ -14,6 +14,7 @@ export const initialDraftState: IDraftState = {
     guestConnected: false,
     preset: Preset.EMPTY,
     events: [],
+    startTimestamp: 0,
 };
 
 export const draftReducer = (state: IDraftState = initialDraftState, action: DraftAction) => {

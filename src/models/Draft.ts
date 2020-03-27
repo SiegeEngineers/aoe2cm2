@@ -19,6 +19,7 @@ class Draft implements IDraftState {
     public readonly preset: Preset;
     public nextAction: number = 0;
     public events: DraftEvent[] = [];
+    public startTimestamp: number = 0;
 
     constructor(nameHost: string, nameGuest: string, preset: Preset) {
         this.nameHost = nameHost;
@@ -38,6 +39,7 @@ class Draft implements IDraftState {
         draft.guestReady = source.guestReady;
         draft.nextAction = source.nextAction;
         draft.events = source.events;
+        draft.startTimestamp = source.startTimestamp;
         return draft;
     }
 
@@ -200,6 +202,10 @@ class Draft implements IDraftState {
             }
         });
         return snipes;
+    }
+
+    public getOffset() {
+        return Date.now() - this.startTimestamp;
     }
 
 

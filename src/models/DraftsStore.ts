@@ -197,6 +197,11 @@ export class DraftsStore {
         }
     }
 
+    public setStartTimestamp(draftId: string) {
+        const draft = this.getDraftOrThrow(draftId);
+        draft.startTimestamp = Date.now();
+    }
+
     public restartOrCancelCountdown(draftId: string) {
         let countdown = this.countdowns.get(draftId);
         if (countdown !== undefined) {

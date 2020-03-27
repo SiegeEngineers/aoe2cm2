@@ -44,6 +44,7 @@ Object {
       },
     ],
   },
+  "startTimestamp": 0,
   "yourPlayerType": "HOST",
 }
 `;
