@@ -19,6 +19,7 @@ export interface ApplicationState {
     countdown: ICountdownState,
     ownProperties: IDraftOwnPropertiesState,
     language: ILanguageState,
+    iconStyle: IIconStyleState,
     modal: IModalState,
     presetEditor: IPresetEditorState
 }
@@ -45,6 +46,10 @@ export interface IPresetEditorState {
 
 export interface ILanguageState {
     language: string;
+}
+
+export interface IIconStyleState {
+    iconStyle: string;
 }
 
 export interface ICountdownValues {

@@ -71,6 +71,11 @@ export interface ISetLanguage {
     language: string
 }
 
+export interface ISetIconStyle {
+    type: Actions.SET_ICON_STYLE,
+    iconStyle: string
+}
+
 export interface ISetEvents {
     type: ServerActions.SET_EVENTS,
     value: { player: Player, action: ModelAction, events: DraftEvent[] }
@@ -150,6 +155,8 @@ export type DraftOwnPropertiesAction = IApplyConfig
 
 export type LanguageAction = ISetLanguage;
 
+export type IconStyleAction = ISetIconStyle;
+
 export type ModalAction = IShowNameModal
     | IShowRoleModal
     | IChangeOwnName
@@ -164,6 +171,7 @@ export type Action = DraftAction
     | DraftCountdownAction
     | DraftOwnPropertiesAction
     | LanguageAction
+    | IconStyleAction
     | ModalAction
     | PresetEditorAction;
 
@@ -255,6 +263,13 @@ export function setLanguage(language: string): ISetLanguage {
     return {
         language,
         type: Actions.SET_LANGUAGE
+    }
+}
+
+export function setIconStyle(iconStyle: string): ISetIconStyle {
+    return {
+        iconStyle,
+        type: Actions.SET_ICON_STYLE
     }
 }
 

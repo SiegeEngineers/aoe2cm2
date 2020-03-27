@@ -153,3 +153,7 @@ html, body {
 .greenMarker {
 	color: #4caf50;
 }
+
+.pure-button.civ-select {
+	padding: .3rem .5rem .1rem .5rem;
+}

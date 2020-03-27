@@ -16,7 +16,8 @@ export function mapStateToProps(state: ApplicationState) {
         triggerAction,
         whoAmI: state.ownProperties.whoAmI,
         nextAction: state.ownProperties.nextAction,
-        draft: state.draft
+        draft: state.draft,
+        iconStyle: state.iconStyle.iconStyle,
     };
 }
 

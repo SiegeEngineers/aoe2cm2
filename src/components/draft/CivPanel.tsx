@@ -21,8 +21,9 @@ interface IProps extends WithTranslation {
     triggerAction?: ActionType;
     draft?: IDraftState;
     nextAction: number;
+    iconStyle: string;
 
-    onClickCivilisation?: (playerEvent:PlayerEvent, callback:any) => void;
+    onClickCivilisation?: (playerEvent: PlayerEvent, callback: any) => void;
 }
 
 interface IState {
@@ -45,6 +46,9 @@ class CivPanel extends React.Component<IProps, IState> {
         if (civilisation !== undefined) {
             civilisationName = civilisation.name;
             imageSrc = "/images/civs/" + civilisationName.toLocaleLowerCase() + "-DE.png";
+            if (this.props.iconStyle === 'emblems') {
+                imageSrc = "/images/civemblems/" + civilisationName.toLocaleLowerCase() + ".png";
+            }
             civilisationKey = 'civs.' + civilisationName;
             if (Util.isTechnicalCivilisation(civilisation)) {
                 textClass += ' hidden';
