@@ -122,6 +122,7 @@
     "5":"<0>Practice</0> mode is for testing purposes, where both sides are controlled by a single player."
   },
   "createNewDraft": "Create new draft",
+  "createNewPreset": "Create new Preset",
   "customiseDraft": "Customise",
   "createPreset": "Create Preset",
   "setYourName": "Set your name",

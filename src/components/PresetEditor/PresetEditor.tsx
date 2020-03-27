@@ -15,6 +15,7 @@ import NewDraftButton from "../NewDraftButton";
 import Civilisation from "../../models/Civilisation";
 import {CivilisationEncoder} from "../../util/CivilisationEncoder";
 import TurnRow from "../draft/TurnRow";
+import NewPresetButton from "../NewPresetButton";
 
 interface Props {
     preset: Preset | null,
@@ -76,6 +77,7 @@ class PresetEditor extends React.Component<Props, object> {
                 <Link to='/'>Go to index</Link>
 
                 <NewDraftButton preset={this.props.preset}/>
+                <NewPresetButton preset={this.props.preset}/>
 
                 <input type={'text'} value={this.props.preset.name} onChange={(event) => {
                     this.props.onPresetNameChange(event.target.value);

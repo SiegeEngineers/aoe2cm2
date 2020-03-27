@@ -15,6 +15,7 @@ import {Listeners} from "./util/Listeners";
 import * as fs from "fs";
 import {logger} from "./util/Logger";
 import {ISetNameMessage} from "./types/ISetNameMessage";
+import {PresetUtil} from "./util/PresetUtil";
 
 function getAssignedRole(socket: SocketIO.Socket, roomHost: string, roomGuest: string): Player {
     let assignedRole: Player = Player.NONE;
@@ -67,6 +68,24 @@ export const DraftServer = {
                 logger.info('Draft validation failed: %s', JSON.stringify(validationErrors));
             }
         });
+        app.post('/preset/new', (req, res) => {
+            logger.info('Received request to create a new preset: %s', JSON.stringify(req.body));
+            const pojo: Preset = req.body.preset as Preset;
+            let preset = Preset.fromPojo(pojo);
+            const validationErrors = Validator.validatePreset(preset);
+            if (validationErrors.length === 0) {
+                const presetId = PresetUtil.createPreset(preset as Preset);
+                res.json({status: 'ok', presetId: presetId});
+                logger.info('Created new preset with id: %s', presetId, {presetId});
+            } else {
+                res.json({status: 'error', validationErrors});
+                logger.info('Preset validation failed: %s', JSON.stringify(validationErrors));
+            }
+        });
+        app.get('/getpreset/:id', (req, res) => {
+            res.sendFile(req.params.id + '.json', {'root': __dirname + '/../presets'});
+        });
+
         app.use('/draft/[a-zA-Z]+', (req, res) => {
             res.sendFile(__dirname + '/index.html');
         });
