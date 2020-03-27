@@ -2,7 +2,7 @@ import * as React from "react";
 import {Trans, withTranslation, WithTranslation} from "react-i18next";
 import {Redirect} from "react-router";
 import Preset from "../../models/Preset";
-import CustomiseButton from "../../containers/CustomisePresetButton";
+import CustomisePresetButton from "../../containers/CustomisePresetButton";
 import PresetList from "./PresetList";
 
 interface IState {
@@ -59,7 +59,7 @@ class Presets extends React.Component<WithTranslation, IState> {
 
                             <div className="pure-g join-actions text-primary">
                                 <div className="pure-u-1-1">
-                                    <CustomiseButton preset={Preset.NEW} i18nKey='createPreset'/>
+                                    <CustomisePresetButton preset={Preset.NEW} i18nKey='createNewPreset'/>
                                 </div>
                             </div>
                         </div>
