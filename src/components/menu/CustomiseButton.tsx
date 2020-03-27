@@ -13,7 +13,7 @@ interface IState {
     goToEdit: boolean
 }
 
-class CustomiseButton extends React.Component<IProps, IState> {
+class CustomisePresetButton extends React.Component<IProps, IState> {
     state = {goToEdit: false};
 
     public render() {
@@ -27,7 +27,7 @@ class CustomiseButton extends React.Component<IProps, IState> {
                 this.props.onSetEditorPreset(this.props.preset);
                 this.setState({goToEdit: true});
             }}>
-                <Trans i18nKey={this.props.i18nKey || 'customiseDraft'}>Customise</Trans>
+                <Trans i18nKey={this.props.i18nKey || 'customiseThisPreset'}>Customise</Trans>
             </button>
         );
 
@@ -35,4 +35,4 @@ class CustomiseButton extends React.Component<IProps, IState> {
     }
 }
 
-export default withTranslation()(CustomiseButton);
+export default withTranslation()(CustomisePresetButton);

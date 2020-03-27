@@ -1,6 +1,6 @@
 import {ApplicationState} from '../types';
 import {connect} from 'react-redux';
-import CustomiseButton from "../components/menu/CustomiseButton";
+import CustomisePresetButton from "../components/menu/CustomiseButton";
 import Preset from "../models/Preset";
 import * as actions from "../actions";
 import {Dispatch} from "react";
@@ -17,4 +17,4 @@ export function mapDispatchToProps(dispatch: Dispatch<actions.Action>) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CustomiseButton);
+export default connect(mapStateToProps, mapDispatchToProps)(CustomisePresetButton);

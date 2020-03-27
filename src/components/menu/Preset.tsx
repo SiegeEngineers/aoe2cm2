@@ -3,6 +3,7 @@ import {PresetUtil} from "../../util/PresetUtil";
 import {default as ModelPreset} from "../../models/Preset"
 import TurnRow from "../draft/TurnRow";
 import NewDraftButton from "../NewDraftButton";
+import CustomisePresetButton from "../../containers/CustomisePresetButton";
 
 interface IState {
     preset?: ModelPreset;
@@ -30,12 +31,17 @@ class Preset extends React.Component<object, IState> {
         }
         if (this.state.preset !== undefined) {
             return (
-                <div>
+                <div className='box centered'>
                     <h3>{this.state.preset.name}</h3>
 
                     <TurnRow turns={this.state.preset.turns}/>
 
-                    <NewDraftButton preset={this.state.preset}/>
+                    <p>
+                        <NewDraftButton preset={this.state.preset}/>
+                    </p>
+                    <p>
+                        <CustomisePresetButton preset={this.state.preset}/>
+                    </p>
                 </div>
             );
         }

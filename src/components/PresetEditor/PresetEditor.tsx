@@ -1,5 +1,4 @@
 import * as React from "react";
-import {Link} from "react-router-dom";
 import Preset from "../../models/Preset";
 import Turn from "../../models/Turn";
 import Player from "../../constants/Player";
@@ -15,7 +14,7 @@ import NewDraftButton from "../NewDraftButton";
 import Civilisation from "../../models/Civilisation";
 import {CivilisationEncoder} from "../../util/CivilisationEncoder";
 import TurnRow from "../draft/TurnRow";
-import NewPresetButton from "../NewPresetButton";
+import SavePresetButton from "../SavePresetButton";
 
 interface Props {
     preset: Preset | null,
@@ -72,12 +71,13 @@ class PresetEditor extends React.Component<Props, object> {
         });
 
         return (
-            <div>
-                <p>Preset Editor</p>
-                <Link to='/'>Go to index</Link>
+            <div className={'box'}>
+                <h2 className={'centered'}>Preset Editor</h2>
 
                 <NewDraftButton preset={this.props.preset}/>
-                <NewPresetButton preset={this.props.preset}/>
+                <SavePresetButton preset={this.props.preset}/>
+
+                <h3>Preset Title</h3>
 
                 <input type={'text'} value={this.props.preset.name} onChange={(event) => {
                     this.props.onPresetNameChange(event.target.value);
@@ -85,9 +85,13 @@ class PresetEditor extends React.Component<Props, object> {
 
                 <TurnRow turns={this.props.preset.turns}/>
 
+                <h3>Available Civilisations</h3>
+
                 <div className="pure-g">
                     {civs}
                 </div>
+
+                <h3>Turns</h3>
 
                 <div className="pure-g">
                     <div className="pure-u-1-24">#</div>
@@ -96,6 +100,7 @@ class PresetEditor extends React.Component<Props, object> {
                     <div className="pure-u-1-3 centered">Guest</div>
                     <div className="pure-u-1-24"/>
                 </div>
+
                 {preset}
 
                 <div className="pure-g">

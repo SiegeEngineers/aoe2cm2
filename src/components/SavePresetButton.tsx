@@ -12,7 +12,7 @@ interface IState {
     presetId?: string;
 }
 
-class NewPresetButton extends React.Component<IProps, IState> {
+class SavePresetButton extends React.Component<IProps, IState> {
 
     constructor(props: IProps) {
         super(props);
@@ -28,15 +28,15 @@ class NewPresetButton extends React.Component<IProps, IState> {
         }
 
         return (
-            <button className="shadowbutton text-primary" onClick={this.createPreset}>
-                <Trans i18nKey="createNewPreset">Create new Preset</Trans>
+            <button className="shadowbutton text-primary" onClick={this.savePreset}>
+                <Trans i18nKey="savePreset">Save Preset</Trans>
             </button>
         );
 
 
     }
 
-    private createPreset = () => {
+    private savePreset = () => {
         const request = new XMLHttpRequest();
         request.open('POST', '/preset/new', true);
         request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
@@ -57,4 +57,4 @@ class NewPresetButton extends React.Component<IProps, IState> {
     };
 }
 
-export default NewPresetButton;
+export default SavePresetButton;

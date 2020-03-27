@@ -2,7 +2,7 @@ import * as React from "react";
 import {Trans, withTranslation, WithTranslation} from "react-i18next";
 import {Redirect} from "react-router";
 import Preset from "../../models/Preset";
-import CustomiseButton from "../../containers/CustomiseButton";
+import CustomiseButton from "../../containers/CustomisePresetButton";
 import PresetList from "./PresetList";
 
 interface IState {
