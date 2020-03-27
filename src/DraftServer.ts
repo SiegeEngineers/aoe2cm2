@@ -49,7 +49,7 @@ export const DraftServer = {
             draftsStore.setPlayerName(draftId, player, name);
         }
 
-        app.post('/preset/new', (req, res) => {
+        app.post('/draft/new', (req, res) => {
             logger.info('Received request to create a new draft: %s', JSON.stringify(req.body));
             let draftId = Util.newDraftId();
             while (draftsStore.has(draftId)) {
