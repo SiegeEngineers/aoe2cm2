@@ -45,10 +45,13 @@ class PlayerDraftState extends React.Component<IProps, IState> {
         const pickPanels = [];
         const banPanels = [];
         const snipes: Civilisation[] = [...this.state.snipedCivs];
+        let hasActivePanel = false;
         for (let i = 0; i < this.props.preset.turns.length; i++) {
             const turn: Turn = this.props.preset.turns[i];
             const actionType = actionTypeFromAction(turn.action);
             if (this.props.player === turn.player) {
+                const isThisPanelActive = this.isActive(i);
+                hasActivePanel = hasActivePanel || isThisPanelActive;
                 if (actionType === ActionType.PICK) {
                     let pickedCiv;
                     let sniped = false;
@@ -58,7 +61,7 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                     }
                     picksIndex++;
                     pickPanels.push(React.createElement(CivPanel, {
-                        active: this.isActive(i),
+                        active: isThisPanelActive,
                         civPanelType: CivPanelType.PICK,
                         civilisation: pickedCiv,
                         sniped
@@ -70,7 +73,7 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                     }
                     bansIndex++;
                     banPanels.push(React.createElement(CivPanel, {
-                        active: this.isActive(i),
+                        active: isThisPanelActive,
                         civPanelType: CivPanelType.BAN,
                         civilisation: bannedCiv
                     }));
@@ -79,11 +82,14 @@ class PlayerDraftState extends React.Component<IProps, IState> {
             }
         }
 
+        const draftIsOngoing = this.isDraftOngoing();
+        const playerClass = (draftIsOngoing && !hasActivePanel) ? 'player player-inactive' : 'player';
+
         return (
             <div className="pure-u-1-2">
                 <div id={playerId} className="double-outer-border">
                     <div className="double-inner-border">
-                        <div className="player">
+                        <div className={playerClass}>
                             <div className="head-text">
                                 <PlayerOnlineStatus forPlayer={ModelPlayer.HOST} thisPlayer={this.props.player}/>
                                 <Trans>{this.props.player}</Trans>
@@ -109,6 +115,24 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                 </div>
             </div>
         );
+    }
+
+    private isDraftOngoing() {
+        return this.hasDraftStarted() && !this.hasDraftEnded();
+    }
+
+    private hasDraftEnded() {
+        if (this.props.nextAction === undefined) {
+            return false;
+        }
+        return this.props.nextAction >= this.props.preset.turns.length;
+    }
+
+    private hasDraftStarted() {
+        if (this.props.nextAction === undefined) {
+            return false;
+        }
+        return this.props.nextAction > -1;
     }
 
     private isActive(i: number) {
