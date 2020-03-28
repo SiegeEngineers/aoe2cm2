@@ -88,6 +88,9 @@ export const DraftServer = {
         app.get('/getpreset/:id', (req, res) => {
             res.sendFile(req.params.id + '.json', {'root': __dirname + '/../presets'});
         });
+        app.get('/ongoingdrafts', (req, res) => {
+            res.json(draftsStore.getDraftIds());
+        });
 
         app.use('/draft/[a-zA-Z]+', (req, res) => {
             res.sendFile(__dirname + '/index.html');
