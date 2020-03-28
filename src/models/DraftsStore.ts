@@ -10,6 +10,7 @@ import PlayerEvent from "./PlayerEvent";
 import Civilisation from "./Civilisation";
 import {actionTypeFromAction} from "../constants/ActionType";
 import {Listeners} from "../util/Listeners";
+import {logger} from "../util/Logger";
 
 interface ICountdownValues {
     timeout: NodeJS.Timeout;
@@ -223,5 +224,26 @@ export class DraftsStore {
 
     removeDraft(draftId: string) {
         this.drafts.delete(draftId);
+    }
+
+    public purgeStaleDrafts() {
+        const ONE_DAY = 1000 * 60 * 60 * 24;
+        const now = Date.now();
+
+        logger.info('Trying to purge stale drafts');
+        let numberOfPurgedDrafts = 0;
+        for (let draftId of this.getDraftIds()) {
+            try {
+                const startTimestamp = this.getDraftOrThrow(draftId).startTimestamp;
+                if (startTimestamp < (now - ONE_DAY)) {
+                    logger.info('Purging Draft: %s', draftId, {draftId, startTimestamp});
+                    this.removeDraft(draftId);
+                    numberOfPurgedDrafts++;
+                }
+            } catch (e) {
+                logger.error('Failed to purge stale draft', e);
+            }
+        }
+        logger.info('Purged %s drafts', numberOfPurgedDrafts);
     }
 }

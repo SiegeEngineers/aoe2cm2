@@ -17,6 +17,8 @@ import {logger} from "./util/Logger";
 import {ISetNameMessage} from "./types/ISetNameMessage";
 import {PresetUtil} from "./util/PresetUtil";
 
+const TWELVE_HOURS = 1000 * 60 * 60 * 12;
+
 function getAssignedRole(socket: SocketIO.Socket, roomHost: string, roomGuest: string): Player {
     let assignedRole: Player = Player.NONE;
     if (Object.keys(socket.rooms).includes(roomHost)) {
@@ -246,6 +248,10 @@ export const DraftServer = {
         function validateAndApply(draftId: string, message: DraftEvent): ValidationId[] {
             return validator.validateAndApply(draftId, message);
         }
+
+        setInterval(() => {
+            draftsStore.purgeStaleDrafts()
+        }, TWELVE_HOURS);
 
         return {httpServer, httpServerAddr, io};
     }

@@ -19,7 +19,7 @@ class Draft implements IDraftState {
     public readonly preset: Preset;
     public nextAction: number = 0;
     public events: DraftEvent[] = [];
-    public startTimestamp: number = 0;
+    public startTimestamp: number;
 
     constructor(nameHost: string, nameGuest: string, preset: Preset) {
         this.nameHost = nameHost;
@@ -29,6 +29,7 @@ class Draft implements IDraftState {
         this.guestConnected = false;
         this.hostReady = false;
         this.guestReady = false;
+        this.startTimestamp = Date.now();
     }
 
     public static from(source: Draft): Draft {
