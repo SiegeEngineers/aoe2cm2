@@ -157,3 +157,12 @@ html, body {
 .pure-button.civ-select {
 	padding: .3rem .5rem .1rem .5rem;
 }
+
+.wide-input span {
+	display: flex;
+	flex-direction: row;
+}
+
+.wide-input span input {
+	flex-grow: 1;
+}

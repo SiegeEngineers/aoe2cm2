@@ -73,6 +73,7 @@
     "draftUrlCallToAction": "Send this url to the other captain.",
     "spectateUrlCallToAction": "Send this url to spectators.",
     "copyLabel": "Copy",
+    "copiedLabel": "Copied!",
     "callToAction": "Choose your role for this draft:",
     "role": {
       "spectator": "Spectator",
@@ -126,5 +127,7 @@
   "customiseThisPreset": "Customise this Preset",
   "savePreset": "Save Preset",
   "setYourName": "Set your name",
-  "youAre": "You are:"
+  "youAre": "You are:",
+  "codeInstructionsBefore": "Send this code to players or spectators:",
+  "codeInstructionsAfter": "Use this code to spectate this draft again later:"
 }

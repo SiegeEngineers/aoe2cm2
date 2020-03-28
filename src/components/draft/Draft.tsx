@@ -13,6 +13,7 @@ import Modal from "../../containers/Modal";
 import NameGenerator from "../../util/NameGenerator";
 import {Link} from "react-router-dom";
 import RoleModal from "../../containers/RoleModal";
+import DraftIdInfo from "../../containers/DraftIdInfo";
 
 interface IProps extends WithTranslation {
     nameHost: string;
@@ -94,7 +95,8 @@ class Draft extends React.Component<IProps, IState> {
 
                     <TurnRow turns={turns}/>
 
-                    <DraftState nameHost={this.props.nameHost} nameGuest={this.props.nameGuest} preset={this.props.preset}/>
+                    <DraftState nameHost={this.props.nameHost} nameGuest={this.props.nameGuest}
+                                preset={this.props.preset}/>
 
                     <div>
                         <div id="action-text" className="centered">
@@ -103,6 +105,8 @@ class Draft extends React.Component<IProps, IState> {
                             </div>
                         </div>
                     </div>
+
+                    <DraftIdInfo/>
 
                     <CivGrid civilisations={this.props.preset.civilisations}/>
 

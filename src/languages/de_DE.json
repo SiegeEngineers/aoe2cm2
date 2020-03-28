@@ -73,6 +73,7 @@
     "draftUrlCallToAction": "Sende diese URL an die andere Kapitänin.",
     "spectateUrlCallToAction": "Sende diese URL an eventuelle Zuschauerinnen.",
     "copyLabel": "Kopieren",
+    "copiedLabel": "Kopiert!",
     "callToAction": "Wähle deine Rolle:",
     "role": {
       "spectator": "Zuschauerin",
@@ -137,5 +138,7 @@
   "customiseThisPreset": "Dieses Preset bearbeiten",
   "savePreset": "Preset speichern",
   "setYourName": "Wähle einen Namen",
-  "youAre": "Dein Name:"
+  "youAre": "Dein Name:",
+  "codeInstructionsBefore": "Sende diesen Code an Kapitäninnen oder Zuschauerinnen:",
+  "codeInstructionsAfter": "Mit diesem Code kann der Draft erneut aufgerufen werden:"
 }
