@@ -59,7 +59,16 @@
     "waitingForGuestToBeReady": "Warte bis die Gast-Kapitänin bereit ist…",
     "specPick": "<1>{{playerName}}</1> <3><4>wählt</4></3> eine Zivilisation",
     "specBan": "<1>{{playerName}}</1> <3><4>bannt</4></3> eine Zivilisation",
-    "specSnipe": "<1>{{playerName}}</1> wählt eine Zivilisation der Gegnerin um sie zu <3><4>snipen</4></3>"
+    "specSnipe": "<1>{{playerName}}</1> wählt eine Zivilisation der Gegnerin um sie zu <3><4>snipen</4></3>",
+    "specParallelTurnsPickPick": "<1>{{firstTurnPlayer}}</1> <3><4>wählt</4></3> und <5>{{secondTurnPlayer}}</5> <7><8>wählt</8></7> eine Zivilisation",
+    "specParallelTurnsPickBan": "<1>{{firstTurnPlayer}}</1> <3><4>wählt</4></3> und <5>{{secondTurnPlayer}}</5> <7><8>bannt</8></7> eine Zivilisation",
+    "specParallelTurnsPickSnipe": "<1>{{firstTurnPlayer}}</1> <3><4>wählt</4></3> eine Zivilisation und <5>{{secondTurnPlayer}}</5> wählt eine Zivilisation um sie zu <7><8>snipen</8></7>",
+    "specParallelTurnsBanPick": "<1>{{firstTurnPlayer}}</1> <3><4>bannt</4></3> und <5>{{secondTurnPlayer}}</5> <7><8>wählt</8></7> eine Zivilisation",
+    "specParallelTurnsBanBan": "<1>{{firstTurnPlayer}}</1> <3><4>bannt</4></3> und <5>{{secondTurnPlayer}}</5> <7><8>bannt</8></7> eine Zivilisation",
+    "specParallelTurnsBanSnipe": "<1>{{firstTurnPlayer}}</1> <3><4>bannt</4></3> und <5>{{secondTurnPlayer}}</5> wählt eine Zivilisation um sie zu <7><8>snipen</8></7>",
+    "specParallelTurnsSnipePick": "<1>{{firstTurnPlayer}}</1> wählt eine Zivilisation um sie zu <3><4>snipen</4></3> und <5>{{secondTurnPlayer}}</5> <7><8>wählt</8></7> eine Zivilisation",
+    "specParallelTurnsSnipeBan": "<1>{{firstTurnPlayer}}</1> wählt eine Zivilisation um sie zu <3><4>snipen</4></3> und <5>{{secondTurnPlayer}}</5> <7><8>bannt</8></7> eine Zivilisation",
+    "specParallelTurnsSnipeSnipe": "<1>{{firstTurnPlayer}}</1> und <5>{{secondTurnPlayer}}</5> wählen je eine Zivilisation um sie zu <3><4>snipen</4></3>"
   },
   "modal": {
     "header": "Hallöchen!",
