@@ -81,6 +81,7 @@ afterEach((done) => {
 
 it('successful join gets a draft config', (done) => {
     hostSocket.emit('set_role', {name: 'Saladin', role: Player.HOST}, (data: IDraftConfig) => {
+        data.startTimestamp = 0;
         expect(data).toMatchSnapshot();
         done();
     });
