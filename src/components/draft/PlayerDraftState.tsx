@@ -10,6 +10,7 @@ import Turn from "../../models/Turn";
 import CivPanelType from "../../constants/CivPanelType";
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
 import PlayerOnlineStatus from "../../containers/PlayerOnlineStatus";
+import WhoAmIIndicator from "../../containers/WhoAmIIndicator";
 
 interface IProps extends WithTranslation {
     preset: ModelPreset;
@@ -90,10 +91,10 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                 <div id={playerId} className="double-outer-border">
                     <div className="double-inner-border">
                         <div className={playerClass}>
-                            <div className="head-text">
-                                <PlayerOnlineStatus forPlayer={ModelPlayer.HOST} thisPlayer={this.props.player}/>
-                                <Trans>{this.props.player}</Trans>
-                                <PlayerOnlineStatus forPlayer={ModelPlayer.GUEST} thisPlayer={this.props.player}/>
+                            <div className="head-text captains-line">
+                                <span className={'player-type'}><Trans>{this.props.player}</Trans></span>
+                                <WhoAmIIndicator forPlayer={this.props.player}/>
+                                <PlayerOnlineStatus forPlayer={this.props.player}/>
                             </div>
                             <div className="player-head">
                                 <div className="player-name">{this.props.name}</div>

@@ -1092,15 +1092,35 @@ input[type="checkbox"]:checked + label span
 	text-transform: uppercase;
 }
 
-.picks, .bans{
+.picks, .bans, .captains-line {
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
-	align-content: wrap-reverse;
 }
 
-#player-host .picks, #player-host .bans {
+#player-host .picks,
+#player-host .bans,
+#player-host .captains-line {
 	flex-direction: row-reverse;
+}
+
+.tag {
+	background-color: #009688;
+	color: white;
+	display: inline-block;
+	padding: .45em .4em .25em .4em;
+	font-size: 75%;
+	font-weight: 700;
+	line-height: 1;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: baseline;
+	border-radius: .25rem;
+}
+
+.tag, .greenMarker, .player-type {
+	margin-left: .1rem;
+	margin-right: .1rem;
 }
 
 .players {
