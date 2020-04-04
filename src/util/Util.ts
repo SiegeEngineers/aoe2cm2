@@ -85,7 +85,10 @@ export const Util = {
     },
 
     setRandomCivilisationIfNeeded(playerEvent: PlayerEvent, draftId: string,
-                                  draftStore: DraftsStore, civilisationsList: Civilisation[]): PlayerEvent {
+                                  draftStore: DraftsStore, civilisationsList: Civilisation[], round: number = 100): PlayerEvent {
+        if (round < 0) {
+            return new PlayerEvent(playerEvent.player, playerEvent.actionType, Civilisation.HIDDEN);
+        }
         if (Util.isRandomCivilisation(playerEvent.civilisation)) {
             const randomCiv = Util.getRandomCivilisation(civilisationsList);
             const playerEventForValidation = new PlayerEvent(playerEvent.player, playerEvent.actionType, randomCiv);
@@ -95,7 +98,7 @@ export const Util = {
                 playerEvent.civilisation.isRandomlyChosenCiv = true;
                 return playerEvent;
             } else {
-                return this.setRandomCivilisationIfNeeded(playerEvent, draftId, draftStore, civilisationsList);
+                return this.setRandomCivilisationIfNeeded(playerEvent, draftId, draftStore, civilisationsList, round - 1);
             }
         }
         return playerEvent;
