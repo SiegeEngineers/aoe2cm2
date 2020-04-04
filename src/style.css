@@ -47,7 +47,7 @@ html, body {
 }
 
 .used-marker {
-	background-image: url('/images/green-cross.svg');
+	background-image: url('/images/green-checkmark.svg');
 }
 
 .picks .box-content.visible,
