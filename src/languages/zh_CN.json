@@ -35,10 +35,10 @@
     "Cumans": "库曼",
     "Lithuanians": "立陶宛",
     "Tatars": "鞑靼",
-    "HIDDEN_PICK": "隐藏-选民族",
-    "HIDDEN_BAN": "隐藏-禁民族",
-    "HIDDEN_SNIPE": "隐藏-偷民族",
-    "HIDDEN": "隐藏民族",
+    "HIDDEN_PICK": "",
+    "HIDDEN_BAN": "",
+    "HIDDEN_SNIPE": "",
+    "HIDDEN": "",
     "RANDOM": "随机"
   },
   "messages": {
