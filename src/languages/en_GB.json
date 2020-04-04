@@ -57,8 +57,8 @@
     "waitingForBothToBeReady": "Waiting for players to get ready…",
     "waitingForHostToBeReady": "Waiting for Host to get ready…",
     "waitingForGuestToBeReady": "Waiting for Guest to get ready…",
-    "specPick": "Waiting for <1>{{playerName}}</1> to <3><b4>pick</4></3> a civilization",
-    "specBan": "Waiting for <1>{{playerName}}</1> to <3><b4>ban</4></3> a civilization",
+    "specPick": "Waiting for <1>{{playerName}}</1> to <3><4>pick</4></3> a civilization",
+    "specBan": "Waiting for <1>{{playerName}}</1> to <3><4>ban</4></3> a civilization",
     "specSnipe": "Waiting for <1>{{playerName}}</1> to <3><4>snipe</4></3> a civilization of the opponent"
   },
   "modal": {
