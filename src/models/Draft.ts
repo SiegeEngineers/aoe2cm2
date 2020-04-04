@@ -8,6 +8,8 @@ import Action from "../constants/Action";
 import PlayerEvent from "./PlayerEvent";
 import {Util} from "../util/Util";
 import Exclusivity from "../constants/Exclusivity";
+import ActionType from "../constants/ActionType";
+import AdminEvent from "./AdminEvent";
 
 class Draft implements IDraftState {
     public nameHost: string;
@@ -115,7 +117,14 @@ class Draft implements IDraftState {
         const opponentBans: Civilisation[] = [];
         this.events.forEach((draftEvent: DraftEvent, index: number) => {
             if (opponentBanTurns[index]) {
-                const playerEvent = draftEvent as PlayerEvent;
+                let playerEvent = draftEvent as PlayerEvent;
+                if (playerEvent.player !== opponent) {
+                    if (this.preset.turns[index].parallel) {
+                        playerEvent = this.events[index + 1] as PlayerEvent;
+                    } else {
+                        playerEvent = this.events[index - 1] as PlayerEvent;
+                    }
+                }
                 opponentBans.push(playerEvent.civilisation);
             }
         });
@@ -131,7 +140,14 @@ class Draft implements IDraftState {
         const exclusivePicks: Civilisation[] = [];
         this.events.forEach((draftEvent: DraftEvent, index: number) => {
             if (exclusivePickTurns[index]) {
-                const playerEvent = draftEvent as PlayerEvent;
+                let playerEvent = draftEvent as PlayerEvent;
+                if (playerEvent.player !== player) {
+                    if (this.preset.turns[index].parallel) {
+                        playerEvent = this.events[index + 1] as PlayerEvent;
+                    } else {
+                        playerEvent = this.events[index - 1] as PlayerEvent;
+                    }
+                }
                 exclusivePicks.push(playerEvent.civilisation);
             }
         });
@@ -166,7 +182,14 @@ class Draft implements IDraftState {
         const exclusiveBans: Civilisation[] = [];
         this.events.forEach((draftEvent: DraftEvent, index: number) => {
             if (exclusiveBanTurns[index]) {
-                const playerEvent = draftEvent as PlayerEvent;
+                let playerEvent = draftEvent as PlayerEvent;
+                if (playerEvent.player !== player) {
+                    if (this.preset.turns[index].parallel) {
+                        playerEvent = this.events[index + 1] as PlayerEvent;
+                    } else {
+                        playerEvent = this.events[index - 1] as PlayerEvent;
+                    }
+                }
                 exclusiveBans.push(playerEvent.civilisation);
             }
         });
@@ -174,35 +197,44 @@ class Draft implements IDraftState {
     }
 
     public getPicks(player: Player): Civilisation[] {
-        const pickTurns: boolean[] = this.preset.turns
-            .map((turn): boolean => {
-                return turn.player === player && Util.isPick(turn.action);
-            });
-
-        const picks: Civilisation[] = [];
-        this.events.forEach((draftEvent: DraftEvent, index: number) => {
-            if (pickTurns[index]) {
-                const playerEvent = draftEvent as PlayerEvent;
-                picks.push(playerEvent.civilisation);
-            }
+        if (player === Player.NONE) {
+            return [];
+        }
+        return this.events.filter((value) => {
+            return Draft.isPick(value, player);
+        }).map((value) => {
+            const playerEvent = value as PlayerEvent;
+            return playerEvent.civilisation;
         });
-        return picks;
     }
 
     getSnipes(player: Player): Civilisation[] {
-        const snipeTurns: boolean[] = this.preset.turns
-            .map((turn): boolean => {
-                return turn.player === player && Util.isSnipe(turn.action);
-            });
-
-        const snipes: Civilisation[] = [];
-        this.events.forEach((draftEvent: DraftEvent, index: number) => {
-            if (snipeTurns[index]) {
-                const playerEvent = draftEvent as PlayerEvent;
-                snipes.push(playerEvent.civilisation);
-            }
+        if (player === Player.NONE) {
+            return [];
+        }
+        return this.events.filter((value) => {
+            return Draft.isSnipe(value, player);
+        }).map((value) => {
+            const playerEvent = value as PlayerEvent;
+            return playerEvent.civilisation;
         });
-        return snipes;
+    }
+
+    private static isPick(event: PlayerEvent | AdminEvent, player: Player) {
+        return this.hasPlayerAndActionType(event, player, ActionType.PICK);
+    }
+
+    private static isSnipe(value: PlayerEvent | AdminEvent, player: Player) {
+        return this.hasPlayerAndActionType(value, player, ActionType.SNIPE);
+    }
+
+    private static hasPlayerAndActionType(event: PlayerEvent | AdminEvent, player: Player, actionType: ActionType) {
+        if (event.player === player) {
+            const playerEvent = event as PlayerEvent;
+            return playerEvent.actionType == actionType;
+        } else {
+            return false;
+        }
     }
 
     public getOffset() {

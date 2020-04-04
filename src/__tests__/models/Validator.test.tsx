@@ -299,6 +299,24 @@ it('Execute parallel turn: Inverse order (2)', () => {
     expect(errors).toEqual([]);
 });
 
+it('Execute parallel turn: Inverse snipe order (2)', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL),
+        new Turn(Player.HOST, Action.SNIPE, Exclusivity.GLOBAL, false, true),
+        new Turn(Player.GUEST, Action.SNIPE, Exclusivity.GLOBAL),
+    ]);
+    const validator = new Validator(prepareReadyStore(preset,
+        [
+            new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS),
+            new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.BRITONS)
+        ]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.SNIPE, Civilisation.AZTECS));
+    expect(errors).toEqual([]);
+    const errors2: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.SNIPE, Civilisation.BRITONS));
+    expect(errors2).toEqual([]);
+});
+
 it('Execute parallel turn: Regular order (1)', () => {
     let preset = new Preset("test", Civilisation.ALL, [
         new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, true),
