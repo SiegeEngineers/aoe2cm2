@@ -1,10 +1,658 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Messages renders correctly 1`] = `
-<Messages
-  i18n={Object {}}
-  message="message content"
-  t={[Function]}
-  tReady={true}
-/>
+exports[`initialisation "GUEST" waiting while hostReady=false and guestReady=false 1`] = `
+<div>
+  Press 
+  <button
+    class="shadowbutton text-primary"
+  >
+    Ready
+  </button>
+   once you are ready to start!
+</div>
+`;
+
+exports[`initialisation "GUEST" waiting while hostReady=false and guestReady=true 1`] = `
+<div>
+  Waiting for Host to press ›ready‹
+</div>
+`;
+
+exports[`initialisation "GUEST" waiting while hostReady=true and guestReady=false 1`] = `
+<div>
+  Your host is ready to start. Press 
+  <button
+    class="shadowbutton text-primary"
+  >
+    Ready
+  </button>
+   once you are also ready to start!
+</div>
+`;
+
+exports[`initialisation "HOST" waiting while hostReady=false and guestReady=false 1`] = `
+<div>
+  Press 
+  <button
+    class="shadowbutton text-primary"
+  >
+    Ready
+  </button>
+   once you are ready to start!
+</div>
+`;
+
+exports[`initialisation "HOST" waiting while hostReady=false and guestReady=true 1`] = `
+<div>
+  Your guest is ready to start. Press 
+  <button
+    class="shadowbutton text-primary"
+  >
+    Ready
+  </button>
+   once you are also ready to start!
+</div>
+`;
+
+exports[`initialisation "HOST" waiting while hostReady=true and guestReady=false 1`] = `
+<div>
+  Waiting for Guest to press ›ready‹
+</div>
+`;
+
+exports[`initialisation "NONE" waiting while hostReady=false and guestReady=false 1`] = `
+<div>
+  Waiting for players to get ready…
+</div>
+`;
+
+exports[`initialisation "NONE" waiting while hostReady=false and guestReady=true 1`] = `
+<div>
+  Waiting for Host to get ready…
+</div>
+`;
+
+exports[`initialisation "NONE" waiting while hostReady=true and guestReady=false 1`] = `
+<div>
+  Waiting for Guest to get ready…
+</div>
+`;
+
+exports[`parallel turn G-H: Step 1 perspective: "GUEST" 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.doPick"
+  >
+    <span
+      className="green-glow"
+    >
+      <b>
+        Pick
+      </b>
+    </span>
+     a civilization!
+  </Trans>
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`parallel turn G-H: Step 1 perspective: "HOST" 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.doPick"
+  >
+    <span
+      className="green-glow"
+    >
+      <b>
+        Pick
+      </b>
+    </span>
+     a civilization!
+  </Trans>
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`parallel turn G-H: Step 1 perspective: "NONE" 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.specParallelTurnsPickPick"
+  >
+    Waiting for 
+    <b>
+      <Component />
+    </b>
+     to 
+    <span
+      className="green-glow"
+    >
+      <b>
+        Pick
+      </b>
+    </span>
+     and for 
+    <b>
+      <Component />
+    </b>
+     to 
+    <span
+      className="green-glow"
+    >
+      <b>
+        Pick
+      </b>
+    </span>
+     a civilisation
+  </Trans>
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`parallel turn G-H: Step 2, Guest picks before Host, perspective: "GUEST" 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.waitingForPick"
+  >
+    Waiting for the other captain to pick…
+  </Trans>
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`parallel turn G-H: Step 2, Guest picks before Host, perspective: "HOST" 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.doPick"
+  >
+    <span
+      className="green-glow"
+    >
+      <b>
+        Pick
+      </b>
+    </span>
+     a civilization!
+  </Trans>
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`parallel turn G-H: Step 2, Guest picks before Host, perspective: "NONE" 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.specPick"
+  >
+    Waiting for 
+    <b>
+      <Component />
+    </b>
+     to 
+    <span
+      className="green-glow"
+    >
+      <b>
+        Pick
+      </b>
+    </span>
+     a civilization
+  </Trans>
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`parallel turn G-H: Step 2, Host picks before Guest perspective: "GUEST" 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.doPick"
+  >
+    <span
+      className="green-glow"
+    >
+      <b>
+        Pick
+      </b>
+    </span>
+     a civilization!
+  </Trans>
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`parallel turn G-H: Step 2, Host picks before Guest perspective: "HOST" 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.waitingForPick"
+  >
+    Waiting for the other captain to pick…
+  </Trans>
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`parallel turn G-H: Step 2, Host picks before Guest perspective: "NONE" 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.specPick"
+  >
+    Waiting for 
+    <b>
+      <Component />
+    </b>
+     to 
+    <span
+      className="green-glow"
+    >
+      <b>
+        Pick
+      </b>
+    </span>
+     a civilization
+  </Trans>
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`parallel turn H-G: Step 1 perspective: "GUEST" 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.doPick"
+  >
+    <span
+      className="green-glow"
+    >
+      <b>
+        Pick
+      </b>
+    </span>
+     a civilization!
+  </Trans>
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`parallel turn H-G: Step 1 perspective: "HOST" 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.doPick"
+  >
+    <span
+      className="green-glow"
+    >
+      <b>
+        Pick
+      </b>
+    </span>
+     a civilization!
+  </Trans>
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`parallel turn H-G: Step 1 perspective: "NONE" 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.doPick"
+  >
+    <span
+      className="green-glow"
+    >
+      <b>
+        Pick
+      </b>
+    </span>
+     a civilization!
+  </Trans>
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`parallel turn H-G: Step 2, Guest picks before Host perspective: "GUEST" 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.waitingForPick"
+  >
+    Waiting for the other captain to pick…
+  </Trans>
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`parallel turn H-G: Step 2, Guest picks before Host perspective: "HOST" 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.doPick"
+  >
+    <span
+      className="green-glow"
+    >
+      <b>
+        Pick
+      </b>
+    </span>
+     a civilization!
+  </Trans>
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`parallel turn H-G: Step 2, Guest picks before Host perspective: "NONE" 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.specPick"
+  >
+    Waiting for 
+    <b>
+      <Component />
+    </b>
+     to 
+    <span
+      className="green-glow"
+    >
+      <b>
+        Pick
+      </b>
+    </span>
+     a civilization
+  </Trans>
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`parallel turn H-G: Step 2, Host picks before Guest perspective: "GUEST" 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.doPick"
+  >
+    <span
+      className="green-glow"
+    >
+      <b>
+        Pick
+      </b>
+    </span>
+     a civilization!
+  </Trans>
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`parallel turn H-G: Step 2, Host picks before Guest perspective: "HOST" 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.waitingForPick"
+  >
+    Waiting for the other captain to pick…
+  </Trans>
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`parallel turn H-G: Step 2, Host picks before Guest perspective: "NONE" 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.specPick"
+  >
+    Waiting for 
+    <b>
+      <Component />
+    </b>
+     to 
+    <span
+      className="green-glow"
+    >
+      <b>
+        Pick
+      </b>
+    </span>
+     a civilization
+  </Trans>
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`picks, bans, and snipes: "GUEST" sees prompt for "GUEST" turn ("BAN") 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.doBan"
+  >
+    <span
+      className="red-glow"
+    >
+      <b>
+        Ban
+      </b>
+    </span>
+     a civilization!
+  </Trans>
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`picks, bans, and snipes: "GUEST" sees prompt for "GUEST" turn ("PICK") 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.doPick"
+  >
+    <span
+      className="green-glow"
+    >
+      <b>
+        Pick
+      </b>
+    </span>
+     a civilization!
+  </Trans>
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`picks, bans, and snipes: "GUEST" sees prompt for "GUEST" turn ("SNIPE") 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.doSnipe"
+  >
+    <span
+      className="blue-glow"
+    >
+      <b>
+        Snipe
+      </b>
+    </span>
+     a civilization of the opponent!
+  </Trans>
+   
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`picks, bans, and snipes: "GUEST" sees prompt for "HOST" turn ("BAN") 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.waitingForBan"
+  >
+    Waiting for the other captain to ban…
+  </Trans>
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`picks, bans, and snipes: "GUEST" sees prompt for "HOST" turn ("PICK") 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.waitingForPick"
+  >
+    Waiting for the other captain to pick…
+  </Trans>
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`picks, bans, and snipes: "GUEST" sees prompt for "HOST" turn ("SNIPE") 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.waitingForSnipe"
+  >
+    Waiting for the other captain to snipe one of your civilisations…
+  </Trans>
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`picks, bans, and snipes: "HOST" sees prompt for "GUEST" turn ("BAN") 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.waitingForBan"
+  >
+    Waiting for the other captain to ban…
+  </Trans>
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`picks, bans, and snipes: "HOST" sees prompt for "GUEST" turn ("PICK") 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.waitingForPick"
+  >
+    Waiting for the other captain to pick…
+  </Trans>
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`picks, bans, and snipes: "HOST" sees prompt for "GUEST" turn ("SNIPE") 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.waitingForSnipe"
+  >
+    Waiting for the other captain to snipe one of your civilisations…
+  </Trans>
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`picks, bans, and snipes: "HOST" sees prompt for "HOST" turn ("BAN") 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.doBan"
+  >
+    <span
+      className="red-glow"
+    >
+      <b>
+        Ban
+      </b>
+    </span>
+     a civilization!
+  </Trans>
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`picks, bans, and snipes: "HOST" sees prompt for "HOST" turn ("PICK") 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.doPick"
+  >
+    <span
+      className="green-glow"
+    >
+      <b>
+        Pick
+      </b>
+    </span>
+     a civilization!
+  </Trans>
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`picks, bans, and snipes: "HOST" sees prompt for "HOST" turn ("SNIPE") 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.doSnipe"
+  >
+    <span
+      className="blue-glow"
+    >
+      <b>
+        Snipe
+      </b>
+    </span>
+     a civilization of the opponent!
+  </Trans>
+   
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`picks, bans, and snipes: "NONE" sees prompt for "HOST" turn ("BAN") 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.specBan"
+  >
+    Waiting for 
+    <b>
+      <Component />
+    </b>
+     to 
+    <span
+      className="red-glow"
+    >
+      <b>
+        Ban
+      </b>
+    </span>
+     a civilization
+  </Trans>
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`picks, bans, and snipes: "NONE" sees prompt for "HOST" turn ("PICK") 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.specPick"
+  >
+    Waiting for 
+    <b>
+      <Component />
+    </b>
+     to 
+    <span
+      className="green-glow"
+    >
+      <b>
+        Pick
+      </b>
+    </span>
+     a civilization
+  </Trans>
+  <Connect(Countdown) />
+</div>
+`;
+
+exports[`picks, bans, and snipes: "NONE" sees prompt for "HOST" turn ("SNIPE") 1`] = `
+<div>
+  <Trans
+    i18nKey="messages.specSnipe"
+  >
+    Waiting for 
+    <b>
+      <Component />
+    </b>
+     to 
+    <span
+      className="blue-glow"
+    >
+      <b>
+        Snipe
+      </b>
+    </span>
+     a civilization of the opponent
+  </Trans>
+   
+  <Connect(Countdown) />
+</div>
 `;

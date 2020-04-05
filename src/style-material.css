@@ -842,9 +842,9 @@ input[type="checkbox"]:checked + label span
 	background: repeating-linear-gradient(
 			-55deg,
 			#00bcd4,
-			#00bcd4 .2rem,
-			#ffc107 .2rem,
-			#ffc107 .4rem
+			#00bcd4 .4rem,
+			#ffc107 .4rem,
+			#ffc107 .8rem
 	);
 }
 
@@ -856,9 +856,9 @@ input[type="checkbox"]:checked + label span
 	background: repeating-linear-gradient(
 			-55deg,
 			#ffc107,
-			#ffc107 .2rem,
-			#00bcd4 .2rem,
-			#00bcd4 .4rem
+			#ffc107 .4rem,
+			#00bcd4 .4rem,
+			#00bcd4 .8rem
 	);
 }
 

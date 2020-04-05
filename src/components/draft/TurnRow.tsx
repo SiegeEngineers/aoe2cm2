@@ -14,9 +14,11 @@ class TurnRow extends React.Component<IProps, object> {
 
         const items: Array<ComponentElement<any, any>> = [];
 
+        let lastTurnWasParallel = false;
         for (let i = 0; i < this.props.turns.length; i++) {
             const turn = this.props.turns[i];
-            items.push(React.createElement(Turn, {turn, turnNumber: i}));
+            items.push(React.createElement(Turn, {turn, turnNumber: i, lastTurnWasParallel}));
+            lastTurnWasParallel = turn.parallel;
         }
 
         return (
