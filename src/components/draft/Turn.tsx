@@ -8,6 +8,7 @@ interface IProps extends WithTranslation {
     turn: ModelTurn;
     turnNumber: number;
     nextAction?: number;
+    lastTurnWasParallel: boolean;
 }
 
 interface IState {
@@ -19,7 +20,7 @@ const toTitle = (turn: ModelTurn): string => {
         return turn.action.toString();
     }
     return `${turn.player}: ${turn.action} (${turn.exclusivity})`;
-}
+};
 
 class Turn extends React.Component<IProps, IState> {
 
@@ -53,6 +54,9 @@ class Turn extends React.Component<IProps, IState> {
             action = 'reveal';
         }
         let turnClassName = `pure-u-1-24 turn turn-${player} turn-${action}`;
+        if (turn.parallel || this.props.lastTurnWasParallel) {
+            turnClassName += ' turn-parallel';
+        }
         if (turn.hidden) {
             turnClassName += ' turn-hidden';
         }

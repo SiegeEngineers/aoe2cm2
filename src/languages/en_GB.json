@@ -57,9 +57,18 @@
     "waitingForBothToBeReady": "Waiting for players to get ready…",
     "waitingForHostToBeReady": "Waiting for Host to get ready…",
     "waitingForGuestToBeReady": "Waiting for Guest to get ready…",
-    "specPick": "Waiting for <1>{{playerName}}</1> to <3><b4>pick</4></3> a civilization",
-    "specBan": "Waiting for <1>{{playerName}}</1> to <3><b4>ban</4></3> a civilization",
-    "specSnipe": "Waiting for <1>{{playerName}}</1> to <3><4>snipe</4></3> a civilization of the opponent"
+    "specPick": "Waiting for <1>{{playerName}}</1> to <3><4>pick</4></3> a civilization",
+    "specBan": "Waiting for <1>{{playerName}}</1> to <3><4>ban</4></3> a civilization",
+    "specSnipe": "Waiting for <1>{{playerName}}</1> to <3><4>snipe</4></3> a civilization of the opponent",
+    "specParallelTurnsPickPick": "Waiting for <1>{{firstTurnPlayer}}</1> to <3><4>Pick</4></3> and for <5>{{secondTurnPlayer}}</5> to <7><8>Pick</8></7> a civilisation",
+    "specParallelTurnsPickBan": "Waiting for <1>{{firstTurnPlayer}}</1> to <3><4>Pick</4></3> and for <5>{{secondTurnPlayer}}</5> to <7><8>Ban</8></7> a civilisation",
+    "specParallelTurnsPickSnipe": "Waiting for <1>{{firstTurnPlayer}}</1> to <3><4>Pick</4></3> and for <5>{{secondTurnPlayer}}</5> to <7><8>Snipe</8></7> a civilisation",
+    "specParallelTurnsBanPick": "Waiting for <1>{{firstTurnPlayer}}</1> to <3><4>Ban</4></3> and for <5>{{secondTurnPlayer}}</5> to <7><8>Pick</8></7> a civilisation",
+    "specParallelTurnsBanBan": "Waiting for <1>{{firstTurnPlayer}}</1> to <3><4>Ban</4></3> and for <5>{{secondTurnPlayer}}</5> to <7><8>Ban</8></7> a civilisation",
+    "specParallelTurnsBanSnipe": "Waiting for <1>{{firstTurnPlayer}}</1> to <3><4>Ban</4></3> and for <5>{{secondTurnPlayer}}</5> to <7><8>Snipe</8></7> a civilisation",
+    "specParallelTurnsSnipePick": "Waiting for <1>{{firstTurnPlayer}}</1> to <3><4>Snipe</4></3> and for <5>{{secondTurnPlayer}}</5> to <7><8>Pick</8></7> a civilisation",
+    "specParallelTurnsSnipeBan": "Waiting for <1>{{firstTurnPlayer}}</1> to <3><4>Snipe</4></3> and for <5>{{secondTurnPlayer}}</5> to <7><8>Ban</8></7> a civilisation",
+    "specParallelTurnsSnipeSnipe": "Waiting for <1>{{firstTurnPlayer}}</1> to <3><4>Snipe</4></3> and for <5>{{secondTurnPlayer}}</5> to <7><8>Snipe</8></7> a civilisation"
   },
   "modal": {
     "header": "Welcome",
