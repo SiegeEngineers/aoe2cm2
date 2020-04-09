@@ -132,6 +132,17 @@
     "4":"<0>全局</0>民族的意思是双方之后都不能再B/P这个民族，狙击民族的意思是把对手已经选的一个民族禁掉",
     "5":"<0>演练</0>模式是用来测试的，双方都由自己控制"
   },
+  "presets": {
+    "joinTitle": "TODO Join existing draft",
+    "code": "TODO Code:",
+    "join": "TODO Join",
+    "useTitle": "TODO Use Preset"
+  },
+  "spectate": {
+    "spectateTitle": "TODO Spectate existing draft",
+    "code": "TODO Code:",
+    "spectate": "TODO Spectate"
+  },
   "createNewDraft": "用这个预设开始",
   "createNewPreset": "创建一个新预设",
   "customiseThisPreset": "编辑这个预设",
