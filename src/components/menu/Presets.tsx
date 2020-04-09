@@ -53,15 +53,13 @@ class Presets extends React.Component<WithTranslation, IState> {
                 <div className="pure-g">
                     <div className="pure-u-1-1">
                         <div className="card home_card">
-                            <h2><Trans i18nKey='presets.useTitle'>Use preset</Trans></h2>
+
+                            <h2>
+                                <Trans i18nKey='presets.useTitle'>Use preset</Trans>
+                                <CustomisePresetButton preset={Preset.NEW} i18nKey='createNewPreset'/>
+                            </h2>
 
                             <PresetList items={this.state.items}/>
-
-                            <div className="pure-g join-actions text-primary">
-                                <div className="pure-u-1-1">
-                                    <CustomisePresetButton preset={Preset.NEW} i18nKey='createNewPreset'/>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
