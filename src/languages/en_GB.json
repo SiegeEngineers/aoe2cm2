@@ -132,6 +132,17 @@
     "4":"<0>Global</0> pick or bans disables the civilization for later turns. For other specific settings, please refer to the preset descriptions.",
     "5":"<0>Practice</0> mode is for testing purposes, where both sides are controlled by a single player."
   },
+  "presets": {
+    "joinTitle": "Join existing draft",
+    "code": "Code:",
+    "join": "Join",
+    "useTitle": "Use Preset"
+  },
+  "spectate": {
+    "spectateTitle": "Spectate existing draft",
+    "code": "Code:",
+    "spectate": "Spectate"
+  },
   "createNewDraft": "Create new draft from this Preset",
   "createNewPreset": "Create new Preset",
   "customiseThisPreset": "Customise this Preset",

@@ -139,9 +139,9 @@
     "useTitle": "Verfügbare Presets"
   },
   "spectate": {
-    "joinTitle": "Draft zusehen",
+    "spectateTitle": "Draft zusehen",
     "code": "Code:",
-    "join": "Zusehen"
+    "spectate": "Zusehen"
   },
   "createNewDraft": "Neuen Draft mit diesem Preset erstellen",
   "createNewPreset": "Neues Preset erstellen",
