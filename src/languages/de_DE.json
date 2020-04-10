@@ -143,6 +143,9 @@
     "code": "Code:",
     "spectate": "Zusehen"
   },
+  "preset": {
+    "shareThisPreset": "Teile dieses Preset:"
+  },
   "createNewDraft": "Neuen Draft mit diesem Preset erstellen",
   "createNewPreset": "Neues Preset erstellen",
   "customiseThisPreset": "Dieses Preset bearbeiten",

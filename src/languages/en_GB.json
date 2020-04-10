@@ -143,6 +143,9 @@
     "code": "Code:",
     "spectate": "Spectate"
   },
+  "preset": {
+    "shareThisPreset": "Share this preset:"
+  },
   "createNewDraft": "Create new draft from this Preset",
   "createNewPreset": "Create new Preset",
   "customiseThisPreset": "Customise this Preset",

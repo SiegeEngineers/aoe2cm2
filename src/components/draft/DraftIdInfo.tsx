@@ -1,7 +1,7 @@
 import * as React from "react";
 import Preset from "../../models/Preset";
 import "../../types/DraftEvent";
-import {Trans, WithTranslation, withTranslation} from "react-i18next";
+import {WithTranslation, withTranslation} from "react-i18next";
 import CopyableInput from "./CopyableInput";
 import {Util} from "../../util/Util";
 
@@ -23,8 +23,7 @@ class DraftIdInfo extends React.Component<IProps, object> {
 
         return (
             <div className={'centered'}>
-                <Trans i18nKey={i18nKey}>Send this code to players and spectators:</Trans> <CopyableInput
-                content={Util.getIdFromUrl()}/>
+                <CopyableInput content={Util.getIdFromUrl()} before={i18nKey}/>
             </div>
         );
     }
