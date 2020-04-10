@@ -15,6 +15,7 @@ import TurnRow from "../draft/TurnRow";
 import SavePresetButton from "../SavePresetButton";
 import {PresetEditorTurn} from "./PresetEditorTurn";
 import {PresetCivilisationCheckbox} from "./PresetCivilisationCheckbox";
+import TurnExplanation from "./TurnExplanation";
 
 interface Props {
     preset: Preset | null,
@@ -110,6 +111,8 @@ class PresetEditor extends React.Component<Props, object> {
                     </div>
                     <div className="pure-u-1-24"/>
                 </div>
+                <hr/>
+                <TurnExplanation/>
             </div>
         );
     }

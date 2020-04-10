@@ -170,3 +170,7 @@ html, body {
 .copyable-input {
 	align-items: center;
 }
+
+code {
+	color: #009688;
+}
