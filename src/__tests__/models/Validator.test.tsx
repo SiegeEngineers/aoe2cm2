@@ -279,6 +279,15 @@ it('VLD_905: parallel turns by only GUEST', () => {
     expect(errors).toEqual([ValidationId.VLD_905]);
 });
 
+it('VLD_906: hidden ban before pick', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.HOST, Action.BAN, Exclusivity.GLOBAL, true),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL),
+    ]);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([ValidationId.VLD_906]);
+});
+
 it('Execute parallel turn: Inverse order (1)', () => {
     let preset = new Preset("test", Civilisation.ALL, [
         new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, true),

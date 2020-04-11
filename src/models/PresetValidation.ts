@@ -1,6 +1,7 @@
 import {ValidationId} from "../constants/ValidationId";
 import Preset from "./Preset";
 import Player from "../constants/Player";
+import Action from "../constants/Action";
 
 export class PresetValidation {
     public static readonly VLD_901: PresetValidation = new PresetValidation(ValidationId.VLD_901, (preset: Preset) => {
@@ -57,12 +58,27 @@ export class PresetValidation {
         return true;
     });
 
+    public static readonly VLD_906: PresetValidation = new PresetValidation(ValidationId.VLD_906, (preset: Preset) => {
+        let needsReveal = false;
+        for (let turn of preset.turns) {
+            if (turn.action === Action.BAN && turn.hidden) {
+                needsReveal = true;
+            } else if (turn.action === Action.REVEAL_ALL || turn.action === Action.REVEAL_BANS) {
+                needsReveal = false;
+            } else if (turn.action === Action.PICK && needsReveal) {
+                return false;
+            }
+        }
+        return true;
+    });
+
     public static readonly ALL: PresetValidation[] = [
         PresetValidation.VLD_901,
         PresetValidation.VLD_902,
         PresetValidation.VLD_903,
         PresetValidation.VLD_904,
         PresetValidation.VLD_905,
+        PresetValidation.VLD_906,
     ];
 
     private readonly validationId: ValidationId;
