@@ -72,6 +72,32 @@ export class PresetValidation {
         return true;
     });
 
+    public static readonly VLD_907: PresetValidation = new PresetValidation(ValidationId.VLD_907, (preset: Preset) => {
+        let needsPickReveal = false;
+        let needsBanReveal = false;
+        let needsSnipeReveal = false;
+        for (let turn of preset.turns) {
+            if (turn.action === Action.PICK && turn.hidden) {
+                needsPickReveal = true;
+            } else if (turn.action === Action.BAN && turn.hidden) {
+                needsBanReveal = true;
+            } else if (turn.action === Action.SNIPE && turn.hidden) {
+                needsSnipeReveal = true;
+            }
+
+            if (turn.action === Action.REVEAL_ALL || turn.action === Action.REVEAL_PICKS) {
+                needsPickReveal = false;
+            }
+            if (turn.action === Action.REVEAL_ALL || turn.action === Action.REVEAL_BANS) {
+                needsBanReveal = false;
+            }
+            if (turn.action === Action.REVEAL_ALL || turn.action === Action.REVEAL_SNIPES) {
+                needsSnipeReveal = false;
+            }
+        }
+        return !needsPickReveal && !needsBanReveal && !needsSnipeReveal;
+    });
+
     public static readonly ALL: PresetValidation[] = [
         PresetValidation.VLD_901,
         PresetValidation.VLD_902,
@@ -79,6 +105,7 @@ export class PresetValidation {
         PresetValidation.VLD_904,
         PresetValidation.VLD_905,
         PresetValidation.VLD_906,
+        PresetValidation.VLD_907,
     ];
 
     private readonly validationId: ValidationId;

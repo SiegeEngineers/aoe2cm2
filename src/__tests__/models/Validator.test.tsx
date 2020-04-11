@@ -283,9 +283,41 @@ it('VLD_906: hidden ban before pick', () => {
     let preset = new Preset("test", Civilisation.ALL, [
         new Turn(Player.HOST, Action.BAN, Exclusivity.GLOBAL, true),
         new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL),
+        new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL),
     ]);
     const errors: ValidationId[] = Validator.validatePreset(preset);
     expect(errors).toEqual([ValidationId.VLD_906]);
+});
+
+it('VLD_907: hidden ban without reveal', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL),
+        new Turn(Player.HOST, Action.BAN, Exclusivity.GLOBAL, true),
+        new Turn(Player.NONE, Action.REVEAL_PICKS, Exclusivity.GLOBAL),
+    ]);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([ValidationId.VLD_907]);
+});
+
+it('VLD_907: hidden pick without reveal', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL),
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, true),
+        new Turn(Player.NONE, Action.REVEAL_SNIPES, Exclusivity.GLOBAL),
+    ]);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([ValidationId.VLD_907]);
+});
+
+it('VLD_907: hidden snipe without reveal', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL),
+        new Turn(Player.HOST, Action.SNIPE, Exclusivity.GLOBAL, true),
+        new Turn(Player.NONE, Action.REVEAL_PICKS, Exclusivity.GLOBAL),
+    ]);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([ValidationId.VLD_907]);
 });
 
 it('Execute parallel turn: Inverse order (1)', () => {
