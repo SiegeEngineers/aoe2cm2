@@ -116,7 +116,9 @@
     "VLD_902": "The preset contains a parallel turn that does not require player interaction",
     "VLD_903": "The preset contains a parallel turn which is followed by a turn that does not require player interaction",
     "VLD_904": "The last turn of the preset is a parallel turn, which is not possible",
-    "VLD_905": "The preset contains a parallel turn which is to be executed by the same player as the next turn"
+    "VLD_905": "The preset contains a parallel turn which is to be executed by the same player as the next turn",
+    "VLD_906": "The preset contains a hidden ban and a pick without a reveal turn in between",
+    "VLD_907": "The preset contains a hidden turn that is never revealed"
   },
   "menu": {
     "welcome": "Welcome",
@@ -131,6 +133,20 @@
     "3":"There are also extension available for tournaments. <1>Hidden</1> option (black corners) hides the civilization choices until they are explicitly showed (visible in the timeline at the top).",
     "4":"<0>Global</0> pick or bans disables the civilization for later turns. For other specific settings, please refer to the preset descriptions.",
     "5":"<0>Practice</0> mode is for testing purposes, where both sides are controlled by a single player."
+  },
+  "presets": {
+    "joinTitle": "Join existing draft",
+    "code": "Code:",
+    "join": "Join",
+    "useTitle": "Use Preset"
+  },
+  "spectate": {
+    "spectateTitle": "Spectate existing draft",
+    "code": "Code:",
+    "spectate": "Spectate"
+  },
+  "preset": {
+    "shareThisPreset": "Share this preset:"
   },
   "createNewDraft": "Create new draft from this Preset",
   "createNewPreset": "Create new Preset",

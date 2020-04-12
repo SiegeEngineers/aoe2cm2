@@ -116,7 +116,9 @@
     "VLD_902": "Das Preset enthält einen parallelen Zug, der keine Spielerinnen-Interaktion erfordert",
     "VLD_903": "Das Preset enthält einen parallelen Zug, dessen Folgezug keine Spielerinnen-Interaktion erfordert",
     "VLD_904": "Das Preset enthält einen parallelen Zug als letzten Zug, was keinen Sinn ergibt",
-    "VLD_905": "Das Preset enthält einen parallelen Zug, der von der selben Spielerin wie der folgende Zug ausgeführt werden soll"
+    "VLD_905": "Das Preset enthält einen parallelen Zug, der von der selben Spielerin wie der folgende Zug ausgeführt werden soll",
+    "VLD_906": "Das Preset enthält ein verstecktes BAN gefolgt von einem PICK, ohne dass das BAN vorher aufgedeckt wird",
+    "VLD_907": "Das Preset enthält einen versteckten Zug, der nie aufgedeckt wird"
   },
   "menu": {
     "welcome": "Willkommen",
@@ -139,9 +141,12 @@
     "useTitle": "Verfügbare Presets"
   },
   "spectate": {
-    "joinTitle": "Draft zusehen",
+    "spectateTitle": "Draft zusehen",
     "code": "Code:",
-    "join": "Zusehen"
+    "spectate": "Zusehen"
+  },
+  "preset": {
+    "shareThisPreset": "Teile dieses Preset:"
   },
   "createNewDraft": "Neuen Draft mit diesem Preset erstellen",
   "createNewPreset": "Neues Preset erstellen",

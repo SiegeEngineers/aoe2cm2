@@ -158,11 +158,19 @@ html, body {
 	padding: .3rem .5rem .1rem .5rem;
 }
 
-.wide-input span {
+.wide-input .copyable-input {
 	display: flex;
 	flex-direction: row;
 }
 
-.wide-input span input {
+.wide-input .copyable-input input {
 	flex-grow: 1;
+}
+
+.copyable-input {
+	align-items: center;
+}
+
+code {
+	color: #009688;
 }

@@ -2,6 +2,7 @@ import * as React from "react";
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
 
 interface IProps extends WithTranslation {
+    before?: string;
     content: string;
 }
 
@@ -14,7 +15,8 @@ class CopyableInput extends React.Component<IProps, IState> {
     state = {label: 'rolemodal.copyLabel'};
 
     public render() {
-        return (<span>
+        return (<span className={'copyable-input'}>
+                    <Trans i18nKey={this.props.before}/>
                     <input className={'inset-input centered'} value={this.props.content}/>
                     <button className='pure-button' onClick={this.copyToClipboard}>
                         <Trans>{this.state.label}</Trans>

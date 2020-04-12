@@ -5,6 +5,7 @@ import TurnRow from "../draft/TurnRow";
 import NewDraftButton from "../NewDraftButton";
 import CustomisePresetButton from "../../containers/CustomisePresetButton";
 import Civilisation from "../../models/Civilisation";
+import CopyableInput from "../draft/CopyableInput";
 
 interface IState {
     preset?: ModelPreset;
@@ -52,6 +53,9 @@ class Preset extends React.Component<object, IState> {
                     </div>
                     <p>
                         <NewDraftButton preset={this.state.preset}/>
+                    </p>
+                    <p className={'wide-input'}>
+                        <CopyableInput content={window.location.href} before={'preset.shareThisPreset'}/>
                     </p>
                     <p>
                         <CustomisePresetButton preset={this.state.preset}/>

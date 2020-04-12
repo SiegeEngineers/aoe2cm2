@@ -21,7 +21,7 @@ class Spectate extends React.Component<WithTranslation, IState> {
         return (
             <div>
                 <div id="join_game" className="home_card box">
-                    <h2><Trans i18nKey='spectate.joinTitle'>Spectate existing draft</Trans></h2>
+                    <h2><Trans i18nKey='spectate.spectateTitle'>Spectate existing draft</Trans></h2>
                     <div>
                         <div className="centered text-primary info-card">
                             <Trans i18nKey='spectate.code'>code:</Trans>
@@ -33,7 +33,7 @@ class Spectate extends React.Component<WithTranslation, IState> {
                             <div className="pure-u-1-1">
                                 <button className="shadowbutton text-primary" id="join-game-button"
                                         onClick={this.joinDraft}>
-                                    <Trans i18nKey='spectate.join'>Join</Trans>
+                                    <Trans i18nKey='spectate.spectate'>Spectate</Trans>
                                 </button>
                             </div>
                         </div>

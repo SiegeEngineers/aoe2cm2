@@ -2,7 +2,6 @@ import * as React from "react";
 import Preset from "../../models/Preset";
 import Turn from "../../models/Turn";
 import Player from "../../constants/Player";
-import PlayerTurnSettings from "./PlayerTurnSettings";
 import {Dispatch} from "redux";
 import * as actions from "../../actions";
 import {ISetEditorCivilisations, ISetEditorName, ISetEditorPreset, ISetEditorTurn} from "../../actions";
@@ -12,9 +11,11 @@ import Exclusivity from "../../constants/Exclusivity";
 import Action from "../../constants/Action";
 import NewDraftButton from "../NewDraftButton";
 import Civilisation from "../../models/Civilisation";
-import {CivilisationEncoder} from "../../util/CivilisationEncoder";
 import TurnRow from "../draft/TurnRow";
 import SavePresetButton from "../SavePresetButton";
+import {PresetEditorTurn} from "./PresetEditorTurn";
+import {PresetCivilisationCheckbox} from "./PresetCivilisationCheckbox";
+import TurnExplanation from "./TurnExplanation";
 
 interface Props {
     preset: Preset | null,
@@ -36,39 +37,12 @@ class PresetEditor extends React.Component<Props, object> {
         if (this.props.preset === null || this.props.preset === undefined) {
             return null;
         }
-        const preset = this.props.preset.turns.map((turn: Turn, index: number) => {
-            let host = <PlayerTurnSettings player={Player.HOST} turn={turn} key={'host-' + index} index={index}/>;
-            let guest = <PlayerTurnSettings player={Player.GUEST} turn={turn} key={'guest-' + index} index={index}/>;
-            let none = <PlayerTurnSettings player={Player.NONE} turn={turn} key={'none-' + index} index={index}/>;
-
-            return <div className="pure-g" key={'turn-' + index} style={{margin: '.2rem 0 .2rem 0', padding: '0.2rem', backgroundColor: 'rgba(100,100,100,0.3)'}}>
-                <div className="pure-u-1-24">{index}</div>
-                <div className="pure-u-8-24">{host}</div>
-                <div className="pure-u-5-24">{none}</div>
-                <div className="pure-u-8-24">{guest}</div>
-                <div className="pure-u-2-24">
-                    <button className="pure-button" onClick={() => {
-                        this.props.onValueChange(null, index);
-                    }}>X
-                    </button>
-                </div>
-            </div>;
-        });
+        const turns = this.props.preset.turns.map((turn: Turn, index: number) =>
+            <PresetEditorTurn index={index} turn={turn} onValueChange={this.props.onValueChange}/>);
         const presetCivilisations = this.props.preset.civilisations;
-        const civs = Civilisation.ALL.map((value: Civilisation, index: number) => {
-            return <div className="pure-u-1-4">
-                <label><input type='checkbox' checked={presetCivilisations.includes(value)} onClick={() => {
-                    if (presetCivilisations.includes(value)) {
-                        presetCivilisations.splice(presetCivilisations.indexOf(value), 1);
-                        this.props.onPresetCivilisationsChange(CivilisationEncoder.encodeCivilisationArray(presetCivilisations));
-                    } else {
-                        presetCivilisations.push(value);
-                        this.props.onPresetCivilisationsChange(CivilisationEncoder.encodeCivilisationArray(presetCivilisations));
-                    }
-                }
-                }/> {value.name}</label>
-            </div>;
-        });
+        const civs = Civilisation.ALL.map((value: Civilisation, index: number) =>
+            <PresetCivilisationCheckbox presetCivilisations={presetCivilisations} value={value}
+                                        onPresetCivilisationsChange={this.props.onPresetCivilisationsChange}/>);
 
         return (
             <div className={'box'}>
@@ -101,7 +75,7 @@ class PresetEditor extends React.Component<Props, object> {
                     <div className="pure-u-1-24"/>
                 </div>
 
-                {preset}
+                {turns}
 
                 <div className="pure-g">
                     <div className="pure-u-1-24">new</div>
@@ -137,6 +111,8 @@ class PresetEditor extends React.Component<Props, object> {
                     </div>
                     <div className="pure-u-1-24"/>
                 </div>
+                <hr/>
+                <TurnExplanation/>
             </div>
         );
     }

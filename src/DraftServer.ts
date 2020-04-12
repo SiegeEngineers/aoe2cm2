@@ -42,9 +42,6 @@ export const DraftServer = {
         const validator = new Validator(draftsStore);
 
         function connectPlayer(draftId: string, player: Player, name: string) {
-            if (!draftsStore.has(draftId)) {
-                draftsStore.initDraft(draftId, Preset.SAMPLE);
-            }
             draftsStore.connectPlayer(draftId, player, name);
         }
 
