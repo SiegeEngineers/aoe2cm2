@@ -118,7 +118,8 @@
     "VLD_904": "The last turn of the preset is a parallel turn, which is not possible",
     "VLD_905": "The preset contains a parallel turn which is to be executed by the same player as the next turn",
     "VLD_906": "The preset contains a hidden ban and a pick without a reveal turn in between",
-    "VLD_907": "The preset contains a hidden turn that is never revealed"
+    "VLD_907": "The preset contains a hidden turn that is never revealed",
+    "VLD_908": "The preset does not contain any turns"
   },
   "menu": {
     "welcome": "Welcome",

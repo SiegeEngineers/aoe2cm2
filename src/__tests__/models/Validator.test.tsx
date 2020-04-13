@@ -320,6 +320,12 @@ it('VLD_907: hidden snipe without reveal', () => {
     expect(errors).toEqual([ValidationId.VLD_907]);
 });
 
+it('VLD_908: no turns', () => {
+    let preset = new Preset("test", Civilisation.ALL, []);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([ValidationId.VLD_908]);
+});
+
 it('Execute parallel turn: Inverse order (1)', () => {
     let preset = new Preset("test", Civilisation.ALL, [
         new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, true),

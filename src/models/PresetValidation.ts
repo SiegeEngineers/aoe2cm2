@@ -98,6 +98,10 @@ export class PresetValidation {
         return !needsPickReveal && !needsBanReveal && !needsSnipeReveal;
     });
 
+    public static readonly VLD_908: PresetValidation = new PresetValidation(ValidationId.VLD_908, (preset: Preset) => {
+        return preset.turns.length > 0;
+    });
+
     public static readonly ALL: PresetValidation[] = [
         PresetValidation.VLD_901,
         PresetValidation.VLD_902,
@@ -106,6 +110,7 @@ export class PresetValidation {
         PresetValidation.VLD_905,
         PresetValidation.VLD_906,
         PresetValidation.VLD_907,
+        PresetValidation.VLD_908,
     ];
 
     private readonly validationId: ValidationId;
