@@ -43,22 +43,23 @@ export class DraftsStore {
         return draft.getExpectedActions(offset);
     }
 
-    public getRecentDrafts(): IRecentDraft[] {
-        const ongoingDrafts = this.getDraftIds().map((value: string, index: number, array: string[]) => {
-            const draft = this.getDraftOrThrow(value);
-            return {
-                draftId: value,
-                ongoing: true,
-                title: draft.preset.name,
-                nameHost: draft.nameHost,
-                nameGuest: draft.nameGuest,
-                startTimestamp: draft.startTimestamp,
-            }
-        });
-        ongoingDrafts.sort((a, b) => (a.startTimestamp > b.startTimestamp) ? -1 : 1);
-        ongoingDrafts.forEach((d) => delete d.startTimestamp);
 
-        const recentDrafts = ongoingDrafts as IRecentDraft[];
+    public getRecentDrafts(): IRecentDraft[] {
+        const recentDrafts: IRecentDraft[] = this.getDraftIds()
+            .map((value: string) => {
+                return {...this.getDraftOrThrow(value), draftId: value};
+            })
+            .filter((draft) => draft.hostConnected && draft.guestConnected)
+            .sort((a, b) => (a.startTimestamp > b.startTimestamp) ? -1 : 1)
+            .map((draft) => {
+                return {
+                    draftId: draft.draftId,
+                    ongoing: true,
+                    title: draft.preset.name,
+                    nameHost: draft.nameHost,
+                    nameGuest: draft.nameGuest,
+                };
+            });
 
         if (recentDrafts.length < 10) {
             const iterations = 10 - recentDrafts.length;
