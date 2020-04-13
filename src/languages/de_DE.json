@@ -143,7 +143,10 @@
   "spectate": {
     "spectateTitle": "Draft zusehen",
     "code": "Code:",
-    "spectate": "Zusehen"
+    "spectate": "Zusehen",
+    "recentDraftsTitle": "Die letzten Drafts",
+    "watchLive": "Live Zusehen",
+    "watch": "Ansehen"
   },
   "preset": {
     "shareThisPreset": "Teile dieses Preset:"

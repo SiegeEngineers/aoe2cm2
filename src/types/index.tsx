@@ -56,3 +56,11 @@ export interface ICountdownValues {
     value: number;
     display: boolean;
 }
+
+export interface IRecentDraft {
+    title: string;
+    draftId: string;
+    nameHost: string;
+    nameGuest: string;
+    ongoing: boolean;
+}

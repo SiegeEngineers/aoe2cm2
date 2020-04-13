@@ -1,15 +1,24 @@
 import * as React from "react";
 import {Redirect} from "react-router";
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
+import {IRecentDraft} from "../../types";
+import {default as RecentDraftRow} from "./RecentDraftRow";
 
 interface IState {
     draftId: string | null;
+    recentDrafts: IRecentDraft[];
 }
 
 class Spectate extends React.Component<WithTranslation, IState> {
     constructor(props: WithTranslation) {
         super(props);
-        this.state = {draftId: null};
+        this.state = {draftId: null, recentDrafts: []};
+    }
+
+    componentDidMount(): void {
+        fetch('/api/recentdrafts')
+            .then((response) => response.json())
+            .then((json) => this.setState({recentDrafts: json}));
     }
 
     public render() {
@@ -17,6 +26,9 @@ class Spectate extends React.Component<WithTranslation, IState> {
             const target = '/spectate/' + this.state.draftId;
             return (<Redirect to={target}/>);
         }
+
+        const recentDrafts = this.state.recentDrafts.map((value) => <RecentDraftRow recentDraft={value}
+                                                                                    callback={this.recentDraftCallback}/>)
 
         return (
             <div>
@@ -39,6 +51,15 @@ class Spectate extends React.Component<WithTranslation, IState> {
                         </div>
                     </div>
                 </div>
+
+                <div id="recent_drafts" className="home_card box">
+                    <h2><Trans i18nKey='spectate.recentDraftsTitle'>Recent Drafts</Trans></h2>
+                    <table className="pure-table pure-table-horizontal recent-drafts">
+                        <tbody>
+                        {recentDrafts}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         );
     }
@@ -48,6 +69,10 @@ class Spectate extends React.Component<WithTranslation, IState> {
         const draftId: string | null = draftIdInput.value;
         this.setState({...this.state, draftId});
     };
+
+    private recentDraftCallback = (draftId: string) => {
+        this.setState({...this.state, draftId});
+    }
 }
 
 export default withTranslation()(Spectate);

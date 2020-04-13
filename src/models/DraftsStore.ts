@@ -11,6 +11,7 @@ import Civilisation from "./Civilisation";
 import {actionTypeFromAction} from "../constants/ActionType";
 import {Listeners} from "../util/Listeners";
 import {logger} from "../util/Logger";
+import {IRecentDraft} from "../types";
 
 interface ICountdownValues {
     timeout: NodeJS.Timeout;
@@ -21,6 +22,7 @@ interface ICountdownValues {
 export class DraftsStore {
     private drafts: Map<string, DraftViews> = new Map<string, DraftViews>();
     private countdowns: Map<String, ICountdownValues> = new Map<String, ICountdownValues>();
+    private recentDrafts: IRecentDraft[] = [];
 
     public createDraft(draftId: string, draft: Draft) {
         this.assertDraftDoesNotExist(draftId);
@@ -41,8 +43,35 @@ export class DraftsStore {
         return draft.getExpectedActions(offset);
     }
 
-    public getRecentDrafts(): string[] {
-        return this.getDraftIds();
+    public getRecentDrafts(): IRecentDraft[] {
+        const ongoingDrafts = this.getDraftIds().map((value: string, index: number, array: string[]) => {
+            const draft = this.getDraftOrThrow(value);
+            return {
+                draftId: value,
+                ongoing: true,
+                title: draft.preset.name,
+                nameHost: draft.nameHost,
+                nameGuest: draft.nameGuest,
+                startTimestamp: draft.startTimestamp,
+            }
+        });
+        ongoingDrafts.sort((a, b) => (a.startTimestamp > b.startTimestamp) ? -1 : 1);
+        ongoingDrafts.forEach((d) => delete d.startTimestamp);
+
+        const recentDrafts = ongoingDrafts as IRecentDraft[];
+
+        if (recentDrafts.length < 10) {
+            const iterations = 10 - recentDrafts.length;
+            for (let i = 0; i < iterations; i++) {
+                if (this.recentDrafts.length > i) {
+                    recentDrafts.push(this.recentDrafts[i]);
+                } else {
+                    break;
+                }
+            }
+        }
+
+        return recentDrafts;
     }
 
     public getDraftIds(): string[] {
@@ -226,8 +255,27 @@ export class DraftsStore {
         }
     }
 
+    finishDraft(draftId: string) {
+        this.addRecentDraft(draftId);
+        this.removeDraft(draftId);
+    }
+
     removeDraft(draftId: string) {
         this.drafts.delete(draftId);
+    }
+
+    addRecentDraft(draftId: string) {
+        const draft = this.getDraftOrThrow(draftId);
+        this.recentDrafts.unshift({
+            title: draft.preset.name,
+            draftId: draftId,
+            ongoing: false,
+            nameHost: draft.nameHost,
+            nameGuest: draft.nameGuest
+        });
+        while (this.recentDrafts.length > 10) {
+            this.recentDrafts.pop();
+        }
     }
 
     public purgeStaleDrafts() {

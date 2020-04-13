@@ -143,7 +143,10 @@
   "spectate": {
     "spectateTitle": "Spectate existing draft",
     "code": "Code:",
-    "spectate": "Spectate"
+    "spectate": "Spectate",
+    "recentDraftsTitle": "Recent Drafts",
+    "watchLive": "Watch Live",
+    "watch": "Watch"
   },
   "preset": {
     "shareThisPreset": "Share this preset:"

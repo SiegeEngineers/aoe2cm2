@@ -111,7 +111,7 @@ export const Listeners = {
             fs.writeFile(`data/${draftId}.json`, JSON.stringify(draft), (err) => {
                 if (err) throw err;
                 logger.info( `Draft saved to data/${draftId}.json`, {draftId});
-                draftsStore.removeDraft(draftId);
+                draftsStore.finishDraft(draftId);
             });
         }
     }
