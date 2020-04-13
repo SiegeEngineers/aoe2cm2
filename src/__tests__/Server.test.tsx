@@ -43,7 +43,7 @@ function connect() {
 
 beforeEach((done) => {
     const barrier = new Barrier(3, done);
-    request.post(`http://[${httpServerAddr.address}]:${httpServerAddr.port}/draft/new`,
+    request.post(`http://[${httpServerAddr.address}]:${httpServerAddr.port}/api/draft/new`,
         {body: JSON.stringify({preset: Preset.SIMPLE}), headers: {'Content-Type': 'application/json; charset=UTF-8'}},
         (error, response, body) => {
             const draftIdContainer: { draftId: string } = JSON.parse(body);

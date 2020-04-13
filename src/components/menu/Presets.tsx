@@ -76,7 +76,7 @@ class Presets extends React.Component<WithTranslation, IState> {
 
     private loadPresetList = () => {
         const request = new XMLHttpRequest();
-        request.open('GET', '/getpreset/list', true);
+        request.open('GET', '/api/preset/list', true);
         request.onreadystatechange = () => {
             if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                 const result = JSON.parse(request.responseText);

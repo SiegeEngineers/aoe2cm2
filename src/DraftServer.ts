@@ -49,7 +49,7 @@ export const DraftServer = {
             draftsStore.setPlayerName(draftId, player, name);
         }
 
-        app.post('/draft/new', (req, res) => {
+        app.post('/api/draft/new', (req, res) => {
             logger.info('Received request to create a new draft: %s', JSON.stringify(req.body));
             let draftId = Util.newDraftId();
             while (draftsStore.has(draftId)) {
@@ -67,7 +67,7 @@ export const DraftServer = {
                 logger.info('Draft validation failed: %s', JSON.stringify(validationErrors));
             }
         });
-        app.post('/preset/new', (req, res) => {
+        app.post('/api/preset/new', (req, res) => {
             logger.info('Received request to create a new preset: %s', JSON.stringify(req.body));
             const pojo: Preset = req.body.preset as Preset;
             let preset = Preset.fromPojo(pojo);
@@ -81,14 +81,14 @@ export const DraftServer = {
                 logger.info('Preset validation failed: %s', JSON.stringify(validationErrors));
             }
         });
-        app.get('/getpreset/list', (req, res) => {
+        app.get('/api/preset/list', (req, res) => {
             res.sendFile('presets.json', {'root': __dirname + '/..'});
         });
-        app.get('/getpreset/:id', (req, res) => {
+        app.get('/api/preset/:id', (req, res) => {
             res.sendFile(req.params.id + '.json', {'root': __dirname + '/../presets'});
         });
-        app.get('/ongoingdrafts', (req, res) => {
-            res.json(draftsStore.getDraftIds());
+        app.get('/api/recentdrafts', (req, res) => {
+            res.json(draftsStore.getRecentDrafts());
         });
 
         app.use('/draft/[a-zA-Z]+', (req, res) => {

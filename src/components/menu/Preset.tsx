@@ -73,7 +73,7 @@ class Preset extends React.Component<object, IState> {
 
     private loadPreset = (presetId: string) => {
         const request = new XMLHttpRequest();
-        request.open('GET', '/getpreset/' + presetId, true);
+        request.open('GET', '/api/preset/' + presetId, true);
         request.onreadystatechange = () => {
             if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                 const result = JSON.parse(request.responseText);

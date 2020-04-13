@@ -38,7 +38,7 @@ class SavePresetButton extends React.Component<IProps, IState> {
 
     private savePreset = () => {
         const request = new XMLHttpRequest();
-        request.open('POST', '/preset/new', true);
+        request.open('POST', '/api/preset/new', true);
         request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
         request.onreadystatechange = () => {
             if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {

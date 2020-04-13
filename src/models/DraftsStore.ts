@@ -41,6 +41,10 @@ export class DraftsStore {
         return draft.getExpectedActions(offset);
     }
 
+    public getRecentDrafts(): string[] {
+        return this.getDraftIds();
+    }
+
     public getDraftIds(): string[] {
         return Array.from(this.drafts.keys());
     }
