@@ -218,8 +218,8 @@ export class Validation {
         return undefined;
     }
 
-    private static includes(bansForPlayer: Civilisation[], civilisation: Civilisation) {
-        return bansForPlayer
+    private static includes(civilisations: Civilisation[], civilisation: Civilisation) {
+        return civilisations
             .filter(it => it.name === civilisation.name && it.gameVersion === civilisation.gameVersion).length > 0;
     }
 }

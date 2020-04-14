@@ -3,13 +3,14 @@ import * as ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {applyMiddleware, createStore, Store} from 'redux';
-import {Action, IApplyConfig, IClickOnCiv, ISetName, ISetRole} from "./actions";
+import {Action, IApplyConfig, IClickOnCiv, IReplayEvent, ISetName, ISetRole} from "./actions";
 import NotFound404 from "./components/404";
 import Footer from "./components/menu/Footer";
 import TopRightControls from "./components/menu/TopRightControls";
 import Menu from "./components/menu/Menu";
 import {ClientActions, ServerActions} from "./constants";
 import Draft from './containers/Draft';
+import {default as ModelDraft} from './models/Draft';
 import './i18n';
 import './pure-min.css';
 import './style-material.css';
@@ -26,6 +27,9 @@ import {initialLanguageState} from "./reducers/language";
 import {initialModalState} from "./reducers/modal";
 import {initialPresetEditorState} from "./reducers/presetEditor";
 import SpectateDraft from "./containers/SpectateDraft";
+import {CountdownProperties} from "./models/CountdownProperties";
+import {CountdownUtil} from "./util/CountdownUtil";
+import DraftViews from "./models/DraftViews";
 
 const createMySocketMiddleware = () => {
 
@@ -100,6 +104,32 @@ const createMySocketMiddleware = () => {
     }
 };
 
+const createMyReplayMiddleware = () => {
+
+    return (storeAPI: { dispatch: (action: Action) => void; getState: () => ApplicationState }) => {
+        let countdownProperties = new CountdownProperties(30);
+        return (next: (arg0: any) => void) => (action: Action) => {
+
+            if (action.type === ServerActions.APPLY_REPLAY) {
+                console.log("APPLY_REPLAY vaaat");
+                const replayEvent = action as IReplayEvent;
+                const draftState = replayEvent.value;
+                const events = draftState.events;
+                draftState.events = [];
+                const draftViews = new DraftViews(ModelDraft.fromDraftState(draftState));
+                CountdownUtil.startCountdown(countdownProperties, storeAPI);
+                events.forEach((event) => {
+                    CountdownUtil.scheduleDraftEvent(countdownProperties, storeAPI, draftViews, event);
+                });
+                CountdownUtil.scheduleStopCountdown(storeAPI, countdownProperties, events);
+                return next(action);
+            }
+
+            return next(action);
+        }
+    }
+};
+
 const store: Store = createStore<ApplicationState, Action, any, Store>(updateState,
     {
         draft: initialDraftState,
@@ -109,7 +139,7 @@ const store: Store = createStore<ApplicationState, Action, any, Store>(updateSta
         modal: initialModalState,
         presetEditor: initialPresetEditorState
     },
-    applyMiddleware(createMySocketMiddleware()));
+    applyMiddleware(createMySocketMiddleware(), createMyReplayMiddleware()));
 
 console.log(store.getState());
 

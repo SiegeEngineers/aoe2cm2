@@ -83,7 +83,8 @@ export const draftReducer = (state: IDraftState = initialDraftState, action: Dra
             draft.preset = Preset.fromPojo(draft.preset);
             return {
                 ...state,
-                ...draft
+                ...draft,
+                events: []
             };
     }
     return state;

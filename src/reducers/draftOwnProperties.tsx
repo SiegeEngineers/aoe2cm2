@@ -47,7 +47,7 @@ export const draftOwnPropertiesReducer = (state: IDraftOwnPropertiesState = init
             return {
                 ...state,
                 whoAmI: Player.NONE,
-                nextAction: action.value.events.length
+                nextAction: 0
             };
     }
     return state;

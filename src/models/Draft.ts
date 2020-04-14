@@ -35,12 +35,17 @@ class Draft implements IDraftState {
     }
 
     public static from(source: Draft): Draft {
-        const draft: Draft = new Draft(source.nameHost, source.nameGuest, source.preset);
+        const draft: Draft = Draft.fromDraftState(source);
+        draft.nextAction = source.nextAction;
+        return draft;
+    }
+
+    public static fromDraftState(source: IDraftState): Draft {
+        const draft: Draft = new Draft(source.nameHost, source.nameGuest, source.preset as Preset);
         draft.hostConnected = source.hostConnected;
         draft.guestConnected = source.guestConnected;
         draft.hostReady = source.hostReady;
         draft.guestReady = source.guestReady;
-        draft.nextAction = source.nextAction;
         draft.events = source.events;
         draft.startTimestamp = source.startTimestamp;
         return draft;
