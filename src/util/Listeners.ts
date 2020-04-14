@@ -107,6 +107,8 @@ export const Listeners = {
             }
             const draft = draftsStore.getDraftOrThrow(draftId);
             draft.startTimestamp = 0;
+            draft.hostConnected = false;
+            draft.guestConnected = false;
             logger.info("Saving draft: %s", JSON.stringify(draft), {draftId});
             fs.writeFile(`data/${draftId}.json`, JSON.stringify(draft), (err) => {
                 if (err) throw err;
