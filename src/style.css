@@ -174,3 +174,38 @@ html, body {
 code {
 	color: #009688;
 }
+
+.alert {
+	margin-bottom: .5rem;
+	color: white;
+}
+
+.alert.white {
+	color: black;
+}
+
+.alert.info {
+	background-color: #009688;
+}
+
+.alert.warning {
+	background-color: #ffc107;
+}
+
+.alert.danger {
+	background-color: #d40000;
+}
+.alert.info code,
+.alert.warning code,
+.alert.danger code {
+	color: white;
+	font-weight: bold;
+}
+
+.alert h2 {
+	color: white;
+}
+
+.alert.white h2 {
+	color: #009688;
+}

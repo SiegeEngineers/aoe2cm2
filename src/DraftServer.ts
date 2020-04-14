@@ -81,6 +81,9 @@ export const DraftServer = {
                 logger.info('Preset validation failed: %s', JSON.stringify(validationErrors));
             }
         });
+        app.get('/api/alerts', (req, res) => {
+            res.sendFile('alerts.json', {'root': __dirname + '/..'});
+        });
         app.get('/api/preset/list', (req, res) => {
             res.sendFile('presets.json', {'root': __dirname + '/..'});
         });

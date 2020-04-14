@@ -1,10 +1,27 @@
 import * as React from "react";
 import {Trans, withTranslation, WithTranslation} from "react-i18next";
+import {IAlert} from "../../types";
+import {Alert} from "./Alert";
 
-class Index extends React.Component<WithTranslation, object> {
+interface IState {
+    alerts: IAlert[];
+}
+
+class Index extends React.Component<WithTranslation, IState> {
+
+    state = {alerts: []};
+
+    componentDidMount(): void {
+        fetch('/api/alerts', {cache: 'no-cache'})
+            .then((result) => result.json())
+            .then((json) => this.setState({alerts: json}));
+    }
+
     public render() {
+        const alerts = this.state.alerts.map((alert) => <Alert config={alert}/>);
         return (
             <div>
+                {alerts}
                 <fieldset id="instructions">
                     <legend><Trans>instructions.title</Trans></legend>
                     <div className="double-outer-border">

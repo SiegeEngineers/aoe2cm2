@@ -64,3 +64,9 @@ export interface IRecentDraft {
     nameGuest: string;
     ongoing: boolean;
 }
+
+export interface IAlert {
+    class: string;
+    title: string;
+    content: string;
+}
