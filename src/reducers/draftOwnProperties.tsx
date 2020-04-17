@@ -32,6 +32,12 @@ export const draftOwnPropertiesReducer = (state: IDraftOwnPropertiesState = init
                 ...state,
                 nextAction: state.nextAction + 1,
             };
+        case Actions.SET_DRAFT_EVENTS:
+            console.log(Actions.SET_DRAFT_EVENTS, action.value);
+            return {
+                ...state,
+                nextAction: action.value.length,
+            };
         case Actions.SET_OWN_NAME:
             console.log(Actions.SET_OWN_NAME, action);
             NameGenerator.writeNameToLocalStorage(action.value);

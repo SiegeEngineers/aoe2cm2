@@ -14,6 +14,9 @@ import NameGenerator from "../../util/NameGenerator";
 import {Link} from "react-router-dom";
 import RoleModal from "../../containers/RoleModal";
 import DraftIdInfo from "../../containers/DraftIdInfo";
+import {ICountdownValues} from "../../types";
+import {default as ModelAction} from "../../constants/Action";
+import ReplayControls from "../../containers/ReplayControls";
 
 interface IProps extends WithTranslation {
     nameHost: string;
@@ -24,6 +27,7 @@ interface IProps extends WithTranslation {
     ownName: string | null;
     preset: Preset;
     nextAction: number;
+    replayEvents: DraftEvent[];
 
     onActionCompleted?: (message: DraftEvent) => void;
     onDraftConfig?: (message: IDraftConfig) => void;
@@ -36,6 +40,9 @@ interface IProps extends WithTranslation {
     showRoleModal: () => void;
     showNameModal: () => void;
     setOwnRole: (role: Player) => void;
+    setCountdownValue: (values: ICountdownValues) => void;
+    setEvents: (value: { player: Player, action: ModelAction, events: DraftEvent[] }) => void;
+    act: (value: DraftEvent) => void;
 }
 
 interface IState {
@@ -78,7 +85,6 @@ class Draft extends React.Component<IProps, IState> {
         const presetName: string = this.props.preset.name;
         const turns = this.props.preset.turns;
 
-
         return (
             <div id="container">
                 <div style={{position: 'absolute', top: '8px', left: '8px'}}>
@@ -106,6 +112,8 @@ class Draft extends React.Component<IProps, IState> {
                         </div>
                     </div>
 
+                    <ReplayControls/>
+
                     <DraftIdInfo/>
 
                     <CivGrid civilisations={this.props.preset.civilisations}/>
@@ -114,6 +122,7 @@ class Draft extends React.Component<IProps, IState> {
             </div>
         );
     }
+
 }
 
 export default withTranslation()(Draft);

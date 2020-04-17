@@ -1,12 +1,13 @@
 import Draft from '../components/draft/Draft';
 import * as actions from '../actions/';
-import {ApplicationState} from '../types';
+import {ApplicationState, ICountdownValues} from '../types';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
 import Preset from "../models/Preset";
 import Player from "../constants/Player";
 import {DraftEvent} from "../types/DraftEvent";
 import {IDraftConfig} from "../types/IDraftConfig";
+import {default as ModelAction} from "../constants/Action";
 
 export function mapStateToProps(state: ApplicationState) {
     return {
@@ -18,7 +19,8 @@ export function mapStateToProps(state: ApplicationState) {
         nextAction: state.ownProperties.nextAction,
         preset: state.draft.preset as Preset,
         whoAmI: state.ownProperties.whoAmI as Player,
-        ownName: state.ownProperties.ownName
+        ownName: state.ownProperties.ownName,
+        replayEvents: state.replay.events,
     }
 }
 
@@ -38,6 +40,9 @@ export function mapDispatchToProps(dispatch: Dispatch<actions.Action>) {
         showNameModal: () => dispatch(actions.showNameModal()),
         showRoleModal: () => dispatch(actions.showRoleModal()),
         setOwnRole: (role: Player) => dispatch(actions.setOwnRole(role)),
+        setCountdownValue: (values: ICountdownValues) => dispatch(actions.setCountdownValue(values)),
+        setEvents: (value: { player: Player, action: ModelAction, events: DraftEvent[] }) => dispatch(actions.setEvents(value)),
+        act: (value:DraftEvent)=>dispatch(actions.act(value)),
     }
 }
 

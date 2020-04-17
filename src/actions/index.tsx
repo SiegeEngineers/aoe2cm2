@@ -81,6 +81,11 @@ export interface ISetEvents {
     value: { player: Player, action: ModelAction, events: DraftEvent[] }
 }
 
+export interface ISetDraftEvents {
+    type: Actions.SET_DRAFT_EVENTS,
+    value: DraftEvent[]
+}
+
 export interface ICountdownEvent {
     type: ServerActions.SET_COUNTDOWN_VALUE,
     value: ICountdownValues
@@ -139,6 +144,7 @@ export type DraftAction = IConnectPlayer
     | ISendReady
     | IClickOnCiv
     | ISetEvents
+    |ISetDraftEvents
     | IConnect
     | IDisconnect
     | IReplayEvent;
@@ -150,6 +156,7 @@ export type DraftOwnPropertiesAction = IApplyConfig
     | ISetOwnRole
     | IActionCompleted
     | ISetEvents
+    | ISetDraftEvents
     | IReplayEvent
     | IDisconnect;
 
@@ -280,6 +287,13 @@ export function setEvents(value: { player: Player, action: ModelAction, events: 
     }
 }
 
+export function setDraftEvents(value: DraftEvent[]): ISetDraftEvents {
+    return {
+        value,
+        type: Actions.SET_DRAFT_EVENTS
+    }
+}
+
 export function connect(): IConnect {
     return {
         type: ClientActions.CONNECT_TO_SERVER
@@ -325,5 +339,12 @@ export function setEditorCivilisations(value: string): ISetEditorCivilisations {
     return {
         value,
         type: Actions.SET_EDITOR_CIVILISATIONS
+    }
+}
+
+export function setCountdownValue(value: ICountdownValues): ICountdownEvent {
+    return {
+        type: ServerActions.SET_COUNTDOWN_VALUE,
+        value
     }
 }

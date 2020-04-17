@@ -14,9 +14,14 @@ export interface IDraftState {
     startTimestamp: number;
 }
 
+export interface IReplayState {
+    events: DraftEvent[];
+}
+
 export interface ApplicationState {
     draft: IDraftState,
     countdown: ICountdownState,
+    replay: IReplayState,
     ownProperties: IDraftOwnPropertiesState,
     language: ILanguageState,
     iconStyle: IIconStyleState,

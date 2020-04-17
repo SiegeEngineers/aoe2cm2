@@ -1,6 +1,6 @@
 import {IDraftState} from "../types";
 import {DraftAction} from "../actions";
-import {ServerActions} from "../constants";
+import {Actions, ServerActions} from "../constants";
 import Preset from "../models/Preset";
 import Player from "../constants/Player";
 import AdminEvent from "../models/AdminEvent";
@@ -76,7 +76,12 @@ export const draftReducer = (state: IDraftState = initialDraftState, action: Dra
                 ...state,
                 events: eventsCopy2,
             };
-
+        case Actions.SET_DRAFT_EVENTS:
+            console.log(Actions.SET_DRAFT_EVENTS, action.value);
+            return {
+                ...state,
+                events: [...action.value],
+            };
         case ServerActions.APPLY_REPLAY:
             console.log(ServerActions.APPLY_REPLAY, action.value);
             const draft = action.value;
