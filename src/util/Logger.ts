@@ -4,8 +4,8 @@ export const logger = (typeof window === 'undefined') ? winston.createLogger({
     level: 'info',
     format: winston.format.combine(
         winston.format.splat(),
-        winston.format.json(),
         winston.format.timestamp(),
+        winston.format.json(),
     ),
     transports: [
         new winston.transports.File({filename: 'error.log', level: 'error'}),
