@@ -198,7 +198,6 @@ export const DraftServer = {
             });
 
             socket.on("ready", (message: {}, fn: (dc: IDraftConfig) => void) => {
-                logger.info("Player indicates they are ready: %s", JSON.stringify(message), {draftId});
                 let assignedRole: Player = Player.NONE;
                 if (Object.keys(socket.rooms).includes(roomHost)) {
                     draftsStore.setPlayerReady(draftId, Player.HOST);
@@ -207,6 +206,7 @@ export const DraftServer = {
                     draftsStore.setPlayerReady(draftId, Player.GUEST);
                     assignedRole = Player.GUEST;
                 }
+                logger.info("Player indicates they are ready: %s", assignedRole, {draftId});
                 if (draftsStore.playersAreReady(draftId)) {
                     logger.info("Both Players are ready, starting countdown.", {draftId});
                     draftsStore.startCountdown(draftId, socket);
@@ -225,7 +225,7 @@ export const DraftServer = {
 
             socket.on("act", Listeners.actListener(draftsStore, draftId, validateAndApply, socket, roomHost, roomGuest, roomSpec));
 
-            socket.on('disconnect', function () {
+            socket.on('disconnecting', function () {
                 const assignedRole = getAssignedRole(socket, roomHost, roomGuest);
                 logger.info("Player disconnected: %s", assignedRole, {draftId});
                 draftsStore.disconnectPlayer(draftId, assignedRole);
