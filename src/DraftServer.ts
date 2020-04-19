@@ -81,6 +81,10 @@ export const DraftServer = {
                 logger.info('Preset validation failed: %s', JSON.stringify(validationErrors));
             }
         });
+        app.get('/api/connections', (req, res) => {
+            // @ts-ignore
+            res.json({connections: io.engine.clientsCount});
+        });
         app.get('/api/alerts', (req, res) => {
             res.sendFile('alerts.json', {'root': __dirname + '/..'});
         });
