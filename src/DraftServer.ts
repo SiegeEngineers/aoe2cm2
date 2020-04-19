@@ -98,13 +98,23 @@ export const DraftServer = {
             res.json(draftsStore.getRecentDrafts());
         });
 
+        const indexPath = __dirname + '/index.html';
+
         app.use('/draft/[a-zA-Z]+', (req, res) => {
-            res.sendFile(__dirname + '/index.html');
+            if (fs.existsSync(indexPath)) {
+                res.sendFile(indexPath);
+            } else {
+                res.sendFile('maintenance.html', {'root': __dirname + '/../public'});
+            }
         });
 
         app.use(express.static('build'));
         app.use('/', (req, res) => {
-            res.sendFile(__dirname + '/index.html');
+            if (fs.existsSync(indexPath)) {
+                res.sendFile(indexPath);
+            } else {
+                res.sendFile('maintenance.html', {'root': __dirname + '/../public'});
+            }
         });
 
         io.on("connection", (socket: socketio.Socket) => {

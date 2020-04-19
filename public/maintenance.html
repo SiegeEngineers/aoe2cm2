@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="60">
+    <title>aoe2cm Maintenance</title>
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            background-color: #eee;
+            font-family: "Trebuchet MS", Helvetica, sans-serif;
+        }
+
+        #content {
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .centered {
+            text-align: center;
+        }
+
+        .box {
+            margin-top: 1rem;
+            max-width: 600px;
+            padding: 16px;
+            background-color: #fff;
+            border-radius: 2px;
+            box-shadow: 0 0 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);
+        }
+
+        .spinning {
+            animation: spin 30s linear infinite;
+        }
+        @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+        @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+        @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+    </style>
+</head>
+<body>
+<div id="content">
+    <div>
+
+        <div class="centered">
+            <img class="spinning" src="/images/aoe2cm2.png" alt="aoe2cm logo"/>
+        </div>
+        <div class="centered box">
+            Please stand by while we perform vital maintenance work for you.
+            It should not take more than five minutes.
+            If this message is still here after one hour, please ping <b>hszemi</b> on the
+            <a href="https://aoe2.se/">Siege Engineers discord server</a>.
+        </div>
+    </div>
+</div>
+</body>
+</html>
