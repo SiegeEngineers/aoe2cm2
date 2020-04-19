@@ -312,7 +312,7 @@ export class DraftsStore {
     }
 
     public purgeStaleDrafts() {
-        const ONE_DAY = 1000 * 60 * 60 * 24;
+        const SIX_HOURS = 1000 * 60 * 60 * 6;
         const now = Date.now();
 
         logger.info('Trying to purge stale drafts');
@@ -320,7 +320,7 @@ export class DraftsStore {
         for (let draftId of this.getDraftIds()) {
             try {
                 const startTimestamp = this.getDraftOrThrow(draftId).startTimestamp;
-                if (startTimestamp < (now - ONE_DAY)) {
+                if (startTimestamp < (now - SIX_HOURS)) {
                     logger.info('Purging Draft: %s', draftId, {draftId, startTimestamp});
                     this.removeDraft(draftId);
                     numberOfPurgedDrafts++;

@@ -17,7 +17,7 @@ import {logger} from "./util/Logger";
 import {ISetNameMessage} from "./types/ISetNameMessage";
 import {PresetUtil} from "./util/PresetUtil";
 
-const TWELVE_HOURS = 1000 * 60 * 60 * 12;
+const ONE_HOUR = 1000 * 60 * 60;
 
 function getAssignedRole(socket: SocketIO.Socket, roomHost: string, roomGuest: string): Player {
     let assignedRole: Player = Player.NONE;
@@ -252,7 +252,7 @@ export const DraftServer = {
 
         setInterval(() => {
             draftsStore.purgeStaleDrafts()
-        }, TWELVE_HOURS);
+        }, ONE_HOUR);
 
         return {httpServer, httpServerAddr, io};
     }
