@@ -96,21 +96,21 @@ export const Listeners = {
     finishDraftIfNoFurtherActions: function (draftViews: DraftViews, socket: SocketIO.Socket, draftsStore: DraftsStore,
                                              draftId: string, roomHost: string, roomGuest: string, roomSpec: string) {
         if (!draftViews.getActualDraft().hasNextAction()) {
-            logger.info("No further action expected. Disconnecting clients.", {draftId});
-            for (let room of [roomHost, roomGuest, roomSpec]) {
-                socket.nsp.in(room).clients((error: any, clientIds: string[]) => {
-                    if (error) throw error;
-                    for (let clientId of clientIds) {
-                        socket.nsp.connected[clientId].disconnect(true);
-                    }
-                });
-            }
             const draft = draftsStore.getDraftOrThrow(draftId);
             draft.startTimestamp = 0;
             draft.hostConnected = false;
             draft.guestConnected = false;
             logger.info("Saving draft: %s", JSON.stringify(draft), {draftId});
             fs.writeFile(`data/${draftId}.json`, JSON.stringify(draft), (err) => {
+                logger.info("No further action expected. Disconnecting clients.", {draftId});
+                for (let room of [roomHost, roomGuest, roomSpec]) {
+                    socket.nsp.in(room).clients((error: any, clientIds: string[]) => {
+                        if (error) throw error;
+                        for (let clientId of clientIds) {
+                            socket.nsp.connected[clientId].disconnect(true);
+                        }
+                    });
+                }
                 if (err) throw err;
                 logger.info( `Draft saved to data/${draftId}.json`, {draftId});
                 draftsStore.finishDraft(draftId);

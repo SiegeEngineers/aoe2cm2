@@ -110,7 +110,10 @@ export class DraftsStore {
     }
 
     public disconnectPlayer(draftId: string, player: Player) {
-        const draft: Draft = this.getDraftOrThrow(draftId);
+        const draft = this.getDraftGracefully(draftId);
+        if (draft === undefined) {
+            return;
+        }
         switch (player) {
             case Player.HOST:
                 draft.nameHost = '…';
@@ -124,6 +127,14 @@ export class DraftsStore {
                 draft.guestReady = false;
                 this.pauseCountdown(draftId);
                 break;
+        }
+    }
+
+    private getDraftGracefully(draftId: string): Draft | undefined {
+        try {
+            return this.getDraftOrThrow(draftId);
+        } catch (e) {
+            return undefined;
         }
     }
 
