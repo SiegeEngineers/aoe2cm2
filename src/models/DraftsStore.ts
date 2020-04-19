@@ -14,7 +14,7 @@ import {logger} from "../util/Logger";
 import {IRecentDraft} from "../types";
 
 interface ICountdownValues {
-    timeout: NodeJS.Timeout;
+    timeout?: NodeJS.Timeout;
     value: number;
     socket: socketio.Socket;
 }
@@ -116,11 +116,13 @@ export class DraftsStore {
                 draft.nameHost = '…';
                 draft.hostConnected = false;
                 draft.hostReady = false;
+                this.pauseCountdown(draftId);
                 break;
             case Player.GUEST:
                 draft.nameGuest = '…';
                 draft.guestConnected = false;
                 draft.guestReady = false;
+                this.pauseCountdown(draftId);
                 break;
         }
     }
@@ -138,14 +140,18 @@ export class DraftsStore {
 
     public setPlayerReady(draftId: string, player: Player) {
         const draft: Draft = this.getDraftOrThrow(draftId);
+        let previousReadyValue = false;
         switch (player) {
             case Player.HOST:
+                previousReadyValue = draft.hostReady;
                 draft.hostReady = true;
                 break;
             case Player.GUEST:
+                previousReadyValue = draft.guestReady;
                 draft.guestReady = true;
                 break;
         }
+        return previousReadyValue;
     }
 
     public playersAreReady(draftId: string) {
@@ -189,6 +195,16 @@ export class DraftsStore {
         }
     }
 
+    public pauseCountdown(draftId: string) {
+        const countdown = this.countdowns.get(draftId);
+        if (countdown === undefined || countdown.timeout === undefined) {
+            return;
+        }
+        clearInterval(countdown.timeout);
+        countdown.timeout = undefined;
+        logger.info('Pausing countdown for draftId %s', draftId, {draftId});
+    }
+
     public startCountdown(draftId: string, socket: socketio.Socket) {
         const expectedActions = this.getExpectedActions(draftId);
         if (expectedActions.length > 0) {
@@ -228,7 +244,12 @@ export class DraftsStore {
 
                 }
             }, 1000);
-            this.countdowns.set(draftId, {timeout: interval, value: 30, socket});
+            let initialValue = 30;
+            let countdown = this.countdowns.get(draftId);
+            if (countdown !== undefined) {
+                initialValue = countdown.value;
+            }
+            this.countdowns.set(draftId, {timeout: interval, value: initialValue, socket});
         }
     }
 
@@ -240,7 +261,10 @@ export class DraftsStore {
     public restartOrCancelCountdown(draftId: string) {
         let countdown = this.countdowns.get(draftId);
         if (countdown !== undefined) {
-            clearInterval(countdown.timeout);
+            if (countdown.timeout !== undefined) {
+                clearInterval(countdown.timeout);
+                this.resetCountdownValue(draftId);
+            }
             const expectedActions = this.getExpectedActions(draftId);
             const roomHost: string = `${draftId}-host`;
             const roomGuest: string = `${draftId}-guest`;
@@ -254,6 +278,14 @@ export class DraftsStore {
                 this.startCountdown(draftId, countdown.socket);
             }
         }
+    }
+
+    private resetCountdownValue(draftId: string) {
+        const countdown = this.countdowns.get(draftId);
+        if (countdown === undefined) {
+            return;
+        }
+        countdown.value = 30;
     }
 
     finishDraft(draftId: string) {

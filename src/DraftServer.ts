@@ -199,15 +199,16 @@ export const DraftServer = {
 
             socket.on("ready", (message: {}, fn: (dc: IDraftConfig) => void) => {
                 let assignedRole: Player = Player.NONE;
+                let wasAlreadyReady = false;
                 if (Object.keys(socket.rooms).includes(roomHost)) {
-                    draftsStore.setPlayerReady(draftId, Player.HOST);
+                    wasAlreadyReady = draftsStore.setPlayerReady(draftId, Player.HOST);
                     assignedRole = Player.HOST;
                 } else if (Object.keys(socket.rooms).includes(roomGuest)) {
-                    draftsStore.setPlayerReady(draftId, Player.GUEST);
+                    wasAlreadyReady = draftsStore.setPlayerReady(draftId, Player.GUEST);
                     assignedRole = Player.GUEST;
                 }
                 logger.info("Player indicates they are ready: %s", assignedRole, {draftId});
-                if (draftsStore.playersAreReady(draftId)) {
+                if (!wasAlreadyReady && draftsStore.playersAreReady(draftId)) {
                     logger.info("Both Players are ready, starting countdown.", {draftId});
                     draftsStore.startCountdown(draftId, socket);
                     draftsStore.setStartTimestamp(draftId);
