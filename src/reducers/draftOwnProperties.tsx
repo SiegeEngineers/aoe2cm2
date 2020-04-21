@@ -47,7 +47,7 @@ export const draftOwnPropertiesReducer = (state: IDraftOwnPropertiesState = init
             return {...state, whoAmI: action.value};
         case ClientActions.DISCONNECT_FROM_SERVER:
             console.log(ClientActions.DISCONNECT_FROM_SERVER, action);
-            return {...state, whoAmI: undefined};
+            return {...initialDraftOwnPropertiesState};
         case ServerActions.APPLY_REPLAY:
             console.log(ServerActions.APPLY_REPLAY, action.value);
             return {

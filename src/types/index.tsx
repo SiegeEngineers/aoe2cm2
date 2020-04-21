@@ -16,6 +16,9 @@ export interface IDraftState {
 
 export interface IReplayState {
     events: DraftEvent[];
+    countdownInterval: NodeJS.Timeout | null;
+    stopCountdown: NodeJS.Timeout | null;
+    eventTimeouts: NodeJS.Timeout[];
 }
 
 export interface ApplicationState {

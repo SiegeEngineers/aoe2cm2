@@ -16,6 +16,9 @@ export function mapStateToProps(state: ApplicationState) {
         preset: state.draft.preset as Preset,
         draftEvents: state.draft.events,
         replayEvents: state.replay.events,
+        countdownInterval: state.replay.countdownInterval,
+        eventTimeouts: state.replay.eventTimeouts,
+        stopCountdown: state.replay.stopCountdown,
     }
 }
 
@@ -24,7 +27,10 @@ export function mapDispatchToProps(dispatch: Dispatch<actions.Action>) {
         setCountdownValue: (values: ICountdownValues) => dispatch(actions.setCountdownValue(values)),
         setEvents: (value: { player: Player, action: ModelAction, events: DraftEvent[] }) => dispatch(actions.setEvents(value)),
         setDraftEvents: (value: DraftEvent[]) => dispatch(actions.setDraftEvents(value)),
-        act: (value:DraftEvent)=>dispatch(actions.act(value)),
+        act: (value: DraftEvent) => dispatch(actions.act(value)),
+        setCountdownInterval: (value: NodeJS.Timeout | null) => dispatch(actions.setCountdownInterval(value)),
+        setEventTimeouts: (value: NodeJS.Timeout[]) => dispatch(actions.setEventTimeouts(value)),
+        setStopCountdown: (value: NodeJS.Timeout | null) => dispatch(actions.setStopCountdown(value)),
     }
 }
 

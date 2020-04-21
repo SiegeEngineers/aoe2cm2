@@ -1,6 +1,6 @@
 import {IDraftState} from "../types";
 import {DraftAction} from "../actions";
-import {Actions, ServerActions} from "../constants";
+import {Actions, ClientActions, ServerActions} from "../constants";
 import Preset from "../models/Preset";
 import Player from "../constants/Player";
 import AdminEvent from "../models/AdminEvent";
@@ -91,6 +91,9 @@ export const draftReducer = (state: IDraftState = initialDraftState, action: Dra
                 ...draft,
                 events: []
             };
+        case ClientActions.DISCONNECT_FROM_SERVER:
+            console.log(ClientActions.DISCONNECT_FROM_SERVER, action);
+            return {...initialDraftState};
     }
     return state;
 };

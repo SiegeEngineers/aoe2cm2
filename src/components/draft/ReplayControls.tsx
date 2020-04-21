@@ -17,18 +17,21 @@ interface IProps extends WithTranslation {
     nextAction: number;
     draftEvents: DraftEvent[];
     replayEvents: DraftEvent[];
+    countdownInterval: NodeJS.Timeout | null;
+    stopCountdown: NodeJS.Timeout | null;
+    eventTimeouts: NodeJS.Timeout[];
 
     setCountdownValue: (values: ICountdownValues) => void;
     setEvents: (value: { player: Player, action: ModelAction, events: DraftEvent[] }) => void;
     setDraftEvents: (value: DraftEvent[]) => void;
     act: (value: DraftEvent) => void;
+    setCountdownInterval: (value: NodeJS.Timeout | null) => void;
+    setEventTimeouts: (value: NodeJS.Timeout[]) => void;
+    setStopCountdown: (value: NodeJS.Timeout | null) => void;
 }
 
 interface IState {
     countdownValue: number;
-    countdownInterval: NodeJS.Timeout | null;
-    stopCountdown: NodeJS.Timeout | null;
-    eventTimeouts: NodeJS.Timeout[];
     currentOffset: number;
     isRunning: boolean;
 }
@@ -37,9 +40,6 @@ class ReplayControls extends React.Component<IProps, IState> {
 
     state = {
         countdownValue: 30,
-        countdownInterval: null,
-        stopCountdown: null,
-        eventTimeouts: [],
         currentOffset: 0,
         isRunning: false,
     } as IState;
@@ -90,7 +90,8 @@ class ReplayControls extends React.Component<IProps, IState> {
             const event = this.props.replayEvents[i];
             draftEventTimeouts.push(this.scheduleDraftEvent(draftViews, event));
         }
-        this.setState({eventTimeouts: draftEventTimeouts, isRunning: true});
+        this.setState({isRunning: true});
+        this.props.setEventTimeouts(draftEventTimeouts);
         this.scheduleStopCountdown();
     };
 
@@ -111,17 +112,18 @@ class ReplayControls extends React.Component<IProps, IState> {
 
     haltReplay = () => {
         this.stopCountdown();
-        for (let eventTimeout of this.state.eventTimeouts) {
+        for (let eventTimeout of this.props.eventTimeouts) {
             clearTimeout(eventTimeout);
         }
-        this.setState({eventTimeouts: [], isRunning: false});
+        this.setState({isRunning: false});
+        this.props.setEventTimeouts([]);
     }
 
     private scheduleStopCountdown() {
         const timeout = setTimeout(() => {
             this.stopCountdown();
         }, (this.props.replayEvents)[this.props.replayEvents.length - 1].offset);
-        this.setState({stopCountdown: timeout});
+        this.props.setStopCountdown(timeout);
     }
 
     private stopCountdown() {
@@ -165,15 +167,17 @@ class ReplayControls extends React.Component<IProps, IState> {
             this.decrementCountdownValue();
             this.props.setCountdownValue({display: true, value: this.state.countdownValue});
         }, 1000);
-        this.setState({countdownInterval: interval});
+        this.props.setCountdownInterval(interval);
     }
 
     private clearInterval() {
-        if (this.state.countdownInterval !== null) {
-            clearInterval(this.state.countdownInterval as NodeJS.Timeout);
+        if (this.props.countdownInterval !== null) {
+            clearInterval(this.props.countdownInterval);
+            this.props.setCountdownInterval(null);
         }
-        if (this.state.stopCountdown !== null) {
-            clearInterval(this.state.stopCountdown as NodeJS.Timeout);
+        if (this.props.stopCountdown !== null) {
+            clearInterval(this.props.stopCountdown);
+            this.props.setStopCountdown(null);
         }
     }
 

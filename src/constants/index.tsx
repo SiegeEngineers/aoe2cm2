@@ -12,6 +12,12 @@ export enum Actions {
     SET_DRAFT_EVENTS = 'SET_DRAFT_EVENTS',
 }
 
+export enum ReplayActions {
+    SET_COUNTDOWN_INTERVAL = 'SET_COUNTDOWN_INTERVAL',
+    SET_EVENT_TIMEOUTS = 'SET_EVENT_TIMEOUTS',
+    SET_STOP_COUNTDOWN = 'SET_STOP_COUNTDOWN',
+}
+
 export enum ServerActions {
     APPLY_CONFIG = 'APPLY_CONFIG',
     SET_PLAYER_CONNECTED = 'SET_PLAYER_CONNECTED',
@@ -21,7 +27,6 @@ export enum ServerActions {
     SET_EVENTS = 'SET_EVENTS',
     SET_COUNTDOWN_VALUE = 'SET_COUNTDOWN_VALUE',
     APPLY_REPLAY = 'APPLY_REPLAY',
-
 }
 
 export enum ClientActions {

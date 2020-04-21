@@ -1,4 +1,4 @@
-import {Actions, ClientActions, ServerActions} from '../constants';
+import {Actions, ClientActions, ReplayActions, ServerActions} from '../constants';
 import Player from "../constants/Player";
 import {default as ModelAction} from "../constants/Action";
 import {DraftEvent} from "../types/DraftEvent";
@@ -112,6 +112,21 @@ export interface IReplayEvent {
     value: IDraftState
 }
 
+export interface ISetCountdownInterval {
+    type: ReplayActions.SET_COUNTDOWN_INTERVAL
+    value: NodeJS.Timeout | null
+}
+
+export interface ISetEventTimeouts {
+    type: ReplayActions.SET_EVENT_TIMEOUTS
+    value: NodeJS.Timeout[]
+}
+
+export interface ISetStopCountdown {
+    type: ReplayActions.SET_STOP_COUNTDOWN
+    value: NodeJS.Timeout | null
+}
+
 export interface ISetEditorPreset {
     type: Actions.SET_EDITOR_PRESET
     value: Preset
@@ -144,12 +159,19 @@ export type DraftAction = IConnectPlayer
     | ISendReady
     | IClickOnCiv
     | ISetEvents
-    |ISetDraftEvents
+    | ISetDraftEvents
     | IConnect
     | IDisconnect
     | IReplayEvent;
 
-export type DraftCountdownAction = ICountdownEvent;
+export type ReplayAction = IDisconnect
+    | IReplayEvent
+    | ISetCountdownInterval
+    | ISetEventTimeouts
+    | ISetStopCountdown;
+
+export type DraftCountdownAction = ICountdownEvent
+    | IDisconnect;
 
 export type DraftOwnPropertiesAction = IApplyConfig
     | IChangeOwnName
@@ -175,6 +197,7 @@ export type PresetEditorAction = ISetEditorPreset
     | ISetEditorCivilisations;
 
 export type Action = DraftAction
+    | ReplayAction
     | DraftCountdownAction
     | DraftOwnPropertiesAction
     | LanguageAction
@@ -303,6 +326,27 @@ export function connect(): IConnect {
 export function disconnect(): IDisconnect {
     return {
         type: ClientActions.DISCONNECT_FROM_SERVER
+    }
+}
+
+export function setCountdownInterval(value: NodeJS.Timeout | null): ISetCountdownInterval {
+    return {
+        type: ReplayActions.SET_COUNTDOWN_INTERVAL,
+        value
+    }
+}
+
+export function setEventTimeouts(value: NodeJS.Timeout[]): ISetEventTimeouts {
+    return {
+        type: ReplayActions.SET_EVENT_TIMEOUTS,
+        value
+    }
+}
+
+export function setStopCountdown(value: NodeJS.Timeout | null): ISetStopCountdown {
+    return {
+        type: ReplayActions.SET_STOP_COUNTDOWN,
+        value
     }
 }
 

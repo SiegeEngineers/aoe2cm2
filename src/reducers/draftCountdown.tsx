@@ -1,6 +1,6 @@
 import {ICountdownState} from "../types";
 import {DraftCountdownAction} from "../actions";
-import {ServerActions} from "../constants";
+import {ClientActions, ServerActions} from "../constants";
 
 export const initialDraftCountdownState: ICountdownState = {
     countdownValue: 0,
@@ -8,15 +8,17 @@ export const initialDraftCountdownState: ICountdownState = {
 };
 
 export const draftCountdownReducer = (state: ICountdownState = initialDraftCountdownState, action: DraftCountdownAction) => {
-    if (action.type === ServerActions.SET_COUNTDOWN_VALUE) {
-        console.log(ServerActions.SET_COUNTDOWN_VALUE, action.value);
-        return {
-            ...state,
-            countdownValue: action.value.value,
-            countdownVisible: action.value.display
-        };
-
-    } else {
-        return state;
+    switch (action.type) {
+        case ServerActions.SET_COUNTDOWN_VALUE:
+            console.log(ServerActions.SET_COUNTDOWN_VALUE, action.value);
+            return {
+                ...state,
+                countdownValue: action.value.value,
+                countdownVisible: action.value.display
+            };
+        case ClientActions.DISCONNECT_FROM_SERVER:
+            console.log(ClientActions.DISCONNECT_FROM_SERVER, action);
+            return {...initialDraftCountdownState};
     }
+    return state;
 };
