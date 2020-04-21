@@ -149,12 +149,17 @@ class Draft implements IDraftState {
                 let playerEvent = draftEvent as PlayerEvent;
                 if (playerEvent.player !== player) {
                     if (this.preset.turns[index].parallel) {
-                        playerEvent = this.events[index + 1] as PlayerEvent;
+                        if (this.events.length > index + 1) {
+                            playerEvent = this.events[index + 1] as PlayerEvent;
+                            exclusivePicks.push(playerEvent.civilisation);
+                        }
                     } else {
                         playerEvent = this.events[index - 1] as PlayerEvent;
+                        exclusivePicks.push(playerEvent.civilisation);
                     }
+                } else {
+                    exclusivePicks.push(playerEvent.civilisation);
                 }
-                exclusivePicks.push(playerEvent.civilisation);
             }
         });
         return exclusivePicks;
@@ -191,12 +196,17 @@ class Draft implements IDraftState {
                 let playerEvent = draftEvent as PlayerEvent;
                 if (playerEvent.player !== player) {
                     if (this.preset.turns[index].parallel) {
-                        playerEvent = this.events[index + 1] as PlayerEvent;
+                        if (this.events.length > index + 1) {
+                            playerEvent = this.events[index + 1] as PlayerEvent;
+                            exclusiveBans.push(playerEvent.civilisation);
+                        }
                     } else {
                         playerEvent = this.events[index - 1] as PlayerEvent;
+                        exclusiveBans.push(playerEvent.civilisation);
                     }
+                } else {
+                    exclusiveBans.push(playerEvent.civilisation);
                 }
-                exclusiveBans.push(playerEvent.civilisation);
             }
         });
         return exclusiveBans;

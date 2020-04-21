@@ -326,24 +326,44 @@ it('VLD_908: no turns', () => {
     expect(errors).toEqual([ValidationId.VLD_908]);
 });
 
-it('Execute parallel turn: Inverse order (1)', () => {
-    let preset = new Preset("test", Civilisation.ALL, [
-        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, true),
-        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL),
-    ]);
-    const validator = new Validator(prepareReadyStore(preset, []));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS));
-    expect(errors).toEqual([]);
+describe('Execute parallel turn: Inverse order (1)', () => {
+    it.each`
+    action          | actionType         | exclusivity
+    ${Action.PICK}  | ${ActionType.PICK} | ${Exclusivity.GLOBAL}
+    ${Action.PICK}  | ${ActionType.PICK} | ${Exclusivity.NONEXCLUSIVE}
+    ${Action.PICK}  | ${ActionType.PICK} | ${Exclusivity.EXCLUSIVE}
+    ${Action.BAN}   | ${ActionType.BAN}  | ${Exclusivity.GLOBAL}
+    ${Action.BAN}   | ${ActionType.BAN}  | ${Exclusivity.NONEXCLUSIVE}
+    ${Action.BAN}   | ${ActionType.BAN}  | ${Exclusivity.EXCLUSIVE}
+  `('$exclusivity $action', ({action, actionType, exclusivity}) => {
+        let preset = new Preset("test", Civilisation.ALL, [
+            new Turn(Player.HOST, action, exclusivity, false, true),
+            new Turn(Player.GUEST, action, exclusivity),
+        ]);
+        const validator = new Validator(prepareReadyStore(preset, []));
+        const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, actionType, Civilisation.AZTECS));
+        expect(errors).toEqual([]);
+    });
 });
 
-it('Execute parallel turn: Inverse order (2)', () => {
-    let preset = new Preset("test", Civilisation.ALL, [
-        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, true),
-        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL),
-    ]);
-    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS)]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.BRITONS));
-    expect(errors).toEqual([]);
+describe('Execute parallel turn: Inverse order (2)', () => {
+    it.each`
+    action          | actionType         | exclusivity
+    ${Action.PICK}  | ${ActionType.PICK} | ${Exclusivity.GLOBAL}
+    ${Action.PICK}  | ${ActionType.PICK} | ${Exclusivity.NONEXCLUSIVE}
+    ${Action.PICK}  | ${ActionType.PICK} | ${Exclusivity.EXCLUSIVE}
+    ${Action.BAN}   | ${ActionType.BAN}  | ${Exclusivity.GLOBAL}
+    ${Action.BAN}   | ${ActionType.BAN}  | ${Exclusivity.NONEXCLUSIVE}
+    ${Action.BAN}   | ${ActionType.BAN}  | ${Exclusivity.EXCLUSIVE}
+  `('$exclusivity $action', ({action, actionType, exclusivity}) => {
+        let preset = new Preset("test", Civilisation.ALL, [
+            new Turn(Player.HOST, action, exclusivity, false, true),
+            new Turn(Player.GUEST, action, exclusivity),
+        ]);
+        const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.GUEST, actionType, Civilisation.AZTECS)]));
+        const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, actionType, Civilisation.BRITONS));
+        expect(errors).toEqual([]);
+    });
 });
 
 it('Execute parallel turn: Inverse snipe order (2)', () => {
