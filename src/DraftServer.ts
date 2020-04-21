@@ -155,6 +155,11 @@ export const DraftServer = {
 
             socket.on("set_role", (message: ISetRoleMessage, fn: (dc: IDraftConfig) => void) => {
                 logger.info("Player wants to set own role: %s", JSON.stringify(message), {draftId});
+                if (!draftsStore.has(draftId)) {
+                    logger.warn("Draft does not exist", {draftId});
+                    socket.emit('message', 'This draft does not exist.');
+                    return;
+                }
                 const role: Player = Util.sanitizeRole(message.role);
                 let assignedRole = getAssignedRole(socket, roomHost, roomGuest);
                 const rooms = Object.keys(socket.rooms);
@@ -191,6 +196,11 @@ export const DraftServer = {
 
             socket.on("set_name", (message: ISetNameMessage, fn: () => void) => {
                 logger.info("Player wants to set own name: %s", JSON.stringify(message), {draftId});
+                if (!draftsStore.has(draftId)) {
+                    logger.warn("Draft does not exist", {draftId});
+                    socket.emit('message', 'This draft does not exist.');
+                    return;
+                }
                 let assignedRole = getAssignedRole(socket, roomHost, roomGuest);
                 if (assignedRole === Player.HOST) {
                     logger.info("Setting HOST player name to: %s", message.name, {draftId});
@@ -212,6 +222,11 @@ export const DraftServer = {
             });
 
             socket.on("ready", (message: {}, fn: (dc: IDraftConfig) => void) => {
+                if (!draftsStore.has(draftId)) {
+                    logger.warn("Player wants to indicate readyness, but Draft does not exist", {draftId});
+                    socket.emit('message', 'This draft does not exist.');
+                    return;
+                }
                 let assignedRole: Player = Player.NONE;
                 let wasAlreadyReady = false;
                 if (Object.keys(socket.rooms).includes(roomHost)) {
@@ -243,6 +258,9 @@ export const DraftServer = {
             socket.on('disconnecting', function () {
                 const assignedRole = getAssignedRole(socket, roomHost, roomGuest);
                 logger.info("Player disconnected: %s", assignedRole, {draftId});
+                if (!draftsStore.has(draftId)) {
+                    return;
+                }
                 draftsStore.disconnectPlayer(draftId, assignedRole);
             });
 

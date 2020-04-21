@@ -15,6 +15,11 @@ export const Listeners = {
     actListener(draftsStore: DraftsStore, draftId: string, validateAndApply: (draftId: string, message: DraftEvent) => ValidationId[], socket: SocketIO.Socket, roomHost: string, roomGuest: string, roomSpec: string) {
         return (message: PlayerEvent, fn: (retval: any) => void) => {
             logger.info("Got act message: %s", JSON.stringify(message), {draftId});
+            if (!draftsStore.has(draftId)) {
+                logger.warn("Draft does not exist", {draftId});
+                socket.emit('message', 'This draft does not exist.');
+                return;
+            }
 
             const civilisationsList = draftsStore.getDraftOrThrow(draftId).preset.civilisations.slice();
             message = Util.setRandomCivilisationIfNeeded(message, draftId, draftsStore, civilisationsList);
