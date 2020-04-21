@@ -2,6 +2,7 @@
 /presets
 presets.json
 alerts.json
+recentDrafts.json
 *.log
 
 # See https://help.github.com/ignore-files/ for more about ignoring files.

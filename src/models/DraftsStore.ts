@@ -12,6 +12,7 @@ import {actionTypeFromAction} from "../constants/ActionType";
 import {Listeners} from "../util/Listeners";
 import {logger} from "../util/Logger";
 import {IRecentDraft} from "../types";
+import fs from "fs";
 
 interface ICountdownValues {
     timeout?: NodeJS.Timeout;
@@ -19,10 +20,11 @@ interface ICountdownValues {
     socket: socketio.Socket;
 }
 
+const RECENT_DRAFTS_FILE = 'recentDrafts.json';
+
 export class DraftsStore {
     private drafts: Map<string, DraftViews> = new Map<string, DraftViews>();
     private countdowns: Map<String, ICountdownValues> = new Map<String, ICountdownValues>();
-    private recentDrafts: IRecentDraft[] = [];
 
     public createDraft(draftId: string, draft: Draft) {
         this.assertDraftDoesNotExist(draftId);
@@ -45,7 +47,7 @@ export class DraftsStore {
 
 
     public getRecentDrafts(): IRecentDraft[] {
-        const recentDrafts: IRecentDraft[] = this.getDraftIds()
+        const ongoingDrafts: IRecentDraft[] = this.getDraftIds()
             .map((value: string) => {
                 return {...this.getDraftOrThrow(value), draftId: value};
             })
@@ -61,18 +63,19 @@ export class DraftsStore {
                 };
             });
 
-        if (recentDrafts.length < 10) {
-            const iterations = 10 - recentDrafts.length;
+        const recentDrafts = DraftsStore.loadRecentDrafts();
+        if (ongoingDrafts.length < 10) {
+            const iterations = 10 - ongoingDrafts.length;
             for (let i = 0; i < iterations; i++) {
-                if (this.recentDrafts.length > i) {
-                    recentDrafts.push(this.recentDrafts[i]);
+                if (recentDrafts.length > i) {
+                    ongoingDrafts.push(recentDrafts[i]);
                 } else {
                     break;
                 }
             }
         }
 
-        return recentDrafts;
+        return ongoingDrafts;
     }
 
     public getDraftIds(): string[] {
@@ -310,16 +313,31 @@ export class DraftsStore {
 
     addRecentDraft(draftId: string) {
         const draft = this.getDraftOrThrow(draftId);
-        this.recentDrafts.unshift({
+        const recentDrafts = DraftsStore.loadRecentDrafts();
+        recentDrafts.unshift({
             title: draft.preset.name,
             draftId: draftId,
             ongoing: false,
             nameHost: draft.nameHost,
             nameGuest: draft.nameGuest
         });
-        while (this.recentDrafts.length > 10) {
-            this.recentDrafts.pop();
+        while (recentDrafts.length > 10) {
+            recentDrafts.pop();
         }
+        DraftsStore.saveRecentDrafts(recentDrafts);
+    }
+
+    private static loadRecentDrafts() {
+        if (fs.existsSync(RECENT_DRAFTS_FILE)) {
+            const fileContent = fs.readFileSync(RECENT_DRAFTS_FILE);
+            return JSON.parse(fileContent.toString()) as IRecentDraft[];
+        } else {
+            return [];
+        }
+    }
+
+    private static saveRecentDrafts(recentDrafts: IRecentDraft[]) {
+        fs.writeFileSync(RECENT_DRAFTS_FILE, JSON.stringify(recentDrafts));
     }
 
     public purgeStaleDrafts() {
