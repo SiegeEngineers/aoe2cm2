@@ -6,15 +6,15 @@ import PlayerEvent from "../../models/PlayerEvent";
 import ActionType from "../../constants/ActionType";
 import Civilisation from "../../models/Civilisation";
 
-it('test get empty recent drafts', () => {
+it('test get empty ongoing drafts', () => {
     const draftsStore = new DraftsStore();
-    expect(draftsStore.getRecentDrafts()).toEqual([]);
+    expect(draftsStore.getOngoingDrafts()).toEqual([]);
 });
 
 it('test do not get drafts without both connected players', () => {
     const draftsStore = new DraftsStore();
     draftsStore.createDraft('draftId', new Draft('nameHost', 'nameGuest', Preset.SIMPLE));
-    expect(draftsStore.getRecentDrafts()).toEqual([]);
+    expect(draftsStore.getOngoingDrafts()).toEqual([]);
 });
 
 it('test get all eleven ongoing drafts', () => {

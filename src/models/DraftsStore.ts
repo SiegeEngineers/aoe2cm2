@@ -47,6 +47,24 @@ export class DraftsStore {
 
 
     public getRecentDrafts(): IRecentDraft[] {
+        const ongoingDrafts = this.getOngoingDrafts();
+
+        const recentDrafts = DraftsStore.loadRecentDrafts();
+        if (ongoingDrafts.length < 10) {
+            const iterations = 10 - ongoingDrafts.length;
+            for (let i = 0; i < iterations; i++) {
+                if (recentDrafts.length > i) {
+                    ongoingDrafts.push(recentDrafts[i]);
+                } else {
+                    break;
+                }
+            }
+        }
+
+        return ongoingDrafts;
+    }
+
+    getOngoingDrafts() {
         const ongoingDrafts: IRecentDraft[] = this.getDraftIds()
             .map((value: string) => {
                 return {...this.getDraftOrThrow(value), draftId: value};
@@ -62,19 +80,6 @@ export class DraftsStore {
                     nameGuest: draft.nameGuest,
                 };
             });
-
-        const recentDrafts = DraftsStore.loadRecentDrafts();
-        if (ongoingDrafts.length < 10) {
-            const iterations = 10 - ongoingDrafts.length;
-            for (let i = 0; i < iterations; i++) {
-                if (recentDrafts.length > i) {
-                    ongoingDrafts.push(recentDrafts[i]);
-                } else {
-                    break;
-                }
-            }
-        }
-
         return ongoingDrafts;
     }
 
