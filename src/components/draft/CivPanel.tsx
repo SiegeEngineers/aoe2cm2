@@ -15,7 +15,7 @@ import Preset from "../../models/Preset";
 interface IProps extends WithTranslation {
     civilisation?: Civilisation;
     active: boolean;
-    sniped?: boolean;
+    sniped?: Civilisation;
     civPanelType: CivPanelType;
     whoAmI?: Player;
     triggerAction?: ActionType;
@@ -93,6 +93,10 @@ class CivPanel extends React.Component<IProps, IState> {
         if (!this.props.civilisation || !this.props.civilisation.isRandomlyChosenCiv) {
             randomMarkerClass += ' hidden';
         }
+        let snipeRandomMarkerClass = "random-snipe";
+        if (!this.props.sniped || !this.props.sniped.isRandomlyChosenCiv) {
+            snipeRandomMarkerClass += ' hidden';
+        }
         return (
             <div className={className} onClick={onClickAction}>
                 <div className={contentClass}>
@@ -102,6 +106,7 @@ class CivPanel extends React.Component<IProps, IState> {
                         </div>
                         <div className={randomMarkerClass}/>
                         <div className={snipeMarkerClass}/>
+                        <div className={snipeRandomMarkerClass}/>
                         <div className={usedMarkerClass}/>
                         <div className={textClass}>
                             <Trans>{civilisationKey}</Trans>

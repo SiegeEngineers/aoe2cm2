@@ -55,7 +55,7 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                 hasActivePanel = hasActivePanel || isThisPanelActive;
                 if (actionType === ActionType.PICK) {
                     let pickedCiv;
-                    let sniped = false;
+                    let sniped = undefined;
                     if (this.state.pickedCivs.length > picksIndex) {
                         pickedCiv = this.state.pickedCivs[picksIndex];
                         sniped = removeIfContains(snipes, pickedCiv);
@@ -155,15 +155,14 @@ class PlayerDraftState extends React.Component<IProps, IState> {
     }
 }
 
-function removeIfContains(haystack: Civilisation[], needle: Civilisation): boolean {
+function removeIfContains(haystack: Civilisation[], needle: Civilisation): Civilisation | undefined {
     const index: number = haystack.findIndex((value: Civilisation) => {
         return value.name === needle.name && value.gameVersion === needle.gameVersion
     });
     if (index > -1) {
-        haystack.splice(index, 1);
-        return true;
+        return haystack.splice(index, 1)[0];
     }
-    return false;
+    return undefined;
 }
 
 

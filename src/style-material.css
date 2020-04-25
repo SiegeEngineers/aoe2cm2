@@ -247,6 +247,18 @@ a:hover {
 	background-repeat: no-repeat;
 }
 
+.random-snipe {
+	display: block;
+	position: absolute;
+	width: 32px;
+	height: 32px;
+	top: 32px;
+	right: 32px;
+	background-image: url('/images/random.png');
+	background-size: 32px 32px;
+	background-repeat: no-repeat;
+}
+
 .ban .random-pick {
 	top: -4px;
 	right: -4px;
