@@ -404,6 +404,20 @@ it('Execute parallel turn: Regular order (2)', () => {
     expect(errors).toEqual([]);
 });
 
+it('Snipe globally banned civ', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL),
+        new Turn(Player.HOST, Action.BAN, Exclusivity.GLOBAL),
+        new Turn(Player.GUEST, Action.SNIPE, Exclusivity.GLOBAL),
+    ]);
+    const validator = new Validator(prepareReadyStore(preset, [
+        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS),
+        new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS),
+    ]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.SNIPE, Civilisation.AZTECS));
+    expect(errors).toEqual([]);
+});
+
 
 const prepareStore = (preset: Preset, events: DraftEvent[] = []): DraftsStore => {
     const draft = new Draft(NAME_HOST, NAME_GUEST, preset);

@@ -52,7 +52,7 @@ export class Validation {
         if (!draft.hasNextAction()) {
             return true;
         }
-        if (Util.isPlayerEvent(draftEvent)) {
+        if (Util.isPlayerEvent(draftEvent) && !(draftEvent.actionType === ActionType.SNIPE)) {
             const playerEvent = draftEvent as PlayerEvent;
             const globalBans: Civilisation[] = draft.getGlobalBans();
             if (Validation.includes(globalBans, playerEvent.civilisation)) {
