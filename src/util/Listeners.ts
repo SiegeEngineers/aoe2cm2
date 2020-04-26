@@ -70,6 +70,7 @@ export const Listeners = {
             if (actionTypeFromAction(expectedAction.action) === ActionType.REVEAL) {
                 const draftEvent = new AdminEvent(expectedAction.player, expectedAction.action);
                 setTimeout(() => {
+                    logger.info('Executing admin event: %s', JSON.stringify(draftEvent), {draftId});
                     draftViews.reveal(expectedAction.action);
                     socket.nsp
                         .in(roomHost)
