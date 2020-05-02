@@ -4,6 +4,11 @@ Captains Mode for Age of Empires II
 This is a recreation of the original [aoe2cm by pip](https://github.com/aocpip/aoe2cm) 
 with additional features such as snipe turns and user generated presets.
 
+Age of Empires II © Microsoft Corporation.
+**Captains Mode for Age of Empires II** was created under Microsoft's "[Game Content Usage Rules](https://www.xbox.com/en-us/developers/rules)" using assets from Age of Empires II,
+and it is not endorsed by or affiliated with Microsoft.
+
+
 ## Setup
 
 ```bash

@@ -12,6 +12,12 @@ class Footer extends React.Component<object, object> {
                     &#8196;·&#8196;
                     <a href="https://github.com/SiegeEngineers/aoe2cm2">GitHub</a>
                 </div>
+                <div style={{textAlign: 'center'}} className="text-primary">
+                    Age of Empires II © Microsoft Corporation.
+                    <b> Captains Mode for Age of Empires II</b> was created under Microsoft's "<a
+                    href="https://www.xbox.com/en-us/developers/rules">Game Content Usage Rules</a>" using assets
+                    from Age of Empires II, and it is not endorsed by or affiliated with Microsoft.
+                </div>
             </div>
         );
     }
