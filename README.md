@@ -17,7 +17,7 @@ cp alerts.json.template alerts.json
 npm install
 npm run build
 npm run build-server
-node dist/server.js
+node build/server.js
 ```
 
 Visit `localhost:3000` then.
