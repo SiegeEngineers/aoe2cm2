@@ -19,9 +19,11 @@ class LanguageSelector extends React.Component<IProps, object> {
             }
         };
 
-        let className ="language-selector pure-button";
+        let className ="language-selector button is-light";
         if(this.props.language === i18n.language){
-            className += ' pure-button-active';
+            className += ' is-link is-hovered';
+        } else {
+            className += ' ';
         }
 
         return (

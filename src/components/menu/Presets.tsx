@@ -28,40 +28,30 @@ class Presets extends React.Component<WithTranslation, IState> {
         }
 
         return (
-            <div>
-                <div id="join_game" className="home_card box">
+            <div className="container">
+                <div id="join_game" className="content box">
                     <h2><Trans i18nKey='presets.joinTitle'>Join existing draft</Trans></h2>
-                    <div>
-                        <div className="centered text-primary info-card">
-                            <Trans i18nKey='presets.code'>code:</Trans>
+                    <div className="field has-addons">
+                        <div className="control">
+                            <label className="button is-static"><Trans
+                                i18nKey='spectate.code'>code:</Trans></label>
                         </div>
-                        <div className="code">
-                            <input id="input-code" type="text" name="code" className="inset-input"/>
+                        <div className="control ">
+                            <input id="input-code" type="text" name="code" className="input"/>
                         </div>
-                        <div className="pure-g join-actions text-primary">
-                            <div className="pure-u-1-1">
-                                <div className="join-action">
-                                    <button className="shadowbutton text-primary" id="join-game-button"
-                                            onClick={this.joinDraft}>
-                                        <Trans i18nKey='presets.join'>Join</Trans>
-                                    </button>
-                                </div>
-                            </div>
+                        <div className="control">
+                            <button className="button is-link" id="join-game-button" onClick={this.joinDraft}>
+                                <Trans i18nKey='presets.join'>Join</Trans>
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div className="pure-g">
-                    <div className="pure-u-1-1">
-                        <div className="card home_card">
-
-                            <h2>
-                                <Trans i18nKey='presets.useTitle'>Use preset</Trans>
-                                <CustomisePresetButton preset={Preset.NEW} i18nKey='createNewPreset'/>
-                            </h2>
-
-                            <PresetList items={this.state.items}/>
-                        </div>
-                    </div>
+                <div className="content box">
+                    <h2>
+                        <Trans i18nKey='presets.useTitle'>Use preset</Trans>
+                        <CustomisePresetButton preset={Preset.NEW} i18nKey='createNewPreset'/>
+                    </h2>
+                    <PresetList items={this.state.items}/>
                 </div>
             </div>
         );

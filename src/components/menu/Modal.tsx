@@ -19,18 +19,25 @@ class Modal extends React.Component<IProps, object> {
         let nameProposal = Modal.getNameProposal();
         if (this.props.visible) {
             return (
-                <div id="overlay" className="text-primary">
+                <div id="overlay" className="content box">
                     <div id="set-name-message">
                         <h2><Trans>modal.header</Trans></h2>
                         <p><Trans>modal.callToAction</Trans></p>
-                        <div className='combo-form'>
-                            <input id={this.INPUT_CAPTAIN_NAME} type="text" className="inset-input"
-                                   defaultValue={nameProposal}/>
-                            <button className='contourless-button' onClick={this.newNameProposal}>🔃</button>
+                        <div className="field has-addons">
+                            <div className="control">
+                                <input id={this.INPUT_CAPTAIN_NAME} type="text"
+                                       placeholder="Captain Name"
+                                       className="input" defaultValue={nameProposal}/>
+                            </div>
+                            <div className="control">
+                                <button className='button' onClick={this.newNameProposal}><img
+                                    src="/images/icon_shuffle.png" width="24px" height="24px"/></button>
+                            </div>
                         </div>
                         <p><Trans>modal.editInfo</Trans></p>
-                        <span><a onClick={this.callback}><span
-                            className="back-icon"><Trans>modal.setName</Trans></span></a></span>
+                        <p>
+                            <button className="button is-link" onClick={this.callback}><Trans>modal.setName</Trans></button>
+                        </p>
                         <p><Trans>modal.readTheRules</Trans></p>
                     </div>
                 </div>

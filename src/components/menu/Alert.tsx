@@ -5,7 +5,10 @@ interface IProps {
     config: IAlert;
 }
 
-export const Alert = ({config}: IProps) => <div className={'box alert ' + config.class}>
-    <h2>{config.title}</h2>
-    <div dangerouslySetInnerHTML={{__html: config.content}}/>
-</div>;
+export const Alert = ({config}: IProps) => <article className={'message is-' + config.class}>
+    <div className="message-header">
+        {config.title}
+        <button className="delete" aria-label="delete"></button>
+    </div>
+    <div className="message-body" dangerouslySetInnerHTML={{__html: config.content}}/>
+</article>;

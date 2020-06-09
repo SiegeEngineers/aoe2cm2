@@ -68,7 +68,6 @@
 
 body {
 	background-color: #eeeeee;
-	font-family: "Trebuchet MS", Helvetica, sans-serif !important;
 	color: rgba(0, 0, 0, 0.87);
 }
 
@@ -93,7 +92,7 @@ a:hover {
 
 .name-changer {
 	color: rgba(0, 0, 0, 0.87);
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
+
 	font-size: 18px;
 }
 
@@ -282,7 +281,7 @@ a:hover {
 
 .shadowbutton, .player-name button, #preset-name button {
 	display: inline-block;
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
+
 	box-sizing: content-box;
 	min-width: 64px;
 	cursor: pointer;
@@ -392,7 +391,7 @@ a:hover {
 }
 
 #settings {
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
+
 	margin-right: -16px;
 	margin-left: -16px;
 	margin-bottom: -16px;
@@ -407,7 +406,7 @@ a:hover {
 	font-size: 20px;
 	margin: 8px;
 	display: inline-block;
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
+
 }
 
 .info-card {
@@ -451,7 +450,7 @@ a:hover {
 	width: 280px;
 	margin: 8px auto;
 
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
+
 }
 
 .home_card .styled-select .chosen-single
@@ -464,7 +463,7 @@ a:hover {
 	font-size:16px;
 	line-height:32px;
 	height:33px;
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
+
 }
 
 .home_card .styled-select .chosen-container-single .chosen-single div b
@@ -830,7 +829,7 @@ input[type="checkbox"]:checked + label span
 	display: inline-block;
 	padding-right: 4px;
 	color: rgba(0, 0, 0, 0.38);
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
+
 	font-size: 10px;
 	font-weight: 600;
 	text-transform: uppercase;
@@ -840,7 +839,7 @@ input[type="checkbox"]:checked + label span
 	width: auto;
 	padding-left: 2px;
 	color: rgba(0, 0, 0, 0.38);
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
+
 	font-size: 10px;
 	font-weight: 600;
 	text-transform: uppercase;
@@ -979,7 +978,7 @@ input[type="checkbox"]:checked + label span
 	font-size: 12px;
 	font-weight: 600;
 	text-transform: uppercase;
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
+
 
 	position: relative;
 }
@@ -1037,7 +1036,7 @@ input[type="checkbox"]:checked + label span
 	padding-top: 4px;
 	margin: 0px 16px;
 	color: rgba(0, 0, 0, 0.38);
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
+
 	font-size: 10px;
 	font-weight: 600;
 	text-transform: uppercase;
@@ -1064,7 +1063,7 @@ input[type="checkbox"]:checked + label span
 
 .player-head {
 	font-weight: 600;
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
+
 	margin-bottom: 16px;
 }
 
@@ -1097,7 +1096,7 @@ input[type="checkbox"]:checked + label span
 }
 
 .player .head-text {
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
+
 	color: rgba(0, 0, 0, 0.54);
 	margin: 8px;
 	font-size: 12px;
@@ -1500,7 +1499,7 @@ img {
 
 .aoecm-tooltip .tooltipster-content
 {
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
+
 	font-size: 12px;
 	line-height: 14px;
 	padding: 8px;

@@ -1,8 +1,13 @@
 [
   {
-    "class": "white",
+    "class": "dark",
     "title": "Configuration Needed",
     "content": "<b>Oh boy!</b> This is an alert. You can edit <code>alerts.json</code> to change the alerts displayed here."
+  },
+  {
+      "class": "success",
+      "title": "Configuration Needed",
+      "content": "<b>Oh boy!</b> This is an alert. You can edit <code>alerts.json</code> to change the alerts displayed here."
   },
   {
     "class": "info",

@@ -31,28 +31,25 @@ class Spectate extends React.Component<WithTranslation, IState> {
                                                                                     callback={this.recentDraftCallback}/>)
 
         return (
-            <div>
-                <div id="join_game" className="home_card box">
+            <div className="container">
+                <div id="join_game" className="box content">
                     <h2><Trans i18nKey='spectate.spectateTitle'>Spectate existing draft</Trans></h2>
-                    <div>
-                        <div className="centered text-primary info-card">
-                            <Trans i18nKey='spectate.code'>code:</Trans>
+                    <div className="field has-addons">
+                        <div className="control">
+                            <label className="button is-static"><Trans
+                                i18nKey='spectate.code'>code:</Trans></label>
                         </div>
-                        <div className="code">
-                            <input id="input-code" type="text" name="code" className="inset-input"/>
+                        <div className="control ">
+                            <input id="input-code" type="text" name="code" className="input"/>
                         </div>
-                        <div className="pure-g join-actions text-primary">
-                            <div className="pure-u-1-1">
-                                <button className="shadowbutton text-primary" id="join-game-button"
-                                        onClick={this.joinDraft}>
-                                    <Trans i18nKey='spectate.spectate'>Spectate</Trans>
-                                </button>
-                            </div>
+                        <div className="control">
+                            <button className="button is-link" id="join-game-button" onClick={this.joinDraft}>
+                                <Trans i18nKey='spectate.spectate'>Spectate</Trans>
+                            </button>
                         </div>
                     </div>
                 </div>
-
-                <div id="recent_drafts" className="home_card box">
+                <div id="recent_drafts" className="box content">
                     <h2><Trans i18nKey='spectate.recentDraftsTitle'>Recent Drafts</Trans></h2>
                     <table className="pure-table pure-table-horizontal recent-drafts">
                         <tbody>

@@ -12,26 +12,26 @@ import PresetEditor from "../PresetEditor/PresetEditor";
 class Menu extends React.Component<WithTranslation, object> {
     public render() {
         return (
-            <div className="content">
+            <div className="container">
                 <Modal/>
                 <div className="title">
                     <span id="aoe-title">Age of Empires II</span>
                     <span id="cm-logo"/>
                     <span id="cm-title">Captains mode</span>
                 </div>
-                <div className="pure-menu pure-menu-horizontal main-menu">
-                    <ul className="pure-menu-list">
-                        <li className="pure-menu-item">
-                            <Link to='/' className="pure-menu-link"><Trans>menu.welcome</Trans></Link>
+                <div className="tabs is-centered main-menu">
+                    <ul>
+                        <li className="is-active">
+                            <Link to='/'><Trans>menu.welcome</Trans></Link>
                         </li>
-                        <li className="pure-menu-item">
-                            <Link to='/presets' className="pure-menu-link"><Trans>menu.hostOrJoin</Trans></Link>
+                        <li>
+                            <Link to='/presets'><Trans>menu.hostOrJoin</Trans></Link>
                         </li>
-                        <li className="pure-menu-item">
-                            <Link to='/spectate' className="pure-menu-link"><Trans>menu.spectate</Trans></Link>
+                        <li>
+                            <Link to='/spectate'><Trans>menu.spectate</Trans></Link>
                         </li>
-                        <li className="pure-menu-item">
-                            <Link to='/practice' className="pure-menu-link"><Trans>menu.practice</Trans></Link>
+                        <li>
+                            <Link to='/practice'><Trans>menu.practice</Trans></Link>
                         </li>
                     </ul>
                 </div>
