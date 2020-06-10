@@ -13,12 +13,12 @@ interface Props {
 
 class ParallelCheckbox extends React.Component<Props, object> {
     render() {
-        return <label className="pure-checkbox">
+        return <label className="checkbox tag">
             <input type='checkbox' checked={this.props.turn.parallel} onChange={() => {
                 const t = this.props.turn;
                 const newTurn = new Turn(t.player, t.action, t.exclusivity, t.hidden, !t.parallel);
                 this.props.onValueChange(newTurn, this.props.index)
-            }}/> parallel
+            }}/>&nbsp;PARALLEL
         </label>
     }
 }

@@ -9,6 +9,7 @@ class Footer extends React.Component<object, object> {
                         <p style={{textAlign: 'center'}}>
                             Created by <a href="https://aoe2.se">
                             <img alt='SiegeEngineers logo' className='inline-logo'
+                                 style={{verticalAlign: "text-bottom"}}
                                  src="/images/SiegeEngineers.png"/> Siege Engineers</a> (2019 &ndash; 2020)
                             &middot;
                             Based on the first version by <span className='is-family-code'>pip</span>&nbsp; &middot;

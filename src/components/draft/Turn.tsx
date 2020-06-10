@@ -3,6 +3,7 @@ import {default as ModelTurn} from '../../models/Turn'
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
 import Player from "../../constants/Player";
 import Exclusivity from "../../constants/Exclusivity";
+import Action from "../../constants/Action";
 
 interface IProps extends WithTranslation {
     turn: ModelTurn;
@@ -40,11 +41,13 @@ class Turn extends React.Component<IProps, IState> {
         const turn: ModelTurn = this.props.turn;
 
         let prefix: string = '';
-        if (turn.player !== Player.NONE) {
+        if (turn.player !== Player.NONE && turn.action !== Action.SNIPE) {
             if (turn.exclusivity === Exclusivity.GLOBAL) {
                 prefix = 'g';
             } else if (turn.exclusivity === Exclusivity.NONEXCLUSIVE) {
                 prefix = 'n';
+            } else if (turn.exclusivity === Exclusivity.EXCLUSIVE) {
+                prefix = 'e';
             }
         }
 
@@ -53,7 +56,8 @@ class Turn extends React.Component<IProps, IState> {
         if (action.includes('reveal')) {
             action = 'reveal';
         }
-        let turnClassName = `pure-u-1-24 turn turn-${player} turn-${action}`;
+
+        let turnClassName = `column is-1 turn turn-${player} turn-${action}`;
         if (turn.parallel || this.props.lastTurnWasParallel) {
             turnClassName += ' turn-parallel';
         }
@@ -63,10 +67,44 @@ class Turn extends React.Component<IProps, IState> {
         if (this.state.active) {
             turnClassName += ' active';
         }
+
+        let tagClassName = 'tag';
+        switch (turn.action) {
+            case Action.PICK:
+                tagClassName += ' is-success';
+                break;
+            case Action.BAN:
+                tagClassName += ' is-danger';
+                break;
+            case Action.SNIPE:
+                tagClassName += ' is-link';
+                break;
+            case Action.REVEAL_ALL:
+            case Action.REVEAL_BANS:
+            case Action.REVEAL_PICKS:
+            case Action.REVEAL_SNIPES:
+                tagClassName += ' is-light';
+                break;
+        }
+        let tagPrefixClassName = tagClassName + ' is-dark';
+        let prefixTag: React.ReactElement = <span/>;
+        // if (![Action.SNIPE, Action.REVEAL_SNIPES, Action.REVEAL_ALL, Action.REVEAL_PICKS, Action.REVEAL_BANS].includes(turn.action)) {
+            tagClassName += ' is-light'
+        // }
+        let tagGroupClassName = 'tags';
+        if (prefix) {
+            prefixTag = <span className={tagPrefixClassName}>{prefix}</span>
+            tagGroupClassName += ' has-addons'
+        } else {
+
+        }
+
         return (
             <div title={toTitle(turn)} className={turnClassName}>
                 <div className='bar'/>
-                <span><Trans><b>{prefix}</b>{action}</Trans></span>
+                <div className={tagGroupClassName}>
+                    <Trans>{prefixTag}<span className={tagClassName}>{action}</span></Trans>
+                </div>
             </div>
         );
     }

@@ -10,8 +10,7 @@ interface IProps {
 }
 
 export const PresetCivilisationCheckbox = ({presetCivilisations, value, onPresetCivilisationsChange}: IProps) =>
-    <div className="pure-u-1-4">
-        <label><input type='checkbox' checked={presetCivilisations.includes(value)} onClick={() => {
+        <label className="checkbox is-inline-block civ-select" style={{width: "20%", padding:5}}><input type='checkbox' checked={presetCivilisations.includes(value)} onClick={() => {
             if (presetCivilisations.includes(value)) {
                 presetCivilisations.splice(presetCivilisations.indexOf(value), 1);
                 onPresetCivilisationsChange(CivilisationEncoder.encodeCivilisationArray(presetCivilisations));
@@ -21,4 +20,4 @@ export const PresetCivilisationCheckbox = ({presetCivilisations, value, onPreset
             }
         }
         }/> {value.name}</label>
-    </div>;
+    ;

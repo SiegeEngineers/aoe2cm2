@@ -28,7 +28,7 @@ class NewDraftButton extends React.Component<IProps, IState> {
         }
 
         return (
-            <button className="shadowbutton primary" onClick={this.createDraft}>
+            <button className="button is-link" onClick={this.createDraft}>
                 <Trans i18nKey="createNewDraft">Create new Draft</Trans>
             </button>
         );

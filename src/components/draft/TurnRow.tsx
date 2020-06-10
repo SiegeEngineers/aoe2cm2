@@ -22,19 +22,15 @@ class TurnRow extends React.Component<IProps, object> {
         }
 
         return (
-            <div className="turn-row">
-                <div className="pure-g">
-                    <div className="pure-u-1-24 arrow-start">
-                        <div><Trans>Start</Trans></div>
+            <div className="columns is-centered is-multiline turn-row has-text-weight-bold is-uppercase">
+                    <div className="column is-1 arrow-start has-text-right has-text-grey-light">
+                        <Trans>Start</Trans>
                     </div>
-
                     {items}
-
-                    <div className="pure-u-1-24 arrow-end">
-                        <div><span><Trans>End</Trans></span></div>
+                    <div className="column is-1 arrow-end has-text-left color has-text-grey-light">
+                        <Trans>End</Trans>
                     </div>
-                    <div className="pure-u-1-24" id="firefox-bug">&nbsp;</div>
-                </div>
+                    {/*<div className="column is-1" id="firefox-bug"/>*/}
             </div>
         );
     }
