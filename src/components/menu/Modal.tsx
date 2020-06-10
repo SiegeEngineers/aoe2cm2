@@ -19,26 +19,36 @@ class Modal extends React.Component<IProps, object> {
         let nameProposal = Modal.getNameProposal();
         if (this.props.visible) {
             return (
-                <div id="overlay" className="content box">
-                    <div id="set-name-message">
-                        <h2><Trans>modal.header</Trans></h2>
-                        <p><Trans>modal.callToAction</Trans></p>
-                        <div className="field has-addons">
-                            <div className="control">
-                                <input id={this.INPUT_CAPTAIN_NAME} type="text"
-                                       placeholder="Captain Name"
-                                       className="input" defaultValue={nameProposal}/>
+                <div id="overlay" className="modal is-active">
+                    <div className="modal-background"></div>
+                    <div id="set-name-message" className="modal-content">
+                        <div className="box content">
+                            <h3><Trans>modal.header</Trans></h3>
+                            <p><Trans>modal.callToAction</Trans></p>
+                            <div className="field is-grouped">
+                                <div className="field has-addons">
+                                    <div className="control">
+                                        <input id={this.INPUT_CAPTAIN_NAME} type="text"
+                                               placeholder="Captain Name"
+                                               className="input" defaultValue={nameProposal}/>
+                                    </div>
+                                    <div className="control">
+                                        <button className='button' onClick={this.newNameProposal}><img
+                                            src="/images/icon_shuffle.png" width="24px" height="24px"/></button>
+                                    </div>
+                                </div>
+                                &nbsp;&nbsp;
+                                <div className="control">
+                                    <button className="button is-link" onClick={this.callback}>
+                                        <Trans>modal.setName</Trans>
+                                    </button>
+                                </div>
                             </div>
-                            <div className="control">
-                                <button className='button' onClick={this.newNameProposal}><img
-                                    src="/images/icon_shuffle.png" width="24px" height="24px"/></button>
-                            </div>
+                            <p className="has-text-grey-light">
+                                <Trans>modal.editInfo</Trans><br/>
+                                <Trans>modal.readTheRules</Trans>
+                            </p>
                         </div>
-                        <p><Trans>modal.editInfo</Trans></p>
-                        <p>
-                            <button className="button is-link" onClick={this.callback}><Trans>modal.setName</Trans></button>
-                        </p>
-                        <p><Trans>modal.readTheRules</Trans></p>
                     </div>
                 </div>
             );

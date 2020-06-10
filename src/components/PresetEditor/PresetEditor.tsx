@@ -46,12 +46,12 @@ class PresetEditor extends React.Component<Props, object> {
 
         return (
             <div className={'box'}>
-                <h2 className={'centered'}>Preset Editor</h2>
+                <h3 className={'centered'}>Preset Editor</h3>
 
                 <NewDraftButton preset={this.props.preset}/>
                 <SavePresetButton preset={this.props.preset}/>
 
-                <h3>Preset Title</h3>
+                <h4>Preset Title</h4>
 
                 <input type={'text'} value={this.props.preset.name} onChange={(event) => {
                     this.props.onPresetNameChange(event.target.value);
@@ -59,13 +59,13 @@ class PresetEditor extends React.Component<Props, object> {
 
                 <TurnRow turns={this.props.preset.turns}/>
 
-                <h3>Available Civilisations</h3>
+                <h4>Available Civilisations</h4>
 
                 <div className="pure-g">
                     {civs}
                 </div>
 
-                <h3>Turns</h3>
+                <h4>Turns</h4>
 
                 <div className="pure-g">
                     <div className="pure-u-1-24">#</div>

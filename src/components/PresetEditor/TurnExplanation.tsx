@@ -5,7 +5,7 @@ const TurnExplanation = () =>
     <div className="pure-g">
         <div className="pure-u-1-6"/>
         <div className="pure-u-2-3">
-            <h2>Help</h2>
+            <h3>Help</h3>
 
             <p>Presets are made up by individual Turns. Each turn has an acting player: The Host, the Guest, or neither
                 of those, (so called "Admin" turns).</p>
@@ -13,7 +13,7 @@ const TurnExplanation = () =>
             <p>You can add a Host/Admin/Guest turn by clicking the + button below the respective column.
                 You can remove a turn by clicking the X button to the right of the turn.</p>
 
-            <h3>Host and Guest Turns</h3>
+            <h4>Host and Guest Turns</h4>
 
             <p>Turns have a main action (PICK, BAN, SNIPE) and a few possible modifiers.</p>
 
@@ -44,7 +44,7 @@ const TurnExplanation = () =>
             <p>Check the <code>hidden</code> checkbox to hide the civilisation selected during that turn from the
                 opponent and from spectators until it is revealed by an admin turn (see below)</p>
 
-            <h3>Admin Turns</h3>
+            <h4>Admin Turns</h4>
 
             <p>The <code>REVEAL_PICKS</code>, <code>REVEAL_BANS</code> and <code>REVEAL_SNIPES</code> turns reveal the
                 respective hidden actions that were executed before.<br/>

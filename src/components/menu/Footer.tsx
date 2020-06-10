@@ -5,7 +5,7 @@ class Footer extends React.Component<object, object> {
         return (
             <footer className="footer">
                 <div className="container">
-                    <div className="content">
+                    <div className="content is-small">
                         <p style={{textAlign: 'center'}}>
                             Created by <a href="https://aoe2.se">
                             <img alt='SiegeEngineers logo' className='inline-logo'
@@ -15,8 +15,8 @@ class Footer extends React.Component<object, object> {
                             Contribute on <a href="https://github.com/SiegeEngineers/aoe2cm2">GitHub</a>
                         </p>
                         <p style={{textAlign: 'center'}}>
-                            Age of Empires II &copy; Microsoft Corporation.<br/>
-                            <b> Captains Mode for Age of Empires II</b> was created under Microsoft's "<a
+                            Age of Empires II &copy; Microsoft Corporation.
+                            <b>Captains Mode for Age of Empires II</b> was created under Microsoft's "<a
                             href="https://www.xbox.com/en-us/developers/rules" rel='nofollow'>Game Content Usage
                             Rules</a>" using assets
                             from Age of Empires II, and it is not endorsed by or affiliated with Microsoft.

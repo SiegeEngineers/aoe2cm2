@@ -5,7 +5,7 @@ class Practice extends React.Component<object, object> {
         return (
             <div className="container">
                 <div className="content box">
-                    <h2>Practice</h2>
+                    <h3>Practice</h3>
                     <p>Sadly, this functionality is not implemented yet.</p>
                 </div>
             </div>

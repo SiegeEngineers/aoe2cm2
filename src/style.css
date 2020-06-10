@@ -10,14 +10,6 @@ html, body {
 	flex-direction: column;
 }
 
-.content {
-	flex: 1 0 auto;
-}
-
-.footer {
-	padding-top: 1rem;
-	flex-shrink: 0;
-}
 
 .topRightControls {
 	position: absolute;
@@ -62,10 +54,6 @@ html, body {
     margin: 0 auto -40px; /* the bottom margin is the negative value of the footer's height */
 }
 
-.content {
-	min-width: 480px;
-	width: 100%;
-}
 
 .draft-content {
 	padding-top: 1px;
@@ -132,14 +120,6 @@ html, body {
 
 #themeswitcher span {
 	display: none;
-}
-
-@media screen and (min-width: 800px) {
-	.content {
-		width: 800px;
-		margin-left: auto;
-		margin-right: auto;
-	}
 }
 
 .role {

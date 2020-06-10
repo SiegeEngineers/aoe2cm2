@@ -131,9 +131,10 @@
     "title":"Instruktionen",
     "1":"Captains mode dient der rundenbasierten Auswahl von Zivilisationen. Die Kapitäninnen <1>wählen</1> und <3>bannen</3> abwechselnd in einer vorgegebenen Reihenfolge Zivilisationen. Eine gebannte Zivilisation kann von der gegnerischen Kapitänin nicht mehr gewählt werden.",
     "2":"Für jede Runde hat eine Kapitäin <1>30 Sekunden</1> Zeit. Läuft die Zeit ab, wird eine zufällige Auswahl für sie getroffen.",
-    "3":"Weitere Züge sind möglich: <1>Versteckt</1> (schwarze Balkenenden) zeigt ausgeführte Aktionen nicht an, bis sie explizit enthüllt werden (sichtbar in der Zeitleiste am oberen Seitenrand).",
-    "4":"<0>Globale</0> Wahl oder globaler Bann führen dazu, dass eine Zivilisation in zukünftigen Zügen von keiner Kapitänin mehr ausgewählt werden kann. Weitere Arten von Zügen können den Voreinstellungs-Beschreibungen entnommen werden.",
-    "5":"<0>Üben</0> ist ein Modus, in dem ein Testdurchlauf durchgeführt werden kann, in dem die Aktionen beider Seiten von einer Person gesteuert werden."
+    "3":"Weitere Züge sind möglich:",
+    "4":"<0>Versteckt</0> (schwarze Balkenenden) zeigt ausgeführte Aktionen nicht an, bis sie explizit enthüllt werden (sichtbar in der Zeitleiste am oberen Seitenrand).",
+    "5":"<0>Globale</0> Wahl oder globaler Bann führen dazu, dass eine Zivilisation in zukünftigen Zügen von keiner Kapitänin mehr ausgewählt werden kann. Weitere Arten von Zügen können den Voreinstellungs-Beschreibungen entnommen werden.",
+    "6":"<0>Üben</0> ist ein Modus, in dem ein Testdurchlauf durchgeführt werden kann, in dem die Aktionen beider Seiten von einer Person gesteuert werden."
   },
   "presets": {
     "joinTitle": "Draft beitreten",

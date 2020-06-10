@@ -33,15 +33,18 @@ class Spectate extends React.Component<WithTranslation, IState> {
         return (
             <div className="container">
                 <div id="join_game" className="box content">
-                    <h2><Trans i18nKey='spectate.spectateTitle'>Spectate existing draft</Trans></h2>
-                    <div className="field has-addons">
-                        <div className="control">
-                            <label className="button is-static"><Trans
-                                i18nKey='spectate.code'>code:</Trans></label>
+                    <h3><Trans i18nKey='spectate.spectateTitle'>Spectate existing draft</Trans></h3>
+                    <div className="field is-grouped">
+                        <div className="field has-addons">
+                            <div className="control">
+                                <label className="button is-static"><Trans
+                                    i18nKey='spectate.code'>code:</Trans></label>
+                            </div>
+                            <div className="control ">
+                                <input id="input-code" type="text" name="code" className="input"/>
+                            </div>
                         </div>
-                        <div className="control ">
-                            <input id="input-code" type="text" name="code" className="input"/>
-                        </div>
+                        &nbsp;&nbsp;&nbsp;
                         <div className="control">
                             <button className="button is-link" id="join-game-button" onClick={this.joinDraft}>
                                 <Trans i18nKey='spectate.spectate'>Spectate</Trans>
@@ -50,8 +53,8 @@ class Spectate extends React.Component<WithTranslation, IState> {
                     </div>
                 </div>
                 <div id="recent_drafts" className="box content">
-                    <h2><Trans i18nKey='spectate.recentDraftsTitle'>Recent Drafts</Trans></h2>
-                    <table className="pure-table pure-table-horizontal recent-drafts">
+                    <h3><Trans i18nKey='spectate.recentDraftsTitle'>Recent Drafts</Trans></h3>
+                    <table className="table is-striped is-narrow is-hoverable is-fullwidth">
                         <tbody>
                         {recentDrafts}
                         </tbody>

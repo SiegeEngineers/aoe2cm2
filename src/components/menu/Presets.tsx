@@ -30,15 +30,18 @@ class Presets extends React.Component<WithTranslation, IState> {
         return (
             <div className="container">
                 <div id="join_game" className="content box">
-                    <h2><Trans i18nKey='presets.joinTitle'>Join existing draft</Trans></h2>
-                    <div className="field has-addons">
-                        <div className="control">
-                            <label className="button is-static"><Trans
-                                i18nKey='spectate.code'>code:</Trans></label>
+                    <h3><Trans i18nKey='presets.joinTitle'>Join existing draft</Trans></h3>
+                    <div className="field is-grouped">
+                        <div className="field has-addons">
+                            <div className="control">
+                                <label className="button is-static"><Trans
+                                    i18nKey='spectate.code'>code:</Trans></label>
+                            </div>
+                            <div className="control ">
+                                <input id="input-code" type="text" name="code" className="input"/>
+                            </div>
                         </div>
-                        <div className="control ">
-                            <input id="input-code" type="text" name="code" className="input"/>
-                        </div>
+                        &nbsp;&nbsp;&nbsp;
                         <div className="control">
                             <button className="button is-link" id="join-game-button" onClick={this.joinDraft}>
                                 <Trans i18nKey='presets.join'>Join</Trans>
@@ -47,10 +50,10 @@ class Presets extends React.Component<WithTranslation, IState> {
                     </div>
                 </div>
                 <div className="content box">
-                    <h2>
+                    <h3>
                         <Trans i18nKey='presets.useTitle'>Use preset</Trans>
                         <CustomisePresetButton preset={Preset.NEW} i18nKey='createNewPreset'/>
-                    </h2>
+                    </h3>
                     <PresetList items={this.state.items}/>
                 </div>
             </div>
