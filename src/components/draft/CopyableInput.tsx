@@ -4,6 +4,8 @@ import {Trans, WithTranslation, withTranslation} from "react-i18next";
 interface IProps extends WithTranslation {
     before?: string;
     content: string;
+    length: number;
+    size?: string
 }
 
 interface IState {
@@ -15,13 +17,25 @@ class CopyableInput extends React.Component<IProps, IState> {
     state = {label: 'rolemodal.copyLabel'};
 
     public render() {
-        return (<span className={'copyable-input'}>
-                    <Trans i18nKey={this.props.before}/>
-                    <input className={'inset-input centered'} value={this.props.content}/>
-                    <button className='pure-button' onClick={this.copyToClipboard}>
-                        <Trans>{this.state.label}</Trans>
-                    </button>
-                </span>
+        return (
+            <React.Fragment>
+                <Trans i18nKey={this.props.before}/>
+                &nbsp;
+                <div className="is-inline-block">
+                <div className="field has-addons">
+                    <div className="control">
+                        {/*<span className={'copyable-input'}>*/}
+                        <input className={"input " + this.props.size} disabled={true} readOnly={true} value={this.props.content} size={this.props.length}/>
+                    </div>
+                    <div className="control">
+                        <button className={'button is-light has-background-grey has-text-white-bis ' + this.props.size} onClick={this.copyToClipboard}>
+                            <Trans>{this.state.label}</Trans>
+                        </button>
+                        {/*</span>*/}
+                    </div>
+                </div>
+                </div>
+            </React.Fragment>
         );
     }
 

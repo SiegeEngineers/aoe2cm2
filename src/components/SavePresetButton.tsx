@@ -28,7 +28,7 @@ class SavePresetButton extends React.Component<IProps, IState> {
         }
 
         return (
-            <button className="button is-link is-outlined" onClick={this.savePreset}>
+            <button className="button is-link is-light" onClick={this.savePreset}>
                 <Trans i18nKey="savePreset">Save Preset</Trans>
             </button>
         );

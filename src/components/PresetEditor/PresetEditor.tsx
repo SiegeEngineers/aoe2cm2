@@ -101,7 +101,7 @@ class PresetEditor extends React.Component<Props, object> {
                         </div>
                     </div>
                     <hr/>
-                    <h3>3. Save</h3>
+                    <h3>3. Create Draft or Save</h3>
                     <div className="field is-grouped">
                         <p className="control">
                             <input type={'text'} value={this.props.preset.name} className="input"

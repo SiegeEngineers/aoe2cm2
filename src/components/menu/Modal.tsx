@@ -20,7 +20,7 @@ class Modal extends React.Component<IProps, object> {
         if (this.props.visible) {
             return (
                 <div id="overlay" className="modal is-active">
-                    <div className="modal-background"></div>
+                    <div className="modal-background"/>
                     <div id="set-name-message" className="modal-content">
                         <div className="box content">
                             <h3><Trans>modal.header</Trans></h3>
@@ -53,7 +53,7 @@ class Modal extends React.Component<IProps, object> {
                 </div>
             );
         } else {
-            return (<div/>);
+            return (<React.Fragment/>);
         }
     }
 

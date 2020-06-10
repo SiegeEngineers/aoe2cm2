@@ -23,7 +23,7 @@ class CustomisePresetButton extends React.Component<IProps, IState> {
         }
 
         return (
-            <button className="button is-link is-outlined is-pulled-right" onClick={() => {
+            <button className="button is-link is-light" onClick={() => {
                 this.props.onSetEditorPreset(this.props.preset);
                 this.setState({goToEdit: true});
             }}>

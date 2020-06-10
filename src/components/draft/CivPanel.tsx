@@ -51,13 +51,13 @@ class CivPanel extends React.Component<IProps, IState> {
             }
             civilisationKey = 'civs.' + civilisationName;
             if (Util.isTechnicalCivilisation(civilisation)) {
-                textClass += ' hidden';
+                textClass += ' is-hidden';
             }
         }
         let className: string = this.props.civPanelType.toString();
         let onClickAction = () => {};
         if (this.props.civPanelType === CivPanelType.CHOICE) {
-            className += ' pure-u-1-12';
+            className += ' is-inline-block';
             if (this.isValidOption()) {
                 onClickAction = this.onClickCiv;
                 className += ' choice-' + this.props.triggerAction;
@@ -70,7 +70,7 @@ class CivPanel extends React.Component<IProps, IState> {
                     this.setState({...this.state, used: !this.state.used});
                 }
             }
-            className += ' card';
+            className += ' is-inline-block';
         }
         if(this.props.active){
             className += " active-choice";
@@ -79,23 +79,23 @@ class CivPanel extends React.Component<IProps, IState> {
         }
         let contentClass: string = "box-content";
         if (this.props.civilisation !== undefined) {
-            contentClass += " visible";
+            contentClass += " is-visible";
         }
         let snipeMarkerClass = "stretchy-image snipe-marker";
         if (!this.props.sniped) {
-            snipeMarkerClass += ' hidden';
+            snipeMarkerClass += ' is-hidden';
         }
         let usedMarkerClass = "stretchy-image used-marker";
         if (!this.state.used) {
-            usedMarkerClass += ' hidden';
+            usedMarkerClass += ' is-hidden';
         }
         let randomMarkerClass = "random-pick";
         if (!this.props.civilisation || !this.props.civilisation.isRandomlyChosenCiv) {
-            randomMarkerClass += ' hidden';
+            randomMarkerClass += ' is-hidden';
         }
         let snipeRandomMarkerClass = "random-snipe";
         if (!this.props.sniped || !this.props.sniped.isRandomlyChosenCiv) {
-            snipeRandomMarkerClass += ' hidden';
+            snipeRandomMarkerClass += ' is-hidden';
         }
         return (
             <div className={className} onClick={onClickAction}>

@@ -12,7 +12,7 @@ interface IProps {
 class DraftState extends React.Component<IProps, object> {
     public render() {
         return (
-            <div className="pure-g players">
+            <div className="columns">
                 <PlayerDraftState preset={this.props.preset} player={ModelPlayer.HOST} name={this.props.nameHost}/>
                 <PlayerDraftState preset={this.props.preset} player={ModelPlayer.GUEST} name={this.props.nameGuest}/>
             </div>

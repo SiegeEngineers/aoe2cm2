@@ -35,16 +35,17 @@ class Spectate extends React.Component<WithTranslation, IState> {
                 <div id="join_game" className="box content">
                     <h3><Trans i18nKey='spectate.spectateTitle'>Spectate existing draft</Trans></h3>
                     <div className="field is-grouped">
-                        <div className="field has-addons">
-                            <div className="control">
-                                <label className="button is-static"><Trans
-                                    i18nKey='spectate.code'>code:</Trans></label>
-                            </div>
-                            <div className="control ">
-                                <input id="input-code" type="text" name="code" className="input"/>
+                        <div className="control">
+                            <div className="field has-addons">
+                                <div className="control">
+                                    <label className="button is-static"><Trans
+                                        i18nKey='spectate.code'>code:</Trans></label>
+                                </div>
+                                <div className="control ">
+                                    <input id="input-code" type="text" name="code" className="input"/>
+                                </div>
                             </div>
                         </div>
-                        &nbsp;&nbsp;&nbsp;
                         <div className="control">
                             <button className="button is-link" id="join-game-button" onClick={this.joinDraft}>
                                 <Trans i18nKey='spectate.spectate'>Spectate</Trans>

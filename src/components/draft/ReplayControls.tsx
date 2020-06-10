@@ -48,19 +48,19 @@ class ReplayControls extends React.Component<IProps, IState> {
         if (this.props.replayEvents.length === 0) {
             return null;
         }
-        const pauseButton = <div className="spectator-action shadowbutton text-primary" onClick={this.haltReplay}>
+        const pauseButton = <button className="spectator-action button is-large" onClick={this.haltReplay}>
             <span id="spectator-pause">pause</span>
-        </div>;
-        const runButton = <div className="spectator-action shadowbutton text-primary" onClick={this.runReplay}>
+        </button>;
+        const runButton = <button className="spectator-action button is-large" onClick={this.runReplay}>
             <span id="spectator-play">play</span>
-        </div>;
-        const nextButton = <div className="spectator-action shadowbutton text-primary" onClick={this.nextStep}>
+        </button>;
+        const nextButton = <button className="spectator-action button is-large" onClick={this.nextStep}>
             <span id="spectator-next">next</span>
-        </div>;
-        const skipToEndbutton = <div className="spectator-action shadowbutton text-primary" onClick={this.skipToEnd}>
+        </button>;
+        const skipToEndbutton = <button className="spectator-action button is-large" onClick={this.skipToEnd}>
             <span id="spectator-forward">fast-forward</span>
-        </div>;
-        return <div id="spectator-controls" className="centered">
+        </button>;
+        return <div id="spectator-controls" className="buttons is-centered">
             {this.state.isRunning ? pauseButton : runButton}
             {this.state.isRunning ? null : nextButton}
             {this.state.isRunning ? null : skipToEndbutton}

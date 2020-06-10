@@ -86,40 +86,50 @@ class Draft extends React.Component<IProps, IState> {
         const turns = this.props.preset.turns;
 
         return (
-            <div id="container">
-                <div style={{position: 'absolute', top: '8px', left: '8px'}}>
-                    <span onClick={this.props.triggerDisconnect}><Link to="/"><span
-                        className="back-icon header-navigation">back</span></Link></span>
-                </div>
-
+            <section className="section">
                 <Modal inDraft={true}/>
                 <RoleModal/>
+                <div id="container" className="container is-fullhd">
+                    <div className="columns">
+                        <div className="column is-1">
+                            <span onClick={this.props.triggerDisconnect}>
+                                <Link to="/"><span className="back-icon header-navigation">back</span></Link>
+                            </span>
+                        </div>
+                        <div className="column content my-0">
+                            <h2 id="draft-title" className="has-text-centered my-0">{presetName}</h2>
+                        </div>
+                        <div className="column is-1"/>
+                    </div>
 
-                <div className="draft-content">
-
-                    <div id="draft-title" className="centered text-primary info-card">{presetName}</div>
-
-                    <TurnRow turns={turns}/>
+                    <div className="columns">
+                        <div className="column">
+                            <TurnRow turns={turns}/>
+                        </div>
+                    </div>
 
                     <DraftState nameHost={this.props.nameHost} nameGuest={this.props.nameGuest}
                                 preset={this.props.preset}/>
 
-                    <div>
-                        <div id="action-text" className="centered">
-                            <div className="action-string info-card text-primary">
-                                <Messages/>
-                            </div>
+                    <div className="columns">
+                        <div id="action-text" className="column has-text-centered is-size-4">
+                            <Messages/>
                         </div>
                     </div>
 
+
                     <ReplayControls/>
 
-                    <DraftIdInfo/>
+                    <div className="columns">
+                        <div className="column has-text-centered">
+                            <DraftIdInfo/>
+                        </div>
+                    </div>
 
                     <CivGrid civilisations={this.props.preset.civilisations}/>
 
                 </div>
-            </div>
+            </section>
         );
     }
 

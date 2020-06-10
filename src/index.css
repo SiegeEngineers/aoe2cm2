@@ -6,7 +6,7 @@ body {
 
 }
 .box {
-  border-radius: 2px;
+  border-radius: 4px;
   box-shadow: 0 0 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
@@ -35,8 +35,6 @@ label.civ-select:hover {
 
 /* TURNS ROW */
 .turn-row {
-  text-align: center;
-  padding: 20px 0px;
 }
 
 .turn-row .arrow-start, .turn-row .arrow-end {
@@ -123,6 +121,208 @@ label.civ-select:hover {
 .turn-hidden .bar {
   border-left: .5rem solid rgba(0, 0, 0, 0.87);
   border-right: .5rem solid rgba(0, 0, 0, 0.87);
+}
+
+/** grid stuff **/
+
+.chooser {
+  max-width: 792px;
+  display: block;
+  margin: 8px auto;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 2px;
+  background: rgba(153,153,153, 0.2);
+
+  box-shadow: inset 0 0px 3px rgba(0,0,0,0.12), inset 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.choice {
+  box-sizing: border-box;
+  width: 80px;
+  transition: all 0.25s ease;
+  margin: 4px;
+  padding: 8px;
+  background: rgba(153,153,153, 0.4);
+  box-shadow: 0 0px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  cursor: pointer;
+}
+
+.choice:hover {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  opacity: 1;
+  transform: translateY(-4px);
+}
+
+.choice-chosen {
+  background-color: rgba(76, 175, 80, 0.6);
+}
+
+.choice-banned {
+  background-color: rgba(244, 67, 54, 0.6);
+}
+
+.choice-banned, .choice-chosen {
+  opacity: 0.7;
+}
+
+.choice-ban:hover {
+  background-color: #f44336;
+}
+
+.choice-pick:hover {
+  background-color: #4caf50;
+}
+
+.choice-gbanned
+{
+  opacity:0.12 !important;
+  box-shadow: none !important;
+}
+
+.choice-disabled:hover {
+  opacity: 0.54;
+  box-shadow: none;
+  transform: none;
+}
+
+.choice-disabled, .choice-banned.choice-disabled:hover, .choice-chosen.choice-disabled:hover
+{
+  opacity:0.33;
+  box-shadow: none;
+  transform: none;
+  cursor: not-allowed;
+}
+
+
+.choice-disabled img{
+  filter:grayscale(50%);
+  -webkit-filter:grayscale(50%);
+}
+
+.choice-hidden img
+{
+  filter:grayscale(100%);
+  -webkit-filter:grayscale(100%);
+}
+
+.choice-hidden, .choice-hidden:hover {
+  opacity: 0.1;
+  box-shadow: none;
+  transform: none;
+  background-color: transparent !important;
+}
+
+.choice, .choice img {
+  border-radius: 2px;
+}
+
+div.stretchy-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  overflow: hidden;
+}
+
+div.stretchy-wrapper > div.stretchy-image {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+div.stretchy-wrapper > div.stretchy-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2px;
+  text-align: center;
+  background: black;
+  color:#fff;
+  opacity: 0.75;
+  font-size: 12px;
+  border-radius: 4px;
+  transition: 0.1s ease-in-out;
+}
+
+.choice img {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+img {
+  border: 0;
+}
+
+.role, .role img {
+  width: 100px;
+  height: 100px;
+  border-radius: 4px;
+}
+
+.role-button {
+  width: auto;
+  height: auto;
+  padding: 10px;
+}
+
+
+.pick, .ban {
+  padding: 0;
+  box-shadow: none;
+  border-radius: 2px;
+  margin: 4px;
+  opacity: 0.38;
+  padding: 8px;
+}
+
+.pick {
+  width: 96px;
+  height: 96px;
+  background: #4caf50;
+}
+
+.ban {
+  width: 56px;
+  height: 56px;
+  background: #f44336;
+}
+
+.pick img, .ban img {
+  width: 100%;
+  border-radius: 2px;
+}
+
+.pick .chosen-hidden img, .ban .chosen-hidden img {
+  visibility: hidden;
+}
+
+.pick .chosen-hidden .stretchy-image {
+  background-image: url('/images/hidden_pick.png');
+  background-size: contain;
+}
+
+.ban .chosen-hidden .stretchy-image {
+  background-image: url('/images/hidden_ban.png');
+  background-size: contain;
+}
+
+.picks .box-content, .bans .box-content {
+  visibility: hidden;
+}
+
+.active-choice {
+  -webkit-animation: pulsate 1s ease-in infinite alternate;
+  -moz-animation: pulsate 1s ease-in infinite alternate;
+  -animation: pulsate 1s ease-in infinite alternate;
+  animation: pulsate 1s ease-in infinite alternate;
+}
+
+.is-visible {
+  visibility: visible !important;
 }
 
 @media screen and (max-width: 1215px) {

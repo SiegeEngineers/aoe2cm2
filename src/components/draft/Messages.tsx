@@ -42,64 +42,78 @@ class Messages extends React.Component<IProps, object> {
         if (this.props.whoAmI === Player.HOST) {
             if (this.props.hostReady) {
                 return (
-                    <div><Trans i18nKey='messages.waitingForGuestReady'>Waiting for Guest to press ›ready‹</Trans>
+                    <div>
+                        <Trans i18nKey='messages.waitingForGuestReady'>Waiting for Guest to press ›ready‹</Trans>
                     </div>
                 );
             } else {
                 if (this.props.guestReady) {
                     return (
-                        <div><Trans i18nKey='messages.pressReadyGuestIsReady'>Your guest is ready to start.
-                            Press <button className={'shadowbutton text-primary'}
-                                          onClick={this.props.sendReady}>Ready</button> once you are also ready to
-                            start!</Trans></div>
+                        <div>
+                            <Trans i18nKey='messages.pressReadyGuestIsReady'>Your guest is ready to start. Press
+                                <button className="button is-success is-light is-small"
+                                        onClick={this.props.sendReady}>Ready</button> once you are also ready to start!
+                            </Trans>
+                        </div>
                     );
                 } else {
                     return (
-                        <div><Trans i18nKey='messages.pressReady'>Press <button
-                            className={'shadowbutton text-primary'}
-                            onClick={this.props.sendReady}>Ready</button> once you are ready
-                            to start!</Trans></div>
+                        <div>
+                            <Trans i18nKey='messages.pressReady'>Press <button
+                                className='button is-success is-light is-small'
+                                onClick={this.props.sendReady}>Ready</button> once you are ready
+                                to start!
+                            </Trans>
+                        </div>
                     );
                 }
             }
         } else if (this.props.whoAmI === Player.GUEST) {
             if (this.props.guestReady) {
                 return (
-                    <div><Trans i18nKey='messages.waitingForHostReady'>Waiting for Host to press ›ready‹</Trans>
+                    <div>
+                        <Trans i18nKey='messages.waitingForHostReady'>Waiting for Host to press ›ready‹</Trans>
                     </div>
                 );
             } else {
                 if (this.props.hostReady) {
                     return (
-                        <div><Trans i18nKey='messages.pressReadyHostIsReady'>Your host is ready to start.
-                            Press <button className={'shadowbutton text-primary'}
-                                          onClick={this.props.sendReady}>Ready</button> once you are also ready to
-                            start!</Trans></div>
+                        <div>
+                            <Trans i18nKey='messages.pressReadyHostIsReady'>Your host is ready to start. Press <button
+                                className="button is-success is-light is-small"
+                                onClick={this.props.sendReady}>Ready</button> once you are also ready to start!
+                            </Trans>
+                        </div>
                     );
                 } else {
                     return (
-                        <div><Trans i18nKey='messages.pressReady'>Press <button
-                            className={'shadowbutton text-primary'}
-                            onClick={this.props.sendReady}>Ready</button> once you are ready
-                            to start!</Trans></div>
+                        <div>
+                            <Trans i18nKey='messages.pressReady'>Press <button
+                                className="button is-success is-light is-small"
+                                onClick={this.props.sendReady}>Ready</button> once you are ready
+                                to start!</Trans>
+                        </div>
                     );
                 }
             }
         } else {
             if (!this.props.hostReady && !this.props.guestReady) {
                 return (
-                    <div><Trans i18nKey='messages.waitingForBothToBeReady'>Waiting for players to get
-                        ready…</Trans></div>
+                    <div>
+                        <Trans i18nKey='messages.waitingForBothToBeReady'>Waiting for players to get ready...</Trans>
+                    </div>
                 );
             } else if (!this.props.hostReady) {
                 return (
-                    <div><Trans i18nKey='messages.waitingForHostToBeReady'>Waiting for Host to get
-                        ready…</Trans></div>
+                    <div>
+                        <Trans i18nKey='messages.waitingForHostToBeReady'>Waiting for Host to get ready...</Trans>
+                    </div>
                 );
             } else {
                 return (
-                    <div><Trans i18nKey='messages.waitingForGuestToBeReady'>Waiting for Guest to get
-                        ready…</Trans></div>
+                    <div>
+                        <Trans i18nKey='messages.waitingForGuestToBeReady'>Waiting for Guest to get ready...</Trans>
+                    </div>
                 );
             }
         }
@@ -285,8 +299,8 @@ class Messages extends React.Component<IProps, object> {
                     case Action.BAN:
                         return (
                             <div><Trans i18nKey='messages.waitingForBan'>Waiting for the other captain to
-                            ban…</Trans>
-                            <Countdown/></div>
+                                ban…</Trans>
+                                <Countdown/></div>
                         );
                     case Action.SNIPE:
                         return (

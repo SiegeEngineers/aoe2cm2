@@ -87,31 +87,28 @@ class PlayerDraftState extends React.Component<IProps, IState> {
         const playerClass = (draftIsOngoing && !hasActivePanel) ? 'player player-inactive' : 'player';
 
         return (
-            <div className="pure-u-1-2">
-                <div id={playerId} className="double-outer-border">
-                    <div className="double-inner-border">
-                        <div className={playerClass}>
-                            <div className="head-text captains-line">
-                                <span className={'player-type'}><Trans>{this.props.player}</Trans></span>
-                                <WhoAmIIndicator forPlayer={this.props.player}/>
-                                <PlayerOnlineStatus forPlayer={this.props.player}/>
-                            </div>
-                            <div className="player-head">
-                                <div className="player-name">{this.props.name}</div>
-                            </div>
-                            <div className="chosen">
-                                <div className="head-text"><Trans>Picks</Trans></div>
-                                <div className="picks">
-                                    {pickPanels}
-                                </div>
-
-                                <div className="head-text"><Trans>Bans</Trans></div>
-                                <div className="bans">
-                                    {banPanels}
-                                </div>
-                            </div>
-
+            <div className="column is-half">
+                <div id={playerId} className="box">
+                    <div className={playerClass}>
+                        <div className="head-text captains-line">
+                            <span className={'player-type'}><Trans>{this.props.player}</Trans></span>
+                            <WhoAmIIndicator forPlayer={this.props.player}/>
+                            <PlayerOnlineStatus forPlayer={this.props.player}/>
                         </div>
+                        <div className="player-head">
+                            <div className="player-name">{this.props.name}</div>
+                        </div>
+                        <div className="chosen">
+                            <div className="is-uppercase has-text-grey is-size-7"><Trans>Picks</Trans></div>
+                            <div className="picks">
+                                {pickPanels}
+                            </div>
+                            <div className="is-uppercase has-text-grey is-size-7"><Trans>Bans</Trans></div>
+                            <div className="bans">
+                                {banPanels}
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

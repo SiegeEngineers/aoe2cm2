@@ -32,16 +32,18 @@ class Presets extends React.Component<WithTranslation, IState> {
                 <div id="join_game" className="content box">
                     <h3><Trans i18nKey='presets.joinTitle'>Join existing draft</Trans></h3>
                     <div className="field is-grouped">
-                        <div className="field has-addons">
-                            <div className="control">
-                                <label className="button is-static"><Trans
-                                    i18nKey='spectate.code'>code:</Trans></label>
-                            </div>
-                            <div className="control ">
-                                <input id="input-code" type="text" name="code" className="input"/>
+                        <div className="control">
+                            <div className="field has-addons">
+                                <div className="control">
+                                    <label className="button is-static">
+                                        <Trans i18nKey='spectate.code'>code:</Trans>
+                                    </label>
+                                </div>
+                                <div className="control">
+                                    <input id="input-code" type="text" name="code" className="input"/>
+                                </div>
                             </div>
                         </div>
-                        &nbsp;&nbsp;&nbsp;
                         <div className="control">
                             <button className="button is-link" id="join-game-button" onClick={this.joinDraft}>
                                 <Trans i18nKey='presets.join'>Join</Trans>
@@ -51,8 +53,9 @@ class Presets extends React.Component<WithTranslation, IState> {
                 </div>
                 <div className="content box">
                     <h3>
-                        <Trans i18nKey='presets.useTitle'>Use preset</Trans>
-                        <CustomisePresetButton preset={Preset.NEW} i18nKey='createNewPreset'/>
+                        <Trans i18nKey='presets.useTitle'>Use Preset</Trans>
+                        <span className="is-pulled-right"><CustomisePresetButton preset={Preset.NEW}
+                                                                                 i18nKey='createNewPreset'/></span>
                     </h3>
                     <PresetList items={this.state.items}/>
                 </div>
