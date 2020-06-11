@@ -66,20 +66,6 @@
 	color: rgba(0, 0, 0, 0.87);
 }
 
-body {
-	background-color: #eeeeee;
-	color: rgba(0, 0, 0, 0.87);
-}
-
-a {
-	text-decoration: none;
-	color: #009688;
-}
-
-a:hover {
-	color: #f06292;
-}
-
 .centered {
 	text-align: center;
 }
@@ -135,7 +121,7 @@ a:hover {
 	display: block;
 }
 
-#instructions, #login fieldset{
+#login fieldset{
 	border: none;
 	font-size: 14px;
 	max-width: 640px;
@@ -155,32 +141,6 @@ a:hover {
 
 #login table {
 	margin: 8px auto;
-}
-
-#instructions legend{
-	float: left;
-	margin-top: 12px;
-	margin-left: 16px;
-	font-size: 24px;
-	color: #009688; /*teal */
-}
-
-
-#instructions .double-outer-border, #login fieldset{
-	padding: 16px;
-	padding-top: 44px;
-	background-color: #fff;
-	border-radius: 2px;
-	box-shadow: 0 0px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-}
-
-#instructions .double-inner-border {
-	padding: 8px;
-}
-
-#instructions li {
-	margin-top: 8px;
-	margin-bottom: 8px;
 }
 
 #new_game, .home_card, #recent_games, #featured_links {
@@ -206,7 +166,7 @@ a:hover {
 	display: none;
 }
 
-.card h2, .box h2, #overlay h2, .player-head {
+.card h2, .box h2, #overlay h2{
 	font-weight: normal;
 	font-size: 24px;
 	margin: 0;
@@ -667,12 +627,6 @@ input[type="checkbox"]:checked + label span
 	width: 80%;
 }
 
-
-#draft-title, #preset-name {
-	font-size: 32px;
-	font-weight: bold;
-}
-
 #draft-title .draft-title-small {
 	color: rgba(0, 0, 0, 0.54);
 	font-size: 24px;
@@ -803,15 +757,6 @@ input[type="checkbox"]:checked + label span
 	background-color: rgba(255, 0, 0, 0.17);
 }
 
-#action-text {
-	font-size: 24px;
-	margin: 8px;
-}
-
-#action-text .shadowbutton {
-	color: #fff;
-	background-color: #009688;
-}
 
 .shadowbutton.primary {
 	color: #fff;
@@ -844,18 +789,6 @@ input[type="checkbox"]:checked + label span
 	animation: pulsate 1s ease-in infinite alternate;
 }
 
-#instructions .red-glow, .action-string .red-glow {
-	color: #f44336;
-}
-
-#instructions .green-glow, .action-string .green-glow {
-	color: #4caf50;
-}
-
-#instructions .blue-glow, .action-string .blue-glow {
-	color: #2196f3;
-}
-
 /** spectator controls **/
 
 .spectator-controls {
@@ -863,38 +796,6 @@ input[type="checkbox"]:checked + label span
 	flex-flow: row wrap;
 	justify-content: center;
 	align-content: flex-start;
-}
-
-.spectator-action {
-	display: inline-block;
-	margin: 8px;
-	background: #fff;
-}
-
-.spectator-action span {
-	display: inline-block;
-	text-indent: -9999px;
-	width: 48px;
-	height: 48px;
-	background-size: 48px;
-	background-size: 48px;
-	opacity: 0.87;
-}
-
-#spectator-play {
-	background-image: url('/images/play-dark.png');
-}
-
-#spectator-pause {
-	background-image: url('/images/pause-dark.png');
-}
-
-#spectator-next {
-	background-image: url('/images/skip_to_next-dark.png');
-}
-
-#spectator-forward {
-	background-image: url('/images/fast_forward-dark.png');
 }
 
 /** admin stuff **/

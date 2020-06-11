@@ -27,9 +27,7 @@ class Index extends React.Component<WithTranslation, IState> {
                     <p>
                         <Trans i18nKey='instructions.1'>Captains mode is a turn-based civilization picker.
                             Each
-                            captain can <span
-                                className="green-glow">pick</span> and <span
-                                className="red-glow">ban</span> civilizations in a predefined order. Bans
+                            captain can pick and ban civilizations in a predefined order. Bans
                             prevent
                             the opponent's captain from picking the civilizations.</Trans>
                     </p>

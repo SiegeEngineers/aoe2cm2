@@ -18,11 +18,11 @@ interface IProps extends WithTranslation {
     sendReady: () => void,
 }
 
-const PICK = <span className='green-glow'><b>Pick</b></span>;
+const PICK = <span className='has-text-success'><b>Pick</b></span>;
 
-const BAN = <span className='red-glow'><b>Ban</b></span>;
+const BAN = <span className='has-text-danger'><b>Ban</b></span>;
 
-const SNIPE = <span className='blue-glow'><b>Snipe</b></span>;
+const SNIPE = <span className='has-text-info'><b>Snipe</b></span>;
 
 class Messages extends React.Component<IProps, object> {
     public render() {
@@ -242,7 +242,7 @@ class Messages extends React.Component<IProps, object> {
         if (turn.player === Player.NONE) {
             const action = turn.action.toString();
             return (
-                <div><Trans i18nKey='messages.adminAction'>Admin action: {action}</Trans></div>
+                <div><Trans i18nKey='messages.adminAction'>Admin action: <span className="tag is-dark is-large is-family-monospace">{action}</span></Trans></div>
             );
         } else if (turn.player === this.props.whoAmI) {
             switch (turn.action) {
