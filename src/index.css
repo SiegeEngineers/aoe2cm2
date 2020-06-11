@@ -224,6 +224,10 @@ label.civ-select:hover {
     border-radius: 2px;
 }
 
+.choice img {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
 div.stretchy-wrapper {
     position: relative;
     width: 100%;
@@ -246,10 +250,10 @@ div.stretchy-wrapper > div.stretchy-text {
     right: 0;
     padding: 2px;
     text-align: center;
-    background: rgba(0,0,0,0.75);
+    background: rgba(0, 0, 0, 0.75);
     color: #fff;
     font-size: 12px;
-    border-radius: 4px;
+    border-radius: 0 0 4px 4px;
     transition: 0.1s ease-in-out;
 }
 
@@ -278,7 +282,7 @@ img {
 
 .pick, .ban {
     box-shadow: none;
-    border-radius: 2px;
+    border-radius: 4px;
     margin: 4px;
     padding: 8px;
     box-sizing: content-box;
@@ -293,12 +297,13 @@ img {
 .ban {
     width: 56px;
     height: 56px;
-    background: #f44336;
+    background: #D64965;
 }
 
 .pick img, .ban img {
     width: 100%;
     border-radius: 2px;
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .pick .chosen-hidden img, .ban .chosen-hidden img {
@@ -507,12 +512,12 @@ img {
 .random-pick {
     display: block;
     position: absolute;
-    width: 48px;
-    height: 48px;
-    top: -8px;
-    right: -8px;
+    width: 32px;
+    height: 32px;
+    top: 0;
+    left: -2px;
     background-image: url('/images/random.png');
-    background-size: 48px 48px;
+    background-size: 32px 32px;
     background-repeat: no-repeat;
 }
 
@@ -529,8 +534,8 @@ img {
 }
 
 .ban .random-pick {
-    top: -4px;
-    right: -4px;
+    top: 0;
+    left: -1px;
     width: 24px;
     height: 24px;
     background-size: 24px 24px;
@@ -574,7 +579,7 @@ code {
 }
 
 .player-guest {
-    color:  #ffc107; /*amber */
+    color: #ffc107; /*amber */
 }
 
 

@@ -104,9 +104,9 @@ class CivPanel extends React.Component<IProps, IState> {
                         <div className="stretchy-image">
                             <img src={imageSrc} alt={civilisationName}/>
                         </div>
-                        <div className={randomMarkerClass}/>
+                        <div className={randomMarkerClass} title="Random"/>
                         <div className={snipeMarkerClass}/>
-                        <div className={snipeRandomMarkerClass}/>
+                        <div className={snipeRandomMarkerClass} title="Random Snipe"/>
                         <div className={usedMarkerClass}/>
                         <div className={textClass}>
                             <Trans>{civilisationKey}</Trans>
