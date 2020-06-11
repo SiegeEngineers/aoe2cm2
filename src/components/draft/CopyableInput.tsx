@@ -61,6 +61,7 @@ class CopyableInput extends React.Component<IProps, IState> {
         this.setState({label: 'rolemodal.copiedLabel'});
         setTimeout(() => {
             this.setState({label: 'rolemodal.copyLabel'})
+            document.body.removeChild(helper);
         }, 1000);
     }
 }

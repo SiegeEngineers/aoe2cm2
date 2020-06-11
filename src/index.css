@@ -246,9 +246,8 @@ div.stretchy-wrapper > div.stretchy-text {
     right: 0;
     padding: 2px;
     text-align: center;
-    background: black;
+    background: rgba(0,0,0,0.75);
     color: #fff;
-    opacity: 0.75;
     font-size: 12px;
     border-radius: 4px;
     transition: 0.1s ease-in-out;
@@ -542,10 +541,6 @@ img {
     border-radius: 4px;
 }
 
-.hidden {
-    display: none;
-}
-
 .card.has-value {
     opacity: 1.0;
 }
@@ -562,4 +557,31 @@ img {
     -moz-animation: pulsate 1s ease-in infinite alternate;
     -animation: pulsate 1s ease-in infinite alternate;
     animation: pulsate 1s ease-in infinite alternate;
+}
+
+code {
+    color: inherit;
+    border-radius: 4px;
+}
+
+.message-body code, .message-body pre {
+    background-color: #ffffff99;
+}
+
+
+.player-host {
+    color: #00bcd4; /*cyan */
+}
+
+.player-guest {
+    color:  #ffc107; /*amber */
+}
+
+
+.snipe-marker {
+    background-image: url('/images/red-cross.svg');
+}
+
+.used-marker {
+    background-image: url('/images/green-checkmark.svg');
 }
