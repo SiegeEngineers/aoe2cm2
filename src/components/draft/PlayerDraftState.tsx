@@ -88,15 +88,15 @@ class PlayerDraftState extends React.Component<IProps, IState> {
 
         return (
             <div className="column is-half">
-                <div id={playerId} className="box">
+                <div id={playerId} className="box content">
                     <div className={playerClass}>
                         <div className="head-text captains-line">
-                            <span className={'player-type'}><Trans>{this.props.player}</Trans></span>
+                            <span className={'player-type'}><Trans>{this.props.player}</Trans></span>&nbsp;
                             <WhoAmIIndicator forPlayer={this.props.player}/>
                             <PlayerOnlineStatus forPlayer={this.props.player}/>
                         </div>
                         <div className="player-head">
-                            <div className="player-name">{this.props.name}</div>
+                            <h3 className="player-name">{this.props.name}</h3>
                         </div>
                         <div className="chosen">
                             <div className="is-uppercase has-text-grey is-size-7"><Trans>Picks</Trans></div>

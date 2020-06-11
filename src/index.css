@@ -1,3 +1,11 @@
+
+/*
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+h1,h2,h3,h4,h5,h6 {
+  font-family: Merriweather, sans-serif;
+}
+*/
+
 body {
   margin: 0;
   padding: 0;
@@ -5,6 +13,7 @@ body {
   color: #4a4a41;
 
 }
+
 .box {
   border-radius: 4px;
   box-shadow: 0 0 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -325,6 +334,112 @@ img {
   visibility: visible !important;
 }
 
+
+#spectator-play {
+  background-image: url('/images/play-dark.png');
+}
+
+#spectator-pause {
+  background-image: url('/images/pause-dark.png');
+}
+
+#spectator-next {
+  background-image: url('/images/skip_to_next-dark.png');
+}
+
+#spectator-forward {
+  background-image: url('/images/fast_forward-dark.png');
+}
+
+
+/* player sides */
+
+.player.player-inactive {
+  background-color: rgba(255,255,255, 0.33);
+  box-shadow: none;
+}
+
+
+.player-head {
+  font-weight: 600;
+
+  margin-bottom: 16px;
+}
+
+
+.player-inactive .player-head {
+  opacity: 0.26;
+}
+
+#player-host {
+  text-align: right;
+}
+
+#player-guest {
+  text-align: left;
+}
+
+
+#player-host .player-head {
+  color: #00bcd4;
+}
+
+#player-guest .player-head {
+  color: #ffc107;
+}
+
+.player {
+  margin: 8px;
+  display: inline-block;
+  min-width: 240px;
+}
+
+.player .head-text {
+
+  color: rgba(0, 0, 0, 0.54);
+  margin: 8px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.picks, .bans, .captains-line {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+#player-host .picks,
+#player-host .bans,
+#player-host .captains-line {
+  flex-direction: row-reverse;
+}
+
+
+.back-icon.header-navigation
+{
+  display: inline-block;
+  content: "";
+  text-indent: -9999px;
+  width: 48px;
+  height: 48px;
+  background-image: url("/images/back-icon-dark.png");
+  background-size: 48px 48px;
+  opacity: 0.54;
+
+  -webkit-transition: all 250ms;
+  -moz-transition: all 250ms;
+  transition: all 250ms;
+}
+
+.back-icon.header-navigation:hover {
+  opacity: 1.0;
+}
+
+
+.greenMarker {
+  color: #4caf50;
+}
+
 @media screen and (max-width: 1215px) {
   .container.is-widescreen {
     max-width: 1152px;
@@ -347,4 +462,142 @@ img {
   .container {
     max-width: 960px;
   }
+}
+
+
+@-webkit-keyframes pulsate {
+  from { opacity: 1;}
+  to { opacity: 0.54;}
+}
+@-moz-keyframes pulsate {
+  from { opacity: 1; }
+  to { opacity: 0.54;}
+}
+@keyframes pulsate {
+  from { opacity: 1; }
+  to { opacity: 0.54;}
+}
+
+
+/* player sides */
+
+.player.player-inactive {
+  background-color: rgba(255,255,255, 0.33);
+  box-shadow: none;
+}
+
+
+.player-head {
+  font-weight: 600;
+
+  margin-bottom: 16px;
+}
+
+
+.player-inactive .player-head {
+  opacity: 0.26;
+}
+
+#player-host {
+  text-align: right;
+}
+
+#player-guest {
+  text-align: left;
+}
+
+
+#player-host .player-head {
+  color: #00bcd4;
+}
+
+#player-guest .player-head {
+  color: #ffc107;
+}
+
+
+.player .head-text {
+  color: rgba(0, 0, 0, 0.54);
+  margin: 8px 0px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.picks, .bans, .captains-line {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+#player-host .picks,
+#player-host .bans,
+#player-host .captains-line {
+  flex-direction: row-reverse;
+}
+
+.players {
+  display: flex;
+  align-content: flex-start;
+  justify-content: center;
+}
+
+
+.back-icon.header-navigation
+{
+  display: inline-block;
+  content: "";
+  text-indent: -9999px;
+  width: 48px;
+  height: 48px;
+  background-image: url("/images/back-icon-dark.png");
+  background-size: 48px 48px;
+  opacity: 0.54;
+
+  -webkit-transition: all 250ms;
+  -moz-transition: all 250ms;
+  transition: all 250ms;
+}
+
+.back-icon.header-navigation:hover {
+  opacity: 1.0;
+}
+
+
+.player {
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 0px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.random-pick {
+  display: block;
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  top: -8px;
+  right: -8px;
+  background-image: url('/images/random.png');
+  background-size: 48px 48px;
+  background-repeat: no-repeat;
+}
+
+.random-snipe {
+  display: block;
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  top: 32px;
+  right: 32px;
+  background-image: url('/images/random.png');
+  background-size: 32px 32px;
+  background-repeat: no-repeat;
+}
+
+.ban .random-pick {
+  top: -4px;
+  right: -4px;
+  width: 24px;
+  height: 24px;
+  background-size: 24px 24px;
 }
