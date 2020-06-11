@@ -297,7 +297,7 @@ img {
 .ban {
     width: 56px;
     height: 56px;
-    background: #D64965;
+    background-color: #cc3333;
 }
 
 .pick img, .ban img {
@@ -556,7 +556,7 @@ img {
 }
 
 .countdown-timer-last {
-    color: #f06292;
+    color: #CC4864;
 
     -webkit-animation: pulsate 1s ease-in infinite alternate;
     -moz-animation: pulsate 1s ease-in infinite alternate;
