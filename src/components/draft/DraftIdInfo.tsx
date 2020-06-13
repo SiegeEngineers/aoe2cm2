@@ -1,7 +1,7 @@
 import * as React from "react";
 import Preset from "../../models/Preset";
 import "../../types/DraftEvent";
-import { WithTranslation, withTranslation} from "react-i18next";
+import {WithTranslation, withTranslation} from "react-i18next";
 import CopyableInput from "./CopyableInput";
 import {Util} from "../../util/Util";
 
@@ -22,7 +22,7 @@ class DraftIdInfo extends React.Component<IProps, object> {
         const i18nKey = this.hasDraftEnded() ? 'codeInstructionsAfter' : 'codeInstructionsBefore';
 
         return (
-                <CopyableInput content={Util.getIdFromUrl()} before={i18nKey} length={10} size={"is-small"}/>
+            <CopyableInput content={Util.getIdFromUrl()} before={i18nKey} length={10} size={"is-small"}/>
         );
     }
 

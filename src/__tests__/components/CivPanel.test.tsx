@@ -6,7 +6,7 @@ import CivPanelType from "../../constants/CivPanelType";
 
 it('PICK CivPanels render correctly', () => {
     Civilisation.ALL.forEach((civ: Civilisation) => {
-        renderCivPanelAndCheckSnapshot(CivPanelType.PICK, civ);
+            renderCivPanelAndCheckSnapshot(CivPanelType.PICK, civ);
         }
     );
 });
@@ -17,7 +17,7 @@ it('empty PICK CivPanel renders correctly', () => {
 
 it('BAN CivPanels render correctly', () => {
     Civilisation.ALL.forEach((civ: Civilisation) => {
-        renderCivPanelAndCheckSnapshot(CivPanelType.BAN, civ);
+            renderCivPanelAndCheckSnapshot(CivPanelType.BAN, civ);
         }
     );
 });

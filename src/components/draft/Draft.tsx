@@ -51,7 +51,7 @@ interface IState {
 }
 
 class Draft extends React.Component<IProps, IState> {
-    constructor(props:IProps) {
+    constructor(props: IProps) {
         super(props);
         this.disconnectAndGoBack = this.disconnectAndGoBack.bind(this);
     }
@@ -85,7 +85,7 @@ class Draft extends React.Component<IProps, IState> {
         }
     }
 
-    private disconnectAndGoBack():void {
+    private disconnectAndGoBack(): void {
         if (this.props.triggerDisconnect) {
             this.props.triggerDisconnect();
         }
@@ -103,7 +103,6 @@ class Draft extends React.Component<IProps, IState> {
         const turns = this.props.preset.turns;
 
 
-
         return (
             <section className="section">
                 <Modal inDraft={true}/>
@@ -112,7 +111,9 @@ class Draft extends React.Component<IProps, IState> {
                     <div className="columns is-mobile">
                         <div className="column is-1 py-0">
                             <span>
-                                <a onClick={this.disconnectAndGoBack}><span className="back-icon header-navigation" aria-label="Go back"></span></a>
+                                <a onClick={this.disconnectAndGoBack}>
+                                    <span className="back-icon header-navigation" aria-label="Go back"/>
+                                </a>
                             </span>
                         </div>
                         <div className="column content my-0">

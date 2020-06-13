@@ -34,14 +34,22 @@ export const SocketUtil = {
         socket.on("player_set_role", (data: IPlayerWithNameMessage) => {
             console.log("player_set_role", data);
             if (data.playerType === Player.HOST || data.playerType === Player.GUEST) {
-                storeAPI.dispatch({type: ServerActions.SET_PLAYER_CONNECTED, player: data.playerType, value: data.name} as IConnectPlayer);
+                storeAPI.dispatch({
+                    type: ServerActions.SET_PLAYER_CONNECTED,
+                    player: data.playerType,
+                    value: data.name
+                } as IConnectPlayer);
             }
         });
 
         socket.on("player_set_name", (data: IPlayerWithNameMessage) => {
             console.log("player_set_name", data);
             if (data.playerType === Player.HOST || data.playerType === Player.GUEST) {
-                storeAPI.dispatch({type: ServerActions.SET_PLAYER_NAME, player: data.playerType, value: data.name} as ISetPlayerName);
+                storeAPI.dispatch({
+                    type: ServerActions.SET_PLAYER_NAME,
+                    player: data.playerType,
+                    value: data.name
+                } as ISetPlayerName);
             }
         });
 

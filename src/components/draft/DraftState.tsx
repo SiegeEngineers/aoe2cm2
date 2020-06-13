@@ -13,8 +13,14 @@ class DraftState extends React.Component<IProps, object> {
     public render() {
         return (
             <div className="columns is-mobile">
-                <PlayerDraftState preset={this.props.preset} player={ModelPlayer.HOST} name={this.props.nameHost} key={ModelPlayer.HOST}/>
-                <PlayerDraftState preset={this.props.preset} player={ModelPlayer.GUEST} name={this.props.nameGuest} key={ModelPlayer.GUEST}/>
+                <PlayerDraftState preset={this.props.preset}
+                                  player={ModelPlayer.HOST}
+                                  name={this.props.nameHost}
+                                  key={ModelPlayer.HOST}/>
+                <PlayerDraftState preset={this.props.preset}
+                                  player={ModelPlayer.GUEST}
+                                  name={this.props.nameGuest}
+                                  key={ModelPlayer.GUEST}/>
             </div>
         );
     }

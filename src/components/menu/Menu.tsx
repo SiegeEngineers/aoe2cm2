@@ -18,11 +18,11 @@ class Menu extends React.Component<WithTranslation, object> {
                 <div className="container">
                     <Modal/>
                     <div className="has-text-centered pb-5">
-                    <img src="/images/aoe2cm2.png" alt="AoE II - Captains Mode Logo"/>
+                        <img src="/images/aoe2cm2.png" alt="AoE II - Captains Mode Logo"/>
                     </div>
                     <div className="has-text-centered">
-                    <h1 className="title is-hidden">Age of Empires II</h1>
-                    <h2 className="subtitle is-hidden">Captains Mode</h2>
+                        <h1 className="title is-hidden">Age of Empires II</h1>
+                        <h2 className="subtitle is-hidden">Captains Mode</h2>
                     </div>
                     <div className="tabs is-centered">
                         <ul>
@@ -57,7 +57,7 @@ class TabLinkBase extends React.Component<IProps> {
     render() {
         const isActive = this.props.location.pathname === this.props.to;
 
-        return(
+        return (
             <li className={(isActive && this.props.activeClassName) || ''}>
                 <NavLink to={this.props.to} strict={true}>
                     {this.props.children}
@@ -66,6 +66,7 @@ class TabLinkBase extends React.Component<IProps> {
         );
     }
 }
+
 const TabLink = withRouter(TabLinkBase);
 
 export default withTranslation()(Menu);

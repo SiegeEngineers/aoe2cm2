@@ -8,7 +8,7 @@ import {Util} from "../util/Util";
 import Draft from "./Draft";
 
 export class Validation {
-    public static readonly VLD_000: Validation = new Validation(ValidationId.VLD_000, (draft:Draft, draftEvent: DraftEvent) => {
+    public static readonly VLD_000: Validation = new Validation(ValidationId.VLD_000, (draft: Draft, draftEvent: DraftEvent) => {
         if (!draft.draftCanBeStarted()) {
             return false;
         }

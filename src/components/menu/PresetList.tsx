@@ -9,7 +9,7 @@ class PresetList extends React.Component<IProps, object> {
 
     public render() {
         const presetListElements = this.props.items.map((item) => <PresetListElement name={item.name}
-                                                                                            key={item.id}
+                                                                                     key={item.id}
                                                                                      presetId={item.id}/>);
         return (
             <ul>

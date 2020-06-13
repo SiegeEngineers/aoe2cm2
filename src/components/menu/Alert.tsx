@@ -11,7 +11,7 @@ interface IState {
 
 class Alert extends React.Component<IProps, IState> {
 
-    constructor(props:IProps) {
+    constructor(props: IProps) {
         super(props);
         this.closeAlert = this.closeAlert.bind(this);
     }
@@ -33,10 +33,10 @@ class Alert extends React.Component<IProps, IState> {
         }
         return (<article className={'message is-' + config.class}>
             {config.title &&
-                <div className="message-header">
-                    {config.title}
-                    {config.closable && <button className="delete" aria-label="delete" onClick={this.closeAlert}/>}
-                </div>
+            <div className="message-header">
+                {config.title}
+                {config.closable && <button className="delete" aria-label="delete" onClick={this.closeAlert}/>}
+            </div>
             }
             <div className="message-body" dangerouslySetInnerHTML={{__html: config.content}}/>
         </article>);

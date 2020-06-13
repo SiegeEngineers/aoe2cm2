@@ -88,9 +88,7 @@ class Turn extends React.Component<IProps, IState> {
         }
         let tagPrefixClassName = tagClassName + ' is-dark';
         let prefixTag: React.ReactElement = <span/>;
-        // if (![Action.SNIPE, Action.REVEAL_SNIPES, Action.REVEAL_ALL, Action.REVEAL_PICKS, Action.REVEAL_BANS].includes(turn.action)) {
-            tagClassName += ' is-light'
-        // }
+        tagClassName += ' is-light'
         let tagGroupClassName = 'tags';
         if (prefix) {
             prefixTag = <span className={tagPrefixClassName}>{prefix}</span>

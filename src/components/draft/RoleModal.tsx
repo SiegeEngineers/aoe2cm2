@@ -30,7 +30,7 @@ class RoleModal extends React.Component<IProps, object> {
                                         <div className="box-content is-visible">
                                             <div className="stretchy-wrapper">
                                                 <div className="stretchy-image">
-                                                    <img src="/images/role_host.png" alt="Spectate"/>
+                                                    <img src="/images/role_host.png" alt="Host"/>
                                                 </div>
                                                 <div className="stretchy-text"><Trans>rolemodal.role.host</Trans></div>
                                             </div>
@@ -44,7 +44,7 @@ class RoleModal extends React.Component<IProps, object> {
                                         <div className="box-content is-visible">
                                             <div className="stretchy-wrapper">
                                                 <div className="stretchy-image">
-                                                    <img src="/images/role_guest.png" alt="Spectate"/>
+                                                    <img src="/images/role_guest.png" alt="Guest"/>
                                                 </div>
                                                 <div className="stretchy-text"><Trans>rolemodal.role.guest</Trans></div>
                                             </div>
@@ -72,12 +72,11 @@ class RoleModal extends React.Component<IProps, object> {
                             <div>
                                 <CopyableInput content={window.location.href} length={45}/>
                             </div>
-
                             <p><Trans>rolemodal.spectateUrlCallToAction</Trans></p>
                             <div>
-                                <CopyableInput content={window.location.href.replace('/draft/', '/spectate/')} length={45}/>
+                                <CopyableInput content={window.location.href.replace('/draft/', '/spectate/')}
+                                               length={45}/>
                             </div>
-
                         </div>
                     </div>
                 </div>

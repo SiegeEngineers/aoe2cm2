@@ -19,44 +19,55 @@ const TurnExplanation = () =>
 
         <h4>Host and Guest turns</h4>
 
-        <p>Turns have a main action (<span className="tag has-text-weight-bold is-light is-success">PICK</span>, <span className="tag has-text-weight-bold is-light is-danger">BAN</span>, <span className="tag has-text-weight-bold is-light is-link">SNIPE</span>) and a few possible modifiers.</p>
-        <p>A <span className="tag has-text-weight-bold is-light is-success">PICK</span> adds a usable civilisation for a player.</p>
+        <p>Turns have a main action (<span className="tag has-text-weight-bold is-light is-success">PICK</span>, <span
+            className="tag has-text-weight-bold is-light is-danger">BAN</span>, <span
+            className="tag has-text-weight-bold is-light is-link">SNIPE</span>) and a few possible modifiers.</p>
+        <p>A <span className="tag has-text-weight-bold is-light is-success">PICK</span> adds a usable civilisation for a
+            player.</p>
         <ul>
             <li>A <span className="tag">GLOBAL PICK</span> or <div className="tags has-addons"><span
-                className="tag has-text-weight-bold is-success">G</span><span className="tag has-text-weight-bold is-success is-light">PICK</span></div> prevents
+                className="tag has-text-weight-bold is-success">G</span><span
+                className="tag has-text-weight-bold is-success is-light">PICK</span></div> prevents
                 either player from picking the civilisation again in
                 a future turn.
             </li>
             <li>An <span className="tag">EXCLUSIVE PICK</span> or <div className="tags has-addons"><span
-                className="tag has-text-weight-bold is-success">E</span><span className="tag has-text-weight-bold is-success is-light">PICK</span></div>prevents
+                className="tag has-text-weight-bold is-success">E</span><span
+                className="tag has-text-weight-bold is-success is-light">PICK</span></div>prevents
                 only the picking player from picking the
                 civilisation again in a future turn.
             </li>
             <li>A <span className="tag">NONEXCLUSIVE PICK</span> or <div className="tags has-addons"><span
-                className="tag has-text-weight-bold is-success">N</span><span className="tag has-text-weight-bold is-success is-light">PICK</span></div>does
+                className="tag has-text-weight-bold is-success">N</span><span
+                className="tag has-text-weight-bold is-success is-light">PICK</span></div>does
                 neither of those things, meaning players are still
                 able to pick the civilisation again in a future turn.
             </li>
         </ul>
-        <p>A <span className="tag has-text-weight-bold is-light is-danger">BAN</span> marks civilisation as not available for future turns.</p>
+        <p>A <span className="tag has-text-weight-bold is-light is-danger">BAN</span> marks civilisation as not
+            available for future turns.</p>
         <ul>
             <li>A <span className="tag">GLOBAL BAN</span> or <div className="tags has-addons"><span
-                className="tag has-text-weight-bold is-danger">G</span><span className="tag has-text-weight-bold is-danger is-light">BAN</span></div>&nbsp;
+                className="tag has-text-weight-bold is-danger">G</span><span
+                className="tag has-text-weight-bold is-danger is-light">BAN</span></div>&nbsp;
                 prevents either player from picking the civilisation in a future turn.
             </li>
             <li>An <span className="tag">EXCLUSIVE BAN</span> or <div className="tags has-addons"><span
-                className="tag has-text-weight-bold is-danger">E</span><span className="tag has-text-weight-bold is-danger is-light">BAN</span></div>&nbsp;
+                className="tag has-text-weight-bold is-danger">E</span><span
+                className="tag has-text-weight-bold is-danger is-light">BAN</span></div>&nbsp;
                 prevents only the opponent from picking the civilisation in a future turn and the player from banning
                 the civilisation again in a future turn.
             </li>
             <li>A <span className="tag">NONEXCLUSIVE BAN</span> or <div className="tags has-addons"><span
-                className="tag has-text-weight-bold is-danger">N</span><span className="tag has-text-weight-bold is-danger is-light">BAN</span></div>&nbsp;
+                className="tag has-text-weight-bold is-danger">N</span><span
+                className="tag has-text-weight-bold is-danger is-light">BAN</span></div>&nbsp;
                 prevents only the opponent from picking the civilisation in a future turn, and the player may ban the
                 the civilisation again in a future turn, which makes no sense, so you probably want to use <span
                     className="tag">EXCLUSIVE</span> instead anyway.
             </li>
         </ul>
-        <p>A <span className="tag has-text-weight-bold is-light is-link">SNIPE</span> allows a player to remove a civilisation again which the opponent has
+        <p>A <span className="tag has-text-weight-bold is-light is-link">SNIPE</span> allows a player to remove a
+            civilisation again which the opponent has
             picked in a previous turn. The GLOBAL, EXCLUSIVE and NONEXCLUSIVE modifiers have no meaning here.</p>
 
         <h4>Modifiers</h4>

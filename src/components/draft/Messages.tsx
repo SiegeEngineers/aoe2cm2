@@ -242,7 +242,11 @@ class Messages extends React.Component<IProps, object> {
         if (turn.player === Player.NONE) {
             const action = turn.action.toString();
             return (
-                <div><Trans i18nKey='messages.adminAction'>Admin action: <span className="tag is-dark is-large is-family-monospace">{action}</span></Trans></div>
+                <div>
+                    <Trans i18nKey='messages.adminAction'>Admin action:&nbsp;
+                        <span className="tag is-dark is-large is-family-monospace">{action}</span>
+                    </Trans>
+                </div>
             );
         } else if (turn.player === this.props.whoAmI) {
             switch (turn.action) {

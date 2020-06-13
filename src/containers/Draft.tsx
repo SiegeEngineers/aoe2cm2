@@ -42,7 +42,7 @@ export function mapDispatchToProps(dispatch: Dispatch<actions.Action>) {
         setOwnRole: (role: Player) => dispatch(actions.setOwnRole(role)),
         setCountdownValue: (values: ICountdownValues) => dispatch(actions.setCountdownValue(values)),
         setEvents: (value: { player: Player, action: ModelAction, events: DraftEvent[] }) => dispatch(actions.setEvents(value)),
-        act: (value:DraftEvent)=>dispatch(actions.act(value)),
+        act: (value: DraftEvent) => dispatch(actions.act(value)),
     }
 }
 

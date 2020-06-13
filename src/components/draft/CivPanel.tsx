@@ -55,7 +55,8 @@ class CivPanel extends React.Component<IProps, IState> {
             }
         }
         let className: string = this.props.civPanelType.toString();
-        let onClickAction = () => {};
+        let onClickAction = () => {
+        };
         if (this.props.civPanelType === CivPanelType.CHOICE) {
             className += ' is-inline-block';
             if (this.isValidOption()) {
@@ -72,7 +73,7 @@ class CivPanel extends React.Component<IProps, IState> {
             }
             className += ' is-inline-block';
         }
-        if(this.props.active){
+        if (this.props.active) {
             className += " active-choice";
         } else if (civilisation !== undefined) {
             className += ' has-value';
@@ -122,7 +123,7 @@ class CivPanel extends React.Component<IProps, IState> {
             const civilisation = this.props.civilisation as Civilisation;
             const whoAmI = this.props.whoAmI as Player;
             const triggerAction = this.props.triggerAction as ActionType;
-            const onClickCivilisation = this.props.onClickCivilisation as (playerEvent:PlayerEvent, callback:any) => void;
+            const onClickCivilisation = this.props.onClickCivilisation as (playerEvent: PlayerEvent, callback: any) => void;
             onClickCivilisation(new PlayerEvent(whoAmI, triggerAction, civilisation), (data: any) => {
                 console.log('act callback', data);
                 if (data.status !== 'ok') {
