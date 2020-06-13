@@ -3,7 +3,7 @@ import * as React from "react";
 class Footer extends React.Component<object, object> {
     public render() {
         return (
-            <footer className="footer">
+            <footer className="footer is-dark px-4 py-6 has-background-grey-lighter">
                 <div className="container">
                     <div className="content is-small">
                         <p>
