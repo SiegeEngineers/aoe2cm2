@@ -27,7 +27,7 @@ class RoleModal extends React.Component<IProps, object> {
                                     this.props.setRoleCallback(Player.HOST)
                                 }} disabled={this.props.hostConnected}>
                                     <div className="role">
-                                        <div className="box-content visible">
+                                        <div className="box-content is-visible">
                                             <div className="stretchy-wrapper">
                                                 <div className="stretchy-image">
                                                     <img src="/images/host.png" alt="Spectate"/>
@@ -41,7 +41,7 @@ class RoleModal extends React.Component<IProps, object> {
                                     this.props.setRoleCallback(Player.GUEST)
                                 }} disabled={this.props.guestConnected}>
                                     <div className="role">
-                                        <div className="box-content visible">
+                                        <div className="box-content is-visible">
                                             <div className="stretchy-wrapper">
                                                 <div className="stretchy-image">
                                                     <img src="/images/guest.png" alt="Spectate"/>
@@ -55,7 +55,7 @@ class RoleModal extends React.Component<IProps, object> {
                                     this.props.setRoleCallback(Player.NONE)
                                 }}>
                                     <div className="role">
-                                        <div className="box-content visible">
+                                        <div className="box-content is-visible">
                                             <div className="stretchy-wrapper">
                                                 <div className="stretchy-image">
                                                     <img src="/images/spectate.png" alt="Spectate"/>

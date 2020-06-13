@@ -10,7 +10,7 @@ interface IProps {
 }
 
 export const PresetEditorTurn = ({index, turn, onValueChange}: IProps) =>
-    <div className="columns has-background-light" key={'turn-' + index}
+    <div className="columns is-mobile has-background-light" key={'turn-' + index}
          style={{borderBottom: '1px solid #ddd'}}>
         <div className="column is-1 has-text-vcentered is-size-5 has-text-grey">{index+1}</div>
         <div className="column has-text-centered">

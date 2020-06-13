@@ -34,7 +34,6 @@ class PlayerDraftState extends React.Component<IProps, IState> {
     }
 
     public componentWillReceiveProps(nextProps: Readonly<IProps>, nextContext: any): void {
-        console.log("Propping up", nextProps);
         this.setState(eventsToState(nextProps.events, nextProps.player));
     }
 

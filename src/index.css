@@ -9,8 +9,14 @@ body {
     margin: 0;
     padding: 0;
     background-color: #eeeeee;
-    color: #4a4a41;
+    color: #444444;
+    min-width: 1024px;
+}
 
+nav.navbar .navbar-end {
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+    margin-left: auto;
 }
 
 code, kbd, pre, samp, .is-family-monospace {
@@ -49,8 +55,17 @@ label.civ-select:hover {
 .turn-row {
 }
 
+.turn-row .turn.column.is-1 {
+    width:72px !important;
+}
+
+.turn .tag {
+    margin-bottom:0px
+}
+
 .turn-row .arrow-start, .turn-row .arrow-end {
     font-size: 0.7rem;
+    padding: 0.65rem;
 }
 
 .turn-host.turn-parallel .bar {
@@ -519,6 +534,7 @@ img {
     background-image: url('/images/random.png');
     background-size: 32px 32px;
     background-repeat: no-repeat;
+    opacity: 0.9
 }
 
 .random-snipe {
@@ -531,6 +547,7 @@ img {
     background-image: url('/images/random.png');
     background-size: 32px 32px;
     background-repeat: no-repeat;
+    opacity:0.7
 }
 
 .ban .random-pick {
@@ -542,7 +559,7 @@ img {
 }
 
 .active {
-    background-color: #fff;
+    background-color: khaki;
     border-radius: 4px;
 }
 

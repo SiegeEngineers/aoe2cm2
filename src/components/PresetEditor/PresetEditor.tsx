@@ -55,7 +55,7 @@ class PresetEditor extends React.Component<Props, object> {
                     <h3>2. Turns</h3>
                     <TurnRow turns={this.props.preset.turns}/>
                     <div>
-                        <div className="columns has-text-weight-bold has-background-grey-lighter">
+                        <div className="columns is-mobile has-text-weight-bold has-background-grey-lighter">
                             <div className="column is-1 has-text-centered">#</div>
                             <div className="column has-text-centered">Host</div>
                             <div className="column has-text-centered">Admin</div>
@@ -65,7 +65,7 @@ class PresetEditor extends React.Component<Props, object> {
 
                         {turns}
 
-                        <div className="columns">
+                        <div className="columns is-mobile">
                             <div className="column is-1"/>
                             <div className="column has-text-centered">
                                 <button className="button" onClick={() => {

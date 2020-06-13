@@ -58,7 +58,6 @@ class Draft extends React.Component<IProps, IState> {
     }
 
     componentDidUpdate(prevProps: Readonly<IProps>, prevState: Readonly<IState>, snapshot?: any): void {
-        console.log('cdU', this.props);
         if (this.props.whoAmI === undefined) {
             console.log('is undefined');
             if (!this.props.hostConnected || !this.props.guestConnected) {
@@ -90,7 +89,7 @@ class Draft extends React.Component<IProps, IState> {
                 <Modal inDraft={true}/>
                 <RoleModal/>
                 <div id="container" className="container is-fullhd">
-                    <div className="columns">
+                    <div className="columns is-mobile">
                         <div className="column is-1">
                             <span onClick={this.props.triggerDisconnect}>
                                 <Link to="/"><span className="back-icon header-navigation">back</span></Link>
@@ -102,7 +101,7 @@ class Draft extends React.Component<IProps, IState> {
                         <div className="column is-1"/>
                     </div>
 
-                    <div className="columns">
+                    <div className="columns is-mobile">
                         <div className="column">
                             <TurnRow turns={turns}/>
                         </div>
@@ -111,7 +110,7 @@ class Draft extends React.Component<IProps, IState> {
                     <DraftState nameHost={this.props.nameHost} nameGuest={this.props.nameGuest}
                                 preset={this.props.preset}/>
 
-                    <div className="columns">
+                    <div className="columns is-mobile">
                         <div id="action-text" className="column has-text-centered is-size-4">
                             <Messages/>
                         </div>
@@ -120,7 +119,7 @@ class Draft extends React.Component<IProps, IState> {
 
                     <ReplayControls/>
 
-                    <div className="columns">
+                    <div className="columns is-mobile">
                         <div className="column has-text-centered">
                             <DraftIdInfo/>
                         </div>
