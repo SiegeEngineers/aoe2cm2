@@ -17,7 +17,7 @@ class Countdown extends React.Component<IProps, object> {
         );
     }
 
-    private static format(number: number):string {
+    private static format(number: number): string {
         const minutes: number = number / 60;
         const seconds: number = number % 60;
 

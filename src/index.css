@@ -6,8 +6,9 @@
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Crete+Round:ital@0;1&display=swap');
+
 .content h1, .content h2, .content h3, .content h4, .content h5, .content h6, .navbar-brand h1 {
-  font-family: 'Crete Round', sans-serif;
+    font-family: 'Crete Round', sans-serif;
     font-weight: 300;
 }
 
@@ -31,6 +32,15 @@ nav.navbar .navbar-brand h1 {
 
 code, kbd, pre, samp, .is-family-monospace {
     font-family: 'SF Mono', 'Consolas', monospace !important;
+}
+
+code {
+    color: inherit;
+    border-radius: 4px;
+}
+
+.message-body code, .message-body pre {
+    background-color: rgba(27, 31, 35, .05);
 }
 
 .box {
@@ -66,11 +76,11 @@ label.civ-select:hover {
 }
 
 .turn-row .turn.column.is-1 {
-    width:72px !important;
+    width: 72px !important;
 }
 
 .turn .tag {
-    margin-bottom:0px
+    margin-bottom: 0px
 }
 
 .turn-row .arrow-start, .turn-row .arrow-end {
@@ -160,6 +170,11 @@ label.civ-select:hover {
     border-right: .5rem solid rgba(0, 0, 0, 0.87);
 }
 
+.turn.active {
+    background-color: khaki;
+    border-radius: 4px;
+}
+
 /** grid stuff **/
 
 .chooser {
@@ -227,7 +242,6 @@ label.civ-select:hover {
     cursor: not-allowed;
 }
 
-
 .choice-disabled img {
     filter: grayscale(50%);
     -webkit-filter: grayscale(50%);
@@ -288,22 +302,9 @@ div.stretchy-wrapper > div.stretchy-text {
     box-sizing: border-box;
 }
 
-img {
-    border: 0;
+.card.has-value {
+    opacity: 1.0;
 }
-
-.role, .role img {
-    width: 100px;
-    height: 100px;
-    border-radius: 4px;
-}
-
-.role-button {
-    width: auto;
-    height: auto;
-    padding: 10px;
-}
-
 
 .pick, .ban {
     box-shadow: none;
@@ -349,6 +350,40 @@ img {
     visibility: hidden;
 }
 
+.random-pick {
+    display: block;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    top: 0;
+    left: -2px;
+    background-image: url('/images/random.png');
+    background-size: 32px 32px;
+    background-repeat: no-repeat;
+    opacity: 0.9
+}
+
+.random-snipe {
+    display: block;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    top: 32px;
+    right: 32px;
+    background-image: url('/images/random.png');
+    background-size: 32px 32px;
+    background-repeat: no-repeat;
+    opacity: 0.7
+}
+
+.ban .random-pick {
+    top: 0;
+    left: -1px;
+    width: 24px;
+    height: 24px;
+    background-size: 24px 24px;
+}
+
 .active-choice {
     -webkit-animation: pulsate 1s ease-in infinite alternate;
     -moz-animation: pulsate 1s ease-in infinite alternate;
@@ -386,8 +421,46 @@ img {
     background-image: url('/images/controls_fast_forward-dark.png');
 }
 
+#countdown-timer {
+    display: inline-block;
+    font-weight: 600;
+}
+
+.countdown-timer-last {
+    color: #CC4864;
+    -webkit-animation: pulsate 1s ease-in infinite alternate;
+    -moz-animation: pulsate 1s ease-in infinite alternate;
+    -animation: pulsate 1s ease-in infinite alternate;
+    animation: pulsate 1s ease-in infinite alternate;
+}
+
+.role, .role img {
+    width: 100px;
+    height: 100px;
+    border-radius: 4px;
+}
+
+.role-button {
+    width: auto;
+    height: auto;
+    padding: 10px;
+}
 
 /* player sides */
+
+.players {
+    display: flex;
+    align-content: flex-start;
+    justify-content: center;
+}
+
+.player-host {
+    color: #00bcd4; /*cyan */
+}
+
+.player-guest {
+    color: #ffc107; /*amber */
+}
 
 .player-inactive {
     background-color: rgba(255, 255, 255, 0.4);
@@ -406,11 +479,11 @@ img {
 }
 
 #player-host h4.player-name {
-    color: #00bcd4;
+    color: #00bbdd;
 }
 
 #player-guest h4.player-name {
-    color: #ffc107;
+    color: #eeaa00;
 }
 
 .player .head-text {
@@ -428,7 +501,6 @@ img {
 #player-host .captains-line {
     flex-direction: row-reverse;
 }
-
 
 .back-icon.header-navigation {
     display: inline-block;
@@ -448,20 +520,21 @@ img {
     opacity: 1.0;
 }
 
+.snipe-marker {
+    background-image: url('/images/red-cross.svg');
+}
 
-.greenMarker {
+.used-marker {
+    background-image: url('/images/green-checkmark.svg');
+}
+
+.green-status-marker {
     color: #4caf50;
 }
 
 @media screen and (max-width: 1215px) {
     .container.is-widescreen {
-        max-width: 1152px;
-    }
-}
-
-@media screen and (max-width: 1407px) {
-    .container.is-fullhd {
-        max-width: 1344px;
+        max-width: 960px;
     }
 }
 
@@ -471,9 +544,15 @@ img {
     }
 }
 
+@media screen and (max-width: 1407px) {
+    .container.is-fullhd {
+        max-width: 1024px;
+    }
+}
+
 @media screen and (min-width: 1408px) {
     .container {
-        max-width: 960px;
+        max-width: 1024px;
     }
 }
 
@@ -503,96 +582,4 @@ img {
     to {
         opacity: 0.54;
     }
-}
-
-
-.players {
-    display: flex;
-    align-content: flex-start;
-    justify-content: center;
-}
-
-
-.random-pick {
-    display: block;
-    position: absolute;
-    width: 32px;
-    height: 32px;
-    top: 0;
-    left: -2px;
-    background-image: url('/images/random.png');
-    background-size: 32px 32px;
-    background-repeat: no-repeat;
-    opacity: 0.9
-}
-
-.random-snipe {
-    display: block;
-    position: absolute;
-    width: 32px;
-    height: 32px;
-    top: 32px;
-    right: 32px;
-    background-image: url('/images/random.png');
-    background-size: 32px 32px;
-    background-repeat: no-repeat;
-    opacity:0.7
-}
-
-.ban .random-pick {
-    top: 0;
-    left: -1px;
-    width: 24px;
-    height: 24px;
-    background-size: 24px 24px;
-}
-
-.turn.active {
-    background-color: khaki;
-    border-radius: 4px;
-}
-
-.card.has-value {
-    opacity: 1.0;
-}
-
-#countdown-timer {
-    display: inline-block;
-    font-weight: 600;
-}
-
-.countdown-timer-last {
-    color: #CC4864;
-
-    -webkit-animation: pulsate 1s ease-in infinite alternate;
-    -moz-animation: pulsate 1s ease-in infinite alternate;
-    -animation: pulsate 1s ease-in infinite alternate;
-    animation: pulsate 1s ease-in infinite alternate;
-}
-
-code {
-    color: inherit;
-    border-radius: 4px;
-}
-
-.message-body code, .message-body pre {
-    background-color: rgba(27,31,35,.05);
-}
-
-
-.player-host {
-    color: #00bcd4; /*cyan */
-}
-
-.player-guest {
-    color: #ffc107; /*amber */
-}
-
-
-.snipe-marker {
-    background-image: url('/images/red-cross.svg');
-}
-
-.used-marker {
-    background-image: url('/images/green-checkmark.svg');
 }
