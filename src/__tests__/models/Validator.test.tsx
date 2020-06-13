@@ -418,6 +418,24 @@ it('Snipe globally banned civ', () => {
     expect(errors).toEqual([]);
 });
 
+it('Double Snipe', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL),
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL),
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL),
+        new Turn(Player.GUEST, Action.SNIPE, Exclusivity.GLOBAL),
+        new Turn(Player.GUEST, Action.SNIPE, Exclusivity.GLOBAL),
+    ]);
+    const validator = new Validator(prepareReadyStore(preset, [
+        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS),
+        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.BRITONS),
+        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.CHINESE),
+        new PlayerEvent(Player.GUEST, ActionType.SNIPE, Civilisation.BRITONS),
+    ]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.SNIPE, Civilisation.CHINESE));
+    expect(errors).toEqual([]);
+});
+
 
 const prepareStore = (preset: Preset, events: DraftEvent[] = []): DraftsStore => {
     const draft = new Draft(NAME_HOST, NAME_GUEST, preset);
