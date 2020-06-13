@@ -89,8 +89,13 @@ class Draft extends React.Component<IProps, IState> {
         if (this.props.triggerDisconnect) {
             this.props.triggerDisconnect();
         }
-        console.log(this.props.history);
-        this.props.history.goBack();
+        if (this.props.history.length > 2 && document.referrer) {
+            // go back if there is a possibility
+            this.props.history.goBack();
+        } else {
+            // else go to spectate
+            this.props.history.push('/spectate');
+        }
     }
 
     public render() {
@@ -107,7 +112,7 @@ class Draft extends React.Component<IProps, IState> {
                     <div className="columns is-mobile">
                         <div className="column is-1 py-0">
                             <span>
-                                <a onClick={this.disconnectAndGoBack}><span className="back-icon header-navigation">back</span></a>
+                                <a onClick={this.disconnectAndGoBack}><span className="back-icon header-navigation" aria-label="Go back"></span></a>
                             </span>
                         </div>
                         <div className="column content my-0">

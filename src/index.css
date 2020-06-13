@@ -433,9 +433,6 @@ img {
 .back-icon.header-navigation {
     display: inline-block;
     content: "";
-    text-indent: 200%;
-    white-space: nowrap;
-    overflow: hidden;
     width: 48px;
     height: 48px;
     background-image: url("/images/back-icon-dark.png");
@@ -513,28 +510,6 @@ img {
     display: flex;
     align-content: flex-start;
     justify-content: center;
-}
-
-
-.back-icon.header-navigation {
-    display: inline-block;
-    content: "";
-    text-indent: 200%;
-    white-space: nowrap;
-    overflow: hidden;
-    width: 48px;
-    height: 48px;
-    background-image: url("/images/back-icon-dark.png");
-    background-size: 48px 48px;
-    opacity: 0.54;
-
-    -webkit-transition: all 250ms;
-    -moz-transition: all 250ms;
-    transition: all 250ms;
-}
-
-.back-icon.header-navigation:hover {
-    opacity: 1.0;
 }
 
 
