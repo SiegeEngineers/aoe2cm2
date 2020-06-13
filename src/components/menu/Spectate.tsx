@@ -28,6 +28,7 @@ class Spectate extends React.Component<WithTranslation, IState> {
         }
 
         const recentDrafts = this.state.recentDrafts.map((value) => <RecentDraftRow recentDraft={value}
+                                                                                    key={value.draftId}
                                                                                     callback={this.recentDraftCallback}/>)
 
         return (

@@ -77,4 +77,5 @@ export interface IAlert {
     class: string;
     title: string;
     content: string;
+    closable: boolean;
 }

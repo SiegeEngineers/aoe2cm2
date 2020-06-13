@@ -2,26 +2,31 @@
   {
     "class": "dark",
     "title": "Configuration Needed",
-    "content": "<b>Oh boy!</b> This is an alert. You can edit <code>alerts.json</code> to change the alerts displayed here."
+    "content": "<b>Oh boy!</b> This is an alert. You can edit <code>alerts.json</code> to change the alerts displayed here.",
+    "closable": true
   },
   {
       "class": "success",
       "title": "Configuration Needed",
-      "content": "<b>Oh boy!</b> This is an alert. You can edit <code>alerts.json</code> to change the alerts displayed here."
+      "content": "<b>Oh boy!</b> This is an alert. You can edit <code>alerts.json</code> to change the alerts displayed here.",
+      "closable": false
   },
   {
     "class": "info",
     "title": "Configuration Needed",
-    "content": "<b>Oh boy!</b> This is an alert. You can edit <code>alerts.json</code> to change the alerts displayed here."
+    "content": "<b>Oh boy!</b> This is an alert. You can edit <code>alerts.json</code> to change the alerts displayed here.",
+    "closable": true
   },
   {
     "class": "warning",
     "title": "Configuration Needed",
-    "content": "<b>Oh boy!</b> This is an alert. You can edit <code>alerts.json</code> to change the alerts displayed here."
+    "content": "<b>Oh boy!</b> This is an alert. You can edit <code>alerts.json</code> to change the alerts displayed here.",
+    "closable": false
   },
   {
     "class": "danger",
     "title": "Configuration Needed",
-    "content": "<b>Oh boy!</b> This is an alert. You can edit <code>alerts.json</code> to change the alerts displayed here."
+    "content": "<b>Oh boy!</b> This is an alert. You can edit <code>alerts.json</code> to change the alerts displayed here.",
+    "closable": false
   }
 ]

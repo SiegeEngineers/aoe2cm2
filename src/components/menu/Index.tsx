@@ -18,7 +18,7 @@ class Index extends React.Component<WithTranslation, IState> {
     }
 
     public render() {
-        const alerts = this.state.alerts.map((alert) => <Alert config={alert}/>);
+        const alerts = this.state.alerts.map((alert, index) => <Alert key={"alert-"+index} config={alert}/>);
         return (
             <div>
                 {alerts}
