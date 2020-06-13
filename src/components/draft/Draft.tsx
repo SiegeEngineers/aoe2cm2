@@ -11,14 +11,15 @@ import {IDraftConfig} from "../../types/IDraftConfig";
 import {WithTranslation, withTranslation} from "react-i18next";
 import Modal from "../../containers/Modal";
 import NameGenerator from "../../util/NameGenerator";
-import {Link} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import RoleModal from "../../containers/RoleModal";
 import DraftIdInfo from "../../containers/DraftIdInfo";
 import {ICountdownValues} from "../../types";
 import {default as ModelAction} from "../../constants/Action";
 import ReplayControls from "../../containers/ReplayControls";
+import {RouteComponentProps} from "react-router";
 
-interface IProps extends WithTranslation {
+interface IProps extends WithTranslation, RouteComponentProps<any> {
     nameHost: string;
     nameGuest: string;
     hostConnected: boolean;
@@ -50,6 +51,10 @@ interface IState {
 }
 
 class Draft extends React.Component<IProps, IState> {
+    constructor(props:IProps) {
+        super(props);
+        this.disconnectAndGoBack = this.disconnectAndGoBack.bind(this);
+    }
 
     state = {joined: false};
 
@@ -59,7 +64,7 @@ class Draft extends React.Component<IProps, IState> {
 
     componentDidUpdate(prevProps: Readonly<IProps>, prevState: Readonly<IState>, snapshot?: any): void {
         if (this.props.whoAmI === undefined) {
-            console.log('is undefined');
+            // console.log('is undefined');
             if (!this.props.hostConnected || !this.props.guestConnected) {
                 this.props.showRoleModal();
             } else {
@@ -67,7 +72,7 @@ class Draft extends React.Component<IProps, IState> {
                 this.setState({joined: true});
             }
         } else if (this.props.whoAmI !== Player.NONE && !this.state.joined) {
-            console.log('is other');
+            // console.log('is other');
             let username: string | null = NameGenerator.getNameFromLocalStorage(this.props.ownName);
             console.log("componentDidMount", this.props.triggerSetRole, username);
             if (username !== null) {
@@ -80,9 +85,19 @@ class Draft extends React.Component<IProps, IState> {
         }
     }
 
+    private disconnectAndGoBack():void {
+        if (this.props.triggerDisconnect) {
+            this.props.triggerDisconnect();
+        }
+        console.log(this.props.history);
+        this.props.history.goBack();
+    }
+
     public render() {
         const presetName: string = this.props.preset.name;
         const turns = this.props.preset.turns;
+
+
 
         return (
             <section className="section">
@@ -90,9 +105,9 @@ class Draft extends React.Component<IProps, IState> {
                 <RoleModal/>
                 <div id="container" className="container is-fullhd">
                     <div className="columns is-mobile">
-                        <div className="column is-1">
-                            <span onClick={this.props.triggerDisconnect}>
-                                <Link to="/"><span className="back-icon header-navigation">back</span></Link>
+                        <div className="column is-1 py-0">
+                            <span>
+                                <a onClick={this.disconnectAndGoBack}><span className="back-icon header-navigation">back</span></a>
                             </span>
                         </div>
                         <div className="column content my-0">
@@ -133,4 +148,4 @@ class Draft extends React.Component<IProps, IState> {
 
 }
 
-export default withTranslation()(Draft);
+export default withTranslation()(withRouter(Draft));

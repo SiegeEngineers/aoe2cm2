@@ -69,14 +69,14 @@ class RoleModal extends React.Component<IProps, object> {
                             </div>
                             <hr/>
                             <p><Trans>rolemodal.draftUrlCallToAction</Trans></p>
-                            <p>
+                            <div>
                                 <CopyableInput content={window.location.href} length={45}/>
-                            </p>
+                            </div>
 
                             <p><Trans>rolemodal.spectateUrlCallToAction</Trans></p>
-                            <p>
+                            <div>
                                 <CopyableInput content={window.location.href.replace('/draft/', '/spectate/')} length={45}/>
-                            </p>
+                            </div>
 
                         </div>
                     </div>

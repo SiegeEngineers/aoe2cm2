@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Trans, withTranslation, WithTranslation} from "react-i18next";
 import {IAlert} from "../../types";
-import {Alert} from "./Alert";
+import Alert from "./Alert";
 
 interface IState {
     alerts: IAlert[];

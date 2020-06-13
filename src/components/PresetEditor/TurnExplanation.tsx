@@ -59,7 +59,7 @@ const TurnExplanation = () =>
         <p>A <span className="tag has-text-weight-bold is-light is-link">SNIPE</span> allows a player to remove a civilisation again which the opponent has
             picked in a previous turn. The GLOBAL, EXCLUSIVE and NONEXCLUSIVE modifiers have no meaning here.</p>
 
-        <h5>Modifiers</h5>
+        <h4>Modifiers</h4>
         <p>If you want the players to execute two of their turns in parallel, check the <span
             className="tag">PARALLEL</span> checkbox of the <b>first</b> of those two turns (but do not check
             it for the second turn).</p>

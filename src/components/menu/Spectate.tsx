@@ -24,7 +24,7 @@ class Spectate extends React.Component<WithTranslation, IState> {
     public render() {
         if (this.state.draftId !== null) {
             const target = '/spectate/' + this.state.draftId;
-            return (<Redirect to={target}/>);
+            return (<Redirect push to={target}/>);
         }
 
         const recentDrafts = this.state.recentDrafts.map((value) => <RecentDraftRow recentDraft={value}

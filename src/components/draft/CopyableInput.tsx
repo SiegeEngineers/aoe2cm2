@@ -20,18 +20,16 @@ class CopyableInput extends React.Component<IProps, IState> {
         return (
             <React.Fragment>
                 <Trans i18nKey={this.props.before}/>
-                &nbsp;
+                {this.props.before ? '&nbsp;': ''}
                 <div className="is-inline-block">
                 <div className="field has-addons">
                     <div className="control">
-                        {/*<span className={'copyable-input'}>*/}
                         <input className={"input " + this.props.size} disabled={true} readOnly={true} value={this.props.content} size={this.props.length}/>
                     </div>
                     <div className="control">
                         <button className={'button is-light has-background-grey has-text-white-bis ' + this.props.size} onClick={this.copyToClipboard}>
                             <Trans>{this.state.label}</Trans>
                         </button>
-                        {/*</span>*/}
                     </div>
                 </div>
                 </div>

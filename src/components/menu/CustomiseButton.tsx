@@ -19,7 +19,7 @@ class CustomisePresetButton extends React.Component<IProps, IState> {
     public render() {
 
         if (this.state.goToEdit) {
-            return (<Redirect to={'/preset/create'}/>);
+            return (<Redirect push to={'/preset/create'}/>);
         }
 
         return (

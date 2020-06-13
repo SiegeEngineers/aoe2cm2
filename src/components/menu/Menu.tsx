@@ -1,5 +1,6 @@
 import * as React from "react";
-import {Link, Route, Switch} from "react-router-dom";
+import {withRouter, NavLink, Route, Switch} from "react-router-dom";
+import {RouteComponentProps} from "react-router";
 import Practice from "./Practice";
 import Presets from "./Presets";
 import Preset from "./Preset";
@@ -8,6 +9,7 @@ import Spectate from "./Spectate";
 import {Trans, withTranslation, WithTranslation} from "react-i18next";
 import Modal from "../../containers/Modal";
 import PresetEditor from "../PresetEditor/PresetEditor";
+import NotFound404 from "../404";
 
 class Menu extends React.Component<WithTranslation, object> {
     public render() {
@@ -15,8 +17,8 @@ class Menu extends React.Component<WithTranslation, object> {
             <section className="section">
                 <div className="container">
                     <Modal/>
-                    <div className="has-text-centered">
-                    <img src="/images/aoe2cm2.png" alt="logo"/><br/>&nbsp;
+                    <div className="has-text-centered pb-5">
+                    <img src="/images/aoe2cm2.png" alt="AoE II - Captains Mode Logo"/>
                     </div>
                     <div className="has-text-centered">
                     <h1 className="title is-hidden">Age of Empires II</h1>
@@ -24,18 +26,10 @@ class Menu extends React.Component<WithTranslation, object> {
                     </div>
                     <div className="tabs is-centered">
                         <ul>
-                            <li className="is-active">
-                                <Link to='/'><Trans>menu.welcome</Trans></Link>
-                            </li>
-                            <li>
-                                <Link to='/presets'><Trans>menu.hostOrJoin</Trans></Link>
-                            </li>
-                            <li>
-                                <Link to='/spectate'><Trans>menu.spectate</Trans></Link>
-                            </li>
-                            <li>
-                                <Link to='/practice'><Trans>menu.practice</Trans></Link>
-                            </li>
+                            <TabLink to='/' activeClassName="is-active"><Trans>menu.welcome</Trans></TabLink>
+                            <TabLink to='/presets' activeClassName="is-active"><Trans>menu.hostOrJoin</Trans></TabLink>
+                            <TabLink to='/spectate' activeClassName="is-active"><Trans>menu.spectate</Trans></TabLink>
+                            <TabLink to='/practice' activeClassName="is-active"><Trans>menu.practice</Trans></TabLink>
                         </ul>
                     </div>
                     <Switch>
@@ -45,11 +39,33 @@ class Menu extends React.Component<WithTranslation, object> {
                         <Route path="/preset/:id" component={Preset}/>
                         <Route path="/spectate" component={Spectate}/>
                         <Route path="/practice" component={Practice}/>
+                        <Route component={NotFound404}/>
                     </Switch>
                 </div>
             </section>
         );
     }
 }
+
+
+interface IProps extends RouteComponentProps<any> {
+    to: string;
+    activeClassName: string;
+}
+
+class TabLinkBase extends React.Component<IProps> {
+    render() {
+        const isActive = this.props.location.pathname === this.props.to;
+
+        return(
+            <li className={(isActive && this.props.activeClassName) || ''}>
+                <NavLink to={this.props.to} strict={true}>
+                    {this.props.children}
+                </NavLink>
+            </li>
+        );
+    }
+}
+const TabLink = withRouter(TabLinkBase);
 
 export default withTranslation()(Menu);

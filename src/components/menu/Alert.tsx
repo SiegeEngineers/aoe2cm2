@@ -5,10 +5,17 @@ interface IProps {
     config: IAlert;
 }
 
-export const Alert = ({config}: IProps) => <article className={'message is-' + config.class}>
-    <div className="message-header">
-        {config.title}
-        <button className="delete" aria-label="delete"></button>
-    </div>
-    <div className="message-body" dangerouslySetInnerHTML={{__html: config.content}}/>
-</article>;
+class Alert extends React.Component<IProps, object> {
+    public render() {
+        const config = this.props.config
+        return (<article className={'message is-' + config.class}>
+            <div className="message-header">
+                {config.title}
+                <button className="delete" aria-label="delete"/>
+            </div>
+            <div className="message-body" dangerouslySetInnerHTML={{__html: config.content}}/>
+        </article>);
+    }
+}
+
+export default Alert;

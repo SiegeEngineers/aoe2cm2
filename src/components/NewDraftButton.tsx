@@ -24,7 +24,7 @@ class NewDraftButton extends React.Component<IProps, IState> {
 
         if (this.state.draftId !== undefined) {
             const draftId = this.state.draftId;
-            return (<Redirect to={`/draft/${draftId}`}/>);
+            return (<Redirect push to={`/draft/${draftId}`}/>);
         }
 
         return (

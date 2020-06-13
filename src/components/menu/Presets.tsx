@@ -24,7 +24,7 @@ class Presets extends React.Component<WithTranslation, IState> {
     public render() {
         if (this.state.draftId !== null) {
             const target = '/draft/' + this.state.draftId;
-            return (<Redirect to={target}/>);
+            return (<Redirect push to={target}/>);
         }
 
         return (
