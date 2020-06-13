@@ -64,6 +64,7 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                         active: isThisPanelActive,
                         civPanelType: CivPanelType.PICK,
                         civilisation: pickedCiv,
+                        key: picksIndex,
                         sniped
                     }));
                 } else if (actionType === ActionType.BAN) {
@@ -75,7 +76,8 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                     banPanels.push(React.createElement(CivPanel, {
                         active: isThisPanelActive,
                         civPanelType: CivPanelType.BAN,
-                        civilisation: bannedCiv
+                        civilisation: bannedCiv,
+                        key: bansIndex,
                     }));
 
                 }

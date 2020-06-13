@@ -13,7 +13,7 @@ class PlayerOnlineStatus extends React.Component<IProps, object> {
     public render() {
         const className = this.isConnected() ? 'greenMarker' : '';
         return (
-            <span className={className}>●</span>
+            <span className={className}>&#9679;</span>
         );
     }
 
