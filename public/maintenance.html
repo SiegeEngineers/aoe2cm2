@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="refresh" content="60">
-    <title>aoe2cm Maintenance</title>
+    <title>AoE2CM2 - Maintenance</title>
     <style>
         html, body {
             height: 100%;
@@ -13,7 +13,9 @@
         body {
             margin: 0;
             background-color: #eee;
-            font-family: "Trebuchet MS", Helvetica, sans-serif;
+            font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+            font-size: 1rem;
+            line-height: 1.5rem
         }
 
         #content {
@@ -35,15 +37,31 @@
             padding: 16px;
             background-color: #fff;
             border-radius: 2px;
-            box-shadow: 0 0 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);
+            box-shadow: 0 0 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
         }
 
         .spinning {
             animation: spin 30s linear infinite;
         }
-        @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
-        @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
-        @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+        @-moz-keyframes spin {
+            100% {
+                -moz-transform: rotate(360deg);
+            }
+        }
+
+        @-webkit-keyframes spin {
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
     </style>
 </head>
 <body>
@@ -54,10 +72,11 @@
             <img class="spinning" src="/images/aoe2cm2.png" alt="aoe2cm logo"/>
         </div>
         <div class="centered box">
-            Please stand by while we perform vital maintenance work for you.
-            It should not take more than five minutes.
+            <p><h2>Upgrade in progress</h2></p>
+            <p>Please stand by while we perform the upgrade.</p>
+            <p>It should not take more than five minutes.
             If this message is still here after one hour, please ping <b>hszemi</b> on the
-            <a href="https://aoe2.se/">Siege Engineers discord server</a>.
+                <a href="https://aoe2.se/">Siege Engineers discord server</a>.</p>
         </div>
     </div>
 </div>

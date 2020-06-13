@@ -20,7 +20,7 @@ class CopyableInput extends React.Component<IProps, IState> {
         return (
             <React.Fragment>
                 <Trans i18nKey={this.props.before}/>
-                {this.props.before ? '&nbsp;': ''}
+                {this.props.before ? ' ': ''}
                 <div className="is-inline-block">
                 <div className="field has-addons">
                     <div className="control">

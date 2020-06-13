@@ -30,7 +30,7 @@ class RoleModal extends React.Component<IProps, object> {
                                         <div className="box-content is-visible">
                                             <div className="stretchy-wrapper">
                                                 <div className="stretchy-image">
-                                                    <img src="/images/host.png" alt="Spectate"/>
+                                                    <img src="/images/role_host.png" alt="Spectate"/>
                                                 </div>
                                                 <div className="stretchy-text"><Trans>rolemodal.role.host</Trans></div>
                                             </div>
@@ -44,7 +44,7 @@ class RoleModal extends React.Component<IProps, object> {
                                         <div className="box-content is-visible">
                                             <div className="stretchy-wrapper">
                                                 <div className="stretchy-image">
-                                                    <img src="/images/guest.png" alt="Spectate"/>
+                                                    <img src="/images/role_guest.png" alt="Spectate"/>
                                                 </div>
                                                 <div className="stretchy-text"><Trans>rolemodal.role.guest</Trans></div>
                                             </div>
@@ -58,7 +58,7 @@ class RoleModal extends React.Component<IProps, object> {
                                         <div className="box-content is-visible">
                                             <div className="stretchy-wrapper">
                                                 <div className="stretchy-image">
-                                                    <img src="/images/spectate.png" alt="Spectate"/>
+                                                    <img src="/images/role_spectate.png" alt="Spectate"/>
                                                 </div>
                                                 <div className="stretchy-text"><Trans>rolemodal.role.spectator</Trans>
                                                 </div>

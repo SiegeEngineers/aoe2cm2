@@ -371,19 +371,19 @@ img {
 }
 
 #spectator-play {
-    background-image: url('/images/play-dark.png');
+    background-image: url('/images/controls_play-dark.png');
 }
 
 #spectator-pause {
-    background-image: url('/images/pause-dark.png');
+    background-image: url('/images/controls_pause-dark.png');
 }
 
 #spectator-next {
-    background-image: url('/images/skip_to_next-dark.png');
+    background-image: url('/images/controls_skip_to_next-dark.png');
 }
 
 #spectator-forward {
-    background-image: url('/images/fast_forward-dark.png');
+    background-image: url('/images/controls_fast_forward-dark.png');
 }
 
 
