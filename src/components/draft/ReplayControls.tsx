@@ -45,7 +45,7 @@ class ReplayControls extends React.Component<IProps, IState> {
     } as IState;
 
     public render() {
-        if (this.props.replayEvents.length === 0) {
+        if (this.props.replayEvents.length === 0 || this.hasDraftEnded()) {
             return null;
         }
         console.log(this.props.replayEvents.length)
@@ -191,6 +191,9 @@ class ReplayControls extends React.Component<IProps, IState> {
         this.setState({countdownValue: this.state.countdownValue - 1});
     }
 
+    private hasDraftEnded() {
+        return this.props.nextAction >= this.props.preset.turns.length;
+    }
 }
 
 export default withTranslation()(ReplayControls);

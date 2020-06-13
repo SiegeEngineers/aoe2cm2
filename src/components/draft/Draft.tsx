@@ -116,7 +116,6 @@ class Draft extends React.Component<IProps, IState> {
                         </div>
                     </div>
 
-
                     <ReplayControls/>
 
                     <div className="columns is-mobile">
