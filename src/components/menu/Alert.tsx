@@ -32,10 +32,12 @@ class Alert extends React.Component<IProps, IState> {
             return null;
         }
         return (<article className={'message is-' + config.class}>
-            <div className="message-header">
-                {config.title}
-                {config.closable && <button className="delete" aria-label="delete" onClick={this.closeAlert}/>}
-            </div>
+            {config.title &&
+                <div className="message-header">
+                    {config.title}
+                    {config.closable && <button className="delete" aria-label="delete" onClick={this.closeAlert}/>}
+                </div>
+            }
             <div className="message-body" dangerouslySetInnerHTML={{__html: config.content}}/>
         </article>);
     }

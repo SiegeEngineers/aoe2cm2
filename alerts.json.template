@@ -1,32 +1,32 @@
 [
   {
     "class": "dark",
-    "title": "Configuration Needed",
-    "content": "<b>Oh boy!</b> This is an alert. You can edit <code>alerts.json</code> to change the alerts displayed here.",
-    "closable": true
-  },
-  {
-      "class": "success",
-      "title": "Configuration Needed",
-      "content": "<b>Oh boy!</b> This is an alert. You can edit <code>alerts.json</code> to change the alerts displayed here.",
-      "closable": false
-  },
-  {
-    "class": "info",
-    "title": "Configuration Needed",
-    "content": "<b>Oh boy!</b> This is an alert. You can edit <code>alerts.json</code> to change the alerts displayed here.",
-    "closable": true
-  },
-  {
-    "class": "warning",
-    "title": "Configuration Needed",
-    "content": "<b>Oh boy!</b> This is an alert. You can edit <code>alerts.json</code> to change the alerts displayed here.",
+    "title": "General",
+    "content": "<b>Oh boy!</b> This is a alert. You can edit <code>alerts.json</code> to change the alerts displayed here.<br/>Set <code>class</code> to <code>dark</code>",
     "closable": false
   },
   {
+    "class": "success",
+    "title": "Success",
+    "content": "<b>Oh boy!</b> This is an alert. You can edit <code>alerts.json</code> to change the alerts displayed here.<br/>Set <code>class</code> to <code>success</code><br/>Set <code>closable</code> to <code>true</code> to make the alert closable.",
+    "closable": true
+  },
+  {
+    "class": "info",
+    "title": null,
+    "content": "<b>Alert without a header!</b> This is an alert without header. If you set <code>title</code> to <code>null</code>, it renders this way.<br/>Set <code>class</code> to <code>info</code><br/>Set <code>closable</code> to <code>true</code> to make the alert closable.",
+    "closable": false
+  },
+  {
+    "class": "warning",
+    "title": "Warning",
+    "content": "<b>Oh boy!</b> This is an alert. You can edit <code>alerts.json</code> to change the alerts displayed here.<br/>Set <code>class</code> to <code>warning</code>",
+    "closable": true
+  },
+  {
     "class": "danger",
-    "title": "Configuration Needed",
-    "content": "<b>Oh boy!</b> This is an alert. You can edit <code>alerts.json</code> to change the alerts displayed here.",
+    "title": "Danger",
+    "content": "<b>Oh boy!</b> This is an alert. You can edit <code>alerts.json</code> to change the alerts displayed here.<br/>Set <code>class</code> to <code>danger</code>",
     "closable": false
   }
 ]
