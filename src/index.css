@@ -456,6 +456,10 @@ div.stretchy-wrapper > div.stretchy-text {
 
 /* player sides */
 
+.player {
+    min-width: 400px;
+}
+
 .players {
     display: flex;
     align-content: flex-start;
@@ -471,10 +475,10 @@ div.stretchy-wrapper > div.stretchy-text {
 }
 
 .player-inactive {
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
-.player-inactive h4.player-name {
+.player-inactive h4.player-name, .player-inactive .captains-line, .player-inactive .sub-heading {
     opacity: 0.5;
 }
 

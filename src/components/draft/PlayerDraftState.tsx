@@ -88,8 +88,8 @@ class PlayerDraftState extends React.Component<IProps, IState> {
         const playerClass = (draftIsOngoing && !hasActivePanel) ? 'player player-inactive' : 'player';
 
         return (
-            <div className="column is-half">
-                <div id={playerId} className={playerClass + " box content"}>
+            <div id={playerId} className="column is-half">
+                <div className={playerClass + " box content is-inline-block"}>
                     <div className="is-uppercase has-text-grey is-size-7 pb-2 captains-line">
                         <span className={'player-type'}><Trans>{this.props.player}</Trans></span>&nbsp;
                         <WhoAmIIndicator forPlayer={this.props.player}/>&nbsp;
@@ -100,13 +100,13 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                     </div>
                     <div className="chosen">
                         {pickPanels.length > 0 && <>
-                            <div className="is-uppercase has-text-grey is-size-7 pb-2"><Trans>Picks</Trans></div>
+                            <div className="is-uppercase has-text-grey is-size-7 pb-2 sub-heading"><Trans>Picks</Trans></div>
                             <div className="picks">
                                 {pickPanels}
                             </div>
                         </>}
                         {banPanels.length > 0 && <>
-                            <div className="is-uppercase has-text-grey is-size-7 pb-2"><Trans>Bans</Trans></div>
+                            <div className="is-uppercase has-text-grey is-size-7 pb-2 sub-heading"><Trans>Bans</Trans></div>
                             <div className="bans">
                                 {banPanels}
                             </div>
