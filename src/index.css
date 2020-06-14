@@ -84,7 +84,7 @@ label.civ-select:hover {
 }
 
 .turn .tag {
-    margin-bottom: 0px
+    margin-bottom: 0
 }
 
 .turn-row .arrow-start, .turn-row .arrow-end {
@@ -188,7 +188,7 @@ label.civ-select:hover {
     border-radius: 2px;
     padding: 8px;
     background: rgba(153, 153, 153, 0.2);
-    box-shadow: inset 0 0px 3px rgba(0, 0, 0, 0.12), inset 0 1px 2px rgba(0, 0, 0, 0.24);
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.12), inset 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .choice {
@@ -198,14 +198,13 @@ label.civ-select:hover {
     margin: 4px;
     padding: 8px;
     background: rgba(153, 153, 153, 0.4);
-    box-shadow: 0 0px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     cursor: pointer;
 }
 
 .choice:hover {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.19), 0 1px 2px rgba(0, 0, 0, 0.23);
     opacity: 1;
-    transform: translateY(-4px);
 }
 
 .choice-chosen {
@@ -306,16 +305,17 @@ div.stretchy-wrapper > div.stretchy-text {
     box-sizing: border-box;
 }
 
-.card.has-value {
-    opacity: 1.0;
-}
-
 .pick, .ban {
     box-shadow: none;
     border-radius: 4px;
     margin: 4px;
     padding: 8px;
     box-sizing: content-box;
+    opacity: 0.4;
+}
+
+.pick.has-value, .ban.has-value {
+    opacity: 1;
 }
 
 .pick {
