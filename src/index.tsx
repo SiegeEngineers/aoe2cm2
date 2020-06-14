@@ -12,9 +12,6 @@ import {ClientActions, ServerActions} from "./constants";
 import Draft from './containers/Draft';
 import './i18n';
 import 'bulma/css/bulma.css'
-// import './pure-min.css';
-// import './style-material.css';
-// import './style.css';
 import './index.css';
 import {IDraftConfig} from "./types/IDraftConfig";
 import {SocketUtil} from "./util/SocketUtil";

@@ -57,7 +57,7 @@ class Turn extends React.Component<IProps, IState> {
             action = 'reveal';
         }
 
-        let turnClassName = `column is-1 turn turn-${player} turn-${action}`;
+        let turnClassName = `column is-1 turn turn-${player} turn-${action} has-text-centered`;
         if (turn.parallel || this.props.lastTurnWasParallel) {
             turnClassName += ' turn-parallel';
         }
@@ -93,8 +93,6 @@ class Turn extends React.Component<IProps, IState> {
         if (prefix) {
             prefixTag = <span className={tagPrefixClassName}>{prefix}</span>
             tagGroupClassName += ' has-addons'
-        } else {
-
         }
 
         return (

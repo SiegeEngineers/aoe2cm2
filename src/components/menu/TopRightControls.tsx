@@ -10,7 +10,6 @@ class TopRightControls extends React.Component<WithTranslation, object> {
             <nav className="navbar is-flex-touch" role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
                     <h1 className="navbar-item">Captains Mode for Age of Empires II</h1>
-                    {/*<h2 className="subtitle">Captains Mode</h2>*/}
                 </div>
                 <div className="navbar-end is-flex-touch">
                     <div className="navbar-item">

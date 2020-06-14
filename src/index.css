@@ -467,7 +467,7 @@ div.stretchy-wrapper > div.stretchy-text {
 }
 
 .player-inactive h4.player-name {
-    opacity: 50%;
+    opacity: 0.5;
 }
 
 #player-host {

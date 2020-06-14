@@ -48,8 +48,6 @@ class ReplayControls extends React.Component<IProps, IState> {
         if (this.props.replayEvents.length === 0 || this.hasDraftEnded()) {
             return null;
         }
-        console.log(this.props.replayEvents.length)
-        console.log(this.state.isRunning)
         const pauseButton = <button id="spectator-pause" className="spectator-action button is-large"
                                     onClick={this.haltReplay} aria-label="Pause"/>;
         const runButton = <button id="spectator-play" className="spectator-action button is-large"

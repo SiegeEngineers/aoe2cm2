@@ -22,7 +22,7 @@ class Alert extends React.Component<IProps, IState> {
 
     private closeAlert() {
         this.setState({
-            isOpen: !this.state.isOpen
+            isOpen: false
         });
     }
 

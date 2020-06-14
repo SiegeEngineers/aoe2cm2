@@ -64,7 +64,6 @@ class Draft extends React.Component<IProps, IState> {
 
     componentDidUpdate(prevProps: Readonly<IProps>, prevState: Readonly<IState>, snapshot?: any): void {
         if (this.props.whoAmI === undefined) {
-            // console.log('is undefined');
             if (!this.props.hostConnected || !this.props.guestConnected) {
                 this.props.showRoleModal();
             } else {
@@ -72,11 +71,9 @@ class Draft extends React.Component<IProps, IState> {
                 this.setState({joined: true});
             }
         } else if (this.props.whoAmI !== Player.NONE && !this.state.joined) {
-            // console.log('is other');
             let username: string | null = NameGenerator.getNameFromLocalStorage(this.props.ownName);
             console.log("componentDidMount", this.props.triggerSetRole, username);
             if (username !== null) {
-                console.log('triggering JOIN');
                 this.props.triggerSetRole(username, this.props.whoAmI);
                 this.setState({joined: true});
             } else {

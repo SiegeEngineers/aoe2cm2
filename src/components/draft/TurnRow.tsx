@@ -31,7 +31,6 @@ class TurnRow extends React.Component<IProps, object> {
                 <div className="column is-1 arrow-end has-text-left color has-text-grey-light">
                     <Trans>End</Trans>
                 </div>
-                {/*<div className="column is-1" id="firefox-bug"/>*/}
             </div>
         );
     }
