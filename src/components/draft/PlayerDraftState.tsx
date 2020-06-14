@@ -90,7 +90,7 @@ class PlayerDraftState extends React.Component<IProps, IState> {
         return (
             <div className="column is-half">
                 <div id={playerId} className={playerClass + " box content"}>
-                    <div className="is-uppercase is-small has-text-grey captains-line is-size-7 pb-2">
+                    <div className="is-uppercase has-text-grey is-size-7 pb-2 captains-line">
                         <span className={'player-type'}><Trans>{this.props.player}</Trans></span>&nbsp;
                         <WhoAmIIndicator forPlayer={this.props.player}/>&nbsp;
                         <PlayerOnlineStatus forPlayer={this.props.player}/>
@@ -99,14 +99,18 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                         <h4 className="player-name">{this.props.name}</h4>
                     </div>
                     <div className="chosen">
-                        <div className="is-uppercase has-text-grey is-size-7 my-2"><Trans>Picks</Trans></div>
-                        <div className="picks">
-                            {pickPanels}
-                        </div>
-                        <div className="is-uppercase has-text-grey is-size-7 my-2"><Trans>Bans</Trans></div>
-                        <div className="bans">
-                            {banPanels}
-                        </div>
+                        {pickPanels.length > 0 && <>
+                            <div className="is-uppercase has-text-grey is-size-7 pb-2"><Trans>Picks</Trans></div>
+                            <div className="picks">
+                                {pickPanels}
+                            </div>
+                        </>}
+                        {banPanels.length > 0 && <>
+                            <div className="is-uppercase has-text-grey is-size-7 pb-2"><Trans>Bans</Trans></div>
+                            <div className="bans">
+                                {banPanels}
+                            </div>
+                        </>}
                     </div>
                 </div>
             </div>

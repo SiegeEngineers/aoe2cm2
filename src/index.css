@@ -20,6 +20,10 @@ body {
     min-width: 1024px;
 }
 
+section.section {
+    padding: 1.5rem;
+}
+
 nav.navbar .navbar-end {
     -webkit-justify-content: flex-end;
     justify-content: flex-end;
@@ -537,26 +541,26 @@ div.stretchy-wrapper > div.stretchy-text {
 }
 
 @media screen and (max-width: 1215px) {
-    .container.is-widescreen {
+    .container.is-desktop {
         max-width: 960px;
     }
 }
 
 @media screen and (min-width: 1216px) {
-    .container {
+    .container.is-desktop {
         max-width: 960px;
     }
 }
 
 @media screen and (max-width: 1407px) {
-    .container.is-fullhd {
-        max-width: 1024px;
+    .container.is-desktop {
+        max-width: 960px;
     }
 }
 
 @media screen and (min-width: 1408px) {
-    .container {
-        max-width: 1024px;
+    .container.is-desktop {
+        max-width: 960px;
     }
 }
 

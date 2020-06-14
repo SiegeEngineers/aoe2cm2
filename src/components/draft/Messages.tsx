@@ -239,7 +239,7 @@ class Messages extends React.Component<IProps, object> {
             return (
                 <div>
                     <Trans i18nKey='messages.adminAction'>Admin action:&nbsp;
-                        <span className="tag is-dark is-large is-family-monospace">{action}</span>
+                        <span className="tag is-dark is-medium is-valinged-middle is-family-monospace">{action}</span>
                     </Trans>
                 </div>
             );

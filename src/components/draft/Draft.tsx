@@ -104,7 +104,7 @@ class Draft extends React.Component<IProps, IState> {
             <section className="section">
                 <Modal inDraft={true}/>
                 <RoleModal/>
-                <div id="container" className="container is-fullhd">
+                <div id="container" className="container is-fluid">
                     <div className="columns is-mobile">
                         <div className="column is-1 py-0">
                             <span>
@@ -119,11 +119,7 @@ class Draft extends React.Component<IProps, IState> {
                         <div className="column is-1"/>
                     </div>
 
-                    <div className="columns is-mobile">
-                        <div className="column">
-                            <TurnRow turns={turns}/>
-                        </div>
-                    </div>
+                    <TurnRow turns={turns}/>
 
                     <DraftState nameHost={this.props.nameHost} nameGuest={this.props.nameGuest}
                                 preset={this.props.preset}/>

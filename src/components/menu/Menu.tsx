@@ -15,7 +15,7 @@ class Menu extends React.Component<WithTranslation, object> {
     public render() {
         return (
             <section className="section">
-                <div className="container">
+                <div className="container is-desktop">
                     <Modal/>
                     <div className="has-text-centered pb-5">
                         <img src="/images/aoe2cm2.png" alt="AoE II - Captains Mode Logo"/>

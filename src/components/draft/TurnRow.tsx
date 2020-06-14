@@ -23,7 +23,7 @@ class TurnRow extends React.Component<IProps, object> {
 
         return (
             <div
-                className="columns is-mobile is-centered is-multiline turn-row has-text-weight-bold is-uppercase py-5">
+                className="columns is-mobile is-centered is-multiline turn-row has-text-weight-bold is-uppercase py-4">
                 <div className="column is-1 arrow-start has-text-right has-text-grey-light">
                     <Trans>Start</Trans>
                 </div>
