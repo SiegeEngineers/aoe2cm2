@@ -233,13 +233,13 @@ label.civ-select:hover {
 }
 
 .choice-disabled:hover {
-    opacity: 0.54;
+    opacity: 0.40;
     box-shadow: none;
     transform: none;
 }
 
 .choice-disabled, .choice-banned.choice-disabled:hover, .choice-chosen.choice-disabled:hover {
-    opacity: 0.33;
+    opacity: 0.30;
     box-shadow: none;
     transform: none;
     cursor: not-allowed;
