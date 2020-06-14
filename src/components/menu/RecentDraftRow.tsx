@@ -14,12 +14,16 @@ class RecentDraftRow extends React.Component<IProps, object> {
         const draftId = this.props.recentDraft.draftId;
         const i18nKey = this.props.recentDraft.ongoing ? 'spectate.watchLive' : 'spectate.watch';
         return <tr>
-            <td className="">{this.props.recentDraft.title}</td>
+            <td>
+                {this.props.recentDraft.title}
+            </td>
             <td className="has-text-right">
                 <span className={'player-host'}>{this.props.recentDraft.nameHost}</span>
             </td>
-            <td className="has-text-centered"><span className="tag">vs</span></td>
-            <td className="has-text-left">
+            <td className="has-text-centered">
+                <span className="tag">vs</span>
+            </td>
+            <td>
                 <span className={'player-guest'}>{this.props.recentDraft.nameGuest}</span>
             </td>
             <td className="has-text-right">
