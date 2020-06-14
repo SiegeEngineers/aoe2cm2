@@ -39,6 +39,10 @@ class Messages extends React.Component<IProps, object> {
     }
 
     private handleWaitingForPlayersToGetReady() {
+        const readyButton = <button
+            className='button is-link is-active is-uppercase is-valinged-middle'
+            onClick={this.props.sendReady} style={{height: '2rem'}}>Ready</button>;
+
         if (this.props.whoAmI === Player.HOST) {
             if (this.props.hostReady) {
                 return (
@@ -51,19 +55,14 @@ class Messages extends React.Component<IProps, object> {
                     return (
                         <div>
                             <Trans i18nKey='messages.pressReadyGuestIsReady'>Your guest is ready to start. Press
-                                <button className="button is-success is-light is-small"
-                                        onClick={this.props.sendReady}>Ready</button> once you are also ready to start!
-                            </Trans>
+                                {readyButton} once you are also ready to start!</Trans>
                         </div>
                     );
                 } else {
                     return (
                         <div>
-                            <Trans i18nKey='messages.pressReady'>Press <button
-                                className='button is-success is-light is-small'
-                                onClick={this.props.sendReady}>Ready</button> once you are ready
-                                to start!
-                            </Trans>
+                            <Trans i18nKey='messages.pressReady'>Press {readyButton} once you are ready to
+                                start!</Trans>
                         </div>
                     );
                 }
@@ -79,19 +78,15 @@ class Messages extends React.Component<IProps, object> {
                 if (this.props.hostReady) {
                     return (
                         <div>
-                            <Trans i18nKey='messages.pressReadyHostIsReady'>Your host is ready to start. Press <button
-                                className="button is-success is-light is-small"
-                                onClick={this.props.sendReady}>Ready</button> once you are also ready to start!
-                            </Trans>
+                            <Trans i18nKey='messages.pressReadyHostIsReady'>Your host is ready to start.
+                                Press {readyButton} once you are also ready to start!</Trans>
                         </div>
                     );
                 } else {
                     return (
                         <div>
-                            <Trans i18nKey='messages.pressReady'>Press <button
-                                className="button is-success is-light is-small"
-                                onClick={this.props.sendReady}>Ready</button> once you are ready
-                                to start!</Trans>
+                            <Trans i18nKey='messages.pressReady'>Press {readyButton} once you are ready to
+                                start!</Trans>
                         </div>
                     );
                 }

@@ -395,6 +395,10 @@ div.stretchy-wrapper > div.stretchy-text {
     visibility: visible !important;
 }
 
+.is-valinged-middle {
+    vertical-align: middle !important;
+}
+
 .spectator-action {
     background-position: center;
     background-size: 48px;
