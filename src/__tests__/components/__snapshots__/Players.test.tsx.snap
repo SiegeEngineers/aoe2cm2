@@ -2,9 +2,10 @@
 
 exports[`CivGrid renders correctly 1`] = `
 <div
-  className="pure-g players"
+  className="columns is-mobile"
 >
   <Connect(I18nextWithTranslation)
+    key="HOST"
     name="Sneaky Saladin"
     player="HOST"
     preset={
@@ -164,6 +165,7 @@ exports[`CivGrid renders correctly 1`] = `
     }
   />
   <Connect(I18nextWithTranslation)
+    key="GUEST"
     name="Beastly Barbarossa"
     player="GUEST"
     preset={
