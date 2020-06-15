@@ -106,7 +106,7 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                             </div>
                         </>}
                         {banPanels.length > 0 && <>
-                            <div className="is-uppercase has-text-grey is-size-7 pb-2 sub-heading"><Trans>Bans</Trans></div>
+                            <div className="is-uppercase has-text-grey is-size-7 py-2 sub-heading"><Trans>Bans</Trans></div>
                             <div className="bans">
                                 {banPanels}
                             </div>
