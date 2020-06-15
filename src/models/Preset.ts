@@ -7,7 +7,7 @@ class Preset {
 
     public static readonly EMPTY: Preset = new Preset('', [], []);
 
-    public static readonly NEW: Preset = new Preset('', Civilisation.ALL, []);
+    public static readonly NEW: Preset = new Preset('Change me', Civilisation.ALL, []);
 
     public static readonly SAMPLE: Preset = new Preset('Default Preset', Civilisation.ALL, [
         Turn.HOST_GLOBAL_BAN,

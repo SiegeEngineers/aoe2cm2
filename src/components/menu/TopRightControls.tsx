@@ -3,13 +3,14 @@ import LanguageSelector from "../../containers/LanguageSelector";
 import UsernameSelector from "../../containers/UsernameSelector";
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
 import IconStyleSelector from "../../containers/IconStyleSelector";
+import {Link} from "react-router-dom";
 
 class TopRightControls extends React.Component<WithTranslation, object> {
     public render() {
         return (
             <nav className="navbar is-flex-touch" role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
-                    <h1 className="navbar-item">Captains Mode for Age of Empires II</h1>
+                    <h1 className="navbar-item"><Link className="has-text-dark" to={"/"}>Captains Mode for Age of Empires II</Link></h1>
                 </div>
                 <div className="navbar-end is-flex-touch">
                     <div className="navbar-item">

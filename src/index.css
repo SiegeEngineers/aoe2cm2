@@ -81,6 +81,7 @@ label.civ-select:hover {
 
 .turn-row .turn.column.is-1 {
     width: 72px !important;
+    margin-bottom: 5px;
 }
 
 .turn .tag {
@@ -364,7 +365,7 @@ div.stretchy-wrapper > div.stretchy-text {
     background-image: url('/images/random.png');
     background-size: 32px 32px;
     background-repeat: no-repeat;
-    opacity: 0.9
+    opacity: 1
 }
 
 .random-snipe {
@@ -377,7 +378,7 @@ div.stretchy-wrapper > div.stretchy-text {
     background-image: url('/images/random.png');
     background-size: 32px 32px;
     background-repeat: no-repeat;
-    opacity: 0.7
+    opacity: 1;
 }
 
 .ban .random-pick {

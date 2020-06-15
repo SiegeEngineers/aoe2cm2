@@ -114,8 +114,8 @@ console.log(store.getState());
 
 ReactDOM.render(
     <Provider store={store}>
-        <TopRightControls/>
         <Router>
+            <TopRightControls/>
             <ScrollToTop>
                 <Switch>
                     <Route exact path="/" component={Menu}/>

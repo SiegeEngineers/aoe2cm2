@@ -83,7 +83,7 @@ class Turn extends React.Component<IProps, IState> {
             case Action.REVEAL_BANS:
             case Action.REVEAL_PICKS:
             case Action.REVEAL_SNIPES:
-                tagClassName += ' is-light';
+                tagClassName += ' has-background-grey-lighter';
                 break;
         }
         let tagPrefixClassName = tagClassName + ' is-dark';
