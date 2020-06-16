@@ -25,7 +25,7 @@
   },
   "scripts": {
     "start": "export PORT=3001 && react-scripts start",
-    "build": "npm run 'build-client' && npm run build-server",
+    "build": "npm run build-client && npm run build-server",
     "build-client": "react-scripts build",
     "start-server": "node build/server.js",
     "build-server": "tsc --project tsconfig.server.json --jsx react",
