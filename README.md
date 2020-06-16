@@ -16,7 +16,6 @@ cp presets.json.template presets.json
 cp alerts.json.template alerts.json
 npm install
 npm run build
-npm run build-server
 node build/server.js
 ```
 
