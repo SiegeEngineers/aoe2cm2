@@ -170,7 +170,7 @@ export class Validation {
                         return false;
                     }
                     const index = Validation.indexOfSnipe(picksByOpponent, sniped);
-                    picksByOpponent.splice(index);
+                    picksByOpponent.splice(index, 1);
                 }
             }
         }
