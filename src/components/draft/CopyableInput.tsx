@@ -5,7 +5,7 @@ interface IProps extends WithTranslation {
     before?: string;
     content: string;
     length: number;
-    size?: string
+    classes?: string
 }
 
 interface IState {
@@ -24,12 +24,12 @@ class CopyableInput extends React.Component<IProps, IState> {
                 <div className="is-inline-block">
                     <div className="field has-addons">
                         <div className="control">
-                            <input className={"input " + this.props.size} disabled={true} readOnly={true}
+                            <input className={"input " + this.props.classes} disabled={true} readOnly={true}
                                    value={this.props.content} size={this.props.length}/>
                         </div>
                         <div className="control">
                             <button
-                                className={'button is-light has-background-grey has-text-white-bis ' + this.props.size}
+                                className={'button is-light has-background-grey has-text-white-bis ' + this.props.classes}
                                 onClick={this.copyToClipboard}>
                                 <Trans>{this.state.label}</Trans>
                             </button>

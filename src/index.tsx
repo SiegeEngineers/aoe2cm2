@@ -5,7 +5,6 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {applyMiddleware, createStore, Store} from 'redux';
 import {Action, IApplyConfig, IClickOnCiv, ISetName, ISetRole} from "./actions";
 import Footer from "./components/menu/Footer";
-import ScrollToTop from "./components/menu/ScrollToTop";
 import TopRightControls from "./components/menu/TopRightControls";
 import Menu from "./components/menu/Menu";
 import {ClientActions, ServerActions} from "./constants";
@@ -116,7 +115,6 @@ ReactDOM.render(
     <Provider store={store}>
         <Router>
             <TopRightControls/>
-            <ScrollToTop>
                 <Switch>
                     <Route exact path="/" component={Menu}/>
                     <Route path="/draft/:id" component={Draft}/>
@@ -129,7 +127,6 @@ ReactDOM.render(
                     <Route path="/practice" component={Menu}/>
                     <Route component={Menu}/>
                 </Switch>
-            </ScrollToTop>
         </Router>
         <Footer/>
     </Provider>,
