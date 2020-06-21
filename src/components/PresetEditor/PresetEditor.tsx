@@ -42,6 +42,7 @@ class PresetEditor extends React.Component<Props, object> {
         const presetCivilisations = this.props.preset.civilisations;
         const civs = Civilisation.ALL.map((value: Civilisation, index: number) =>
             <PresetCivilisationCheckbox presetCivilisations={presetCivilisations} value={value}
+                                        key={index}
                                         onPresetCivilisationsChange={this.props.onPresetCivilisationsChange}/>);
 
         return (
@@ -106,7 +107,12 @@ class PresetEditor extends React.Component<Props, object> {
                         <p className="control">
                             <input type={'text'} value={this.props.preset.name} className="input"
                                    placeholder="Preset Name" required onChange={(event) => {
-                                this.props.onPresetNameChange(event.target.value);
+                                       if(!event.target.value.trim()) {
+                                           event.target.classList.add('is-danger');
+                                       } else {
+                                           event.target.classList.remove('is-danger');
+                                       }
+                                       this.props.onPresetNameChange(event.target.value);
                             }}/>
                         </p>
                         <p className="control">

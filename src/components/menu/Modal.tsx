@@ -73,9 +73,11 @@ class Modal extends React.Component<IProps, object> {
     private callback = () => {
         if (this.props.changeNameCallback !== undefined) {
             const input: HTMLInputElement = document.getElementById(this.INPUT_CAPTAIN_NAME) as HTMLInputElement;
-            const name: string = input.value;
+            const name: string = input.value.trim();
             if (name !== '') {
                 this.props.changeNameCallback(name, this.props.role as Player);
+            } else {
+                input.classList.add('is-danger');
             }
         }
     }

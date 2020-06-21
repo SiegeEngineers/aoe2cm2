@@ -40,10 +40,13 @@ class Spectate extends React.Component<WithTranslation, IState> {
                             <div className="field has-addons">
                                 <div className="control">
                                     <label className="button is-static"><Trans
-                                        i18nKey='spectate.code'>code:</Trans></label>
+                                        i18nKey='spectate.code'>Code:</Trans></label>
                                 </div>
-                                <div className="control ">
-                                    <input id="input-code" type="text" name="code" className="input"/>
+                                <div className="control">
+                                    <input id="input-code" type="text" name="code"
+                                           className="input"
+                                           placeholder={this.props.t('spectate.enterCode')}
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -77,8 +80,12 @@ class Spectate extends React.Component<WithTranslation, IState> {
 
     private joinDraft = () => {
         const draftIdInput = document.getElementById('input-code') as HTMLInputElement;
-        const draftId: string | null = draftIdInput.value;
-        this.setState({...this.state, draftId});
+        const draftId: string = draftIdInput.value.trim();
+        if (!draftId) {
+            draftIdInput.classList.add('is-danger');
+        } else {
+            this.setState({...this.state, draftId});
+        }
     };
 
     private recentDraftCallback = (draftId: string) => {

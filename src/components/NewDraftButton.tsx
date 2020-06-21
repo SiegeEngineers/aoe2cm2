@@ -37,6 +37,9 @@ class NewDraftButton extends React.Component<IProps, IState> {
     }
 
     private createDraft = () => {
+        if (!this.props.preset.name.trim()) {
+            return;
+        }
         const request = new XMLHttpRequest();
         request.open('POST', '/api/draft/new', true);
         request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
