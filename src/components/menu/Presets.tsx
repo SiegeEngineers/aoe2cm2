@@ -36,11 +36,11 @@ class Presets extends React.Component<WithTranslation, IState> {
                             <div className="field has-addons">
                                 <div className="control">
                                     <label className="button is-static">
-                                        <Trans i18nKey='spectate.code'>code:</Trans>
+                                        <Trans i18nKey='spectate.code'>Code:</Trans>
                                     </label>
                                 </div>
                                 <div className="control">
-                                    <input id="input-code" type="text" name="code" className="input"/>
+                                    <input id="input-code" type="text" name="code" className="input" placeholder="Enter draft code"/>
                                 </div>
                             </div>
                         </div>
@@ -65,8 +65,12 @@ class Presets extends React.Component<WithTranslation, IState> {
 
     private joinDraft = () => {
         const draftIdInput = document.getElementById('input-code') as HTMLInputElement;
-        const draftId: string | null = draftIdInput.value;
-        this.setState({...this.state, draftId});
+        const draftId: string | null = draftIdInput.value.trim();
+        if (!draftId) {
+            draftIdInput.classList.add('is-danger');
+        } else {
+            this.setState({...this.state, draftId});
+        }
     };
 
 

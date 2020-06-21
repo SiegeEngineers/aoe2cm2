@@ -12,7 +12,7 @@ interface IProps {
 export const PresetCivilisationCheckbox = ({presetCivilisations, value, onPresetCivilisationsChange}: IProps) =>
     <label className="checkbox is-inline-block civ-select" style={{width: "20%", padding: 5}}>
         <input type='checkbox'
-               checked={presetCivilisations.includes(value)}
+               defaultChecked={presetCivilisations.includes(value)}
                onClick={
                    () => {
                        if (presetCivilisations.includes(value)) {

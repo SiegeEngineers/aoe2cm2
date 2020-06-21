@@ -52,7 +52,7 @@ class Preset extends React.Component<object, IState> {
 
                     <div className="columns is-mobile mt-4">
                         <div className="column is-7 buttons">
-                            <br/>&nbsp;
+                            <br/>
                             <NewDraftButton preset={this.state.preset}/>
                             <CustomisePresetButton preset={this.state.preset}/>
                         </div>

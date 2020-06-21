@@ -5,7 +5,7 @@ import {Trans, WithTranslation, withTranslation} from "react-i18next";
 import IconStyleSelector from "../../containers/IconStyleSelector";
 import {Link} from "react-router-dom";
 
-class TopRightControls extends React.Component<WithTranslation, object> {
+class NavBar extends React.Component<WithTranslation, object> {
     public render() {
         return (
             <nav className="navbar is-flex-touch" role="navigation" aria-label="main navigation">
@@ -38,4 +38,4 @@ class TopRightControls extends React.Component<WithTranslation, object> {
     }
 }
 
-export default withTranslation()(TopRightControls);
+export default withTranslation()(NavBar);
