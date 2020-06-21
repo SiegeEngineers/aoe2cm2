@@ -42,10 +42,11 @@ class Spectate extends React.Component<WithTranslation, IState> {
                                     <label className="button is-static"><Trans
                                         i18nKey='spectate.code'>Code:</Trans></label>
                                 </div>
-                                <div className="control ">
+                                <div className="control">
                                     <input id="input-code" type="text" name="code"
                                            className="input"
-                                           placeholder="Enter draft code"/>
+                                           placeholder={this.props.t('spectate.enterCode')}
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -79,7 +80,7 @@ class Spectate extends React.Component<WithTranslation, IState> {
 
     private joinDraft = () => {
         const draftIdInput = document.getElementById('input-code') as HTMLInputElement;
-        const draftId: string | null = draftIdInput.value.trim();
+        const draftId: string = draftIdInput.value.trim();
         if (!draftId) {
             draftIdInput.classList.add('is-danger');
         } else {

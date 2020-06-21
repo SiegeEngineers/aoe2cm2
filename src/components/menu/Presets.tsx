@@ -40,7 +40,9 @@ class Presets extends React.Component<WithTranslation, IState> {
                                     </label>
                                 </div>
                                 <div className="control">
-                                    <input id="input-code" type="text" name="code" className="input" placeholder="Enter draft code"/>
+                                    <input id="input-code" type="text" name="code"
+                                           className="input"
+                                           placeholder={this.props.t('presets.enterCode')}/>
                                 </div>
                             </div>
                         </div>

@@ -139,12 +139,14 @@
   "presets": {
     "joinTitle": "Join existing draft",
     "code": "Code:",
+    "enterCode": "Enter draft code",
     "join": "Join",
     "useTitle": "Use Preset"
   },
   "spectate": {
     "spectateTitle": "Spectate existing draft",
     "code": "Code:",
+    "enterCode": "Enter draft code",
     "spectate": "Spectate",
     "recentDraftsTitle": "Recent Drafts",
     "watchLive": "Watch Live",

@@ -139,12 +139,14 @@
   "presets": {
     "joinTitle": "Draft beitreten",
     "code": "Code:",
+    "enterCode": "Draft-Code eingeben",
     "join": "Beitreten",
     "useTitle": "Verfügbare Presets"
   },
   "spectate": {
     "spectateTitle": "Draft zusehen",
     "code": "Code:",
+    "enterCode": "Draft-Code eingeben",
     "spectate": "Zusehen",
     "recentDraftsTitle": "Die letzten Drafts",
     "watchLive": "Live Zusehen",
