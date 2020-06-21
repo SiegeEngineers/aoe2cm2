@@ -58,9 +58,9 @@ class TurnTag extends React.Component<IProps> {
         }
 
         return (
-            <div className={tagGroupClassName}>
+            <span className={tagGroupClassName}>
                 <Trans>{prefixTag}<span className={tagClassName}>{action}</span></Trans>
-            </div>
+            </span>
         );
     }
 }
