@@ -118,7 +118,7 @@ export const Listeners = {
                     });
                 }
                 if (err) throw err;
-                logger.info( `Draft saved to data/${draftId}.json`, {draftId});
+                logger.info(`Draft saved to data/${draftId}.json`, {draftId});
                 draftsStore.finishDraft(draftId);
             });
         }

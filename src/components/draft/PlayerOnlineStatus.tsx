@@ -11,9 +11,9 @@ interface IProps extends WithTranslation {
 class PlayerOnlineStatus extends React.Component<IProps, object> {
 
     public render() {
-        const className = this.isConnected() ? 'greenMarker' : '';
+        const className = this.isConnected() ? 'green-status-marker' : '';
         return (
-            <span className={className}>●</span>
+            <span className={className}>&#9679;</span>
         );
     }
 

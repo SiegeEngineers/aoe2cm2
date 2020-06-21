@@ -31,19 +31,19 @@ class DraftViews {
         }
     }
 
-    public getHostDraft():Draft {
+    public getHostDraft(): Draft {
         const copy = {...this.actualDraft} as Draft;
         copy.events = this.hostEvents;
         return copy;
     }
 
-    public getGuestDraft():Draft {
+    public getGuestDraft(): Draft {
         const copy = {...this.actualDraft} as Draft;
         copy.events = this.guestEvents;
         return copy;
     }
 
-    public getSpecDraft():Draft {
+    public getSpecDraft(): Draft {
         const copy = {...this.actualDraft} as Draft;
         copy.events = this.specEvents;
         return copy;

@@ -18,11 +18,11 @@ interface IProps extends WithTranslation {
     sendReady: () => void,
 }
 
-const PICK = <span className='green-glow'><b>Pick</b></span>;
+const PICK = <span className='has-text-success'><b>Pick</b></span>;
 
-const BAN = <span className='red-glow'><b>Ban</b></span>;
+const BAN = <span className='has-text-danger'><b>Ban</b></span>;
 
-const SNIPE = <span className='blue-glow'><b>Snipe</b></span>;
+const SNIPE = <span className='has-text-info'><b>Snipe</b></span>;
 
 class Messages extends React.Component<IProps, object> {
     public render() {
@@ -39,67 +39,76 @@ class Messages extends React.Component<IProps, object> {
     }
 
     private handleWaitingForPlayersToGetReady() {
+        const readyButton = <button
+            className='button is-link is-active is-uppercase is-valinged-middle'
+            onClick={this.props.sendReady} style={{height: '2rem'}}>Ready</button>;
+
         if (this.props.whoAmI === Player.HOST) {
             if (this.props.hostReady) {
                 return (
-                    <div><Trans i18nKey='messages.waitingForGuestReady'>Waiting for Guest to press ›ready‹</Trans>
+                    <div>
+                        <Trans i18nKey='messages.waitingForGuestReady'>Waiting for Guest to press ›ready‹</Trans>
                     </div>
                 );
             } else {
                 if (this.props.guestReady) {
                     return (
-                        <div><Trans i18nKey='messages.pressReadyGuestIsReady'>Your guest is ready to start.
-                            Press <button className={'shadowbutton text-primary'}
-                                          onClick={this.props.sendReady}>Ready</button> once you are also ready to
-                            start!</Trans></div>
+                        <div>
+                            <Trans i18nKey='messages.pressReadyGuestIsReady'>Your guest is ready to start. Press
+                                {readyButton} once you are also ready to start!</Trans>
+                        </div>
                     );
                 } else {
                     return (
-                        <div><Trans i18nKey='messages.pressReady'>Press <button
-                            className={'shadowbutton text-primary'}
-                            onClick={this.props.sendReady}>Ready</button> once you are ready
-                            to start!</Trans></div>
+                        <div>
+                            <Trans i18nKey='messages.pressReady'>Press {readyButton} once you are ready to
+                                start!</Trans>
+                        </div>
                     );
                 }
             }
         } else if (this.props.whoAmI === Player.GUEST) {
             if (this.props.guestReady) {
                 return (
-                    <div><Trans i18nKey='messages.waitingForHostReady'>Waiting for Host to press ›ready‹</Trans>
+                    <div>
+                        <Trans i18nKey='messages.waitingForHostReady'>Waiting for Host to press ›ready‹</Trans>
                     </div>
                 );
             } else {
                 if (this.props.hostReady) {
                     return (
-                        <div><Trans i18nKey='messages.pressReadyHostIsReady'>Your host is ready to start.
-                            Press <button className={'shadowbutton text-primary'}
-                                          onClick={this.props.sendReady}>Ready</button> once you are also ready to
-                            start!</Trans></div>
+                        <div>
+                            <Trans i18nKey='messages.pressReadyHostIsReady'>Your host is ready to start.
+                                Press {readyButton} once you are also ready to start!</Trans>
+                        </div>
                     );
                 } else {
                     return (
-                        <div><Trans i18nKey='messages.pressReady'>Press <button
-                            className={'shadowbutton text-primary'}
-                            onClick={this.props.sendReady}>Ready</button> once you are ready
-                            to start!</Trans></div>
+                        <div>
+                            <Trans i18nKey='messages.pressReady'>Press {readyButton} once you are ready to
+                                start!</Trans>
+                        </div>
                     );
                 }
             }
         } else {
             if (!this.props.hostReady && !this.props.guestReady) {
                 return (
-                    <div><Trans i18nKey='messages.waitingForBothToBeReady'>Waiting for players to get
-                        ready…</Trans></div>
+                    <div>
+                        <Trans i18nKey='messages.waitingForBothToBeReady'>Waiting for players to get ready...</Trans>
+                    </div>
                 );
             } else if (!this.props.hostReady) {
                 return (
-                    <div><Trans i18nKey='messages.waitingForHostToBeReady'>Waiting for Host to get
-                        ready…</Trans></div>
+                    <div>
+                        <Trans i18nKey='messages.waitingForHostToBeReady'>Waiting for Host to get ready...</Trans>
+                    </div>
                 );
             } else {
                 return (
-                    <div><Trans i18nKey='messages.waitingForGuestToBeReady'>Waiting for Guest to get
-                        ready…</Trans></div>
+                    <div>
+                        <Trans i18nKey='messages.waitingForGuestToBeReady'>Waiting for Guest to get ready...</Trans>
+                    </div>
                 );
             }
         }
@@ -228,7 +237,11 @@ class Messages extends React.Component<IProps, object> {
         if (turn.player === Player.NONE) {
             const action = turn.action.toString();
             return (
-                <div><Trans i18nKey='messages.adminAction'>Admin action: {action}</Trans></div>
+                <div>
+                    <Trans i18nKey='messages.adminAction'>Admin action:&nbsp;
+                        <span className="tag is-dark is-medium is-valinged-middle is-family-monospace">{action}</span>
+                    </Trans>
+                </div>
             );
         } else if (turn.player === this.props.whoAmI) {
             switch (turn.action) {
@@ -285,8 +298,8 @@ class Messages extends React.Component<IProps, object> {
                     case Action.BAN:
                         return (
                             <div><Trans i18nKey='messages.waitingForBan'>Waiting for the other captain to
-                            ban…</Trans>
-                            <Countdown/></div>
+                                ban…</Trans>
+                                <Countdown/></div>
                         );
                     case Action.SNIPE:
                         return (

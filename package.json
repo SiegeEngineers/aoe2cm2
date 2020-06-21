@@ -30,7 +30,9 @@
     "start-server": "node build/server.js",
     "build-server": "tsc --project tsconfig.server.json --jsx react",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "css-build": "node-sass --omit-source-map-url 'src/Bulma.sass' 'src/css/bulma.css'",
+    "css-watch": "npm run css-build -- --watch"
   },
   "jest": {
     "snapshotSerializers": [
@@ -45,10 +47,12 @@
     "@types/react": "^16.8.4",
     "@types/react-dom": "^16.8.2",
     "@types/request": "^2.48.1",
+    "bulma": "^0.9.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.10.0",
     "enzyme-to-json": "^3.3.5",
     "get-port": "^5.0.0",
+    "node-sass": "^4.14.1",
     "react-test-renderer": "^16.8.3",
     "request": "^2.88.0",
     "typescript": "^3.3.3"
@@ -58,5 +62,6 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "proxy": "http://localhost:3000/"
 }

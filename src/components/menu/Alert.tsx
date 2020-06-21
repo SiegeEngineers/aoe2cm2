@@ -5,7 +5,42 @@ interface IProps {
     config: IAlert;
 }
 
-export const Alert = ({config}: IProps) => <div className={'box alert ' + config.class}>
-    <h2>{config.title}</h2>
-    <div dangerouslySetInnerHTML={{__html: config.content}}/>
-</div>;
+interface IState {
+    isOpen: boolean;
+}
+
+class Alert extends React.Component<IProps, IState> {
+
+    constructor(props: IProps) {
+        super(props);
+        this.closeAlert = this.closeAlert.bind(this);
+    }
+
+    state = {
+        isOpen: true,
+    } as IState;
+
+    private closeAlert() {
+        this.setState({
+            isOpen: false
+        });
+    }
+
+    public render() {
+        const config = this.props.config;
+        if (!this.state.isOpen) {
+            return null;
+        }
+        return (<article className={'message is-' + config.class}>
+            {config.title &&
+            <div className="message-header">
+                {config.title}
+                {config.closable && <button className="delete" aria-label="delete" onClick={this.closeAlert}/>}
+            </div>
+            }
+            <div className="message-body" dangerouslySetInnerHTML={{__html: config.content}}/>
+        </article>);
+    }
+}
+
+export default Alert;

@@ -19,11 +19,11 @@ class CustomisePresetButton extends React.Component<IProps, IState> {
     public render() {
 
         if (this.state.goToEdit) {
-            return (<Redirect to={'/preset/create'}/>);
+            return (<Redirect push to={'/preset/create'}/>);
         }
 
         return (
-            <button className="shadowbutton text-primary" onClick={() => {
+            <button className="button is-link is-light" onClick={() => {
                 this.props.onSetEditorPreset(this.props.preset);
                 this.setState({goToEdit: true});
             }}>

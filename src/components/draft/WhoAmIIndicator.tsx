@@ -12,7 +12,9 @@ class WhoAmIIndicator extends React.Component<IProps, object> {
     public render() {
         if (this.props.forPlayer === this.props.whoAmI) {
             return (
-                <span className={'tag'}><Trans i18nKey={'you'}>you</Trans></span>
+                <span className='tag is-dark has-background-info-dark has-text-weight-bold' style={{height: 'auto'}}>
+                    <Trans i18nKey={'you'}>you</Trans>
+                </span>
             );
         } else {
             return null;

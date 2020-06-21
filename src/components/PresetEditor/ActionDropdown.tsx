@@ -25,11 +25,14 @@ class ActionDropdown extends React.Component<Props, object> {
             options.push(<option value={Action.BAN}>{Action.BAN}</option>);
             options.push(<option value={Action.SNIPE}>{Action.SNIPE}</option>);
         }
-        return <select value={this.props.turn.action} onChange={(event) => {
-            const t = this.props.turn;
-            const newTurn = new Turn(t.player, event.target.value as Action, t.exclusivity, t.hidden, t.parallel);
-            this.props.onValueChange(newTurn, this.props.index)
-        }}>{options}</select>
+        return <div className="select is-small">
+            <select value={this.props.turn.action} onChange={(event) => {
+                const t = this.props.turn;
+                const newTurn = new Turn(t.player, event.target.value as Action, t.exclusivity, t.hidden, t.parallel);
+                this.props.onValueChange(newTurn, this.props.index)
+            }}>{options}
+            </select>
+        </div>
     }
 }
 

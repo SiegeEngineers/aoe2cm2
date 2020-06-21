@@ -24,11 +24,11 @@ class NewDraftButton extends React.Component<IProps, IState> {
 
         if (this.state.draftId !== undefined) {
             const draftId = this.state.draftId;
-            return (<Redirect to={`/draft/${draftId}`}/>);
+            return (<Redirect push to={`/draft/${draftId}`}/>);
         }
 
         return (
-            <button className="shadowbutton primary" onClick={this.createDraft}>
+            <button className="button is-link" onClick={this.createDraft}>
                 <Trans i18nKey="createNewDraft">Create new Draft</Trans>
             </button>
         );

@@ -1,416 +1,445 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CivGrid renders correctly 1`] = `
-<div>
+<div
+  className="chooser"
+  id="civgrid"
+>
   <div
-    className="chooser card"
-    id="civgrid"
+    className="chooser-grid"
   >
-    <div
-      className="pure-g chooser-grid box-content"
-    >
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 1,
-            "isRandomlyChosenCiv": false,
-            "name": "RANDOM",
-          }
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 1,
+          "isRandomlyChosenCiv": false,
+          "name": "RANDOM",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 2,
-            "isRandomlyChosenCiv": false,
-            "name": "Aztecs",
-          }
+      }
+      key="-1"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 2,
+          "isRandomlyChosenCiv": false,
+          "name": "Aztecs",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 4,
-            "isRandomlyChosenCiv": false,
-            "name": "Berbers",
-          }
+      }
+      key="0"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 4,
+          "isRandomlyChosenCiv": false,
+          "name": "Berbers",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 1,
-            "isRandomlyChosenCiv": false,
-            "name": "Britons",
-          }
+      }
+      key="1"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 1,
+          "isRandomlyChosenCiv": false,
+          "name": "Britons",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 5,
-            "isRandomlyChosenCiv": false,
-            "name": "Burmese",
-          }
+      }
+      key="2"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 5,
+          "isRandomlyChosenCiv": false,
+          "name": "Burmese",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 1,
-            "isRandomlyChosenCiv": false,
-            "name": "Byzantines",
-          }
+      }
+      key="3"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 1,
+          "isRandomlyChosenCiv": false,
+          "name": "Byzantines",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 1,
-            "isRandomlyChosenCiv": false,
-            "name": "Celts",
-          }
+      }
+      key="4"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 1,
+          "isRandomlyChosenCiv": false,
+          "name": "Celts",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 1,
-            "isRandomlyChosenCiv": false,
-            "name": "Chinese",
-          }
+      }
+      key="5"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 1,
+          "isRandomlyChosenCiv": false,
+          "name": "Chinese",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 4,
-            "isRandomlyChosenCiv": false,
-            "name": "Ethiopians",
-          }
+      }
+      key="6"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 4,
+          "isRandomlyChosenCiv": false,
+          "name": "Ethiopians",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 1,
-            "isRandomlyChosenCiv": false,
-            "name": "Franks",
-          }
+      }
+      key="7"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 1,
+          "isRandomlyChosenCiv": false,
+          "name": "Franks",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 1,
-            "isRandomlyChosenCiv": false,
-            "name": "Goths",
-          }
+      }
+      key="8"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 1,
+          "isRandomlyChosenCiv": false,
+          "name": "Goths",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 2,
-            "isRandomlyChosenCiv": false,
-            "name": "Huns",
-          }
+      }
+      key="9"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 2,
+          "isRandomlyChosenCiv": false,
+          "name": "Huns",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 3,
-            "isRandomlyChosenCiv": false,
-            "name": "Incas",
-          }
+      }
+      key="10"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 3,
+          "isRandomlyChosenCiv": false,
+          "name": "Incas",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 3,
-            "isRandomlyChosenCiv": false,
-            "name": "Indians",
-          }
+      }
+      key="11"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 3,
+          "isRandomlyChosenCiv": false,
+          "name": "Indians",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 3,
-            "isRandomlyChosenCiv": false,
-            "name": "Italians",
-          }
+      }
+      key="12"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 3,
+          "isRandomlyChosenCiv": false,
+          "name": "Italians",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 1,
-            "isRandomlyChosenCiv": false,
-            "name": "Japanese",
-          }
+      }
+      key="13"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 1,
+          "isRandomlyChosenCiv": false,
+          "name": "Japanese",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 5,
-            "isRandomlyChosenCiv": false,
-            "name": "Khmer",
-          }
+      }
+      key="14"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 5,
+          "isRandomlyChosenCiv": false,
+          "name": "Khmer",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 2,
-            "isRandomlyChosenCiv": false,
-            "name": "Koreans",
-          }
+      }
+      key="15"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 2,
+          "isRandomlyChosenCiv": false,
+          "name": "Koreans",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 3,
-            "isRandomlyChosenCiv": false,
-            "name": "Magyars",
-          }
+      }
+      key="16"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 3,
+          "isRandomlyChosenCiv": false,
+          "name": "Magyars",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 5,
-            "isRandomlyChosenCiv": false,
-            "name": "Malay",
-          }
+      }
+      key="17"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 5,
+          "isRandomlyChosenCiv": false,
+          "name": "Malay",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 4,
-            "isRandomlyChosenCiv": false,
-            "name": "Malians",
-          }
+      }
+      key="18"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 4,
+          "isRandomlyChosenCiv": false,
+          "name": "Malians",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 2,
-            "isRandomlyChosenCiv": false,
-            "name": "Mayans",
-          }
+      }
+      key="19"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 2,
+          "isRandomlyChosenCiv": false,
+          "name": "Mayans",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 1,
-            "isRandomlyChosenCiv": false,
-            "name": "Mongols",
-          }
+      }
+      key="20"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 1,
+          "isRandomlyChosenCiv": false,
+          "name": "Mongols",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 1,
-            "isRandomlyChosenCiv": false,
-            "name": "Persians",
-          }
+      }
+      key="21"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 1,
+          "isRandomlyChosenCiv": false,
+          "name": "Persians",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 4,
-            "isRandomlyChosenCiv": false,
-            "name": "Portuguese",
-          }
+      }
+      key="22"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 4,
+          "isRandomlyChosenCiv": false,
+          "name": "Portuguese",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 1,
-            "isRandomlyChosenCiv": false,
-            "name": "Saracens",
-          }
+      }
+      key="23"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 1,
+          "isRandomlyChosenCiv": false,
+          "name": "Saracens",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 3,
-            "isRandomlyChosenCiv": false,
-            "name": "Slavs",
-          }
+      }
+      key="24"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 3,
+          "isRandomlyChosenCiv": false,
+          "name": "Slavs",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 2,
-            "isRandomlyChosenCiv": false,
-            "name": "Spanish",
-          }
+      }
+      key="25"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 2,
+          "isRandomlyChosenCiv": false,
+          "name": "Spanish",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 1,
-            "isRandomlyChosenCiv": false,
-            "name": "Teutons",
-          }
+      }
+      key="26"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 1,
+          "isRandomlyChosenCiv": false,
+          "name": "Teutons",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 1,
-            "isRandomlyChosenCiv": false,
-            "name": "Turks",
-          }
+      }
+      key="27"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 1,
+          "isRandomlyChosenCiv": false,
+          "name": "Turks",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 5,
-            "isRandomlyChosenCiv": false,
-            "name": "Vietnamese",
-          }
+      }
+      key="28"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 5,
+          "isRandomlyChosenCiv": false,
+          "name": "Vietnamese",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 1,
-            "isRandomlyChosenCiv": false,
-            "name": "Vikings",
-          }
+      }
+      key="29"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 1,
+          "isRandomlyChosenCiv": false,
+          "name": "Vikings",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 6,
-            "isRandomlyChosenCiv": false,
-            "name": "Bulgarians",
-          }
+      }
+      key="30"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 6,
+          "isRandomlyChosenCiv": false,
+          "name": "Bulgarians",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 6,
-            "isRandomlyChosenCiv": false,
-            "name": "Cumans",
-          }
+      }
+      key="31"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 6,
+          "isRandomlyChosenCiv": false,
+          "name": "Cumans",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 6,
-            "isRandomlyChosenCiv": false,
-            "name": "Lithuanians",
-          }
+      }
+      key="32"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 6,
+          "isRandomlyChosenCiv": false,
+          "name": "Lithuanians",
         }
-      />
-      <Connect(I18nextWithTranslation)
-        active={false}
-        civPanelType="choice"
-        civilisation={
-          Civilisation {
-            "gameVersion": 6,
-            "isRandomlyChosenCiv": false,
-            "name": "Tatars",
-          }
+      }
+      key="33"
+    />
+    <Connect(I18nextWithTranslation)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 6,
+          "isRandomlyChosenCiv": false,
+          "name": "Tatars",
         }
-      />
-    </div>
-    <div
-      className="card-background"
-    >
-      cbg
-    </div>
+      }
+      key="34"
+    />
   </div>
 </div>
 `;

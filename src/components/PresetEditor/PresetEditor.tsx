@@ -45,75 +45,82 @@ class PresetEditor extends React.Component<Props, object> {
                                         onPresetCivilisationsChange={this.props.onPresetCivilisationsChange}/>);
 
         return (
-            <div className={'box'}>
-                <h2 className={'centered'}>Preset Editor</h2>
-
-                <NewDraftButton preset={this.props.preset}/>
-                <SavePresetButton preset={this.props.preset}/>
-
-                <h3>Preset Title</h3>
-
-                <input type={'text'} value={this.props.preset.name} onChange={(event) => {
-                    this.props.onPresetNameChange(event.target.value);
-                }}/>
-
-                <TurnRow turns={this.props.preset.turns}/>
-
-                <h3>Available Civilisations</h3>
-
-                <div className="pure-g">
-                    {civs}
-                </div>
-
-                <h3>Turns</h3>
-
-                <div className="pure-g">
-                    <div className="pure-u-1-24">#</div>
-                    <div className="pure-u-1-3 centered">Host</div>
-                    <div className="pure-u-1-4 centered">Admin</div>
-                    <div className="pure-u-1-3 centered">Guest</div>
-                    <div className="pure-u-1-24"/>
-                </div>
-
-                {turns}
-
-                <div className="pure-g">
-                    <div className="pure-u-1-24">new</div>
-                    <div className="pure-u-1-3 centered">
-                        <button className="pure-button" onClick={() => {
-                            if (this.props.preset === undefined || this.props.preset === null) {
-                                return;
-                            }
-                            const newTurn = new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, false);
-                            this.props.onValueChange(newTurn, this.props.preset.turns.length);
-                        }}>+
-                        </button>
+            <React.Fragment>
+                <div className={'content box'}>
+                    <h3>1. Available Civilisations</h3>
+                    <div className="is-flex" style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+                        {civs}
                     </div>
-                    <div className="pure-u-1-4 centered">
-                        <button className="pure-button" onClick={() => {
-                            if (this.props.preset === undefined || this.props.preset === null) {
-                                return;
-                            }
-                            const newTurn = new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL, false, false);
-                            this.props.onValueChange(newTurn, this.props.preset.turns.length);
-                        }}>+
-                        </button>
+
+                    <h3>2. Turns</h3>
+                    <TurnRow turns={this.props.preset.turns}/>
+                    <div>
+                        <div className="columns is-mobile has-text-weight-bold has-background-grey-lighter">
+                            <div className="column is-1 has-text-centered">#</div>
+                            <div className="column has-text-centered">Host</div>
+                            <div className="column has-text-centered">Admin</div>
+                            <div className="column has-text-centered">Guest</div>
+                            <div className="column is-1"/>
+                        </div>
+
+                        {turns}
+
+                        <div className="columns is-mobile">
+                            <div className="column is-1"/>
+                            <div className="column has-text-centered">
+                                <button className="button" onClick={() => {
+                                    if (this.props.preset === undefined || this.props.preset === null) {
+                                        return;
+                                    }
+                                    const newTurn = new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, false);
+                                    this.props.onValueChange(newTurn, this.props.preset.turns.length);
+                                }}>+ New
+                                </button>
+                            </div>
+                            <div className="column has-text-centered">
+                                <button className="button" onClick={() => {
+                                    if (this.props.preset === undefined || this.props.preset === null) {
+                                        return;
+                                    }
+                                    const newTurn = new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL, false, false);
+                                    this.props.onValueChange(newTurn, this.props.preset.turns.length);
+                                }}>+ New
+                                </button>
+                            </div>
+                            <div className="column has-text-centered">
+                                <button className="button" onClick={() => {
+                                    if (this.props.preset === undefined || this.props.preset === null) {
+                                        return;
+                                    }
+                                    const newTurn = new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, false, false);
+                                    this.props.onValueChange(newTurn, this.props.preset.turns.length);
+                                }}>+ New
+                                </button>
+                            </div>
+                            <div className="column is-1"/>
+                        </div>
                     </div>
-                    <div className="pure-u-1-3 centered">
-                        <button className="pure-button" onClick={() => {
-                            if (this.props.preset === undefined || this.props.preset === null) {
-                                return;
-                            }
-                            const newTurn = new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, false, false);
-                            this.props.onValueChange(newTurn, this.props.preset.turns.length);
-                        }}>+
-                        </button>
+                    <hr/>
+                    <h3>3. Create Draft or Save</h3>
+                    <div className="field is-grouped">
+                        <p className="control">
+                            <input type={'text'} value={this.props.preset.name} className="input"
+                                   placeholder="Preset Name" required onChange={(event) => {
+                                this.props.onPresetNameChange(event.target.value);
+                            }}/>
+                        </p>
+                        <p className="control">
+                            <NewDraftButton preset={this.props.preset}/>
+                        </p>
+                        <p className="control">
+                            <SavePresetButton preset={this.props.preset}/>
+                        </p>
                     </div>
-                    <div className="pure-u-1-24"/>
                 </div>
-                <hr/>
-                <TurnExplanation/>
-            </div>
+                <div className="content box">
+                    <TurnExplanation/>
+                </div>
+            </React.Fragment>
         );
     }
 }

@@ -7,8 +7,7 @@ import {Dispatch} from "react";
 
 
 export function mapStateToProps(state: ApplicationState) {
-    return {
-    };
+    return {};
 }
 
 export function mapDispatchToProps(dispatch: Dispatch<actions.Action>) {

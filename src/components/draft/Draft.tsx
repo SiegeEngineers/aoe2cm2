@@ -11,14 +11,15 @@ import {IDraftConfig} from "../../types/IDraftConfig";
 import {WithTranslation, withTranslation} from "react-i18next";
 import Modal from "../../containers/Modal";
 import NameGenerator from "../../util/NameGenerator";
-import {Link} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import RoleModal from "../../containers/RoleModal";
 import DraftIdInfo from "../../containers/DraftIdInfo";
 import {ICountdownValues} from "../../types";
 import {default as ModelAction} from "../../constants/Action";
 import ReplayControls from "../../containers/ReplayControls";
+import {RouteComponentProps} from "react-router";
 
-interface IProps extends WithTranslation {
+interface IProps extends WithTranslation, RouteComponentProps<any> {
     nameHost: string;
     nameGuest: string;
     hostConnected: boolean;
@@ -50,6 +51,10 @@ interface IState {
 }
 
 class Draft extends React.Component<IProps, IState> {
+    constructor(props: IProps) {
+        super(props);
+        this.disconnectAndGoBack = this.disconnectAndGoBack.bind(this);
+    }
 
     state = {joined: false};
 
@@ -58,9 +63,7 @@ class Draft extends React.Component<IProps, IState> {
     }
 
     componentDidUpdate(prevProps: Readonly<IProps>, prevState: Readonly<IState>, snapshot?: any): void {
-        console.log('cdU', this.props);
         if (this.props.whoAmI === undefined) {
-            console.log('is undefined');
             if (!this.props.hostConnected || !this.props.guestConnected) {
                 this.props.showRoleModal();
             } else {
@@ -68,11 +71,9 @@ class Draft extends React.Component<IProps, IState> {
                 this.setState({joined: true});
             }
         } else if (this.props.whoAmI !== Player.NONE && !this.state.joined) {
-            console.log('is other');
             let username: string | null = NameGenerator.getNameFromLocalStorage(this.props.ownName);
             console.log("componentDidMount", this.props.triggerSetRole, username);
             if (username !== null) {
-                console.log('triggering JOIN');
                 this.props.triggerSetRole(username, this.props.whoAmI);
                 this.setState({joined: true});
             } else {
@@ -81,48 +82,69 @@ class Draft extends React.Component<IProps, IState> {
         }
     }
 
+    private disconnectAndGoBack(): void {
+        if (this.props.triggerDisconnect) {
+            this.props.triggerDisconnect();
+        }
+        if (this.props.history.length > 2 && document.referrer) {
+            // go back if there is a possibility
+            this.props.history.goBack();
+        } else {
+            // else go to spectate
+            this.props.history.push('/spectate');
+        }
+    }
+
     public render() {
         const presetName: string = this.props.preset.name;
         const turns = this.props.preset.turns;
 
-        return (
-            <div id="container">
-                <div style={{position: 'absolute', top: '8px', left: '8px'}}>
-                    <span onClick={this.props.triggerDisconnect}><Link to="/"><span
-                        className="back-icon header-navigation">back</span></Link></span>
-                </div>
 
+        return (
+            <section className="section">
                 <Modal inDraft={true}/>
                 <RoleModal/>
-
-                <div className="draft-content">
-
-                    <div id="draft-title" className="centered text-primary info-card">{presetName}</div>
+                <div id="container" className="container is-fluid">
+                    <div className="columns is-mobile">
+                        <div className="column is-1 py-0">
+                            <span>
+                                <a onClick={this.disconnectAndGoBack}>
+                                    <span className="back-icon header-navigation" aria-label="Go back"/>
+                                </a>
+                            </span>
+                        </div>
+                        <div className="column content my-0">
+                            <h2 id="draft-title" className="has-text-centered my-0">{presetName}</h2>
+                        </div>
+                        <div className="column is-1"/>
+                    </div>
 
                     <TurnRow turns={turns}/>
 
                     <DraftState nameHost={this.props.nameHost} nameGuest={this.props.nameGuest}
                                 preset={this.props.preset}/>
 
-                    <div>
-                        <div id="action-text" className="centered">
-                            <div className="action-string info-card text-primary">
-                                <Messages/>
-                            </div>
+                    <div className="columns is-mobile">
+                        <div id="action-text" className="column has-text-centered is-size-4">
+                            <Messages/>
                         </div>
                     </div>
 
                     <ReplayControls/>
 
-                    <DraftIdInfo/>
+                    <div className="columns is-mobile">
+                        <div className="column has-text-centered">
+                            <DraftIdInfo/>
+                        </div>
+                    </div>
 
                     <CivGrid civilisations={this.props.preset.civilisations}/>
 
                 </div>
-            </div>
+            </section>
         );
     }
 
 }
 
-export default withTranslation()(Draft);
+export default withTranslation()(withRouter(Draft));

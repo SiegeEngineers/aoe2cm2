@@ -35,31 +35,32 @@ class Preset extends React.Component<object, IState> {
 
             const presetCivilisations = this.state.preset.civilisations;
             const civs = Civilisation.ALL.map((value: Civilisation, index: number) => {
-                return <div className="pure-u-1-4">
-                    <label>
-                        <input type='checkbox' checked={presetCivilisations.includes(value)} disabled/> {value.name}
-                    </label>
-                </div>;
+                return <label className="checkbox is-inline-block civ-select" key={index} style={{width: "20%", padding: 5}}>
+                    <input type='checkbox' checked={presetCivilisations.includes(value)} disabled/> {value.name}
+                </label>;
             });
 
             return (
-                <div className='box centered'>
-                    <h3>{this.state.preset.name}</h3>
+                <div className='content box'>
+                    <h3 className="has-text-centered">{this.state.preset.name}</h3>
 
                     <TurnRow turns={this.state.preset.turns}/>
 
-                    <div className="pure-g">
+                    <div className="is-flex" style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                         {civs}
                     </div>
-                    <p>
-                        <NewDraftButton preset={this.state.preset}/>
-                    </p>
-                    <p className={'wide-input'}>
-                        <CopyableInput content={window.location.href} before={'preset.shareThisPreset'}/>
-                    </p>
-                    <p>
-                        <CustomisePresetButton preset={this.state.preset}/>
-                    </p>
+
+                    <div className="columns is-mobile mt-4">
+                        <div className="column is-7 buttons">
+                            <br/>&nbsp;
+                            <NewDraftButton preset={this.state.preset}/>
+                            <CustomisePresetButton preset={this.state.preset}/>
+                        </div>
+                        <div className="column is-5">
+                            <CopyableInput content={window.location.href} before={'preset.shareThisPreset'}
+                                           length={35}/>
+                        </div>
+                    </div>
                 </div>
             );
         }

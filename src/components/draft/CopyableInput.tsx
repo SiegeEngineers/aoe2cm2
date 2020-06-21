@@ -4,6 +4,8 @@ import {Trans, WithTranslation, withTranslation} from "react-i18next";
 interface IProps extends WithTranslation {
     before?: string;
     content: string;
+    length: number;
+    classes?: string
 }
 
 interface IState {
@@ -15,13 +17,26 @@ class CopyableInput extends React.Component<IProps, IState> {
     state = {label: 'rolemodal.copyLabel'};
 
     public render() {
-        return (<span className={'copyable-input'}>
-                    <Trans i18nKey={this.props.before}/>
-                    <input className={'inset-input centered'} value={this.props.content}/>
-                    <button className='pure-button' onClick={this.copyToClipboard}>
-                        <Trans>{this.state.label}</Trans>
-                    </button>
-                </span>
+        return (
+            <React.Fragment>
+                <Trans i18nKey={this.props.before}/>
+                {this.props.before ? ' ' : ''}
+                <div className="is-inline-block">
+                    <div className="field has-addons">
+                        <div className="control">
+                            <input className={"input " + this.props.classes} disabled={true} readOnly={true}
+                                   value={this.props.content} size={this.props.length}/>
+                        </div>
+                        <div className="control">
+                            <button
+                                className={'button is-light has-background-grey has-text-white-bis ' + this.props.classes}
+                                onClick={this.copyToClipboard}>
+                                <Trans>{this.state.label}</Trans>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </React.Fragment>
         );
     }
 
@@ -47,6 +62,7 @@ class CopyableInput extends React.Component<IProps, IState> {
         this.setState({label: 'rolemodal.copiedLabel'});
         setTimeout(() => {
             this.setState({label: 'rolemodal.copyLabel'})
+            document.body.removeChild(helper);
         }, 1000);
     }
 }

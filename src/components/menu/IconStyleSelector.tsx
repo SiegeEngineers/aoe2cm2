@@ -19,16 +19,17 @@ class IconStyleSelector extends React.Component<IProps, object> {
             }
         };
 
-        let className = "civ-select pure-button";
+        let className = "civ-select button is-light";
+        let style = {filter: 'grayscale(100%)'}
         if (this.props.iconStyle === this.props.activeIconStyle) {
-            className += ' pure-button-active';
+            className += ' is-link is-hovered';
+            style = {filter: 'none'}
         }
 
-        const imageStatus = this.props.iconStyle === this.props.activeIconStyle ? 'on' : 'off';
-        const image = `/images/${this.props.iconStyle}-${imageStatus}.png`;
+        const image = `/images/icon_${this.props.iconStyle}.png`;
         return (
-            <button className={className} onClick={changeIconStyle}>
-                <img alt={this.props.iconStyle} src={image}/>
+            <button className={className} onClick={changeIconStyle} title={this.props.iconStyle} aria-label={"Show icons as " + this.props.iconStyle}>
+                <img alt={this.props.iconStyle} src={image} width="24px" height="24px" style={style}/>
             </button>
         );
     }

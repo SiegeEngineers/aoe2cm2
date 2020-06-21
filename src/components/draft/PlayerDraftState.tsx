@@ -34,7 +34,6 @@ class PlayerDraftState extends React.Component<IProps, IState> {
     }
 
     public componentWillReceiveProps(nextProps: Readonly<IProps>, nextContext: any): void {
-        console.log("Propping up", nextProps);
         this.setState(eventsToState(nextProps.events, nextProps.player));
     }
 
@@ -65,6 +64,7 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                         active: isThisPanelActive,
                         civPanelType: CivPanelType.PICK,
                         civilisation: pickedCiv,
+                        key: picksIndex,
                         sniped
                     }));
                 } else if (actionType === ActionType.BAN) {
@@ -76,7 +76,8 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                     banPanels.push(React.createElement(CivPanel, {
                         active: isThisPanelActive,
                         civPanelType: CivPanelType.BAN,
-                        civilisation: bannedCiv
+                        civilisation: bannedCiv,
+                        key: bansIndex,
                     }));
 
                 }
@@ -87,31 +88,29 @@ class PlayerDraftState extends React.Component<IProps, IState> {
         const playerClass = (draftIsOngoing && !hasActivePanel) ? 'player player-inactive' : 'player';
 
         return (
-            <div className="pure-u-1-2">
-                <div id={playerId} className="double-outer-border">
-                    <div className="double-inner-border">
-                        <div className={playerClass}>
-                            <div className="head-text captains-line">
-                                <span className={'player-type'}><Trans>{this.props.player}</Trans></span>
-                                <WhoAmIIndicator forPlayer={this.props.player}/>
-                                <PlayerOnlineStatus forPlayer={this.props.player}/>
+            <div id={playerId} className="column is-half">
+                <div className={playerClass + " box content is-inline-block"}>
+                    <div className="is-uppercase has-text-grey is-size-7 pb-2 captains-line">
+                        <span className={'player-type'}><Trans>{this.props.player}</Trans></span>&nbsp;
+                        <WhoAmIIndicator forPlayer={this.props.player}/>&nbsp;
+                        <PlayerOnlineStatus forPlayer={this.props.player}/>
+                    </div>
+                    <div className="player-head">
+                        <h4 className="player-name">{this.props.name}</h4>
+                    </div>
+                    <div className="chosen">
+                        {pickPanels.length > 0 && <>
+                            <div className="is-uppercase has-text-grey is-size-7 pb-2 sub-heading"><Trans>Picks</Trans></div>
+                            <div className="picks">
+                                {pickPanels}
                             </div>
-                            <div className="player-head">
-                                <div className="player-name">{this.props.name}</div>
+                        </>}
+                        {banPanels.length > 0 && <>
+                            <div className="is-uppercase has-text-grey is-size-7 py-2 sub-heading"><Trans>Bans</Trans></div>
+                            <div className="bans">
+                                {banPanels}
                             </div>
-                            <div className="chosen">
-                                <div className="head-text"><Trans>Picks</Trans></div>
-                                <div className="picks">
-                                    {pickPanels}
-                                </div>
-
-                                <div className="head-text"><Trans>Bans</Trans></div>
-                                <div className="bans">
-                                    {banPanels}
-                                </div>
-                            </div>
-
-                        </div>
+                        </>}
                     </div>
                 </div>
             </div>

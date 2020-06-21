@@ -24,37 +24,48 @@ class Spectate extends React.Component<WithTranslation, IState> {
     public render() {
         if (this.state.draftId !== null) {
             const target = '/spectate/' + this.state.draftId;
-            return (<Redirect to={target}/>);
+            return (<Redirect push to={target}/>);
         }
 
         const recentDrafts = this.state.recentDrafts.map((value) => <RecentDraftRow recentDraft={value}
+                                                                                    key={value.draftId}
                                                                                     callback={this.recentDraftCallback}/>)
 
         return (
-            <div>
-                <div id="join_game" className="home_card box">
-                    <h2><Trans i18nKey='spectate.spectateTitle'>Spectate existing draft</Trans></h2>
-                    <div>
-                        <div className="centered text-primary info-card">
-                            <Trans i18nKey='spectate.code'>code:</Trans>
-                        </div>
-                        <div className="code">
-                            <input id="input-code" type="text" name="code" className="inset-input"/>
-                        </div>
-                        <div className="pure-g join-actions text-primary">
-                            <div className="pure-u-1-1">
-                                <button className="shadowbutton text-primary" id="join-game-button"
-                                        onClick={this.joinDraft}>
-                                    <Trans i18nKey='spectate.spectate'>Spectate</Trans>
-                                </button>
+            <div className="container">
+                <div id="join_game" className="box content">
+                    <h3><Trans i18nKey='spectate.spectateTitle'>Spectate existing draft</Trans></h3>
+                    <div className="field is-grouped">
+                        <div className="control">
+                            <div className="field has-addons">
+                                <div className="control">
+                                    <label className="button is-static"><Trans
+                                        i18nKey='spectate.code'>code:</Trans></label>
+                                </div>
+                                <div className="control ">
+                                    <input id="input-code" type="text" name="code" className="input"/>
+                                </div>
                             </div>
+                        </div>
+                        <div className="control">
+                            <button className="button is-link" id="join-game-button" onClick={this.joinDraft}>
+                                <Trans i18nKey='spectate.spectate'>Spectate</Trans>
+                            </button>
                         </div>
                     </div>
                 </div>
-
-                <div id="recent_drafts" className="home_card box">
-                    <h2><Trans i18nKey='spectate.recentDraftsTitle'>Recent Drafts</Trans></h2>
-                    <table className="pure-table pure-table-horizontal recent-drafts">
+                <div id="recent_drafts" className="box content">
+                    <h3><Trans i18nKey='spectate.recentDraftsTitle'>Recent Drafts</Trans></h3>
+                    <table className="table is-narrow is-hoverable is-fullwidth">
+                        <thead>
+                        <tr className="has-background-light">
+                            <th>Draft Name</th>
+                            <th className="has-text-right">Host</th>
+                            <th className="has-text-centered"/>
+                            <th>Guest</th>
+                            <th className="has-text-right"/>
+                        </tr>
+                        </thead>
                         <tbody>
                         {recentDrafts}
                         </tbody>

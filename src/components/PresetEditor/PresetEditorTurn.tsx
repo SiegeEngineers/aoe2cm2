@@ -10,22 +10,21 @@ interface IProps {
 }
 
 export const PresetEditorTurn = ({index, turn, onValueChange}: IProps) =>
-    <div className="pure-g" key={'turn-' + index}
-         style={{margin: '.2rem 0 .2rem 0', padding: '0.2rem', backgroundColor: 'rgba(100,100,100,0.3)'}}>
-        <div className="pure-u-1-24">{index}</div>
-        <div className="pure-u-8-24">
+    <div className="columns is-mobile has-background-light" key={'turn-' + index}
+         style={{borderBottom: '1px solid #ddd'}}>
+        <div className="column is-1 has-text-vcentered is-size-5 has-text-grey">{index + 1}</div>
+        <div className="column has-text-centered">
             <PlayerTurnSettings player={Player.HOST} turn={turn} key={'host-' + index} index={index}/>
         </div>
-        <div className="pure-u-5-24">
+        <div className="column has-text-centered">
             <PlayerTurnSettings player={Player.NONE} turn={turn} key={'host-' + index} index={index}/>
         </div>
-        <div className="pure-u-8-24">
+        <div className="column has-text-centered">
             <PlayerTurnSettings player={Player.GUEST} turn={turn} key={'host-' + index} index={index}/>
         </div>
-        <div className="pure-u-2-24">
-            <button className="pure-button" onClick={() => {
+        <div className="column has-text-right is-1 has-text-vcentered">
+            <button className="delete is-medium" onClick={() => {
                 onValueChange(null, index);
-            }}>X
-            </button>
+            }}/>
         </div>
     </div>;

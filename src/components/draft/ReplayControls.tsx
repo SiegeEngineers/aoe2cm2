@@ -45,22 +45,19 @@ class ReplayControls extends React.Component<IProps, IState> {
     } as IState;
 
     public render() {
-        if (this.props.replayEvents.length === 0) {
+        if (this.props.replayEvents.length === 0 || this.hasDraftEnded()) {
             return null;
         }
-        const pauseButton = <div className="spectator-action shadowbutton text-primary" onClick={this.haltReplay}>
-            <span id="spectator-pause">pause</span>
-        </div>;
-        const runButton = <div className="spectator-action shadowbutton text-primary" onClick={this.runReplay}>
-            <span id="spectator-play">play</span>
-        </div>;
-        const nextButton = <div className="spectator-action shadowbutton text-primary" onClick={this.nextStep}>
-            <span id="spectator-next">next</span>
-        </div>;
-        const skipToEndbutton = <div className="spectator-action shadowbutton text-primary" onClick={this.skipToEnd}>
-            <span id="spectator-forward">fast-forward</span>
-        </div>;
-        return <div id="spectator-controls" className="centered">
+        const pauseButton = <button id="spectator-pause" className="spectator-action button is-large"
+                                    onClick={this.haltReplay} aria-label="Pause"/>;
+        const runButton = <button id="spectator-play" className="spectator-action button is-large"
+                                  onClick={this.runReplay} aria-label="Play"/>;
+        const nextButton = <button id="spectator-next" className="spectator-action button is-large"
+                                   onClick={this.nextStep} aria-label="Next"/>;
+        const skipToEndbutton = <button id="spectator-forward" className="spectator-action button is-large"
+                                        onClick={this.skipToEnd} aria-label="Fast Forward"/>;
+
+        return <div id="spectator-controls" className="buttons is-centered">
             {this.state.isRunning ? pauseButton : runButton}
             {this.state.isRunning ? null : nextButton}
             {this.state.isRunning ? null : skipToEndbutton}
@@ -189,6 +186,9 @@ class ReplayControls extends React.Component<IProps, IState> {
         this.setState({countdownValue: this.state.countdownValue - 1});
     }
 
+    private hasDraftEnded() {
+        return this.props.nextAction >= this.props.preset.turns.length;
+    }
 }
 
 export default withTranslation()(ReplayControls);

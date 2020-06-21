@@ -21,6 +21,12 @@ node build/server.js
 
 Visit `localhost:3000` then.
 
+### Run Tests / Update snapshots
+
+```bash
+npm test
+```
+
 ## Presets
 
 A preset defines the order and modes in which host and guest pick and ban 

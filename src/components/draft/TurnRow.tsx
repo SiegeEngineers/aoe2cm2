@@ -17,23 +17,19 @@ class TurnRow extends React.Component<IProps, object> {
         let lastTurnWasParallel = false;
         for (let i = 0; i < this.props.turns.length; i++) {
             const turn = this.props.turns[i];
-            items.push(React.createElement(Turn, {turn, turnNumber: i, lastTurnWasParallel}));
+            items.push(React.createElement(Turn, {turn, turnNumber: i, key: i, lastTurnWasParallel}));
             lastTurnWasParallel = turn.parallel;
         }
 
         return (
-            <div className="turn-row">
-                <div className="pure-g">
-                    <div className="pure-u-1-24 arrow-start">
-                        <div><Trans>Start</Trans></div>
-                    </div>
-
-                    {items}
-
-                    <div className="pure-u-1-24 arrow-end">
-                        <div><span><Trans>End</Trans></span></div>
-                    </div>
-                    <div className="pure-u-1-24" id="firefox-bug">&nbsp;</div>
+            <div
+                className="columns is-mobile is-centered is-multiline turn-row has-text-weight-bold is-uppercase py-4">
+                <div className="column is-1 turn arrow-start has-text-right has-text-grey-light">
+                    <Trans>Start</Trans>
+                </div>
+                {items}
+                <div className="column is-1 turn arrow-end has-text-left color has-text-grey-light">
+                    <Trans>End</Trans>
                 </div>
             </div>
         );

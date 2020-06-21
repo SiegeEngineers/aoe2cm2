@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Draft renders correctly 1`] = `
-<Draft
+<withRouter(Draft)
   i18n={Object {}}
   nameGuest="Beastly Barbarossa"
   nameHost="Sneaky Saladin"

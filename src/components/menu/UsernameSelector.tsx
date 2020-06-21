@@ -15,7 +15,7 @@ class UsernameSelector extends React.Component<IProps, object> {
             string = i18next.t('setYourName') as string | null;
         }
         return (
-            <button className='pure-button usernameSelector' onClick={this.callback}>{string}</button>
+            <button className='button is-light usernameSelector' onClick={this.callback}>{string}</button>
         );
     }
 

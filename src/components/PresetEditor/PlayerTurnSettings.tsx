@@ -22,16 +22,14 @@ class PlayerTurnSettings extends React.Component<Props, object> {
                 <ActionDropdown turn={this.props.turn} index={this.props.index}/>
             </div>;
         }
-        return <div>
-            <div>
-                <ActionDropdown turn={this.props.turn} index={this.props.index}/>
-                <ExclusivityDropdown turn={this.props.turn} index={this.props.index}/>
-            </div>
-            <div>
-                <HiddenCheckbox turn={this.props.turn} index={this.props.index}/>
-                <ParallelCheckbox turn={this.props.turn} index={this.props.index}/>
-            </div>
-        </div>;
+        return <React.Fragment>
+            <ActionDropdown turn={this.props.turn} index={this.props.index}/>
+            <ExclusivityDropdown turn={this.props.turn} index={this.props.index}/>
+            <br/>
+            <HiddenCheckbox turn={this.props.turn} index={this.props.index}/>
+            &nbsp;
+            <ParallelCheckbox turn={this.props.turn} index={this.props.index}/>
+        </React.Fragment>;
     }
 }
 

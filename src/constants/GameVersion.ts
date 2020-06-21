@@ -1,5 +1,5 @@
 enum GameVersion {
-    TECHNICAL=0,
+    TECHNICAL = 0,
     AOK = 1,
     CONQUERORS,
     FORGOTTEN,

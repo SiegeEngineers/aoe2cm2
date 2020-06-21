@@ -4,16 +4,13 @@ import {Provider} from 'react-redux';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {applyMiddleware, createStore, Store} from 'redux';
 import {Action, IApplyConfig, IClickOnCiv, ISetName, ISetRole} from "./actions";
-import NotFound404 from "./components/404";
 import Footer from "./components/menu/Footer";
 import TopRightControls from "./components/menu/TopRightControls";
 import Menu from "./components/menu/Menu";
 import {ClientActions, ServerActions} from "./constants";
 import Draft from './containers/Draft';
 import './i18n';
-import './pure-min.css';
-import './style-material.css';
-import './style.css';
+import 'bulma/css/bulma.css'
 import './index.css';
 import {IDraftConfig} from "./types/IDraftConfig";
 import {SocketUtil} from "./util/SocketUtil";
@@ -62,7 +59,8 @@ const createMySocketMiddleware = () => {
                     return;
                 }
                 const setName = action as ISetName;
-                socket.emit('set_name', {name: setName.name}, () => {});
+                socket.emit('set_name', {name: setName.name}, () => {
+                });
                 return;
             }
 
@@ -115,20 +113,20 @@ console.log(store.getState());
 
 ReactDOM.render(
     <Provider store={store}>
-        <TopRightControls/>
         <Router>
-            <Switch>
-                <Route path="/draft/:id" component={Draft}/>
-                <Route exact path="/" component={Menu}/>
-                <Route path="/presets" component={Menu}/>
-                <Route path="/preset/create" component={Menu}/>
-                <Route path="/preset/:id" component={Menu}/>
-                <Route path="/preset/:id/new" component={Menu}/>
-                <Route path="/spectate/:id" component={SpectateDraft}/>
-                <Route path="/spectate" component={Menu}/>
-                <Route path="/practice" component={Menu}/>
-                <Route component={NotFound404}/>
-            </Switch>
+            <TopRightControls/>
+                <Switch>
+                    <Route exact path="/" component={Menu}/>
+                    <Route path="/draft/:id" component={Draft}/>
+                    <Route path="/presets" component={Menu}/>
+                    <Route path="/preset/create" component={Menu}/>
+                    <Route path="/preset/:id" component={Menu}/>
+                    <Route path="/preset/:id/new" component={Menu}/>
+                    <Route path="/spectate/:id" component={SpectateDraft}/>
+                    <Route path="/spectate" component={Menu}/>
+                    <Route path="/practice" component={Menu}/>
+                    <Route component={Menu}/>
+                </Switch>
         </Router>
         <Footer/>
     </Provider>,
