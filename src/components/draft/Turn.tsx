@@ -15,11 +15,13 @@ interface IState {
     active: boolean;
 }
 
-const toTitle = (turn: ModelTurn): string => {
+const toTitle = (turn: ModelTurn, lastTurnWasParallel: boolean): string => {
     if (turn.player === Player.NONE) {
         return turn.action.toString();
     }
-    return `${turn.player}: ${turn.action} (${turn.exclusivity})`;
+    let extensions = turn.hidden ? ' + Hidden': '';
+    extensions += (turn.parallel || lastTurnWasParallel) ? ' + Parallel': '';
+    return `${turn.player}: ${turn.action} (${turn.exclusivity}${extensions})`;
 };
 
 class Turn extends React.Component<IProps, IState> {
@@ -57,7 +59,7 @@ class Turn extends React.Component<IProps, IState> {
         }
 
         return (
-            <div data-tooltip={toTitle(turn)} className={turnClassName}>
+            <div data-tooltip={toTitle(turn, this.props.lastTurnWasParallel)} className={turnClassName}>
                 <div className='bar'/>
                 <TurnTag turn={this.props.turn}/>
             </div>
