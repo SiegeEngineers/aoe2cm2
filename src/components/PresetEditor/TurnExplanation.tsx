@@ -1,5 +1,5 @@
 import * as React from "react";
-import {withTranslation} from "react-i18next";
+import {Trans, withTranslation} from "react-i18next";
 import {default as ModelTurn} from "../../models/Turn";
 import Exclusivity from "../../constants/Exclusivity";
 import TurnTag from "../draft/TurnTag";
@@ -10,6 +10,18 @@ const TurnExplanation = () =>
     <React.Fragment>
         <h3>Help and Instructions</h3>
         <h4>Basics</h4>
+        <p>
+            <Trans i18nKey='instructions.1'>Captains mode is a turn-based civilization picker.
+                Each captain can pick and ban civilizations in a predefined order. Bans
+                prevent the opponent's captain from picking the civilizations.</Trans>
+        </p>
+        <p>
+            <Trans i18nKey='instructions.2'>For each turn captains have <b>30 seconds</b>. In
+                case of timeout a random civilization is picked for the captain or no civilization
+                gets banned.</Trans>
+        </p>
+
+        <h4>Preset Editor</h4>
         <ul>
             <li>Presets are made up by individual Turns.</li>
             <li>Each turn has an acting player: The Host, the Guest, or neither of those, (so called "Admin" turns).
@@ -91,15 +103,19 @@ const TurnExplanation = () =>
 
         <h4>Admin Turns</h4>
 
-        <p>Admin turns or  <TurnTag turn={new ModelTurn(
+        <p>Admin turns or <TurnTag turn={new ModelTurn(
             Player.NONE,
             Action.REVEAL_ALL,
             Exclusivity.GLOBAL
-        )}/> reveals the previous set of actions which were hidden. The <span className="tag">REVEAL_PICKS</span>,
-            <span className="tag">REVEAL_BANS</span> and <span className="tag">REVEAL_SNIPES</span> turns reveal the
-            respective hidden actions that were executed before.
-            <span className="tag">REVEAL_ALL</span> reveals all hidden actions that were executed before.
+        )}/> reveals the previous set of actions which were hidden.
         </p>
+        <ul>
+            <li>The <span className="tag">REVEAL_PICKS</span>,
+                <span className="tag">REVEAL_BANS</span> and <span className="tag">REVEAL_SNIPES</span> turns reveal the
+                respective hidden actions that were executed before.
+            </li>
+            <li><span className="tag">REVEAL_ALL</span> reveals all hidden actions that were executed before.</li>
+        </ul>
     </React.Fragment>
 ;
 

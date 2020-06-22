@@ -125,7 +125,8 @@
     "welcome": "Welcome",
     "hostOrJoin": "Host or Join",
     "spectate": "Spectate",
-    "practice": "Practice"
+    "practice": "Practice",
+    "help": "Help"
   },
   "instructions": {
     "title": "Instructions",
