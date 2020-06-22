@@ -19,7 +19,7 @@ class LanguageSelector extends React.Component<IProps, object> {
             }
         };
 
-        let className = "language-selector button is-light";
+        let className = "language-selector button is-light has-tooltip-bottom has-tooltip-arrow";
         if (this.props.language === i18n.language) {
             className += ' is-link is-hovered';
         } else {
@@ -27,7 +27,8 @@ class LanguageSelector extends React.Component<IProps, object> {
         }
 
         return (
-            <button className={className} onClick={changeLanguage}>
+            <button className={className} onClick={changeLanguage}
+                    data-tooltip={this.props.t("navbar.setLang") + " " + this.props.displayString}>
                 {this.props.displayString}
             </button>
         );

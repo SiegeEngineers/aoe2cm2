@@ -162,5 +162,11 @@
   "setYourName": "Set your name",
   "youAre": "You are:",
   "codeInstructionsBefore": "Send this code to players or spectators:",
-  "codeInstructionsAfter": "Use this code to spectate this draft again later:"
+  "codeInstructionsAfter": "Use this code to spectate this draft again later:",
+  "navbar": {
+    "setLang": "Set Language to",
+    "showUnits": "Show units",
+    "showEmblems": "Show emblems",
+    "setName": "Click to change your display name"
+  }
 }

@@ -45,7 +45,7 @@ class Turn extends React.Component<IProps, IState> {
             action = 'reveal';
         }
 
-        let turnClassName = `column is-1 turn turn-${player} turn-${action} has-text-centered`;
+        let turnClassName = `column is-1 turn turn-${player} turn-${action} has-text-centered has-tooltip-arrow`;
         if (turn.parallel || this.props.lastTurnWasParallel) {
             turnClassName += ' turn-parallel';
         }
@@ -57,7 +57,7 @@ class Turn extends React.Component<IProps, IState> {
         }
 
         return (
-            <div title={toTitle(turn)} className={turnClassName}>
+            <div data-tooltip={toTitle(turn)} className={turnClassName}>
                 <div className='bar'/>
                 <TurnTag turn={this.props.turn}/>
             </div>

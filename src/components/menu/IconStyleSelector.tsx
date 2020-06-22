@@ -19,7 +19,7 @@ class IconStyleSelector extends React.Component<IProps, object> {
             }
         };
 
-        let className = "civ-select button is-light";
+        let className = "civ-select button is-light has-tooltip-left has-tooltip-arrow";
         let style = {filter: 'grayscale(100%)'}
         if (this.props.iconStyle === this.props.activeIconStyle) {
             className += ' is-link is-hovered';
@@ -28,7 +28,9 @@ class IconStyleSelector extends React.Component<IProps, object> {
 
         const image = `/images/icon_${this.props.iconStyle}.png`;
         return (
-            <button className={className} onClick={changeIconStyle} title={this.props.iconStyle} aria-label={"Show icons as " + this.props.iconStyle}>
+            <button className={className} onClick={changeIconStyle}
+                    aria-label={this.props.displayString}
+                    data-tooltip={this.props.displayString}>
                 <img alt={this.props.iconStyle} src={image} width="24px" height="24px" style={style}/>
             </button>
         );
