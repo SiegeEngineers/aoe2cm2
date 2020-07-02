@@ -3,6 +3,7 @@ import {default as ModelTurn} from '../../models/Turn'
 import {WithTranslation, withTranslation} from "react-i18next";
 import Player from "../../constants/Player";
 import TurnTag from "./TurnTag";
+import Action from "../../constants/Action";
 
 interface IProps extends WithTranslation {
     turn: ModelTurn;
@@ -19,9 +20,21 @@ const toTitle = (turn: ModelTurn, lastTurnWasParallel: boolean): string => {
     if (turn.player === Player.NONE) {
         return turn.action.toString();
     }
-    let extensions = turn.hidden ? ' + Hidden': '';
-    extensions += (turn.parallel || lastTurnWasParallel) ? ' + Parallel': '';
-    return `${turn.player}: ${turn.action} (${turn.exclusivity}${extensions})`;
+    let suffixList: string[] = [];
+    if (turn.action !== Action.SNIPE) {
+        suffixList.push(turn.exclusivity);
+    }
+    if (turn.hidden) {
+        suffixList.push('Hidden');
+    }
+    if (turn.parallel || lastTurnWasParallel) {
+        suffixList.push('Parallel');
+    }
+    let suffixes: string = '';
+    if (suffixList.length) {
+        suffixes = ` (${suffixList.join(" + ")})`;
+    }
+    return `${turn.player}: ${turn.action}${suffixes}`;
 };
 
 class Turn extends React.Component<IProps, IState> {
