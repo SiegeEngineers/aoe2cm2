@@ -15,7 +15,8 @@ class NavBar extends React.Component<WithTranslation, object> {
                 <div className="navbar-end is-flex-touch">
                     <div className="navbar-item">
                         <Trans i18nKey="youAre">You are:</Trans> &nbsp;
-                        <div className={'buttons has-addons is-inline-flex'}>
+                        <div className="buttons has-addons is-inline-flex has-tooltip-arrow has-tooltip-bottom"
+                             data-tooltip={this.props.t('navbar.setName')}>
                             <UsernameSelector/>
                         </div>
                     </div>
@@ -28,8 +29,8 @@ class NavBar extends React.Component<WithTranslation, object> {
                     </div>
                     <div className="navbar-item">
                         <div className={'buttons has-addons'}>
-                            <IconStyleSelector iconStyle={'units'} displayString={'units'}/>
-                            <IconStyleSelector iconStyle={'emblems'} displayString={'emblems'}/>
+                            <IconStyleSelector iconStyle={'units'} displayString={this.props.t('navbar.showUnits')}/>
+                            <IconStyleSelector iconStyle={'emblems'} displayString={this.props.t('navbar.showEmblems')}/>
                         </div>
                     </div>
                 </div>
