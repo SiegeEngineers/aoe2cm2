@@ -18,6 +18,7 @@ import {ICountdownValues} from "../../types";
 import {default as ModelAction} from "../../constants/Action";
 import ReplayControls from "../../containers/ReplayControls";
 import {RouteComponentProps} from "react-router";
+import HowItWorks from "../menu/HowItWorks";
 
 interface IProps extends WithTranslation, RouteComponentProps<any> {
     nameHost: string;
@@ -101,6 +102,7 @@ class Draft extends React.Component<IProps, IState> {
 
 
         return (
+            <>
             <section className="section">
                 <Modal inDraft={true}/>
                 <RoleModal/>
@@ -139,9 +141,17 @@ class Draft extends React.Component<IProps, IState> {
                     </div>
 
                     <CivGrid civilisations={this.props.preset.civilisations}/>
-
                 </div>
             </section>
+            <section className="section">
+
+                <div className="container is-desktop">
+                <details>
+                    <summary>How it works?</summary>
+                    <HowItWorks/></details>
+                </div>
+            </section>
+        </>
         );
     }
 
