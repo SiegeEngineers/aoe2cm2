@@ -8,7 +8,7 @@ import Preset from "../../models/Preset";
 import "../../types/DraftEvent";
 import {DraftEvent} from "../../types/DraftEvent";
 import {IDraftConfig} from "../../types/IDraftConfig";
-import {WithTranslation, withTranslation} from "react-i18next";
+import {Trans, WithTranslation, withTranslation} from "react-i18next";
 import Modal from "../../containers/Modal";
 import NameGenerator from "../../util/NameGenerator";
 import {withRouter} from "react-router-dom";
@@ -147,7 +147,7 @@ class Draft extends React.Component<IProps, IState> {
             <section className="section">
                 <div className="container is-desktop">
                     <details>
-                        <summary>How it works?</summary>
+                        <summary><Trans i18nKey='menu.howItWorks'>How it works?</Trans></summary>
                         <HowItWorks/>
                     </details>
                 </div>
