@@ -143,12 +143,13 @@ class Draft extends React.Component<IProps, IState> {
                     <CivGrid civilisations={this.props.preset.civilisations}/>
                 </div>
             </section>
-            <section className="section">
 
+            <section className="section">
                 <div className="container is-desktop">
-                <details>
-                    <summary>How it works?</summary>
-                    <HowItWorks/></details>
+                    <details>
+                        <summary>How it works?</summary>
+                        <HowItWorks/>
+                    </details>
                 </div>
             </section>
         </>
