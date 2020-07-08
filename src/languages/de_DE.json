@@ -162,5 +162,11 @@
   "setYourName": "Wähle einen Namen",
   "youAre": "Dein Name:",
   "codeInstructionsBefore": "Sende diesen Code an Kapitäninnen oder Zuschauerinnen:",
-  "codeInstructionsAfter": "Mit diesem Code kann der Draft erneut aufgerufen werden:"
+  "codeInstructionsAfter": "Mit diesem Code kann der Draft erneut aufgerufen werden:",
+  "navbar": {
+    "setLang": "Sprache ändern: ",
+    "showUnits": "Einheiten anzeigen",
+    "showEmblems": "Embleme anzeigen",
+    "setName": "Hier klicken, um den Namen zu ändern"
+  }
 }

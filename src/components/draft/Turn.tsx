@@ -3,6 +3,7 @@ import {default as ModelTurn} from '../../models/Turn'
 import {WithTranslation, withTranslation} from "react-i18next";
 import Player from "../../constants/Player";
 import TurnTag from "./TurnTag";
+import Action from "../../constants/Action";
 
 interface IProps extends WithTranslation {
     turn: ModelTurn;
@@ -15,11 +16,25 @@ interface IState {
     active: boolean;
 }
 
-const toTitle = (turn: ModelTurn): string => {
+const toTitle = (turn: ModelTurn, lastTurnWasParallel: boolean): string => {
     if (turn.player === Player.NONE) {
         return turn.action.toString();
     }
-    return `${turn.player}: ${turn.action} (${turn.exclusivity})`;
+    let suffixList: string[] = [];
+    if (turn.action !== Action.SNIPE) {
+        suffixList.push(turn.exclusivity);
+    }
+    if (turn.hidden) {
+        suffixList.push('Hidden');
+    }
+    if (turn.parallel || lastTurnWasParallel) {
+        suffixList.push('Parallel');
+    }
+    let suffixes: string = '';
+    if (suffixList.length) {
+        suffixes = ` (${suffixList.join(" + ")})`;
+    }
+    return `${turn.player}: ${turn.action}${suffixes}`;
 };
 
 class Turn extends React.Component<IProps, IState> {
@@ -45,7 +60,7 @@ class Turn extends React.Component<IProps, IState> {
             action = 'reveal';
         }
 
-        let turnClassName = `column is-1 turn turn-${player} turn-${action} has-text-centered`;
+        let turnClassName = `column is-1 turn turn-${player} turn-${action} has-text-centered has-tooltip-arrow`;
         if (turn.parallel || this.props.lastTurnWasParallel) {
             turnClassName += ' turn-parallel';
         }
@@ -57,7 +72,7 @@ class Turn extends React.Component<IProps, IState> {
         }
 
         return (
-            <div title={toTitle(turn)} className={turnClassName}>
+            <div data-tooltip={toTitle(turn, this.props.lastTurnWasParallel)} className={turnClassName}>
                 <div className='bar'/>
                 <TurnTag turn={this.props.turn}/>
             </div>

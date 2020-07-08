@@ -10,7 +10,8 @@ import Menu from "./components/menu/Menu";
 import {ClientActions, ServerActions} from "./constants";
 import Draft from './containers/Draft';
 import './i18n';
-import 'bulma/css/bulma.css'
+import 'bulma/css/bulma.min.css'
+import '@creativebulma/bulma-tooltip/dist/bulma-tooltip.min.css'
 import './index.css';
 import {IDraftConfig} from "./types/IDraftConfig";
 import {SocketUtil} from "./util/SocketUtil";
