@@ -62,10 +62,10 @@ class Spectate extends React.Component<WithTranslation, IState> {
                     <table className="table is-narrow is-hoverable is-fullwidth">
                         <thead>
                         <tr className="has-background-light">
-                            <th className="has-text-left">Draft Name</th>
-                            <th className="has-text-right">Host</th>
+                            <th className="has-text-left"><Trans i18nKey="spectate.draftName">Draft Name</Trans></th>
+                            <th className="has-text-right"><Trans i18nKey="spectate.host">Host</Trans></th>
                             <th className="has-text-centered"/>
-                            <th className="has-text-left">Guest</th>
+                            <th className="has-text-left"><Trans i18nKey="spectate.guest">Guest</Trans></th>
                             <th className="has-text-right"/>
                         </tr>
                         </thead>

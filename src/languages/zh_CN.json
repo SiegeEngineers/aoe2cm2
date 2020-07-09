@@ -149,7 +149,10 @@
   "spectate": {
     "spectateTitle": "观看进行中的BP",
     "code": "代码:",
-    "spectate": "观看"
+    "spectate": "观看",
+    "host": "主机",
+    "guest": "受邀者",
+    "draftName": "草稿名称"
   },
   "createNewDraft": "用这个预设开始",
   "createNewPreset": "创建一个新预设",

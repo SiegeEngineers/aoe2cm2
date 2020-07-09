@@ -157,7 +157,10 @@
     "spectate": "Zusehen",
     "recentDraftsTitle": "Die letzten Drafts",
     "watchLive": "Live Zusehen",
-    "watch": "Ansehen"
+    "watch": "Ansehen",
+    "host": "Host",
+    "guest": "Gast",
+    "draftName": "Draft Namen"
   },
   "preset": {
     "shareThisPreset": "Teile dieses Preset:"

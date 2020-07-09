@@ -194,7 +194,10 @@
     "spectate": "Spectate",
     "recentDraftsTitle": "Recent Drafts",
     "watchLive": "Watch Live",
-    "watch": "Watch"
+    "watch": "Watch",
+    "host": "Host",
+    "guest": "Guest",
+    "draftName": "Draft Name"
   },
   "preset": {
     "shareThisPreset": "Share this preset:"
