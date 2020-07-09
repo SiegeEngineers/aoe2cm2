@@ -158,14 +158,14 @@
     },
     "adminTurns": {
       "title": "Admin Turns",
-      "1": "Admin turns or <1/> reveals the previous set of actions which were hidden",
-      "2": "The <1>REVEAL_PICKS</1>, <3>REVEAL_BANS</3> and <5>REVEAL_SNIPES</5> turns reveal the respective hidden actions that were executed before",
+      "1": "Admin turns or <1/> reveals the previous set of actions which were hidden.",
+      "2": "The <1>REVEAL_PICKS</1>, <3>REVEAL_BANS</3> and <5>REVEAL_SNIPES</5> turns reveal the respective hidden actions that were executed before.",
       "3": "<0>REVEAL_ALL</0> reveals all hidden actions that were executed before."
     },
     "presetEditor": {
       "title": "Preset Editor",
       "1": "Presets are made up by individual Turns.",
-      "2": "Each turn has an acting player: The Host, the Guest, or neither of those, (so called \"Admin\" turns).",
+      "2": "Each turn has an acting player: The Host, the Guest, or neither of those (so called \"Admin\" turns).",
       "3": "You can add a Host/Admin/Guest turn by clicking the <1>+ New</1> button below the respective column.",
       "4": "You can remove a turn by clicking the <1/> button to the right of the turn."
     },
@@ -176,7 +176,7 @@
     },
     "draftModifiers": {
       "title": "Modifiers",
-      "1": "A <1>PARALLEL</1> modifier means both the players to execute their turns in parallel. The picks or bans are revealed to the other player and spectators only after both the players have made their choices.",
+      "1": "A <1>PARALLEL</1> modifier means both the players to execute their turns in parallel.",
       "2": "A <1>HIDDEN</1> modifier hides the civilisation selected during that turn from the opponent and from spectators until it is revealed by an admin turn (see below)."
     }
   },
