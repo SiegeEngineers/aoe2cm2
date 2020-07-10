@@ -1,0 +1,680 @@
+@charset "utf-8";
+
+//// Default
+$blue: hsl(217, 71%, 53%) !default;
+$black: hsl(0, 0%, 4%) !default;
+$black-bis: hsl(0, 0%, 7%) !default;
+$black-ter: hsl(0, 0%, 14%) !default;
+
+$grey-darker: hsl(0, 0%, 21%) !default;
+$grey-dark: hsl(0, 0%, 29%) !default;
+$grey: hsl(0, 0%, 48%) !default;
+$grey-light: hsl(0, 0%, 71%) !default;
+$grey-lighter: hsl(0, 0%, 86%) !default;
+$grey-lightest: hsl(0, 0%, 93%) !default;
+
+$white-ter: hsl(0, 0%, 96%) !default;
+$white-bis: hsl(0, 0%, 98%) !default;
+$white: hsl(0, 0%, 100%) !default;
+
+// Common
+//$primary:      $blue;
+
+
+// Dark Theme
+//$body-background-color: $black;
+//$text       : $grey-lighter !default;
+//$text-invert: findColorInvert($text) !default;
+//$text-light : $grey-light !default;
+//$text-strong: $grey-light !default;
+//
+//$scheme-main       : $black-ter !default;
+//$scheme-main-bis   : $black-bis !default;
+//$scheme-main-ter   : $black-ter !default;
+//$scheme-invert     : $white-ter !default;
+//$scheme-invert-bis : $white-bis !default;
+//$scheme-invert-ter : $white-ter !default;
+//
+//$background        : $black-ter !default;
+//
+//$border            : $grey-darker !default;
+//$border-hover      : $grey-dark !default;
+//$border-light      : $grey-darker !default;
+//$border-light-hover: $grey-dark !default;
+
+// Update Bulma's global variables
+//$family-sans-serif: "Nunito", sans-serif;
+//$grey-dark: $brown;
+//$grey-light: $beige-light;
+//$primary: $purple;
+//$link: $pink;
+//$widescreen-enabled: false;
+//$fullhd-enabled: false;
+
+// Update some of Bulma's component variables
+//$control-border-width: 2px;
+//$input-border-color: transparent;
+//$input-shadow: none;
+
+$body-background-color: #eeeeee;
+$text: #444444;
+$footer-background-color: $grey-lighter;
+
+$pick-green: #4caf50;
+$ban-red: #cc3333;
+$host-cyan: #00bcd4;
+$guest-gold: #ffc107;
+$family-monospace: 'SF Mono', 'Consolas', 'Monaco', monospace;
+
+
+/*
+$scheme-main: $black-ter !default;
+$scheme-main-bis: $black-bis !default;
+$scheme-main-ter: $black-ter !default;
+$scheme-invert: $white-ter !default;
+$scheme-invert-bis: $white-bis !default;
+$scheme-invert-ter: $white-ter !default;
+//*/
+
+// Import only what you need from Bulma
+@import "../../node_modules/bulma/bulma.sass";
+//@import "../../node_modules/bulma-prefers-dark/bulma-prefers-dark.sass";
+
+// -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+@import url('https://fonts.googleapis.com/css2?family=Crete+Round:ital@0;1&display=swap');
+
+.content h1, .content h2, .content h3, .content h4, .content h5, .content h6, .navbar-brand h1 {
+  font-family: 'Crete Round', sans-serif;
+  font-weight: 300;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 1024px;
+}
+
+section.section {
+  padding: 1.5rem;
+}
+
+nav.navbar .navbar-end {
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
+  margin-left: auto;
+}
+
+nav.navbar .navbar-brand h1 {
+  font-size: 1.2rem;
+}
+
+.navbar-brand {
+  a {
+    color: $scheme-invert-ter;
+  }
+}
+
+.message-body {
+  code pre {
+    background-color: $message-body-pre-background-color;
+  }
+}
+
+
+code {
+  color: inherit;
+  border-radius: 4px;
+}
+
+
+.box {
+  border-radius: 4px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+
+.tags:not(:last-child) {
+  margin-bottom: 0;
+}
+
+.tags {
+  display: inline-block;
+}
+
+.tags .tag {
+  margin-bottom: 0.5rem;
+}
+
+.column.has-text-vcentered {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+label.civ-select:hover {
+  background-color: $scheme-main-ter;
+  border-radius: 4px;
+}
+
+
+/* TURNS ROW */
+.turn-row {
+}
+
+.turn-row .turn.column.is-1 {
+  width: 72px !important;
+  margin-bottom: 5px;
+}
+
+.turn .tag {
+  margin-bottom: 0
+}
+
+.turn-row .arrow-start, .turn-row .arrow-end {
+  font-size: 0.7rem;
+  padding: 0.65rem;
+}
+
+.turn-host.turn-parallel .bar {
+  background: $host-cyan; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient($host-cyan, $guest-gold); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient($host-cyan, $guest-gold); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient($host-cyan, $guest-gold); /* For Firefox 3.6 to 15 */
+  background: repeating-linear-gradient(
+                  -55deg,
+                  $host-cyan,
+                  $host-cyan .4rem,
+                  $guest-gold .4rem,
+                  $guest-gold .8rem
+  );
+}
+
+.turn-guest.turn-parallel .bar {
+  background: $guest-gold; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient($guest-gold, $host-cyan); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient($guest-gold, $host-cyan); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient($guest-gold, $host-cyan); /* For Firefox 3.6 to 15 */
+  background: repeating-linear-gradient(
+                  -55deg,
+                  $guest-gold,
+                  $guest-gold .4rem,
+                  $host-cyan .4rem,
+                  $host-cyan .8rem
+  );
+}
+
+.turn {
+  display: inline-block;
+  width: 2rem;
+  padding: 0.1rem;
+}
+
+.turn-pick {
+  color: $pick-green;
+}
+
+.turn-ban {
+  color: $ban-red;
+}
+
+.turn .tag {
+  font-size: 0.65rem;
+}
+
+.bar {
+  height: .4rem;
+  border-radius: .2rem;
+}
+
+.turn-host .bar {
+  background-color: $host-cyan;
+}
+
+.turn-guest .bar {
+  background-color: $guest-gold;
+}
+
+.turn-none .bar {
+  background-color: rgba(0, 0, 0, 0.87);
+}
+
+.turn-parallel .bar {
+  background: repeating-linear-gradient(
+                  -55deg,
+                  $host-cyan,
+                  $host-cyan .2rem,
+                  $guest-gold .2rem,
+                  $guest-gold .4rem
+  );
+}
+
+.turn-hidden .bar {
+  border-left: .5rem solid rgba(0, 0, 0, 0.87);
+  border-right: .5rem solid rgba(0, 0, 0, 0.87);
+}
+
+.turn.active {
+  background-color: khaki;
+  border-radius: 4px;
+}
+
+
+/** grid stuff **/
+
+.chooser {
+  max-width: 808px;
+  display: block;
+  margin: 8px auto;
+  border-radius: 2px;
+  padding: 8px;
+  background: rgba(153, 153, 153, 0.2);
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.12), inset 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.choice {
+  box-sizing: border-box;
+  width: 80px;
+  transition: all 0.25s ease;
+  margin: 4px;
+  padding: 8px;
+  background: rgba(153, 153, 153, 0.4);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  cursor: pointer;
+}
+
+.choice:hover {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.19), 0 1px 2px rgba(0, 0, 0, 0.23);
+  opacity: 1;
+}
+
+.choice-chosen {
+  background-color: rgba(76, 175, 80, 0.6);
+}
+
+.choice-banned {
+  background-color: rgba(244, 67, 54, 0.6);
+}
+
+.choice-banned, .choice-chosen {
+  opacity: 0.7;
+}
+
+.choice-ban:hover {
+  background-color: #f44336;
+}
+
+.choice-pick:hover {
+  background-color: #4caf50;
+}
+
+.choice-gbanned {
+  opacity: 0.12 !important;
+  box-shadow: none !important;
+}
+
+.choice-disabled:hover {
+  opacity: 0.40;
+  box-shadow: none;
+  transform: none;
+}
+
+.choice-disabled, .choice-banned.choice-disabled:hover, .choice-chosen.choice-disabled:hover {
+  opacity: 0.30;
+  box-shadow: none;
+  transform: none;
+  cursor: not-allowed;
+}
+
+.choice-disabled img {
+  filter: grayscale(50%);
+  -webkit-filter: grayscale(50%);
+}
+
+.choice-hidden img {
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+}
+
+.choice-hidden, .choice-hidden:hover {
+  opacity: 0.1;
+  box-shadow: none;
+  transform: none;
+  background-color: transparent !important;
+}
+
+.choice, .choice img {
+  border-radius: 2px;
+}
+
+.choice img {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+div.stretchy-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+div.stretchy-wrapper > div.stretchy-image {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+div.stretchy-wrapper > div.stretchy-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  font-size: 12px;
+  transition: 0.1s ease-in-out;
+}
+
+.choice img {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.pick, .ban {
+  box-shadow: none;
+  border-radius: 4px;
+  margin: 4px;
+  padding: 8px;
+  box-sizing: content-box;
+  opacity: 0.4;
+}
+
+.pick.has-value, .ban.has-value {
+  opacity: 1;
+}
+
+
+.pick {
+  width: 96px;
+  height: 96px;
+  background: $pick-green;
+}
+
+.ban {
+  width: 56px;
+  height: 56px;
+  background-color: $ban-red;
+}
+
+.pick img, .ban img {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.pick .chosen-hidden img, .ban .chosen-hidden img {
+  visibility: hidden;
+}
+
+.pick .chosen-hidden .stretchy-image {
+  background-image: url('/images/hidden_pick.png');
+  background-size: contain;
+}
+
+.ban .chosen-hidden .stretchy-image {
+  background-image: url('/images/hidden_ban.png');
+  background-size: contain;
+}
+
+.picks .box-content, .bans .box-content {
+  visibility: hidden;
+}
+
+.random-pick {
+  display: block;
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  top: 0;
+  left: -2px;
+  background-image: url('/images/random.png');
+  background-size: 32px 32px;
+  background-repeat: no-repeat;
+  opacity: 1
+}
+
+.random-snipe {
+  display: block;
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  top: 32px;
+  right: 32px;
+  background-image: url('/images/random.png');
+  background-size: 32px 32px;
+  background-repeat: no-repeat;
+  opacity: 1;
+}
+
+.ban .random-pick {
+  top: 0;
+  left: -1px;
+  width: 24px;
+  height: 24px;
+  background-size: 24px 24px;
+}
+
+.active-choice {
+  -webkit-animation: pulsate 1s ease-in infinite alternate;
+  -moz-animation: pulsate 1s ease-in infinite alternate;
+  -animation: pulsate 1s ease-in infinite alternate;
+  animation: pulsate 1s ease-in infinite alternate;
+}
+
+.is-visible {
+  visibility: visible !important;
+}
+
+.is-valinged-middle {
+  vertical-align: middle !important;
+}
+
+.spectator-action {
+  background-position: center;
+  background-size: 48px;
+  background-repeat: no-repeat;
+  text-indent: 200%;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100px;
+}
+
+#spectator-play {
+  background-image: url('/images/controls_play-dark.png');
+}
+
+#spectator-pause {
+  background-image: url('/images/controls_pause-dark.png');
+}
+
+#spectator-next {
+  background-image: url('/images/controls_skip_to_next-dark.png');
+}
+
+#spectator-forward {
+  background-image: url('/images/controls_fast_forward-dark.png');
+}
+
+#countdown-timer {
+  display: inline-block;
+  font-weight: 600;
+}
+
+.countdown-timer-last {
+  color: $ban-red;
+  -webkit-animation: pulsate 1s ease-in infinite alternate;
+  -moz-animation: pulsate 1s ease-in infinite alternate;
+  -animation: pulsate 1s ease-in infinite alternate;
+  animation: pulsate 1s ease-in infinite alternate;
+}
+
+.role, .role img {
+  width: 100px;
+  height: 100px;
+  border-radius: 4px;
+}
+
+.role-button {
+  width: auto;
+  height: auto;
+  padding: 10px;
+}
+
+
+
+/* player sides */
+
+.player {
+  min-width: 400px;
+}
+
+.players {
+  display: flex;
+  align-content: flex-start;
+  justify-content: center;
+}
+
+.player-host {
+  color: #00bcd4; /*cyan */
+}
+
+.player-guest {
+  color: #ffc107; /*amber */
+}
+
+.player-inactive {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.player-inactive h4.player-name, .player-inactive .captains-line, .player-inactive .sub-heading {
+  opacity: 0.5;
+}
+
+#player-host {
+  text-align: right;
+}
+
+#player-guest {
+  text-align: left;
+}
+
+#player-host h4.player-name {
+  color: #00bbdd;
+}
+
+#player-guest h4.player-name {
+  color: #eeaa00;
+}
+
+.player .head-text {
+  text-transform: uppercase;
+}
+
+.picks, .bans, .captains-line {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+#player-host .picks,
+#player-host .bans,
+#player-host .captains-line {
+  flex-direction: row-reverse;
+}
+
+.back-icon.header-navigation {
+  display: inline-block;
+  content: "";
+  width: 48px;
+  height: 48px;
+  background-image: url("/images/back-icon-dark.png");
+  background-size: 48px 48px;
+  opacity: 0.54;
+
+  -webkit-transition: all 250ms;
+  -moz-transition: all 250ms;
+  transition: all 250ms;
+}
+
+.back-icon.header-navigation:hover {
+  opacity: 1.0;
+}
+
+.snipe-marker {
+  background-image: url('/images/red-cross.svg');
+}
+
+.used-marker {
+  background-image: url('/images/green-checkmark.svg');
+}
+
+.green-status-marker {
+  color: $pick-green;
+}
+
+
+@media screen and (max-width: 1215px) {
+  .container.is-desktop {
+    max-width: 960px;
+  }
+}
+
+@media screen and (min-width: 1216px) {
+  .container.is-desktop {
+    max-width: 960px;
+  }
+}
+
+@media screen and (max-width: 1407px) {
+  .container.is-desktop {
+    max-width: 960px;
+  }
+}
+
+@media screen and (min-width: 1408px) {
+  .container.is-desktop {
+    max-width: 960px;
+  }
+}
+
+
+@-webkit-keyframes pulsate {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.54;
+  }
+}
+
+@-moz-keyframes pulsate {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.54;
+  }
+}
+
+@keyframes pulsate {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.54;
+  }
+}
