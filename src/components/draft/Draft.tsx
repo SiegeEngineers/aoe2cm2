@@ -147,7 +147,7 @@ class Draft extends React.Component<IProps, IState> {
             <section className="section">
                 <div className="container is-desktop">
                     <details>
-                        <summary><Trans i18nKey='menu.howItWorks'>How it works?</Trans></summary>
+                        <summary><Trans i18nKey='menu.howItWorks'>How it works</Trans></summary>
                         <HowItWorks/>
                     </details>
                 </div>
