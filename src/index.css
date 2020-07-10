@@ -588,3 +588,7 @@ div.stretchy-wrapper > div.stretchy-text {
         opacity: 0.54;
     }
 }
+
+.has-cursor-pointer {
+    cursor: pointer;
+}

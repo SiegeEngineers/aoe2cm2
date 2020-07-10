@@ -5,7 +5,7 @@ import {Trans} from "react-i18next";
 class HowItWorks extends React.Component<object, object> {
     public render() {
         return (
-            <div className="container is-desktop">
+            <div className="container is-desktop has-text-left">
                 <div className="content box">
                     <h3><Trans i18nKey='menu.howItWorks'>How it works?</Trans></h3>
 

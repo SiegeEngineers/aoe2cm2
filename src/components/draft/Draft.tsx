@@ -134,20 +134,16 @@ class Draft extends React.Component<IProps, IState> {
 
                     <ReplayControls/>
 
-                    <div className="columns is-mobile">
-                        <div className="column has-text-centered">
-                            <DraftIdInfo/>
-                        </div>
-                    </div>
+                    <DraftIdInfo/>
 
                     <CivGrid civilisations={this.props.preset.civilisations}/>
                 </div>
             </section>
 
-            <section className="section">
-                <div className="container is-desktop">
+            <section className="section pt-0">
+                <div className="container is-desktop has-text-centered" style={{maxWidth: "808px"}}>
                     <details>
-                        <summary><Trans i18nKey='menu.howItWorks'>How it works</Trans></summary>
+                        <summary className="has-cursor-pointer"><Trans i18nKey='menu.howItWorks'>How it works</Trans></summary>
                         <HowItWorks/>
                     </details>
                 </div>

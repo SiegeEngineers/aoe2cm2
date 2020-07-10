@@ -57,10 +57,14 @@ class ReplayControls extends React.Component<IProps, IState> {
         const skipToEndbutton = <button id="spectator-forward" className="spectator-action button is-large"
                                         onClick={this.skipToEnd} aria-label="Fast Forward"/>;
 
-        return <div id="spectator-controls" className="buttons is-centered">
-            {this.state.isRunning ? pauseButton : runButton}
-            {this.state.isRunning ? null : nextButton}
-            {this.state.isRunning ? null : skipToEndbutton}
+        return <div className="columns is-mobile">
+            <div className="column has-text-centered">
+                <div id="spectator-controls" className="buttons is-centered">
+                    {this.state.isRunning ? pauseButton : runButton}
+                    {this.state.isRunning ? null : nextButton}
+                    {this.state.isRunning ? null : skipToEndbutton}
+                </div>
+            </div>
         </div>;
     }
 
