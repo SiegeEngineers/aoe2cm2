@@ -75,7 +75,9 @@
     "callToAction": "Looks like it's your first time here. First, set a captain name for yourself:",
     "setName": "Set Name",
     "editInfo": "You can edit this anytime in the future by clicking your name.",
-    "readTheRules": "Make sure you read the rules!"
+    "readTheRules": "Make sure you read the rules!",
+    "captainName": "Captain Name",
+    "randomizeName": "Randomize name"
   },
   "rolemodal": {
     "header": "Choose your role",
@@ -201,6 +203,16 @@
   },
   "preset": {
     "shareThisPreset": "Share this preset:"
+  },
+  "presetEditor": {
+    "availableCivs": "Available Civilisations",
+    "turns": "Turns",
+    "createSaveDraft": "Create Draft or Save",
+    "host": "Host",
+    "guest": "Guest",
+    "admin": "Admin",
+    "new": "New",
+    "presetName": "Preset Name"
   },
   "createNewDraft": "Create new draft from this Preset",
   "createNewPreset": "Create new Preset",

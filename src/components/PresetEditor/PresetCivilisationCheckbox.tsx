@@ -2,14 +2,15 @@ import * as React from "react";
 import {CivilisationEncoder} from "../../util/CivilisationEncoder";
 import Civilisation from "../../models/Civilisation";
 import {ISetEditorCivilisations} from "../../actions";
+import {WithTranslation, withTranslation} from "react-i18next";
 
-interface IProps {
+interface IProps extends WithTranslation{
     presetCivilisations: Civilisation[],
     value: Civilisation,
     onPresetCivilisationsChange: (value: string) => ISetEditorCivilisations,
 }
 
-export const PresetCivilisationCheckbox = ({presetCivilisations, value, onPresetCivilisationsChange}: IProps) =>
+export const PresetCivilisationCheckbox = withTranslation()(({presetCivilisations, value, onPresetCivilisationsChange, t}: IProps) =>
     <label className="checkbox is-inline-block civ-select" style={{width: "20%", padding: 5}}>
         <input type='checkbox'
                defaultChecked={presetCivilisations.includes(value)}
@@ -24,5 +25,6 @@ export const PresetCivilisationCheckbox = ({presetCivilisations, value, onPreset
                        }
                    }
                }/>
-        &nbsp;{value.name}
-    </label>;
+        &nbsp;{t('civs.' + value.name)}
+    </label>
+)

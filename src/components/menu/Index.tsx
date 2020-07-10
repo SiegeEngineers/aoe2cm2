@@ -45,10 +45,6 @@ class Index extends React.Component<WithTranslation, IState> {
                             for later turns. For other specific settings, please refer to the preset
                             descriptions.</Trans></li>
                     </ul>
-                    <p>
-                        <Trans i18nKey='instructions.home.6'><b>Practice</b> mode is for testing purposes, where
-                            both sides are controlled by a single player.</Trans>
-                    </p>
                 </div>
             </div>
         );

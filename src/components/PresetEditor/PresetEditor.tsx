@@ -16,8 +16,9 @@ import SavePresetButton from "../SavePresetButton";
 import {PresetEditorTurn} from "./PresetEditorTurn";
 import {PresetCivilisationCheckbox} from "./PresetCivilisationCheckbox";
 import TurnExplanation from "./TurnExplanation";
+import {Trans, withTranslation, WithTranslation} from "react-i18next";
 
-interface Props {
+interface Props extends WithTranslation{
     preset: Preset | null,
     onSetEditorPreset: (preset: Preset) => ISetEditorPreset,
     onValueChange: (turn: Turn | null, index: number) => ISetEditorTurn,
@@ -48,19 +49,19 @@ class PresetEditor extends React.Component<Props, object> {
         return (
             <React.Fragment>
                 <div className={'content box'}>
-                    <h3>1. Available Civilisations</h3>
+                    <h3>1. <Trans i18nKey="presetEditor.availableCivs">Available Civilisations</Trans></h3>
                     <div className="is-flex" style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                         {civs}
                     </div>
 
-                    <h3>2. Turns</h3>
+                    <h3>2. <Trans i18nKey="presetEditor.turns">Turns</Trans></h3>
                     <TurnRow turns={this.props.preset.turns}/>
                     <div>
                         <div className="columns is-mobile has-text-weight-bold has-background-grey-lighter">
                             <div className="column is-1 has-text-centered">#</div>
-                            <div className="column has-text-centered">Host</div>
-                            <div className="column has-text-centered">Admin</div>
-                            <div className="column has-text-centered">Guest</div>
+                            <div className="column has-text-centered"><Trans i18nKey="presetEditor.host">Host</Trans></div>
+                            <div className="column has-text-centered"><Trans i18nKey="presetEditor.admin">Admin</Trans></div>
+                            <div className="column has-text-centered"><Trans i18nKey="presetEditor.guest">Guest</Trans></div>
                             <div className="column is-1"/>
                         </div>
 
@@ -75,7 +76,7 @@ class PresetEditor extends React.Component<Props, object> {
                                     }
                                     const newTurn = new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, false);
                                     this.props.onValueChange(newTurn, this.props.preset.turns.length);
-                                }}>+ New
+                                }}>+ <Trans i18nKey="presetEditor.new">New</Trans>
                                 </button>
                             </div>
                             <div className="column has-text-centered">
@@ -85,7 +86,7 @@ class PresetEditor extends React.Component<Props, object> {
                                     }
                                     const newTurn = new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL, false, false);
                                     this.props.onValueChange(newTurn, this.props.preset.turns.length);
-                                }}>+ New
+                                }}>+ <Trans i18nKey="presetEditor.new">New</Trans>
                                 </button>
                             </div>
                             <div className="column has-text-centered">
@@ -95,18 +96,19 @@ class PresetEditor extends React.Component<Props, object> {
                                     }
                                     const newTurn = new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, false, false);
                                     this.props.onValueChange(newTurn, this.props.preset.turns.length);
-                                }}>+ New
+                                }}>+ <Trans i18nKey="presetEditor.new">New</Trans>
                                 </button>
                             </div>
                             <div className="column is-1"/>
                         </div>
                     </div>
                     <hr/>
-                    <h3>3. Create Draft or Save</h3>
+                    <h3>3. <Trans i18nKey="presetEditor.createSaveDraft">Create Draft or Save</Trans></h3>
                     <div className="field is-grouped">
                         <p className="control">
                             <input type={'text'} value={this.props.preset.name} className="input"
-                                   placeholder="Preset Name" required onChange={(event) => {
+                                   placeholder={this.props.t("presetEditor.presetName")} required
+                                   onChange={(event) => {
                                        if(!event.target.value.trim()) {
                                            event.target.classList.add('is-danger');
                                        } else {
@@ -146,4 +148,4 @@ export function mapDispatchToProps(dispatch: Dispatch<actions.Action>) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PresetEditor);
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(PresetEditor));

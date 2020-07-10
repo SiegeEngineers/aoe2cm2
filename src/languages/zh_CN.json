@@ -146,6 +146,10 @@
     "join": "加入",
     "useTitle": "使用预设"
   },
+  "presetEditor": {
+    "host": "主机",
+    "guest": "受邀者"
+  },
   "spectate": {
     "spectateTitle": "观看进行中的BP",
     "code": "代码:",

@@ -202,6 +202,12 @@
   "preset": {
     "shareThisPreset": "Teile dieses Preset:"
   },
+  "presetEditor": {
+    "host": "Host",
+    "guest": "Gast",
+    "admin": "Admin",
+    "new": "Neu"
+  },
   "createNewDraft": "Neuen Draft mit diesem Preset erstellen",
   "createNewPreset": "Neues Preset erstellen",
   "customiseThisPreset": "Dieses Preset bearbeiten",
