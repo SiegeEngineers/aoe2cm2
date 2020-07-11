@@ -27,4 +27,4 @@ export const PresetCivilisationCheckbox = withTranslation()(({presetCivilisation
                }/>
         &nbsp;{t('civs.' + value.name)}
     </label>
-)
+);
