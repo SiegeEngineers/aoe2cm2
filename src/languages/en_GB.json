@@ -134,7 +134,7 @@
     "home": {
       "title": "Instructions",
       "1": "Captains mode is a turn-based civilization picker. Each captain can <1>pick</1> and <3>ban</3> civilizations in a predefined order. Bans prevent the opponent's captain from picking the civilizations.",
-      "2": "For each turn captains have <1>30 seconds</1>. In case of timeout a random civilization is picked for the captain or no civilization gets banned.",
+      "2": "For each turn captains have <1>30 seconds</1>. In case of timeout a random civilization is picked or banned for the captain.",
       "3": "There are also extensions available for tournaments:",
       "4": "<0>Hidden</0> option (black corners) hides the civilization choices until they are explicitly showed (visible in the timeline at the top).",
       "5": "<0>Global</0> pick or bans disables the civilization for later turns. For other specific settings, please refer to the preset descriptions.",
@@ -205,6 +205,7 @@
     "shareThisPreset": "Share this preset:"
   },
   "presetEditor": {
+    "helpAndInstructions": "Help and Instructions",
     "availableCivs": "Available Civilisations",
     "turns": "Turns",
     "createSaveDraft": "Create Draft or Save",
