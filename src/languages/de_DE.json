@@ -75,7 +75,9 @@
     "callToAction": "Sieht so aus, als habest du noch keinen Namen. Das lässt sich ändern! Wie möchtest du heißen?",
     "setName": "Namen festlegen",
     "editInfo": "Du kannst deinen Namen jederzeit ändern, indem du auf die Namensanzeige oben rechts klickst.",
-    "readTheRules": "Lies die Regeln, bevor du loslegst!"
+    "readTheRules": "Lies die Regeln, bevor du loslegst!",
+    "captainName": "Dein Name",
+    "randomizeName": "Zufälliger Name"
   },
   "rolemodal": {
     "header": "Rolle auswählen",
@@ -203,10 +205,15 @@
     "shareThisPreset": "Teile dieses Preset:"
   },
   "presetEditor": {
+    "helpAndInstructions": "Hilfe und Anleitung",
+    "availableCivs": "Verfügbare Zivilisationen",
+    "turns": "Züge",
+    "createSaveDraft": "Draft erstellen oder speichern",
     "host": "Host",
     "guest": "Gast",
     "admin": "Admin",
-    "new": "Neu"
+    "new": "Neu",
+    "presetName": "Name des Presets"
   },
   "createNewDraft": "Neuen Draft mit diesem Preset erstellen",
   "createNewPreset": "Neues Preset erstellen",
