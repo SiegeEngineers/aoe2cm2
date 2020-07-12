@@ -8,7 +8,7 @@ import Preset from "../../models/Preset";
 import "../../types/DraftEvent";
 import {DraftEvent} from "../../types/DraftEvent";
 import {IDraftConfig} from "../../types/IDraftConfig";
-import {WithTranslation, withTranslation} from "react-i18next";
+import {Trans, WithTranslation, withTranslation} from "react-i18next";
 import Modal from "../../containers/Modal";
 import NameGenerator from "../../util/NameGenerator";
 import {withRouter} from "react-router-dom";
@@ -18,6 +18,7 @@ import {ICountdownValues} from "../../types";
 import {default as ModelAction} from "../../constants/Action";
 import ReplayControls from "../../containers/ReplayControls";
 import {RouteComponentProps} from "react-router";
+import HowItWorks from "../menu/HowItWorks";
 
 interface IProps extends WithTranslation, RouteComponentProps<any> {
     nameHost: string;
@@ -101,6 +102,7 @@ class Draft extends React.Component<IProps, IState> {
 
 
         return (
+            <>
             <section className="section">
                 <Modal inDraft={true}/>
                 <RoleModal/>
@@ -132,16 +134,21 @@ class Draft extends React.Component<IProps, IState> {
 
                     <ReplayControls/>
 
-                    <div className="columns is-mobile">
-                        <div className="column has-text-centered">
-                            <DraftIdInfo/>
-                        </div>
-                    </div>
+                    <DraftIdInfo/>
 
                     <CivGrid civilisations={this.props.preset.civilisations}/>
-
                 </div>
             </section>
+
+            <section className="section pt-0">
+                <div className="container is-desktop has-text-centered" style={{maxWidth: "808px"}}>
+                    <details>
+                        <summary className="has-cursor-pointer"><Trans i18nKey='menu.howItWorks'>How it works</Trans></summary>
+                        <HowItWorks/>
+                    </details>
+                </div>
+            </section>
+        </>
         );
     }
 

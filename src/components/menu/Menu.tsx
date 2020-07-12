@@ -10,6 +10,7 @@ import {Trans, withTranslation, WithTranslation} from "react-i18next";
 import Modal from "../../containers/Modal";
 import PresetEditor from "../PresetEditor/PresetEditor";
 import NotFound404 from "../404";
+import HowItWorks from "./HowItWorks";
 
 class Menu extends React.Component<WithTranslation, object> {
     public render() {
@@ -29,7 +30,8 @@ class Menu extends React.Component<WithTranslation, object> {
                             <TabLink to='/' activeClassName="is-active"><Trans>menu.welcome</Trans></TabLink>
                             <TabLink to='/presets' activeClassName="is-active"><Trans>menu.hostOrJoin</Trans></TabLink>
                             <TabLink to='/spectate' activeClassName="is-active"><Trans>menu.spectate</Trans></TabLink>
-                            <TabLink to='/practice' activeClassName="is-active"><Trans>menu.practice</Trans></TabLink>
+                            {/*<TabLink to='/practice' activeClassName="is-active"><Trans>menu.practice</Trans></TabLink>*/}
+                            <TabLink to='/help' activeClassName="is-active"><Trans>menu.howItWorks</Trans></TabLink>
                         </ul>
                     </div>
                     <Switch>
@@ -39,6 +41,7 @@ class Menu extends React.Component<WithTranslation, object> {
                         <Route path="/preset/:id" component={Preset}/>
                         <Route path="/spectate" component={Spectate}/>
                         <Route path="/practice" component={Practice}/>
+                        <Route path="/help" component={HowItWorks}/>
                         <Route component={NotFound404}/>
                     </Switch>
                 </div>

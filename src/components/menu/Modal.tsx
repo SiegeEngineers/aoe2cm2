@@ -29,12 +29,15 @@ class Modal extends React.Component<IProps, object> {
                                 <div className="field has-addons">
                                     <div className="control">
                                         <input id={this.INPUT_CAPTAIN_NAME} type="text"
-                                               placeholder="Captain Name"
+                                               placeholder={this.props.t('modal.captainName')}
                                                className="input" defaultValue={nameProposal}/>
                                     </div>
                                     <div className="control">
-                                        <button className='button' onClick={this.newNameProposal}><img
-                                            src="/images/icon_shuffle.png" width="24px" height="24px"/></button>
+                                        <button className='button has-tooltip-bottom has-tooltip-arrow'
+                                                onClick={this.newNameProposal}
+                                                data-tooltip={this.props.t('modal.randomizeName')}>
+                                            <img src="/images/icon_shuffle.png" width="24px" height="24px" alt="🔀"/>
+                                        </button>
                                     </div>
                                 </div>
                                 &nbsp;&nbsp;

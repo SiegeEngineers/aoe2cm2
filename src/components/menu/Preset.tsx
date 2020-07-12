@@ -26,7 +26,7 @@ class Preset extends React.Component<object, IState> {
     public render() {
         if (!this.state.presetExists) {
             return (
-                <div>
+                <div className="content box">
                     <p>Could not find this preset, sorry :-(</p>
                 </div>
             );
@@ -65,7 +65,7 @@ class Preset extends React.Component<object, IState> {
             );
         }
         return (
-            <div>
+            <div className="content box">
                 <p>Loading…</p>
             </div>
         );
