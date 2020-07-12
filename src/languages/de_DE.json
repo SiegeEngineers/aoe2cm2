@@ -75,7 +75,9 @@
     "callToAction": "Sieht so aus, als habest du noch keinen Namen. Das lässt sich ändern! Wie möchtest du heißen?",
     "setName": "Namen festlegen",
     "editInfo": "Du kannst deinen Namen jederzeit ändern, indem du auf die Namensanzeige oben rechts klickst.",
-    "readTheRules": "Lies die Regeln, bevor du loslegst!"
+    "readTheRules": "Lies die Regeln, bevor du loslegst!",
+    "captainName": "Dein Name",
+    "randomizeName": "Zufälliger Name"
   },
   "rolemodal": {
     "header": "Rolle auswählen",
@@ -125,16 +127,60 @@
     "welcome": "Willkommen",
     "hostOrJoin": "Zum Draft",
     "spectate": "Zusehen",
-    "practice": "Üben"
+    "practice": "Üben",
+    "howItWorks": "Anleitung"
   },
   "instructions": {
-    "title": "Instruktionen",
-    "1": "Captains mode dient der rundenbasierten Auswahl von Zivilisationen. Die Kapitäninnen <1>wählen</1> und <3>bannen</3> abwechselnd in einer vorgegebenen Reihenfolge Zivilisationen. Eine gebannte Zivilisation kann von der gegnerischen Kapitänin nicht mehr gewählt werden.",
-    "2": "Für jede Runde hat eine Kapitäin <1>30 Sekunden</1> Zeit. Läuft die Zeit ab, wird eine zufällige Auswahl für sie getroffen.",
-    "3": "Weitere Züge sind möglich:",
-    "4": "<0>Versteckt</0> (schwarze Balkenenden) zeigt ausgeführte Aktionen nicht an, bis sie explizit enthüllt werden (sichtbar in der Zeitleiste am oberen Seitenrand).",
-    "5": "<0>Globale</0> Wahl oder globaler Bann führen dazu, dass eine Zivilisation in zukünftigen Zügen von keiner Kapitänin mehr ausgewählt werden kann. Weitere Arten von Zügen können den Voreinstellungs-Beschreibungen entnommen werden.",
-    "6": "<0>Üben</0> ist ein Modus, in dem ein Testdurchlauf durchgeführt werden kann, in dem die Aktionen beider Seiten von einer Person gesteuert werden."
+    "home": {
+      "title": "Instruktionen",
+      "1": "Captains mode dient der rundenbasierten Auswahl von Zivilisationen. Die Kapitäninnen <1>wählen</1> und <3>bannen</3> abwechselnd in einer vorgegebenen Reihenfolge Zivilisationen. Eine gebannte Zivilisation kann von der gegnerischen Kapitänin nicht mehr gewählt werden.",
+      "2": "Für jede Runde hat eine Kapitäin <1>30 Sekunden</1> Zeit. Läuft die Zeit ab, wird eine zufällige Auswahl für sie getroffen.",
+      "3": "Weitere Züge sind möglich:",
+      "4": "<0>Versteckt</0> (schwarze Balkenenden) zeigt ausgeführte Aktionen nicht an, bis sie explizit enthüllt werden (sichtbar in der Zeitleiste am oberen Seitenrand).",
+      "5": "<0>Globale</0> Wahl oder globaler Bann führen dazu, dass eine Zivilisation in zukünftigen Zügen von keiner Kapitänin mehr ausgewählt werden kann. Weitere Arten von Zügen können den Voreinstellungs-Beschreibungen entnommen werden.",
+      "6": "<0>Üben</0> ist ein Modus, in dem ein Testdurchlauf durchgeführt werden kann, in dem die Aktionen beider Seiten von einer Person gesteuert werden."
+    },
+    "basics": {
+      "title": "Grundlagen",
+      "1": "$t(instructions.home.1)",
+      "2": "$t(instructions.home.2)"
+    },
+    "hostAndGuestTurns": {
+      "title": "Züge",
+      "1": "Es gibt die Züge <1>PICK</1>, <3>BAN</3> und <5>SNIPE</5>. Von <1>PICK</1> und <3>BAN</3> gibt es mehrere Varianten.",
+      "2": "In einem <1>PICK</1>-Zug wählt eine Kapitänin eine Zivilisation, mit der sie spielen möchte.",
+      "3": "Ein <1>GLOBAL PICK</1> oder <3/> verhindert zusätzlich, dass eine beliebige Kapitänin diese Zivilisation in einem zukünftigen Zug erneut auswählen kann.",
+      "4": "Ein <1>EXCLUSIVE PICK</1> oder <3/> verhindert lediglich, dass die selbe Kapitänin diese Zivilisation in einem zukünftigen Zug erneut auswählen kann.",
+      "5": "Ein <1>NONEXCLUSIVE PICK</1> oder <3/> bewirkt nichts dergleichen. Beide Kapitäninnen können die gewählte Zivilisation in einem zukünftigen Zug erneut auswählen.",
+      "6": "In einem <1>BAN</1>-Zug markiert eine Kapitänin eine Zivilisation als nicht auswählbar.",
+      "7": "Ein <1>GLOBAL BAN</1> oder <3/> verhindert, dass die Zivilisation in einem zukünftigen Zug von einer Kapitänin gewählt wird, egal welche.",
+      "8": "Ein <1>EXCLUSIVE BAN</1> oder <3/> verhindert, dass die gegnerische Kapitänin die Zivilisation in einem zukünftigen Zug auswählt. Die Kapitänin, welche die Zivilisation gebannt hat, kann sie außerdem nicht erneut bannen.",
+      "9": "Ein <1>NONEXCLUSIVE BAN</1> oder <3/> verhindert, dass die gegnerische Kapitänin die Zivilisation in einem zukünftigen Zug auswählt. Die Kapitänin, welche die Zivilisation gebannt hat, könnte sie darüber hinaus erneut bannen, aber warum sollte man das wollen. Daher sollte stattdessen lieber <5>EXCLUSIVE</5> benutzt werden.",
+      "10": "Ein <1/> erlaubt es einer Kapitänin, eine Zivilisation, die ihre Gegnerin zuvor ausgewählt hatte, wieder zu entfernen. <3>GLOBAL</3>, <5>EXCLUSIVE</5> und <7>NONEXCLUSIVE</7> haben hier keine Auswirkungen."
+    },
+    "adminTurns": {
+      "title": "Admin-Züge",
+      "1": "Admin-Züge bzw. <1/> decken Aktionen auf, die zuvor verborgen waren.",
+      "2": "<1>REVEAL_PICKS</1>, <3>REVEAL_BANS</3> und <5>REVEAL_SNIPES</5> decken die entsprechenden Aktionen auf, die zuvor verdeckt ausgeführt worden waren.",
+      "3": "<0>REVEAL_ALL</0> deckt alle Aktionen auf, die zuvor verdeckt ausgeführt worden waren."
+    },
+    "presetEditor": {
+      "title": "Preset-Editor",
+      "1": "Presets bestehen aus einzelnen Zügen.",
+      "2": "Jeder Zug hat eine handelnde Person: Host, Guest, oder keine der beiden (\"Admin\"-Züge).",
+      "3": "Durch Klick auf den <1>+ New</1>-Knopf unter der entsprechenden Spalte kann ein neuer Host/Guest/Admin-Zug hinzugefügt werden.",
+      "4": "Durch Klick auf den <1/>-Knopf rechts neben einem Zug kann dieser entfernt werden."
+    },
+    "presetModifiers": {
+      "title": "Zug-Typen",
+      "1": "Wenn beide Kapitäninnen ihre Züge parallel ausführen sollen, aktiviere die <1>PARALLEL</1>-Checkbox des <3>ersten</3> der beiden Züge (nicht jedoch die des zweiten Zuges).",
+      "2": "Aktiviere die <1>HIDDEN</1>-Checkbox, um die Zivilisation die in diesem Zug gewählt wird vor der Gegnerin und den Zusehenden zu verstecken, bis sie in einem Admin-Zug (siehe unten) aufgedeckt wird."
+    },
+    "draftModifiers": {
+      "title": "Modifiers",
+      "1": "<1>PARALLEL</1> bedeutet, dass beide Kapitäninnen ihre Züge zur gleichen Zeit durchführen.",
+      "2": "<1>HIDDEN</1> bedeutet, dass die ausgewählte Zivilisation vor der Gegnerin und den Zusehenden verborgen wird, bis sie in einem Admin-Zug (siehe unten) aufgedeckt wird."
+    }
   },
   "presets": {
     "joinTitle": "Draft beitreten",
@@ -150,10 +196,24 @@
     "spectate": "Zusehen",
     "recentDraftsTitle": "Die letzten Drafts",
     "watchLive": "Live Zusehen",
-    "watch": "Ansehen"
+    "watch": "Ansehen",
+    "host": "Host",
+    "guest": "Gast",
+    "draftName": "Draft-Name"
   },
   "preset": {
     "shareThisPreset": "Teile dieses Preset:"
+  },
+  "presetEditor": {
+    "helpAndInstructions": "Hilfe und Anleitung",
+    "availableCivs": "Verfügbare Zivilisationen",
+    "turns": "Züge",
+    "createSaveDraft": "Draft erstellen oder speichern",
+    "host": "Host",
+    "guest": "Gast",
+    "admin": "Admin",
+    "new": "Neu",
+    "presetName": "Name des Presets"
   },
   "createNewDraft": "Neuen Draft mit diesem Preset erstellen",
   "createNewPreset": "Neues Preset erstellen",

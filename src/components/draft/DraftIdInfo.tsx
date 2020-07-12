@@ -22,7 +22,11 @@ class DraftIdInfo extends React.Component<IProps, object> {
         const i18nKey = this.hasDraftEnded() ? 'codeInstructionsAfter' : 'codeInstructionsBefore';
 
         return (
-            <CopyableInput content={Util.getIdFromUrl()} before={i18nKey} length={10} classes={"is-small is-valinged-middle"}/>
+            <div className="columns is-mobile">
+                <div className="column has-text-centered">
+                    <CopyableInput content={Util.getIdFromUrl()} before={i18nKey} length={10} classes={"is-small is-valinged-middle"}/>
+                </div>
+            </div>
         );
     }
 
