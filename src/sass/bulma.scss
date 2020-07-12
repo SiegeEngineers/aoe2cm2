@@ -1,21 +1,21 @@
 @charset "utf-8";
 
 //// Default
-$blue: hsl(217, 71%, 53%) !default;
-$black: hsl(0, 0%, 4%) !default;
-$black-bis: hsl(0, 0%, 7%) !default;
-$black-ter: hsl(0, 0%, 14%) !default;
+$blue: hsl(217, 71%, 53%);
+$black: hsl(0, 0%, 4%);
+$black-bis: hsl(0, 0%, 7%);
+$black-ter: hsl(0, 0%, 14%);
 
-$grey-darker: hsl(0, 0%, 21%) !default;
-$grey-dark: hsl(0, 0%, 29%) !default;
-$grey: hsl(0, 0%, 48%) !default;
-$grey-light: hsl(0, 0%, 71%) !default;
-$grey-lighter: hsl(0, 0%, 86%) !default;
-$grey-lightest: hsl(0, 0%, 93%) !default;
+$grey-darker: hsl(0, 0%, 21%);
+$grey-dark: hsl(0, 0%, 29%);
+$grey: hsl(0, 0%, 48%);
+$grey-light: hsl(0, 0%, 71%);
+$grey-lighter: hsl(0, 0%, 86%);
+$grey-lightest: hsl(0, 0%, 93%);
 
-$white-ter: hsl(0, 0%, 96%) !default;
-$white-bis: hsl(0, 0%, 98%) !default;
-$white: hsl(0, 0%, 100%) !default;
+$white-ter: hsl(0, 0%, 96%);
+$white-bis: hsl(0, 0%, 98%);
+$white: hsl(0, 0%, 100%);
 
 // Common
 //$primary:      $blue;
@@ -67,18 +67,39 @@ $guest-gold: #ffc107;
 $family-monospace: 'SF Mono', 'Consolas', 'Monaco', monospace;
 
 
-/*
+///*
 $scheme-main: $black-ter !default;
 $scheme-main-bis: $black-bis !default;
 $scheme-main-ter: $black-ter !default;
 $scheme-invert: $white-ter !default;
 $scheme-invert-bis: $white-bis !default;
 $scheme-invert-ter: $white-ter !default;
+
+$blue: darken(hsl(217, 71%, 53%), 50%);
+
+$box-background-color-dark: $black-ter;
+$modal-background-background-color-dark: rgba($grey-dark, 0.86);
+$button-static-background-color: $black-ter;
+$table-background-color-dark: $black-ter;
+$button-static-background-color-dark: $black-ter;
+$button-static-color-dark: $grey-light;
+
 //*/
 
 // Import only what you need from Bulma
 @import "../../node_modules/bulma/bulma.sass";
-//@import "../../node_modules/bulma-prefers-dark/bulma-prefers-dark.sass";
+@import "../../node_modules/bulma-prefers-dark/bulma-prefers-dark.sass";
+
+///*
+.content {
+  .table {
+    td {
+      border-left: 0 none;
+      border-right: 0 none;
+    }
+  }
+}
+//*/
 
 // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 @import url('https://fonts.googleapis.com/css2?family=Crete+Round:ital@0;1&display=swap');
@@ -120,18 +141,15 @@ nav.navbar .navbar-brand h1 {
   }
 }
 
-
 code {
   color: inherit;
   border-radius: 4px;
 }
 
-
 .box {
   border-radius: 4px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
-
 
 .tags:not(:last-child) {
   margin-bottom: 0;
@@ -681,4 +699,13 @@ div.stretchy-wrapper > div.stretchy-text {
 
 .has-cursor-pointer {
   cursor: pointer;
+}
+
+.table-header {
+  background-color: darken($scheme-main-ter, 10%);
+}
+
+.preset-editor-row {
+  background-color: darken($scheme-main-ter, 3%);
+  border-bottom: 1px solid darken($scheme-main-ter, 10%);
 }

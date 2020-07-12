@@ -57,7 +57,7 @@ class PresetEditor extends React.Component<Props, object> {
                     <h3>2. <Trans i18nKey="presetEditor.turns">Turns</Trans></h3>
                     <TurnRow turns={this.props.preset.turns}/>
                     <div>
-                        <div className="columns is-mobile has-text-weight-bold has-background-grey-lighter">
+                        <div className="columns is-mobile has-text-weight-bold table-header">
                             <div className="column is-1 has-text-centered">#</div>
                             <div className="column has-text-centered"><Trans i18nKey="presetEditor.host">Host</Trans></div>
                             <div className="column has-text-centered"><Trans i18nKey="presetEditor.admin">Admin</Trans></div>
