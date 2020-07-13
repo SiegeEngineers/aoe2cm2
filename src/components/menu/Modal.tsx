@@ -26,7 +26,7 @@ class Modal extends React.Component<IProps, object> {
                             <h3><Trans>modal.header</Trans></h3>
                             <p><Trans>modal.callToAction</Trans></p>
                             <div className="field is-grouped">
-                                <div className="field has-addons">
+                                <div className="field has-addons control">
                                     <div className="control">
                                         <input id={this.INPUT_CAPTAIN_NAME} type="text"
                                                placeholder={this.props.t('modal.captainName')}
@@ -35,12 +35,12 @@ class Modal extends React.Component<IProps, object> {
                                     <div className="control">
                                         <button className='button has-tooltip-bottom has-tooltip-arrow'
                                                 onClick={this.newNameProposal}
+                                                aria-label={this.props.t('modal.randomizeName')}
                                                 data-tooltip={this.props.t('modal.randomizeName')}>
-                                            <img src="/images/icon_shuffle.png" width="24px" height="24px" alt="🔀"/>
+                                            <i className='material-icons'>loop</i>
                                         </button>
                                     </div>
                                 </div>
-                                &nbsp;&nbsp;
                                 <div className="control">
                                     <button className="button is-link" onClick={this.callback}>
                                         <Trans>modal.setName</Trans>
