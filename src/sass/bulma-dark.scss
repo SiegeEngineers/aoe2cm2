@@ -1,0 +1,62 @@
+@charset "utf-8";
+
+$scheme-main: $black-ter;
+$scheme-main-bis: $black-bis;
+$scheme-main-ter: $black-ter;
+$scheme-invert: $white-ter;
+$scheme-invert-bis: $white-bis;
+$scheme-invert-ter: $white-ter;
+
+$box-background-color-dark: $black-ter;
+$modal-background-background-color-dark: rgba($grey-dark, 0.86);
+$button-static-background-color: $black-ter;
+$table-background-color-dark: $black-ter;
+$button-static-background-color-dark: $black-ter;
+$button-static-color-dark: $grey-light;
+$navbar-background-color-dark: $black-ter;
+
+
+@import "../../node_modules/bulma-prefers-dark/bulma-prefers-dark.sass";
+
+///*
+.content {
+  .table {
+    td {
+      border-left: 0 none;
+      border-right: 0 none;
+    }
+  }
+}
+
+.navbar-item {
+  .button.is-light {
+    background-color: $grey-dark;
+    border-color: transparent;
+    color: $white-ter;
+  }
+
+  .button.is-link.is-light {
+    &:hover, &.is-hovered {
+      background-color: $grey;
+      border-color: transparent;
+      color: $white-ter;
+    }
+  }
+}
+
+.button.is-link.is-light {
+  background-color: $link-dark;
+  color: $white;
+
+  &:hover, &.is-hovered {
+    background-color: darken($link-dark, 2.5%);
+    color: $white;
+  }
+}
+
+.turn-none .bar {
+  background-color: $grey;
+}
+
+//*/
+
