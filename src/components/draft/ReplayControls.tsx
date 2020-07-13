@@ -49,19 +49,17 @@ class ReplayControls extends React.Component<IProps, IState> {
             return null;
         }
         const pauseButton = <button id="spectator-pause" className="spectator-action button is-large"
-                                    onClick={this.haltReplay} aria-label="Pause"><i className="material-icons">pause</i></button>;
+                                    onClick={this.haltReplay} aria-label="Pause">
+            <i className="material-icons">pause</i></button>;
         const runButton = <button id="spectator-play" className="spectator-action button is-large"
-                                  onClick={this.runReplay} aria-label="Play"><i
-            className="material-icons">play_arrow</i>
-
-        </button>;
+                                  onClick={this.runReplay} aria-label="Play">
+            <i className="material-icons">play_arrow</i></button>;
         const nextButton = <button id="spectator-next" className="spectator-action button is-large"
-                                   onClick={this.nextStep} aria-label="Next"><i className="material-icons">skip_next</i>
-        </button>;
+                                   onClick={this.nextStep} aria-label="Next">
+            <i className="material-icons">skip_next</i></button>;
         const skipToEndbutton = <button id="spectator-forward" className="spectator-action button is-large"
-                                        onClick={this.skipToEnd} aria-label="Fast Forward"><i
-            className="material-icons">fast_forward</i>
-        </button>;
+                                        onClick={this.skipToEnd} aria-label="Fast Forward">
+            <i className="material-icons">fast_forward</i></button>;
 
         return <div className="columns is-mobile">
             <div className="column has-text-centered">
