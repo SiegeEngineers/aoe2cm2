@@ -14,11 +14,11 @@ $table-background-color-dark: $black-ter;
 $button-static-background-color-dark: $black-ter;
 $button-static-color-dark: $grey-light;
 $navbar-background-color-dark: $black-ter;
-
+$footer-background-color-dark: $black;
+$tag-background-color-dark: $black;
 
 @import "../../node_modules/bulma-prefers-dark/bulma-prefers-dark.sass";
 
-///*
 .content {
   .table {
     td {
@@ -44,6 +44,12 @@ $navbar-background-color-dark: $black-ter;
   }
 }
 
+.navbar-brand {
+  a {
+    color: $scheme-invert-ter;
+  }
+}
+
 .button.is-link.is-light {
   background-color: $link-dark;
   color: $white;
@@ -54,9 +60,63 @@ $navbar-background-color-dark: $black-ter;
   }
 }
 
+.select > select {
+  border-color: $grey-darker !important;
+  background-color: $black !important;
+  color: #dbdbdb !important;
+}
+
+.select > select {
+  border-color: $grey-darker !important;
+  background-color: $black !important;
+  color: #dbdbdb !important;
+}
+
+.select:not(.is-multiple):not(.is-loading)::after {
+  border-color: $blue;
+}
+
+label.civ-select:hover {
+  background-color: $scheme-main-ter;
+}
+
+.player-inactive {
+  background-color: rgba($scheme-main, 0.3);
+}
+
+.table-header {
+  background-color: darken($scheme-main-ter, 10%);
+}
+
+.preset-editor-row {
+  background-color: darken($scheme-main-ter, 3%);
+  border-bottom: 1px solid darken($scheme-main-ter, 10%);
+}
+
+.back-icon.header-navigation {
+  color: $scheme-invert !important;
+}
+
 .turn-none .bar {
   background-color: $grey;
 }
 
-//*/
+code {
+  color: inherit;
+  border-radius: 4px;
+}
 
+.box {
+  border-radius: 4px;
+  box-shadow: none;
+}
+
+.delete, .modal-close {
+  background-color: rgba(100, 100, 100, 0.5);
+}
+
+.message {
+  .delete, .modal-close {
+    background-color: rgba(10, 10, 10, 0.2);
+  }
+}
