@@ -75,7 +75,7 @@ $scheme-invert: $white-ter !default;
 $scheme-invert-bis: $white-bis !default;
 $scheme-invert-ter: $white-ter !default;
 
-$blue: darken(hsl(217, 71%, 53%), 50%);
+//$blue: darken(hsl(217, 71%, 53%), 50%);
 
 $box-background-color-dark: $black-ter;
 $modal-background-background-color-dark: rgba($grey-dark, 0.86);
@@ -103,6 +103,7 @@ $button-static-color-dark: $grey-light;
 
 // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 @import url('https://fonts.googleapis.com/css2?family=Crete+Round:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 .content h1, .content h2, .content h3, .content h4, .content h5, .content h6, .navbar-brand h1 {
   font-family: 'Crete Round', sans-serif;
@@ -505,27 +506,30 @@ div.stretchy-wrapper > div.stretchy-text {
   background-position: center;
   background-size: 48px;
   background-repeat: no-repeat;
-  text-indent: 200%;
+  //text-indent: 200%;
   white-space: nowrap;
   overflow: hidden;
   width: 100px;
 }
-
-#spectator-play {
-  background-image: url('/images/controls_play-dark.png');
+.spectator-action .material-icons {
+  font-size: 48px;
 }
 
-#spectator-pause {
-  background-image: url('/images/controls_pause-dark.png');
-}
-
-#spectator-next {
-  background-image: url('/images/controls_skip_to_next-dark.png');
-}
-
-#spectator-forward {
-  background-image: url('/images/controls_fast_forward-dark.png');
-}
+//#spectator-play {
+//  background-image: url('/images/controls_play-dark.png');
+//}
+//
+//#spectator-pause {
+//  background-image: url('/images/controls_pause-dark.png');
+//}
+//
+//#spectator-next {
+//  background-image: url('/images/controls_skip_to_next-dark.png');
+//}
+//
+//#spectator-forward {
+//  background-image: url('/images/controls_fast_forward-dark.png');
+//}
 
 #countdown-timer {
   display: inline-block;
@@ -575,7 +579,7 @@ div.stretchy-wrapper > div.stretchy-text {
 }
 
 .player-inactive {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba($scheme-main, 0.3);
 }
 
 .player-inactive h4.player-name, .player-inactive .captains-line, .player-inactive .sub-heading {
@@ -616,16 +620,16 @@ div.stretchy-wrapper > div.stretchy-text {
 
 .back-icon.header-navigation {
   display: inline-block;
-  content: "";
   width: 48px;
   height: 48px;
-  background-image: url("/images/back-icon-dark.png");
-  background-size: 48px 48px;
-  opacity: 0.54;
+  color: $scheme-invert;
+  //background-image: url("/images/back-icon-dark.png");
+  //background-size: 48px 48px;
+  opacity: 0.60;
+}
 
-  -webkit-transition: all 250ms;
-  -moz-transition: all 250ms;
-  transition: all 250ms;
+.back-icon.header-navigation .material-icons{
+  font-size:48px;
 }
 
 .back-icon.header-navigation:hover {
