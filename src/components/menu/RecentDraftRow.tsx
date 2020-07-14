@@ -27,8 +27,8 @@ class RecentDraftRow extends React.Component<IProps, object> {
                 <span className={'player-guest'}>{this.props.recentDraft.nameGuest}</span>
             </td>
             <td className="has-text-right">
-                <button className="button is-small is-link is-light" onClick={() => this.props.callback(draftId)}><Trans
-                    i18nKey={i18nKey}>Watch</Trans>
+                <button className="button is-small is-link is-light" onClick={() => this.props.callback(draftId)}>
+                    <Trans i18nKey={i18nKey}>Watch</Trans>
                 </button>
             </td>
         </tr>;

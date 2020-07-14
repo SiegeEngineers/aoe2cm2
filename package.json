@@ -32,7 +32,7 @@
     "build-server": "tsc --project tsconfig.server.json --jsx react",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "css-build": "node-sass --omit-source-map-url 'src/Bulma.sass' 'src/css/bulma.css'",
+    "css-build": "node-sass --omit-source-map-url 'src/sass/bulma.scss' 'src/css/bulma.css'",
     "css-watch": "npm run css-build -- --watch"
   },
   "jest": {
@@ -49,6 +49,7 @@
     "@types/react-dom": "^16.8.2",
     "@types/request": "^2.48.1",
     "bulma": "^0.9.0",
+    "bulma-prefers-dark": "0.1.0-beta.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.10.0",
     "enzyme-to-json": "^3.3.5",

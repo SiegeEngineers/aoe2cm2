@@ -61,7 +61,7 @@ class Spectate extends React.Component<WithTranslation, IState> {
                     <h3><Trans i18nKey='spectate.recentDraftsTitle'>Recent Drafts</Trans></h3>
                     <table className="table is-narrow is-hoverable is-fullwidth">
                         <thead>
-                        <tr className="has-background-light">
+                        <tr className="table-header">
                             <th className="has-text-left"><Trans i18nKey="spectate.draftName">Draft Name</Trans></th>
                             <th className="has-text-right"><Trans i18nKey="spectate.host">Host</Trans></th>
                             <th className="has-text-centered"/>
