@@ -23,6 +23,7 @@ class NavBar extends React.Component<WithTranslation, object> {
                     <div className="navbar-item">
                         <div className={'buttons has-addons'}>
                             <LanguageSelector language={'en-GB'} displayString={'EN'}/>
+                            <LanguageSelector language={'es-ES'} displayString={'ES'}/>
                             <LanguageSelector language={'de-DE'} displayString={'DE'}/>
                             <LanguageSelector language={'zh-CN'} displayString={'中文'}/>
                         </div>
