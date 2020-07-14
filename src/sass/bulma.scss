@@ -623,6 +623,10 @@ div.stretchy-wrapper > div.stretchy-text {
   border-bottom: 1px solid darken($scheme-main-ter, 10%);
 }
 
+.has-background-transparent {
+  background-color: transparent !important;
+}
+
 @media (prefers-color-scheme: dark) {
   @import "bulma-dark.scss";
 }

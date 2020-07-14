@@ -13,7 +13,7 @@ interface Props {
 
 class HiddenCheckbox extends React.Component<Props, object> {
     render() {
-        return <label className="checkbox tag">
+        return <label className="checkbox tag has-background-transparent">
             <input type='checkbox' checked={this.props.turn.hidden} onChange={() => {
                 const t = this.props.turn;
                 const newTurn = new Turn(t.player, t.action, t.exclusivity, !t.hidden, t.parallel);
