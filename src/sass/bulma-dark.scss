@@ -25,7 +25,7 @@ $tag-background-color-dark: $black;
 
 .content {
   .table {
-    td {
+    td, th {
       border-left: 0 none;
       border-right: 0 none;
     }
@@ -105,6 +105,11 @@ label.civ-select:hover {
   background-color: $grey;
 }
 
+.turn-hidden .bar {
+  border-left: .5rem solid $grey;
+  border-right: .5rem solid $grey;
+}
+
 code {
   color: inherit;
   border-radius: 4px;
@@ -124,3 +129,5 @@ code {
     background-color: rgba(10, 10, 10, 0.2);
   }
 }
+
+@import "bulma-dark-tags";

@@ -37,9 +37,9 @@ class ColorSchemeHelpers {
             colorScheme = ColorSchemeHelpers.getOSColorSchemePreference()
         }
         if (colorScheme == ColorScheme.DARK) {
-            document.body.classList.add('dark');
+            document.body.classList.add('has-theme-dark');
         } else {
-            document.body.classList.remove('dark');
+            document.body.classList.remove('has-theme-dark');
         }
     }
 

@@ -198,8 +198,8 @@ label.civ-select:hover {
 }
 
 .turn-hidden .bar {
-  border-left: .5rem solid rgba(0, 0, 0, 0.87);
-  border-right: .5rem solid rgba(0, 0, 0, 0.87);
+  border-left: .5rem solid $black-ter;
+  border-right: .5rem solid $black-ter;
 }
 
 .turn.active {
@@ -628,10 +628,10 @@ div.stretchy-wrapper > div.stretchy-text {
 }
 
 // Dark Mode
-body.dark {
+body.has-theme-dark {
   background-color: $black-bis;
 }
 
-body.dark {
+body.has-theme-dark {
   @import "bulma-dark.scss";
 }
