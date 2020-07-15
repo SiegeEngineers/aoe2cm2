@@ -627,6 +627,11 @@ div.stretchy-wrapper > div.stretchy-text {
   background-color: transparent !important;
 }
 
-@media (prefers-color-scheme: dark) {
+// Dark Mode
+body.dark {
+  background-color: $black-bis;
+}
+
+body.dark {
   @import "bulma-dark.scss";
 }

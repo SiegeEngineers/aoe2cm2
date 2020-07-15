@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {WithTranslation, withTranslation} from "react-i18next";
 import {ColorScheme} from "../../constants/ColorScheme";
+import ColorSchemeHelpers from "../../util/ColorSchemeHelpers";
 
 
 interface IProps extends WithTranslation {
@@ -9,6 +10,29 @@ interface IProps extends WithTranslation {
 }
 
 class ColorSchemeToggle extends React.Component<IProps, object> {
+    constructor(props: IProps) {
+        super(props);
+        this.listenForColorSchemePreferenceChange = this.listenForColorSchemePreferenceChange.bind(this);
+    }
+
+    public componentDidMount() {
+        // Set the theme as per the user's previous preference
+        ColorSchemeHelpers.changeColorScheme(this.props.activeColorScheme);
+
+        // Listen for changes to OS preference set by the user while the app is open.
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener(
+            'change', this.listenForColorSchemePreferenceChange
+        );
+    }
+
+    private listenForColorSchemePreferenceChange(evt: { matches: any; }): void {
+        const preference = evt.matches ? ColorScheme.DARK : ColorScheme.LIGHT;
+        console.log('OS Color Scheme Preference changed', preference);
+        if (this.props.activeColorScheme == ColorScheme.AUTO) {
+            ColorSchemeHelpers.changeColorScheme(preference)
+        }
+    }
+
     public render() {
 
         const toggleDarkMode = () => {
@@ -19,7 +43,7 @@ class ColorSchemeToggle extends React.Component<IProps, object> {
             }
         };
 
-        const iconLigature:string = {
+        const iconLigature: string = {
             [ColorScheme.AUTO]: 'brightness_auto',
             [ColorScheme.DARK]: 'brightness_4',
             [ColorScheme.LIGHT]: 'brightness_5',

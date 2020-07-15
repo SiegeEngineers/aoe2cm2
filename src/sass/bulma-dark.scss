@@ -17,7 +17,11 @@ $navbar-background-color-dark: $black-ter;
 $footer-background-color-dark: $black;
 $tag-background-color-dark: $black;
 
-@import "../../node_modules/bulma-prefers-dark/bulma-prefers-dark.sass";
+@import "../../node_modules/bulma-prefers-dark/sass/utilities/_all";
+@import "../../node_modules/bulma-prefers-dark/sass/base/_all";
+@import "../../node_modules/bulma-prefers-dark/sass/elements/_all";
+@import "../../node_modules/bulma-prefers-dark/sass/components/_all";
+@import "../../node_modules/bulma-prefers-dark/sass/layout/_all";
 
 .content {
   .table {
