@@ -1,6 +1,7 @@
 import Preset from "../models/Preset";
 import Player from "../constants/Player";
 import {DraftEvent} from "./DraftEvent";
+import {ColorScheme} from "../constants/ColorScheme";
 
 export interface IDraftState {
     nameHost: string;
@@ -29,7 +30,8 @@ export interface ApplicationState {
     language: ILanguageState,
     iconStyle: IIconStyleState,
     modal: IModalState,
-    presetEditor: IPresetEditorState
+    presetEditor: IPresetEditorState,
+    colorScheme: IColorSchemeState
 }
 
 export interface IDraftOwnPropertiesState {
@@ -58,6 +60,11 @@ export interface ILanguageState {
 
 export interface IIconStyleState {
     iconStyle: string;
+}
+
+
+export interface IColorSchemeState {
+    colorScheme: ColorScheme;
 }
 
 export interface ICountdownValues {

@@ -227,6 +227,8 @@
     "setLang": "Set Language to",
     "showUnits": "Show units",
     "showEmblems": "Show emblems",
-    "setName": "Click to change your display name"
+    "setName": "Click to change your display name",
+    "toggleDarkMode": "Toggle dark mode",
+    "colorScheme": "Color scheme: "
   }
 }

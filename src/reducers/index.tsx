@@ -7,6 +7,7 @@ import {presetEditorReducer} from "./presetEditor";
 import {combineReducers} from 'redux';
 import {iconStyleReducer} from "./iconStyle";
 import {replayReducer} from "./replay";
+import {colorSchemeReducer} from "./colorScheme";
 
 export default combineReducers({
     draft: draftReducer,
@@ -15,6 +16,7 @@ export default combineReducers({
     ownProperties: draftOwnPropertiesReducer,
     language: languageReducer,
     iconStyle: iconStyleReducer,
+    colorScheme: colorSchemeReducer,
     modal: modalReducer,
     presetEditor: presetEditorReducer
 });
