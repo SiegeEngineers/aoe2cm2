@@ -37,8 +37,10 @@ class ColorSchemeHelpers {
             colorScheme = ColorSchemeHelpers.getOSColorSchemePreference()
         }
         if (colorScheme == ColorScheme.DARK) {
+            document.documentElement.classList.add('has-theme-dark');
             document.body.classList.add('has-theme-dark');
         } else {
+            document.documentElement.classList.remove('has-theme-dark');
             document.body.classList.remove('has-theme-dark');
         }
     }

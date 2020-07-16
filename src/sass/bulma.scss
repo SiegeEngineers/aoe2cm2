@@ -628,8 +628,11 @@ div.stretchy-wrapper > div.stretchy-text {
 }
 
 // Dark Mode
-body.has-theme-dark {
-  background-color: $black-bis;
+html.has-theme-dark {
+  body.has-theme-dark {
+    background-color: $black-bis;
+    color: $grey;
+  }
 }
 
 body.has-theme-dark {
