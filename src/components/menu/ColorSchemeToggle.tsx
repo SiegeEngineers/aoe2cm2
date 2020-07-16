@@ -25,7 +25,7 @@ class ColorSchemeToggle extends React.Component<IProps, object> {
         );
     }
 
-    private listenForColorSchemePreferenceChange(evt: { matches: any; }): void {
+    private listenForColorSchemePreferenceChange(evt: MediaQueryListEvent): void {
         const preference = evt.matches ? ColorScheme.DARK : ColorScheme.LIGHT;
         console.log('OS Color Scheme Preference changed', preference);
         if (this.props.activeColorScheme == ColorScheme.AUTO) {
@@ -34,7 +34,6 @@ class ColorSchemeToggle extends React.Component<IProps, object> {
     }
 
     public render() {
-
         const toggleDarkMode = () => {
             const allColorSchemes = Object.values(ColorScheme)
             const nextColorSchemeIndex = (allColorSchemes.indexOf(this.props.activeColorScheme) + 1) % allColorSchemes.length;
