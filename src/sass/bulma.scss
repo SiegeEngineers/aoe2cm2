@@ -40,9 +40,10 @@ $family-monospace: 'SF Mono', 'Consolas', 'Monaco', monospace;
   font-weight: 300;
 }
 
-* {
-  transition: all 0.25s ease;
+body, .box, .column, .tag, .table, .button, .bar, .navbar, .footer, .input, a  {
+  transition: all 0.4s ease;
 }
+
 body {
   margin: 0;
   padding: 0;
