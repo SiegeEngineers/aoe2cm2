@@ -40,7 +40,7 @@ $family-monospace: 'SF Mono', 'Consolas', 'Monaco', monospace;
   font-weight: 300;
 }
 
-body, .box, .column, .tag, .table, .button, .bar, .navbar, .footer, .input, a  {
+body, .box, .column, .tag, .table, td, .button, .bar, .navbar, .footer, .input, .message, a, code, .tabs ul  {
   transition: all 0.4s ease;
 }
 
@@ -67,6 +67,9 @@ nav.navbar .navbar-brand h1 {
 .navbar-brand {
   a {
     color: $scheme-invert-ter;
+    &:hover {
+      color: $grey;
+    }
   }
 }
 
@@ -364,7 +367,7 @@ div.stretchy-wrapper > div.stretchy-text {
 
 .pick img, .ban img {
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .pick .chosen-hidden img, .ban .chosen-hidden img {
@@ -435,13 +438,8 @@ div.stretchy-wrapper > div.stretchy-text {
 }
 
 .spectator-action {
-  background-position: center;
-  background-size: 48px;
-  background-repeat: no-repeat;
-  //text-indent: 200%;
-  white-space: nowrap;
-  overflow: hidden;
   width: 100px;
+  padding: 0;
 }
 
 .spectator-action .material-icons {
