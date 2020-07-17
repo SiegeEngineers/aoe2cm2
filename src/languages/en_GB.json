@@ -228,7 +228,11 @@
     "showUnits": "Show units",
     "showEmblems": "Show emblems",
     "setName": "Click to change your display name",
-    "toggleDarkMode": "Toggle dark mode",
-    "colorScheme": "Color scheme: "
+    "toggleColorScheme": "Current colour scheme: {{scheme}} (click to change)",
+    "colorScheme": {
+      "Light": "Light",
+      "Dark": "Dark",
+      "Auto": "Auto"
+    }
   }
 }

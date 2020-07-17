@@ -51,8 +51,10 @@ class ColorSchemeToggle extends React.Component<IProps, object> {
         return (
             <button className="button is-light has-tooltip-bottom has-tooltip-arrow"
                     onClick={toggleDarkMode}
-                    aria-label={this.props.t('navbar.colorScheme') + this.props.activeColorScheme}
-                    data-tooltip={this.props.t('navbar.colorScheme') + this.props.activeColorScheme}>
+                    aria-label={this.props.t('navbar.colorScheme')}
+                    data-tooltip={this.props.t('navbar.toggleColorScheme', {
+                        'scheme': this.props.t('navbar.colorScheme.'+ this.props.activeColorScheme)
+                    })}>
                 <i className="material-icons">{iconLigature}</i>
             </button>
         );
