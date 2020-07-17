@@ -20,9 +20,20 @@ class ColorSchemeToggle extends React.Component<IProps, object> {
         ColorSchemeHelpers.changeColorScheme(this.props.activeColorScheme);
 
         // Listen for changes to OS preference set by the user while the app is open.
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener(
-            'change', this.listenForColorSchemePreferenceChange
-        );
+        try {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener(
+                'change', this.listenForColorSchemePreferenceChange
+            );
+        } catch (e) {
+            if (e instanceof TypeError) {
+                // Safari does not yet support addEventListener. See: https://github.com/mdn/sprints/issues/858
+                window.matchMedia('(prefers-color-scheme: dark)').addListener(
+                    this.listenForColorSchemePreferenceChange
+                );
+            } else {
+                throw e;
+            }
+        }
     }
 
     private listenForColorSchemePreferenceChange(evt: MediaQueryListEvent): void {
