@@ -227,6 +227,12 @@
     "setLang": "Set Language to",
     "showUnits": "Show units",
     "showEmblems": "Show emblems",
-    "setName": "Click to change your display name"
+    "setName": "Click to change your display name",
+    "toggleColorScheme": "Current colour scheme: {{scheme}} (click to change)",
+    "colorScheme": {
+      "Light": "Light",
+      "Dark": "Dark",
+      "Auto": "Auto"
+    }
   }
 }

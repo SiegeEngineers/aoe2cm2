@@ -7,6 +7,7 @@ import PlayerEvent from "../models/PlayerEvent";
 import {ICountdownValues, IDraftState} from "../types";
 import Preset from "../models/Preset";
 import Turn from "../models/Turn";
+import {ColorScheme} from "../constants/ColorScheme";
 
 export interface IActionCompleted {
     type: ServerActions.EXECUTE_ACTION,
@@ -74,6 +75,11 @@ export interface ISetLanguage {
 export interface ISetIconStyle {
     type: Actions.SET_ICON_STYLE,
     iconStyle: string
+}
+
+export interface ISetColorScheme {
+    type: Actions.SET_COLOR_SCHEME,
+    colorScheme: ColorScheme
 }
 
 export interface ISetEvents {
@@ -186,6 +192,8 @@ export type LanguageAction = ISetLanguage;
 
 export type IconStyleAction = ISetIconStyle;
 
+export type ColorSchemeAction = ISetColorScheme;
+
 export type ModalAction = IShowNameModal
     | IShowRoleModal
     | IChangeOwnName
@@ -202,6 +210,7 @@ export type Action = DraftAction
     | DraftOwnPropertiesAction
     | LanguageAction
     | IconStyleAction
+    | ColorSchemeAction
     | ModalAction
     | PresetEditorAction;
 
@@ -303,6 +312,12 @@ export function setIconStyle(iconStyle: string): ISetIconStyle {
     }
 }
 
+export function setColorScheme(colorScheme: ColorScheme): ISetColorScheme {
+    return {
+        colorScheme,
+        type: Actions.SET_COLOR_SCHEME
+    }
+}
 export function setEvents(value: { player: Player, action: ModelAction, events: DraftEvent[] }): ISetEvents {
     return {
         value,

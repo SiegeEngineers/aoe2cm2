@@ -40,6 +40,10 @@ $family-monospace: 'SF Mono', 'Consolas', 'Monaco', monospace;
   font-weight: 300;
 }
 
+body, .box, .column, .tag, .table, td, .button, .bar, .navbar, .footer, .input, .message, a, code, .tabs ul  {
+  transition: all 0.4s ease;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -63,6 +67,9 @@ nav.navbar .navbar-brand h1 {
 .navbar-brand {
   a {
     color: $scheme-invert-ter;
+    &:hover {
+      color: $grey;
+    }
   }
 }
 
@@ -91,7 +98,7 @@ code {
 }
 
 .tags .tag {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;
 }
 
 .column.has-text-vcentered {
@@ -198,8 +205,8 @@ label.civ-select:hover {
 }
 
 .turn-hidden .bar {
-  border-left: .5rem solid rgba(0, 0, 0, 0.87);
-  border-right: .5rem solid rgba(0, 0, 0, 0.87);
+  border-left: .5rem solid $black-ter;
+  border-right: .5rem solid $black-ter;
 }
 
 .turn.active {
@@ -360,7 +367,7 @@ div.stretchy-wrapper > div.stretchy-text {
 
 .pick img, .ban img {
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .pick .chosen-hidden img, .ban .chosen-hidden img {
@@ -431,13 +438,8 @@ div.stretchy-wrapper > div.stretchy-text {
 }
 
 .spectator-action {
-  background-position: center;
-  background-size: 48px;
-  background-repeat: no-repeat;
-  //text-indent: 200%;
-  white-space: nowrap;
-  overflow: hidden;
   width: 100px;
+  padding: 0;
 }
 
 .spectator-action .material-icons {
@@ -627,6 +629,14 @@ div.stretchy-wrapper > div.stretchy-text {
   background-color: transparent !important;
 }
 
-@media (prefers-color-scheme: dark) {
+// Dark Mode
+html.has-theme-dark {
+  body.has-theme-dark {
+    background-color: $black-bis;
+    color: $grey;
+  }
+}
+
+body.has-theme-dark {
   @import "bulma-dark.scss";
 }

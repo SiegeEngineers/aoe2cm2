@@ -3,6 +3,7 @@ import LanguageSelector from "../../containers/LanguageSelector";
 import UsernameSelector from "../../containers/UsernameSelector";
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
 import IconStyleSelector from "../../containers/IconStyleSelector";
+import ColorSchemeToggle from "../../containers/ColorSchemeToggle";
 import {Link} from "react-router-dom";
 
 class NavBar extends React.Component<WithTranslation, object> {
@@ -26,6 +27,11 @@ class NavBar extends React.Component<WithTranslation, object> {
                             <LanguageSelector language={'es-ES'} displayString={'ES'}/>
                             <LanguageSelector language={'de-DE'} displayString={'DE'}/>
                             <LanguageSelector language={'zh-CN'} displayString={'中文'}/>
+                        </div>
+                    </div>
+                    <div className="navbar-item">
+                        <div className={'buttons'}>
+                            <ColorSchemeToggle/>
                         </div>
                     </div>
                     <div className="navbar-item">

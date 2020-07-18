@@ -16,12 +16,18 @@ $button-static-color-dark: $grey-light;
 $navbar-background-color-dark: $black-ter;
 $footer-background-color-dark: $black;
 $tag-background-color-dark: $black;
+$blue-invert: $link-dark;
+$link-dark: hsl(209, 71%, 63%);
 
-@import "../../node_modules/bulma-prefers-dark/bulma-prefers-dark.sass";
+@import "../../node_modules/bulma-prefers-dark/sass/utilities/_all";
+@import "../../node_modules/bulma-prefers-dark/sass/base/_all";
+@import "../../node_modules/bulma-prefers-dark/sass/elements/_all";
+@import "../../node_modules/bulma-prefers-dark/sass/components/_all";
+@import "../../node_modules/bulma-prefers-dark/sass/layout/_all";
 
 .content {
   .table {
-    td {
+    td, th {
       border-left: 0 none;
       border-right: 0 none;
     }
@@ -47,15 +53,18 @@ $tag-background-color-dark: $black;
 .navbar-brand {
   a {
     color: $scheme-invert-ter;
+    &:hover {
+      color: $grey-light;
+    }
   }
 }
 
 .button.is-link.is-light {
-  background-color: $link-dark;
+  background-color: $blue-invert;
   color: $white;
 
   &:hover, &.is-hovered {
-    background-color: darken($link-dark, 2.5%);
+    background-color: darken($blue-invert, 2.5%);
     color: $white;
   }
 }
@@ -101,6 +110,11 @@ label.civ-select:hover {
   background-color: $grey;
 }
 
+.turn-hidden .bar {
+  border-left: .5rem solid $grey;
+  border-right: .5rem solid $grey;
+}
+
 code {
   color: inherit;
   border-radius: 4px;
@@ -120,3 +134,5 @@ code {
     background-color: rgba(10, 10, 10, 0.2);
   }
 }
+
+@import "bulma-dark-tags";
