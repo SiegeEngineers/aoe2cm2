@@ -144,6 +144,11 @@ export interface ISetEditorTurn {
     index: number
 }
 
+export interface ISetEditorTurnOrder {
+    type: Actions.SET_EDITOR_TURN_ORDER
+    turns: Turn[]
+}
+
 export interface ISetEditorName {
     type: Actions.SET_EDITOR_NAME
     value: string
@@ -201,6 +206,7 @@ export type ModalAction = IShowNameModal
 
 export type PresetEditorAction = ISetEditorPreset
     | ISetEditorTurn
+    | ISetEditorTurnOrder
     | ISetEditorName
     | ISetEditorCivilisations;
 
@@ -384,6 +390,13 @@ export function setEditorTurn(value: Turn | null, index: number): ISetEditorTurn
         value,
         index,
         type: Actions.SET_EDITOR_TURN
+    }
+}
+
+export function setEditorTurnOrder(turns: Turn[]): ISetEditorTurnOrder {
+    return {
+        turns,
+        type: Actions.SET_EDITOR_TURN_ORDER
     }
 }
 

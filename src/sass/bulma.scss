@@ -40,7 +40,7 @@ $family-monospace: 'SF Mono', 'Consolas', 'Monaco', monospace;
   font-weight: 300;
 }
 
-body, .box, .column, .tag, .table, td, .button, .bar, .navbar, .footer, .input, .message, a, code, .tabs ul  {
+body, .box, .column, .tag, .table, td, .button, .bar, .navbar, .footer, .input, .message, a, code, .tabs ul {
   transition: all 0.4s ease;
 }
 
@@ -67,6 +67,7 @@ nav.navbar .navbar-brand h1 {
 .navbar-brand {
   a {
     color: $scheme-invert-ter;
+
     &:hover {
       color: $grey;
     }
@@ -102,7 +103,6 @@ code {
 }
 
 .column.has-text-vcentered {
-  justify-content: center;
   display: flex;
   align-items: center;
 }
@@ -614,6 +614,18 @@ div.stretchy-wrapper > div.stretchy-text {
 
 .has-cursor-pointer {
   cursor: pointer;
+}
+
+.has-cursor-grab {
+  cursor: grab;
+}
+
+.sortable-ghost {
+  opacity: 0;
+}
+
+.flex-justify-center {
+  justify-content: center;
 }
 
 .table-header {

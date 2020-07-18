@@ -38,6 +38,21 @@ export const presetEditorReducer = (state: IPresetEditorState = initialPresetEdi
                 };
             }
 
+        case Actions.SET_EDITOR_TURN_ORDER:
+            console.log(Actions.SET_EDITOR_TURN_ORDER, action.turns);
+
+            if (state.editorPreset === null) {
+                return state;
+            }
+            return {
+                ...state,
+                editorPreset: new Preset(
+                    state.editorPreset.name,
+                    CivilisationEncoder.decodeCivilisationArray(state.editorPreset.encodedCivilisations),
+                    action.turns
+                )
+            };
+
         case Actions.SET_EDITOR_NAME:
             console.log(Actions.SET_EDITOR_NAME, action.value);
             if (state.editorPreset === null) {

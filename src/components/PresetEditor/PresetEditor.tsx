@@ -4,7 +4,14 @@ import Turn from "../../models/Turn";
 import Player from "../../constants/Player";
 import {Dispatch} from "redux";
 import * as actions from "../../actions";
-import {ISetEditorCivilisations, ISetEditorName, ISetEditorPreset, ISetEditorTurn} from "../../actions";
+
+import {
+    ISetEditorCivilisations,
+    ISetEditorName,
+    ISetEditorPreset,
+    ISetEditorTurn,
+    ISetEditorTurnOrder
+} from "../../actions";
 import {connect} from "react-redux";
 import {ApplicationState} from "../../types";
 import Exclusivity from "../../constants/Exclusivity";
@@ -13,15 +20,17 @@ import NewDraftButton from "../NewDraftButton";
 import Civilisation from "../../models/Civilisation";
 import TurnRow from "../draft/TurnRow";
 import SavePresetButton from "../SavePresetButton";
-import {PresetEditorTurn} from "./PresetEditorTurn";
 import {PresetCivilisationCheckbox} from "./PresetCivilisationCheckbox";
 import TurnExplanation from "./TurnExplanation";
 import {Trans, withTranslation, WithTranslation} from "react-i18next";
+import {ReactSortable} from "react-sortablejs";
+import {PresetEditorTurn} from "./PresetEditorTurn";
 
 interface Props extends WithTranslation{
     preset: Preset | null,
     onSetEditorPreset: (preset: Preset) => ISetEditorPreset,
     onValueChange: (turn: Turn | null, index: number) => ISetEditorTurn,
+    onTurnOrderChange: (turns: Turn[]) => ISetEditorTurnOrder,
     onPresetNameChange: (value: string) => ISetEditorName,
     onPresetCivilisationsChange: (value: string) => ISetEditorCivilisations
 }
@@ -38,9 +47,15 @@ class PresetEditor extends React.Component<Props, object> {
         if (this.props.preset === null || this.props.preset === undefined) {
             return null;
         }
+
         const turns = this.props.preset.turns.map((turn: Turn, index: number) =>
-            <PresetEditorTurn index={index} turn={turn} onValueChange={this.props.onValueChange}/>);
+            <PresetEditorTurn index={index}
+                              turn={turn}
+                              className="columns is-mobile preset-editor-row"
+                              onValueChange={this.props.onValueChange} key={turn.id}/>);
+
         const presetCivilisations = this.props.preset.civilisations;
+
         const civs = Civilisation.ALL.map((value: Civilisation, index: number) =>
             <PresetCivilisationCheckbox presetCivilisations={presetCivilisations} value={value}
                                         key={index}
@@ -65,9 +80,14 @@ class PresetEditor extends React.Component<Props, object> {
                             <div className="column is-1"/>
                         </div>
 
-                        {turns}
+                        <ReactSortable<Turn> list={this.props.preset.turns}
+                                             setList={(newState: Turn[]) => this.props.onTurnOrderChange(newState)}
+                                             handle=".is-drag-handle"
+                                             animation={150}>
+                            {turns}
+                        </ReactSortable>
 
-                        <div className="columns is-mobile">
+                        <div className="columns is-mobile pt-3">
                             <div className="column is-1"/>
                             <div className="column has-text-centered">
                                 <button className="button" onClick={() => {
@@ -109,13 +129,13 @@ class PresetEditor extends React.Component<Props, object> {
                             <input type={'text'} value={this.props.preset.name} className="input"
                                    placeholder={this.props.t("presetEditor.presetName")} required
                                    onChange={(event) => {
-                                       if(!event.target.value.trim()) {
+                                       if (!event.target.value.trim()) {
                                            event.target.classList.add('is-danger');
                                        } else {
                                            event.target.classList.remove('is-danger');
                                        }
                                        this.props.onPresetNameChange(event.target.value);
-                            }}/>
+                                   }}/>
                         </p>
                         <p className="control">
                             <NewDraftButton preset={this.props.preset}/>
@@ -143,6 +163,7 @@ export function mapDispatchToProps(dispatch: Dispatch<actions.Action>) {
     return {
         onSetEditorPreset: (preset: Preset) => dispatch(actions.setEditorPreset(preset)),
         onValueChange: (turn: Turn | null, index: number) => dispatch(actions.setEditorTurn(turn, index)),
+        onTurnOrderChange: (turns: Turn[]) => dispatch(actions.setEditorTurnOrder(turns)),
         onPresetCivilisationsChange: (value: string) => dispatch(actions.setEditorCivilisations(value)),
         onPresetNameChange: (value: string) => dispatch(actions.setEditorName(value)),
     }

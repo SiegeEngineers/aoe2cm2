@@ -10,6 +10,7 @@ exports[`labels the turn with GPICK 1`] = `
       "action": "PICK",
       "exclusivity": "GLOBAL",
       "hidden": false,
+      "id": "mocked-uuid",
       "parallel": false,
       "player": "HOST",
     }
@@ -28,6 +29,7 @@ exports[`labels the turn with PICK 1`] = `
       "action": "PICK",
       "exclusivity": "NONEXCLUSIVE",
       "hidden": false,
+      "id": "mocked-uuid",
       "parallel": false,
       "player": "HOST",
     }
@@ -46,6 +48,7 @@ exports[`labels the turn with xPICK 1`] = `
       "action": "PICK",
       "exclusivity": "EXCLUSIVE",
       "hidden": true,
+      "id": "mocked-uuid",
       "parallel": false,
       "player": "HOST",
     }
