@@ -15,15 +15,16 @@ interface Props {
 class ActionDropdown extends React.Component<Props, object> {
     render() {
         const options = [];
+        let i = 0;
         if (this.props.turn.player === Player.NONE) {
-            options.push(<option value={Action.REVEAL_ALL}>{Action.REVEAL_ALL}</option>);
-            options.push(<option value={Action.REVEAL_PICKS}>{Action.REVEAL_PICKS}</option>);
-            options.push(<option value={Action.REVEAL_BANS}>{Action.REVEAL_BANS}</option>);
-            options.push(<option value={Action.REVEAL_SNIPES}>{Action.REVEAL_SNIPES}</option>);
+            options.push(<option key={i++} value={Action.REVEAL_ALL}>{Action.REVEAL_ALL}</option>);
+            options.push(<option key={i++} value={Action.REVEAL_PICKS}>{Action.REVEAL_PICKS}</option>);
+            options.push(<option key={i++} value={Action.REVEAL_BANS}>{Action.REVEAL_BANS}</option>);
+            options.push(<option key={i++} value={Action.REVEAL_SNIPES}>{Action.REVEAL_SNIPES}</option>);
         } else {
-            options.push(<option value={Action.PICK}>{Action.PICK}</option>);
-            options.push(<option value={Action.BAN}>{Action.BAN}</option>);
-            options.push(<option value={Action.SNIPE}>{Action.SNIPE}</option>);
+            options.push(<option key={i++} value={Action.PICK}>{Action.PICK}</option>);
+            options.push(<option key={i++} value={Action.BAN}>{Action.BAN}</option>);
+            options.push(<option key={i++} value={Action.SNIPE}>{Action.SNIPE}</option>);
         }
         return <div className="select is-small">
             <select value={this.props.turn.action} onChange={(event) => {
