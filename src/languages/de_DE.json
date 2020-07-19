@@ -227,6 +227,12 @@
     "setLang": "Sprache ändern: ",
     "showUnits": "Einheiten anzeigen",
     "showEmblems": "Embleme anzeigen",
-    "setName": "Hier klicken, um den Namen zu ändern"
+    "setName": "Hier klicken, um den Namen zu ändern",
+    "toggleColorScheme": "Aktuelles Farbschema: {{scheme}} (zum Umschalten klicken)",
+    "colorScheme": {
+      "Light": "Hell",
+      "Dark": "Dunkel",
+      "Auto": "Auto"
+    }
   }
 }
