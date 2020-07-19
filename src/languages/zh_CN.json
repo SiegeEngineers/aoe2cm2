@@ -59,7 +59,7 @@
     "waitingForGuestToBeReady": "等待受邀者准备",
     "specPick": "等待<1>{{playerName}}</1><3><4>选</4></3>民族",
     "specBan": "等待<1>{{playerName}}</1><3><4>ban</4></3>民族",
-    "specSnipe": "等待<1>{{playerName}}</1><3><4>偷</4></3>民族",
+    "specSnipe": "等待<1>{{playerName}}</1><3><4>狙击</4></3>民族",
     "specParallelTurnsPickPick": "等待<1>{{firstTurnPlayer}}</1>和<5>{{secondTurnPlayer}}</5><7><8>选</8></7>民族",
     "specParallelTurnsPickBan": "等待<1>{{firstTurnPlayer}}</1><3><4>选</4></3>民族，<5>{{secondTurnPlayer}}</5><7><8>禁</8></7>民族",
     "specParallelTurnsPickSnipe": "等待<1>{{firstTurnPlayer}}</1><3><4>选</4></3>民族，<5>{{secondTurnPlayer}}</5><7><8>狙击</8></7>民族",
@@ -72,10 +72,12 @@
   },
   "modal": {
     "header": "欢迎",
-    "callToAction": "新用户请先给自己设置一个ID",
+    "callToAction": "请把ID改成自己的名字，以便他人观战",
     "setName": "确认",
     "editInfo": "这个ID可以更改",
-    "readTheRules": "请务必看一下说明"
+    "readTheRules": "有疑问请看说明",
+    "captainName": "用户名",
+    "randomizeName": "随机取名"
   },
   "rolemodal": {
     "header": "链接与身份选择",
@@ -110,60 +112,127 @@
     "VLD_103": "民族之前没有被任何人全局选过",
     "VLD_200": "民族之前已经被同一玩家禁了（仅对此玩家有效）",
     "VLD_300": "民族之前没有被对手选过",
-    "VLD_301": "对手没有民族（被全偷了）",
+    "VLD_301": "对手没有民族（被全狙击了）",
     "VLD_900": "服务器无法正常处理预设",
     "VLD_901": "预设里有错误的平行轮次",
     "VLD_902": "预设里有无效的平行轮次",
     "VLD_903": "预设里有连续的无效平行轮次",
     "VLD_904": "预设里最后一轮是平行轮次（错误的）",
-    "VLD_905": "预设里有个平行轮次的后一轮还是被同一个玩家操作"
+    "VLD_905": "预设里有个平行轮次的后一轮还是被同一个玩家操作",
+    "VLD_906": "预设里有隐藏禁&选之间无展示轮次",
+    "VLD_907": "预设里有无法被展示的隐藏轮次",
+    "VLD_908": "预设里没有任何轮次"
   },
   "menu": {
     "welcome": "欢迎",
-    "hostOrJoin": "做主机/加入",
+    "hostOrJoin": "加入或创建",
     "spectate": "观战",
-    "practice": "演练"
+    "practice": "演练",
+    "howItWorks": "简介"
   },
   "instructions": {
     "home": {
       "title": "说明",
-      "1": "这是一个BP民族的工具，BP意思是<3>禁(Ban)</3>和<1>选(Pick)</1>（民族)",
-      "2": "每个轮次双方有<1>30秒</1>时间，如果超时，系统会自动给你选一个随机民族（禁民族的话不会有任何操作）",
-      "3": "对于比赛，我们还有拓展的选项，如",
-      "4": "<0>隐藏</0>民族（黑色边）",
-      "5": "<0>全局</0>民族的意思是双方之后都不能再B/P这个民族，狙击民族的意思是把对手已经选的一个民族禁掉",
-      "6": "<0>演练</0>模式是用来测试的，双方都由自己控制"
+      "1": "这是一个BP民族的工具，BP即是<3>禁(Ban)</3>和<1>选(Pick)</1>（民族)。",
+      "2": "每轮次，双方有<1>30秒</1>时间，如超时，系统会自动给你随机一个民族。",
+      "3": "轮次也有不同种类：",
+      "4": "<0>隐藏</0>民族（黑色镶边图标）。",
+      "5": "<0>全局</0>民族的意思是双方之后都不能再重复碰这个民族。",
+      "6": "<0>演练</0>模式只是用来测试的，双方都由自己控制。"
     },
     "basics": {
-      "title": "Basics",
+      "title": "基本",
       "1": "$t(instructions.home.1)",
       "2": "$t(instructions.home.2)"
+    },
+    "hostAndGuestTurns": {
+      "title": "玩家的轮次",
+      "1": "轮次由三种行为 (<1>选</1>, <3>禁</3>, <5>狙击</5>) 和一些前缀组成。",
+      "2": "<1>PICK（选）</1> 意味着选择一个民族。",
+      "3": "<1>GLOBAL PICK（全局选）</1> 或其图标 <3/> 意味着双方之后都不能再选（已经选过了的）。",
+      "4": "<1>EXCLUSIVE PICK（独选）</1> 或其图标 <3/> 意味着此玩家之后不能再重复选。",
+      "5": "<1>NONEXCLUSIVE PICK（非独选）</1> 或其图标 <3/> 无以上两种效果，意味着玩家依然可以在之后重复选。",
+      "6": "<1>BAN（禁）</1> 意味着不能再选。",
+      "7": "<1>GLOBAL BAN（全局禁）</1> 或其图标 <3/> 意味着双方之后都不能再禁（已经禁过了的）。",
+      "8": "<1>EXCLUSIVE BAN（独禁）</1> 或其图标 <3/> 意味着该玩家的对手不能选此民族，且该玩家不能再重复禁。",
+      "9": "<1>NONEXCLUSIVE BAN（非独禁）</1> 或其图标 <3/> 意味着该玩家的对手不能选此民族，且该玩家可以重复禁。然而这样其实没任何意义，所以请用 <5>EXCLUSIVE（独禁）</5>。",
+      "10": "<1>SNIPE（狙击）</1> 允许玩家禁掉一个对手选的民族。<3>GLOBAL</3>，<5>EXCLUSIVE</5> 和 <7>NONEXCLUSIVE</7> 的前缀对于狙击没有意义。"
+    },
+    "adminTurns": {
+      "title": "组委的轮次",
+      "1": "组委轮次，或其图标 <1/> 会展示之前隐藏的轮次。",
+      "2": "<1>REVEAL_PICKS</1>, <3>REVEAL_BANS</3> and <5>REVEAL_SNIPES</5> 展示对应前缀的轮次。",
+      "3": "<0>REVEAL_ALL</0> 展示之前的全部轮次。"
+    },
+    "presetEditor": {
+      "title": "预设编辑器",
+      "1": "预设由各种轮次组成。",
+      "2": "一个轮次只属于一个人：主机，受邀者，或组委，其中之一。",
+      "3": "点 <1>+ New</1> 按钮可为此人添加一个轮次。",
+      "4": "点右侧的 <1/> 按钮删除轮次。"
+    },
+    "presetModifiers": {
+      "title": "前缀",
+      "1": "如果想让两位玩家同时进行一个轮次, 只勾选 <3>首个</3> 轮次的 <1>PARALLEL</1> 标签，不要给两个轮次都勾。",
+      "2": "勾选 <1>HIDDEN</1> 标签来隐藏民族。对手和观众只有到了组委展示轮才能看见民族。"
+    },
+    "draftModifiers": {
+      "title": "前缀",
+      "1": "<1>PARALLEL</1> 平行轮次，意为两个玩家各自同时进行一个轮次。",
+      "2": "<1>HIDDEN</1> 隐藏轮次，意为对手和观众只有到了组委展示轮才能看见民族。"
     }
   },
   "presets": {
-    "joinTitle": "加入已创建的BP",
+    "joinTitle": "加入别人创建的BP",
     "code": "代码:",
-    "join": "加入",
+    "enterCode": "在此输入代码",
+    "join": "确认",
     "useTitle": "使用预设"
   },
-  "presetEditor": {
-    "host": "主机",
-    "guest": "受邀者"
-  },
   "spectate": {
-    "spectateTitle": "观看进行中的BP",
+    "spectateTitle": "观看已有的BP",
     "code": "代码:",
-    "spectate": "观看",
+    "enterCode": "在此输入代码",
+    "spectate": "确认",
+    "recentDraftsTitle": "历史记录",
+    "watchLive": "观看（正在进行）",
+    "watch": "观看",
     "host": "主机",
     "guest": "受邀者",
-    "draftName": "草稿名称"
+    "draftName": "BP名称"
   },
-  "createNewDraft": "用这个预设开始",
-  "createNewPreset": "创建一个新预设",
-  "customiseThisPreset": "编辑这个预设",
+  "preset": {
+    "shareThisPreset": "分享此预设："
+  },
+  "presetEditor": {
+    "helpAndInstructions": "帮助/说明",
+    "availableCivs": "民族",
+    "turns": "轮次",
+    "createSaveDraft": "建立或保存",
+    "host": "主机",
+    "guest": "受邀者",
+    "admin": "组委",
+    "new": "新建",
+    "presetName": "预设名称"
+  },
+  "createNewDraft": "用此预设建立",
+  "createNewPreset": "创建新预设",
+  "customiseThisPreset": "编辑此预设",
   "savePreset": "保存预设",
   "setYourName": "设置ID",
   "youAre": "你是:",
-  "codeInstructionsBefore": "把这个代码发给对手/观战的",
-  "codeInstructionsAfter": "复制这个代码，之后可以用来观战"
+  "codeInstructionsBefore": "把此代码发给对手/观战的",
+  "codeInstructionsAfter": "复制此代码以用于观战",
+  "navbar": {
+    "setLang": "将语言设置为",
+    "showUnits": "用城堡兵显示民族",
+    "showEmblems": "用图徽显示民族",
+    "setName": "点此改名",
+    "toggleColorScheme": "当前的颜色主题：{{scheme}} （点击变更）",
+    "colorScheme": {
+      "Light": "亮",
+      "Dark": "暗",
+      "Auto": "自动"
+    }
+  }
 }
