@@ -4,24 +4,28 @@ import Civilisation from "../../models/Civilisation";
 import {ISetEditorCivilisations} from "../../actions";
 import {WithTranslation, withTranslation} from "react-i18next";
 
-interface IProps extends WithTranslation{
+interface IProps extends WithTranslation {
     presetCivilisations: Civilisation[],
     value: Civilisation,
-    onPresetCivilisationsChange: (value: string) => ISetEditorCivilisations,
+    disabled: boolean,
+    onPresetCivilisationsChange?: (value: string) => ISetEditorCivilisations,
 }
 
-export const PresetCivilisationCheckbox = withTranslation()(({presetCivilisations, value, onPresetCivilisationsChange, t}: IProps) =>
+export const PresetCivilisationCheckbox = withTranslation()(({presetCivilisations, value, onPresetCivilisationsChange, disabled, t}: IProps) =>
     <label className="checkbox is-inline-block civ-select" style={{width: "20%", padding: 5}}>
         <input type='checkbox'
                defaultChecked={presetCivilisations.includes(value)}
+               disabled={disabled}
                onClick={
                    () => {
-                       if (presetCivilisations.includes(value)) {
-                           presetCivilisations.splice(presetCivilisations.indexOf(value), 1);
-                           onPresetCivilisationsChange(CivilisationEncoder.encodeCivilisationArray(presetCivilisations));
-                       } else {
-                           presetCivilisations.push(value);
-                           onPresetCivilisationsChange(CivilisationEncoder.encodeCivilisationArray(presetCivilisations));
+                       if (onPresetCivilisationsChange !== undefined) {
+                           if (presetCivilisations.includes(value)) {
+                               presetCivilisations.splice(presetCivilisations.indexOf(value), 1);
+                               onPresetCivilisationsChange(CivilisationEncoder.encodeCivilisationArray(presetCivilisations));
+                           } else {
+                               presetCivilisations.push(value);
+                               onPresetCivilisationsChange(CivilisationEncoder.encodeCivilisationArray(presetCivilisations));
+                           }
                        }
                    }
                }/>

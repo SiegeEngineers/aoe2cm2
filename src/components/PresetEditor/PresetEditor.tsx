@@ -59,6 +59,7 @@ class PresetEditor extends React.Component<Props, object> {
         const civs = Civilisation.ALL.map((value: Civilisation, index: number) =>
             <PresetCivilisationCheckbox presetCivilisations={presetCivilisations} value={value}
                                         key={index}
+                                        disabled={false}
                                         onPresetCivilisationsChange={this.props.onPresetCivilisationsChange}/>);
 
         return (

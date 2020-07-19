@@ -6,6 +6,7 @@ import NewDraftButton from "../NewDraftButton";
 import CustomisePresetButton from "../../containers/CustomisePresetButton";
 import Civilisation from "../../models/Civilisation";
 import CopyableInput from "../draft/CopyableInput";
+import {PresetCivilisationCheckbox} from "../PresetEditor/PresetCivilisationCheckbox";
 
 interface IState {
     preset?: ModelPreset;
@@ -34,11 +35,10 @@ class Preset extends React.Component<object, IState> {
         if (this.state.preset !== undefined) {
 
             const presetCivilisations = this.state.preset.civilisations;
-            const civs = Civilisation.ALL.map((value: Civilisation, index: number) => {
-                return <label className="checkbox is-inline-block civ-select" key={index} style={{width: "20%", padding: 5}}>
-                    <input type='checkbox' checked={presetCivilisations.includes(value)} disabled/> {value.name}
-                </label>;
-            });
+            const civs = Civilisation.ALL.map((value: Civilisation, index: number) =>
+                <PresetCivilisationCheckbox presetCivilisations={presetCivilisations} value={value}
+                                            key={index}
+                                            disabled={true}/>);
 
             return (
                 <div className='content box'>
