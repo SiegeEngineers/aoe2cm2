@@ -7,6 +7,7 @@ import PlayerEvent from "../models/PlayerEvent";
 import {ICountdownValues, IDraftState} from "../types";
 import Preset from "../models/Preset";
 import Turn from "../models/Turn";
+import {ColorScheme} from "../constants/ColorScheme";
 
 export interface IActionCompleted {
     type: ServerActions.EXECUTE_ACTION,
@@ -76,6 +77,11 @@ export interface ISetIconStyle {
     iconStyle: string
 }
 
+export interface ISetColorScheme {
+    type: Actions.SET_COLOR_SCHEME,
+    colorScheme: ColorScheme
+}
+
 export interface ISetEvents {
     type: ServerActions.SET_EVENTS,
     value: { player: Player, action: ModelAction, events: DraftEvent[] }
@@ -138,6 +144,11 @@ export interface ISetEditorTurn {
     index: number
 }
 
+export interface ISetEditorTurnOrder {
+    type: Actions.SET_EDITOR_TURN_ORDER
+    turns: Turn[]
+}
+
 export interface ISetEditorName {
     type: Actions.SET_EDITOR_NAME
     value: string
@@ -186,6 +197,8 @@ export type LanguageAction = ISetLanguage;
 
 export type IconStyleAction = ISetIconStyle;
 
+export type ColorSchemeAction = ISetColorScheme;
+
 export type ModalAction = IShowNameModal
     | IShowRoleModal
     | IChangeOwnName
@@ -193,6 +206,7 @@ export type ModalAction = IShowNameModal
 
 export type PresetEditorAction = ISetEditorPreset
     | ISetEditorTurn
+    | ISetEditorTurnOrder
     | ISetEditorName
     | ISetEditorCivilisations;
 
@@ -202,6 +216,7 @@ export type Action = DraftAction
     | DraftOwnPropertiesAction
     | LanguageAction
     | IconStyleAction
+    | ColorSchemeAction
     | ModalAction
     | PresetEditorAction;
 
@@ -303,6 +318,12 @@ export function setIconStyle(iconStyle: string): ISetIconStyle {
     }
 }
 
+export function setColorScheme(colorScheme: ColorScheme): ISetColorScheme {
+    return {
+        colorScheme,
+        type: Actions.SET_COLOR_SCHEME
+    }
+}
 export function setEvents(value: { player: Player, action: ModelAction, events: DraftEvent[] }): ISetEvents {
     return {
         value,
@@ -369,6 +390,13 @@ export function setEditorTurn(value: Turn | null, index: number): ISetEditorTurn
         value,
         index,
         type: Actions.SET_EDITOR_TURN
+    }
+}
+
+export function setEditorTurnOrder(turns: Turn[]): ISetEditorTurnOrder {
+    return {
+        turns,
+        type: Actions.SET_EDITOR_TURN_ORDER
     }
 }
 

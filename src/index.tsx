@@ -23,6 +23,7 @@ import {initialLanguageState} from "./reducers/language";
 import {initialModalState} from "./reducers/modal";
 import {initialPresetEditorState} from "./reducers/presetEditor";
 import SpectateDraft from "./containers/SpectateDraft";
+import {initialColorSchemeState} from "./reducers/colorScheme";
 
 const createMySocketMiddleware = () => {
 
@@ -104,6 +105,7 @@ const store: Store = createStore<ApplicationState, Action, any, Store>(updateSta
         countdown: initialDraftCountdownState,
         ownProperties: initialDraftOwnPropertiesState,
         language: initialLanguageState,
+        colorScheme: initialColorSchemeState,
         modal: initialModalState,
         presetEditor: initialPresetEditorState
     },

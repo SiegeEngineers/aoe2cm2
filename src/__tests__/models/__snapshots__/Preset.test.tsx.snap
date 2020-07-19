@@ -9,6 +9,7 @@ Preset {
       "action": "PICK",
       "exclusivity": "NONEXCLUSIVE",
       "hidden": false,
+      "id": "mocked-uuid",
       "parallel": false,
       "player": "GUEST",
     },
