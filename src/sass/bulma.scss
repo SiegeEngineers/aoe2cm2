@@ -33,7 +33,6 @@ $family-monospace: 'SF Mono', 'Consolas', 'Monaco', monospace;
 
 // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 @import url('https://fonts.googleapis.com/css2?family=Crete+Round:ital@0;1&display=swap');
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 .content h1, .content h2, .content h3, .content h4, .content h5, .content h6, .navbar-brand h1 {
   font-family: 'Crete Round', sans-serif;
@@ -442,10 +441,6 @@ div.stretchy-wrapper > div.stretchy-text {
   padding: 0;
 }
 
-.spectator-action .material-icons {
-  font-size: 48px;
-}
-
 #countdown-timer {
   display: inline-block;
   font-weight: 600;
@@ -537,10 +532,6 @@ div.stretchy-wrapper > div.stretchy-text {
   height: 48px;
   color: $scheme-invert !important;
   opacity: 0.60;
-}
-
-.back-icon.header-navigation .material-icons {
-  font-size: 48px;
 }
 
 .back-icon.header-navigation:hover {

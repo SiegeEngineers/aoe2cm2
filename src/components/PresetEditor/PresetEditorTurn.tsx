@@ -1,4 +1,5 @@
 import * as React from "react";
+import DragIcon from "mdi-react/DragIcon";
 import Player from "../../constants/Player";
 import PlayerTurnSettings from "./PlayerTurnSettings";
 import Turn from "../../models/Turn";
@@ -13,7 +14,7 @@ interface IProps {
 export const PresetEditorTurn = ({index, turn, onValueChange, className, ...otherProps}: IProps) =>
     <div className={className} {...otherProps}>
         <div className="column is-1 has-text-vcentered is-size-5 has-text-grey has-text-left">
-            <i className="material-icons has-text-grey has-cursor-grab is-drag-handle is-size-3">drag_indicator</i>
+            <DragIcon className="has-text-grey has-cursor-grab is-drag-handle is-size-3" />
             {index + 1}</div>
         <div className="column has-text-centered">
             <PlayerTurnSettings player={Player.HOST} turn={turn} key={'host-' + index} index={index}/>
