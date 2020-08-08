@@ -6,6 +6,7 @@ import {WithTranslation, withTranslation} from "react-i18next";
 interface IProps extends WithTranslation {
     language: string;
     displayString: string;
+    tooltipString: string;
     onSetLanguage?: (language: string) => void;
 }
 
@@ -28,7 +29,7 @@ class LanguageSelector extends React.Component<IProps, object> {
 
         return (
             <button className={className} onClick={changeLanguage}
-                    data-tooltip={this.props.t("navbar.setLang") + " " + this.props.displayString}>
+                    data-tooltip={this.props.tooltipString}>
                 {this.props.displayString}
             </button>
         );
