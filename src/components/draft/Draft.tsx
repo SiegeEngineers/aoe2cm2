@@ -9,6 +9,7 @@ import "../../types/DraftEvent";
 import {DraftEvent} from "../../types/DraftEvent";
 import {IDraftConfig} from "../../types/IDraftConfig";
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
+import KeyboardBackspaceIcon from "mdi-react/KeyboardBackspaceIcon";
 import Modal from "../../containers/Modal";
 import NameGenerator from "../../util/NameGenerator";
 import {withRouter} from "react-router-dom";
@@ -110,7 +111,7 @@ class Draft extends React.Component<IProps, IState> {
                     <div className="columns is-mobile">
                         <div className="column is-1 py-0">
                                 <a onClick={this.disconnectAndGoBack} aria-label="Go back" className="back-icon header-navigation">
-                                    <i className="material-icons">keyboard_backspace</i>
+                                    <KeyboardBackspaceIcon size={48} />
                                 </a>
                         </div>
                         <div className="column content my-0">

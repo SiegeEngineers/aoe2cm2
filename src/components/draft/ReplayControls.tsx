@@ -2,6 +2,10 @@ import * as React from "react";
 import Preset from "../../models/Preset";
 import "../../types/DraftEvent";
 import {WithTranslation, withTranslation} from "react-i18next";
+import PauseIcon from "mdi-react/PauseIcon";
+import PlayArrowIcon from "mdi-react/PlayArrowIcon";
+import SkipNextIcon from "mdi-react/SkipNextIcon";
+import FastForwardIcon from "mdi-react/FastForwardIcon";
 import {Util} from "../../util/Util";
 import Player from "../../constants/Player";
 import {DraftEvent} from "../../types/DraftEvent";
@@ -48,18 +52,19 @@ class ReplayControls extends React.Component<IProps, IState> {
         if (this.props.replayEvents.length === 0 || this.hasDraftEnded()) {
             return null;
         }
+
         const pauseButton = <button id="spectator-pause" className="spectator-action button is-large"
                                     onClick={this.haltReplay} aria-label="Pause">
-            <i className="material-icons">pause</i></button>;
+            <PauseIcon size={48} /></button>;
         const runButton = <button id="spectator-play" className="spectator-action button is-large"
                                   onClick={this.runReplay} aria-label="Play">
-            <i className="material-icons">play_arrow</i></button>;
+            <PlayArrowIcon size={48} /></button>;
         const nextButton = <button id="spectator-next" className="spectator-action button is-large"
                                    onClick={this.nextStep} aria-label="Next">
-            <i className="material-icons">skip_next</i></button>;
+            <SkipNextIcon size={48} /></button>;
         const skipToEndbutton = <button id="spectator-forward" className="spectator-action button is-large"
                                         onClick={this.skipToEnd} aria-label="Fast Forward">
-            <i className="material-icons">fast_forward</i></button>;
+            <FastForwardIcon size={48} /></button>;
 
         return <div className="columns is-mobile">
             <div className="column has-text-centered">

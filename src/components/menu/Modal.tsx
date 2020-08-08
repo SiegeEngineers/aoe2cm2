@@ -1,5 +1,6 @@
 import * as React from "react";
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
+import LoopIcon from "mdi-react/LoopIcon";
 import NameGenerator from "../../util/NameGenerator";
 import Player from "../../constants/Player";
 
@@ -37,7 +38,7 @@ class Modal extends React.Component<IProps, object> {
                                                 onClick={this.newNameProposal}
                                                 aria-label={this.props.t('modal.randomizeName')}
                                                 data-tooltip={this.props.t('modal.randomizeName')}>
-                                            <i className='material-icons'>loop</i>
+                                            <LoopIcon />
                                         </button>
                                     </div>
                                 </div>
