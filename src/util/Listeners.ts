@@ -16,9 +16,17 @@ export const Listeners = {
         return (message: PlayerEvent, fn: (retval: any) => void) => {
             logger.info("Got act message: %s", JSON.stringify(message), {draftId});
 
-            if (!(Object.keys(socket.rooms).includes(roomHost) || Object.keys(socket.rooms).includes(roomGuest))) {
+            const assignedRole = Util.getAssignedRole(socket, roomHost, roomGuest);
+
+            if (assignedRole === Player.NONE) {
                 logger.warn("Discarding specator message", {draftId});
                 socket.emit('message', 'You shall not act.');
+                return;
+            }
+
+            if (message.player !== assignedRole) {
+                logger.warn("Discarding fake message", {draftId});
+                socket.emit('message', 'You shall not impersonate your opponent.');
                 return;
             }
 

@@ -19,16 +19,6 @@ import {PresetUtil} from "./util/PresetUtil";
 
 const ONE_HOUR = 1000 * 60 * 60;
 
-function getAssignedRole(socket: SocketIO.Socket, roomHost: string, roomGuest: string): Player {
-    let assignedRole: Player = Player.NONE;
-    if (Object.keys(socket.rooms).includes(roomHost)) {
-        assignedRole = Player.HOST;
-    } else if (Object.keys(socket.rooms).includes(roomGuest)) {
-        assignedRole = Player.GUEST;
-    }
-    return assignedRole;
-}
-
 export const DraftServer = {
     serve(port: string | number | undefined): { httpServerAddr: AddressInfo | string | null; io: SocketIO.Server; httpServer: Server } {
         logger.info("Starting DraftServer on port %d", port);
@@ -161,7 +151,7 @@ export const DraftServer = {
                     return;
                 }
                 const role: Player = Util.sanitizeRole(message.role);
-                let assignedRole = getAssignedRole(socket, roomHost, roomGuest);
+                let assignedRole = Util.getAssignedRole(socket, roomHost, roomGuest);
                 const rooms = Object.keys(socket.rooms);
                 if (rooms.includes(roomSpec)) {
                     if (role === Player.HOST && !draftsStore.isPlayerConnected(draftId, role)) {
@@ -201,7 +191,7 @@ export const DraftServer = {
                     socket.emit('message', 'This draft does not exist.');
                     return;
                 }
-                let assignedRole = getAssignedRole(socket, roomHost, roomGuest);
+                let assignedRole = Util.getAssignedRole(socket, roomHost, roomGuest);
                 if (assignedRole === Player.HOST) {
                     logger.info("Setting HOST player name to: %s", message.name, {draftId});
                     setPlayerName(draftId, Player.HOST, message.name);
@@ -256,7 +246,7 @@ export const DraftServer = {
             socket.on("act", Listeners.actListener(draftsStore, draftId, validateAndApply, socket, roomHost, roomGuest, roomSpec));
 
             socket.on('disconnecting', function () {
-                const assignedRole = getAssignedRole(socket, roomHost, roomGuest);
+                const assignedRole = Util.getAssignedRole(socket, roomHost, roomGuest);
                 logger.info("Player disconnected: %s", assignedRole, {draftId});
                 if (!draftsStore.has(draftId)) {
                     return;

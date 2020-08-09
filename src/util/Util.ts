@@ -136,5 +136,16 @@ export const Util = {
             return Player.HOST;
         }
         return Player.NONE;
+    },
+
+    getAssignedRole(socket: SocketIO.Socket, roomHost: string, roomGuest: string): Player {
+        let assignedRole: Player = Player.NONE;
+        if (Object.keys(socket.rooms).includes(roomHost)) {
+            assignedRole = Player.HOST;
+        } else if (Object.keys(socket.rooms).includes(roomGuest)) {
+            assignedRole = Player.GUEST;
+        }
+        return assignedRole;
     }
+
 };
