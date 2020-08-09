@@ -120,8 +120,11 @@ class CivPanel extends React.Component<IProps, IState> {
 
     private onClickCiv = () => {
         if (Util.notUndefined(this.props.onClickCivilisation, this.props.civilisation, this.props.whoAmI, this.props.triggerAction)) {
-            const civilisation = this.props.civilisation as Civilisation;
             const whoAmI = this.props.whoAmI as Player;
+            if (whoAmI === Player.NONE) {
+                return;
+            }
+            const civilisation = this.props.civilisation as Civilisation;
             const triggerAction = this.props.triggerAction as ActionType;
             const onClickCivilisation = this.props.onClickCivilisation as (playerEvent: PlayerEvent, callback: any) => void;
             onClickCivilisation(new PlayerEvent(whoAmI, triggerAction, civilisation), (data: any) => {
@@ -136,8 +139,11 @@ class CivPanel extends React.Component<IProps, IState> {
 
     private isValidOption() {
         if (Util.notUndefined(this.props.draft, this.props.whoAmI, this.props.triggerAction, this.props.civilisation)) {
-            const draft = Draft.from(this.props.draft as Draft);
             const whoAmI = this.props.whoAmI as Player;
+            if (whoAmI === Player.NONE) {
+                return false;
+            }
+            const draft = Draft.from(this.props.draft as Draft);
             const triggerAction = this.props.triggerAction as ActionType;
             const civilisation = this.props.civilisation as Civilisation;
             let draftsStore = new DraftsStore();
