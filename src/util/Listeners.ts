@@ -15,6 +15,13 @@ export const Listeners = {
     actListener(draftsStore: DraftsStore, draftId: string, validateAndApply: (draftId: string, message: DraftEvent) => ValidationId[], socket: SocketIO.Socket, roomHost: string, roomGuest: string, roomSpec: string) {
         return (message: PlayerEvent, fn: (retval: any) => void) => {
             logger.info("Got act message: %s", JSON.stringify(message), {draftId});
+
+            if (!(Object.keys(socket.rooms).includes(roomHost) || Object.keys(socket.rooms).includes(roomGuest))) {
+                logger.warn("Discarding specator message", {draftId});
+                socket.emit('message', 'You shall not act.');
+                return;
+            }
+
             if (!draftsStore.has(draftId)) {
                 logger.warn("Draft does not exist", {draftId});
                 socket.emit('message', 'This draft does not exist.');
