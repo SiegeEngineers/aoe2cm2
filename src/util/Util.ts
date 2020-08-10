@@ -46,11 +46,11 @@ export const Util = {
     },
 
     isPlayerEvent(event: DraftEvent): event is PlayerEvent {
-        return (<PlayerEvent>event).civilisation !== undefined;
+        return (event as PlayerEvent).civilisation !== undefined;
     },
 
     isAdminEvent(event: DraftEvent): event is AdminEvent {
-        return !(<AdminEvent>event).hasOwnProperty('civilisation');
+        return !(event as AdminEvent).hasOwnProperty('civilisation');
     },
 
     isHidden(turn: Turn): boolean {
