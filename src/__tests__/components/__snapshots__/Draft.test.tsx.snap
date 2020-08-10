@@ -2,7 +2,6 @@
 
 exports[`Draft renders correctly 1`] = `
 <withRouter(Draft)
-  i18n={Object {}}
   nameGuest="Beastly Barbarossa"
   nameHost="Sneaky Saladin"
   nextAction={0}
@@ -183,7 +182,6 @@ exports[`Draft renders correctly 1`] = `
     }
   }
   t={[Function]}
-  tReady={false}
   whoAmI="HOST"
 />
 `;

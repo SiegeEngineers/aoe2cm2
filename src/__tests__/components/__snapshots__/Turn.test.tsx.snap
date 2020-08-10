@@ -2,9 +2,7 @@
 
 exports[`labels the turn with GPICK 1`] = `
 <Turn
-  i18n={Object {}}
   t={[Function]}
-  tReady={false}
   turn={
     Turn {
       "action": "PICK",
@@ -21,9 +19,7 @@ exports[`labels the turn with GPICK 1`] = `
 
 exports[`labels the turn with PICK 1`] = `
 <Turn
-  i18n={Object {}}
   t={[Function]}
-  tReady={false}
   turn={
     Turn {
       "action": "PICK",
@@ -40,9 +36,7 @@ exports[`labels the turn with PICK 1`] = `
 
 exports[`labels the turn with xPICK 1`] = `
 <Turn
-  i18n={Object {}}
   t={[Function]}
-  tReady={false}
   turn={
     Turn {
       "action": "PICK",

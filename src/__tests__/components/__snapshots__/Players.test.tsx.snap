@@ -4,7 +4,7 @@ exports[`CivGrid renders correctly 1`] = `
 <div
   className="columns is-mobile"
 >
-  <Connect(withI18nextTranslation(PlayerDraftState))
+  <Connect(Component)
     key="HOST"
     name="Sneaky Saladin"
     player="HOST"
@@ -185,7 +185,7 @@ exports[`CivGrid renders correctly 1`] = `
       }
     }
   />
-  <Connect(withI18nextTranslation(PlayerDraftState))
+  <Connect(Component)
     key="GUEST"
     name="Beastly Barbarossa"
     player="GUEST"
