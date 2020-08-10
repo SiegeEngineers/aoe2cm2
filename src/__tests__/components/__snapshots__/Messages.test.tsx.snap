@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`initialisation "GUEST" waiting while hostReady=false and guestReady=false 1`] = `
+exports[`initialisation GUEST waiting while hostReady=false and guestReady=false 1`] = `
 <div>
   Press 
   <button
@@ -13,13 +13,13 @@ exports[`initialisation "GUEST" waiting while hostReady=false and guestReady=fal
 </div>
 `;
 
-exports[`initialisation "GUEST" waiting while hostReady=false and guestReady=true 1`] = `
+exports[`initialisation GUEST waiting while hostReady=false and guestReady=true 1`] = `
 <div>
   Waiting for Host to press ›ready‹
 </div>
 `;
 
-exports[`initialisation "GUEST" waiting while hostReady=true and guestReady=false 1`] = `
+exports[`initialisation GUEST waiting while hostReady=true and guestReady=false 1`] = `
 <div>
   Your host is ready to start. Press 
   <button
@@ -32,7 +32,7 @@ exports[`initialisation "GUEST" waiting while hostReady=true and guestReady=fals
 </div>
 `;
 
-exports[`initialisation "HOST" waiting while hostReady=false and guestReady=false 1`] = `
+exports[`initialisation HOST waiting while hostReady=false and guestReady=false 1`] = `
 <div>
   Press 
   <button
@@ -45,7 +45,7 @@ exports[`initialisation "HOST" waiting while hostReady=false and guestReady=fals
 </div>
 `;
 
-exports[`initialisation "HOST" waiting while hostReady=false and guestReady=true 1`] = `
+exports[`initialisation HOST waiting while hostReady=false and guestReady=true 1`] = `
 <div>
   Your guest is ready to start. Press
   <button
@@ -58,31 +58,31 @@ exports[`initialisation "HOST" waiting while hostReady=false and guestReady=true
 </div>
 `;
 
-exports[`initialisation "HOST" waiting while hostReady=true and guestReady=false 1`] = `
+exports[`initialisation HOST waiting while hostReady=true and guestReady=false 1`] = `
 <div>
   Waiting for Guest to press ›ready‹
 </div>
 `;
 
-exports[`initialisation "NONE" waiting while hostReady=false and guestReady=false 1`] = `
+exports[`initialisation NONE waiting while hostReady=false and guestReady=false 1`] = `
 <div>
   Waiting for players to get ready...
 </div>
 `;
 
-exports[`initialisation "NONE" waiting while hostReady=false and guestReady=true 1`] = `
+exports[`initialisation NONE waiting while hostReady=false and guestReady=true 1`] = `
 <div>
   Waiting for Host to get ready...
 </div>
 `;
 
-exports[`initialisation "NONE" waiting while hostReady=true and guestReady=false 1`] = `
+exports[`initialisation NONE waiting while hostReady=true and guestReady=false 1`] = `
 <div>
   Waiting for Guest to get ready...
 </div>
 `;
 
-exports[`parallel turn G-H: Step 1 perspective: "GUEST" 1`] = `
+exports[`parallel turn G-H: Step 1 perspective: GUEST 1`] = `
 <div>
   <Trans
     i18nKey="messages.doPick"
@@ -100,7 +100,7 @@ exports[`parallel turn G-H: Step 1 perspective: "GUEST" 1`] = `
 </div>
 `;
 
-exports[`parallel turn G-H: Step 1 perspective: "HOST" 1`] = `
+exports[`parallel turn G-H: Step 1 perspective: HOST 1`] = `
 <div>
   <Trans
     i18nKey="messages.doPick"
@@ -118,7 +118,7 @@ exports[`parallel turn G-H: Step 1 perspective: "HOST" 1`] = `
 </div>
 `;
 
-exports[`parallel turn G-H: Step 1 perspective: "NONE" 1`] = `
+exports[`parallel turn G-H: Step 1 perspective: NONE 1`] = `
 <div>
   <Trans
     i18nKey="messages.specParallelTurnsPickPick"
@@ -153,7 +153,7 @@ exports[`parallel turn G-H: Step 1 perspective: "NONE" 1`] = `
 </div>
 `;
 
-exports[`parallel turn G-H: Step 2, Guest picks before Host, perspective: "GUEST" 1`] = `
+exports[`parallel turn G-H: Step 2, Guest picks before Host, perspective: GUEST 1`] = `
 <div>
   <Trans
     i18nKey="messages.waitingForPick"
@@ -164,7 +164,7 @@ exports[`parallel turn G-H: Step 2, Guest picks before Host, perspective: "GUEST
 </div>
 `;
 
-exports[`parallel turn G-H: Step 2, Guest picks before Host, perspective: "HOST" 1`] = `
+exports[`parallel turn G-H: Step 2, Guest picks before Host, perspective: HOST 1`] = `
 <div>
   <Trans
     i18nKey="messages.doPick"
@@ -182,7 +182,7 @@ exports[`parallel turn G-H: Step 2, Guest picks before Host, perspective: "HOST"
 </div>
 `;
 
-exports[`parallel turn G-H: Step 2, Guest picks before Host, perspective: "NONE" 1`] = `
+exports[`parallel turn G-H: Step 2, Guest picks before Host, perspective: NONE 1`] = `
 <div>
   <Trans
     i18nKey="messages.specPick"
@@ -205,7 +205,7 @@ exports[`parallel turn G-H: Step 2, Guest picks before Host, perspective: "NONE"
 </div>
 `;
 
-exports[`parallel turn G-H: Step 2, Host picks before Guest perspective: "GUEST" 1`] = `
+exports[`parallel turn G-H: Step 2, Host picks before Guest perspective: GUEST 1`] = `
 <div>
   <Trans
     i18nKey="messages.doPick"
@@ -223,7 +223,7 @@ exports[`parallel turn G-H: Step 2, Host picks before Guest perspective: "GUEST"
 </div>
 `;
 
-exports[`parallel turn G-H: Step 2, Host picks before Guest perspective: "HOST" 1`] = `
+exports[`parallel turn G-H: Step 2, Host picks before Guest perspective: HOST 1`] = `
 <div>
   <Trans
     i18nKey="messages.waitingForPick"
@@ -234,7 +234,7 @@ exports[`parallel turn G-H: Step 2, Host picks before Guest perspective: "HOST" 
 </div>
 `;
 
-exports[`parallel turn G-H: Step 2, Host picks before Guest perspective: "NONE" 1`] = `
+exports[`parallel turn G-H: Step 2, Host picks before Guest perspective: NONE 1`] = `
 <div>
   <Trans
     i18nKey="messages.specPick"
@@ -257,7 +257,7 @@ exports[`parallel turn G-H: Step 2, Host picks before Guest perspective: "NONE" 
 </div>
 `;
 
-exports[`parallel turn H-G: Step 1 perspective: "GUEST" 1`] = `
+exports[`parallel turn H-G: Step 1 perspective: GUEST 1`] = `
 <div>
   <Trans
     i18nKey="messages.doPick"
@@ -275,7 +275,7 @@ exports[`parallel turn H-G: Step 1 perspective: "GUEST" 1`] = `
 </div>
 `;
 
-exports[`parallel turn H-G: Step 1 perspective: "HOST" 1`] = `
+exports[`parallel turn H-G: Step 1 perspective: HOST 1`] = `
 <div>
   <Trans
     i18nKey="messages.doPick"
@@ -293,7 +293,7 @@ exports[`parallel turn H-G: Step 1 perspective: "HOST" 1`] = `
 </div>
 `;
 
-exports[`parallel turn H-G: Step 1 perspective: "NONE" 1`] = `
+exports[`parallel turn H-G: Step 1 perspective: NONE 1`] = `
 <div>
   <Trans
     i18nKey="messages.doPick"
@@ -311,7 +311,7 @@ exports[`parallel turn H-G: Step 1 perspective: "NONE" 1`] = `
 </div>
 `;
 
-exports[`parallel turn H-G: Step 2, Guest picks before Host perspective: "GUEST" 1`] = `
+exports[`parallel turn H-G: Step 2, Guest picks before Host perspective: GUEST 1`] = `
 <div>
   <Trans
     i18nKey="messages.waitingForPick"
@@ -322,7 +322,7 @@ exports[`parallel turn H-G: Step 2, Guest picks before Host perspective: "GUEST"
 </div>
 `;
 
-exports[`parallel turn H-G: Step 2, Guest picks before Host perspective: "HOST" 1`] = `
+exports[`parallel turn H-G: Step 2, Guest picks before Host perspective: HOST 1`] = `
 <div>
   <Trans
     i18nKey="messages.doPick"
@@ -340,7 +340,7 @@ exports[`parallel turn H-G: Step 2, Guest picks before Host perspective: "HOST" 
 </div>
 `;
 
-exports[`parallel turn H-G: Step 2, Guest picks before Host perspective: "NONE" 1`] = `
+exports[`parallel turn H-G: Step 2, Guest picks before Host perspective: NONE 1`] = `
 <div>
   <Trans
     i18nKey="messages.specPick"
@@ -363,7 +363,7 @@ exports[`parallel turn H-G: Step 2, Guest picks before Host perspective: "NONE" 
 </div>
 `;
 
-exports[`parallel turn H-G: Step 2, Host picks before Guest perspective: "GUEST" 1`] = `
+exports[`parallel turn H-G: Step 2, Host picks before Guest perspective: GUEST 1`] = `
 <div>
   <Trans
     i18nKey="messages.doPick"
@@ -381,7 +381,7 @@ exports[`parallel turn H-G: Step 2, Host picks before Guest perspective: "GUEST"
 </div>
 `;
 
-exports[`parallel turn H-G: Step 2, Host picks before Guest perspective: "HOST" 1`] = `
+exports[`parallel turn H-G: Step 2, Host picks before Guest perspective: HOST 1`] = `
 <div>
   <Trans
     i18nKey="messages.waitingForPick"
@@ -392,7 +392,7 @@ exports[`parallel turn H-G: Step 2, Host picks before Guest perspective: "HOST" 
 </div>
 `;
 
-exports[`parallel turn H-G: Step 2, Host picks before Guest perspective: "NONE" 1`] = `
+exports[`parallel turn H-G: Step 2, Host picks before Guest perspective: NONE 1`] = `
 <div>
   <Trans
     i18nKey="messages.specPick"
@@ -415,7 +415,7 @@ exports[`parallel turn H-G: Step 2, Host picks before Guest perspective: "NONE" 
 </div>
 `;
 
-exports[`picks, bans, and snipes: "GUEST" sees prompt for "GUEST" turn ("BAN") 1`] = `
+exports[`picks, bans, and snipes: GUEST sees prompt for GUEST turn (BAN) 1`] = `
 <div>
   <Trans
     i18nKey="messages.doBan"
@@ -433,7 +433,7 @@ exports[`picks, bans, and snipes: "GUEST" sees prompt for "GUEST" turn ("BAN") 1
 </div>
 `;
 
-exports[`picks, bans, and snipes: "GUEST" sees prompt for "GUEST" turn ("PICK") 1`] = `
+exports[`picks, bans, and snipes: GUEST sees prompt for GUEST turn (PICK) 1`] = `
 <div>
   <Trans
     i18nKey="messages.doPick"
@@ -451,7 +451,7 @@ exports[`picks, bans, and snipes: "GUEST" sees prompt for "GUEST" turn ("PICK") 
 </div>
 `;
 
-exports[`picks, bans, and snipes: "GUEST" sees prompt for "GUEST" turn ("SNIPE") 1`] = `
+exports[`picks, bans, and snipes: GUEST sees prompt for GUEST turn (SNIPE) 1`] = `
 <div>
   <Trans
     i18nKey="messages.doSnipe"
@@ -470,7 +470,7 @@ exports[`picks, bans, and snipes: "GUEST" sees prompt for "GUEST" turn ("SNIPE")
 </div>
 `;
 
-exports[`picks, bans, and snipes: "GUEST" sees prompt for "HOST" turn ("BAN") 1`] = `
+exports[`picks, bans, and snipes: GUEST sees prompt for HOST turn (BAN) 1`] = `
 <div>
   <Trans
     i18nKey="messages.waitingForBan"
@@ -481,7 +481,7 @@ exports[`picks, bans, and snipes: "GUEST" sees prompt for "HOST" turn ("BAN") 1`
 </div>
 `;
 
-exports[`picks, bans, and snipes: "GUEST" sees prompt for "HOST" turn ("PICK") 1`] = `
+exports[`picks, bans, and snipes: GUEST sees prompt for HOST turn (PICK) 1`] = `
 <div>
   <Trans
     i18nKey="messages.waitingForPick"
@@ -492,7 +492,7 @@ exports[`picks, bans, and snipes: "GUEST" sees prompt for "HOST" turn ("PICK") 1
 </div>
 `;
 
-exports[`picks, bans, and snipes: "GUEST" sees prompt for "HOST" turn ("SNIPE") 1`] = `
+exports[`picks, bans, and snipes: GUEST sees prompt for HOST turn (SNIPE) 1`] = `
 <div>
   <Trans
     i18nKey="messages.waitingForSnipe"
@@ -503,7 +503,7 @@ exports[`picks, bans, and snipes: "GUEST" sees prompt for "HOST" turn ("SNIPE") 
 </div>
 `;
 
-exports[`picks, bans, and snipes: "HOST" sees prompt for "GUEST" turn ("BAN") 1`] = `
+exports[`picks, bans, and snipes: HOST sees prompt for GUEST turn (BAN) 1`] = `
 <div>
   <Trans
     i18nKey="messages.waitingForBan"
@@ -514,7 +514,7 @@ exports[`picks, bans, and snipes: "HOST" sees prompt for "GUEST" turn ("BAN") 1`
 </div>
 `;
 
-exports[`picks, bans, and snipes: "HOST" sees prompt for "GUEST" turn ("PICK") 1`] = `
+exports[`picks, bans, and snipes: HOST sees prompt for GUEST turn (PICK) 1`] = `
 <div>
   <Trans
     i18nKey="messages.waitingForPick"
@@ -525,7 +525,7 @@ exports[`picks, bans, and snipes: "HOST" sees prompt for "GUEST" turn ("PICK") 1
 </div>
 `;
 
-exports[`picks, bans, and snipes: "HOST" sees prompt for "GUEST" turn ("SNIPE") 1`] = `
+exports[`picks, bans, and snipes: HOST sees prompt for GUEST turn (SNIPE) 1`] = `
 <div>
   <Trans
     i18nKey="messages.waitingForSnipe"
@@ -536,7 +536,7 @@ exports[`picks, bans, and snipes: "HOST" sees prompt for "GUEST" turn ("SNIPE") 
 </div>
 `;
 
-exports[`picks, bans, and snipes: "HOST" sees prompt for "HOST" turn ("BAN") 1`] = `
+exports[`picks, bans, and snipes: HOST sees prompt for HOST turn (BAN) 1`] = `
 <div>
   <Trans
     i18nKey="messages.doBan"
@@ -554,7 +554,7 @@ exports[`picks, bans, and snipes: "HOST" sees prompt for "HOST" turn ("BAN") 1`]
 </div>
 `;
 
-exports[`picks, bans, and snipes: "HOST" sees prompt for "HOST" turn ("PICK") 1`] = `
+exports[`picks, bans, and snipes: HOST sees prompt for HOST turn (PICK) 1`] = `
 <div>
   <Trans
     i18nKey="messages.doPick"
@@ -572,7 +572,7 @@ exports[`picks, bans, and snipes: "HOST" sees prompt for "HOST" turn ("PICK") 1`
 </div>
 `;
 
-exports[`picks, bans, and snipes: "HOST" sees prompt for "HOST" turn ("SNIPE") 1`] = `
+exports[`picks, bans, and snipes: HOST sees prompt for HOST turn (SNIPE) 1`] = `
 <div>
   <Trans
     i18nKey="messages.doSnipe"
@@ -591,7 +591,7 @@ exports[`picks, bans, and snipes: "HOST" sees prompt for "HOST" turn ("SNIPE") 1
 </div>
 `;
 
-exports[`picks, bans, and snipes: "NONE" sees prompt for "HOST" turn ("BAN") 1`] = `
+exports[`picks, bans, and snipes: NONE sees prompt for HOST turn (BAN) 1`] = `
 <div>
   <Trans
     i18nKey="messages.specBan"
@@ -614,7 +614,7 @@ exports[`picks, bans, and snipes: "NONE" sees prompt for "HOST" turn ("BAN") 1`]
 </div>
 `;
 
-exports[`picks, bans, and snipes: "NONE" sees prompt for "HOST" turn ("PICK") 1`] = `
+exports[`picks, bans, and snipes: NONE sees prompt for HOST turn (PICK) 1`] = `
 <div>
   <Trans
     i18nKey="messages.specPick"
@@ -637,7 +637,7 @@ exports[`picks, bans, and snipes: "NONE" sees prompt for "HOST" turn ("PICK") 1`
 </div>
 `;
 
-exports[`picks, bans, and snipes: "NONE" sees prompt for "HOST" turn ("SNIPE") 1`] = `
+exports[`picks, bans, and snipes: NONE sees prompt for HOST turn (SNIPE) 1`] = `
 <div>
   <Trans
     i18nKey="messages.specSnipe"

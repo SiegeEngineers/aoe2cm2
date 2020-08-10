@@ -182,6 +182,6 @@ exports[`Player renders correctly 1`] = `
     }
   }
   t={[Function]}
-  tReady={true}
+  tReady={false}
 />
 `;
