@@ -43,7 +43,7 @@ class I18nextMock extends Array<any> {
 export const useMock = new I18nextMock((k: any) => k, {}, (k: any) => k, {})
 
 // this mock makes sure any components using the translate HoC receive the t function as a prop
-export const withTranslation = () => (Component: React.ComponentType) => (props: React.Props<any>) => React.createElement(Component, {...props, ...{t: (k: any) => k}});
+export const withTranslation = () => (Component: React.ComponentType) => (props: React.Attributes) => React.createElement(Component, {...props, ...{t: (k: any) => k}});
 export const Trans = ({ children }: { children: React.ReactNodeArray }) => renderNodes(children);
 export const Translation = (props:any) => props.children((k: any) => k, {lng: "", i18n: {}}, false);
 export const useTranslation = () => useMock;
