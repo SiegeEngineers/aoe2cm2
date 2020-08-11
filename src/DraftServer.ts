@@ -98,7 +98,17 @@ export const DraftServer = {
             }
         });
 
-        app.use(express.static('build'));
+        app.use(express.static('build', {
+            etag: true,
+            lastModified: true,
+            setHeaders: (res, path) => {
+                if (path.startsWith(__dirname + '/static') || path.startsWith(__dirname + '/images')) {
+                    res.setHeader('Cache-Control', 'public, max-age=864000');
+                } else {
+                    res.setHeader('Cache-Control', 'no-cache');
+                }
+            },
+        }));
         app.use('/', (req, res) => {
             if (fs.existsSync(indexPath)) {
                 res.sendFile(indexPath);
