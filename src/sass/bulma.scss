@@ -331,6 +331,7 @@ div.stretchy-wrapper > div.stretchy-text {
   color: #fff;
   font-size: 12px;
   transition: 0.1s ease-in-out;
+  letter-spacing: -0.5px;
 }
 
 .choice img {
@@ -359,8 +360,8 @@ div.stretchy-wrapper > div.stretchy-text {
 }
 
 .ban {
-  width: 56px;
-  height: 56px;
+  width: 72px;
+  height: 72px;
   background-color: $ban-red;
 }
 
