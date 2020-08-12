@@ -110,9 +110,9 @@ class Draft extends React.Component<IProps, IState> {
                 <div id="container" className="container is-fluid">
                     <div className="columns is-mobile">
                         <div className="column is-1 py-0">
-                                <a onClick={this.disconnectAndGoBack} aria-label="Go back" className="back-icon header-navigation">
+                                <button onClick={this.disconnectAndGoBack} aria-label="Go back" className="button is-text back-icon header-navigation">
                                     <KeyboardBackspaceIcon size={48} />
-                                </a>
+                                </button>
                         </div>
                         <div className="column content my-0">
                             <h2 id="draft-title" className="has-text-centered my-0">{presetName}</h2>

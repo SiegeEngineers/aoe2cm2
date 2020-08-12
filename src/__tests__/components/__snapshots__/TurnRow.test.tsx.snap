@@ -2,9 +2,7 @@
 
 exports[`CivGrid renders correctly 1`] = `
 <TurnRow
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
   turns={
     Array [
       Turn {

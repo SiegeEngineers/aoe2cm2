@@ -11,9 +11,7 @@ exports[`BAN CivPanels render correctly 1`] = `
       "name": "Aztecs",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -28,9 +26,7 @@ exports[`BAN CivPanels render correctly 2`] = `
       "name": "Berbers",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -45,9 +41,7 @@ exports[`BAN CivPanels render correctly 3`] = `
       "name": "Britons",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -62,9 +56,7 @@ exports[`BAN CivPanels render correctly 4`] = `
       "name": "Burmese",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -79,9 +71,7 @@ exports[`BAN CivPanels render correctly 5`] = `
       "name": "Byzantines",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -96,9 +86,7 @@ exports[`BAN CivPanels render correctly 6`] = `
       "name": "Celts",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -113,9 +101,7 @@ exports[`BAN CivPanels render correctly 7`] = `
       "name": "Chinese",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -130,9 +116,7 @@ exports[`BAN CivPanels render correctly 8`] = `
       "name": "Ethiopians",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -147,9 +131,7 @@ exports[`BAN CivPanels render correctly 9`] = `
       "name": "Franks",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -164,9 +146,7 @@ exports[`BAN CivPanels render correctly 10`] = `
       "name": "Goths",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -181,9 +161,7 @@ exports[`BAN CivPanels render correctly 11`] = `
       "name": "Huns",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -198,9 +176,7 @@ exports[`BAN CivPanels render correctly 12`] = `
       "name": "Incas",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -215,9 +191,7 @@ exports[`BAN CivPanels render correctly 13`] = `
       "name": "Indians",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -232,9 +206,7 @@ exports[`BAN CivPanels render correctly 14`] = `
       "name": "Italians",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -249,9 +221,7 @@ exports[`BAN CivPanels render correctly 15`] = `
       "name": "Japanese",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -266,9 +236,7 @@ exports[`BAN CivPanels render correctly 16`] = `
       "name": "Khmer",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -283,9 +251,7 @@ exports[`BAN CivPanels render correctly 17`] = `
       "name": "Koreans",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -300,9 +266,7 @@ exports[`BAN CivPanels render correctly 18`] = `
       "name": "Magyars",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -317,9 +281,7 @@ exports[`BAN CivPanels render correctly 19`] = `
       "name": "Malay",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -334,9 +296,7 @@ exports[`BAN CivPanels render correctly 20`] = `
       "name": "Malians",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -351,9 +311,7 @@ exports[`BAN CivPanels render correctly 21`] = `
       "name": "Mayans",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -368,9 +326,7 @@ exports[`BAN CivPanels render correctly 22`] = `
       "name": "Mongols",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -385,9 +341,7 @@ exports[`BAN CivPanels render correctly 23`] = `
       "name": "Persians",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -402,9 +356,7 @@ exports[`BAN CivPanels render correctly 24`] = `
       "name": "Portuguese",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -419,9 +371,7 @@ exports[`BAN CivPanels render correctly 25`] = `
       "name": "Saracens",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -436,9 +386,7 @@ exports[`BAN CivPanels render correctly 26`] = `
       "name": "Slavs",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -453,9 +401,7 @@ exports[`BAN CivPanels render correctly 27`] = `
       "name": "Spanish",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -470,9 +416,7 @@ exports[`BAN CivPanels render correctly 28`] = `
       "name": "Teutons",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -487,9 +431,7 @@ exports[`BAN CivPanels render correctly 29`] = `
       "name": "Turks",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -504,9 +446,7 @@ exports[`BAN CivPanels render correctly 30`] = `
       "name": "Vietnamese",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -521,9 +461,7 @@ exports[`BAN CivPanels render correctly 31`] = `
       "name": "Vikings",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -538,9 +476,7 @@ exports[`BAN CivPanels render correctly 32`] = `
       "name": "Bulgarians",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -555,9 +491,7 @@ exports[`BAN CivPanels render correctly 33`] = `
       "name": "Cumans",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -572,9 +506,7 @@ exports[`BAN CivPanels render correctly 34`] = `
       "name": "Lithuanians",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -589,9 +521,7 @@ exports[`BAN CivPanels render correctly 35`] = `
       "name": "Tatars",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -606,9 +536,7 @@ exports[`PICK CivPanels render correctly 1`] = `
       "name": "Aztecs",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -623,9 +551,7 @@ exports[`PICK CivPanels render correctly 2`] = `
       "name": "Berbers",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -640,9 +566,7 @@ exports[`PICK CivPanels render correctly 3`] = `
       "name": "Britons",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -657,9 +581,7 @@ exports[`PICK CivPanels render correctly 4`] = `
       "name": "Burmese",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -674,9 +596,7 @@ exports[`PICK CivPanels render correctly 5`] = `
       "name": "Byzantines",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -691,9 +611,7 @@ exports[`PICK CivPanels render correctly 6`] = `
       "name": "Celts",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -708,9 +626,7 @@ exports[`PICK CivPanels render correctly 7`] = `
       "name": "Chinese",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -725,9 +641,7 @@ exports[`PICK CivPanels render correctly 8`] = `
       "name": "Ethiopians",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -742,9 +656,7 @@ exports[`PICK CivPanels render correctly 9`] = `
       "name": "Franks",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -759,9 +671,7 @@ exports[`PICK CivPanels render correctly 10`] = `
       "name": "Goths",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -776,9 +686,7 @@ exports[`PICK CivPanels render correctly 11`] = `
       "name": "Huns",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -793,9 +701,7 @@ exports[`PICK CivPanels render correctly 12`] = `
       "name": "Incas",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -810,9 +716,7 @@ exports[`PICK CivPanels render correctly 13`] = `
       "name": "Indians",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -827,9 +731,7 @@ exports[`PICK CivPanels render correctly 14`] = `
       "name": "Italians",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -844,9 +746,7 @@ exports[`PICK CivPanels render correctly 15`] = `
       "name": "Japanese",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -861,9 +761,7 @@ exports[`PICK CivPanels render correctly 16`] = `
       "name": "Khmer",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -878,9 +776,7 @@ exports[`PICK CivPanels render correctly 17`] = `
       "name": "Koreans",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -895,9 +791,7 @@ exports[`PICK CivPanels render correctly 18`] = `
       "name": "Magyars",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -912,9 +806,7 @@ exports[`PICK CivPanels render correctly 19`] = `
       "name": "Malay",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -929,9 +821,7 @@ exports[`PICK CivPanels render correctly 20`] = `
       "name": "Malians",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -946,9 +836,7 @@ exports[`PICK CivPanels render correctly 21`] = `
       "name": "Mayans",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -963,9 +851,7 @@ exports[`PICK CivPanels render correctly 22`] = `
       "name": "Mongols",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -980,9 +866,7 @@ exports[`PICK CivPanels render correctly 23`] = `
       "name": "Persians",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -997,9 +881,7 @@ exports[`PICK CivPanels render correctly 24`] = `
       "name": "Portuguese",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -1014,9 +896,7 @@ exports[`PICK CivPanels render correctly 25`] = `
       "name": "Saracens",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -1031,9 +911,7 @@ exports[`PICK CivPanels render correctly 26`] = `
       "name": "Slavs",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -1048,9 +926,7 @@ exports[`PICK CivPanels render correctly 27`] = `
       "name": "Spanish",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -1065,9 +941,7 @@ exports[`PICK CivPanels render correctly 28`] = `
       "name": "Teutons",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -1082,9 +956,7 @@ exports[`PICK CivPanels render correctly 29`] = `
       "name": "Turks",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -1099,9 +971,7 @@ exports[`PICK CivPanels render correctly 30`] = `
       "name": "Vietnamese",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -1116,9 +986,7 @@ exports[`PICK CivPanels render correctly 31`] = `
       "name": "Vikings",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -1133,9 +1001,7 @@ exports[`PICK CivPanels render correctly 32`] = `
       "name": "Bulgarians",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -1150,9 +1016,7 @@ exports[`PICK CivPanels render correctly 33`] = `
       "name": "Cumans",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -1167,9 +1031,7 @@ exports[`PICK CivPanels render correctly 34`] = `
       "name": "Lithuanians",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -1184,9 +1046,7 @@ exports[`PICK CivPanels render correctly 35`] = `
       "name": "Tatars",
     }
   }
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -1194,9 +1054,7 @@ exports[`empty BAN CivPanel renders correctly 1`] = `
 <CivPanel
   active={false}
   civPanelType="ban"
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;
 
@@ -1204,8 +1062,6 @@ exports[`empty PICK CivPanel renders correctly 1`] = `
 <CivPanel
   active={false}
   civPanelType="pick"
-  i18n={Object {}}
   t={[Function]}
-  tReady={true}
 />
 `;

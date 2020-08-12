@@ -18,7 +18,7 @@ class PlayerOnlineStatus extends React.Component<IProps, object> {
     }
 
     private isConnected() {
-        return this.isHost() && this.props.hostConnected || this.isGuest() && this.props.guestConnected;
+        return (this.isHost() && this.props.hostConnected) || (this.isGuest() && this.props.guestConnected);
     }
 
     private isGuest() {

@@ -532,10 +532,13 @@ div.stretchy-wrapper > div.stretchy-text {
   height: 48px;
   color: $scheme-invert !important;
   opacity: 0.60;
+  background: none;
+  padding: 0;
 }
 
 .back-icon.header-navigation:hover {
   opacity: 1.0;
+  background: none;
 }
 
 .snipe-marker {

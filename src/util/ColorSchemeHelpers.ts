@@ -7,7 +7,7 @@ class ColorSchemeHelpers {
             const preference = localStorage.getItem('preferred_color_scheme');
             let scheme: ColorScheme = ColorScheme.AUTO;
             Object.keys(ColorScheme).forEach(function (key) {
-                if (ColorScheme[key] == preference) {
+                if (ColorScheme[key] === preference) {
                     scheme = ColorScheme[key];
                 }
             });
@@ -33,10 +33,10 @@ class ColorSchemeHelpers {
     }
 
     public static changeColorScheme(colorScheme: ColorScheme) {
-        if (colorScheme == ColorScheme.AUTO) {
+        if (colorScheme === ColorScheme.AUTO) {
             colorScheme = ColorSchemeHelpers.getOSColorSchemePreference()
         }
-        if (colorScheme == ColorScheme.DARK) {
+        if (colorScheme === ColorScheme.DARK) {
             document.documentElement.classList.add('has-theme-dark');
             document.body.classList.add('has-theme-dark');
         } else {
