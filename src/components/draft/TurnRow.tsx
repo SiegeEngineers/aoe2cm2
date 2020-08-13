@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {ComponentElement} from 'react';
+import {FunctionComponentElement} from 'react';
 import {default as ModelTurn} from "../../models/Turn";
 import Turn from "../../containers/Turn";
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
@@ -12,7 +12,7 @@ class TurnRow extends React.Component<IProps, object> {
 
     public render() {
 
-        const items: Array<ComponentElement<any, any>> = [];
+        const items: Array<FunctionComponentElement<any>> = [];
 
         let lastTurnWasParallel = false;
         for (let i = 0; i < this.props.turns.length; i++) {

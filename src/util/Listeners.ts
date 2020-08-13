@@ -73,7 +73,7 @@ export const Listeners = {
     },
     nextActionIsAdminEvent: function (draftsStore: DraftsStore, draftId: string, offset: number) {
         const expectedActions = draftsStore.getExpectedActions(draftId, offset);
-        if (expectedActions.length == 1) {
+        if (expectedActions.length === 1) {
             return expectedActions[0].player === Player.NONE;
         }
         return false;

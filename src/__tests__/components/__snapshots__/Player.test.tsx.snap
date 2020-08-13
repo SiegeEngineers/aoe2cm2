@@ -2,7 +2,6 @@
 
 exports[`Player renders correctly 1`] = `
 <PlayerDraftState
-  i18n={Object {}}
   name="Host Player Name"
   player="HOST"
   preset={
@@ -182,6 +181,5 @@ exports[`Player renders correctly 1`] = `
     }
   }
   t={[Function]}
-  tReady={true}
 />
 `;

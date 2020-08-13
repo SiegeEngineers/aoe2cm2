@@ -247,7 +247,7 @@ class Draft implements IDraftState {
     private static hasPlayerAndActionType(event: PlayerEvent | AdminEvent, player: Player, actionType: ActionType) {
         if (event.player === player) {
             const playerEvent = event as PlayerEvent;
-            return playerEvent.actionType == actionType;
+            return playerEvent.actionType === actionType;
         } else {
             return false;
         }

@@ -24,6 +24,8 @@ import {initialModalState} from "./reducers/modal";
 import {initialPresetEditorState} from "./reducers/presetEditor";
 import SpectateDraft from "./containers/SpectateDraft";
 import {initialColorSchemeState} from "./reducers/colorScheme";
+import {initialReplayState} from "./reducers/replay";
+import {initialIconStyleState} from "./reducers/iconStyle";
 
 const createMySocketMiddleware = () => {
 
@@ -101,6 +103,8 @@ const createMySocketMiddleware = () => {
 
 const store: Store = createStore<ApplicationState, Action, any, Store>(updateState,
     {
+        iconStyle: initialIconStyleState,
+        replay: initialReplayState,
         draft: initialDraftState,
         countdown: initialDraftCountdownState,
         ownProperties: initialDraftOwnPropertiesState,
