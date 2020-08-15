@@ -87,7 +87,7 @@ export const SocketUtil = {
 
         return socket;
     },
-    disconnect(socket: any, storeAPI: { dispatch: (arg0: Action) => void }) {
+    disconnect(socket: any) {
         if (socket !== null && socket.connected) {
             socket.disconnect();
         }

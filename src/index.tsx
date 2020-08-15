@@ -36,9 +36,11 @@ const createMySocketMiddleware = () => {
 
             if (action.type === ClientActions.CONNECT_TO_SERVER) {
                 console.log("CONNECT", SocketUtil.initSocketIfFirstUse, socket, storeAPI);
-                if (socket === null) {
-                    socket = SocketUtil.initSocketIfFirstUse(socket, storeAPI) as SocketIOClient.Socket;
+                if (socket !== null && socket.connected) {
+                    SocketUtil.disconnect(socket);
                 }
+                socket = null;
+                socket = SocketUtil.initSocketIfFirstUse(socket, storeAPI) as SocketIOClient.Socket;
             }
 
             if (action.type === ClientActions.SEND_SET_ROLE) {
@@ -91,7 +93,7 @@ const createMySocketMiddleware = () => {
             if (action.type === ClientActions.DISCONNECT_FROM_SERVER) {
                 console.log('DISCONNECT');
                 if (socket !== null && socket.connected) {
-                    SocketUtil.disconnect(socket, storeAPI);
+                    SocketUtil.disconnect(socket);
                 }
                 socket = null;
             }
