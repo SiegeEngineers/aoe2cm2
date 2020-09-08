@@ -436,6 +436,109 @@ it('Double Snipe', () => {
     expect(errors).toEqual([]);
 });
 
+it('Duplicate hidden global pick', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, true),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, true),
+        new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL),
+    ]);
+    const validator = new Validator(prepareReadyStore(preset, [
+        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS),
+    ]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS));
+    expect(errors).toEqual([]);
+});
+
+it('Duplicate hidden global pick 2', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, true),
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, true),
+        new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL),
+    ]);
+    const validator = new Validator(prepareReadyStore(preset, [
+        new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS),
+    ]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS));
+    expect(errors).toEqual([]);
+});
+
+it('Duplicate hidden global pick parallel inverse', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, true, true),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, true),
+        new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL),
+    ]);
+    const validator = new Validator(prepareReadyStore(preset, [
+        new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS),
+    ]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS));
+    expect(errors).toEqual([]);
+});
+
+it('Duplicate hidden global pick 2 parallel inverse', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, true, true),
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, true),
+        new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL),
+    ]);
+    const validator = new Validator(prepareReadyStore(preset, [
+        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS),
+    ]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS));
+    expect(errors).toEqual([]);
+});
+
+it('Duplicate hidden global ban', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.HOST, Action.BAN, Exclusivity.GLOBAL, true),
+        new Turn(Player.GUEST, Action.BAN, Exclusivity.GLOBAL, true),
+        new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL),
+    ]);
+    const validator = new Validator(prepareReadyStore(preset, [
+        new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS),
+    ]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS));
+    expect(errors).toEqual([]);
+});
+
+it('Duplicate hidden global ban 2', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.GUEST, Action.BAN, Exclusivity.GLOBAL, true),
+        new Turn(Player.HOST, Action.BAN, Exclusivity.GLOBAL, true),
+        new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL),
+    ]);
+    const validator = new Validator(prepareReadyStore(preset, [
+        new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS),
+    ]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS));
+    expect(errors).toEqual([]);
+});
+
+it('Duplicate hidden global ban parallel inverse', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.HOST, Action.BAN, Exclusivity.GLOBAL, true, true),
+        new Turn(Player.GUEST, Action.BAN, Exclusivity.GLOBAL, true),
+        new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL),
+    ]);
+    const validator = new Validator(prepareReadyStore(preset, [
+        new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS),
+    ]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS));
+    expect(errors).toEqual([]);
+});
+
+it('Duplicate hidden global ban 2 parallel inverse', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.GUEST, Action.BAN, Exclusivity.GLOBAL, true, true),
+        new Turn(Player.HOST, Action.BAN, Exclusivity.GLOBAL, true),
+        new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL),
+    ]);
+    const validator = new Validator(prepareReadyStore(preset, [
+        new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS),
+    ]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS));
+    expect(errors).toEqual([]);
+});
 
 const prepareStore = (preset: Preset, events: DraftEvent[] = []): DraftsStore => {
     const draft = new Draft(NAME_HOST, NAME_GUEST, preset);

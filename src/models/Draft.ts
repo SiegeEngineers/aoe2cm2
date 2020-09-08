@@ -46,7 +46,7 @@ class Draft implements IDraftState {
         draft.guestConnected = source.guestConnected;
         draft.hostReady = source.hostReady;
         draft.guestReady = source.guestReady;
-        draft.events = source.events;
+        draft.events = [...source.events];
         draft.startTimestamp = source.startTimestamp;
         draft.nextAction = source.events.length;
         return draft;

@@ -6,6 +6,7 @@ import Civilisation from "./Civilisation";
 import Player from "../constants/Player";
 import {Util} from "../util/Util";
 import Draft from "./Draft";
+import DraftViews from "./DraftViews";
 
 export class Validation {
     public static readonly VLD_000: Validation = new Validation(ValidationId.VLD_000, (draft: Draft, draftEvent: DraftEvent) => {
@@ -54,13 +55,29 @@ export class Validation {
         }
         if (Util.isPlayerEvent(draftEvent) && !(draftEvent.actionType === ActionType.SNIPE)) {
             const playerEvent = draftEvent as PlayerEvent;
-            const globalBans: Civilisation[] = draft.getGlobalBans();
+            const draftViews = Validation.toDraftViews(draft);
+            let draftCopy = (playerEvent.player === Player.HOST) ? draftViews.getHostDraft() : draftViews.getGuestDraft();
+            const globalBans: Civilisation[] = draftCopy.getGlobalBans();
             if (Validation.includes(globalBans, playerEvent.civilisation)) {
                 return false;
             }
         }
         return true;
     });
+
+    public static toDraftViews: (draft: Draft) => DraftViews = (draft: Draft) => {
+        const draftCopy = Draft.from(draft);
+        draftCopy.events.length = 0;
+        draftCopy.nextAction = 0;
+        const draftViews = new DraftViews(draftCopy);
+        for (let event of draft.events) {
+            if (Util.isAdminEvent(event)) {
+                draftViews.reveal(event.action);
+            }
+            draftViews.addDraftEvent(event);
+        }
+        return draftViews;
+    }
 
     public static readonly VLD_101: Validation = new Validation(ValidationId.VLD_101, (draft: Draft, draftEvent: DraftEvent) => {
         if (!draft.hasNextAction()) {
@@ -105,7 +122,9 @@ export class Validation {
             if (playerEvent.actionType !== ActionType.PICK) {
                 return true;
             }
-            const exclusivePicks = draft.getGlobalPicks();
+            const draftViews = Validation.toDraftViews(draft);
+            let draftCopy = (playerEvent.player === Player.HOST) ? draftViews.getHostDraft() : draftViews.getGuestDraft();
+            const exclusivePicks = draftCopy.getGlobalPicks();
             if (Validation.includes(exclusivePicks, playerEvent.civilisation)) {
                 return false;
             }
