@@ -250,7 +250,7 @@ export class DraftsStore {
                         const actListener = Listeners.actListener(this, draftId, (draftId: string, message: DraftEvent) => {
                             this.addDraftEvent(draftId, message);
                             return [];
-                        }, socket, roomHost, roomGuest, roomSpec);
+                        }, socket, roomHost, roomGuest, roomSpec, true);
                         const expectedActions = this.getExpectedActions(draftId);
                         if (expectedActions.length > 0) {
                             for (let expectedAction of expectedActions) {

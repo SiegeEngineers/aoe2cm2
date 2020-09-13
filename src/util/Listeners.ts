@@ -12,28 +12,30 @@ import AdminEvent from "../models/AdminEvent";
 
 export const Listeners = {
 
-    actListener(draftsStore: DraftsStore, draftId: string, validateAndApply: (draftId: string, message: DraftEvent) => ValidationId[], socket: SocketIO.Socket, roomHost: string, roomGuest: string, roomSpec: string) {
+    actListener(draftsStore: DraftsStore, draftId: string, validateAndApply: (draftId: string, message: DraftEvent) => ValidationId[], socket: SocketIO.Socket, roomHost: string, roomGuest: string, roomSpec: string, skipSourceValidation = false) {
         return (message: PlayerEvent, fn: (retval: any) => void) => {
             logger.info("Got act message: %s", JSON.stringify(message), {draftId});
 
             const assignedRole = Util.getAssignedRole(socket, roomHost, roomGuest);
 
-            if (assignedRole === Player.NONE) {
-                logger.warn("Discarding specator message", {draftId});
-                socket.emit('message', 'You shall not act.');
-                return;
-            }
+            if (!skipSourceValidation) {
+                if (assignedRole === Player.NONE) {
+                    logger.warn("Discarding specator message", {draftId});
+                    socket.emit('message', 'You shall not act.');
+                    return;
+                }
 
-            if (message.player !== assignedRole) {
-                logger.warn("Discarding fake message", {draftId});
-                socket.emit('message', 'You shall not impersonate your opponent.');
-                return;
-            }
+                if (message.player !== assignedRole) {
+                    logger.warn("Discarding fake message", {draftId});
+                    socket.emit('message', 'You shall not impersonate your opponent.');
+                    return;
+                }
 
-            if (!draftsStore.has(draftId)) {
-                logger.warn("Draft does not exist", {draftId});
-                socket.emit('message', 'This draft does not exist.');
-                return;
+                if (!draftsStore.has(draftId)) {
+                    logger.warn("Draft does not exist", {draftId});
+                    socket.emit('message', 'This draft does not exist.');
+                    return;
+                }
             }
 
             const civilisationsList = draftsStore.getDraftOrThrow(draftId).preset.civilisations.slice();
