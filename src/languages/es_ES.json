@@ -133,7 +133,7 @@
   "instructions": {
     "home": {
       "title": "Instrucciónes",
-      "1": "Captains mode es un selector de civilizaciónes basado en turnos para emparejamientos. Cada capitán puede <1>Pickear</1> y <3>Banear</3> civilizaciónes en un orden predefinido. Los baneos previenen a los capitánes oponentes de elegir una determinada civilización.",
+      "1": "Captains mode es un selector de civilizaciónes basado en turnos para emparejamientos. Cada capitán puede pickear y banear civilizaciónes en un orden predefinido. Los baneos previenen a los capitánes oponentes de elegir una determinada civilización.",
       "2": "Cada capitán tiene <1>30 segundos</1>. En caso de pasarse el tiempo, una civilización es pickeada o baneada al azar.",
       "3": "También hay extensiónes para los torneos:",
       "4": "<0>Ocúlto</0> permite ocultar las selecciónes de civilizaciónes hasta que son mostradas explicitamente (visible en el cronograma en la parte superiór).",
