@@ -54,6 +54,11 @@ class DraftViews {
     }
 
     addDraftEvent(draftEvent: DraftEvent) {
+        const copy = Draft.copyEvent(draftEvent);
+        this.addDraftEventCopy(copy);
+    }
+
+    private addDraftEventCopy(draftEvent: DraftEvent) {
         draftEvent.offset = this.actualDraft.getOffset();
         this.actualDraft.events.push(draftEvent);
         this.actualDraft.nextAction++;

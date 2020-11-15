@@ -46,10 +46,24 @@ class Draft implements IDraftState {
         draft.guestConnected = source.guestConnected;
         draft.hostReady = source.hostReady;
         draft.guestReady = source.guestReady;
-        draft.events = [...source.events];
+        draft.events = this.copyEvents(source.events);
         draft.startTimestamp = source.startTimestamp;
         draft.nextAction = source.events.length;
         return draft;
+    }
+
+    static copyEvents(events: DraftEvent[]) {
+        return events.map(draftEvent => {
+            return Draft.copyEvent(draftEvent);
+        });
+    }
+
+    static copyEvent(draftEvent: DraftEvent): DraftEvent {
+        if (Util.isPlayerEvent(draftEvent)) {
+            return PlayerEvent.from(draftEvent);
+        } else {
+            return AdminEvent.from(draftEvent);
+        }
     }
 
     public static playersAreReady(draft: IDraftState) {

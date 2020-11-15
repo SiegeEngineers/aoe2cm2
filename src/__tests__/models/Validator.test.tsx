@@ -540,6 +540,23 @@ it('Duplicate hidden global ban 2 parallel inverse', () => {
     expect(errors).toEqual([]);
 });
 
+it('Validator does not modify offsets', () => {
+    const expectedOffset = -1337;
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL),
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL)
+    ]);
+    const firstEvent = new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS);
+    firstEvent.offset = expectedOffset;
+    const secondEvent = new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.BRITONS);
+    const draftsStore = prepareReadyStore(preset, [firstEvent]);
+    expect(draftsStore.getEvents(DRAFT_ID)[0].offset).toEqual(expectedOffset);
+
+    Validator.checkAllValidations(DRAFT_ID, draftsStore, secondEvent);
+
+    expect(draftsStore.getEvents(DRAFT_ID)[0].offset).toEqual(expectedOffset);
+});
+
 const prepareStore = (preset: Preset, events: DraftEvent[] = []): DraftsStore => {
     const draft = new Draft(NAME_HOST, NAME_GUEST, preset);
     draft.events.push(...events);

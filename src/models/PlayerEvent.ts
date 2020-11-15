@@ -14,6 +14,12 @@ class PlayerEvent {
         this.civilisation = civilisation;
         this.offset = 0;
     }
+
+    public static from(source: PlayerEvent): PlayerEvent {
+        const playerEvent = new PlayerEvent(source.player, source.actionType, source.civilisation);
+        playerEvent.offset = source.offset;
+        return playerEvent;
+    }
 }
 
 export default PlayerEvent;
