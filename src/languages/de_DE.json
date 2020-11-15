@@ -101,6 +101,7 @@
   "End": "Ende",
   "<0></0>PICK": "WAHL",
   "<0></0>BAN": "BANN",
+  "flip": "Vertausche die Positionen von Host und Gast",
   "validationFailed": "Validierungsfehler:",
   "errors": {
     "VLD_000": "Draft erwartet derzeit keine Aktion",

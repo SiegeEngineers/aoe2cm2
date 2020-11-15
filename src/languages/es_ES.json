@@ -101,6 +101,7 @@
   "End": "Finalizar",
   "<0></0>PICK": "<0></0>PICK",
   "<0></0>BAN": "<0></0>BAN",
+  "flip": "Voltear posiciones de Anfitrión e Invitado",
   "validationFailed": "Fallaron la/s validaciónes:",
   "errors": {
     "VLD_000": "El Draft no esta esperando acciónes",

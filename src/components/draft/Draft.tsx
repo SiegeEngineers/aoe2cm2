@@ -100,6 +100,16 @@ class Draft extends React.Component<IProps, IState> {
         }
     }
 
+    private flip():void{
+        const newFlippedValue = !this.state.flipped;
+        let searchParams = new URLSearchParams(this.props.location.search);
+        searchParams.set('flipped', newFlippedValue.toString());
+        this.props.history.push({
+            search: searchParams.toString()
+        });
+        this.setState({...this.state, flipped: newFlippedValue});
+    }
+
     public render() {
         const presetName: string = this.props.preset.name;
         const turns = this.props.preset.turns;
@@ -152,6 +162,12 @@ class Draft extends React.Component<IProps, IState> {
                     </details>
                 </div>
             </section>
+
+            <div className="container is-desktop has-text-centered mb-3" style={{maxWidth: "808px"}}>
+                <button className={'button is-small'} onClick={()=>{this.flip()}}>
+                    <Trans i18nKey='flip'>Flip Host and Guest positions</Trans>
+                </button>
+            </div>
         </>
         );
     }
