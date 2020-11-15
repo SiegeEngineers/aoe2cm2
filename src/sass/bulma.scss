@@ -503,6 +503,14 @@ div.stretchy-wrapper > div.stretchy-text {
   text-align: left;
 }
 
+.flipped #player-host {
+  text-align: left;
+}
+
+.flipped #player-guest {
+  text-align: right;
+}
+
 #player-host h4.player-name {
   color: $host-cyan;
 }
@@ -524,6 +532,28 @@ div.stretchy-wrapper > div.stretchy-text {
 #player-host .picks,
 #player-host .bans,
 #player-host .captains-line {
+  flex-direction: row-reverse;
+}
+
+.flipped #player-host .picks,
+.flipped #player-host .bans,
+.flipped #player-host .captains-line {
+  flex-direction: row;
+}
+
+#player-guest .picks,
+#player-guest .bans,
+#player-guest .captains-line {
+  flex-direction: row;
+}
+
+.flipped #player-guest .picks,
+.flipped #player-guest .bans,
+.flipped #player-guest .captains-line {
+  flex-direction: row-reverse;
+}
+
+.flipped .columns {
   flex-direction: row-reverse;
 }
 

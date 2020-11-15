@@ -50,15 +50,18 @@ interface IProps extends WithTranslation, RouteComponentProps<any> {
 
 interface IState {
     joined: boolean;
+    flipped: boolean;
 }
 
 class Draft extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
         this.disconnectAndGoBack = this.disconnectAndGoBack.bind(this);
+        let query = new URLSearchParams(this.props.location.search);
+        const flipped = query.get('flipped') === 'true' || false;
+        this.state = {joined: false, flipped};
     }
 
-    state = {joined: false};
 
     componentDidMount(): void {
         this.props.triggerConnect();
@@ -101,10 +104,12 @@ class Draft extends React.Component<IProps, IState> {
         const presetName: string = this.props.preset.name;
         const turns = this.props.preset.turns;
 
+        let className = 'section';
+        className += this.state.flipped ? ' flipped' : '';
 
         return (
             <>
-            <section className="section">
+            <section className={className}>
                 <Modal inDraft={true}/>
                 <RoleModal/>
                 <div id="container" className="container is-fluid">
