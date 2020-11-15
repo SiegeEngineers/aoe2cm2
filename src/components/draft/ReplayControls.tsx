@@ -197,6 +197,9 @@ class ReplayControls extends React.Component<IProps, IState> {
 
     private decrementCountdownValue() {
         this.setState({countdownValue: this.state.countdownValue - 1});
+        if(this.state.countdownValue < 0){
+            this.stopCountdown();
+        }
     }
 
     private hasDraftEnded() {
