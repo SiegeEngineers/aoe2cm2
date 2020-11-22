@@ -51,6 +51,7 @@ interface IProps extends WithTranslation, RouteComponentProps<any> {
 interface IState {
     joined: boolean;
     flipped: boolean;
+    smooch: boolean;
 }
 
 class Draft extends React.Component<IProps, IState> {
@@ -59,7 +60,8 @@ class Draft extends React.Component<IProps, IState> {
         this.disconnectAndGoBack = this.disconnectAndGoBack.bind(this);
         let query = new URLSearchParams(this.props.location.search);
         const flipped = query.get('flipped') === 'true' || false;
-        this.state = {joined: false, flipped};
+        const smooch = query.get('smooch') === 'true' || false;
+        this.state = {joined: false, flipped, smooch};
     }
 
 
@@ -110,12 +112,23 @@ class Draft extends React.Component<IProps, IState> {
         this.setState({...this.state, flipped: newFlippedValue});
     }
 
+    private toggleSmooch():void{
+        const newSmoochValue = !this.state.smooch;
+        let searchParams = new URLSearchParams(this.props.location.search);
+        searchParams.set('smooch', newSmoochValue.toString());
+        this.props.history.push({
+            search: searchParams.toString()
+        });
+        this.setState({...this.state, smooch: newSmoochValue});
+    }
+
     public render() {
         const presetName: string = this.props.preset.name;
         const turns = this.props.preset.turns;
 
         let className = 'section';
         className += this.state.flipped ? ' flipped' : '';
+        className += this.state.smooch ? ' smooch' : '';
 
         return (
             <>
@@ -166,6 +179,9 @@ class Draft extends React.Component<IProps, IState> {
             <div className="container is-desktop has-text-centered mb-3" style={{maxWidth: "808px"}}>
                 <button className={'button is-small'} onClick={()=>{this.flip()}}>
                     <Trans i18nKey='flip'>Flip Host and Guest positions</Trans>
+                </button>
+                <button className={'button is-small'} onClick={()=>{this.toggleSmooch()}}>
+                    <Trans i18nKey='smooch'>Toggle smooch mode</Trans>
                 </button>
             </div>
         </>

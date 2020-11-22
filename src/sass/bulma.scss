@@ -557,6 +557,18 @@ div.stretchy-wrapper > div.stretchy-text {
   flex-direction: row-reverse;
 }
 
+.smooch #player-host .stretchy-image img {
+  transform: scaleX(-1);
+}
+
+.smooch.flipped #player-host .stretchy-image img {
+  transform: none;
+}
+
+.smooch.flipped #player-guest .stretchy-image img {
+  transform: scaleX(-1);
+}
+
 .back-icon.header-navigation {
   display: inline-block;
   width: 48px;
