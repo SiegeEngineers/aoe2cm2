@@ -9,7 +9,7 @@ export const logger = (typeof window === 'undefined') ? winston.createLogger({
     ),
     transports: [
         new winston.transports.File({filename: 'error.log', level: 'error'}),
-        new winston.transports.File({filename: 'aoe2cm.log'}),
+        new winston.transports.File({filename: 'aoe2cm.log', maxsize: 10485760}),
         new winston.transports.Console(),
     ]
 }) : {
