@@ -12,7 +12,7 @@ interface IProps {
 class DraftState extends React.Component<IProps, object> {
     public render() {
         return (
-            <div className="columns is-mobile">
+            <div className="columns is-mobile player-panels">
                 <PlayerDraftState preset={this.props.preset}
                                   player={ModelPlayer.HOST}
                                   name={this.props.nameHost}
