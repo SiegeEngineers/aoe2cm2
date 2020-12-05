@@ -12,6 +12,7 @@ exports[`Player renders correctly 1`] = `
         Turn {
           "action": "BAN",
           "exclusivity": "GLOBAL",
+          "executingPlayer": "HOST",
           "hidden": false,
           "id": "mocked-uuid",
           "parallel": false,
@@ -20,6 +21,7 @@ exports[`Player renders correctly 1`] = `
         Turn {
           "action": "BAN",
           "exclusivity": "GLOBAL",
+          "executingPlayer": "GUEST",
           "hidden": false,
           "id": "mocked-uuid",
           "parallel": false,
@@ -28,6 +30,7 @@ exports[`Player renders correctly 1`] = `
         Turn {
           "action": "BAN",
           "exclusivity": "NONEXCLUSIVE",
+          "executingPlayer": "HOST",
           "hidden": true,
           "id": "mocked-uuid",
           "parallel": false,
@@ -36,6 +39,7 @@ exports[`Player renders correctly 1`] = `
         Turn {
           "action": "BAN",
           "exclusivity": "NONEXCLUSIVE",
+          "executingPlayer": "GUEST",
           "hidden": true,
           "id": "mocked-uuid",
           "parallel": false,
@@ -44,6 +48,7 @@ exports[`Player renders correctly 1`] = `
         Turn {
           "action": "REVEAL_ALL",
           "exclusivity": "GLOBAL",
+          "executingPlayer": "NONE",
           "hidden": false,
           "id": "mocked-uuid",
           "parallel": false,
@@ -52,6 +57,7 @@ exports[`Player renders correctly 1`] = `
         Turn {
           "action": "PICK",
           "exclusivity": "GLOBAL",
+          "executingPlayer": "HOST",
           "hidden": false,
           "id": "mocked-uuid",
           "parallel": false,
@@ -60,6 +66,7 @@ exports[`Player renders correctly 1`] = `
         Turn {
           "action": "PICK",
           "exclusivity": "GLOBAL",
+          "executingPlayer": "GUEST",
           "hidden": false,
           "id": "mocked-uuid",
           "parallel": false,
@@ -68,6 +75,7 @@ exports[`Player renders correctly 1`] = `
         Turn {
           "action": "PICK",
           "exclusivity": "EXCLUSIVE",
+          "executingPlayer": "HOST",
           "hidden": false,
           "id": "mocked-uuid",
           "parallel": false,
@@ -76,6 +84,7 @@ exports[`Player renders correctly 1`] = `
         Turn {
           "action": "PICK",
           "exclusivity": "EXCLUSIVE",
+          "executingPlayer": "GUEST",
           "hidden": false,
           "id": "mocked-uuid",
           "parallel": false,
@@ -84,6 +93,7 @@ exports[`Player renders correctly 1`] = `
         Turn {
           "action": "PICK",
           "exclusivity": "NONEXCLUSIVE",
+          "executingPlayer": "HOST",
           "hidden": true,
           "id": "mocked-uuid",
           "parallel": false,
@@ -92,6 +102,7 @@ exports[`Player renders correctly 1`] = `
         Turn {
           "action": "PICK",
           "exclusivity": "NONEXCLUSIVE",
+          "executingPlayer": "GUEST",
           "hidden": true,
           "id": "mocked-uuid",
           "parallel": false,
@@ -100,6 +111,7 @@ exports[`Player renders correctly 1`] = `
         Turn {
           "action": "PICK",
           "exclusivity": "NONEXCLUSIVE",
+          "executingPlayer": "HOST",
           "hidden": true,
           "id": "mocked-uuid",
           "parallel": false,
@@ -108,6 +120,7 @@ exports[`Player renders correctly 1`] = `
         Turn {
           "action": "PICK",
           "exclusivity": "NONEXCLUSIVE",
+          "executingPlayer": "GUEST",
           "hidden": true,
           "id": "mocked-uuid",
           "parallel": false,
@@ -116,6 +129,7 @@ exports[`Player renders correctly 1`] = `
         Turn {
           "action": "PICK",
           "exclusivity": "NONEXCLUSIVE",
+          "executingPlayer": "HOST",
           "hidden": true,
           "id": "mocked-uuid",
           "parallel": false,
@@ -124,6 +138,7 @@ exports[`Player renders correctly 1`] = `
         Turn {
           "action": "PICK",
           "exclusivity": "NONEXCLUSIVE",
+          "executingPlayer": "GUEST",
           "hidden": true,
           "id": "mocked-uuid",
           "parallel": false,
@@ -132,6 +147,7 @@ exports[`Player renders correctly 1`] = `
         Turn {
           "action": "PICK",
           "exclusivity": "NONEXCLUSIVE",
+          "executingPlayer": "HOST",
           "hidden": true,
           "id": "mocked-uuid",
           "parallel": false,
@@ -140,6 +156,7 @@ exports[`Player renders correctly 1`] = `
         Turn {
           "action": "PICK",
           "exclusivity": "NONEXCLUSIVE",
+          "executingPlayer": "GUEST",
           "hidden": true,
           "id": "mocked-uuid",
           "parallel": false,
@@ -148,6 +165,7 @@ exports[`Player renders correctly 1`] = `
         Turn {
           "action": "REVEAL_ALL",
           "exclusivity": "GLOBAL",
+          "executingPlayer": "NONE",
           "hidden": false,
           "id": "mocked-uuid",
           "parallel": false,
@@ -156,6 +174,7 @@ exports[`Player renders correctly 1`] = `
         Turn {
           "action": "SNIPE",
           "exclusivity": "NONEXCLUSIVE",
+          "executingPlayer": "HOST",
           "hidden": true,
           "id": "mocked-uuid",
           "parallel": false,
@@ -164,6 +183,7 @@ exports[`Player renders correctly 1`] = `
         Turn {
           "action": "SNIPE",
           "exclusivity": "NONEXCLUSIVE",
+          "executingPlayer": "GUEST",
           "hidden": true,
           "id": "mocked-uuid",
           "parallel": false,
@@ -172,6 +192,7 @@ exports[`Player renders correctly 1`] = `
         Turn {
           "action": "REVEAL_ALL",
           "exclusivity": "GLOBAL",
+          "executingPlayer": "NONE",
           "hidden": false,
           "id": "mocked-uuid",
           "parallel": false,

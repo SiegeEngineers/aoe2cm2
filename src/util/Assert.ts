@@ -13,6 +13,12 @@ export const Assert = {
             throw new Error("Expected argument to be a valid Player value, but was " + arg);
         }
     },
+    isPlayerOrUndefined(arg: any) {
+        if (arg === undefined) {
+            return;
+        }
+        this.isPlayer(arg);
+    },
     isAction(arg: any) {
         if (!Object.keys(Action).includes(arg)) {
             throw new Error("Expected argument to be a valid Action value, but was " + arg);

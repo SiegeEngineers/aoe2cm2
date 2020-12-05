@@ -16,7 +16,7 @@ class ParallelCheckbox extends React.Component<Props, object> {
         return <label className="checkbox tag has-background-transparent">
             <input type='checkbox' checked={this.props.turn.parallel} onChange={() => {
                 const t = this.props.turn;
-                const newTurn = new Turn(t.player, t.action, t.exclusivity, t.hidden, !t.parallel);
+                const newTurn = new Turn(t.player, t.action, t.exclusivity, t.hidden, !t.parallel, t.executingPlayer);
                 this.props.onValueChange(newTurn, this.props.index)
             }}/>&nbsp;PARALLEL
         </label>

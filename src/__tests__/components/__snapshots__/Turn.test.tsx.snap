@@ -7,6 +7,7 @@ exports[`labels the turn with GPICK 1`] = `
     Turn {
       "action": "PICK",
       "exclusivity": "GLOBAL",
+      "executingPlayer": "HOST",
       "hidden": false,
       "id": "mocked-uuid",
       "parallel": false,
@@ -24,6 +25,7 @@ exports[`labels the turn with PICK 1`] = `
     Turn {
       "action": "PICK",
       "exclusivity": "NONEXCLUSIVE",
+      "executingPlayer": "HOST",
       "hidden": false,
       "id": "mocked-uuid",
       "parallel": false,
@@ -41,6 +43,7 @@ exports[`labels the turn with xPICK 1`] = `
     Turn {
       "action": "PICK",
       "exclusivity": "EXCLUSIVE",
+      "executingPlayer": "HOST",
       "hidden": true,
       "id": "mocked-uuid",
       "parallel": false,

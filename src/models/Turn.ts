@@ -44,14 +44,16 @@ class Turn {
     public readonly exclusivity: Exclusivity;
     public readonly hidden: boolean;
     public readonly parallel: boolean;
+    public readonly executingPlayer: Player;
     public readonly id: string;
 
-    constructor(player: Player, action: Action, exclusivity: Exclusivity, hidden: boolean = false, parallel: boolean = false) {
+    constructor(player: Player, action: Action, exclusivity: Exclusivity, hidden: boolean = false, parallel: boolean = false, executingPlayer: Player = player) {
         this.id = uuid();
         this.player = player;
         this.action = action;
         this.exclusivity = exclusivity;
         this.hidden = hidden;
+        this.executingPlayer = executingPlayer;
         this.parallel = parallel;
     }
 
@@ -59,11 +61,12 @@ class Turn {
         let retval: Turn[] = [];
         for (let turn of turns) {
             Assert.isPlayer(turn.player);
+            Assert.isPlayerOrUndefined(turn.executingPlayer);
             Assert.isAction(turn.action);
             Assert.isExclusivity(turn.exclusivity);
             Assert.isBoolean(turn.hidden);
             Assert.isBoolean(turn.parallel);
-            retval.push(new Turn(turn.player, turn.action, turn.exclusivity, turn.hidden, turn.parallel));
+            retval.push(new Turn(turn.player, turn.action, turn.exclusivity, turn.hidden, turn.parallel, turn.executingPlayer));
         }
         return retval;
     }

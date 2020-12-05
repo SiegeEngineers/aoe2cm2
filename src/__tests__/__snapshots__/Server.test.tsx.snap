@@ -17,6 +17,7 @@ Object {
       Object {
         "action": "BAN",
         "exclusivity": "NONEXCLUSIVE",
+        "executingPlayer": "HOST",
         "hidden": false,
         "id": "mocked-uuid",
         "parallel": false,
@@ -25,6 +26,7 @@ Object {
       Object {
         "action": "BAN",
         "exclusivity": "NONEXCLUSIVE",
+        "executingPlayer": "GUEST",
         "hidden": false,
         "id": "mocked-uuid",
         "parallel": false,
@@ -33,6 +35,7 @@ Object {
       Object {
         "action": "PICK",
         "exclusivity": "NONEXCLUSIVE",
+        "executingPlayer": "GUEST",
         "hidden": false,
         "id": "mocked-uuid",
         "parallel": false,
@@ -41,6 +44,7 @@ Object {
       Object {
         "action": "PICK",
         "exclusivity": "NONEXCLUSIVE",
+        "executingPlayer": "HOST",
         "hidden": false,
         "id": "mocked-uuid",
         "parallel": false,

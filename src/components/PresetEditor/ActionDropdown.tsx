@@ -29,7 +29,7 @@ class ActionDropdown extends React.Component<Props, object> {
         return <div className="select is-small">
             <select value={this.props.turn.action} onChange={(event) => {
                 const t = this.props.turn;
-                const newTurn = new Turn(t.player, event.target.value as Action, t.exclusivity, t.hidden, t.parallel);
+                const newTurn = new Turn(t.player, event.target.value as Action, t.exclusivity, t.hidden, t.parallel, t.executingPlayer);
                 this.props.onValueChange(newTurn, this.props.index)
             }}>{options}
             </select>

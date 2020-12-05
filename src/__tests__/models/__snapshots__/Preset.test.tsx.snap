@@ -8,6 +8,7 @@ Preset {
     Turn {
       "action": "PICK",
       "exclusivity": "NONEXCLUSIVE",
+      "executingPlayer": "GUEST",
       "hidden": false,
       "id": "mocked-uuid",
       "parallel": false,

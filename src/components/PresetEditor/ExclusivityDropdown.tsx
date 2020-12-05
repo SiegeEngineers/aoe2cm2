@@ -16,7 +16,7 @@ class ExclusivityDropdown extends React.Component<Props, object> {
         return <div className="select is-small">
             <select value={this.props.turn.exclusivity} onChange={(event) => {
                 const t = this.props.turn;
-                const newTurn = new Turn(t.player, t.action, event.target.value as Exclusivity, t.hidden, t.parallel);
+                const newTurn = new Turn(t.player, t.action, event.target.value as Exclusivity, t.hidden, t.parallel, t.executingPlayer);
                 this.props.onValueChange(newTurn, this.props.index)
             }}>
                 <option value={Exclusivity.NONEXCLUSIVE}>{Exclusivity.NONEXCLUSIVE}</option>
