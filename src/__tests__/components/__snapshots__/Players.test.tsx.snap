@@ -2,7 +2,7 @@
 
 exports[`CivGrid renders correctly 1`] = `
 <div
-  className="columns is-mobile"
+  className="columns is-mobile player-panels"
 >
   <Connect(Component)
     key="HOST"
