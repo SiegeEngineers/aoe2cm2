@@ -110,18 +110,8 @@ action is not broadcasted.
 - `VLD_001`: Acting user is supposed to act according to preset 
 - `VLD_002`: Action is expected according to preset
 
-### Validations for PICKs: 
-- `VLD_100`: Civilisation has not been banned globally before
-- `VLD_101`: Civilisation has not been banned before for same player
-- `VLD_102`: Civilisation has not been exclusively picked before by the same player
-- `VLD_103`: Civilisation has not been globally picked before by either player
-
-### Validations for BANs:
-- `VLD_200`: Civilisation has not been exclusively banned before by same player
-
-### Validations for SNIPEs:
-- `VLD_300`: Civilisation has been picked before by opponent
-- `VLD_301`: The opponent has a non-sniped pick of the civilisation
+### Validations for PICKs, BANs, and SNIPEs: 
+- `VLD_010`: Action is not permissible with that civilisation
 
 
 ## Messages

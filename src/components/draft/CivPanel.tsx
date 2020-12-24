@@ -145,6 +145,9 @@ class CivPanel extends React.Component<IProps, IState> {
             }
             const draft = Draft.from(this.props.draft as Draft);
             const triggerAction = this.props.triggerAction as ActionType;
+            if (![ActionType.PICK, ActionType.BAN, ActionType.SNIPE].includes(triggerAction)) {
+                return false;
+            }
             const civilisation = this.props.civilisation as Civilisation;
             let draftsStore = new DraftsStore();
             draftsStore.createDraft('draftId', draft);

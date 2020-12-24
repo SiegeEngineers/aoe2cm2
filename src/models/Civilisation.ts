@@ -150,3 +150,4 @@ class Civilisation {
 }
 
 export default Civilisation;
+export {Name};
