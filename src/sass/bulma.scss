@@ -585,11 +585,15 @@ div.stretchy-wrapper > div.stretchy-text {
 }
 
 .snipe-marker {
-  background-image: url('/images/red-cross.svg');
+  background-image: url('/images/snipe-marker.svg');
 }
 
-.used-marker {
-  background-image: url('/images/green-checkmark.svg');
+.used-marker.used-crown {
+  background-image: url('/images/crown.svg');
+}
+
+.used-marker.used-skull {
+  background-image: url('/images/skull.svg');
 }
 
 .green-status-marker {

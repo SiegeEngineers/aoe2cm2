@@ -27,14 +27,16 @@ interface IProps extends WithTranslation {
 }
 
 interface IState {
-    used: boolean;
+    used: string;
 }
 
 class CivPanel extends React.Component<IProps, IState> {
 
+    USED_CLASSES = ['is-hidden', 'used-crown', 'used-skull'];
+
     constructor(props: IProps) {
         super(props);
-        this.state = {used: false};
+        this.state = {used: this.USED_CLASSES[0]};
     }
 
     public render() {
@@ -68,7 +70,7 @@ class CivPanel extends React.Component<IProps, IState> {
         } else {
             if (this.props.civPanelType === CivPanelType.PICK && this.isDraftCompleted()) {
                 onClickAction = () => {
-                    this.setState({...this.state, used: !this.state.used});
+                    this.setState({...this.state, used: this.nextUsed(this.state.used)});
                 }
             }
             className += ' is-inline-block';
@@ -86,10 +88,7 @@ class CivPanel extends React.Component<IProps, IState> {
         if (!this.props.sniped) {
             snipeMarkerClass += ' is-hidden';
         }
-        let usedMarkerClass = "stretchy-image used-marker";
-        if (!this.state.used) {
-            usedMarkerClass += ' is-hidden';
-        }
+        let usedMarkerClass = "stretchy-image used-marker " + this.state.used;
         let randomMarkerClass = "random-pick";
         if (!this.props.civilisation || !this.props.civilisation.isRandomlyChosenCiv) {
             randomMarkerClass += ' is-hidden';
@@ -165,6 +164,11 @@ class CivPanel extends React.Component<IProps, IState> {
             const preset = draft.preset as Preset;
             return this.props.nextAction >= preset.turns.length;
         }
+    }
+
+    private nextUsed(current: string) {
+        const index = (this.USED_CLASSES.indexOf(current) + 1) % this.USED_CLASSES.length;
+        return this.USED_CLASSES[index];
     }
 }
 
