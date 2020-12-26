@@ -13,14 +13,14 @@ export function mapStateToProps(state: ApplicationState) {
     if (state.draft.preset && index < state.draft.preset.turns.length) {
 
         let turn = state.draft.preset.turns[index];
-        if (turn.player !== state.ownProperties.whoAmI) {
+        if (turn.executingPlayer !== state.ownProperties.whoAmI) {
             if (turn.parallel && (index + 1) < state.draft.preset.turns.length) {
                 turn = state.draft.preset.turns[index + 1];
             } else if((index - 1) >= 0 && state.draft.preset.turns[index - 1].parallel) {
                 turn = state.draft.preset.turns[index - 1];
             }
         }
-        if (turn.player === state.ownProperties.whoAmI) {
+        if (turn.executingPlayer === state.ownProperties.whoAmI) {
             triggerAction = actionTypeFromAction(turn.action);
         }
     }

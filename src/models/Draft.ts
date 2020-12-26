@@ -86,7 +86,7 @@ class Draft implements IDraftState {
                 const lastTurn = this.preset.turns[nextIndex - 1];
                 if (lastTurn.parallel) {
                     const lastEvent = this.events[nextIndex - 1];
-                    if (lastEvent.player === lastTurn.player) {
+                    if (Util.isPlayerEvent(lastEvent) && lastEvent.executingPlayer === lastTurn.executingPlayer) {
                         expectedActions.push(this.preset.turns[nextIndex]);
                     } else {
                         expectedActions.push(this.preset.turns[nextIndex - 1]);

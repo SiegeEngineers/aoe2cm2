@@ -6,6 +6,7 @@ import Action from "../../constants/Action";
 import {DraftEvent} from "../../types/DraftEvent";
 import Preset from "../../models/Preset";
 import Turn from "../../models/Turn";
+import {Util} from "../../util/Util";
 
 interface IProps extends WithTranslation {
     whoAmI: Player | undefined,
@@ -126,9 +127,9 @@ class Messages extends React.Component<IProps, object> {
     }
 
     private getPlayerName(nextTurn: Turn) {
-        if (nextTurn.player === Player.HOST) {
+        if (nextTurn.executingPlayer === Player.HOST) {
             return this.props.nameHost;
-        } else if (nextTurn.player === Player.GUEST) {
+        } else if (nextTurn.executingPlayer === Player.GUEST) {
             return this.props.nameGuest;
         }
         return '';
@@ -143,7 +144,7 @@ class Messages extends React.Component<IProps, object> {
                 return this.messageForTurns(firstTurn, secondTurn);
             } else {
                 const lastEvent = this.props.events[this.props.events.length - 1];
-                if (lastEvent.player === firstTurn.player) {
+                if (Util.isPlayerEvent(lastEvent) && lastEvent.executingPlayer === firstTurn.executingPlayer) {
                     return this.messageForTurn(secondTurn);
                 } else {
                     return this.messageForTurn(firstTurn);
@@ -151,14 +152,14 @@ class Messages extends React.Component<IProps, object> {
             }
         } else {
             if (nextTurn.parallel) {
-                if (firstTurn.player === this.props.whoAmI) {
+                if (firstTurn.executingPlayer === this.props.whoAmI) {
                     return this.messageForTurn(firstTurn);
                 } else {
                     return this.messageForTurn(secondTurn);
                 }
             } else {
                 const lastEvent = this.props.events[this.props.events.length - 1];
-                if (lastEvent.player === firstTurn.player) {
+                if (Util.isPlayerEvent(lastEvent) && lastEvent.executingPlayer === firstTurn.executingPlayer) {
                     return this.messageForTurn(secondTurn);
                 } else {
                     return this.messageForTurn(firstTurn);
@@ -243,7 +244,7 @@ class Messages extends React.Component<IProps, object> {
                     </Trans>
                 </div>
             );
-        } else if (turn.player === this.props.whoAmI) {
+        } else if (turn.executingPlayer === this.props.whoAmI) {
             switch (turn.action) {
                 case Action.PICK:
                     return (
@@ -311,7 +312,7 @@ class Messages extends React.Component<IProps, object> {
             }
         }
 
-        const message = turn.player.toString() + ': ' + turn.action.toString();
+        const message = turn.executingPlayer.toString() + ': ' + turn.action.toString();
         return (
             <div><Trans i18nKey='messages.genericTurnMessage'>{message}</Trans></div>
         );

@@ -14,7 +14,7 @@ interface Props {
 
 class PlayerTurnSettings extends React.Component<Props, object> {
     render() {
-        if (this.props.turn.player !== this.props.player) {
+        if (this.props.turn.executingPlayer !== this.props.player) {
             return null;
         }
         if (this.props.turn.player === Player.NONE) {
