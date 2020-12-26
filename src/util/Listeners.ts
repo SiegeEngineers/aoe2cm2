@@ -20,12 +20,12 @@ export const Listeners = {
 
             if (!skipSourceValidation) {
                 if (assignedRole === Player.NONE) {
-                    logger.warn("Discarding specator message", {draftId});
+                    logger.warn("Discarding spectator message", {draftId});
                     socket.emit('message', 'You shall not act.');
                     return;
                 }
 
-                if (message.player !== assignedRole) {
+                if (message.executingPlayer !== assignedRole) {
                     logger.warn("Discarding fake message", {draftId});
                     socket.emit('message', 'You shall not impersonate your opponent.');
                     return;
