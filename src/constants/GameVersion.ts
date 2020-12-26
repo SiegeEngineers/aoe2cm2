@@ -5,7 +5,8 @@ enum GameVersion {
     FORGOTTEN,
     AFRICAN_KINGDOMS,
     RISE_OF_RAJAS,
-    DEFINITIVE_EDITION
+    DEFINITIVE_EDITION,
+    LORDS_OF_THE_WEST,
 }
 
 export default GameVersion;

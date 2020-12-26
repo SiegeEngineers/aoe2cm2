@@ -525,6 +525,36 @@ exports[`BAN CivPanels render correctly 35`] = `
 />
 `;
 
+exports[`BAN CivPanels render correctly 36`] = `
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 7,
+      "isRandomlyChosenCiv": false,
+      "name": "Burgundians",
+    }
+  }
+  t={[Function]}
+/>
+`;
+
+exports[`BAN CivPanels render correctly 37`] = `
+<CivPanel
+  active={false}
+  civPanelType="ban"
+  civilisation={
+    Civilisation {
+      "gameVersion": 7,
+      "isRandomlyChosenCiv": false,
+      "name": "Sicilians",
+    }
+  }
+  t={[Function]}
+/>
+`;
+
 exports[`PICK CivPanels render correctly 1`] = `
 <CivPanel
   active={false}
@@ -1044,6 +1074,36 @@ exports[`PICK CivPanels render correctly 35`] = `
       "gameVersion": 6,
       "isRandomlyChosenCiv": false,
       "name": "Tatars",
+    }
+  }
+  t={[Function]}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 36`] = `
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 7,
+      "isRandomlyChosenCiv": false,
+      "name": "Burgundians",
+    }
+  }
+  t={[Function]}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 37`] = `
+<CivPanel
+  active={false}
+  civPanelType="pick"
+  civilisation={
+    Civilisation {
+      "gameVersion": 7,
+      "isRandomlyChosenCiv": false,
+      "name": "Sicilians",
     }
   }
   t={[Function]}

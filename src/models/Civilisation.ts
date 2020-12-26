@@ -42,6 +42,9 @@ enum Name {
     LITHUANIANS = "Lithuanians",
     TATARS = "Tatars",
 
+    BURGUNDIANS = "Burgundians",
+    SICILIANS = "Sicilians",
+
     HIDDEN_PICK = "HIDDEN_PICK",
     HIDDEN_BAN = "HIDDEN_BAN",
     HIDDEN_SNIPE = "HIDDEN_SNIPE",
@@ -93,6 +96,9 @@ class Civilisation {
     public static readonly LITHUANIANS: Civilisation = new Civilisation(Name.LITHUANIANS, GameVersion.DEFINITIVE_EDITION);
     public static readonly TATARS: Civilisation = new Civilisation(Name.TATARS, GameVersion.DEFINITIVE_EDITION);
 
+    public static readonly BURGUNDIANS: Civilisation = new Civilisation(Name.BURGUNDIANS, GameVersion.LORDS_OF_THE_WEST);
+    public static readonly SICILIANS: Civilisation = new Civilisation(Name.SICILIANS, GameVersion.LORDS_OF_THE_WEST);
+
     public static readonly HIDDEN_PICK: Civilisation = new Civilisation(Name.HIDDEN_PICK, GameVersion.TECHNICAL);
     public static readonly HIDDEN_BAN: Civilisation = new Civilisation(Name.HIDDEN_BAN, GameVersion.TECHNICAL);
     public static readonly HIDDEN_SNIPE: Civilisation = new Civilisation(Name.HIDDEN_SNIPE, GameVersion.TECHNICAL);
@@ -135,7 +141,9 @@ class Civilisation {
         Civilisation.BULGARIANS,
         Civilisation.CUMANS,
         Civilisation.LITHUANIANS,
-        Civilisation.TATARS
+        Civilisation.TATARS,
+        Civilisation.BURGUNDIANS,
+        Civilisation.SICILIANS,
     ];
 
     public readonly name: Name;

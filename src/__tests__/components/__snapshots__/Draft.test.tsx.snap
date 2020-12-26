@@ -7,7 +7,7 @@ exports[`Draft renders correctly 1`] = `
   nextAction={0}
   preset={
     Preset {
-      "encodedCivilisations": "7ffffffff",
+      "encodedCivilisations": "1fffffffff",
       "name": "Default Preset",
       "turns": Array [
         Turn {

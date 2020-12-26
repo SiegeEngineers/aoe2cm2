@@ -177,5 +177,15 @@ Array [
     "isRandomlyChosenCiv": false,
     "name": "Tatars",
   },
+  Civilisation {
+    "gameVersion": 7,
+    "isRandomlyChosenCiv": false,
+    "name": "Burgundians",
+  },
+  Civilisation {
+    "gameVersion": 7,
+    "isRandomlyChosenCiv": false,
+    "name": "Sicilians",
+  },
 ]
 `;

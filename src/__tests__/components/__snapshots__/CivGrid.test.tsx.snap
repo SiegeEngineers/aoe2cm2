@@ -440,6 +440,30 @@ exports[`CivGrid renders correctly 1`] = `
       }
       key="34"
     />
+    <Connect(Component)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 7,
+          "isRandomlyChosenCiv": false,
+          "name": "Burgundians",
+        }
+      }
+      key="35"
+    />
+    <Connect(Component)
+      active={false}
+      civPanelType="choice"
+      civilisation={
+        Civilisation {
+          "gameVersion": 7,
+          "isRandomlyChosenCiv": false,
+          "name": "Sicilians",
+        }
+      }
+      key="36"
+    />
   </div>
 </div>
 `;
