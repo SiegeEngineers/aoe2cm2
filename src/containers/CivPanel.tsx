@@ -9,8 +9,20 @@ import * as actions from "../actions";
 
 export function mapStateToProps(state: ApplicationState) {
     let triggerAction: ActionType = ActionType.NOTHING;
-    if (state.draft.preset && state.ownProperties.nextAction < state.draft.preset.turns.length) {
-        triggerAction = actionTypeFromAction(state.draft.preset.turns[state.ownProperties.nextAction].action);
+    const index = state.ownProperties.nextAction;
+    if (state.draft.preset && index < state.draft.preset.turns.length) {
+
+        let turn = state.draft.preset.turns[index];
+        if (turn.player !== state.ownProperties.whoAmI) {
+            if (turn.parallel && (index + 1) < state.draft.preset.turns.length) {
+                turn = state.draft.preset.turns[index + 1];
+            } else if((index - 1) >= 0 && state.draft.preset.turns[index - 1].parallel) {
+                turn = state.draft.preset.turns[index - 1];
+            }
+        }
+        if (turn.player === state.ownProperties.whoAmI) {
+            triggerAction = actionTypeFromAction(turn.action);
+        }
     }
     return {
         triggerAction,
