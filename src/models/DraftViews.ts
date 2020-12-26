@@ -67,7 +67,7 @@ class DraftViews {
             let specMessage = draftEvent;
             if (this.isLastActionHidden()) {
                 const hiddenCivilisation = Util.getHiddenCivilisationForActionType(draftEvent.actionType);
-                specMessage = new PlayerEvent(draftEvent.player, draftEvent.actionType, hiddenCivilisation);
+                specMessage = new PlayerEvent(draftEvent.player, draftEvent.actionType, hiddenCivilisation, draftEvent.executingPlayer);
             }
             this.specEvents.push(specMessage);
             if (draftEvent.player === Player.HOST) {

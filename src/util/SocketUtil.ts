@@ -6,7 +6,8 @@ import {
     IConnectPlayer,
     ICountdownEvent,
     IReplayEvent,
-    ISetEvents, ISetPlayerName,
+    ISetEvents,
+    ISetPlayerName,
     ISetReady
 } from "../actions";
 import {ServerActions} from "../constants";
@@ -16,7 +17,7 @@ import {IPlayerWithNameMessage} from "../types/IPlayerWithNameMessage";
 import Player from "../constants/Player";
 import PlayerEvent from "../models/PlayerEvent";
 import {Util} from "./Util";
-import {ICountdownValues} from "../types";
+import {ICountdownValues, IDraftState} from "../types";
 import {IDraftConfig} from "../types/IDraftConfig";
 
 export const SocketUtil = {
@@ -82,7 +83,15 @@ export const SocketUtil = {
 
         socket.on("replay", (message: any) => {
             console.log('message received:', "[replay]", message);
-            storeAPI.dispatch({type: ServerActions.APPLY_REPLAY, value: message} as IReplayEvent);
+            const draftState = message as IDraftState;
+            draftState.events = draftState.events.map(value => {
+                if (Util.isPlayerEvent(value)) {
+                    return PlayerEvent.from(value);
+                } else {
+                    return value;
+                }
+            });
+            storeAPI.dispatch({type: ServerActions.APPLY_REPLAY, value: draftState} as IReplayEvent);
         });
 
         return socket;

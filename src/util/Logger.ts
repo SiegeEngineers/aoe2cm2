@@ -19,6 +19,9 @@ export const logger = (typeof window === 'undefined') ? winston.createLogger({
     error: (...args: any[]) => {
         console.log(...args);
     },
+    warn: (...args: any[]) => {
+        console.log(...args);
+    },
     debug: (...args: any[]) => {
         console.log(...args);
     }

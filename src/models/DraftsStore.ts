@@ -254,7 +254,7 @@ export class DraftsStore {
                         const expectedActions = this.getExpectedActions(draftId);
                         if (expectedActions.length > 0) {
                             for (let expectedAction of expectedActions) {
-                                const message = new PlayerEvent(expectedAction.player, actionTypeFromAction(expectedAction.action), Civilisation.RANDOM);
+                                const message = new PlayerEvent(expectedAction.player, actionTypeFromAction(expectedAction.action), Civilisation.RANDOM, expectedAction.executingPlayer);
                                 logger.info('Countdown ran out, executing action on player\'s behalf: %s', JSON.stringify(message), {draftId});
                                 actListener(message, () => {
                                 });

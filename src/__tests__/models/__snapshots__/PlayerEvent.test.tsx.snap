@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PlayerEvent can deserialize new state 1`] = `
+PlayerEvent {
+  "actionType": "PICK",
+  "civilisation": Object {},
+  "executingPlayer": "GUEST",
+  "offset": 123,
+  "player": "HOST",
+}
+`;
+
+exports[`PlayerEvent can deserialize old state 1`] = `
+PlayerEvent {
+  "actionType": "PICK",
+  "civilisation": Object {},
+  "executingPlayer": "HOST",
+  "offset": 123,
+  "player": "HOST",
+}
+`;

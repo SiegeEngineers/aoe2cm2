@@ -87,11 +87,11 @@ export const Util = {
     setRandomCivilisationIfNeeded(playerEvent: PlayerEvent, draftId: string,
                                   draftStore: DraftsStore, civilisationsList: Civilisation[], round: number = 100): PlayerEvent {
         if (round < 0) {
-            return new PlayerEvent(playerEvent.player, playerEvent.actionType, Civilisation.HIDDEN);
+            return new PlayerEvent(playerEvent.player, playerEvent.actionType, Civilisation.HIDDEN, playerEvent.executingPlayer);
         }
         if (Util.isRandomCivilisation(playerEvent.civilisation)) {
             const randomCiv = Util.getRandomCivilisation(civilisationsList);
-            const playerEventForValidation = new PlayerEvent(playerEvent.player, playerEvent.actionType, randomCiv);
+            const playerEventForValidation = new PlayerEvent(playerEvent.player, playerEvent.actionType, randomCiv, playerEvent.executingPlayer);
             const errors = Validator.checkAllValidations(draftId, draftStore, playerEventForValidation);
             if (errors.length === 0) {
                 playerEvent.civilisation = randomCiv;
