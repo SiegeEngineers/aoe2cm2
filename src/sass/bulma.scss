@@ -28,6 +28,10 @@ $ban-red: #cc3333;
 $steal-gold: #ffc107;
 $host-cyan: #00bcd4;
 $guest-gold: #ffc107;
+$opponent-purple: #990099;
+$pick-by-opponent: linear-gradient(135deg, $opponent-purple 33%, $pick-green 34%);
+$ban-by-opponent: linear-gradient(135deg, $opponent-purple 33%, $ban-red 34%);
+$steal-by-opponent: linear-gradient(135deg, $opponent-purple 33%, $steal-gold 34%);
 $family-monospace: 'Consolas', 'Monaco', monospace;
 
 @import "../../node_modules/bulma/bulma.sass";
@@ -379,7 +383,19 @@ div.stretchy-wrapper > div.stretchy-text {
 .ban {
   width: 64px;
   height: 64px;
-  background-color: $ban-red;
+  background: $ban-red;
+}
+
+.pick.by-opponent {
+  background: $pick-by-opponent;
+}
+
+.ban.by-opponent {
+  background: $ban-by-opponent;
+}
+
+.steal.by-opponent {
+  background: $steal-by-opponent;
 }
 
 .pick img, .steal img, .ban img {
