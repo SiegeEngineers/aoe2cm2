@@ -19,6 +19,7 @@ interface IProps extends WithTranslation {
     civPanelType: CivPanelType;
     whoAmI?: Player;
     triggerAction?: ActionType;
+    player?: Player;
     draft?: IDraftState;
     nextAction: number;
     iconStyle: string;
@@ -118,15 +119,16 @@ class CivPanel extends React.Component<IProps, IState> {
     }
 
     private onClickCiv = () => {
-        if (Util.notUndefined(this.props.onClickCivilisation, this.props.civilisation, this.props.whoAmI, this.props.triggerAction)) {
+        if (Util.notUndefined(this.props.onClickCivilisation, this.props.civilisation, this.props.whoAmI, this.props.player, this.props.triggerAction)) {
             const whoAmI = this.props.whoAmI as Player;
+            const player = this.props.player as Player;
             if (whoAmI === Player.NONE) {
                 return;
             }
             const civilisation = this.props.civilisation as Civilisation;
             const triggerAction = this.props.triggerAction as ActionType;
             const onClickCivilisation = this.props.onClickCivilisation as (playerEvent: PlayerEvent, callback: any) => void;
-            onClickCivilisation(new PlayerEvent(whoAmI, triggerAction, civilisation), (data: any) => {
+            onClickCivilisation(new PlayerEvent(player, triggerAction, civilisation, whoAmI), (data: any) => {
                 console.log('act callback', data);
                 if (data.status !== 'ok') {
                     alert(Util.buildValidationErrorMessage(data));
@@ -137,8 +139,9 @@ class CivPanel extends React.Component<IProps, IState> {
 
 
     private isValidOption() {
-        if (Util.notUndefined(this.props.draft, this.props.whoAmI, this.props.triggerAction, this.props.civilisation)) {
+        if (Util.notUndefined(this.props.draft, this.props.whoAmI, this.props.triggerAction, this.props.player, this.props.civilisation)) {
             const whoAmI = this.props.whoAmI as Player;
+            const player = this.props.player as Player;
             if (whoAmI === Player.NONE) {
                 return false;
             }
@@ -150,7 +153,7 @@ class CivPanel extends React.Component<IProps, IState> {
             const civilisation = this.props.civilisation as Civilisation;
             let draftsStore = new DraftsStore();
             draftsStore.createDraft('draftId', draft);
-            const errors = Validator.checkAllValidations('draftId', draftsStore, new PlayerEvent(whoAmI, triggerAction, civilisation));
+            const errors = Validator.checkAllValidations('draftId', draftsStore, new PlayerEvent(player, triggerAction, civilisation, whoAmI));
             return errors.length === 0;
         }
         return false;

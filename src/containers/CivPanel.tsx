@@ -10,6 +10,7 @@ import * as actions from "../actions";
 export function mapStateToProps(state: ApplicationState) {
     let triggerAction: ActionType = ActionType.NOTHING;
     const index = state.ownProperties.nextAction;
+    let player = undefined;
     if (state.draft.preset && index < state.draft.preset.turns.length) {
 
         let turn = state.draft.preset.turns[index];
@@ -22,10 +23,12 @@ export function mapStateToProps(state: ApplicationState) {
         }
         if (turn.executingPlayer === state.ownProperties.whoAmI) {
             triggerAction = actionTypeFromAction(turn.action);
+            player = turn.player;
         }
     }
     return {
         triggerAction,
+        player: player,
         whoAmI: state.ownProperties.whoAmI,
         nextAction: state.ownProperties.nextAction,
         draft: state.draft,
