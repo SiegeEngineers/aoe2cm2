@@ -24,7 +24,11 @@ export class Validation {
         if (expectedActions.length > 0) {
             for (let expectedAction of expectedActions) {
                 if (expectedAction.player === draftEvent.player) {
-                    return true;
+                    if(Util.isPlayerEvent(draftEvent)){
+                        return expectedAction.executingPlayer === draftEvent.executingPlayer;
+                    } else {
+                        return true;
+                    }
                 }
             }
             return false;

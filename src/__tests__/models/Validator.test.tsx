@@ -564,6 +564,59 @@ it('Hidden ban first and last', ()=>{
     expect(errors).toEqual([]);
 });
 
+it('Inverse turn', ()=>{
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.HOST, Action.BAN, Exclusivity.GLOBAL, false, false, Player.GUEST),
+    ]);
+    const validator = new Validator(prepareReadyStore(preset, []));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.VIKINGS, Player.GUEST));
+    expect(errors).toEqual([]);
+});
+
+it('Inverse turns inverse order', ()=>{
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.HOST, Action.BAN, Exclusivity.GLOBAL, false, true, Player.GUEST),
+        new Turn(Player.GUEST, Action.BAN, Exclusivity.GLOBAL, false, false, Player.HOST),
+    ]);
+    const validator = new Validator(prepareReadyStore(preset, [
+        new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.VIKINGS, Player.HOST)
+    ]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.VIKINGS, Player.GUEST));
+    expect(errors).toEqual([]);
+});
+
+it('VLD_001: Inverse turn by wrong player', ()=>{
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.HOST, Action.BAN, Exclusivity.GLOBAL, false, false, Player.GUEST),
+    ]);
+    const validator = new Validator(prepareReadyStore(preset, []));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.VIKINGS, Player.HOST));
+    expect(errors).toEqual([ValidationId.VLD_001]);
+});
+
+it('VLD_001: Inverse turns inverse order 1', ()=>{
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.HOST, Action.BAN, Exclusivity.GLOBAL, false, true, Player.GUEST),
+        new Turn(Player.GUEST, Action.BAN, Exclusivity.GLOBAL, false, false, Player.HOST),
+    ]);
+    const validator = new Validator(prepareReadyStore(preset, [
+    ]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.VIKINGS, Player.HOST));
+    expect(errors).toEqual([ValidationId.VLD_001]);
+});
+
+it('VLD_001: Inverse turns inverse order 2', ()=>{
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.HOST, Action.BAN, Exclusivity.GLOBAL, false, true, Player.GUEST),
+        new Turn(Player.GUEST, Action.BAN, Exclusivity.GLOBAL, false, false, Player.HOST),
+    ]);
+    const validator = new Validator(prepareReadyStore(preset, [
+        new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.VIKINGS, Player.HOST)
+    ]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.VIKINGS, Player.HOST));
+    expect(errors).toEqual([ValidationId.VLD_001]);
+});
+
 it('Validator does not modify offsets', () => {
     const expectedOffset = -1337;
     let preset = new Preset("test", Civilisation.ALL, [
