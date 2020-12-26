@@ -49,11 +49,11 @@ export class PresetValidation {
         let lastTurnHadParallelMarker = false;
         let lastTurnPlayer = Player.NONE;
         for (let turn of preset.turns) {
-            if (lastTurnHadParallelMarker && lastTurnPlayer === turn.player) {
+            if (lastTurnHadParallelMarker && lastTurnPlayer === turn.executingPlayer) {
                 return false;
             }
             lastTurnHadParallelMarker = turn.parallel;
-            lastTurnPlayer = turn.player;
+            lastTurnPlayer = turn.executingPlayer;
         }
         return true;
     });
