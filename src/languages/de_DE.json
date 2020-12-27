@@ -196,12 +196,14 @@
     "presetModifiers": {
       "title": "Zug-Typen",
       "1": "Wenn beide Kapitäninnen ihre Züge parallel ausführen sollen, aktiviere die <1>PARALLEL</1>-Checkbox des <3>ersten</3> der beiden Züge (nicht jedoch die des zweiten Zuges).",
-      "2": "Aktiviere die <1>HIDDEN</1>-Checkbox, um die Zivilisation die in diesem Zug gewählt wird vor der Gegnerin und den Zusehenden zu verstecken, bis sie in einem Admin-Zug (siehe unten) aufgedeckt wird."
+      "2": "Aktiviere die <1>HIDDEN</1>-Checkbox, um die Zivilisation die in diesem Zug gewählt wird vor der Gegnerin und den Zusehenden zu verstecken, bis sie in einem Admin-Zug (siehe unten) aufgedeckt wird.",
+      "3": "Wenn du die <1>AS OPPONENT</1>-Checkbox, aktivierst, führt die Kapitänin diesen Zug im Namen ihrer Gegnerin aus. Dies kann genutzt werden, um Kapitäninnen Zivilisationen wählen zu lassen, mit denen ihre Gegnerin dann spielen muss."
     },
     "draftModifiers": {
       "title": "Modifiers",
       "1": "<1>PARALLEL</1> bedeutet, dass beide Kapitäninnen ihre Züge zur gleichen Zeit durchführen.",
-      "2": "<1>HIDDEN</1> bedeutet, dass die ausgewählte Zivilisation vor der Gegnerin und den Zusehenden verborgen wird, bis sie in einem Admin-Zug (siehe unten) aufgedeckt wird."
+      "2": "<1>HIDDEN</1> bedeutet, dass die ausgewählte Zivilisation vor der Gegnerin und den Zusehenden verborgen wird, bis sie in einem Admin-Zug (siehe unten) aufgedeckt wird.",
+      "3": "<1>AS OPPONENT</1> bedeutet, dass der Zug im Namen der Gegnerin ausgeführt wird. Dies kann vor allem genutzt werden, um Kapitäninnen Zivilisationen wählen zu lassen, mit denen die jeweilige Gegnerin spielen soll."
     }
   },
   "presets": {

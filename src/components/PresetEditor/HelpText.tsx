@@ -178,6 +178,11 @@ export const HelpPresetModifiers = withTranslation()(() =>
             Check the <span className="tag">HIDDEN</span> checkbox to hide the civilisation selected during that turn
             from the opponent and from spectators until it is revealed by an admin turn (see below).
         </Trans></p>
+        <p><Trans i18nKey='instructions.presetModifiers.3'>
+            If you check the <span className="tag">AS OPPONENT</span> checkbox, the player will execute the turn on
+            behalf of their opponent. This can be used to have players pick civilisations that their opponent will then
+            have to use.
+        </Trans></p>
     </>
 );
 
@@ -192,6 +197,10 @@ export const HelpDraftModifiers = withTranslation()(() =>
         <p><Trans i18nKey='instructions.draftModifiers.2'>
             A <span className="tag">HIDDEN</span> modifier hides the civilisation selected during that turn
             from the opponent and from spectators until it is revealed by an admin turn (see below).
+        </Trans></p>
+        <p><Trans i18nKey='instructions.draftModifiers.3'>
+            A <span className="tag">AS OPPONENT</span> modifier means that the turn is executed by the player on behalf
+            of their opponent. This is mainly useful to have a player pick civilisations for their opponent to use.
         </Trans></p>
     </>
 );

@@ -5,6 +5,7 @@ import ActionDropdown from "./ActionDropdown";
 import HiddenCheckbox from "./HiddenCheckbox";
 import ExclusivityDropdown from "./ExclusivityDropdown";
 import ParallelCheckbox from "./ParallelCheckbox";
+import AsOpponentCheckbox from "./AsOpponentCheckbox";
 
 interface Props {
     turn: Turn,
@@ -29,6 +30,8 @@ class PlayerTurnSettings extends React.Component<Props, object> {
             <HiddenCheckbox turn={this.props.turn} index={this.props.index}/>
             &nbsp;
             <ParallelCheckbox turn={this.props.turn} index={this.props.index}/>
+            &nbsp;
+            <AsOpponentCheckbox turn={this.props.turn} index={this.props.index}/>
         </React.Fragment>;
     }
 }

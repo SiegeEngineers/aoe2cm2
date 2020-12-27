@@ -196,12 +196,14 @@
     "presetModifiers": {
       "title": "Modifiers",
       "1": "If you want the players to execute two of their turns in parallel, check the <1>PARALLEL</1> checkbox of the <3>first</3> of those two turns (but do not check it for the second turn).",
-      "2": "Check the <1>HIDDEN</1> checkbox to hide the civilisation selected during that turn from the opponent and from spectators until it is revealed by an admin turn (see below)."
+      "2": "Check the <1>HIDDEN</1> checkbox to hide the civilisation selected during that turn from the opponent and from spectators until it is revealed by an admin turn (see below).",
+      "3": "If you check the <1>AS OPPONENT</1> checkbox, the player will execute the turn on behalf of their opponent. This can be used to have players pick civilisations that their opponent will then have to use."
     },
     "draftModifiers": {
       "title": "Modifiers",
       "1": "A <1>PARALLEL</1> modifier means both the players to execute their turns in parallel.",
-      "2": "A <1>HIDDEN</1> modifier hides the civilisation selected during that turn from the opponent and from spectators until it is revealed by an admin turn (see below)."
+      "2": "A <1>HIDDEN</1> modifier hides the civilisation selected during that turn from the opponent and from spectators until it is revealed by an admin turn (see below).",
+      "3": "An <1>AS OPPONENT</1> modifier means that the turn is executed by the player on behalf of their opponent. This is mainly useful to have a player pick civilisations for their opponent to use."
     }
   },
   "presets": {
