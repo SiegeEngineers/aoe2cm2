@@ -87,6 +87,9 @@ export const DraftServer = {
         app.get('/api/recentdrafts', (req, res) => {
             res.json(draftsStore.getRecentDrafts());
         });
+        app.get('/api/draft/:id', (req, res) => {
+            res.sendFile(req.params.id + '.json', {'root': __dirname + '/../data'});
+        });
 
         const indexPath = __dirname + '/index.html';
 
