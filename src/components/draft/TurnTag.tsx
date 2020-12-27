@@ -53,7 +53,7 @@ class TurnTag extends React.Component<IProps> {
         }
         let tagPrefixClassName = tagClassName + ' is-dark';
         let prefixTag: React.ReactElement = <span/>;
-        tagClassName += ' is-light'
+        tagClassName += ' is-light action'
         let tagGroupClassName = 'is-uppercase has-text-weight-bold tags';
         if (prefix) {
             prefixTag = <span className={tagPrefixClassName}>{prefix}</span>

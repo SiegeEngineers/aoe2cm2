@@ -34,7 +34,10 @@ const toTitle = (turn: ModelTurn, lastTurnWasParallel: boolean): string => {
     if (suffixList.length) {
         suffixes = ` (${suffixList.join(" + ")})`;
     }
-    return `${turn.player}: ${turn.action}${suffixes}`;
+    if (turn.player !== turn.executingPlayer) {
+        suffixes += ' for opponent';
+    }
+    return `${turn.executingPlayer}: ${turn.action}${suffixes}`;
 };
 
 class Turn extends React.Component<IProps, IState> {
@@ -54,13 +57,13 @@ class Turn extends React.Component<IProps, IState> {
     public render() {
         const turn: ModelTurn = this.props.turn;
 
-        const player = turn.player.toString().toLowerCase();
+        const executingPlayer = turn.executingPlayer.toString().toLowerCase();
         let action: string = turn.action.toString().toLowerCase();
         if (action.includes('reveal')) {
             action = 'reveal';
         }
 
-        let turnClassName = `column is-1 turn turn-${player} turn-${action} has-text-centered has-tooltip-arrow`;
+        let turnClassName = `column is-1 turn turn-${executingPlayer} turn-${action} has-text-centered has-tooltip-arrow`;
         if (turn.parallel || this.props.lastTurnWasParallel) {
             turnClassName += ' turn-parallel';
         }
@@ -69,6 +72,9 @@ class Turn extends React.Component<IProps, IState> {
         }
         if (this.state.active) {
             turnClassName += ' active';
+        }
+        if (turn.player !== turn.executingPlayer) {
+            turnClassName += ' for-opponent';
         }
 
         return (

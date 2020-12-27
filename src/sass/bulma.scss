@@ -223,6 +223,10 @@ label.civ-select:hover {
   border-radius: 4px;
 }
 
+.turn.for-opponent .action {
+  transform: rotate(180deg);
+}
+
 /** grid stuff **/
 
 .chooser {
