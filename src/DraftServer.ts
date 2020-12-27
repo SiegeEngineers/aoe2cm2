@@ -79,8 +79,14 @@ export const DraftServer = {
             }
         });
         app.get('/api/connections', (req, res) => {
-            // @ts-ignore
-            res.json({connections: io.engine.clientsCount});
+            const ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
+            if (ip === '::ffff:127.0.0.1' || ip === '::1') {
+                // @ts-ignore
+                res.json({connections: io.engine.clientsCount, rooms: io.sockets.adapter.rooms});
+            } else {
+                // @ts-ignore
+                res.json({connections: io.engine.clientsCount});
+            }
         });
         app.get('/api/alerts', (req, res) => {
             res.sendFile('alerts.json', {'root': __dirname + '/..'});
