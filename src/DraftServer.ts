@@ -16,6 +16,7 @@ import * as fs from "fs";
 import {logger} from "./util/Logger";
 import {ISetNameMessage} from "./types/ISetNameMessage";
 import {PresetUtil} from "./util/PresetUtil";
+import {Response as ExpressResponse} from "express";
 
 const ONE_HOUR = 1000 * 60 * 60;
 
@@ -38,6 +39,12 @@ export const DraftServer = {
         function setPlayerName(draftId: string, player: Player, name: string) {
             draftsStore.setPlayerName(draftId, player, name);
         }
+
+        const plain404 = (res: ExpressResponse<any>) => (err: Error) => {
+            if (err) {
+                res.status(404).send("Not found.")
+            }
+        };
 
         app.post('/api/draft/new', (req, res) => {
             logger.info('Received request to create a new draft: %s', JSON.stringify(req.body));
@@ -82,13 +89,13 @@ export const DraftServer = {
             res.sendFile('presets.json', {'root': __dirname + '/..'});
         });
         app.get('/api/preset/:id', (req, res) => {
-            res.sendFile(req.params.id + '.json', {'root': __dirname + '/../presets'});
+            res.sendFile(req.params.id + '.json', {'root': __dirname + '/../presets'}, plain404(res));
         });
         app.get('/api/recentdrafts', (req, res) => {
             res.json(draftsStore.getRecentDrafts());
         });
         app.get('/api/draft/:id', (req, res) => {
-            res.sendFile(req.params.id + '.json', {'root': __dirname + '/../data'});
+            res.sendFile(req.params.id + '.json', {'root': __dirname + '/../data'}, plain404(res));
         });
 
         const indexPath = __dirname + '/index.html';
