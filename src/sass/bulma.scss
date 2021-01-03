@@ -25,6 +25,7 @@ $radius-small: 3px;
 $control-radius-small: 3px;
 $pick-green: #4caf50;
 $ban-red: #cc3333;
+$steal-gold: #ffc107;
 $host-cyan: #00bcd4;
 $guest-gold: #ffc107;
 $family-monospace: 'SF Mono', 'Consolas', 'Monaco', monospace;
@@ -340,7 +341,7 @@ div.stretchy-wrapper > div.stretchy-text {
   box-sizing: border-box;
 }
 
-.pick, .ban {
+.pick, .steal, .ban {
   box-shadow: none;
   border-radius: 4px;
   margin: 4px;
@@ -349,7 +350,7 @@ div.stretchy-wrapper > div.stretchy-text {
   opacity: 0.4;
 }
 
-.pick.has-value, .ban.has-value {
+.pick.has-value, .steal.has-value, .ban.has-value {
   opacity: 1;
 }
 
@@ -359,22 +360,28 @@ div.stretchy-wrapper > div.stretchy-text {
   background: $pick-green;
 }
 
+.steal {
+  width: 96px;
+  height: 96px;
+  background: $steal-gold;
+}
+
 .ban {
   width: 64px;
   height: 64px;
   background-color: $ban-red;
 }
 
-.pick img, .ban img {
+.pick img, .steal img, .ban img {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.6);
 }
 
-.pick .chosen-hidden img, .ban .chosen-hidden img {
+.pick .chosen-hidden img, .steal .chosen-hidden img, .ban .chosen-hidden img {
   visibility: hidden;
 }
 
-.pick .chosen-hidden .stretchy-image {
+.pick .chosen-hidden .stretchy-image, .steal .chosen-hidden .stretchy-image, {
   background-image: url('/images/hidden_pick.png');
   background-size: contain;
 }
@@ -410,6 +417,19 @@ div.stretchy-wrapper > div.stretchy-text {
   right: 32px;
   background-image: url('/images/random.png');
   background-size: 32px 32px;
+  background-repeat: no-repeat;
+  opacity: 1;
+}
+
+.random-steal {
+  display: block;
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  top: 45px;
+  right: 56px;
+  background-image: url('/images/random.png');
+  background-size: 20px 20px;
   background-repeat: no-repeat;
   opacity: 1;
 }
@@ -582,6 +602,10 @@ div.stretchy-wrapper > div.stretchy-text {
 .back-icon.header-navigation:hover {
   opacity: 1.0;
   background: none;
+}
+
+.steal-marker {
+  background-image: url('/images/steal-marker.svg');
 }
 
 .snipe-marker {

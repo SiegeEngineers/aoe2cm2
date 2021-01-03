@@ -15,7 +15,7 @@ class TurnTag extends React.Component<IProps> {
         const turn: ModelTurn = this.props.turn;
 
         let prefix: string = '';
-        if (turn.player !== Player.NONE && turn.action !== Action.SNIPE) {
+        if (turn.player !== Player.NONE && ![Action.SNIPE, Action.STEAL].includes(turn.action)) {
             if (turn.exclusivity === Exclusivity.GLOBAL) {
                 prefix = 'g';
             } else if (turn.exclusivity === Exclusivity.NONEXCLUSIVE) {
@@ -40,6 +40,9 @@ class TurnTag extends React.Component<IProps> {
                 break;
             case Action.SNIPE:
                 tagClassName += ' is-link';
+                break;
+            case Action.STEAL:
+                tagClassName += ' is-warning';
                 break;
             case Action.REVEAL_ALL:
             case Action.REVEAL_BANS:

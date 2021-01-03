@@ -83,6 +83,9 @@ export class PresetValidation {
                 needsBanReveal = true;
             } else if (turn.action === Action.SNIPE && turn.hidden) {
                 needsSnipeReveal = true;
+            } else if (turn.action === Action.STEAL && turn.hidden) {
+                needsPickReveal = true;
+                needsSnipeReveal = true;
             }
 
             if (turn.action === Action.REVEAL_ALL || turn.action === Action.REVEAL_PICKS) {

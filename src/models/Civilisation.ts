@@ -48,6 +48,7 @@ enum Name {
     HIDDEN_PICK = "HIDDEN_PICK",
     HIDDEN_BAN = "HIDDEN_BAN",
     HIDDEN_SNIPE = "HIDDEN_SNIPE",
+    HIDDEN_STEAL = "HIDDEN_STEAL",
     HIDDEN = "HIDDEN",
     RANDOM = "RANDOM"
 }
@@ -102,6 +103,7 @@ class Civilisation {
     public static readonly HIDDEN_PICK: Civilisation = new Civilisation(Name.HIDDEN_PICK, GameVersion.TECHNICAL);
     public static readonly HIDDEN_BAN: Civilisation = new Civilisation(Name.HIDDEN_BAN, GameVersion.TECHNICAL);
     public static readonly HIDDEN_SNIPE: Civilisation = new Civilisation(Name.HIDDEN_SNIPE, GameVersion.TECHNICAL);
+    public static readonly HIDDEN_STEAL: Civilisation = new Civilisation(Name.HIDDEN_STEAL, GameVersion.TECHNICAL);
     public static readonly HIDDEN: Civilisation = new Civilisation(Name.HIDDEN, GameVersion.TECHNICAL);
 
     // DO NOT CHANGE THE ORDER OF ELEMENTS IN THIS ARRAY!!!

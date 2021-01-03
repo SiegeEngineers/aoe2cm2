@@ -320,6 +320,40 @@ it('VLD_907: hidden snipe without reveal', () => {
     expect(errors).toEqual([ValidationId.VLD_907]);
 });
 
+it('VLD_907: hidden steal without reveal snipes', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL),
+        new Turn(Player.HOST, Action.STEAL, Exclusivity.GLOBAL, true),
+        new Turn(Player.NONE, Action.REVEAL_PICKS, Exclusivity.GLOBAL),
+    ]);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([ValidationId.VLD_907]);
+});
+
+it('VLD_907: hidden steal without reveal picks', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL),
+        new Turn(Player.HOST, Action.STEAL, Exclusivity.GLOBAL, true),
+        new Turn(Player.NONE, Action.REVEAL_SNIPES, Exclusivity.GLOBAL),
+    ]);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([ValidationId.VLD_907]);
+});
+
+it('VLD_907: hidden steal with reveals', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL),
+        new Turn(Player.HOST, Action.STEAL, Exclusivity.GLOBAL, true),
+        new Turn(Player.NONE, Action.REVEAL_PICKS, Exclusivity.GLOBAL),
+        new Turn(Player.NONE, Action.REVEAL_SNIPES, Exclusivity.GLOBAL),
+    ]);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([]);
+});
+
 it('VLD_908: no turns', () => {
     let preset = new Preset("test", Civilisation.ALL, []);
     const errors: ValidationId[] = Validator.validatePreset(preset);
@@ -616,6 +650,73 @@ it('VLD_001: Inverse turns inverse order 2', ()=>{
     const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.VIKINGS, Player.HOST));
     expect(errors).toEqual([ValidationId.VLD_001]);
 });
+
+it('Steal picked civ', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL),
+        new Turn(Player.GUEST, Action.STEAL, Exclusivity.GLOBAL),
+    ]);
+    const validator = new Validator(prepareReadyStore(preset, [
+        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS),
+    ]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.STEAL, Civilisation.AZTECS));
+    expect(errors).toEqual([]);
+});
+
+it('Steal nonpicked civ', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL),
+        new Turn(Player.GUEST, Action.STEAL, Exclusivity.GLOBAL),
+    ]);
+    const validator = new Validator(prepareReadyStore(preset, [
+        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS),
+    ]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.STEAL, Civilisation.BRITONS));
+    expect(errors).toEqual([ValidationId.VLD_010]);
+});
+
+it('Steal back stolen civ', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL),
+        new Turn(Player.GUEST, Action.STEAL, Exclusivity.GLOBAL),
+        new Turn(Player.HOST, Action.STEAL, Exclusivity.GLOBAL),
+    ]);
+    const validator = new Validator(prepareReadyStore(preset, [
+        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS),
+        new PlayerEvent(Player.GUEST, ActionType.STEAL, Civilisation.AZTECS),
+    ]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.STEAL, Civilisation.AZTECS));
+    expect(errors).toEqual([]);
+});
+
+it('Steal banned civ', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL),
+        new Turn(Player.HOST, Action.BAN, Exclusivity.GLOBAL),
+        new Turn(Player.GUEST, Action.STEAL, Exclusivity.GLOBAL),
+    ]);
+    const validator = new Validator(prepareReadyStore(preset, [
+        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS),
+        new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS),
+    ]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.STEAL, Civilisation.AZTECS));
+    expect(errors).toEqual([]);
+});
+
+it('Steal previously sniped civ', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL),
+        new Turn(Player.GUEST, Action.SNIPE, Exclusivity.GLOBAL),
+        new Turn(Player.GUEST, Action.STEAL, Exclusivity.GLOBAL),
+    ]);
+    const validator = new Validator(prepareReadyStore(preset, [
+        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS),
+        new PlayerEvent(Player.GUEST, ActionType.SNIPE, Civilisation.AZTECS),
+    ]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.STEAL, Civilisation.AZTECS));
+    expect(errors).toEqual([ValidationId.VLD_010]);
+});
+
 
 it('Validator does not modify offsets', () => {
     const expectedOffset = -1337;

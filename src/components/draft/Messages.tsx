@@ -25,6 +25,8 @@ const BAN = <span className='has-text-danger'><b>Ban</b></span>;
 
 const SNIPE = <span className='has-text-info'><b>Snipe</b></span>;
 
+const STEAL = <span className='has-text-warning'><b>Steal</b></span>;
+
 class Messages extends React.Component<IProps, object> {
     public render() {
 
@@ -264,6 +266,12 @@ class Messages extends React.Component<IProps, object> {
                             civilization of the
                             opponent!</Trans> <Countdown/></div>
                     );
+                case Action.STEAL:
+                    return (
+                        <div><Trans i18nKey='messages.doSteal'>{STEAL} a
+                            civilization from the
+                            opponent!</Trans> <Countdown/></div>
+                    );
             }
         } else {
             if (this.props.whoAmI === Player.NONE) {
@@ -287,6 +295,12 @@ class Messages extends React.Component<IProps, object> {
                                 for <b>{{playerName}}</b> to {SNIPE} a
                                 civilization of the opponent</Trans> <Countdown/></div>
                         );
+                    case Action.STEAL:
+                        return (
+                            <div><Trans i18nKey='messages.specSteal'>Waiting
+                                for <b>{{playerName}}</b> to {STEAL} a
+                                civilization from the opponent</Trans> <Countdown/></div>
+                        );
                 }
             } else {
                 switch (turn.action) {
@@ -305,6 +319,12 @@ class Messages extends React.Component<IProps, object> {
                     case Action.SNIPE:
                         return (
                             <div><Trans i18nKey='messages.waitingForSnipe'>Waiting for the other captain to snipe
+                                one of your civilisations…</Trans>
+                                <Countdown/></div>
+                        );
+                    case Action.STEAL:
+                        return (
+                            <div><Trans i18nKey='messages.waitingForSteal'>Waiting for the other captain to steal
                                 one of your civilisations…</Trans>
                                 <Countdown/></div>
                         );
@@ -343,6 +363,13 @@ class Messages extends React.Component<IProps, object> {
                         for <b>{{secondTurnPlayer}}</b> to {SNIPE} a civilisation</Trans>
                         <Countdown/></div>
                 );
+            } else if (secondTurn.action === Action.STEAL) {
+                return (
+                    <div><Trans i18nKey='messages.specParallelTurnsPickSteal'>Waiting
+                        for <b>{{firstTurnPlayer}}</b> to {PICK} and
+                        for <b>{{secondTurnPlayer}}</b> to {STEAL} a civilisation</Trans>
+                        <Countdown/></div>
+                );
             }
         }
         if (firstTurn.action === Action.BAN) {
@@ -367,6 +394,13 @@ class Messages extends React.Component<IProps, object> {
                         for <b>{{secondTurnPlayer}}</b> to {SNIPE} a civilisation</Trans>
                         <Countdown/></div>
                 );
+            } else if (secondTurn.action === Action.STEAL) {
+                return (
+                    <div><Trans i18nKey='messages.specParallelTurnsBanSteal'>Waiting
+                        for <b>{{firstTurnPlayer}}</b> to {BAN} and
+                        for <b>{{secondTurnPlayer}}</b> to {STEAL} a civilisation</Trans>
+                        <Countdown/></div>
+                );
             }
         }
         if (firstTurn.action === Action.SNIPE) {
@@ -389,6 +423,44 @@ class Messages extends React.Component<IProps, object> {
                     <div><Trans i18nKey='messages.specParallelTurnsSnipeSnipe'>Waiting
                         for <b>{{firstTurnPlayer}}</b> to {SNIPE} and
                         for <b>{{secondTurnPlayer}}</b> to {SNIPE} a civilisation</Trans>
+                        <Countdown/></div>
+                );
+            } else if (secondTurn.action === Action.STEAL) {
+                return (
+                    <div><Trans i18nKey='messages.specParallelTurnsSnipeSnipe'>Waiting
+                        for <b>{{firstTurnPlayer}}</b> to {SNIPE} and
+                        for <b>{{secondTurnPlayer}}</b> to {STEAL} a civilisation</Trans>
+                        <Countdown/></div>
+                );
+            }
+        }
+        if (firstTurn.action === Action.STEAL) {
+            if (secondTurn.action === Action.PICK) {
+                return (
+                    <div><Trans i18nKey='messages.specParallelTurnsSnipePick'>Waiting
+                        for <b>{{firstTurnPlayer}}</b> to {STEAL} and
+                        for <b>{{secondTurnPlayer}}</b> to {PICK} a civilisation</Trans>
+                        <Countdown/></div>
+                );
+            } else if (secondTurn.action === Action.BAN) {
+                return (
+                    <div><Trans i18nKey='messages.specParallelTurnsSnipeBan'>Waiting
+                        for <b>{{firstTurnPlayer}}</b> to {STEAL} and
+                        for <b>{{secondTurnPlayer}}</b> to {BAN} a civilisation</Trans>
+                        <Countdown/></div>
+                );
+            } else if (secondTurn.action === Action.SNIPE) {
+                return (
+                    <div><Trans i18nKey='messages.specParallelTurnsSnipeSnipe'>Waiting
+                        for <b>{{firstTurnPlayer}}</b> to {STEAL} and
+                        for <b>{{secondTurnPlayer}}</b> to {SNIPE} a civilisation</Trans>
+                        <Countdown/></div>
+                );
+            } else if (secondTurn.action === Action.STEAL) {
+                return (
+                    <div><Trans i18nKey='messages.specParallelTurnsSnipeSnipe'>Waiting
+                        for <b>{{firstTurnPlayer}}</b> to {STEAL} and
+                        for <b>{{secondTurnPlayer}}</b> to {STEAL} a civilisation</Trans>
                         <Countdown/></div>
                 );
             }

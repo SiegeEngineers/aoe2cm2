@@ -16,6 +16,7 @@ interface IProps extends WithTranslation {
     civilisation?: Civilisation;
     active: boolean;
     sniped?: Civilisation;
+    stolen?: Civilisation;
     civPanelType: CivPanelType;
     whoAmI?: Player;
     triggerAction?: ActionType;
@@ -69,7 +70,7 @@ class CivPanel extends React.Component<IProps, IState> {
                 className += ' choice-disabled';
             }
         } else {
-            if (this.props.civPanelType === CivPanelType.PICK && this.isDraftCompleted()) {
+            if ((this.props.civPanelType === CivPanelType.PICK || this.props.civPanelType === CivPanelType.STEAL) && this.isDraftCompleted()) {
                 onClickAction = () => {
                     this.setState({...this.state, used: this.nextUsed(this.state.used)});
                 }
@@ -89,6 +90,10 @@ class CivPanel extends React.Component<IProps, IState> {
         if (!this.props.sniped) {
             snipeMarkerClass += ' is-hidden';
         }
+        let stealMarkerClass = "stretchy-image steal-marker";
+        if (!this.props.stolen) {
+            stealMarkerClass += ' is-hidden';
+        }
         let usedMarkerClass = "stretchy-image used-marker " + this.state.used;
         let randomMarkerClass = "random-pick";
         if (!this.props.civilisation || !this.props.civilisation.isRandomlyChosenCiv) {
@@ -98,6 +103,10 @@ class CivPanel extends React.Component<IProps, IState> {
         if (!this.props.sniped || !this.props.sniped.isRandomlyChosenCiv) {
             snipeRandomMarkerClass += ' is-hidden';
         }
+        let stealRandomMarkerClass = "random-steal";
+        if (!this.props.stolen || !this.props.stolen.isRandomlyChosenCiv) {
+            stealRandomMarkerClass += ' is-hidden';
+        }
         return (
             <div className={className} onClick={onClickAction}>
                 <div className={contentClass}>
@@ -106,6 +115,8 @@ class CivPanel extends React.Component<IProps, IState> {
                             <img src={imageSrc} alt={civilisationName}/>
                         </div>
                         <div className={randomMarkerClass} title="Random"/>
+                        <div className={stealMarkerClass}/>
+                        <div className={stealRandomMarkerClass} title="Random Steal"/>
                         <div className={snipeMarkerClass}/>
                         <div className={snipeRandomMarkerClass} title="Random Snipe"/>
                         <div className={usedMarkerClass}/>
@@ -147,7 +158,7 @@ class CivPanel extends React.Component<IProps, IState> {
             }
             const draft = Draft.from(this.props.draft as Draft);
             const triggerAction = this.props.triggerAction as ActionType;
-            if (![ActionType.PICK, ActionType.BAN, ActionType.SNIPE].includes(triggerAction)) {
+            if (![ActionType.PICK, ActionType.BAN, ActionType.SNIPE, ActionType.STEAL].includes(triggerAction)) {
                 return false;
             }
             const civilisation = this.props.civilisation as Civilisation;
