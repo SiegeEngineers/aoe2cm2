@@ -4,6 +4,7 @@ enum ActionType {
     PICK = "pick",
     BAN = "ban",
     SNIPE = "snipe",
+    STEAL = "steal",
     REVEAL = "reveal",
     NOTHING = "nothing"
 }
@@ -16,6 +17,8 @@ export function actionTypeFromAction(action: Action) {
             return ActionType.BAN;
         case Action.SNIPE:
             return ActionType.SNIPE;
+        case Action.STEAL:
+            return ActionType.STEAL;
         case Action.REVEAL_PICKS:
         case Action.REVEAL_BANS:
         case Action.REVEAL_SNIPES:

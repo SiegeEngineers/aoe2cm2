@@ -29,7 +29,8 @@ export const HelpHostAndGuestTurns = withTranslation()(() =>
         <p><Trans i18nKey='instructions.hostAndGuestTurns.1'>Turns have a main action (
             <span className="tag has-text-weight-bold is-light is-success">PICK</span>,
             <span className="tag has-text-weight-bold is-light is-danger">BAN</span>,
-            <span className="tag has-text-weight-bold is-light is-link">SNIPE</span>)
+            <span className="tag has-text-weight-bold is-light is-link">SNIPE</span>,
+            <span className="tag has-text-weight-bold is-light is-warning">STEAL</span>)
             and a few possible modifiers.</Trans></p>
 
         <p><Trans i18nKey='instructions.hostAndGuestTurns.2'>A
@@ -100,7 +101,17 @@ export const HelpHostAndGuestTurns = withTranslation()(() =>
             Action.SNIPE,
             Exclusivity.GLOBAL
         )}/> allows a player to remove a civilisation again which the opponent has
-            picked in a previous turn. The '
+            picked in a previous turn. The
+            <span className="tag">GLOBAL</span>,
+            <span className="tag">EXCLUSIVE</span> and
+            <span className="tag">NONEXCLUSIVE</span> modifiers have no meaning here.
+        </Trans></p>
+        <p><Trans i18nKey='instructions.hostAndGuestTurns.11'>A <TurnTag turn={new ModelTurn(
+            Player.HOST,
+            Action.STEAL,
+            Exclusivity.GLOBAL
+        )}/> allows a player to remove a civilisation which the opponent has
+            picked (or stolen!) in a previous turn, and add it to their own picks. The
             <span className="tag">GLOBAL</span>,
             <span className="tag">EXCLUSIVE</span> and
             <span className="tag">NONEXCLUSIVE</span> modifiers have no meaning here.

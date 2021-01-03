@@ -65,6 +65,8 @@ export const Util = {
                 return Civilisation.HIDDEN_BAN;
             case ActionType.SNIPE:
                 return Civilisation.HIDDEN_SNIPE;
+            case ActionType.STEAL:
+                return Civilisation.HIDDEN_STEAL;
             default:
                 return Civilisation.HIDDEN;
         }
