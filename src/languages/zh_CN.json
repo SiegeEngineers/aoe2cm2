@@ -53,7 +53,7 @@
     "doPick": "<0><1>选</1></0>一个民族",
     "doBan": "<0><1>禁</1></0>一个民族",
     "doSnipe": "<0><1>狙击</1></0>一个民族",
-    "doSteal": "<0><1>Steal</1></0> a civilization!",
+    "doSteal": "<0><1>偷</1></0>一个民族",
     "waitingForPick": "等待对手选族",
     "waitingForBan": "等待对手禁族",
     "waitingForSnipe": "等待对手狙击你选的民族",
