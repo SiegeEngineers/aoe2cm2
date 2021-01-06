@@ -35,6 +35,8 @@
     "Cumans": "Cumanos",
     "Lithuanians": "Lituanos",
     "Tatars": "Tártaros",
+    "Burgundians": "Borgoñones",
+    "Sicilians": "Silicianos",
     "HIDDEN_PICK": "",
     "HIDDEN_BAN": "",
     "HIDDEN_SNIPE": "",
@@ -51,24 +53,34 @@
     "doPick": "<0><1>Pickea</1></0> una civilización!",
     "doBan": "<0><1>Banea</1></0> una civilización!",
     "doSnipe": "<0><1>Snipea</1></0> una civilización enemiga!",
+    "doSteal": "<0><1>Stelear</1></0> una civilización enemiga!",
     "waitingForPick": "Esperando a el otro capitán a pickear…",
     "waitingForBan": "Esperando a el otro capitán a banear…",
     "waitingForSnipe": "Esperando a el otro capitán a snipear una de tus civilizaciónes…",
+    "waitingForSteal": "Esperando a el otro capitán a stelear una de tus civilizaciónes…",
     "waitingForBothToBeReady": "Esperando a los capitánes a estar listos…",
     "waitingForHostToBeReady": "Esperando a el anfitrión a estar listo…",
     "waitingForGuestToBeReady": "Esperando a el invitado a estar listo…",
     "specPick": "Esperando a <1>{{playerName}}</1> a <3><4>Pickear</4></3> una civilización",
     "specBan": "Esperando a <1>{{playerName}}</1> a <3><4>Banear</4></3> una civilización",
     "specSnipe": "Esperando a <1>{{playerName}}</1> a <3><4>Snipear</4></3> una civilización de el oponente",
+    "specSteal": "Esperando a <1>{{playerName}}</1> a <3><4>Stelear</4></3> una civilización de el oponente",
     "specParallelTurnsPickPick": "Esperando a <1>{{firstTurnPlayer}}</1> a <3><4>Pickear</4></3>, y a <5>{{secondTurnPlayer}}</5> a <7><8>Pickear</8></7> una civilización",
-    "specParallelTurnsPickBan": "Esperando a <1>{{firstTurnPlayer}}</1> a <3><4>Pickear</4></3>, y a <5>{{secondTurnPlayer}}</5> to <7><8>Banear</8></7> una civilización",
-    "specParallelTurnsPickSnipe": "Esperando a <1>{{firstTurnPlayer}}</1> a <3><4>Pickear</4></3>, y a <5>{{secondTurnPlayer}}</5> to <7><8>Snipear</8></7> una civilización",
+    "specParallelTurnsPickBan": "Esperando a <1>{{firstTurnPlayer}}</1> a <3><4>Pickear</4></3>, y a <5>{{secondTurnPlayer}}</5> a <7><8>Banear</8></7> una civilización",
+    "specParallelTurnsPickSnipe": "Esperando a <1>{{firstTurnPlayer}}</1> a <3><4>Pickear</4></3>, y a <5>{{secondTurnPlayer}}</5> a <7><8>Snipear</8></7> una civilización",
+    "specParallelTurnsPickSteal": "Esperando a <1>{{firstTurnPlayer}}</1> a <3><4>Pickear</4></3>, y a <5>{{secondTurnPlayer}}</5> a <7><8>Stelear</8></7> una civilización",
     "specParallelTurnsBanPick": "Esperando a <1>{{firstTurnPlayer}}</1> a <3><4>Banear</4></3>, y a <5>{{secondTurnPlayer}}</5> a <7><8>Pickear</8></7> una civilización",
-    "specParallelTurnsBanBan": "Esperando a <1>{{firstTurnPlayer}}</1> a <3><4>Banear</4></3>, y a <5>{{secondTurnPlayer}}</5> to <7><8>Banear</8></7> una civilización",
-    "specParallelTurnsBanSnipe": "Esperando a <1>{{firstTurnPlayer}}</1> a <3><4>Banear</4></3>, y a <5>{{secondTurnPlayer}}</5> to <7><8>Snipear</8></7> una civilización",
+    "specParallelTurnsBanBan": "Esperando a <1>{{firstTurnPlayer}}</1> a <3><4>Banear</4></3>, y a <5>{{secondTurnPlayer}}</5> a <7><8>Banear</8></7> una civilización",
+    "specParallelTurnsBanSnipe": "Esperando a <1>{{firstTurnPlayer}}</1> a <3><4>Banear</4></3>, y a <5>{{secondTurnPlayer}}</5> a <7><8>Snipear</8></7> una civilización",
+    "specParallelTurnsBanSteal": "Esperando a <1>{{firstTurnPlayer}}</1> a <3><4>Banear</4></3>, y a <5>{{secondTurnPlayer}}</5> a <7><8>Stelear</8></7> una civilización",
     "specParallelTurnsSnipePick": "Esperando a <1>{{firstTurnPlayer}}</1> a <3><4>Snipear</4></3>, y a <5>{{secondTurnPlayer}}</5> a <7><8>Pickear</8></7> una civilización",
-    "specParallelTurnsSnipeBan": "Esperando a <1>{{firstTurnPlayer}}</1> a <3><4>Snipear</4></3>, y a <5>{{secondTurnPlayer}}</5> to <7><8>Banear</8></7> una civilización",
-    "specParallelTurnsSnipeSnipe": "Esperando a <1>{{firstTurnPlayer}}</1> a <3><4>Snipear</4></3>, y a <5>{{secondTurnPlayer}}</5> to <7><8>Snipear</8></7> una civilización"
+    "specParallelTurnsSnipeBan": "Esperando a <1>{{firstTurnPlayer}}</1> a <3><4>Snipear</4></3>, y a <5>{{secondTurnPlayer}}</5> a <7><8>Banear</8></7> una civilización",
+    "specParallelTurnsSnipeSnipe": "Esperando a <1>{{firstTurnPlayer}}</1> a <3><4>Snipear</4></3>, y a <5>{{secondTurnPlayer}}</5> a <7><8>Snipear</8></7> una civilización",
+    "specParallelTurnsSnipeSteal": "Esperando a <1>{{firstTurnPlayer}}</1> a <3><4>Snipear</4></3>, y a <5>{{secondTurnPlayer}}</5> a <7><8>Stelear</8></7> una civilización",
+    "specParallelTurnsStealPick": "Esperando a <1>{{firstTurnPlayer}}</1> a <3><4>Stelear</4></3>, y a <5>{{secondTurnPlayer}}</5> a <7><8>Pickear</8></7> una civilización",
+    "specParallelTurnsStealBan": "Esperando a <1>{{firstTurnPlayer}}</1> a <3><4>Stelear</4></3>, y a <5>{{secondTurnPlayer}}</5> a <7><8>Banear</8></7> una civilización",
+    "specParallelTurnsStealSnipe": "Esperando a <1>{{firstTurnPlayer}}</1> a <3><4>Stelear</4></3>, y a <5>{{secondTurnPlayer}}</5> a <7><8>Snipe</8></7> una civilización",
+    "specParallelTurnsStealSteal": "Esperando a <1>{{firstTurnPlayer}}</1> a <3><4>Stelear</4></3>, y a <5>{{secondTurnPlayer}}</5> a <7><8>Snipe</8></7> una civilización"
   },
   "modal": {
     "header": "Bienvenido",
@@ -152,7 +164,8 @@
       "7": "<1>GLOBAL BAN</1> o <3/> bloquea ambos jugadores de elegir una determinada civilización en los turnos siguientes.",
       "8": "<1>EXCLUSIVE BAN</1> o <3/> bloquea al contrincante de elegir una determinada civilización en los turnos siguientes.",
       "9": "<1>NONEXCLUSIVE BAN</1> o <3/> bloquea a si mismo de elegir una determinada civilización en los turnos siguientes, esta opción carece de sentido, se recomienda usar <5>EXCLUSIVE BAN</5>.",
-      "10": "<1/> Veta una selección de el contrincante para que no pueda utilizarla. Los modificadores <3>GLOBAL</3>, <5>EXCLUSIVE</5> y <7>NONEXCLUSIVE</7> no tienen sentido aquí."
+      "10": "<1/> Veta una selección de el contrincante para que no pueda utilizarla. Los modificadores <3>GLOBAL</3>, <5>EXCLUSIVE</5> y <7>NONEXCLUSIVE</7> no tienen sentido aquí.",
+      "11": "Un <1/> premite a un jugador remover una civilización que el oponente a elegido (o steleado!) en un turno previo, y lo agrega a sus civilizaciónes elegidas. Los modificadores <3>GLOBAL</3>, <5>EXCLUSIVE</5> y <7>NONEXCLUSIVE</7> no tienen sentido aquí."
     },
     "adminTurns": {
       "title": "Turnos del Administrador",
@@ -223,6 +236,12 @@
     "setLang": "Cambiar el idioma a",
     "showUnits": "Mostrar unidades",
     "showEmblems": "Mostrar emblemas",
-    "setName": "Haz click para cambiar tu nombre"
+    "setName": "Haz click para cambiar tu nombre",
+    "toggleColorScheme": "Paleta de colores: {{scheme}} (click para cambiar)",
+    "colorScheme": {
+      "Light": "Claro",
+      "Dark": "Oscuro",
+      "Auto": "Automático"
+    }
   }
 }
