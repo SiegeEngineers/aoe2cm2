@@ -81,8 +81,8 @@ export const HelpHostAndGuestTurns = withTranslation()(() =>
                 Player.HOST,
                 Action.BAN,
                 Exclusivity.EXCLUSIVE
-            )}/> prevents only the opponent from picking the civilisation in a future turn and the player from banning
-                the civilisation again in a future turn.
+            )}/> prevents only the opponent from picking the civilisation in a future turn and the player who banned
+                the civilisation from banning the same civilisation again in a future turn.
             </Trans>
             </li>
             <li><Trans i18nKey='instructions.hostAndGuestTurns.9'>

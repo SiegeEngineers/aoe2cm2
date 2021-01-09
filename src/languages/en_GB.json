@@ -161,8 +161,8 @@
       "4": "An <1>EXCLUSIVE PICK</1> or <3/> prevents only the picking player from picking the civilisation again in a future turn.",
       "5": "A <1>NONEXCLUSIVE PICK</1> or <3/> does neither of those things, meaning players are still able to pick the civilisation again in a future turn.",
       "6": "A <1>BAN</1> marks civilisation as not available for future turns.",
-      "7": "A <1>GLOBAL BAN</1> or <3/> prevents either player from picking the civilisation in a future turn.",
-      "8": "An <1>EXCLUSIVE BAN</1> or <3/> prevents only the opponent from picking the civilisation in a future turn and the player from banning the civilisation again in a future turn.",
+      "7": "A <1>GLOBAL BAN</1> or <3/> prevents either player from picking or banning the civilisation in a future turn.",
+      "8": "An <1>EXCLUSIVE BAN</1> or <3/> prevents only the opponent from picking the civilisation in a future turn and the player who banned the civilisation from banning the same civilisation again in a future turn.",
       "9": "A <1>NONEXCLUSIVE BAN</1> or <3/> prevents only the opponent from picking the civilisation in a future turn, and the player may ban the the civilisation again in a future turn, which makes no sense, so you probably want to use <5>EXCLUSIVE</5> instead anyway.",
       "10": "A <1/> allows a player to remove a civilisation again which the opponent has picked in a previous turn. The <3>GLOBAL</3>, <5>EXCLUSIVE</5> and <7>NONEXCLUSIVE</7> modifiers have no meaning here.",
       "11": "A <1/> allows a player to remove a civilisation which the opponent has picked (or stolen!) in a previous turn, and add it to their own picks. The <3>GLOBAL</3>, <5>EXCLUSIVE</5> and <7>NONEXCLUSIVE</7> modifiers have no meaning here."
