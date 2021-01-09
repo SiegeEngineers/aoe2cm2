@@ -615,7 +615,7 @@ it('Inverse turns inverse order', ()=>{
     const validator = new Validator(prepareReadyStore(preset, [
         new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.VIKINGS, Player.HOST)
     ]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.VIKINGS, Player.GUEST));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.VIETNAMESE, Player.GUEST));
     expect(errors).toEqual([]);
 });
 
@@ -647,7 +647,7 @@ it('VLD_001: Inverse turns inverse order 2', ()=>{
     const validator = new Validator(prepareReadyStore(preset, [
         new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.VIKINGS, Player.HOST)
     ]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.VIKINGS, Player.HOST));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.VIETNAMESE, Player.HOST));
     expect(errors).toEqual([ValidationId.VLD_001]);
 });
 
@@ -714,6 +714,30 @@ it('Steal previously sniped civ', () => {
         new PlayerEvent(Player.GUEST, ActionType.SNIPE, Civilisation.AZTECS),
     ]));
     const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.STEAL, Civilisation.AZTECS));
+    expect(errors).toEqual([ValidationId.VLD_010]);
+});
+
+it('VLD_010 Cannot ban a globally banned civ again 1', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.HOST, Action.BAN, Exclusivity.GLOBAL),
+        new Turn(Player.GUEST, Action.BAN, Exclusivity.GLOBAL),
+    ]);
+    const validator = new Validator(prepareReadyStore(preset, [
+        new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS),
+    ]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS));
+    expect(errors).toEqual([ValidationId.VLD_010]);
+});
+
+it('VLD_010 Cannot ban a globally banned civ again 2', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.GUEST, Action.BAN, Exclusivity.GLOBAL),
+        new Turn(Player.HOST, Action.BAN, Exclusivity.NONEXCLUSIVE),
+    ]);
+    const validator = new Validator(prepareReadyStore(preset, [
+        new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS),
+    ]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS));
     expect(errors).toEqual([ValidationId.VLD_010]);
 });
 

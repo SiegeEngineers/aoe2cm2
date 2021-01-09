@@ -135,6 +135,8 @@ class ValidCivs {
     }
 
     private handleGlobalBan(event: PlayerEvent) {
+        this.removeHostBan(event.civilisation);
+        this.removeGuestBan(event.civilisation);
         this.removeHostPick(event.civilisation);
         this.removeGuestPick(event.civilisation);
     }
