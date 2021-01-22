@@ -81,7 +81,7 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                     if (this.state.pickedCivs.length > picksIndex) {
                         pickedCiv = this.state.pickedCivs[picksIndex];
                         sniped = removeIfContains(snipes, pickedCiv);
-                        if (!sniped) {
+                        if (!sniped && pickedCiv !== Civilisation.HIDDEN_STEAL) {
                             stolen = removeIfContains(steals, pickedCiv);
                         }
                     }
