@@ -741,6 +741,97 @@ it('VLD_010 Cannot ban a globally banned civ again 2', () => {
     expect(errors).toEqual([ValidationId.VLD_010]);
 });
 
+describe('VLD_010 dumb bans: globally ban an exclusively picked civ by opponent', () => {
+    it.each`
+    player1         | player2
+    ${Player.HOST}  | ${Player.GUEST}
+    ${Player.GUEST} | ${Player.HOST}
+  `('$player1 $player2', ({player1, player2}) => {
+        let preset = new Preset("test", Civilisation.ALL, [
+            new Turn(player1, Action.PICK, Exclusivity.EXCLUSIVE),
+            new Turn(player2, Action.BAN, Exclusivity.GLOBAL),
+        ]);
+        const validator = new Validator(prepareReadyStore(preset, [
+            new PlayerEvent(player1, ActionType.PICK, Civilisation.AZTECS),
+        ]));
+        const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(player2, ActionType.BAN, Civilisation.AZTECS));
+        expect(errors).toEqual([ValidationId.VLD_010]);
+    })
+});
+
+describe('VLD_010 bans: globally ban an exclusively picked civ by yourself', () => {
+    it.each`
+    player1         | player2
+    ${Player.HOST}  | ${Player.HOST}
+    ${Player.GUEST} | ${Player.GUEST}
+  `('$player1 $player2', ({player1, player2}) => {
+        let preset = new Preset("test", Civilisation.ALL, [
+            new Turn(player1, Action.PICK, Exclusivity.EXCLUSIVE),
+            new Turn(player2, Action.BAN, Exclusivity.GLOBAL),
+        ]);
+        const validator = new Validator(prepareReadyStore(preset, [
+            new PlayerEvent(player1, ActionType.PICK, Civilisation.AZTECS),
+        ]));
+        const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(player2, ActionType.BAN, Civilisation.AZTECS));
+        expect(errors).toEqual([]);
+    })
+});
+
+describe('VLD_010 dumb bans: ban a globally picked civ', () => {
+    it.each`
+    player1         | player2         | banExclusivity
+    ${Player.HOST}  | ${Player.GUEST} | ${Exclusivity.GLOBAL}
+    ${Player.HOST}  | ${Player.GUEST} | ${Exclusivity.EXCLUSIVE}
+    ${Player.GUEST} | ${Player.HOST}  | ${Exclusivity.GLOBAL}
+    ${Player.GUEST} | ${Player.HOST}  | ${Exclusivity.EXCLUSIVE}
+  `('$player1 $player2 $banExclusivity', ({player1, player2, banExclusivity}) => {
+        let preset = new Preset("test", Civilisation.ALL, [
+            new Turn(player1, Action.PICK, Exclusivity.GLOBAL),
+            new Turn(player2, Action.BAN, banExclusivity),
+        ]);
+        const validator = new Validator(prepareReadyStore(preset, [
+            new PlayerEvent(player1, ActionType.PICK, Civilisation.AZTECS),
+        ]));
+        const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(player2, ActionType.BAN, Civilisation.AZTECS));
+        expect(errors).toEqual([ValidationId.VLD_010]);
+    })
+});
+
+describe('VLD_010 bans: globally ban an exclusively banned civ by opponent', () => {
+    it.each`
+    player1         | player2
+    ${Player.HOST}  | ${Player.GUEST}
+    ${Player.GUEST} | ${Player.HOST}
+  `('$player1 $player2', ({player1, player2}) => {
+        let preset = new Preset("test", Civilisation.ALL, [
+            new Turn(player1, Action.BAN, Exclusivity.EXCLUSIVE),
+            new Turn(player2, Action.BAN, Exclusivity.GLOBAL),
+        ]);
+        const validator = new Validator(prepareReadyStore(preset, [
+            new PlayerEvent(player1, ActionType.BAN, Civilisation.AZTECS),
+        ]));
+        const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(player2, ActionType.BAN, Civilisation.AZTECS));
+        expect(errors).toEqual([]);
+    })
+});
+
+describe('VLD_010 dumb bans: globally ban an exclusively banned civ by yourself', () => {
+    it.each`
+    player1         | player2
+    ${Player.HOST}  | ${Player.HOST}
+    ${Player.GUEST} | ${Player.GUEST}
+  `('$player1 $player2', ({player1, player2}) => {
+        let preset = new Preset("test", Civilisation.ALL, [
+            new Turn(player1, Action.BAN, Exclusivity.EXCLUSIVE),
+            new Turn(player2, Action.BAN, Exclusivity.GLOBAL),
+        ]);
+        const validator = new Validator(prepareReadyStore(preset, [
+            new PlayerEvent(player1, ActionType.BAN, Civilisation.AZTECS),
+        ]));
+        const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(player2, ActionType.BAN, Civilisation.AZTECS));
+        expect(errors).toEqual([ValidationId.VLD_010]);
+    })
+});
 
 it('Validator does not modify offsets', () => {
     const expectedOffset = -1337;

@@ -165,15 +165,19 @@ class ValidCivs {
     private handleExclusivePick(event: PlayerEvent) {
         if (ValidCivs.isHostEvent(event)) {
             this.removeHostPick(event.civilisation);
+            this.removeGuestBan(event.civilisation);
         }
         if (ValidCivs.isGuestEvent(event)) {
             this.removeGuestPick(event.civilisation);
+            this.removeHostBan(event.civilisation);
         }
     }
 
     private handleGlobalPick(event: PlayerEvent) {
         this.removeHostPick(event.civilisation);
+        this.removeGuestBan(event.civilisation);
         this.removeGuestPick(event.civilisation);
+        this.removeHostBan(event.civilisation);
     }
 
     private static isGlobal(turn: Turn) {
