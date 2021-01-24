@@ -1,4 +1,5 @@
 import * as React from "react";
+import {Link} from 'react-router-dom';
 
 class Footer extends React.Component<object, object> {
     public render() {
@@ -14,6 +15,8 @@ class Footer extends React.Component<object, object> {
                             &bull;
                             Based on the first version by <span className='is-family-code'>pip</span>&nbsp; &bull;
                             Contribute on <a href="https://github.com/SiegeEngineers/aoe2cm2">GitHub</a>
+                            &nbsp;&bull;&nbsp;
+                            <Link to="/api">API</Link>
                         </p>
                         <p>
                             Age of Empires II &copy; Microsoft Corporation. <b>Captains Mode for Age of Empires

@@ -133,10 +133,11 @@ ReactDOM.render(
                     <Route path="/spectate/:id" component={SpectateDraft}/>
                     <Route path="/spectate" component={Menu}/>
                     <Route path="/practice" component={Menu}/>
+                    <Route path="/api" component={Menu}/>
                     <Route component={Menu}/>
                 </Switch>
+            <Footer/>
         </Router>
-        <Footer/>
     </Provider>,
     document.getElementById('root') as HTMLElement
 );
