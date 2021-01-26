@@ -2,13 +2,12 @@ import Civilisation from "./Civilisation";
 import Turn from "./Turn";
 import {CivilisationEncoder} from "../util/CivilisationEncoder";
 import {Assert} from "../util/Assert";
-import GameVersion from "../constants/GameVersion";
 
 class Preset {
 
     public static readonly EMPTY: Preset = new Preset('', [], []);
 
-    public static readonly NEW: Preset = new Preset('', Civilisation.ALL.filter(value => value.gameVersion < GameVersion.LORDS_OF_THE_WEST), []);
+    public static readonly NEW: Preset = new Preset('', Civilisation.ALL, []);
 
     public static readonly SAMPLE: Preset = new Preset('Default Preset', Civilisation.ALL, [
         Turn.HOST_GLOBAL_BAN,
