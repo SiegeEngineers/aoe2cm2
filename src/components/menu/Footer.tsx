@@ -14,8 +14,9 @@ class Footer extends React.Component<object, object> {
                             &bull;
                             Based on the first version by <span className='is-family-code'>pip</span>&nbsp; &bull;
                             Contribute on <a href="https://github.com/SiegeEngineers/aoe2cm2">GitHub</a>
+                            &bull; 
+                            <a href="/API">API</a>
                         </p>
-                        <p>❤️ New Api interface <a href="/API">API</a> ❤️</p>
                         <p>
                             Age of Empires II &copy; Microsoft Corporation. <b>Captains Mode for Age of Empires
                             II</b> was created under Microsoft's "<a href="https://www.xbox.com/en-us/developers/rules"

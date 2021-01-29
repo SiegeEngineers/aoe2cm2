@@ -22,13 +22,11 @@ class API extends React.Component<WithTranslation, IState> {
                             <p>Request the selected preset.</p>
                             <dl>
                                 <dt>Endpoint</dt>
-                                <dd>/api/preset</dd>   
-                                <dt>Request Parameters</dt>
-                                <dd>id</dd>
+                                <dd>/api/preset/:id</dd>   
                                 <dt>Example Request</dt>
                                 <dd>https://aoe2cm.net/api/preset/simple</dd>
-                                <dd>
-                                <ul>
+                            </dl>
+                            <ul>
                                     <li>TECHNICAL = 0</li>
                                     <li>AOK = 1</li>
                                     <li>CONQUERORS = 2</li>
@@ -38,22 +36,22 @@ class API extends React.Component<WithTranslation, IState> {
                                     <li>DEFINITIVE_EDITION = 6</li>
                                     <li>LORDS_OF_THE_WEST = 7</li>
                                     </ul>
-                                </dd>
-                            </dl>
 
                             <h5>Add Preset</h5>
                             <p>Request the selected preset.</p>
                             <dl>
                                 <dt>Endpoint</dt>
-                                <dd>/api/preset</dd>   
+                                <dd>/api/preset/new</dd>   
                                 <dt>Request Parameters</dt>
                                 <dd>No Clue</dd>
                                 <dt>Example Request</dt>
                                 <dd>https://aoe2cm.net/api/preset/new</dd>
+                                <dt>Reply</dt>
+                                <dd>"status": "ok", "presetId": "abcdef"</dd>
                             </dl>
 
                             <h5>List Preset</h5>
-                            <p>Lists all presets with name and id.</p>
+                            <p>Lists public presets with name and id.</p>
                             <dl>
                                 <dt>Endpoint</dt>
                                 <dd>/api/preset/list</dd>   
@@ -68,9 +66,9 @@ class API extends React.Component<WithTranslation, IState> {
                             <p>Request the selected Draft.</p>
                             <dl>
                                 <dt>Endpoint</dt>
-                                <dd>/api/draft</dd>  
+                                <dd>/api/draft/:id</dd>  
                                 <dt>Request Parameters</dt>
-                                <dd>name</dd>
+                                <dd>id</dd>
                                 <dt>Example Request</dt>
                                 <dd>https://aoe2cm.net/api/draft/FQoju</dd>
                             </dl>
@@ -85,8 +83,8 @@ class API extends React.Component<WithTranslation, IState> {
                                 <dd>https://aoe2cm.net/api/draft/new</dd>
                             </dl>
 
-                            <h5>Add draft</h5>
-                            <p>Request the selected preset.</p>
+                            <h5>See recent Drafts</h5>
+                            <p>Get a list of recent Drafts</p>
                             <dl>
                                 <dt>Endpoint</dt>
                                 <dd>/api/recentdrafts</dd>   
@@ -110,12 +108,12 @@ class API extends React.Component<WithTranslation, IState> {
                             </dl>
 
                             <h4>Alerts</h4>
-                            <p>Shows the number of current connections.</p>
+                            <p>Shows alert message.</p>
                             <dl>
                                 <dt>Endpoint</dt>
                                 <dd>/api/alerts</dd>   
                                 <dt>Request Parameters</dt>
-                                <dd>No Clue</dd>
+                                <dd>No parameters</dd>
                                 <dt>Example Request</dt>
                                 <dd>https://aoe2cm.net/api/alerts</dd>
                             </dl>
