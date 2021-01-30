@@ -43,7 +43,7 @@ class Menu extends React.Component<WithTranslation, object> {
                         <Route path="/spectate" component={Spectate}/>
                         <Route path="/practice" component={Practice}/>
                         <Route path="/help" component={HowItWorks}/>
-                        <Route path="/api" component={API}/>
+                        <Route path="/API" component={API}/>
                         <Route component={NotFound404}/>
                     </Switch>
                 </div>

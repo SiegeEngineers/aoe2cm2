@@ -1,22 +1,13 @@
 import * as React from "react";
-import {Trans, withTranslation, WithTranslation} from "react-i18next";
-import {IAlert} from "../../types";
 
-
-interface IState {
-    alerts: IAlert[];
-}
-
-class API extends React.Component<WithTranslation, IState> {
-
-    state = {alerts: []};
+class API extends React.Component<object, object> {
 
     public render() {
     
         return (
             <div>
                 <div className="content box" id="API">
-                    <h3><Trans>API</Trans></h3>
+                    <h3>API</h3>
                         <h4>Preset</h4>
                         <h5>Preset</h5>
                             <p>Request the selected preset.</p>
@@ -26,16 +17,6 @@ class API extends React.Component<WithTranslation, IState> {
                                 <dt>Example Request</dt>
                                 <dd>https://aoe2cm.net/api/preset/simple</dd>
                             </dl>
-                            <ul>
-                                    <li>TECHNICAL = 0</li>
-                                    <li>AOK = 1</li>
-                                    <li>CONQUERORS = 2</li>
-                                    <li>FORGOTTEN = 3</li>
-                                    <li>AFRICAN_KINGDOMS = 4</li>
-                                    <li>RISE_OF_RAJAS = 5</li>
-                                    <li>DEFINITIVE_EDITION = 6</li>
-                                    <li>LORDS_OF_THE_WEST = 7</li>
-                                    </ul>
 
                             <h5>Add Preset</h5>
                             <p>Request the selected preset.</p>
@@ -123,4 +104,4 @@ class API extends React.Component<WithTranslation, IState> {
     }
 }
 
-export default withTranslation()(API);
+export default API;
