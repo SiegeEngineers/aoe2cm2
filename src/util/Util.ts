@@ -119,6 +119,9 @@ export const Util = {
     },
 
     buildValidationErrorMessage(data: any): string {
+        if (data.hasOwnProperty('message')) {
+            return data.message;
+        }
         let message = i18next.t('validationFailed') + '\n';
         for (let validationError of data.validationErrors) {
             message += `\n${validationError}: ${i18next.t('errors.' + validationError)}`;
@@ -148,6 +151,10 @@ export const Util = {
             assignedRole = Player.GUEST;
         }
         return assignedRole;
-    }
+    },
 
+    isRequestFromLocalhost(req: any) {
+        const ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
+        return ip === '::ffff:127.0.0.1' || ip === '::1';
+    }
 };

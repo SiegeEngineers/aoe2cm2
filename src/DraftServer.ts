@@ -32,6 +32,8 @@ export const DraftServer = {
         const draftsStore = new DraftsStore();
         const validator = new Validator(draftsStore);
 
+        const state = {maintenanceMode: false};
+
         function connectPlayer(draftId: string, player: Player, name: string) {
             draftsStore.connectPlayer(draftId, player, name);
         }
@@ -46,8 +48,39 @@ export const DraftServer = {
             }
         };
 
+        app.post('/api/state', (req, res) => {
+            if (!Util.isRequestFromLocalhost(req)) {
+                res.status(403).end();
+                return;
+            }
+            logger.info('Received request to set state mode: %s', JSON.stringify(req.body));
+            for (let key in req.body) {
+                if (state.hasOwnProperty(key) && req.body.hasOwnProperty(key)) {
+                    state[key] = req.body[key];
+                }
+            }
+            res.json(state);
+            logger.info('New state = %s', JSON.stringify(state));
+        });
+        app.get('/api/state', (req, res) => {
+            if (!Util.isRequestFromLocalhost(req)) {
+                res.status(403).end();
+                return;
+            }
+            res.json(state);
+        });
         app.post('/api/draft/new', (req, res) => {
             logger.info('Received request to create a new draft: %s', JSON.stringify(req.body));
+
+            if (state.maintenanceMode) {
+                res.json({
+                    status: 'error',
+                    message: 'aoe2cm is currently in maintenance mode, no drafts can be created'
+                });
+                logger.info('Server is in maintenance mode. Discarding draft creation request.');
+                return;
+            }
+
             let draftId = Util.newDraftId();
             while (draftsStore.has(draftId)) {
                 draftId += Util.randomChar();
@@ -79,8 +112,7 @@ export const DraftServer = {
             }
         });
         app.get('/api/connections', (req, res) => {
-            const ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
-            if (ip === '::ffff:127.0.0.1' || ip === '::1') {
+            if (Util.isRequestFromLocalhost(req)) {
                 // @ts-ignore
                 res.json({connections: io.engine.clientsCount, rooms: io.sockets.adapter.rooms});
             } else {
