@@ -321,6 +321,11 @@ div.stretchy-wrapper > div.stretchy-image {
   right: 0;
 }
 
+.stretchy-image.is-stolen,
+.stretchy-image.is-sniped {
+  filter: grayscale(100%);
+}
+
 div.stretchy-wrapper > div.stretchy-text {
   position: absolute;
   bottom: 0;

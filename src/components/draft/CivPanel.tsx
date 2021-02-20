@@ -47,6 +47,7 @@ class CivPanel extends React.Component<IProps, IState> {
         let civilisationKey = '';
         let civilisationName = '';
         let textClass: string = 'stretchy-text';
+        let imageContainerClass: string = 'stretchy-image';
         if (civilisation !== undefined) {
             civilisationName = civilisation.name;
             imageSrc = "/images/civs/" + civilisationName.toLocaleLowerCase() + "-DE.png";
@@ -87,11 +88,15 @@ class CivPanel extends React.Component<IProps, IState> {
             contentClass += " is-visible";
         }
         let snipeMarkerClass = "stretchy-image snipe-marker";
-        if (!this.props.sniped) {
+        if (this.props.sniped) {
+            imageContainerClass += ' is-sniped'
+        } else {
             snipeMarkerClass += ' is-hidden';
         }
         let stealMarkerClass = "stretchy-image steal-marker";
-        if (!this.props.stolen) {
+        if (this.props.stolen) {
+            imageContainerClass += ' is-stolen'
+        } else {
             stealMarkerClass += ' is-hidden';
         }
         let usedMarkerClass = "stretchy-image used-marker " + this.state.used;
@@ -111,7 +116,7 @@ class CivPanel extends React.Component<IProps, IState> {
             <div className={className} onClick={onClickAction}>
                 <div className={contentClass}>
                     <div className="stretchy-wrapper">
-                        <div className="stretchy-image">
+                        <div className={imageContainerClass}>
                             <img src={imageSrc} alt={civilisationName}/>
                         </div>
                         <div className={randomMarkerClass} title="Random"/>
