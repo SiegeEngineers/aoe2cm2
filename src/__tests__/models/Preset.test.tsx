@@ -61,3 +61,42 @@ it('new turns with executingPlayer properties can be deserialised', () => {
     expect(preset.turns[0].executingPlayer).toEqual(Player.GUEST);
 });
 
+
+it('old preset without presetId can be deserialised', () => {
+    const pojo = {
+        name: "Preset name",
+        encodedCivilisations: "0x1",
+        turns: [{
+            id: "mocked-uuid",
+            player: Player.HOST,
+            action: Action.PICK,
+            exclusivity: Exclusivity.NONEXCLUSIVE,
+            hidden: false,
+            parallel: false,
+            executingPlayer: Player.GUEST
+        } as Turn]
+    };
+    const preset = Preset.fromPojo(pojo) as Preset;
+    expect(preset.presetId).toBeUndefined();
+});
+
+
+it('new preset with presetId can be deserialised', () => {
+    const pojo = {
+        name: "Preset name",
+        encodedCivilisations: "0x1",
+        turns: [{
+            id: "mocked-uuid",
+            player: Player.HOST,
+            action: Action.PICK,
+            exclusivity: Exclusivity.NONEXCLUSIVE,
+            hidden: false,
+            parallel: false,
+            executingPlayer: Player.GUEST
+        } as Turn],
+        presetId: 'abcdef'
+    };
+    const preset = Preset.fromPojo(pojo) as Preset;
+    expect(preset.presetId).toEqual('abcdef');
+});
+

@@ -18,6 +18,7 @@ export const PresetUtil = {
         while (PresetUtil.presetExists(presetId)) {
             presetId += Util.randomChar();
         }
+        preset.presetId = presetId;
         fs.writeFile(`presets/${presetId}.json`, JSON.stringify(preset), (err) => {
             if (err) throw err;
             logger.info(`Preset saved to presets/${presetId}.json`, {presetId});

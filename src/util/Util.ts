@@ -114,6 +114,13 @@ export const Util = {
         return id;
     },
 
+    isValidPresetId(input: any): boolean {
+        if (typeof input !== "string") {
+            return false;
+        }
+        return input.match(new RegExp(`^[A-Za-z0-9_]+$`)) !== null;
+    },
+
     randomChar(): string {
         return CHARACTERS.charAt(Math.floor(Math.random() * CHARACTERS.length));
     },

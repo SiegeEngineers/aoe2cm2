@@ -12,6 +12,7 @@ exports[`CivGrid renders correctly 1`] = `
       Preset {
         "encodedCivilisations": "1fffffffff",
         "name": "Default Preset",
+        "presetId": undefined,
         "turns": Array [
           Turn {
             "action": "BAN",
@@ -214,6 +215,7 @@ exports[`CivGrid renders correctly 1`] = `
       Preset {
         "encodedCivilisations": "1fffffffff",
         "name": "Default Preset",
+        "presetId": undefined,
         "turns": Array [
           Turn {
             "action": "BAN",

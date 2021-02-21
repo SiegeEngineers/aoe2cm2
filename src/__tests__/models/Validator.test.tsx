@@ -360,6 +360,12 @@ it('VLD_908: no turns', () => {
     expect(errors).toEqual([ValidationId.VLD_908]);
 });
 
+it('VLD_909: illegal preset id', () => {
+    let preset = new Preset("test", Civilisation.ALL, [new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL)], 'abc/123');
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([ValidationId.VLD_909]);
+});
+
 describe('Execute parallel turn: Inverse order (1)', () => {
     it.each`
     action          | actionType         | exclusivity

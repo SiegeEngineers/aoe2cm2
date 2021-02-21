@@ -12,7 +12,7 @@ import {Trans, WithTranslation, withTranslation} from "react-i18next";
 import KeyboardBackspaceIcon from "mdi-react/KeyboardBackspaceIcon";
 import Modal from "../../containers/Modal";
 import NameGenerator from "../../util/NameGenerator";
-import {withRouter} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import RoleModal from "../../containers/RoleModal";
 import DraftIdInfo from "../../containers/DraftIdInfo";
 import {ICountdownValues} from "../../types";
@@ -123,7 +123,10 @@ class Draft extends React.Component<IProps, IState> {
     }
 
     public render() {
-        const presetName: string = this.props.preset.name;
+        let presetName: JSX.Element = <>{this.props.preset.name}</>;
+        if(this.props.preset.presetId){
+            presetName = <Link to={'/preset/'+this.props.preset.presetId}>{presetName}</Link>
+        }
         const turns = this.props.preset.turns;
 
         let className = 'section';
@@ -142,7 +145,7 @@ class Draft extends React.Component<IProps, IState> {
                                     <KeyboardBackspaceIcon size={48} />
                                 </button>
                         </div>
-                        <div className="column content my-0">
+                        <div className="column content my-0 pb-0">
                             <h2 id="draft-title" className="has-text-centered my-0">{presetName}</h2>
                         </div>
                         <div className="column is-1"/>

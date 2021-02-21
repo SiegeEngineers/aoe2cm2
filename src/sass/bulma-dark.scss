@@ -135,4 +135,8 @@ code {
   }
 }
 
+#draft-title a {
+  color: $scheme-invert-ter;
+}
+
 @import "bulma-dark-tags";

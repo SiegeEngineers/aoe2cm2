@@ -40,22 +40,25 @@ class Preset {
         Turn.HOST_NONEXCLUSIVE_PICK
     ]);
     public readonly name: string;
+    public presetId?: string
     public readonly encodedCivilisations: string;
     public readonly turns: Turn[];
 
-    constructor(name: string, civilisations: Civilisation[], turns: Turn[] = []) {
+    constructor(name: string, civilisations: Civilisation[], turns: Turn[] = [], presetId?: string) {
         this.name = name;
+        this.presetId = presetId;
         this.encodedCivilisations = CivilisationEncoder.encodeCivilisationArray(civilisations);
         this.turns = turns;
     }
 
-    public static fromPojo(preset: { name: string, encodedCivilisations: string, turns: Turn[] } | undefined): Preset | undefined {
+    public static fromPojo(preset: { name: string, encodedCivilisations: string, turns: Turn[], presetId?: string } | undefined): Preset | undefined {
         if (preset === undefined) {
             return undefined;
         }
         Assert.isString(preset.name);
         Assert.isString(preset.encodedCivilisations);
-        return new Preset(preset.name, CivilisationEncoder.decodeCivilisationArray(preset.encodedCivilisations), Turn.fromPojoArray(preset.turns));
+        Assert.isOptionalString(preset.presetId);
+        return new Preset(preset.name, CivilisationEncoder.decodeCivilisationArray(preset.encodedCivilisations), Turn.fromPojoArray(preset.turns), preset.presetId);
     }
 
     public addTurn(turn: Turn) {

@@ -4,6 +4,7 @@ exports[`preset from valid pojo works 1`] = `
 Preset {
   "encodedCivilisations": "1",
   "name": "some-name",
+  "presetId": undefined,
   "turns": Array [
     Turn {
       "action": "PICK",

@@ -2,6 +2,7 @@ import {ValidationId} from "../constants/ValidationId";
 import Preset from "./Preset";
 import Player from "../constants/Player";
 import Action from "../constants/Action";
+import {Util} from "../util/Util";
 
 export class PresetValidation {
     public static readonly VLD_901: PresetValidation = new PresetValidation(ValidationId.VLD_901, (preset: Preset) => {
@@ -105,6 +106,13 @@ export class PresetValidation {
         return preset.turns.length > 0;
     });
 
+    public static readonly VLD_909: PresetValidation = new PresetValidation(ValidationId.VLD_909, (preset: Preset) => {
+        if (preset.presetId) {
+            return Util.isValidPresetId(preset.presetId);
+        }
+        return true;
+    });
+
     public static readonly ALL: PresetValidation[] = [
         PresetValidation.VLD_901,
         PresetValidation.VLD_902,
@@ -114,6 +122,7 @@ export class PresetValidation {
         PresetValidation.VLD_906,
         PresetValidation.VLD_907,
         PresetValidation.VLD_908,
+        PresetValidation.VLD_909,
     ];
 
     private readonly validationId: ValidationId;

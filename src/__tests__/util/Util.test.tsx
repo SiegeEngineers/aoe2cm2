@@ -34,3 +34,17 @@ it('getIdFromUrl works on spectate url with trailing slash', () => {
     window.location = new URL('https://www.example.com/spectate/' + draftId + '/') as any;
     expect(Util.getIdFromUrl()).toEqual(draftId);
 });
+
+describe('test isValidPresetId', () => {
+    it.each([
+        ["abcdef", true],
+        ["ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_", true],
+        ["abc123", true],
+        ["ä", false],
+        ["", false],
+        [undefined, false],
+        ["https://example.com", false]
+    ])("when the input is '%s'", (text: any, expected: boolean) => {
+        expect(Util.isValidPresetId(text)).toBe(expected);
+    });
+});

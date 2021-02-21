@@ -8,6 +8,11 @@ export const Assert = {
             throw new Error("Expected argument to be string, but was " + typeof arg);
         }
     },
+    isOptionalString(arg: any): void {
+        if (!(typeof arg === "string" || typeof arg === "undefined")) {
+            throw new Error("Expected argument to be string or undefined, but was " + typeof arg);
+        }
+    },
     isPlayer(arg: any) {
         if (!Object.keys(Player).includes(arg)) {
             throw new Error("Expected argument to be a valid Player value, but was " + arg);

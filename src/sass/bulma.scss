@@ -711,6 +711,10 @@ div.stretchy-wrapper > div.stretchy-text {
   background-color: transparent !important;
 }
 
+#draft-title a {
+  color: $black-ter;
+}
+
 // Dark Mode
 html.has-theme-dark {
   background-color: $black;
