@@ -39,7 +39,7 @@ class API extends React.Component<object, object> {
                         </dl>
 
                         <h5>List Presets</h5>
-                        <p>List ID and name of publicly listed presets.</p>
+                        <p>Get a list of publicly listed presets.</p>
                         <dl>
                             <dt>Endpoint</dt>
                             <dd><pre>GET https://aoe2cm.net/api/preset/list</pre></dd>
@@ -47,8 +47,8 @@ class API extends React.Component<object, object> {
                             <dd><pre>{
 `[
     {
-        "name": "Simple Preset",
         "id": "simple"
+        "name": "Simple Preset",
     },
     {
         "id": "Hidden_1v1",
