@@ -106,7 +106,8 @@ class API extends React.Component<object, object> {
         "ongoing": true,
         "nameHost": "Macbeth",
         "nameGuest": "General Kyebaek"
-    },{
+    },
+    {
         "title": "Hidden 3v3",
         "draftId": "fghij",
         "ongoing": false,
@@ -128,7 +129,7 @@ class API extends React.Component<object, object> {
                         <dt>Sample Response</dt>
                         <dd><pre>{
 `{
-    "connections":6
+    "connections": 6
 }`
                         }</pre></dd>
                     </dl>
@@ -146,7 +147,8 @@ class API extends React.Component<object, object> {
     {
         "class": "info",
         "title": "Sample Alert",
-        "content": "<b>This is a sample!</b> Great, isn\'t it?"
+        "content": "<b>This is a sample!</b> Great, isn\'t it?",
+        "closable": false
     }
 ]`
                         }</pre></dd>
