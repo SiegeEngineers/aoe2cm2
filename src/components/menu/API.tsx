@@ -8,16 +8,12 @@ class API extends React.Component<object, object> {
             <div>
                 <div className="content box" id="API">
                     <h3>API documentation</h3>
-                    {/*<details>*/}
-                        {/*<summary><hr/<h4>Preset</h4></summary>*/}
-                        <h4>Presets</h4>
+                    <h4>Presets</h4>
                         <h5>Get Preset</h5>
                         <p>Request the selected preset.</p>
                         <dl>
                             <dt>Endpoint</dt>
-                            <dd><pre>GET /api/preset/:id</pre></dd>
-                            <dt>Example URL</dt>
-                            <dd><pre>https://aoe2cm.net/api/preset/simple</pre></dd>
+                            <dd><pre>GET https://aoe2cm.net/api/preset/:id</pre></dd>
                             <dt>Response</dt>
                             <dd><pre>A JSON encoded valid <a
                                 href={'https://github.com/SiegeEngineers/aoe2cm2/blob/master/src/models/Preset.ts'}>Preset</a> object.</pre>
@@ -28,14 +24,12 @@ class API extends React.Component<object, object> {
                         <p>Create a new preset.</p>
                         <dl>
                             <dt>Endpoint</dt>
-                            <dd><pre>POST /api/preset/new</pre></dd>
+                            <dd><pre>POST https://aoe2cm.net/api/preset/new</pre></dd>
                             <dt>Payload</dt>
                             <dd><pre>A JSON encoded valid <a
                                 href={'https://github.com/SiegeEngineers/aoe2cm2/blob/master/src/models/Preset.ts'}>Preset</a> object.</pre>
                             </dd>
-                            <dt>Example URL</dt>
-                            <dd><pre>https://aoe2cm.net/api/preset/new</pre></dd>
-                            <dt>Example Response</dt>
+                            <dt>Sample Response</dt>
                             <dd><pre>{
 `{
     "status": "ok", 
@@ -48,10 +42,8 @@ class API extends React.Component<object, object> {
                         <p>List ID and name of publicly listed presets.</p>
                         <dl>
                             <dt>Endpoint</dt>
-                            <dd><pre>GET /api/preset/list</pre></dd>
-                            <dt>Example URL</dt>
-                            <dd><pre>https://aoe2cm.net/api/preset/list</pre></dd>
-                            <dt>Example Response</dt>
+                            <dd><pre>GET https://aoe2cm.net/api/preset/list</pre></dd>
+                            <dt>Sample Response</dt>
                             <dd><pre>{
 `[
     {
@@ -65,15 +57,15 @@ class API extends React.Component<object, object> {
 ]`
                             }</pre></dd>
                         </dl>
-                    {/*</details>*/}
-                    <hr/><h4>Drafts</h4>
+
+                    <hr/>
+
+                    <h4>Drafts</h4>
                     <h5>Get Draft</h5>
                     <p>Get the data of a finished draft.</p>
                     <dl>
                         <dt>Endpoint</dt>
-                        <dd><pre>GET /api/draft/:id</pre></dd>
-                        <dt>Example URL</dt>
-                        <dd><pre>https://aoe2cm.net/api/draft/FQoju</pre></dd>
+                        <dd><pre>GET https://aoe2cm.net/api/draft/:id</pre></dd>
                         <dt>Response</dt>
                         <dd>
                             <pre>A JSON encoded <a
@@ -85,15 +77,13 @@ class API extends React.Component<object, object> {
                     <p>Create a new draft based on a preset.</p>
                     <dl>
                         <dt>Endpoint</dt>
-                        <dd><pre>POST /api/draft/new</pre></dd>
+                        <dd><pre>POST https://aoe2cm.net/api/draft/new</pre></dd>
                         <dt>Payload</dt>
                         <dd><pre>A JSON encoded valid <a
                             href={'https://github.com/SiegeEngineers/aoe2cm2/blob/master/src/models/Preset.ts'}>Preset</a> object.
                         </pre>
                         </dd>
-                        <dt>Example URL</dt>
-                        <dd><pre>https://aoe2cm.net/api/draft/new</pre></dd>
-                        <dt>Example Response</dt>
+                        <dt>Sample Response</dt>
                         <dd><pre>{
 `{
     "status": "ok", 
@@ -103,14 +93,11 @@ class API extends React.Component<object, object> {
                     </dl>
 
                     <h5>List recent Drafts</h5>
-                    <p>Get a list of recent Drafts with <code>title</code>, <code>draftId</code>, <code>ongoing</code>, <code>nameHost</code>, and <code>nameGuest</code> for each of the
-                        drafts.</p>
+                    <p>Get a list of 10 most recent Drafts.</p>
                     <dl>
                         <dt>Endpoint</dt>
-                        <dd><pre>GET /api/recentdrafts</pre></dd>
-                        <dt>Example URL</dt>
-                        <dd><pre>https://aoe2cm.net/api/recentdrafts</pre></dd>
-                        <dt>Example Response</dt>
+                        <dd><pre>GET https://aoe2cm.net/api/recentdrafts</pre></dd>
+                        <dt>Sample Response</dt>
                         <dd><pre>{
 `[
     {
@@ -131,14 +118,14 @@ class API extends React.Component<object, object> {
                     </dl>
 
 
-                    <hr/><h4>Open Connections</h4>
+                    <hr/>
+
+                    <h4>Open Connections</h4>
                     <p>Show the number of current connections.</p>
                     <dl>
                         <dt>Endpoint</dt>
-                        <dd><pre>GET /api/connections</pre></dd>
-                        <dt>Example URL</dt>
-                        <dd><pre>https://aoe2cm.net/api/connections</pre></dd>
-                        <dt>Example Response</dt>
+                        <dd><pre>GET https://aoe2cm.net/api/connections</pre></dd>
+                        <dt>Sample Response</dt>
                         <dd><pre>{
 `{
     "connections":6
@@ -146,14 +133,14 @@ class API extends React.Component<object, object> {
                         }</pre></dd>
                     </dl>
 
-                    <hr/><h4>Alerts</h4>
+                    <hr/>
+
+                    <h4>Alerts</h4>
                     <p>List alerts that are displayed on the main page.</p>
                     <dl>
                         <dt>Endpoint</dt>
-                        <dd><pre>GET /api/alerts</pre></dd>
-                        <dt>Example URL</dt>
-                        <dd><pre>https://aoe2cm.net/api/alerts</pre></dd>
-                        <dt>Example Response</dt>
+                        <dd><pre>GET https://aoe2cm.net/api/alerts</pre></dd>
+                        <dt>Sample Response</dt>
                         <dd><pre>{
 `[
     {
