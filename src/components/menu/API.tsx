@@ -102,14 +102,14 @@ class API extends React.Component<object, object> {
 `[
     {
         "title": "Simple 1v1",
-        "draftId": "abcdef",
+        "draftId": "abCDe",
         "ongoing": true,
         "nameHost": "Macbeth",
         "nameGuest": "General Kyebaek"
     },
     {
         "title": "Hidden 3v3",
-        "draftId": "fghij",
+        "draftId": "FGhIj",
         "ongoing": false,
         "nameHost": "Wenceslaus I",
         "nameGuest": "Pepin the Short"
