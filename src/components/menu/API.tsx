@@ -7,7 +7,7 @@ class API extends React.Component<object, object> {
         return (
             <div>
                 <div className="content box" id="API">
-                    <h3>API documentation</h3>
+                    <h3>API Documentation</h3>
                     <h4>Presets</h4>
                         <h5>Get Preset</h5>
                         <p>Request the selected preset.</p>
