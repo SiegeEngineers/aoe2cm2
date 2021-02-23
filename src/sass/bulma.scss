@@ -28,7 +28,7 @@ $ban-red: #cc3333;
 $steal-gold: #ffc107;
 $host-cyan: #00bcd4;
 $guest-gold: #ffc107;
-$family-monospace: 'SF Mono', 'Consolas', 'Monaco', monospace;
+$family-monospace: 'Consolas', 'Monaco', monospace;
 
 @import "../../node_modules/bulma/bulma.sass";
 
@@ -38,6 +38,11 @@ $family-monospace: 'SF Mono', 'Consolas', 'Monaco', monospace;
 .content h1, .content h2, .content h3, .content h4, .content h5, .content h6, .navbar-brand h1 {
   font-family: 'Crete Round', sans-serif;
   font-weight: 300;
+}
+.content {
+  h5, h6 {
+    color: $grey;
+  }
 }
 
 body, .box, .column, .tag, .table, td, .button, .bar, .navbar, .footer, .input, .message, a, code, .tabs ul {
