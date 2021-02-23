@@ -7,131 +7,151 @@ class API extends React.Component<object, object> {
         return (
             <div>
                 <div className="content box" id="API">
-                    <h3>API documentation</h3>
-                    <h4>Preset</h4>
-                    <h5>Get Preset</h5>
-                    <p>Request the selected preset.</p>
-                    <dl>
-                        <dt>Endpoint</dt>
-                        <dd>GET <code>/api/preset/:id</code></dd>
-                        <dt>Example URL</dt>
-                        <dd>https://aoe2cm.net/api/preset/simple</dd>
-                    </dl>
+                    <h3>API Documentation</h3>
+                    <h4>Presets</h4>
+                        <h5>Get Preset</h5>
+                        <p>Request the selected preset.</p>
+                        <dl>
+                            <dt>Endpoint</dt>
+                            <dd><pre>GET https://aoe2cm.net/api/preset/:id</pre></dd>
+                            <dt>Response</dt>
+                            <dd><pre>A JSON encoded valid <a
+                                href={'https://github.com/SiegeEngineers/aoe2cm2/blob/master/src/models/Preset.ts'}>Preset</a> object.</pre>
+                            </dd>
+                        </dl>
 
-                    <h5>Add Preset</h5>
-                    <p>Create a new preset.</p>
-                    <dl>
-                        <dt>Endpoint</dt>
-                        <dd>POST <code>/api/preset/new</code></dd>
-                        <dt>Payload</dt>
-                        <dd>A JSON encoded valid <a
-                            href={'https://github.com/SiegeEngineers/aoe2cm2/blob/master/src/models/Preset.ts'}>Preset</a> object.
-                        </dd>
-                        <dt>Example URL</dt>
-                        <dd>https://aoe2cm.net/api/preset/new</dd>
-                        <dt>Example Response</dt>
-                        <dd><code>{'{"status": "ok", "presetId": "abcdef"}'}</code></dd>
-                    </dl>
+                        <h5>Add Preset</h5>
+                        <p>Create a new preset.</p>
+                        <dl>
+                            <dt>Endpoint</dt>
+                            <dd><pre>POST https://aoe2cm.net/api/preset/new</pre></dd>
+                            <dt>Payload</dt>
+                            <dd><pre>A JSON encoded valid <a
+                                href={'https://github.com/SiegeEngineers/aoe2cm2/blob/master/src/models/Preset.ts'}>Preset</a> object.</pre>
+                            </dd>
+                            <dt>Sample Response</dt>
+                            <dd><pre>{
+`{
+    "status": "ok", 
+    "presetId": "abCdE"
+}`
+                            }</pre></dd>
+                        </dl>
 
-                    <h5>List Presets</h5>
-                    <p>List ID and name of publicly listed presets.</p>
-                    <dl>
-                        <dt>Endpoint</dt>
-                        <dd>GET <code>/api/preset/list</code></dd>
-                        <dt>Example URL</dt>
-                        <dd>https://aoe2cm.net/api/preset/list</dd>
-                        <dt>Example Response</dt>
-                        <dd><code>{'[\
-                            {\
-                                "name": "Simple Preset",\
-                                "id": "simple"\
-                            },\
-                            {\
-                                "id": "Hidden_1v1",\
-                                "name": "Hidden 1v1"\
-                            }\
-                            ]'}</code></dd>
-                    </dl>
+                        <h5>List Presets</h5>
+                        <p>Get a list of publicly listed presets.</p>
+                        <dl>
+                            <dt>Endpoint</dt>
+                            <dd><pre>GET https://aoe2cm.net/api/preset/list</pre></dd>
+                            <dt>Sample Response</dt>
+                            <dd><pre>{
+`[
+    {
+        "id": "simple"
+        "name": "Simple Preset",
+    },
+    {
+        "id": "Hidden_1v1",
+        "name": "Hidden 1v1"
+    }
+]`
+                            }</pre></dd>
+                        </dl>
 
-                    <h4>Draft</h4>
+                    <hr/>
+
+                    <h4>Drafts</h4>
                     <h5>Get Draft</h5>
                     <p>Get the data of a finished draft.</p>
                     <dl>
                         <dt>Endpoint</dt>
-                        <dd>GET <code>/api/draft/:id</code></dd>
-                        <dt>Example URL</dt>
-                        <dd>https://aoe2cm.net/api/draft/FQoju</dd>
+                        <dd><pre>GET https://aoe2cm.net/api/draft/:id</pre></dd>
                         <dt>Response</dt>
-                        <dd>A JSON encoded <a
+                        <dd>
+                            <pre>A JSON encoded <a
                             href={'https://github.com/SiegeEngineers/aoe2cm2/blob/master/src/models/Draft.ts'}>Draft</a> object.
+                            </pre>
                         </dd>
                     </dl>
                     <h5>Create draft</h5>
                     <p>Create a new draft based on a preset.</p>
                     <dl>
                         <dt>Endpoint</dt>
-                        <dd>POST <code>/api/draft/new</code></dd>
+                        <dd><pre>POST https://aoe2cm.net/api/draft/new</pre></dd>
                         <dt>Payload</dt>
-                        <dd>A JSON encoded valid <a
+                        <dd><pre>A JSON encoded valid <a
                             href={'https://github.com/SiegeEngineers/aoe2cm2/blob/master/src/models/Preset.ts'}>Preset</a> object.
+                        </pre>
                         </dd>
-                        <dt>Example URL</dt>
-                        <dd>https://aoe2cm.net/api/draft/new</dd>
-                        <dt>Example Response</dt>
-                        <dd><code>{'{"status": "ok", "draftId": "abcdef"}'}</code></dd>
+                        <dt>Sample Response</dt>
+                        <dd><pre>{
+`{
+    "status": "ok", 
+    "draftId": "abCdE"
+}`
+                        }</pre></dd>
                     </dl>
 
                     <h5>List recent Drafts</h5>
-                    <p>Get a list of recent Drafts with title, draftId, ongoing, nameHost, and nameGuest for each of the
-                        drafts.</p>
+                    <p>Get a list of 10 most recent Drafts.</p>
                     <dl>
                         <dt>Endpoint</dt>
-                        <dd>GET <code>/api/recentdrafts</code></dd>
-                        <dt>Example URL</dt>
-                        <dd>https://aoe2cm.net/api/recentdrafts</dd>
-                        <dt>Example Response</dt>
-                        <dd><code>{'[{\
-                            "title": "Simple 1v1",\
-                            "draftId": "abcdef",\
-                            "ongoing": true,\
-                            "nameHost": "Macbeth",\
-                            "nameGuest": "General Kyebaek"\
-                        },{\
-                            "title": "Hidden 3v3",\
-                            "draftId": "fghij",\
-                            "ongoing": false,\
-                            "nameHost": "Wenceslaus I",\
-                            "nameGuest": "Pepin the Short"\
-                        }]'}</code></dd>
+                        <dd><pre>GET https://aoe2cm.net/api/recentdrafts</pre></dd>
+                        <dt>Sample Response</dt>
+                        <dd><pre>{
+`[
+    {
+        "title": "Simple 1v1",
+        "draftId": "abCDe",
+        "ongoing": true,
+        "nameHost": "Macbeth",
+        "nameGuest": "General Kyebaek"
+    },
+    {
+        "title": "Hidden 3v3",
+        "draftId": "FGhIj",
+        "ongoing": false,
+        "nameHost": "Wenceslaus I",
+        "nameGuest": "Pepin the Short"
+    }
+]`
+                        }</pre></dd>
                     </dl>
 
+
+                    <hr/>
 
                     <h4>Open Connections</h4>
                     <p>Show the number of current connections.</p>
                     <dl>
                         <dt>Endpoint</dt>
-                        <dd>GET <code>/api/connections</code></dd>
-                        <dt>Example URL</dt>
-                        <dd>https://aoe2cm.net/api/connections</dd>
-                        <dt>Example Response</dt>
-                        <dd><code>{'{"connections":6}'}</code></dd>
+                        <dd><pre>GET https://aoe2cm.net/api/connections</pre></dd>
+                        <dt>Sample Response</dt>
+                        <dd><pre>{
+`{
+    "connections": 6
+}`
+                        }</pre></dd>
                     </dl>
+
+                    <hr/>
 
                     <h4>Alerts</h4>
                     <p>List alerts that are displayed on the main page.</p>
                     <dl>
                         <dt>Endpoint</dt>
-                        <dd>GET <code>/api/alerts</code></dd>
-                        <dt>Example URL</dt>
-                        <dd>https://aoe2cm.net/api/alerts</dd>
-                        <dt>Example Response</dt>
-                        <dd><code>{'[\
-                            {\
-                                "class": "info",\
-                                "title": "Sample Alert",\
-                                "content": "<b>This is a sample!</b> Great, isn\'t it?"\
-                            }\
-                            ]'}</code></dd>
+                        <dd><pre>GET https://aoe2cm.net/api/alerts</pre></dd>
+                        <dt>Sample Response</dt>
+                        <dd><pre>{
+`[
+    {
+        "class": "info",
+        "title": "Sample Alert",
+        "content": "<b>This is a sample!</b> Great, isn\'t it?",
+        "closable": false
+    }
+]`
+                        }</pre></dd>
                     </dl>
                 </div>
             </div>

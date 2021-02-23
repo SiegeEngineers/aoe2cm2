@@ -115,9 +115,15 @@ label.civ-select:hover {
   border-right: .5rem solid $grey;
 }
 
-code {
+code, pre {
   color: inherit;
   border-radius: 4px;
+  background-color: $black-bis;
+}
+
+hr {
+  background-color: $grey-dark;
+  border-color: $grey-dark;
 }
 
 .box {
