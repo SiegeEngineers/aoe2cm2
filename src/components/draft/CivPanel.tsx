@@ -50,9 +50,9 @@ class CivPanel extends React.Component<IProps, IState> {
         let imageContainerClass: string = 'stretchy-image';
         if (civilisation !== undefined) {
             civilisationName = civilisation.name;
-            imageSrc = "/images/civs/" + civilisationName.toLocaleLowerCase() + "-DE.png";
+            imageSrc = "/images/civs/" + civilisationName.toLowerCase() + "-DE.png";
             if (this.props.iconStyle === 'emblems') {
-                imageSrc = "/images/civemblems/" + civilisationName.toLocaleLowerCase() + ".png";
+                imageSrc = "/images/civemblems/" + civilisationName.toLowerCase() + ".png";
             }
             civilisationKey = 'civs.' + civilisationName;
             if (Util.isTechnicalCivilisation(civilisation)) {
