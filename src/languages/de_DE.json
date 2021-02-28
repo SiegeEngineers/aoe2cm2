@@ -129,7 +129,8 @@
     "VLD_905": "Das Preset enthält einen parallelen Zug, der von der selben Spielerin wie der folgende Zug ausgeführt werden soll",
     "VLD_906": "Das Preset enthält ein verstecktes BAN gefolgt von einem PICK, ohne dass das BAN vorher aufgedeckt wird",
     "VLD_907": "Das Preset enthält einen versteckten Zug, der nie aufgedeckt wird",
-    "VLD_908": "Das Preset enthält keine Züge"
+    "VLD_908": "Das Preset enthält keine Züge",
+    "VLD_909": "Die angegebene presetId ist ungültig"
   },
   "menu": {
     "welcome": "Willkommen",
