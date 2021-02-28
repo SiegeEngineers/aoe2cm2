@@ -5,6 +5,23 @@ import Player from "../../constants/Player";
 import PlayerEvent from "../../models/PlayerEvent";
 import ActionType from "../../constants/ActionType";
 import Civilisation from "../../models/Civilisation";
+import temp from "temp";
+import fs from "fs";
+import path from "path";
+
+const ORIGINAL_RECENT_DRAFTS_FILE_VALUE = DraftsStore.RECENT_DRAFTS_FILE;
+beforeEach(() => {
+    temp.track();
+    const dirPath = temp.mkdirSync('draftsStoreTest');
+    const inputPath = path.join(dirPath, 'recentDrafts.json');
+    fs.writeFileSync(inputPath, "[]");
+    DraftsStore.RECENT_DRAFTS_FILE = inputPath;
+});
+
+afterEach(() => {
+    temp.cleanupSync();
+    DraftsStore.RECENT_DRAFTS_FILE = ORIGINAL_RECENT_DRAFTS_FILE_VALUE;
+});
 
 it('test get empty ongoing drafts', () => {
     const draftsStore = new DraftsStore();

@@ -20,9 +20,10 @@ interface ICountdownValues {
     socket: socketio.Socket;
 }
 
-const RECENT_DRAFTS_FILE = 'recentDrafts.json';
 
 export class DraftsStore {
+    // visible for testing
+    static RECENT_DRAFTS_FILE = 'recentDrafts.json';
     private drafts: Map<string, DraftViews> = new Map<string, DraftViews>();
     private countdowns: Map<String, ICountdownValues> = new Map<String, ICountdownValues>();
 
@@ -334,8 +335,8 @@ export class DraftsStore {
     }
 
     private static loadRecentDrafts() {
-        if (fs.existsSync(RECENT_DRAFTS_FILE)) {
-            const fileContent = fs.readFileSync(RECENT_DRAFTS_FILE);
+        if (fs.existsSync(DraftsStore.RECENT_DRAFTS_FILE)) {
+            const fileContent = fs.readFileSync(DraftsStore.RECENT_DRAFTS_FILE);
             return JSON.parse(fileContent.toString()) as IRecentDraft[];
         } else {
             return [];
@@ -343,7 +344,7 @@ export class DraftsStore {
     }
 
     private static saveRecentDrafts(recentDrafts: IRecentDraft[]) {
-        fs.writeFileSync(RECENT_DRAFTS_FILE, JSON.stringify(recentDrafts));
+        fs.writeFileSync(DraftsStore.RECENT_DRAFTS_FILE, JSON.stringify(recentDrafts));
     }
 
     public purgeStaleDrafts() {
