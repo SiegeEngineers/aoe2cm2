@@ -151,7 +151,7 @@ class API extends React.Component<object, object> {
     {
         "class": "info",
         "title": "Sample Alert",
-        "content": "<b>This is a sample!</b> Great, isn\'t it?",
+        "content": "<b>This is a sample!</b> Great, isn't it?",
         "closable": false
     }
 ]`
