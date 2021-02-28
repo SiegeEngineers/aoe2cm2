@@ -19,6 +19,7 @@ class Spectate extends React.Component<WithTranslation, IState> {
         fetch('/api/recentdrafts')
             .then((response) => response.json())
             .then((json) => this.setState({recentDrafts: json}));
+        document.title = 'Spectate – AoE2 Captains Mode';
     }
 
     public render() {

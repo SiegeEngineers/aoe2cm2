@@ -2,6 +2,10 @@ import * as React from "react";
 
 class API extends React.Component<object, object> {
 
+    componentDidMount() {
+        document.title = 'API – AoE2 Captains Mode';
+    }
+
     public render() {
 
         return (

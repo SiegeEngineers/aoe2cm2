@@ -3,6 +3,11 @@ import {HelpAdminTurns, HelpBasics, HelpDraftModifiers, HelpHostAndGuestTurns} f
 import {Trans} from "react-i18next";
 
 class HowItWorks extends React.Component<object, object> {
+
+    componentDidMount() {
+        document.title = 'How it Works – AoE2 Captains Mode';
+    }
+
     public render() {
         return (
             <div className="container is-desktop has-text-left">

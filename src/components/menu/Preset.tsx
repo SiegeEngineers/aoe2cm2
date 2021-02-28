@@ -78,9 +78,12 @@ class Preset extends React.Component<object, IState> {
         request.onreadystatechange = () => {
             if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                 const result = JSON.parse(request.responseText);
-                this.setState({preset: ModelPreset.fromPojo(result)});
+                const preset = ModelPreset.fromPojo(result);
+                this.setState({preset});
+                document.title = `Preset "${preset?.name}" – AoE2 Captains Mode`;
             } else if (request.readyState === XMLHttpRequest.DONE && request.status === 404) {
                 this.setState({presetExists: false});
+                document.title = 'Preset not found – AoE2 Captains Mode';
             }
         };
         request.send();

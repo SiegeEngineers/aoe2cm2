@@ -41,6 +41,7 @@ class PresetEditor extends React.Component<Props, object> {
         if (this.props.preset === null || this.props.preset === undefined) {
             this.props.onSetEditorPreset(Preset.NEW);
         }
+        document.title = 'Preset Editor – AoE2 Captains Mode';
     }
 
     public render() {

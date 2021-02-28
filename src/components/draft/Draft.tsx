@@ -87,6 +87,18 @@ class Draft extends React.Component<IProps, IState> {
                 this.props.showNameModal();
             }
         }
+
+        const title = this.getTitle();
+        if (document.title !== title) {
+            document.title = title;
+        }
+    }
+
+    private getTitle(): string {
+        const host = this.props.nameHost;
+        const guest = this.props.nameGuest;
+        const preset = this.props.preset.name;
+        return `${host} vs ${guest} – "${preset}" – AoE2 Captains Mode`;
     }
 
     private disconnectAndGoBack(): void {
