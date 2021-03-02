@@ -1,4 +1,4 @@
-import express from "express";
+import express, {Response as ExpressResponse} from "express";
 import {Server} from "http"
 import socketio from "socket.io";
 import Player from "./constants/Player";
@@ -16,10 +16,23 @@ import * as fs from "fs";
 import {logger} from "./util/Logger";
 import {ISetNameMessage} from "./types/ISetNameMessage";
 import {PresetUtil} from "./util/PresetUtil";
-import {Response as ExpressResponse} from "express";
 import {IServerState} from "./types";
 
 const ONE_HOUR = 1000 * 60 * 60;
+
+function loadState(): IServerState {
+    if (fs.existsSync(DraftServer.SERVER_STATE_FILE)) {
+        const fileContent = fs.readFileSync(DraftServer.SERVER_STATE_FILE);
+        return JSON.parse(fileContent.toString()) as IServerState;
+    } else {
+        return {maintenanceMode: false, hiddenPresetIds: []};
+    }
+}
+
+function saveState(state: IServerState) {
+    fs.writeFileSync(DraftServer.SERVER_STATE_FILE, JSON.stringify(state));
+}
+
 
 export const DraftServer = {
     serve(port: string | number | undefined): { httpServerAddr: AddressInfo | string | null; io: SocketIO.Server; httpServer: Server } {
@@ -30,7 +43,7 @@ export const DraftServer = {
 
         const server = new Server(app);
         const io = socketio(server, {cookie: false});
-        const state: IServerState = {maintenanceMode: false, hiddenPresetIds: []};
+        const state: IServerState = loadState();
         const draftsStore = new DraftsStore(state);
         const validator = new Validator(draftsStore);
 
@@ -62,6 +75,8 @@ export const DraftServer = {
             }
             res.json(state);
             logger.info('New state = %s', JSON.stringify(state));
+            saveState(state);
+            logger.info('Persisted new state');
         });
         app.get('/api/state', (req, res) => {
             if (!Util.isRequestFromLocalhost(req)) {
@@ -326,5 +341,5 @@ export const DraftServer = {
         }, ONE_HOUR);
 
         return {httpServer, httpServerAddr, io};
-    }
+    }, SERVER_STATE_FILE: 'serverState.json'
 };

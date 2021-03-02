@@ -6,6 +6,8 @@ import {IDraftConfig} from "../types/IDraftConfig";
 import getPort from "get-port";
 import Preset from "../models/Preset";
 import {Barrier} from "../test/Barrier";
+import temp from "temp";
+import path from "path";
 
 let hostSocket: any;
 let clientSocket: any;
@@ -14,6 +16,20 @@ let httpServer: any;
 let httpServerAddr: any;
 let ioServer: any;
 let draftId: string;
+
+
+const ORIGINAL_SERVER_STATE_FILE_VALUE = DraftServer.SERVER_STATE_FILE;
+beforeAll(() => {
+    temp.track();
+    const dirPath = temp.mkdirSync('serverTest');
+    DraftServer.SERVER_STATE_FILE = path.join(dirPath, 'serverState.json');
+});
+
+afterAll(() => {
+    temp.cleanupSync();
+    DraftServer.SERVER_STATE_FILE = ORIGINAL_SERVER_STATE_FILE_VALUE;
+});
+
 
 beforeAll((done) => {
     getPort().then((port: number) => {

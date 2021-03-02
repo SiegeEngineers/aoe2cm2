@@ -1,10 +1,25 @@
 import {DraftServer} from "../DraftServer";
 import getPort from "get-port";
 import request from "request";
+import temp from "temp";
+import path from "path";
 
 let httpServer: any;
 let httpServerAddr: any;
 let ioServer: any;
+
+const ORIGINAL_SERVER_STATE_FILE_VALUE = DraftServer.SERVER_STATE_FILE;
+beforeEach(() => {
+    temp.track();
+    const dirPath = temp.mkdirSync('serverTest');
+    DraftServer.SERVER_STATE_FILE = path.join(dirPath, 'serverState.json');
+});
+
+afterEach(() => {
+    temp.cleanupSync();
+    DraftServer.SERVER_STATE_FILE = ORIGINAL_SERVER_STATE_FILE_VALUE;
+});
+
 
 beforeEach((done) => {
     getPort().then((port: number) => {
