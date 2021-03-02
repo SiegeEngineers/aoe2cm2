@@ -86,3 +86,8 @@ export interface IAlert {
     content: string;
     closable: boolean;
 }
+
+export interface IServerState {
+    maintenanceMode: boolean
+    hiddenPresetIds: string[]
+}

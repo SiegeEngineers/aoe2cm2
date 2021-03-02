@@ -17,6 +17,7 @@ import {logger} from "./util/Logger";
 import {ISetNameMessage} from "./types/ISetNameMessage";
 import {PresetUtil} from "./util/PresetUtil";
 import {Response as ExpressResponse} from "express";
+import {IServerState} from "./types";
 
 const ONE_HOUR = 1000 * 60 * 60;
 
@@ -29,10 +30,10 @@ export const DraftServer = {
 
         const server = new Server(app);
         const io = socketio(server, {cookie: false});
-        const draftsStore = new DraftsStore();
+        const state: IServerState = {maintenanceMode: false, hiddenPresetIds: []};
+        const draftsStore = new DraftsStore(state);
         const validator = new Validator(draftsStore);
 
-        const state = {maintenanceMode: false};
 
         function connectPlayer(draftId: string, player: Player, name: string) {
             draftsStore.connectPlayer(draftId, player, name);

@@ -11,7 +11,7 @@ import Civilisation from "./Civilisation";
 import {actionTypeFromAction} from "../constants/ActionType";
 import {Listeners} from "../util/Listeners";
 import {logger} from "../util/Logger";
-import {IRecentDraft} from "../types";
+import {IRecentDraft, IServerState} from "../types";
 import fs from "fs";
 
 interface ICountdownValues {
@@ -26,6 +26,11 @@ export class DraftsStore {
     static RECENT_DRAFTS_FILE = 'recentDrafts.json';
     private drafts: Map<string, DraftViews> = new Map<string, DraftViews>();
     private countdowns: Map<String, ICountdownValues> = new Map<String, ICountdownValues>();
+    private readonly state: IServerState;
+
+    constructor(state: IServerState = {maintenanceMode: false, hiddenPresetIds: []}) {
+        this.state = state;
+    }
 
     public createDraft(draftId: string, draft: Draft) {
         this.assertDraftDoesNotExist(draftId);
@@ -70,6 +75,7 @@ export class DraftsStore {
             .map((value: string) => {
                 return {...this.getDraftOrThrow(value), draftId: value};
             })
+            .filter((draft) => !this.presetIdIsHidden(draft))
             .filter((draft) => draft.hostConnected && draft.guestConnected)
             .sort((a, b) => (a.startTimestamp > b.startTimestamp) ? -1 : 1)
             .map((draft) => {
@@ -82,6 +88,10 @@ export class DraftsStore {
                 };
             });
         return ongoingDrafts;
+    }
+
+    private presetIdIsHidden(draft: { preset: Preset}) {
+        return draft.preset.presetId !== undefined && this.state.hiddenPresetIds.includes(draft.preset.presetId);
     }
 
     public getDraftIds(): string[] {
@@ -320,6 +330,9 @@ export class DraftsStore {
 
     addRecentDraft(draftId: string) {
         const draft = this.getDraftOrThrow(draftId);
+        if(this.presetIdIsHidden(draft)){
+            return;
+        }
         const recentDrafts = DraftsStore.loadRecentDrafts();
         recentDrafts.unshift({
             title: draft.preset.name,
