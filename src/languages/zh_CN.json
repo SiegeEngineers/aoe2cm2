@@ -51,20 +51,32 @@
     "pressReadyHostIsReady": "主机已准备好，按下<1>准备</1>开始",
     "pressReady": "按下<1>准备</1>开始",
     "doPick": "<0><1>选</1></0>一个民族",
+    "doPickAsOpponent": "为对手<0><1>选</1></0>一个民族",
     "doBan": "<0><1>禁</1></0>一个民族",
+    "doBanAsOpponent": "作为对手一方<0><1>禁</1></0>一个民族",
     "doSnipe": "<0><1>狙击</1></0>一个民族",
+    "doSnipeAsOpponent": "作为对手一方<0><1>狙击</1></0>己方一个民族",
     "doSteal": "<0><1>偷</1></0>一个民族",
+    "doStealAsOpponent": "给对手<0><1>送</1></0>己方一个民族",
     "waitingForPick": "等待对手选族",
-    "waitingForBan": "等待对手禁族",
+    "waitingForPickAsOpponent": "等待对手给你选民族",
+    "waitingForBan": "等待对手禁民族",
+    "waitingForBanAsOpponent": "等待对手作为你方禁民族",
     "waitingForSnipe": "等待对手狙击你选的民族",
+    "waitingForSnipeAsOpponent": "等待对手作为你方狙击你选的民族",
     "waitingForSteal": "等待对手偷你选的民族",
+    "waitingForStealAsOpponent": "等待对手送一个他的民族给你",
     "waitingForBothToBeReady": "等待两方准备",
     "waitingForHostToBeReady": "等待主机准备",
     "waitingForGuestToBeReady": "等待受邀者准备",
-    "specPick": "等待<1>{{playerName}}</1><3><4>选</4></3>民族",
-    "specBan": "等待<1>{{playerName}}</1><3><4>ban</4></3>民族",
-    "specSnipe": "等待<1>{{playerName}}</1><3><4>狙击</4></3>民族",
-    "specSteal": "等待<1>{{playerName}}</1><3><4>偷</4></3>民族",
+    "specPick": "等待<1>{{playerName}}</1><3><4>选</4></3>一个民族",
+    "specPickAsOpponent": "等待<1>{{playerName}}</1>给对手<3><4>选</4></3>一个民族",
+    "specBan": "等待<1>{{playerName}}</1><3><4>ban</4></3>一个民族",
+    "specBanAsOpponent": "等待<1>{{playerName}}</1>作为对手一方<3><4>ban</4></3>一个民族",
+    "specSnipe": "等待<1>{{playerName}}</1><3><4>狙击</4></3>一个民族",
+    "specSnipeAsOpponent": "等待<1>{{playerName}}</1>作为对手一方<3><4>狙击</4></3>己方一个民族",
+    "specSteal": "等待<1>{{playerName}}</1><3><4>偷</4></3>一个民族",
+    "specStealAsOpponent": "等待<1>{{playerName}}</1>给对手<3><4>送</4></3>己方一个民族",
     "specParallelTurnsPickPick": "等待<1>{{firstTurnPlayer}}</1>和<5>{{secondTurnPlayer}}</5><7><8>选</8></7>民族",
     "specParallelTurnsPickBan": "等待<1>{{firstTurnPlayer}}</1><3><4>选</4></3>民族，<5>{{secondTurnPlayer}}</5><7><8>禁</8></7>民族",
     "specParallelTurnsPickSnipe": "等待<1>{{firstTurnPlayer}}</1><3><4>选</4></3>民族，<5>{{secondTurnPlayer}}</5><7><8>狙击</8></7>民族",
@@ -129,7 +141,8 @@
     "VLD_905": "预设里有个平行轮次的后一轮还是被同一个玩家操作",
     "VLD_906": "预设里有隐藏禁&选之间无展示轮次",
     "VLD_907": "预设里有无法被展示的隐藏轮次",
-    "VLD_908": "预设里没有任何轮次"
+    "VLD_908": "预设里没有任何轮次",
+    "VLD_909": "所给的presetId无效"
   },
   "menu": {
     "welcome": "欢迎",
@@ -183,12 +196,14 @@
     "presetModifiers": {
       "title": "前缀",
       "1": "如果想让两位玩家同时进行一个轮次, 只勾选 <3>首个</3> 轮次的 <1>PARALLEL</1> 标签，不要给两个轮次都勾。",
-      "2": "勾选 <1>HIDDEN</1> 标签来隐藏民族。对手和观众只有到了组委展示轮才能看见民族。"
+      "2": "勾选 <1>HIDDEN</1> 标签来隐藏民族。对手和观众只有到了组委展示轮才能看见民族。",
+      "3": "如果你在 <1>AS OPPONENT</1> 前打勾, 玩家会作为对手一方操作。也就是说可以用来给对手选民族。"
     },
     "draftModifiers": {
       "title": "前缀",
       "1": "<1>PARALLEL</1> 平行轮次，意为两个玩家各自同时进行一个轮次。",
-      "2": "<1>HIDDEN</1> 隐藏轮次，意为对手和观众只有到了组委展示轮才能看见民族。"
+      "2": "<1>HIDDEN</1> 隐藏轮次，意为对手和观众只有到了组委展示轮才能看见民族。",
+      "3": "<1>AS OPPONENT</1> 意为作为对手一方操作。用于给对手选民族。"
     }
   },
   "presets": {
@@ -220,7 +235,7 @@
     "createSaveDraft": "建立或保存",
     "host": "主机",
     "guest": "受邀者",
-    "admin": "组委",
+    "admin": "Admin",
     "new": "新建",
     "presetName": "预设名称"
   },
