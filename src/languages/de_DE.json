@@ -153,19 +153,19 @@
   },
   "instructions": {
     "home": {
-      "title": "What is Captains Mode?",
-      "1": "Captains mode dient der rundenbasierten Auswahl von Zivilisationen.",
-      "2": "The tournament Admin creates a <1>Preset</1> for a tournament which can be used to create one or more <3>Drafts</3>. During a Draft, the two captains pick, ban, steal, or snipe civilisations in a predefined order as per the rules in the chosen Preset to determine which civilisations will be available to each captain in a match.",
+      "title": "Wie funktioniert Captains Mode?",
+      "1": "Mit Captains Mode können Zivilisationen rundenbasiert zwischen zwei Kapitäninnen verteilt werden.",
+      "2": "Ein Admin erstellt ein <1>Preset</1>, mit dem dann <3>Drafts</3> erstellt werden können. Während eines Drafts wählen, bannen, stehlen oder snipen die beiden Kapitäninnen Zivilisationen, um zu bestimmen, welche Zivilisationen sie anschließend in ihrem Match verwenden können. Der Ablauf ergibt sich dabei aus den im Preset festgelegten Zügen.",
       "getStarted": {
-        "title": "Get Started",
-        "1": "You can create your own preset or use one of many popular presets <1>here</1>.",
-        "2": "You can spectate currently live and recently created drafts <1>here</1>.",
-        "3": "If you would like to learn more about how to create presets, you can read the instructions <1>here</1>."
+        "title": "Los geht's!",
+        "1": "<1>Hier</1> kannst du dein eigenes Preset erstellen oder direkt mit einem beliebten Preset loslegen.",
+        "2": "<1>Hier</1> kannst du dir aktuell laufende und kürzlich abgeschlossene Drafts ansehen.",
+        "3": "Wenn du mehr darüber erfahren willst, wie Presets erstellt werden, kannst du die <1>Anleitung</1> lesen."
       },
       "reportIssue": {
-        "title": "Found an Issue?",
-        "github": "Have you found or experienced a problem on this site? Check the <1>list of known issues on GitHub</1>.",
-        "discord": "If your problem is not listed there, report it on GitHub or describe it to <1>hszemi#2325</1> on Discord. Make sure to include a link to your draft if you have one!"
+        "title": "Problem gefunden?",
+        "github": "Hast du auf dieser Webseite ein Problem gefunden? Schau zunächst in die <1>Liste der bekannten Probleme auf GitHub</1>.",
+        "discord": "Falls dein Problem dort nicht aufgeführt ist, erstelle auf GitHub ein neues Issue, in dem du dein Problem beschreibst, oder kontaktiere direkt <1>hszemi#2325</1> auf Discord. Gib dabei den Link zu einem Draft mit dem Problem an, falls du einen hast!"
       }
     },
     "basics": {
