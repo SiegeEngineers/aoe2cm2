@@ -32,18 +32,18 @@ class Index extends React.Component<WithTranslation, IState> {
                     <p>
                         <Trans i18nKey='instructions.home.2'>The tournament Admin creates a <b>Preset</b> for a tournament which can be used to create one or more <b>Drafts</b>. During a draft, the two captains pick, ban, steal, or snipe civilisations in a predefined order as per the rules in the chosen Preset.</Trans>
                     </p>
-                    <h4><Trans i18nKey='instructions.home.get_started.title'>Get started</Trans></h4>
+                    <h4><Trans i18nKey='instructions.home.getStarted.title'>Get started</Trans></h4>
                     <ul>
-                        <li><Trans i18nKey='instructions.home.get_started.1'>You can create your own Preset or use one of many popular presets <Link to={"/presets"}>here</Link>.</Trans></li>
-                        <li><Trans i18nKey='instructions.home.get_started.2'>You can spectate currently live and past drafts <Link to={"/spectate"}>here</Link>.</Trans></li>
+                        <li><Trans i18nKey='instructions.home.getStarted.1'>You can create your own Preset or use one of many popular presets <Link to={"/presets"}>here</Link>.</Trans></li>
+                        <li><Trans i18nKey='instructions.home.getStarted.2'>You can spectate currently live and past drafts <Link to={"/spectate"}>here</Link>.</Trans></li>
                     </ul>
-                    <Trans i18nKey='instructions.home.get_started.3'>If you would like to learn more about how to create presets, you can read the instructions <Link to={"/help"}>here</Link>.</Trans>
+                    <Trans i18nKey='instructions.home.getStarted.3'>If you would like to learn more about how to create presets, you can read the instructions <Link to={"/help"}>here</Link>.</Trans>
                 </div>
                 <div className="content box">
-                    <h4><Trans i18nKey='instructions.home.report_issue.title'>Found an Issue?</Trans></h4>
+                    <h4><Trans i18nKey='instructions.home.reportIssue.title'>Found an Issue?</Trans></h4>
                     <p className={"is-small"}>
-                        <Trans i18nKey='instructions.home.report_issue.github'>Have you found or experienced a problem on this site? Check the <a href={"https://github.com/SiegeEngineers/aoe2cm2/issues"} target={"_blank"}>list of known issues on GitHub</a>.</Trans>&nbsp;
-                        <Trans i18nKey='instructions.home.report_issue.discord'>If your problem is not listed there, report it on GitHub or describe it to <code>hszemi#2325</code> on Discord. Make sure to include a link to your draft if you have one!</Trans>
+                        <Trans i18nKey='instructions.home.reportIssue.github'>Have you found or experienced a problem on this site? Check the <a href={"https://github.com/SiegeEngineers/aoe2cm2/issues"} target={"_blank"}>list of known issues on GitHub</a>.</Trans>&nbsp;
+                        <Trans i18nKey='instructions.home.reportIssue.discord'>If your problem is not listed there, report it on GitHub or describe it to <code>hszemi#2325</code> on Discord. Make sure to include a link to your draft if you have one!</Trans>
                     </p>
                 </div>
             </div>

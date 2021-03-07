@@ -156,13 +156,13 @@
       "title": "What is Captains Mode?",
       "1": "",
       "2": "The tournament Admin creates a <1>Preset</1> for a tournament which can be used to create one or more <3>Drafts</3>. During a Draft, the two captains pick, ban, steal, or snipe civilisations in a predefined order as per the rules in the chosen Preset to determine which civilisations will be available to each captain in a match.",
-      "get_started": {
+      "getStarted": {
         "title": "Get Started",
         "1": "You can create your own preset or use one of many popular presets <1>here</1>.",
         "2": "You can spectate currently live and recently created drafts <1>here</1>.",
         "3": "If you would like to learn more about how to create presets, you can read the instructions <1>here</1>."
       },
-      "report_issue": {
+      "reportIssue": {
         "title": "Found an Issue?",
         "github": "Have you found or experienced a problem on this site? Check the <1>list of known issues on GitHub</1>.",
         "discord": "If your problem is not listed there, report it on GitHub or describe it to <1>hszemi#2325</1> on Discord. Make sure to include a link to your draft if you have one!"
@@ -171,7 +171,8 @@
     "basics": {
       "title": "基本",
       "1": "$t(instructions.home.1)",
-      "2": "$t(instructions.home.2)"
+      "2": "$t(instructions.home.2)",
+      "3": "每轮次，双方有<1>30秒</1>时间，如超时，系统会自动给你随机一个民族。"
     },
     "hostAndGuestTurns": {
       "title": "玩家的轮次",
