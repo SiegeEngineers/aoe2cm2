@@ -30,7 +30,7 @@ class Index extends React.Component<WithTranslation, IState> {
                         <Trans i18nKey='instructions.home.1'>Captains mode is a turn-based civilisation picker.</Trans>
                     </p>
                     <p>
-                        <Trans i18nKey='instructions.home.2'>The tournament Admin creates a <b>Preset</b> for a tournament which can be used to create one or more <b>Drafts</b>. During a draft, the two captains pick, ban, steal, or snipe civilisations in a predefined order as per the rules in the chosen Preset.</Trans>
+                        <Trans i18nKey='instructions.home.2'>The tournament Admin creates a <b>Preset</b> which can be used to create <b>Drafts</b>. During a draft, the two captains pick, ban, steal, or snipe civilisations in a predefined order as per the rules in the chosen Preset.</Trans>
                     </p>
                     <h4><Trans i18nKey='instructions.home.getStarted.title'>Get started</Trans></h4>
                     <ul>
