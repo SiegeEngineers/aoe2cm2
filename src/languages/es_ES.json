@@ -141,13 +141,20 @@
   },
   "instructions": {
     "home": {
-      "title": "Instrucciónes",
-      "1": "Captains mode es un selector de civilizaciónes basado en turnos para emparejamientos. Cada capitán puede pickear y banear civilizaciónes en un orden predefinido. Los baneos previenen a los capitánes oponentes de elegir una determinada civilización.",
-      "2": "Cada capitán tiene <1>30 segundos</1>. En caso de pasarse el tiempo, una civilización es pickeada o baneada al azar.",
-      "3": "También hay extensiónes para los torneos:",
-      "4": "<0>Ocúlto</0> permite ocultar las selecciónes de civilizaciónes hasta que son mostradas explicitamente (visible en el cronograma en la parte superiór).",
-      "5": "<0>Global</0> Pickear o Banear civilizaciónes deshabilita la misma para los turnos siguientes. Para otras reglas específicas, leer la descripción del borrador.",
-      "6": "<0>Práctica</0> es para pruebas, donde ambos capitánes son controlados por el mismo usuario."
+      "title": "What is Captains Mode?",
+      "1": "Captains mode es un selector de civilizaciónes basado en turnos para emparejamientos.",
+      "2": "The tournament Admin creates a <1>Preset</1> for a tournament which can be used to create one or more <3>Drafts</3>. During a Draft, the two captains pick, ban, steal, or snipe civilisations in a predefined order as per the rules in the chosen Preset to determine which civilisations will be available to each captain in a match."
+    },
+    "get_started": {
+      "title": "Get Started",
+      "1": "You can create your own preset or use one of many popular presets <1>here</1>.",
+      "2": "You can spectate currently live and recently created drafts <1>here</1>.",
+      "3": "If you would like to learn more about how to create presets, you can read the instructions <1>here</1>."
+    },
+    "report_issue": {
+      "title": "Found an Issue?",
+      "github": "Have you found or experienced a problem on this site? Check the <1>list of known issues on GitHub</1>.",
+      "discord": "If your problem is not listed there, report it on GitHub or describe it to <1>hszemi#2325</1> on Discord. Make sure to include a link to your draft if you have one!"
     },
     "basics": {
       "title": "Resúmen",
