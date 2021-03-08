@@ -141,20 +141,20 @@
   },
   "instructions": {
     "home": {
-      "title": "What is Captains Mode?",
+      "title": "Que es Captains Mode?",
       "1": "Captains mode es un selector de civilizaciónes basado en turnos para emparejamientos.",
-      "2": "The tournament Admin creates a <1>Preset</1> which can be used to create <3>Drafts</3>. During a Draft, the two captains pick, ban, steal, or snipe civilisations in a predefined order as per the rules in the chosen Preset to determine which civilisations will be available to each captain in a match."
-    },
-    "getStarted": {
-      "title": "Get Started",
-      "1": "You can create your own preset or use one of many popular presets <1>here</1>.",
-      "2": "You can spectate currently live and recently created drafts <1>here</1>.",
-      "3": "If you would like to learn more about how to create presets, you can read the instructions <1>here</1>."
-    },
-    "reportIssue": {
-      "title": "Found an Issue?",
-      "github": "Have you found or experienced a problem on this site? Check the <1>list of known issues on GitHub</1>.",
-      "discord": "If your problem is not listed there, report it on GitHub or describe it to <1>hszemi#2325</1> on Discord. Make sure to include a link to your draft if you have one!"
+      "2": "El administrador del torneo crea un <1>Borrador</1> que puede ser usado para crear <3>Drafts</3>. Durante un Draft, los dos capitanes pickean, banean, stelean, o snipean civilizaciónes en un orden predefinido como las reglas en el Borrador lo determinen.",
+      "getStarted": {
+        "title": "Empecemos",
+        "1": "Puedes crear tu propio borrador o ver los ya creados <1>aquí</1>.",
+        "2": "Puedes espectear los drafts en vivo o recientemente creados <1>aquí</1>.",
+        "3": "Si quieres saber mas de como crear borradores, dirigete <1>aquí</1>."
+      },
+      "reportIssue": {
+        "title": "Has encontrado un bug?",
+        "github": "Has encontrado o experimentado problemas en este sitio? Fijate la <1>lista de problemas investigados en GitHub</1>.",
+        "discord": "Si tu problema no se encuentra ahí, reportalo en el repositorio de SiegeEngineers/aoe2cm2 en GitHub o escribele a <1>hszemi#2325</1> en Discord. Asegúrate de incluir el link a tu Draft/Borrador si es que el problema se encuentra ahí!"
+      }
     },
     "basics": {
       "title": "Resúmen",
