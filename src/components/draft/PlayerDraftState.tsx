@@ -18,6 +18,8 @@ interface IProps extends WithTranslation {
     name: string;
     nextAction?: number;
     events?: DraftEvent[];
+    flipped: boolean;
+    smooch: boolean;
     simplifiedUI?: boolean
 }
 
@@ -74,7 +76,10 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                         civilisation: pickedCiv,
                         key: picksIndex,
                         sniped,
-                        stolen
+                        stolen,
+                        flipped: this.props.flipped,
+                        smooch: this.props.smooch,
+                        side: this.props.player,
                     }));
                 } else if (actionType === ActionType.STEAL) {
                     let pickedCiv;
@@ -95,7 +100,10 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                         civilisation: pickedCiv,
                         key: picksIndex,
                         sniped,
-                        stolen
+                        stolen,
+                        flipped: this.props.flipped,
+                        smooch: this.props.smooch,
+                        side: this.props.player,
                     }));
                 } else if (actionType === ActionType.BAN) {
                     let bannedCiv;
@@ -109,6 +117,9 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                         civPanelType: CivPanelType.BAN,
                         civilisation: bannedCiv,
                         key: bansIndex,
+                        flipped: this.props.flipped,
+                        smooch: this.props.smooch,
+                        side: this.props.player,
                     }));
 
                 }

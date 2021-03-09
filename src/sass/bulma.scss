@@ -459,7 +459,7 @@ div.stretchy-wrapper > div.stretchy-text {
 
 .pick img, .steal img, .ban img {
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .pick .chosen-hidden img, .steal .chosen-hidden img, .ban .chosen-hidden img {
@@ -497,6 +497,10 @@ div.stretchy-wrapper > div.stretchy-text {
   opacity: 1
 }
 
+.random-pick.animated {
+  background-image: url('/images/units-animated/random-right.apng');
+}
+
 .random-snipe {
   display: block;
   position: absolute;
@@ -510,6 +514,10 @@ div.stretchy-wrapper > div.stretchy-text {
   opacity: 1;
 }
 
+.random-snipe.animated {
+  background-image: url('/images/units-animated/random-right.apng');
+}
+
 .random-steal {
   display: block;
   position: absolute;
@@ -521,6 +529,10 @@ div.stretchy-wrapper > div.stretchy-text {
   background-size: 20px 20px;
   background-repeat: no-repeat;
   opacity: 1;
+}
+
+.random-steal.animated {
+  background-image: url('/images/units-animated/random-right.apng');
 }
 
 .ban .random-pick {
@@ -676,6 +688,10 @@ div.stretchy-wrapper > div.stretchy-text {
 
 .smooch.flipped #player-guest .stretchy-image img {
   transform: scaleX(-1);
+}
+
+img.directional {
+  transform: none !important;
 }
 
 .back-icon.header-navigation {

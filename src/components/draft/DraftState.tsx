@@ -7,6 +7,8 @@ interface IProps {
     nameHost: string;
     nameGuest: string;
     preset: Preset;
+    flipped: boolean;
+    smooch: boolean;
     simplifiedUI: boolean;
 }
 
@@ -18,11 +20,15 @@ class DraftState extends React.Component<IProps, object> {
                                   player={ModelPlayer.HOST}
                                   name={this.props.nameHost}
                                   key={ModelPlayer.HOST}
+                                  flipped={this.props.flipped}
+                                  smooch={this.props.smooch}
                                   simplifiedUI={this.props.simplifiedUI}/>
                 <PlayerDraftState preset={this.props.preset}
                                   player={ModelPlayer.GUEST}
                                   name={this.props.nameGuest}
                                   key={ModelPlayer.GUEST}
+                                  flipped={this.props.flipped}
+                                  smooch={this.props.smooch}
                                   simplifiedUI={this.props.simplifiedUI}/>
             </div>
         );

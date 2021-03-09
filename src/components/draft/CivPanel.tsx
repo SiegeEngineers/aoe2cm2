@@ -25,6 +25,9 @@ interface IProps extends WithTranslation {
     draft?: IDraftState;
     nextAction: number;
     iconStyle: string;
+    flipped?: boolean;
+    smooch?: boolean;
+    side?: Player;
 
     onClickCivilisation?: (playerEvent: PlayerEvent, callback: any) => void;
 }
@@ -44,6 +47,7 @@ class CivPanel extends React.Component<IProps, IState> {
 
     public render() {
         const civilisation: Civilisation | undefined = this.props.civilisation;
+        let image = <></>;
         let imageSrc: string = "";
         let civilisationKey = '';
         let civilisationName = '';
@@ -51,9 +55,20 @@ class CivPanel extends React.Component<IProps, IState> {
         let imageContainerClass: string = 'stretchy-image civ-indicator';
         if (civilisation !== undefined) {
             civilisationName = civilisation.name;
-            imageSrc = "/images/civs/" + civilisationName.toLowerCase() + ".png";
+            imageSrc = `/images/civs/${civilisationName.toLowerCase()}.png`;
+            image = <img src={imageSrc} alt={civilisationName}/>;
             if (this.props.iconStyle === 'emblems') {
-                imageSrc = "/images/civemblems/" + civilisationName.toLowerCase() + ".png";
+                imageSrc = `/images/civemblems/${civilisationName.toLowerCase()}.png`;
+                image = <img src={imageSrc} alt={civilisationName}/>;
+            }
+            if (this.props.iconStyle === 'units-animated' && !Util.isTechnicalCivilisation(civilisation)) {
+                let imageSrc = `/images/units-animated/${civilisationName.toLowerCase()}-right.apng`;
+                let imageKey = 'animated-right';
+                if (this.useFlippedImage()) {
+                    imageSrc = `/images/units-animated/${civilisationName.toLowerCase()}-left.apng`;
+                    imageKey = 'animated-left';
+                }
+                image = <img className={'directional'} src={imageSrc} alt={civilisationName} key={imageKey}/>;
             }
             civilisationKey = 'civs.' + civilisationName;
             if (Util.isTechnicalCivilisation(civilisation)) {
@@ -119,13 +134,20 @@ class CivPanel extends React.Component<IProps, IState> {
         if (!this.props.stolen || !this.props.stolen.isRandomlyChosenCiv) {
             stealRandomMarkerClass += ' is-hidden';
         }
+
+        if (this.props.iconStyle === 'units-animated') {
+            randomMarkerClass += ' animated';
+            stealRandomMarkerClass += ' animated';
+            snipeRandomMarkerClass += ' animated';
+        }
+
         return (
             <div className={className} onClick={onClickAction}>
                 <div className={'stretchy-background'}/>
                 <div className={contentClass}>
                     <div className="stretchy-wrapper">
                         <div className={imageContainerClass}>
-                            <img src={imageSrc} alt={civilisationName}/>
+                            {image}
                         </div>
                         <div className={randomMarkerClass} title="Random"/>
                         <div className={stealMarkerClass}/>
@@ -140,6 +162,13 @@ class CivPanel extends React.Component<IProps, IState> {
                 </div>
             </div>
         );
+    }
+
+    private useFlippedImage() {
+        return this.props.civPanelType !== CivPanelType.CHOICE
+            && this.props.smooch
+            && ((this.props.side === Player.HOST && !this.props.flipped)
+                || (this.props.side === Player.GUEST && this.props.flipped));
     }
 
     private onClickCiv = () => {
