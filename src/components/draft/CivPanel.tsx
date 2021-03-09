@@ -25,6 +25,9 @@ interface IProps extends WithTranslation {
     draft?: IDraftState;
     nextAction: number;
     iconStyle: string;
+    flipped?: boolean;
+    smooch?: boolean;
+    side?: Player;
 
     onClickCivilisation?: (playerEvent: PlayerEvent, callback: any) => void;
 }
@@ -44,6 +47,7 @@ class CivPanel extends React.Component<IProps, IState> {
 
     public render() {
         const civilisation: Civilisation | undefined = this.props.civilisation;
+        let image = <></>;
         let imageSrc: string = "";
         let civilisationKey = '';
         let civilisationName = '';
@@ -52,8 +56,21 @@ class CivPanel extends React.Component<IProps, IState> {
         if (civilisation !== undefined) {
             civilisationName = civilisation.name;
             imageSrc = "/images/civs/" + civilisationName.toLowerCase() + ".png";
+            image = <img src={imageSrc} alt={civilisationName}/>;
             if (this.props.iconStyle === 'emblems') {
                 imageSrc = "/images/civemblems/" + civilisationName.toLowerCase() + ".png";
+                image = <img src={imageSrc} alt={civilisationName}/>;
+            }
+            if (this.props.iconStyle === 'units-animated' && !Util.isTechnicalCivilisation(civilisation)) {
+                let videoSource = `/images/units-animated/${civilisationName.toLowerCase()}-right.webm`;
+                let videoKey = 'video-right';
+                if (this.useFlippedImage()) {
+                    videoSource = `/images/units-animated/${civilisationName.toLowerCase()}-left.webm`;
+                    videoKey = 'video-left';
+                }
+                image = <video autoPlay muted loop key={videoKey}>
+                    <source src={videoSource} type="video/webm"/>
+                </video>;
             }
             civilisationKey = 'civs.' + civilisationName;
             if (Util.isTechnicalCivilisation(civilisation)) {
@@ -119,19 +136,42 @@ class CivPanel extends React.Component<IProps, IState> {
         if (!this.props.stolen || !this.props.stolen.isRandomlyChosenCiv) {
             stealRandomMarkerClass += ' is-hidden';
         }
+
+        let randomMarker = <div className={randomMarkerClass} title="Random"/>;
+        let randomStealMarker = <div className={stealRandomMarkerClass} title="Random Steal"/>;
+        let randomSnipeMarker = <div className={snipeRandomMarkerClass} title="Random Snipe"/>;
+
+        if (this.props.iconStyle === 'units-animated') {
+            randomMarker = <div className={randomMarkerClass + ' animated'} title="Random">
+                <video autoPlay muted loop key={'random-selection'}>
+                    <source src="/images/units-animated/random-right.webm" type="video/webm"/>
+                </video>
+            </div>;
+            randomStealMarker = <div className={stealRandomMarkerClass + ' animated'} title="Random Steal">
+                <video autoPlay muted loop key={'random-steal'}>
+                    <source src="/images/units-animated/random-right.webm" type="video/webm"/>
+                </video>
+            </div>;
+            randomSnipeMarker = <div className={snipeRandomMarkerClass + ' animated'} title="Random Snipe">
+                <video autoPlay muted loop key={'random-snipe'}>
+                    <source src="/images/units-animated/random-right.webm" type="video/webm"/>
+                </video>
+            </div>;
+        }
+
         return (
             <div className={className} onClick={onClickAction}>
                 <div className={'stretchy-background'}/>
                 <div className={contentClass}>
                     <div className="stretchy-wrapper">
                         <div className={imageContainerClass}>
-                            <img src={imageSrc} alt={civilisationName}/>
+                            {image}
                         </div>
-                        <div className={randomMarkerClass} title="Random"/>
+                        {randomMarker}
                         <div className={stealMarkerClass}/>
-                        <div className={stealRandomMarkerClass} title="Random Steal"/>
+                        {randomStealMarker}
                         <div className={snipeMarkerClass}/>
-                        <div className={snipeRandomMarkerClass} title="Random Snipe"/>
+                        {randomSnipeMarker}
                         <div className={usedMarkerClass}/>
                         <div className={textClass}>
                             <Trans>{civilisationKey}</Trans>
@@ -140,6 +180,13 @@ class CivPanel extends React.Component<IProps, IState> {
                 </div>
             </div>
         );
+    }
+
+    private useFlippedImage() {
+        return this.props.civPanelType !== CivPanelType.CHOICE
+            && this.props.smooch
+            && ((this.props.side === Player.HOST && !this.props.flipped)
+                || (this.props.side === Player.GUEST && this.props.flipped));
     }
 
     private onClickCiv = () => {

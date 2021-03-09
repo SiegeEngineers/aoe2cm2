@@ -459,7 +459,11 @@ div.stretchy-wrapper > div.stretchy-text {
 
 .pick img, .steal img, .ban img {
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.pick .stretchy-image video, .steal .stretchy-image video, .ban .stretchy-image video, .choice .stretchy-image video {
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .pick .chosen-hidden img, .steal .chosen-hidden img, .ban .chosen-hidden img {
@@ -497,6 +501,10 @@ div.stretchy-wrapper > div.stretchy-text {
   opacity: 1
 }
 
+.random-pick.animated {
+  background: none;
+}
+
 .random-snipe {
   display: block;
   position: absolute;
@@ -510,6 +518,10 @@ div.stretchy-wrapper > div.stretchy-text {
   opacity: 1;
 }
 
+.random-snipe.animated {
+  background: none;
+}
+
 .random-steal {
   display: block;
   position: absolute;
@@ -521,6 +533,10 @@ div.stretchy-wrapper > div.stretchy-text {
   background-size: 20px 20px;
   background-repeat: no-repeat;
   opacity: 1;
+}
+
+.random-steal.animated {
+  background: none;
 }
 
 .ban .random-pick {

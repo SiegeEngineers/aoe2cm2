@@ -33,6 +33,7 @@ class NavBar extends React.Component<WithTranslation, object> {
                         <div className={'buttons has-addons'}>
                             <IconStyleSelector iconStyle={'units'} displayString={this.props.t('navbar.showUnits')}/>
                             <IconStyleSelector iconStyle={'emblems'} displayString={this.props.t('navbar.showEmblems')}/>
+                            <IconStyleSelector iconStyle={'units-animated'} displayString={this.props.t('navbar.showUnitsAnimated')}/>
                         </div>
                     </div>
                 </div>

@@ -261,6 +261,7 @@
     "setLang": "Cambiar el idioma a",
     "showUnits": "Mostrar unidades",
     "showEmblems": "Mostrar emblemas",
+    "showUnitsAnimated": "Monstrar unidades animadas",
     "setName": "Haz click para cambiar tu nombre",
     "toggleColorScheme": "Paleta de colores: {{scheme}} (click para cambiar)",
     "colorScheme": {

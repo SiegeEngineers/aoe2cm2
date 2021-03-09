@@ -260,6 +260,7 @@
     "setLang": "Sprache ändern: ",
     "showUnits": "Einheiten anzeigen",
     "showEmblems": "Embleme anzeigen",
+    "showUnitsAnimated": "Animierte Einheiten anzeigen",
     "setName": "Hier klicken, um den Namen zu ändern",
     "toggleColorScheme": "Aktuelles Farbschema: {{scheme}} (zum Umschalten klicken)",
     "colorScheme": {

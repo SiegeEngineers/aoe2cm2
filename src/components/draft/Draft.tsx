@@ -190,9 +190,12 @@ class Draft extends React.Component<IProps, IState> {
 
                     <TurnRow turns={turns}/>
 
-                    <DraftState nameHost={this.props.nameHost} nameGuest={this.props.nameGuest}
+                    <DraftState nameHost={this.props.nameHost}
+                                nameGuest={this.props.nameGuest}
                                 preset={this.props.preset}
-                                simplifiedUI={this.state.simplifiedUI} />
+                                flipped={this.state.flipped}
+                                smooch={this.state.smooch}
+                                simplifiedUI={this.state.simplifiedUI}/>
 
                     <div className="columns is-mobile">
                         <div id="action-text" className="column has-text-centered is-size-4">

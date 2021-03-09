@@ -260,6 +260,7 @@
     "setLang": "将语言设置为",
     "showUnits": "用城堡兵显示民族",
     "showEmblems": "用图徽显示民族",
+    "showUnitsAnimated": "用动态单位显示民族",
     "setName": "点此改名",
     "toggleColorScheme": "当前的颜色主题：{{scheme}} （点击变更）",
     "colorScheme": {
