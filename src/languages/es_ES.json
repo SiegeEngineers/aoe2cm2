@@ -195,13 +195,15 @@
     },
     "presetModifiers": {
       "title": "Modificadores",
-      "1": "Si quieres que ambos jugadores ejecuten una acción en paralelo, aprieta el checkbox <1>PARALLEL</1> en el <3>primero</3> de esos dos turnos (butpero no en el segundo turno).",
-      "2": "Elige el checkbox <1>HIDDEN</1> para esconder la civilización seleccionada de el oponente y los espectadores, hasta que sea revelada por un Turno de administrador."
+      "1": "Si quieres que ambos jugadores ejecuten una acción en paralelo, aprieta el checkbox <1>PARALLEL</1> en el <3>primero</3> de esos dos turnos (pero no en el segundo turno).",
+      "2": "Elige el checkbox <1>HIDDEN</1> para esconder la civilización seleccionada de el oponente y los espectadores, hasta que sea revelada por un Turno de administrador.",
+      "3": "Elige el checkbox <1>AS OPPONENT</1> para que el jugador ejecute el turno de su oponente en su lugar. Esto puede ser usado para que los jugadores elijan las civilizaciónes de sus oponentes."
     },
     "draftModifiers": {
       "title": "Modificadores",
       "1": "El modificador <1>PARALLEL</1> significa que ambos jugadores ejecutan la selección en paralelo.",
-      "2": "El modificador <1>HIDDEN</1> esconde la civilización seleccionada de el oponente y los espectadores, hasta que sea revelada por un Turno de administrador."
+      "2": "El modificador <1>HIDDEN</1> esconde la civilización seleccionada de el oponente y los espectadores, hasta que sea revelada por un Turno de administrador.",
+      "3": "El modificador <1>AS OPPONENT</1> logra que el jugador ejecute el turno de su oponente en su lugar. Esto principalmente es usado para que los jugadores elijan las civilizaciónes de sus oponentes."
     }
   },
   "presets": {
