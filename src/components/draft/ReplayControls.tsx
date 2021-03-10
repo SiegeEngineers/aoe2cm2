@@ -15,6 +15,7 @@ import DraftViews from "../../models/DraftViews";
 import {default as ModelDraft} from "../../models/Draft";
 import PlayerEvent from "../../models/PlayerEvent";
 import AdminEvent from "../../models/AdminEvent";
+import RestartIcon from "mdi-react/RestartIcon";
 
 interface IProps extends WithTranslation {
     preset: Preset;
@@ -49,7 +50,7 @@ class ReplayControls extends React.Component<IProps, IState> {
     } as IState;
 
     public render() {
-        if (this.props.replayEvents.length === 0 || this.hasDraftEnded()) {
+        if (this.props.replayEvents.length === 0) {
             return null;
         }
 
@@ -62,16 +63,20 @@ class ReplayControls extends React.Component<IProps, IState> {
         const nextButton = <button id="spectator-next" className="spectator-action button is-large"
                                    onClick={this.nextStep} aria-label="Next">
             <SkipNextIcon size={48} /></button>;
-        const skipToEndbutton = <button id="spectator-forward" className="spectator-action button is-large"
+        const skipToEndButton = <button id="spectator-forward" className="spectator-action button is-large"
                                         onClick={this.skipToEnd} aria-label="Fast Forward">
             <FastForwardIcon size={48} /></button>;
+        const restartButton = <button id="spectator-forward" className="spectator-action button is-large"
+                                      onClick={this.restart} aria-label="Restart">
+            <RestartIcon size={48} /></button>;
 
         return <div className="columns is-mobile">
             <div className="column has-text-centered">
                 <div id="spectator-controls" className="buttons is-centered">
-                    {this.state.isRunning ? pauseButton : runButton}
-                    {this.state.isRunning ? null : nextButton}
-                    {this.state.isRunning ? null : skipToEndbutton}
+                    {this.hasDraftEnded() ? null : this.state.isRunning ? pauseButton : runButton}
+                    {this.hasDraftEnded() || this.state.isRunning ? null : nextButton}
+                    {this.hasDraftEnded() || this.state.isRunning ? null : skipToEndButton}
+                    {this.state.isRunning ? null : restartButton}
                 </div>
             </div>
         </div>;
@@ -79,6 +84,10 @@ class ReplayControls extends React.Component<IProps, IState> {
 
     skipToEnd = () => {
         this.props.setDraftEvents(this.props.replayEvents);
+    };
+
+    restart = () => {
+        this.props.setDraftEvents([]);
     };
 
     nextStep = () => {
