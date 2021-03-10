@@ -153,18 +153,27 @@
   },
   "instructions": {
     "home": {
-      "title": "Instrucciónes",
-      "1": "Captains mode es un selector de civilizaciónes basado en turnos para emparejamientos. Cada capitán puede pickear y banear civilizaciónes en un orden predefinido. Los baneos previenen a los capitánes oponentes de elegir una determinada civilización.",
-      "2": "Cada capitán tiene <1>30 segundos</1>. En caso de pasarse el tiempo, una civilización es pickeada o baneada al azar.",
-      "3": "También hay extensiónes para los torneos:",
-      "4": "<0>Ocúlto</0> permite ocultar las selecciónes de civilizaciónes hasta que son mostradas explicitamente (visible en el cronograma en la parte superiór).",
-      "5": "<0>Global</0> Pickear o Banear civilizaciónes deshabilita la misma para los turnos siguientes. Para otras reglas específicas, leer la descripción del borrador.",
-      "6": "<0>Práctica</0> es para pruebas, donde ambos capitánes son controlados por el mismo usuario."
+      "title": "Que es Captains Mode?",
+      "1": "Captains mode es un selector de civilizaciónes basado en turnos para emparejamientos.",
+      "2": "El administrador del torneo crea un <1>Borrador</1> que puede ser usado para crear <3>Drafts</3>. Durante un Draft, los dos capitanes pickean, banean, stelean, o snipean civilizaciónes en un orden predefinido como las reglas en el Borrador lo determinen.",
+      "3": "Cada capitán tiene <1>30 segundos</1>. En caso de pasarse el tiempo, una civilización es pickeada o baneada al azar.",
+      "getStarted": {
+        "title": "Empecemos",
+        "1": "Puedes crear tu propio borrador o ver los ya creados <1>aquí</1>.",
+        "2": "Puedes espectear los drafts en vivo o recientemente creados <1>aquí</1>.",
+        "3": "Si quieres saber mas de como crear borradores, dirigete <1>aquí</1>."
+      },
+      "reportIssue": {
+        "title": "Has encontrado un bug?",
+        "github": "Has encontrado o experimentado problemas en este sitio? Fijate la <1>lista de problemas investigados en GitHub</1>.",
+        "discord": "Si tu problema no se encuentra ahí, reportalo en el repositorio de SiegeEngineers/aoe2cm2 en GitHub o escribele a <1>hszemi#2325</1> en Discord. Asegúrate de incluir el link a tu Draft/Borrador si es que el problema se encuentra ahí!"
+      }
     },
     "basics": {
       "title": "Resúmen",
       "1": "$t(instructions.home.1)",
-      "2": "$t(instructions.home.2)"
+      "2": "$t(instructions.home.2)",
+      "3": "$t(instructions.home.3)"
     },
     "hostAndGuestTurns": {
       "title": "Turnos de anfitrión y invitado",

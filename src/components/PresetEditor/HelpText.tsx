@@ -19,6 +19,10 @@ export const HelpBasics = withTranslation()(() =>
                 case of timeout a random civilization is picked for the captain or no civilization
                 gets banned.</Trans>
         </p>
+        <p>
+            <Trans i18nKey='instructions.basics.3'>For each turn captains have <b>30 seconds</b>.
+                In case of a timeout, a random civilisation is selected for the captain.</Trans>
+        </p>
     </>
 );
 
