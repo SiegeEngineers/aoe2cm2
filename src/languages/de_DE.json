@@ -172,7 +172,7 @@
       "title": "Grundlagen",
       "1": "$t(instructions.home.1)",
       "2": "$t(instructions.home.2)",
-      "3": "Für jede Runde hat eine Kapitäin <1>30 Sekunden</1> Zeit. Läuft die Zeit ab, wird eine zufällige Auswahl für sie getroffen."
+      "3": "Für jede Runde hat eine Kapitänin <1>30 Sekunden</1> Zeit. Läuft die Zeit ab, wird eine zufällige Auswahl für sie getroffen."
     },
     "hostAndGuestTurns": {
       "title": "Züge",
