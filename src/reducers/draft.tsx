@@ -89,7 +89,7 @@ export const draftReducer = (state: IDraftState = initialDraftState, action: Dra
             return {
                 ...state,
                 ...draft,
-                events: []
+                events: draft.events
             };
         case ClientActions.DISCONNECT_FROM_SERVER:
             console.log(ClientActions.DISCONNECT_FROM_SERVER, action);
