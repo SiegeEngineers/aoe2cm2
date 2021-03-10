@@ -360,7 +360,8 @@ div.stretchy-wrapper > div.stretchy-image {
 }
 
 .stretchy-image.is-stolen,
-.stretchy-image.is-sniped {
+.stretchy-image.is-sniped,
+.stretchy-image.is-used {
   filter: grayscale(100%);
 }
 

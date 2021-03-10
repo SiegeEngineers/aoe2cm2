@@ -104,6 +104,9 @@ class CivPanel extends React.Component<IProps, IState> {
             stealMarkerClass += ' is-hidden';
         }
         let usedMarkerClass = "stretchy-image used-marker " + this.state.used;
+        if (this.state.used !== this.USED_CLASSES[0]) {
+            imageContainerClass += ' is-used';
+        }
         let randomMarkerClass = "random-pick";
         if (!this.props.civilisation || !this.props.civilisation.isRandomlyChosenCiv) {
             randomMarkerClass += ' is-hidden';
