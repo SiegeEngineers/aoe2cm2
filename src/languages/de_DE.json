@@ -156,6 +156,7 @@
       "title": "Wie funktioniert Captains Mode?",
       "1": "Mit Captains Mode können Zivilisationen rundenbasiert zwischen zwei Kapitäninnen verteilt werden.",
       "2": "Ein Admin erstellt ein <1>Preset</1>, mit dem dann <3>Drafts</3> erstellt werden können. Während eines Drafts wählen, bannen, stehlen oder snipen die beiden Kapitäninnen Zivilisationen, um zu bestimmen, welche Zivilisationen sie anschließend in ihrem Match verwenden können. Der Ablauf ergibt sich dabei aus den im Preset festgelegten Zügen.",
+      "3": "Für jede Runde hat eine Kapitänin <1>30 Sekunden</1> Zeit. Läuft die Zeit ab, wird eine zufällige Auswahl für sie getroffen.",
       "getStarted": {
         "title": "Los geht's!",
         "1": "<1>Hier</1> kannst du dein eigenes Preset erstellen oder direkt mit einem beliebten Preset loslegen.",
@@ -172,7 +173,7 @@
       "title": "Grundlagen",
       "1": "$t(instructions.home.1)",
       "2": "$t(instructions.home.2)",
-      "3": "Für jede Runde hat eine Kapitänin <1>30 Sekunden</1> Zeit. Läuft die Zeit ab, wird eine zufällige Auswahl für sie getroffen."
+      "3": "$t(instructions.home.3)"
     },
     "hostAndGuestTurns": {
       "title": "Züge",

@@ -32,6 +32,9 @@ class Index extends React.Component<WithTranslation, IState> {
                     <p>
                         <Trans i18nKey='instructions.home.2'>The tournament Admin creates a <b>Preset</b> which can be used to create <b>Drafts</b>. During a draft, the two captains pick, ban, steal, or snipe civilisations in a predefined order as per the rules in the chosen Preset.</Trans>
                     </p>
+                    <p>
+                        <Trans i18nKey='instructions.home.3'>For each turn captains have <b>30 seconds</b>. In case of a timeout, a random civilisation is selected for the captain.</Trans>
+                    </p>
                     <h4><Trans i18nKey='instructions.home.getStarted.title'>Get started</Trans></h4>
                     <ul>
                         <li><Trans i18nKey='instructions.home.getStarted.1'>You can create your own Preset or use one of many popular presets <Link to={"/presets"}>here</Link>.</Trans></li>

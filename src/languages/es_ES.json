@@ -144,6 +144,7 @@
       "title": "Que es Captains Mode?",
       "1": "Captains mode es un selector de civilizaciónes basado en turnos para emparejamientos.",
       "2": "El administrador del torneo crea un <1>Borrador</1> que puede ser usado para crear <3>Drafts</3>. Durante un Draft, los dos capitanes pickean, banean, stelean, o snipean civilizaciónes en un orden predefinido como las reglas en el Borrador lo determinen.",
+      "3": "Cada capitán tiene <1>30 segundos</1>. En caso de pasarse el tiempo, una civilización es pickeada o baneada al azar.",
       "getStarted": {
         "title": "Empecemos",
         "1": "Puedes crear tu propio borrador o ver los ya creados <1>aquí</1>.",
@@ -160,7 +161,7 @@
       "title": "Resúmen",
       "1": "$t(instructions.home.1)",
       "2": "$t(instructions.home.2)",
-      "3": "Cada capitán tiene <1>30 segundos</1>. En caso de pasarse el tiempo, una civilización es pickeada o baneada al azar."
+      "3": "$t(instructions.home.3)"
     },
     "hostAndGuestTurns": {
       "title": "Turnos de anfitrión y invitado",
