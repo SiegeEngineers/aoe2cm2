@@ -166,5 +166,21 @@ export const Util = {
     isRequestFromLocalhost(req: any) {
         const ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
         return ip === '::ffff:127.0.0.1' || ip === '::1';
-    }
+    },
+
+    getIconStyleFromLocalStorage(defaultIfError: string = 'units'): string {
+        try {
+            return localStorage.getItem('iconStyle') || defaultIfError;
+        } catch (e) {
+            return defaultIfError;
+        }
+    },
+
+    writeIconStyleToLocalStorage(iconStyle: string) {
+        try {
+            localStorage.setItem('iconStyle', iconStyle);
+        } catch (e) {
+            // ignore
+        }
+    },
 };
