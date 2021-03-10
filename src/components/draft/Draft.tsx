@@ -69,6 +69,7 @@ class Draft extends React.Component<IProps, IState> {
 
 
     componentDidMount(): void {
+        this.updateTitle();
         this.props.triggerConnect();
     }
 
@@ -90,7 +91,10 @@ class Draft extends React.Component<IProps, IState> {
                 this.props.showNameModal();
             }
         }
+        this.updateTitle();
+    }
 
+    private updateTitle() {
         const title = this.getTitle();
         if (document.title !== title) {
             document.title = title;
