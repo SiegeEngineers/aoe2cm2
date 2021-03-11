@@ -155,7 +155,8 @@
     "home": {
       "title": "O que é o Captains Mode?",
       "1": "Captains mode é um seletor de civilizações baseado em turnos.",
-      "2": "O Administrador do torneio cria uma <1>Definição</1> que pode ser usada para criar <3>Drafts</3>. Durante um Draft, os dois capitães escolhem, banem, roubam, ou excluem civilizações em uma ordem prédefinida conforme as regras na Definição escolhida para determinar quais civilizações estarão disponíveis para cada capitão em uma partida."
+      "2": "O Administrador do torneio cria uma <1>Definição</1> que pode ser usada para criar <3>Drafts</3>. Durante um Draft, os dois capitães escolhem, banem, roubam, ou excluem civilizações em uma ordem prédefinida conforme as regras na Definição escolhida para determinar quais civilizações estarão disponíveis para cada capitão em uma partida.",
+      "3": "Para cada turno, os capitães têm <1>30 segundos</1>. Caso o tempo acabe, uma civilização aleatória será selecionada ou banida para o capitão."
     },
     "getStarted": {
       "title": "Iniciar",
