@@ -1,6 +1,7 @@
 import en_GB from "./languages/en_GB.json";
 import es_ES from "./languages/es_ES.json";
 import de_DE from "./languages/de_DE.json";
+import pt_BR from "./languages/pt_BR.json";
 import zh_CN from "./languages/zh_CN.json";
 
 const availableLocales = {
@@ -20,7 +21,7 @@ const availableLocales = {
         cta: "Sprache zu Deutsch ändern"
     },
     "pt-BR": {
-        translation: es_ES,
+        translation: pt_BR,
         displayName: "Português",
         cta: "Mudar o idioma para português"
     },
