@@ -1,3 +1,4 @@
+
 # aoe2cm
 Captains Mode for Age of Empires II
 
@@ -118,3 +119,10 @@ action is not broadcasted.
 
 ![Sequence diagram of a session](session.png)
 
+## Translations
+If you would like to see this app in one of the languages in which the app isn't translated yet, you can help 
+submit the translations. 
+
+You can  make a copy of [this file](src/languages/es_ES.json) and submit the new file with 
+translations via a PR ([example here](https://github.com/SiegeEngineers/aoe2cm2/pull/45)). 
+Or, share the file with `hszemi#2325` or `Jester#5115` on Discord.  
