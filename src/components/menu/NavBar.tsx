@@ -22,6 +22,9 @@ class NavBar extends React.Component<WithTranslation, object> {
                         </div>
                     </div>
                     <div className="navbar-item">
+                        <LocaleSelector/>
+                    </div>
+                    <div className="navbar-item">
                         <div className={'buttons'}>
                             <ColorSchemeToggle/>
                         </div>
@@ -31,9 +34,6 @@ class NavBar extends React.Component<WithTranslation, object> {
                             <IconStyleSelector iconStyle={'units'} displayString={this.props.t('navbar.showUnits')}/>
                             <IconStyleSelector iconStyle={'emblems'} displayString={this.props.t('navbar.showEmblems')}/>
                         </div>
-                    </div>
-                    <div className="navbar-item">
-                        <LocaleSelector/>
                     </div>
                 </div>
             </nav>
