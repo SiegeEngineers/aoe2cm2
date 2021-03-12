@@ -374,9 +374,11 @@ div.stretchy-background {
   right: 0;
 }
 
-.stretchy-image.is-stolen,
-.stretchy-image.is-sniped,
-.stretchy-image.is-used {
+.is-stolen .civ-indicator,
+.is-stolen .stretchy-background,
+.is-sniped .civ-indicator,
+.is-sniped .stretchy-background,
+.is-used .civ-indicator {
   filter: grayscale(100%);
 }
 
