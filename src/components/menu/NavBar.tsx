@@ -26,6 +26,7 @@ class NavBar extends React.Component<WithTranslation, object> {
                             <LanguageSelector language={'en-GB'} displayString={'EN'} tooltipString={'Switch language to English'}/>
                             <LanguageSelector language={'es-ES'} displayString={'ES'} tooltipString={'Cambiar el idioma a español'}/>
                             <LanguageSelector language={'de-DE'} displayString={'DE'} tooltipString={'Sprache zu Deutsch ändern'}/>
+                            <LanguageSelector language={'pt-BR'} displayString={'PT'} tooltipString={'Mudar o idioma para português'}/>
                             <LanguageSelector language={'zh-CN'} displayString={'中文'} tooltipString={'将语言设置为中文'}/>
                         </div>
                     </div>
