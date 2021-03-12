@@ -1,39 +1,23 @@
 import * as React from 'react';
-import {default as i18n} from "../../i18n";
-import {WithTranslation, withTranslation} from "react-i18next";
+import LanguageOption from "../../containers/LanguageOption";
 
 
-interface IProps extends WithTranslation {
-    language: string;
-    displayString: string;
-    tooltipString: string;
-    onSetLanguage?: (language: string) => void;
+interface IProps {
 }
 
 class LanguageSelector extends React.Component<IProps, object> {
 
     public render() {
 
-        const changeLanguage = () => {
-            if (this.props.onSetLanguage !== undefined) {
-                this.props.onSetLanguage(this.props.language);
-            }
-        };
-
-        let className = "language-selector button is-light has-tooltip-bottom has-tooltip-arrow";
-        if (this.props.language === i18n.language) {
-            className += ' is-link is-hovered';
-        } else {
-            className += ' ';
-        }
-
         return (
-            <button className={className} onClick={changeLanguage}
-                    data-tooltip={this.props.tooltipString}>
-                {this.props.displayString}
-            </button>
+            <div className={'buttons has-addons'}>
+                <LanguageOption language={'en-GB'} displayString={'EN'} tooltipString={'Switch language to English'}/>
+                <LanguageOption language={'es-ES'} displayString={'ES'} tooltipString={'Cambiar el idioma a español'}/>
+                <LanguageOption language={'de-DE'} displayString={'DE'} tooltipString={'Sprache zu Deutsch ändern'}/>
+                <LanguageOption language={'zh-CN'} displayString={'中文'} tooltipString={'将语言设置为中文'}/>
+            </div>
         );
     }
 }
 
-export default withTranslation()(LanguageSelector);
+export default LanguageSelector;
