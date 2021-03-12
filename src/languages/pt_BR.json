@@ -142,7 +142,7 @@
     "VLD_906": "A predefinição contém um turno com banimento oculto e uma escolha sem revelação no meio",
     "VLD_907": "A predefinição contém um turno oculto que nunca é revelado",
     "VLD_908": "A prredefinição não contém turnos",
-    "VLD_909": "O presetId fornecido é inválido"
+    "VLD_909": "O preset id fornecido é inválido"
   },
   "menu": {
     "welcome": "Bem-vindo",

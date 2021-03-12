@@ -1,4 +1,5 @@
 import en_GB from "./languages/en_GB.json";
+import en_US from "./languages/en_US.json";
 import es_ES from "./languages/es_ES.json";
 import de_DE from "./languages/de_DE.json";
 import pt_BR from "./languages/pt_BR.json";
@@ -8,7 +9,12 @@ const availableLocales = {
     "en-GB": {
         translation: en_GB,
         displayName: "English",
-        cta: "Switch language to English"
+        cta: "Switch language to English (UK)"
+    },
+    "en-US": {
+        translation: en_US,
+        displayName: "English",
+        cta: "Switch language to English (US)"
     },
     "es-ES": {
         translation: es_ES,
