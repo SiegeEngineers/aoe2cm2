@@ -1,11 +1,10 @@
 import * as React from "react";
-import LanguageOption from "../../containers/LanguageOption";
 import UsernameSelector from "../../containers/UsernameSelector";
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
 import IconStyleSelector from "../../containers/IconStyleSelector";
 import ColorSchemeToggle from "../../containers/ColorSchemeToggle";
 import {Link} from "react-router-dom";
-import LanguageSelector from "./LanguageSelector";
+import LocaleSelector from "./LocaleSelector";
 
 class NavBar extends React.Component<WithTranslation, object> {
     public render() {
@@ -23,7 +22,7 @@ class NavBar extends React.Component<WithTranslation, object> {
                         </div>
                     </div>
                     <div className="navbar-item">
-                        <LanguageSelector/>
+                        <LocaleSelector/>
                     </div>
                     <div className="navbar-item">
                         <div className={'buttons'}>

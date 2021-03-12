@@ -5,7 +5,7 @@ import LanguageOption from "../../containers/LanguageOption";
 interface IProps {
 }
 
-class LanguageSelector extends React.Component<IProps, object> {
+class LocaleSelector extends React.Component<IProps, object> {
 
     public render() {
 
@@ -20,4 +20,4 @@ class LanguageSelector extends React.Component<IProps, object> {
     }
 }
 
-export default LanguageSelector;
+export default LocaleSelector;
