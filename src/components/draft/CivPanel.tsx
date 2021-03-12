@@ -60,7 +60,7 @@ class CivPanel extends React.Component<IProps, IState> {
                 textClass += ' is-hidden';
             }
         }
-        let className: string = this.props.civPanelType.toString();
+        let className: string = 'civ-panel ' + this.props.civPanelType.toString();
         if (this.props.byOpponent) {
             className += ' by-opponent';
         }
@@ -87,7 +87,7 @@ class CivPanel extends React.Component<IProps, IState> {
         } else if (civilisation !== undefined) {
             className += ' has-value';
         }
-        let contentClass: string = "box-content";
+        let contentClass: string = "box-content element-stack";
         if (this.props.civilisation !== undefined) {
             contentClass += " is-visible";
         }
@@ -121,6 +121,7 @@ class CivPanel extends React.Component<IProps, IState> {
         }
         return (
             <div className={className} onClick={onClickAction}>
+                <div className={'stretchy-background'}/>
                 <div className={contentClass}>
                     <div className="stretchy-wrapper">
                         <div className={imageContainerClass}>

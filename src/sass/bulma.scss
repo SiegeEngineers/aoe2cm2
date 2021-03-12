@@ -269,8 +269,6 @@ label.civ-select:hover {
   width: 80px;
   transition: all 0.25s ease;
   margin: 4px;
-  padding: 8px;
-  background: rgba(153, 153, 153, 0.4);
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   cursor: pointer;
 }
@@ -351,7 +349,24 @@ div.stretchy-wrapper {
   border-radius: 2px;
 }
 
+div.stretchy-background {
+  position: relative;
+  border-radius: 4px;
+}
+
 div.stretchy-wrapper > div.stretchy-image {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.civ-panel {
+  position: relative;
+}
+
+div.stretchy-background {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -389,7 +404,6 @@ div.stretchy-wrapper > div.stretchy-text {
   box-shadow: none;
   border-radius: 4px;
   margin: 4px;
-  padding: 8px;
   box-sizing: content-box;
   opacity: 0.4;
 }
@@ -399,32 +413,45 @@ div.stretchy-wrapper > div.stretchy-text {
 }
 
 .pick {
-  width: 96px;
-  height: 96px;
-  background: $pick-green;
+  width: 112px;
+  height: 112px;
 }
 
 .steal {
-  width: 96px;
-  height: 96px;
-  background: $steal-gold;
+  width: 112px;
+  height: 112px;
 }
 
 .ban {
-  width: 64px;
-  height: 64px;
+  width: 80px;
+  height: 80px;
+}
+
+.pick .stretchy-background {
+  background: $pick-green;
+}
+
+.steal .stretchy-background {
+  background: $steal-gold;
+}
+
+.ban .stretchy-background {
   background: $ban-red;
 }
 
-.pick.by-opponent {
+.choice .stretchy-background {
+  background: rgba(153, 153, 153, 0.4);
+}
+
+.pick.by-opponent .stretchy-background {
   background: $pick-by-opponent;
 }
 
-.ban.by-opponent {
+.ban.by-opponent .stretchy-background {
   background: $ban-by-opponent;
 }
 
-.steal.by-opponent {
+.steal.by-opponent .stretchy-background {
   background: $steal-by-opponent;
 }
 
@@ -445,6 +472,10 @@ div.stretchy-wrapper > div.stretchy-text {
 .ban .chosen-hidden .stretchy-image {
   background-image: url('/images/hidden_ban.png');
   background-size: contain;
+}
+
+.element-stack {
+  padding: 8px;
 }
 
 .picks .box-content, .bans .box-content {
