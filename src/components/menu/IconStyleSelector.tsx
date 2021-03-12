@@ -19,7 +19,7 @@ class IconStyleSelector extends React.Component<IProps, object> {
             }
         };
 
-        let className = "civ-select button is-light has-tooltip-bottom has-tooltip-arrow";
+        let className = "civ-select button is-light has-tooltip-left has-tooltip-arrow";
         let style = {filter: 'grayscale(100%)'}
         if (this.props.iconStyle === this.props.activeIconStyle) {
             className += ' is-link is-hovered';

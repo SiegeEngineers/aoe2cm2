@@ -20,10 +20,7 @@ class LocaleOption extends React.Component<IProps, object> {
             }
         };
 
-        let className = "dropdown-item has-tooltip-left has-tooltip-arrow";
-        // if (this.props.language === i18n.language) {
-        //     className += ' is-active';
-        // }
+        let className = "dropdown-item has-tooltip-right has-tooltip-arrow";
 
         return (
             <a href="#" className={className} onClick={changeLanguage}
