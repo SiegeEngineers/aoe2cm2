@@ -156,18 +156,18 @@
       "title": "O que é o Captains Mode?",
       "1": "Captains mode é um seletor de civilizações baseado em turnos.",
       "2": "O Administrador do torneio cria uma <1>Definição</1> que pode ser usada para criar <3>Drafts</3>. Durante um Draft, os dois capitães escolhem, banem, roubam, ou excluem civilizações em uma ordem prédefinida conforme as regras na Definição escolhida para determinar quais civilizações estarão disponíveis para cada capitão em uma partida.",
-      "3": "Para cada turno, os capitães têm <1>30 segundos</1>. Caso o tempo acabe, uma civilização aleatória será selecionada ou banida para o capitão."
-    },
-    "getStarted": {
-      "title": "Iniciar",
-      "1": "Você pode criar sua própria definição ou usar uma das mais populares <1>aqui</1>.",
-      "2": "Você pode observar drafts ao vido ou que foram criados recentementes <1>aqui</1>.",
-      "3": "Se você quiser aprender mais sobre como criar definições, você pode ler as instruções <1>aqui</1>."
-    },
-    "reportIssue": {
-      "title": "Encontrou algum problema?",
-      "github": "Você encontrou ou teve algum problema neste site? Confira aqui a <1>lista de problemas conhecidos no GitHub</1>.",
-      "discord": "Se seu problema não estiver listado lá, relate no GitHub ou descreva-o para <1>hszemi#2325</1> no Discord. Certifique-se de incluir um link para o seu draft, se você tiver um!"
+      "3": "Para cada turno, os capitães têm <1>30 segundos</1>. Caso o tempo acabe, uma civilização aleatória será selecionada ou banida para o capitão.",
+      "getStarted": {
+        "title": "Iniciar",
+        "1": "Você pode criar sua própria definição ou usar uma das mais populares <1>aqui</1>.",
+        "2": "Você pode observar drafts ao vido ou que foram criados recentementes <1>aqui</1>.",
+        "3": "Se você quiser aprender mais sobre como criar definições, você pode ler as instruções <1>aqui</1>."
+      },
+      "reportIssue": {
+        "title": "Encontrou algum problema?",
+        "github": "Você encontrou ou teve algum problema neste site? Confira aqui a <1>lista de problemas conhecidos no GitHub</1>.",
+        "discord": "Se seu problema não estiver listado lá, relate no GitHub ou descreva-o para <1>hszemi#2325</1> no Discord. Certifique-se de incluir um link para o seu draft, se você tiver um!"
+      }
     },
     "basics": {
       "title": "Fundamentos",
