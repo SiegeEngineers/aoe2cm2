@@ -10,7 +10,7 @@ interface IProps extends WithTranslation {
     onSetLanguage?: (language: string) => void;
 }
 
-class LanguageOption extends React.Component<IProps, object> {
+class LocaleOption extends React.Component<IProps, object> {
 
     public render() {
 
@@ -36,4 +36,4 @@ class LanguageOption extends React.Component<IProps, object> {
     }
 }
 
-export default withTranslation()(LanguageOption);
+export default withTranslation()(LocaleOption);
