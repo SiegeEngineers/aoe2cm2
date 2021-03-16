@@ -77,6 +77,18 @@ $link-dark: hsl(209, 71%, 63%);
     background-color: $black-ter;
     color: $white;
   }
+
+  &:active, &.is-active {
+    background-color: $black-ter;
+    color: $white;
+    box-shadow: none !important;
+  }
+
+  &:focus, &.is-focused {
+    background-color: $black-ter;
+    color: $white;
+    box-shadow: none !important;
+  }
 }
 
 .select > select {
