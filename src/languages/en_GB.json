@@ -142,7 +142,7 @@
     "VLD_906": "The preset contains a hidden ban and a pick without a reveal turn in between",
     "VLD_907": "The preset contains a hidden turn that is never revealed",
     "VLD_908": "The preset does not contain any turns",
-    "VLD_909": "The given preset id is invalid"
+    "VLD_909": "The given presetId is invalid"
   },
   "menu": {
     "welcome": "Welcome",

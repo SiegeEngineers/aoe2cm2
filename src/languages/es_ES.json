@@ -142,7 +142,7 @@
     "VLD_906": "El Borrador contiene un baneo oculto y una selección sin una revelación entre medio",
     "VLD_907": "El Borrador contiene un turno oculto que nunca es revelado",
     "VLD_908": "El Borrador no contiene turnos",
-    "VLD_909": "El preset id proporcionado no es válido"
+    "VLD_909": "El presetId proporcionado no es válido"
   },
   "menu": {
     "welcome": "Bienvenido",
