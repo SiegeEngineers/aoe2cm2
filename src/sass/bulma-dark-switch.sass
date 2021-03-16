@@ -1,0 +1,68 @@
+$switch-background: $grey-dark
+
+=switch-size($size)
+  + label
+
+    &::before,
+    &:before
+      background: $switch-background
+
+  &.is-outlined
+    + label
+      &::before,
+      &:before
+        border-color: $switch-background
+      &::after,
+      &:after
+        background: $switch-background
+
+
+.switch[type="checkbox"]
+
+  +switch-size($size-normal)
+  &.is-small
+    +switch-size($size-small)
+  &.is-medium
+    +switch-size($size-medium)
+  &.is-large
+    +switch-size($size-large)
+
+  @each $name, $pair in $colors
+    $color: nth($pair, 1)
+    $color-invert: nth($pair, 2)
+    &.is-#{$name}
+      &:checked
+        + label
+          &::before,
+          &:before
+            background: $color
+      &.is-outlined
+        &:checked
+          + label
+            &::before,
+            &:before
+              background-color: transparent
+              border-color: $color !important
+            &::after,
+            &:after
+              background: $color
+      &.is-thin
+        &.is-outlined
+          + label
+            &::after,
+            &:after
+              box-shadow: none
+    &.is-unchecked-#{$name}
+      + label
+        &::before,
+        &:before
+          background: $color
+      &.is-outlined
+        + label
+          &::before,
+          &:before
+            background-color: transparent
+            border-color: $color !important
+          &::after,
+          &:after
+            background: $color

@@ -35,6 +35,8 @@ $steal-by-opponent: linear-gradient(135deg, $opponent-purple 33%, $steal-gold 34
 $family-monospace: 'Consolas', 'Monaco', monospace;
 
 @import "../../node_modules/bulma/bulma.sass";
+
+$switch-focus: none;
 @import "../../node_modules/bulma-switch/src/sass/index.sass";
 
 // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
@@ -780,7 +782,7 @@ body.has-theme-dark {
 html.has-simple-ui {
   background: none;
 
-  body.has-simple-ui {
+  body {
     background: none;
   }
 
