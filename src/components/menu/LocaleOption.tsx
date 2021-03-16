@@ -20,13 +20,13 @@ class LocaleOption extends React.Component<IProps, object> {
             }
         };
 
-        let className = "dropdown-item has-tooltip-right has-tooltip-arrow";
+        let className = "button is-white dropdown-item has-tooltip-right has-tooltip-arrow";
 
         return (
-            <a href="#" className={className} onClick={changeLanguage}
+            <button className={className} onClick={changeLanguage}
                data-tooltip={this.props.tooltipString}>
                 {this.props.displayString} <code style={{"float":"right", "marginRight":"-30px"}}>{this.props.language}</code>
-            </a>
+            </button>
         );
     }
 }

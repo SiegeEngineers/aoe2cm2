@@ -69,6 +69,16 @@ $link-dark: hsl(209, 71%, 63%);
   }
 }
 
+.button.is-white{
+  background-color: $black;
+  color: $grey-light;
+
+  &:hover, &.is-hovered {
+    background-color: $black-ter;
+    color: $white;
+  }
+}
+
 .select > select {
   border-color: $grey-darker !important;
   background-color: $black !important;

@@ -21,7 +21,8 @@ class LocaleSelector extends React.Component<IProps, object> {
             }
             localeOptions.push(<LocaleOption language={key}
                                              displayString={availableLocales[key]['displayName']}
-                                             tooltipString={availableLocales[key]['cta']}/>);
+                                             tooltipString={availableLocales[key]['cta']}
+                                             key={key}/>);
         });
 
         return (
