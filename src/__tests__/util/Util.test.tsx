@@ -5,6 +5,8 @@ it('sanitize handles common cases', () => {
     expect(Util.sanitizeDraftId('draftId')).toEqual('draftId');
     expect(Util.sanitizeDraftId('draft/Id')).toEqual('draft_Id');
     expect(Util.sanitizeDraftId('../../../../etc/shadow')).toEqual('____________etc_shadow');
+    // @ts-ignore
+    expect(Util.sanitizeDraftId(undefined)).toEqual('__invalid__');
 });
 
 it('getIdFromUrl works on draft url', () => {

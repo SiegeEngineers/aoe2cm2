@@ -136,8 +136,11 @@ export const Util = {
         return message;
     },
 
-    sanitizeDraftId(draftIdRaw: string) {
-        return draftIdRaw.replace(new RegExp(`[^${CHARACTERS}]`, 'g'), '_');
+    sanitizeDraftId(draftIdRaw: any) {
+        if (typeof draftIdRaw === "string") {
+            return draftIdRaw.replace(new RegExp(`[^${CHARACTERS}]`, 'g'), '_');
+        }
+        return '__invalid__';
     },
 
     sanitizeRole(roleRaw: Player) {
