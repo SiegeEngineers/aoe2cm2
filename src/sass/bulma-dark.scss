@@ -69,6 +69,28 @@ $link-dark: hsl(209, 71%, 63%);
   }
 }
 
+.button.is-white{
+  background-color: $black;
+  color: $grey-light;
+
+  &:hover, &.is-hovered {
+    background-color: $black-ter;
+    color: $white;
+  }
+
+  &:active, &.is-active {
+    background-color: $black-ter;
+    color: $white;
+    box-shadow: none !important;
+  }
+
+  &:focus, &.is-focused {
+    background-color: $black-ter;
+    color: $white;
+    box-shadow: none !important;
+  }
+}
+
 .select > select {
   border-color: $grey-darker !important;
   background-color: $black !important;
