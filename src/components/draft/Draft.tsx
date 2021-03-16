@@ -220,7 +220,7 @@ class Draft extends React.Component<IProps, IState> {
                         <button className={'button is-small'} onClick={() => {
                             this.toggleSimplifiedUI()
                         }}>
-                            <Trans i18nKey='simplifiedUIAdd'>Toggle Simplified UI</Trans>
+                            <Trans i18nKey='simplifiedUI'>Toggle Simplified UI</Trans>
                         </button>
                     </div>
                 </div>
