@@ -1,7 +1,7 @@
 import {ApplicationState} from '../types';
 import * as actions from '../actions/';
 import {connect} from 'react-redux';
-import LanguageSelector from "../components/menu/LanguageSelector";
+import LocaleOption from "../components/menu/LocaleOption";
 import {Dispatch} from "redux";
 
 
@@ -15,4 +15,4 @@ export function mapDispatchToProps(dispatch: Dispatch<actions.Action>) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LanguageSelector);
+export default connect(mapStateToProps, mapDispatchToProps)(LocaleOption);
