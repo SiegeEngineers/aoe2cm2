@@ -14,7 +14,7 @@ class LocaleSelector extends React.Component<IProps, object> {
     public render() {
         console.info(availableLocales)
         let localeOptions: Array<ReactElement> = [];
-        let currentLanguage;
+        let currentLanguage = "Language";
         Object.keys(availableLocales).forEach(function (key) {
             if (key === i18n.language) {
                 currentLanguage = availableLocales[key]['displayName'];
