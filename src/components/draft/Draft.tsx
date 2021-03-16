@@ -20,6 +20,7 @@ import {default as ModelAction} from "../../constants/Action";
 import ReplayControls from "../../containers/ReplayControls";
 import {RouteComponentProps} from "react-router";
 import HowItWorks from "../menu/HowItWorks";
+import ColorSchemeHelpers from "../../util/ColorSchemeHelpers";
 
 interface IProps extends WithTranslation, RouteComponentProps<any> {
     nameHost: string;
@@ -52,6 +53,7 @@ interface IState {
     joined: boolean;
     flipped: boolean;
     smooch: boolean;
+    simplifiedUI: boolean;
 }
 
 class Draft extends React.Component<IProps, IState> {
@@ -61,7 +63,8 @@ class Draft extends React.Component<IProps, IState> {
         let query = new URLSearchParams(this.props.location.search);
         const flipped = query.get('flipped') === 'true' || false;
         const smooch = query.get('smooch') === 'true' || false;
-        this.state = {joined: false, flipped, smooch};
+        const simplifiedUI = query.get('simplified') === 'true' || false;
+        this.state = {joined: false, flipped, smooch, simplifiedUI};
     }
 
 
@@ -105,6 +108,7 @@ class Draft extends React.Component<IProps, IState> {
         if (this.props.triggerDisconnect) {
             this.props.triggerDisconnect();
         }
+        ColorSchemeHelpers.removeThemeClassName('has-theme-simple-ui')
         if (this.props.history.length > 2 && document.referrer) {
             // go back if there is a possibility
             this.props.history.goBack();
@@ -118,7 +122,7 @@ class Draft extends React.Component<IProps, IState> {
         const newFlippedValue = !this.state.flipped;
         let searchParams = new URLSearchParams(this.props.location.search);
         searchParams.set('flipped', newFlippedValue.toString());
-        this.props.history.push({
+        this.props.history.replace({
             search: searchParams.toString()
         });
         this.setState({...this.state, flipped: newFlippedValue});
@@ -128,10 +132,21 @@ class Draft extends React.Component<IProps, IState> {
         const newSmoochValue = !this.state.smooch;
         let searchParams = new URLSearchParams(this.props.location.search);
         searchParams.set('smooch', newSmoochValue.toString());
-        this.props.history.push({
+        this.props.history.replace({
             search: searchParams.toString()
         });
         this.setState({...this.state, smooch: newSmoochValue});
+    }
+
+    private toggleSimplifiedUI():void{
+        console.log('Simplified UI Toggle')
+        const newSimplifiedUIValue = !this.state.simplifiedUI;
+        let searchParams = new URLSearchParams(this.props.location.search);
+        searchParams.set('simplified', newSimplifiedUIValue.toString());
+        this.props.history.replace({
+            search: searchParams.toString()
+        });
+        this.setState({...this.state, simplifiedUI: newSimplifiedUIValue});
     }
 
     public render() {
@@ -144,6 +159,12 @@ class Draft extends React.Component<IProps, IState> {
         let className = 'section';
         className += this.state.flipped ? ' flipped' : '';
         className += this.state.smooch ? ' smooch' : '';
+
+        if(this.state.simplifiedUI) {
+            ColorSchemeHelpers.addThemeClassName('has-theme-simple-ui')
+        } else {
+            ColorSchemeHelpers.removeThemeClassName('has-theme-simple-ui')
+        }
 
         return (
             <>
@@ -166,7 +187,8 @@ class Draft extends React.Component<IProps, IState> {
                     <TurnRow turns={turns}/>
 
                     <DraftState nameHost={this.props.nameHost} nameGuest={this.props.nameGuest}
-                                preset={this.props.preset}/>
+                                preset={this.props.preset}
+                                simplifiedUI={this.state.simplifiedUI} />
 
                     <div className="columns is-mobile">
                         <div id="action-text" className="column has-text-centered is-size-4">
@@ -176,9 +198,31 @@ class Draft extends React.Component<IProps, IState> {
 
                     <ReplayControls/>
 
-                    <DraftIdInfo/>
+                    {!this.state.simplifiedUI && <DraftIdInfo/>}
 
-                    <CivGrid civilisations={this.props.preset.civilisations}/>
+                    {!this.state.simplifiedUI && <CivGrid civilisations={this.props.preset.civilisations}/>}
+                </div>
+            </section>
+
+            <section className="section pt-0">
+                <div className="container is-desktop has-text-centered mb-3" style={{maxWidth: "808px"}}>
+                    <div className="buttons is-centered">
+                        <button className={'button is-small'} onClick={() => {
+                            this.flip()
+                        }}>
+                            <Trans i18nKey='flip'>Flip Host and Guest positions</Trans>
+                        </button>
+                        <button className={'button is-small'} onClick={() => {
+                            this.toggleSmooch()
+                        }}>
+                            <Trans i18nKey='smooch'>Toggle smooch mode</Trans>
+                        </button>
+                        <button className={'button is-small'} onClick={() => {
+                            this.toggleSimplifiedUI()
+                        }}>
+                            <Trans i18nKey='simplifiedUIAdd'>Toggle Simplified UI</Trans>
+                        </button>
+                    </div>
                 </div>
             </section>
 
@@ -191,15 +235,7 @@ class Draft extends React.Component<IProps, IState> {
                 </div>
             </section>
 
-            <div className="container is-desktop has-text-centered mb-3" style={{maxWidth: "808px"}}>
-                <button className={'button is-small'} onClick={()=>{this.flip()}}>
-                    <Trans i18nKey='flip'>Flip Host and Guest positions</Trans>
-                </button>
-                <button className={'button is-small'} onClick={()=>{this.toggleSmooch()}}>
-                    <Trans i18nKey='smooch'>Toggle smooch mode</Trans>
-                </button>
-            </div>
-        </>
+            </>
         );
     }
 

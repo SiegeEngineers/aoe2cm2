@@ -774,3 +774,41 @@ html.has-theme-dark {
 body.has-theme-dark {
   @import "bulma-dark.scss";
 }
+
+// Simple UI
+html.has-theme-simple-ui {
+  background: none;
+
+  body.simple-ui {
+    background: none;
+  }
+
+  .box {
+    background: none !important;
+    box-shadow: none;
+  }
+
+  .ban {
+    width: 96px;
+    height: 96px;
+  }
+
+  .player.box {
+    width: 650px;
+    padding: 0;
+  }
+
+  //.pick {
+  //  background: #0084AC; // T90 Blue
+  //}
+
+  #player-guest.column, #player-host.column {
+    margin: 0;
+    padding: 0.7rem;
+  }
+
+  .footer {
+    background: none;
+    opacity: 80%;
+  }
+}

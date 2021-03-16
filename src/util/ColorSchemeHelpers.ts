@@ -37,12 +37,20 @@ class ColorSchemeHelpers {
             colorScheme = ColorSchemeHelpers.getOSColorSchemePreference()
         }
         if (colorScheme === ColorScheme.DARK) {
-            document.documentElement.classList.add('has-theme-dark');
-            document.body.classList.add('has-theme-dark');
+            this.addThemeClassName('has-theme-dark');
         } else {
-            document.documentElement.classList.remove('has-theme-dark');
-            document.body.classList.remove('has-theme-dark');
+            this.removeThemeClassName('has-theme-dark');
         }
+    }
+
+    public static addThemeClassName(className: string) {
+        document.documentElement.classList.add(className);
+        document.body.classList.add(className);
+    }
+
+    public static removeThemeClassName(className: string) {
+        document.documentElement.classList.remove(className);
+        document.body.classList.remove(className);
     }
 
 }

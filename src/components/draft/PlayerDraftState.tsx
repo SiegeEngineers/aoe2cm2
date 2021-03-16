@@ -18,6 +18,7 @@ interface IProps extends WithTranslation {
     name: string;
     nextAction?: number;
     events?: DraftEvent[];
+    simplifiedUI?: boolean
 }
 
 interface IState {
@@ -121,22 +122,24 @@ class PlayerDraftState extends React.Component<IProps, IState> {
             <div id={playerId} className="column is-half">
                 <div className={playerClass + " box content is-inline-block"}>
                     <div className="is-uppercase has-text-grey is-size-7 pb-2 captains-line">
-                        <span className={'player-type'}><Trans>{this.props.player}</Trans></span>&nbsp;
-                        <WhoAmIIndicator forPlayer={this.props.player}/>&nbsp;
-                        <PlayerOnlineStatus forPlayer={this.props.player}/>
+                        {!this.props.simplifiedUI && <>
+                            <span className={'player-type'}><Trans>{this.props.player}</Trans></span>&nbsp;
+                            <WhoAmIIndicator forPlayer={this.props.player}/>&nbsp;
+                            <PlayerOnlineStatus forPlayer={this.props.player}/>
+                        </>}
                     </div>
                     <div className="player-head">
                         <h4 className="player-name">{this.props.name}</h4>
                     </div>
                     <div className="chosen">
                         {pickPanels.length > 0 && <>
-                            <div className="is-uppercase has-text-grey is-size-7 pb-2 sub-heading"><Trans>Picks</Trans></div>
+                            {!this.props.simplifiedUI && <div className="is-uppercase has-text-grey is-size-7 pb-2 sub-heading"><Trans>Picks</Trans></div>}
                             <div className="picks">
-                                {pickPanels}
+                                {pickPanels}{this.props.simplifiedUI && banPanels.length > 0 && banPanels}
                             </div>
                         </>}
-                        {banPanels.length > 0 && <>
-                            <div className="is-uppercase has-text-grey is-size-7 py-2 sub-heading"><Trans>Bans</Trans></div>
+                        {!this.props.simplifiedUI && banPanels.length > 0 && <>
+                            {!this.props.simplifiedUI && <div className="is-uppercase has-text-grey is-size-7 py-2 sub-heading"><Trans>Bans</Trans></div>}
                             <div className="bans">
                                 {banPanels}
                             </div>
