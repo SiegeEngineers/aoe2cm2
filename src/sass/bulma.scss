@@ -35,6 +35,7 @@ $steal-by-opponent: linear-gradient(135deg, $opponent-purple 33%, $steal-gold 34
 $family-monospace: 'Consolas', 'Monaco', monospace;
 
 @import "../../node_modules/bulma/bulma.sass";
+@import "../../node_modules/bulma-switch/src/sass/index.sass";
 
 // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 //@import url('https://fonts.googleapis.com/css2?family=Crete+Round:ital@0;1&display=swap');

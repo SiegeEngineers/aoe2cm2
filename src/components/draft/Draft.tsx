@@ -205,28 +205,34 @@ class Draft extends React.Component<IProps, IState> {
             </section>
 
             <section className="section pt-0">
-                <div className="container is-desktop has-text-centered mb-3" style={{maxWidth: "808px"}}>
-                    <div className="buttons is-centered">
-                        <button className={'button is-small'} onClick={() => {
-                            this.flip()
-                        }}>
-                            <Trans i18nKey='flip'>Flip Host and Guest positions</Trans>
-                        </button>
-                        <button className={'button is-small'} onClick={() => {
-                            this.toggleSmooch()
-                        }}>
-                            <Trans i18nKey='smooch'>Toggle smooch mode</Trans>
-                        </button>
-                        <button className={'button is-small'} onClick={() => {
-                            this.toggleSimplifiedUI()
-                        }}>
-                            <Trans i18nKey='simplifiedUI'>Toggle Simplified UI</Trans>
-                        </button>
+                <div className="container is-mobile has-text-centered">
+                    <div className="field is-grouped is-grouped-centered">
+                        <p className="control">
+                            <input id="toggleFlip" type="checkbox" name="toggleSmooch"
+                                   className="switch is-small is-rounded is-info" checked={this.state.flipped} onClick={() => {
+                                this.flip()
+                            }}/>
+                            <label htmlFor="toggleFlip" className={"is-size-7"} style={{paddingTop:1}}><Trans i18nKey='flip'>Flip Host and Guest positions</Trans></label>
+                        </p>
+                        <p className="control">
+                            <input id="toggleSmooch" type="checkbox" name="toggleSmooch"
+                                   className="switch is-small is-rounded is-info" checked={this.state.smooch} onClick={() => {
+                                this.toggleSmooch()
+                            }}/>
+                            <label htmlFor="toggleSmooch" className={"is-size-7"} style={{paddingTop:1}}><Trans i18nKey='smooch'>Smooch Mode</Trans></label>
+                        </p>
+                        <p className="control">
+                            <input id="toggleSimplifiedUI" type="checkbox" name="toggleSimplifiedUI"
+                                   className="switch is-small is-rounded is-info" checked={this.state.simplifiedUI} onClick={() => {
+                                this.toggleSimplifiedUI()
+                            }}/>
+                            <label htmlFor="toggleSimplifiedUI" className={"is-size-7"} style={{paddingTop:1}}><Trans i18nKey='simplifiedUI'>Simplified UI</Trans></label>
+                        </p>
                     </div>
                 </div>
             </section>
 
-            <section className="section pt-0">
+            {!this.state.simplifiedUI && <section className="section pt-0">
                 <div className="container is-desktop has-text-centered" style={{maxWidth: "808px"}}>
                     <details>
                         <summary className="has-cursor-pointer"><Trans i18nKey='menu.howItWorks'>How it works</Trans></summary>
@@ -234,11 +240,11 @@ class Draft extends React.Component<IProps, IState> {
                     </details>
                 </div>
             </section>
+            }
 
             </>
         );
     }
-
 }
 
 export default withTranslation()(withRouter(Draft));
