@@ -108,7 +108,7 @@ class Draft extends React.Component<IProps, IState> {
         if (this.props.triggerDisconnect) {
             this.props.triggerDisconnect();
         }
-        ColorSchemeHelpers.removeThemeClassName('has-theme-simple-ui')
+        ColorSchemeHelpers.removeThemeClassName('has-simple-ui')
         if (this.props.history.length > 2 && document.referrer) {
             // go back if there is a possibility
             this.props.history.goBack();
@@ -152,7 +152,7 @@ class Draft extends React.Component<IProps, IState> {
     public render() {
         let presetName: JSX.Element = <>{this.props.preset.name}</>;
         if(this.props.preset.presetId){
-            presetName = <Link to={'/preset/'+this.props.preset.presetId}>{presetName}</Link>
+            presetName = <Link to={'/preset/'+this.props.preset.presetId}>{presetName}</Link>;
         }
         const turns = this.props.preset.turns;
 
@@ -161,9 +161,9 @@ class Draft extends React.Component<IProps, IState> {
         className += this.state.smooch ? ' smooch' : '';
 
         if(this.state.simplifiedUI) {
-            ColorSchemeHelpers.addThemeClassName('has-theme-simple-ui')
+            ColorSchemeHelpers.addThemeClassName('has-simple-ui');
         } else {
-            ColorSchemeHelpers.removeThemeClassName('has-theme-simple-ui')
+            ColorSchemeHelpers.removeThemeClassName('has-simple-ui');
         }
 
         return (
@@ -212,21 +212,21 @@ class Draft extends React.Component<IProps, IState> {
                                    className="switch is-small is-rounded is-info" checked={this.state.flipped} onClick={() => {
                                 this.flip()
                             }}/>
-                            <label htmlFor="toggleFlip" className={"is-size-7"} style={{paddingTop:1}}><Trans i18nKey='flip'>Flip Host and Guest positions</Trans></label>
+                            <label htmlFor="toggleFlip" style={{paddingTop:1}}><Trans i18nKey='flip'>Flip Host and Guest positions</Trans></label>
                         </p>
                         <p className="control">
                             <input id="toggleSmooch" type="checkbox" name="toggleSmooch"
                                    className="switch is-small is-rounded is-info" checked={this.state.smooch} onClick={() => {
                                 this.toggleSmooch()
                             }}/>
-                            <label htmlFor="toggleSmooch" className={"is-size-7"} style={{paddingTop:1}}><Trans i18nKey='smooch'>Smooch Mode</Trans></label>
+                            <label htmlFor="toggleSmooch" style={{paddingTop:1}}><Trans i18nKey='smooch'>Smooch Mode</Trans></label>
                         </p>
                         <p className="control">
                             <input id="toggleSimplifiedUI" type="checkbox" name="toggleSimplifiedUI"
                                    className="switch is-small is-rounded is-info" checked={this.state.simplifiedUI} onClick={() => {
                                 this.toggleSimplifiedUI()
                             }}/>
-                            <label htmlFor="toggleSimplifiedUI" className={"is-size-7"} style={{paddingTop:1}}><Trans i18nKey='simplifiedUI'>Simplified UI</Trans></label>
+                            <label htmlFor="toggleSimplifiedUI" style={{paddingTop:1}}><Trans i18nKey='simplifiedUI'>Simplified UI</Trans></label>
                         </p>
                     </div>
                 </div>

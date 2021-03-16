@@ -139,7 +139,7 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                             </div>
                         </>}
                         {!this.props.simplifiedUI && banPanels.length > 0 && <>
-                            {!this.props.simplifiedUI && <div className="is-uppercase has-text-grey is-size-7 py-2 sub-heading"><Trans>Bans</Trans></div>}
+                            <div className="is-uppercase has-text-grey is-size-7 py-2 sub-heading"><Trans>Bans</Trans></div>
                             <div className="bans">
                                 {banPanels}
                             </div>
