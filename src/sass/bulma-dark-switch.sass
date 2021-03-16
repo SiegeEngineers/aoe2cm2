@@ -11,11 +11,20 @@ $switch-background: $grey-dark
     + label
       &::before,
       &:before
+        background-color: transparent
         border-color: $switch-background
       &::after,
       &:after
         background: $switch-background
-
+    &:checked
+      + label
+        &::before,
+        &:before
+          background-color: transparent
+          border-color: $switch-background-active
+        &::after,
+        &:after
+          background: $switch-paddle-background-active
 
 .switch[type="checkbox"]
 
