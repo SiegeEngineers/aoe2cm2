@@ -126,7 +126,8 @@
   "<0></0>PICK": "<0></0>PICK",
   "<0></0>BAN": "<0></0>BAN",
   "flip": "Flip Host and Guest positions",
-  "smooch": "Toggle smooch mode",
+  "smooch": "Smooch mode",
+  "simplifiedUI": "Simplified UI",
   "validationFailed": "Validation(s) failed:",
   "errors": {
     "VLD_000": "Draft is currently not expecting actions",

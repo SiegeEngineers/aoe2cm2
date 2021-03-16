@@ -36,6 +36,9 @@ $family-monospace: 'Consolas', 'Monaco', monospace;
 
 @import "../../node_modules/bulma/bulma.sass";
 
+$switch-focus: none;
+@import "../../node_modules/bulma-switch/src/sass/index.sass";
+
 // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 //@import url('https://fonts.googleapis.com/css2?family=Crete+Round:ital@0;1&display=swap');
 // Serve Google Fonts locally to account for where Google is not accessible
@@ -773,4 +776,38 @@ html.has-theme-dark {
 
 body.has-theme-dark {
   @import "bulma-dark.scss";
+}
+
+// Simple UI
+html.has-simple-ui {
+  background: none;
+
+  body {
+    background: none;
+  }
+
+  .box {
+    background: none !important;
+    box-shadow: none;
+  }
+
+  .ban {
+    width: 96px;
+    height: 96px;
+  }
+
+  .player.box {
+    width: 650px;
+    padding: 0;
+  }
+
+  #player-guest.column, #player-host.column {
+    margin: 0;
+    padding: 0.7rem;
+  }
+
+  .footer {
+    background: none;
+    opacity: 80%;
+  }
 }

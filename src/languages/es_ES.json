@@ -126,7 +126,8 @@
   "<0></0>PICK": "<0></0>PICK",
   "<0></0>BAN": "<0></0>BAN",
   "flip": "Voltear posiciones de Anfitrión e Invitado",
-  "smooch": "Alternar el modo de beso",
+  "smooch": "Modo de beso",
+  "simplifiedUI": "Interfaz Simplificada",
   "validationFailed": "Fallaron la/s validaciónes:",
   "errors": {
     "VLD_000": "El Draft no esta esperando acciónes",
