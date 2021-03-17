@@ -54,6 +54,8 @@ interface IState {
     flipped: boolean;
     smooch: boolean;
     simplifiedUI: boolean;
+    userTheme?: {};
+    colorBan?: string;
 }
 
 class Draft extends React.Component<IProps, IState> {
@@ -65,6 +67,24 @@ class Draft extends React.Component<IProps, IState> {
         const smooch = query.get('smooch') === 'true' || false;
         const simplifiedUI = query.get('simplified') === 'true' || false;
         this.state = {joined: false, flipped, smooch, simplifiedUI};
+
+        // Custom User Theme Colors passed via URL params
+        let userTheme = {};
+
+        const colorPick = query.get('color_pick');
+        if (colorPick && colorPick.match(/^[A-F0-9]{6}$/gi)) {
+            userTheme['colorPick'] = "#"+colorPick;
+        }
+
+        const colorBan = query.get('color_ban');
+        if (colorBan && colorBan.match(/^[A-F0-9]{6}$/gi)) {
+            userTheme['colorBan'] = "#"+colorBan;
+        }
+
+        if (Object.keys(userTheme).length > 0) {
+            console.info("Custom User Theme", userTheme);
+            this.state = {...this.state, userTheme}
+        }
     }
 
 
@@ -192,7 +212,9 @@ class Draft extends React.Component<IProps, IState> {
 
                     <DraftState nameHost={this.props.nameHost} nameGuest={this.props.nameGuest}
                                 preset={this.props.preset}
-                                simplifiedUI={this.state.simplifiedUI} />
+                                simplifiedUI={this.state.simplifiedUI}
+                                userTheme={this.state.userTheme}
+                    />
 
                     <div className="columns is-mobile">
                         <div id="action-text" className="column has-text-centered is-size-4">

@@ -19,6 +19,7 @@ interface IProps extends WithTranslation {
     nextAction?: number;
     events?: DraftEvent[];
     simplifiedUI?: boolean
+    userTheme?: {};
 }
 
 interface IState {
@@ -73,6 +74,7 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                         civPanelType: CivPanelType.PICK,
                         civilisation: pickedCiv,
                         key: picksIndex,
+                        color: this.props.userTheme && this.props.userTheme['colorPick'],
                         sniped,
                         stolen
                     }));
@@ -108,6 +110,7 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                         byOpponent: turn.player !== turn.executingPlayer,
                         civPanelType: CivPanelType.BAN,
                         civilisation: bannedCiv,
+                        color: this.props.userTheme && this.props.userTheme['colorBan'],
                         key: bansIndex,
                     }));
 
