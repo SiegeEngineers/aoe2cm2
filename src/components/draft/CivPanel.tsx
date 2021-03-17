@@ -25,7 +25,7 @@ interface IProps extends WithTranslation {
     draft?: IDraftState;
     nextAction: number;
     iconStyle: string;
-    color?: string;
+    userThemecolor?: string;
     onClickCivilisation?: (playerEvent: PlayerEvent, callback: any) => void;
 }
 
@@ -121,7 +121,7 @@ class CivPanel extends React.Component<IProps, IState> {
         }
         return (
             <div className={className} onClick={onClickAction}>
-                <div className={'stretchy-background'} style={this.props.color ? {backgroundColor: this.props.color} : {}}/>
+                <div className={'stretchy-background'} style={this.props.userThemecolor ? {backgroundColor: this.props.userThemecolor} : {}}/>
                 <div className={contentClass}>
                     <div className="stretchy-wrapper">
                         <div className={imageContainerClass}>
