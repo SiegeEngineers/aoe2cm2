@@ -213,21 +213,21 @@ class Draft extends React.Component<IProps, IState> {
                     <div className="field is-grouped is-grouped-centered">
                         <p className="control">
                             <input id="toggleFlip" type="checkbox" name="toggleSmooch"
-                                   className="switch is-small is-rounded is-info" checked={this.state.flipped} onClick={() => {
+                                   className="switch is-small is-rounded is-info" checked={this.state.flipped} onChange={() => {
                                 this.flip()
                             }}/>
                             <label htmlFor="toggleFlip" style={{paddingTop:1}}><Trans i18nKey='flip'>Flip Host and Guest positions</Trans></label>
                         </p>
                         <p className="control">
                             <input id="toggleSmooch" type="checkbox" name="toggleSmooch"
-                                   className="switch is-small is-rounded is-info" checked={this.state.smooch} onClick={() => {
+                                   className="switch is-small is-rounded is-info" checked={this.state.smooch} onChange={() => {
                                 this.toggleSmooch()
                             }}/>
                             <label htmlFor="toggleSmooch" style={{paddingTop:1}}><Trans i18nKey='smooch'>Smooch Mode</Trans></label>
                         </p>
                         <p className="control">
                             <input id="toggleSimplifiedUI" type="checkbox" name="toggleSimplifiedUI"
-                                   className="switch is-small is-rounded is-info" checked={this.state.simplifiedUI} onClick={() => {
+                                   className="switch is-small is-rounded is-info" checked={this.state.simplifiedUI} onChange={() => {
                                 this.toggleSimplifiedUI()
                             }}/>
                             <label htmlFor="toggleSimplifiedUI" style={{paddingTop:1}}><Trans i18nKey='simplifiedUI'>Simplified UI</Trans></label>
