@@ -826,22 +826,21 @@ html.has-simple-ui {
   }
 
   .ban {
-    width: 96px;
-    height: 96px;
+    width: 112px;
+    height: 112px;
   }
 
   .player.box {
-    width: 650px;
+    max-width: 650px;
     padding: 0;
   }
 
   #player-guest.column, #player-host.column {
     margin: 0;
-    padding: 0.7rem;
+    padding: 0.6rem;
   }
 
   .footer {
     background: none;
-    opacity: 80%;
   }
 }
