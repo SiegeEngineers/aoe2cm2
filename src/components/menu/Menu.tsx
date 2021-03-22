@@ -12,11 +12,24 @@ import PresetEditor from "../PresetEditor/PresetEditor";
 import NotFound404 from "../404";
 import HowItWorks from "./HowItWorks";
 import API from "./API";
+import {Helmet} from "react-helmet";
+import availableLocales from "../../Locales";
+import i18n from "i18next";
+
 
 class Menu extends React.Component<WithTranslation, object> {
     public render() {
+        const baseURL = window.location.origin;
+        let langLinkTags = [<link key="x-default" rel="alternate" hrefLang="x-default" href={baseURL}/>];
+        for (let locale in availableLocales) {
+            langLinkTags.push(<link key={locale} rel="alternate" hrefLang={locale} href={baseURL + "/?lng=" + locale}/>)
+        }
+
         return (
             <section className="section">
+                <Helmet htmlAttributes={{lang: i18n.language}}>
+                    {langLinkTags}
+                </Helmet>
                 <div className="container is-desktop">
                     <Modal/>
                     <div className="has-text-centered pb-5">
