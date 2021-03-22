@@ -204,7 +204,7 @@ class Draft extends React.Component<IProps, IState> {
 
                     {!this.state.simplifiedUI && <DraftIdInfo/>}
 
-                    {!this.state.simplifiedUI && <CivGrid civilisations={this.props.preset.civilisations}/>}
+                    <CivGrid civilisations={this.props.preset.civilisations}/>
                 </div>
             </section>
 
