@@ -7,6 +7,7 @@ import getPort from "get-port";
 import Preset from "../models/Preset";
 import {Barrier} from "../test/Barrier";
 import temp from "temp";
+import * as fs from "fs";
 import path from "path";
 
 let hostSocket: any;
@@ -16,25 +17,25 @@ let httpServer: any;
 let httpServerAddr: any;
 let ioServer: any;
 let draftId: string;
+let draftServer: DraftServer;
 
 
-const ORIGINAL_SERVER_STATE_FILE_VALUE = DraftServer.SERVER_STATE_FILE;
 beforeAll(() => {
     temp.track();
     const dirPath = temp.mkdirSync('serverTest');
-    DraftServer.SERVER_STATE_FILE = path.join(dirPath, 'serverState.json');
+    fs.mkdirSync(path.join(dirPath, 'data'));
+    draftServer = new DraftServer(dirPath);
 });
 
 afterAll(() => {
     temp.cleanupSync();
-    DraftServer.SERVER_STATE_FILE = ORIGINAL_SERVER_STATE_FILE_VALUE;
 });
 
 
 beforeAll((done) => {
     getPort().then((port: number) => {
         console.log("Got port: " + port);
-        const serve = DraftServer.serve(port);
+        const serve = draftServer.serve(port);
         httpServer = serve.httpServer;
         httpServerAddr = serve.httpServerAddr;
         ioServer = serve.io;

@@ -9,7 +9,7 @@ import socketio from "socket.io";
 import PlayerEvent from "./PlayerEvent";
 import Civilisation from "./Civilisation";
 import {actionTypeFromAction} from "../constants/ActionType";
-import {Listeners} from "../util/Listeners";
+import {ActListener} from "../util/ActListener";
 import {logger} from "../util/Logger";
 import {IRecentDraft, IServerState} from "../types";
 import fs from "fs";
@@ -235,7 +235,7 @@ export class DraftsStore {
         logger.info('Pausing countdown for draftId %s', draftId, {draftId});
     }
 
-    public startCountdown(draftId: string, socket: socketio.Socket) {
+    public startCountdown(draftId: string, socket: socketio.Socket, dataDirectory: string) {
         const expectedActions = this.getExpectedActions(draftId);
         if (expectedActions.length > 0) {
             const interval: NodeJS.Timeout = setInterval(() => {
@@ -258,7 +258,7 @@ export class DraftsStore {
                     }
 
                     if (value === -1) {
-                        const actListener = Listeners.actListener(this, draftId, (draftId: string, message: DraftEvent) => {
+                        const actListener = new ActListener(dataDirectory).actListener(this, draftId, (draftId: string, message: DraftEvent) => {
                             this.addDraftEvent(draftId, message);
                             return [];
                         }, socket, roomHost, roomGuest, roomSpec, true);
@@ -289,7 +289,7 @@ export class DraftsStore {
         draft.startTimestamp = Date.now();
     }
 
-    public restartOrCancelCountdown(draftId: string) {
+    public restartOrCancelCountdown(draftId: string, dataDirectory: string) {
         let countdown = this.countdowns.get(draftId);
         if (countdown !== undefined) {
             if (countdown.timeout !== undefined) {
@@ -306,7 +306,7 @@ export class DraftsStore {
                 .in(roomSpec)
                 .emit("countdown", {value: 0, display: false});
             if (expectedActions.length > 0) {
-                this.startCountdown(draftId, countdown.socket);
+                this.startCountdown(draftId, countdown.socket, dataDirectory);
             }
         }
     }

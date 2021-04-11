@@ -9,8 +9,14 @@ import DraftViews from "../models/DraftViews";
 import fs from "fs";
 import {logger} from "./Logger";
 import AdminEvent from "../models/AdminEvent";
+import path from "path";
 
-export const Listeners = {
+export class ActListener {
+    readonly dataDirectory: string;
+
+    constructor(dataDirectory: string) {
+        this.dataDirectory = dataDirectory;
+    }
 
     actListener(draftsStore: DraftsStore, draftId: string, validateAndApply: (draftId: string, message: DraftEvent) => ValidationId[], socket: SocketIO.Socket, roomHost: string, roomGuest: string, roomSpec: string, skipSourceValidation = false) {
         return (message: PlayerEvent, fn: (retval: any) => void) => {
@@ -64,7 +70,7 @@ export const Listeners = {
                     this.scheduleAdminEvent(adminEventCounter, draftsStore, draftId, draftViews, socket, roomHost, roomGuest, roomSpec);
                 }
                 if (draftViews.shouldRestartOrCancelCountdown()) {
-                    draftsStore.restartOrCancelCountdown(draftId);
+                    draftsStore.restartOrCancelCountdown(draftId, this.dataDirectory);
                 }
                 this.finishDraftIfNoFurtherActions(draftViews, socket, draftsStore, draftId, roomHost, roomGuest, roomSpec);
             } else {
@@ -72,15 +78,17 @@ export const Listeners = {
                 fn({status: 'error', validationErrors});
             }
         };
-    },
-    nextActionIsAdminEvent: function (draftsStore: DraftsStore, draftId: string, offset: number) {
+    }
+
+    nextActionIsAdminEvent(draftsStore: DraftsStore, draftId: string, offset: number) {
         const expectedActions = draftsStore.getExpectedActions(draftId, offset);
         if (expectedActions.length === 1) {
             return expectedActions[0].player === Player.NONE;
         }
         return false;
-    },
-    scheduleAdminEvent: function (adminEventCounter: number, draftsStore: DraftsStore, draftId: string, draftViews: DraftViews, socket: SocketIO.Socket, roomHost: string, roomGuest: string, roomSpec: string) {
+    }
+
+    scheduleAdminEvent(adminEventCounter: number, draftsStore: DraftsStore, draftId: string, draftViews: DraftViews, socket: SocketIO.Socket, roomHost: string, roomGuest: string, roomSpec: string) {
         const expectedActions = draftsStore.getExpectedActions(draftId, adminEventCounter - 1);
         const expectedAction = expectedActions[0];
         if (expectedAction.player === Player.NONE) { // Admin Event
@@ -108,23 +116,25 @@ export const Listeners = {
                             events: draftViews.getSpecDraft().events
                         });
                     draftsStore.addDraftEvent(draftId, draftEvent);
-                    draftsStore.restartOrCancelCountdown(draftId);
+                    draftsStore.restartOrCancelCountdown(draftId, this.dataDirectory);
                     this.finishDraftIfNoFurtherActions(draftViews, socket, draftsStore, draftId, roomHost, roomGuest, roomSpec);
                 }, adminEventCounter * 2000);
             } else {
                 throw new Error("Unknown expected action! " + expectedAction);
             }
         }
-    },
-    finishDraftIfNoFurtherActions: function (draftViews: DraftViews, socket: SocketIO.Socket, draftsStore: DraftsStore,
-                                             draftId: string, roomHost: string, roomGuest: string, roomSpec: string) {
+    }
+
+    finishDraftIfNoFurtherActions(draftViews: DraftViews, socket: SocketIO.Socket, draftsStore: DraftsStore,
+                                  draftId: string, roomHost: string, roomGuest: string, roomSpec: string) {
         if (!draftViews.getActualDraft().hasNextAction()) {
             const draft = draftsStore.getDraftOrThrow(draftId);
             draft.startTimestamp = 0;
             draft.hostConnected = false;
             draft.guestConnected = false;
             logger.info("Saving draft: %s", JSON.stringify(draft), {draftId});
-            fs.writeFile(`data/${draftId}.json`, JSON.stringify(draft), (err) => {
+            const draftPath = path.join(this.dataDirectory, `${draftId}.json`);
+            fs.writeFile(draftPath, JSON.stringify(draft), (err) => {
                 logger.info("No further action expected. Disconnecting clients.", {draftId});
                 for (let room of [roomHost, roomGuest, roomSpec]) {
                     socket.nsp.in(room).clients((error: any, clientIds: string[]) => {
@@ -135,9 +145,9 @@ export const Listeners = {
                     });
                 }
                 if (err) throw err;
-                logger.info(`Draft saved to data/${draftId}.json`, {draftId});
+                logger.info(`Draft saved to ${draftPath}`, {draftId});
                 draftsStore.finishDraft(draftId);
             });
         }
     }
-};
+}

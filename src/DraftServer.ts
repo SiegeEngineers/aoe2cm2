@@ -1,4 +1,4 @@
-import express, {Response as ExpressResponse} from "express";
+import express, {Express, Response as ExpressResponse} from "express";
 import {Server} from "http"
 import socketio from "socket.io";
 import Player from "./constants/Player";
@@ -11,30 +11,47 @@ import {DraftEvent} from "./types/DraftEvent";
 import {Util} from "./util/Util";
 import {AddressInfo} from "net";
 import Preset from "./models/Preset";
-import {Listeners} from "./util/Listeners";
+import {ActListener} from "./util/ActListener";
 import * as fs from "fs";
 import {logger} from "./util/Logger";
 import {ISetNameMessage} from "./types/ISetNameMessage";
 import {PresetUtil} from "./util/PresetUtil";
 import {IServerState} from "./types";
+import path from "path";
 
 const ONE_HOUR = 1000 * 60 * 60;
 
-function loadState(): IServerState {
-    if (fs.existsSync(DraftServer.SERVER_STATE_FILE)) {
-        const fileContent = fs.readFileSync(DraftServer.SERVER_STATE_FILE);
-        return JSON.parse(fileContent.toString()) as IServerState;
-    } else {
-        return {maintenanceMode: false, hiddenPresetIds: []};
+
+export class DraftServer {
+    readonly serverStateFile: string;
+    readonly dataDirectory: string;
+    readonly presetDirectory: string;
+
+    constructor(baseDir: string = './') {
+        this.serverStateFile = path.join(baseDir, 'serverState.json');
+        this.dataDirectory = path.join(baseDir, 'data');
+        this.presetDirectory = path.join(baseDir, 'presets');
     }
-}
 
-function saveState(state: IServerState) {
-    fs.writeFileSync(DraftServer.SERVER_STATE_FILE, JSON.stringify(state));
-}
+    private loadState(): IServerState {
+        if (fs.existsSync(this.serverStateFile)) {
+            const fileContent = fs.readFileSync(this.serverStateFile);
+            return JSON.parse(fileContent.toString()) as IServerState;
+        } else {
+            return {maintenanceMode: false, hiddenPresetIds: []};
+        }
+    }
 
+    private saveState(state: IServerState) {
+        fs.writeFileSync(this.serverStateFile, JSON.stringify(state));
+    }
 
-export const DraftServer = {
+    static plain404 = (res: ExpressResponse<any>) => (err: Error) => {
+        if (err) {
+            res.status(404).send("Not found.")
+        }
+    };
+
     serve(port: string | number | undefined): { httpServerAddr: AddressInfo | string | null; io: SocketIO.Server; httpServer: Server } {
         logger.info("Starting DraftServer on port %d", port);
         const app = express();
@@ -43,25 +60,188 @@ export const DraftServer = {
 
         const server = new Server(app);
         const io = socketio(server, {cookie: false});
-        const state: IServerState = loadState();
+        const state: IServerState = this.loadState();
         const draftsStore = new DraftsStore(state);
-        const validator = new Validator(draftsStore);
 
+        this.setUpApiRoutes(app, state, draftsStore, io);
+        this.setUpSocketIo(io, draftsStore);
 
-        function connectPlayer(draftId: string, player: Player, name: string) {
-            draftsStore.connectPlayer(draftId, player, name);
-        }
+        const httpServer = server.listen(port, () => {
+            logger.info("Listening on: %d", port);
+        });
+        const httpServerAddr = httpServer.address();
 
-        function setPlayerName(draftId: string, player: Player, name: string) {
-            draftsStore.setPlayerName(draftId, player, name);
-        }
+        setInterval(() => {
+            draftsStore.purgeStaleDrafts()
+        }, ONE_HOUR);
 
-        const plain404 = (res: ExpressResponse<any>) => (err: Error) => {
-            if (err) {
-                res.status(404).send("Not found.")
+        return {httpServer, httpServerAddr, io};
+    }
+
+    private setUpSocketIo(io: SocketIO.Server, draftsStore: DraftsStore) {
+        io.on("connection", (socket: socketio.Socket) => {
+            const draftIdRaw: string = socket.handshake.query.draftId;
+            const draftId = Util.sanitizeDraftId(draftIdRaw);
+            logger.info('Connection for draftId: %s', draftId, {draftId});
+
+            const roomHost: string = `${draftId}-host`;
+            const roomGuest: string = `${draftId}-guest`;
+            const roomSpec: string = `${draftId}-spec`;
+
+            if (!draftsStore.has(draftId)) {
+                const draftPath = path.join(this.dataDirectory, `${draftId}.json`);
+                if (fs.existsSync(draftPath)) {
+                    logger.info("Found recorded draft. Sending replay.", {draftId});
+                    socket.emit('replay', JSON.parse(fs.readFileSync(draftPath).toString('utf8')));
+                } else {
+                    logger.info("No recorded draft found.", {draftId});
+                    socket.emit('message', 'This draft does not exist.');
+                }
+                logger.info("Disconnecting.", {draftId});
+                socket.disconnect(true);
+                return;
             }
-        };
 
+            const rooms = Object.keys(socket.rooms);
+            logger.debug("rooms: %s", JSON.stringify(rooms), {draftId});
+            let yourPlayerType = Player.NONE;
+            if (rooms.includes(roomHost)) {
+                socket.join(roomHost); // async
+                yourPlayerType = Player.HOST;
+            } else if (rooms.includes(roomGuest)) {
+                socket.join(roomGuest); // async
+                yourPlayerType = Player.GUEST;
+            } else {
+                socket.join(roomSpec); // async
+            }
+
+            socket.on("set_role", (message: ISetRoleMessage, fn: (dc: IDraftConfig) => void) => {
+                logger.info("Player wants to set own role: %s", JSON.stringify(message), {draftId});
+                if (!draftsStore.has(draftId)) {
+                    logger.warn("Draft does not exist", {draftId});
+                    socket.emit('message', 'This draft does not exist.');
+                    return;
+                }
+                const role: Player = Util.sanitizeRole(message.role);
+                let assignedRole = Util.getAssignedRole(socket, roomHost, roomGuest);
+                const rooms = Object.keys(socket.rooms);
+                if (rooms.includes(roomSpec)) {
+                    if (role === Player.HOST && !draftsStore.isPlayerConnected(draftId, role)) {
+                        logger.info("Setting player role to 'HOST': %s", message.name, {draftId});
+                        socket.join(roomHost); // async
+                        socket.leave(roomSpec); // async
+                        draftsStore.connectPlayer(draftId, Player.HOST, message.name);
+                        assignedRole = Player.HOST;
+                    } else if (role === Player.GUEST && !draftsStore.isPlayerConnected(draftId, role)) {
+                        logger.info("Setting player role to 'GUEST': %s", message.name, {draftId});
+                        socket.join(roomGuest); // async
+                        socket.leave(roomSpec); // async
+                        draftsStore.connectPlayer(draftId, Player.GUEST, message.name);
+                        assignedRole = Player.GUEST;
+                    } else {
+                        logger.info("Setting role not possible: %s", role, {draftId});
+                    }
+                } else {
+                    logger.info("Player is not registered as spectator currently. No action taken.", {draftId});
+                }
+
+                socket.nsp
+                    .in(roomHost)
+                    .in(roomGuest)
+                    .in(roomSpec)
+                    .emit("player_set_role", {name: message.name, playerType: assignedRole});
+                fn({
+                    ...draftsStore.getDraftViewsOrThrow(draftId).getDraftForPlayer(assignedRole),
+                    yourPlayerType: assignedRole,
+                });
+            });
+
+            socket.on("set_name", (message: ISetNameMessage, fn: () => void) => {
+                logger.info("Player wants to set own name: %s", JSON.stringify(message), {draftId});
+                if (!draftsStore.has(draftId)) {
+                    logger.warn("Draft does not exist", {draftId});
+                    socket.emit('message', 'This draft does not exist.');
+                    return;
+                }
+                let assignedRole = Util.getAssignedRole(socket, roomHost, roomGuest);
+                if (assignedRole === Player.HOST) {
+                    logger.info("Setting HOST player name to: %s", message.name, {draftId});
+                    draftsStore.setPlayerName(draftId, Player.HOST, message.name);
+                } else if (assignedRole === Player.GUEST) {
+                    logger.info("Setting GUEST player name to: %s", message.name, {draftId});
+                    draftsStore.setPlayerName(draftId, Player.GUEST, message.name);
+                } else {
+                    logger.info("Player is not registered as HOST or GUEST currently. No action taken.", {draftId});
+                    return;
+                }
+
+                socket.nsp
+                    .in(roomHost)
+                    .in(roomGuest)
+                    .in(roomSpec)
+                    .emit("player_set_name", {name: message.name, playerType: assignedRole});
+                fn();
+            });
+
+            socket.on("ready", (message: {}, fn: (dc: IDraftConfig) => void) => {
+                if (!draftsStore.has(draftId)) {
+                    logger.warn("Player wants to indicate readyness, but Draft does not exist", {draftId});
+                    socket.emit('message', 'This draft does not exist.');
+                    return;
+                }
+                let assignedRole: Player = Player.NONE;
+                let wasAlreadyReady = false;
+                if (Object.keys(socket.rooms).includes(roomHost)) {
+                    wasAlreadyReady = draftsStore.setPlayerReady(draftId, Player.HOST);
+                    assignedRole = Player.HOST;
+                } else if (Object.keys(socket.rooms).includes(roomGuest)) {
+                    wasAlreadyReady = draftsStore.setPlayerReady(draftId, Player.GUEST);
+                    assignedRole = Player.GUEST;
+                }
+                logger.info("Player indicates they are ready: %s", assignedRole, {draftId});
+                if (!wasAlreadyReady && draftsStore.playersAreReady(draftId)) {
+                    logger.info("Both Players are ready, starting countdown.", {draftId});
+                    draftsStore.startCountdown(draftId, socket, this.dataDirectory);
+                    draftsStore.setStartTimestamp(draftId);
+                }
+                socket.nsp
+                    .in(roomHost)
+                    .in(roomGuest)
+                    .in(roomSpec)
+                    .emit("player_ready", {playerType: assignedRole});
+                fn({
+                    ...draftsStore.getDraftViewsOrThrow(draftId).getDraftForPlayer(assignedRole),
+                    yourPlayerType: assignedRole
+                });
+            });
+
+            const validator = new Validator(draftsStore);
+
+            function validateAndApply(draftId: string, message: DraftEvent): ValidationId[] {
+                return validator.validateAndApply(draftId, message);
+            }
+
+            socket.on("act", new ActListener(this.dataDirectory).actListener(draftsStore, draftId, validateAndApply, socket, roomHost, roomGuest, roomSpec));
+
+            socket.on('disconnecting', function () {
+                const assignedRole = Util.getAssignedRole(socket, roomHost, roomGuest);
+                logger.info("Player disconnected: %s", assignedRole, {draftId});
+                if (!draftsStore.has(draftId)) {
+                    return;
+                }
+                draftsStore.disconnectPlayer(draftId, assignedRole);
+            });
+
+            let draftState = {
+                ...draftsStore.getDraftViewsOrThrow(draftId).getDraftForPlayer(Player.NONE),
+                yourPlayerType: yourPlayerType
+            };
+            logger.info("Emitting draft_state: %s", JSON.stringify(draftState), {draftId});
+            socket.emit("draft_state", draftState);
+        });
+    }
+
+    private setUpApiRoutes(app: Express, state: IServerState, draftsStore: DraftsStore, io: SocketIO.Server) {
         app.post('/api/state', (req, res) => {
             if (!Util.isRequestFromLocalhost(req)) {
                 res.status(403).end();
@@ -75,7 +255,7 @@ export const DraftServer = {
             }
             res.json(state);
             logger.info('New state = %s', JSON.stringify(state));
-            saveState(state);
+            this.saveState(state);
             logger.info('Persisted new state');
         });
         app.get('/api/state', (req, res) => {
@@ -119,7 +299,7 @@ export const DraftServer = {
             let preset = Preset.fromPojo(pojo);
             const validationErrors = Validator.validatePreset(preset);
             if (validationErrors.length === 0) {
-                const presetId = PresetUtil.createPreset(preset as Preset);
+                const presetId = PresetUtil.createPreset(preset as Preset, this.presetDirectory);
                 res.json({status: 'ok', presetId: presetId});
                 logger.info('Created new preset with id: %s', presetId, {presetId});
             } else {
@@ -143,13 +323,13 @@ export const DraftServer = {
             res.sendFile('presets.json', {'root': __dirname + '/..'});
         });
         app.get('/api/preset/:id', (req, res) => {
-            res.sendFile(req.params.id + '.json', {'root': __dirname + '/../presets'}, plain404(res));
+            res.sendFile(req.params.id + '.json', {'root': __dirname + '/../presets'}, DraftServer.plain404(res));
         });
         app.get('/api/recentdrafts', (req, res) => {
             res.json(draftsStore.getRecentDrafts());
         });
         app.get('/api/draft/:id', (req, res) => {
-            res.sendFile(req.params.id + '.json', {'root': __dirname + '/../data'}, plain404(res));
+            res.sendFile(req.params.id + '.json', {'root': this.dataDirectory}, DraftServer.plain404(res));
         });
 
         const indexPath = __dirname + '/index.html';
@@ -170,176 +350,5 @@ export const DraftServer = {
                 res.sendFile('maintenance.html', {'root': __dirname + '/../public'});
             }
         });
-
-        io.on("connection", (socket: socketio.Socket) => {
-            const draftIdRaw: string = socket.handshake.query.draftId;
-            const draftId = Util.sanitizeDraftId(draftIdRaw);
-            logger.info('Connection for draftId: %s', draftId, {draftId});
-
-            const roomHost: string = `${draftId}-host`;
-            const roomGuest: string = `${draftId}-guest`;
-            const roomSpec: string = `${draftId}-spec`;
-
-            if (!draftsStore.has(draftId)) {
-                const path = `data/${draftId}.json`;
-                if (fs.existsSync(path)) {
-                    logger.info("Found recorded draft. Sending replay.", {draftId});
-                    socket.emit('replay', JSON.parse(fs.readFileSync(path).toString('utf8')));
-                } else {
-                    logger.info("No recorded draft found.", {draftId});
-                    socket.emit('message', 'This draft does not exist.');
-                }
-                logger.info("Disconnecting.", {draftId});
-                socket.disconnect(true);
-                return;
-            }
-
-            const rooms = Object.keys(socket.rooms);
-            logger.debug("rooms: %s", JSON.stringify(rooms), {draftId});
-            let yourPlayerType = Player.NONE;
-            if (rooms.includes(roomHost)) {
-                socket.join(roomHost); // async
-                yourPlayerType = Player.HOST;
-            } else if (rooms.includes(roomGuest)) {
-                socket.join(roomGuest); // async
-                yourPlayerType = Player.GUEST;
-            } else {
-                socket.join(roomSpec); // async
-            }
-
-            socket.on("set_role", (message: ISetRoleMessage, fn: (dc: IDraftConfig) => void) => {
-                logger.info("Player wants to set own role: %s", JSON.stringify(message), {draftId});
-                if (!draftsStore.has(draftId)) {
-                    logger.warn("Draft does not exist", {draftId});
-                    socket.emit('message', 'This draft does not exist.');
-                    return;
-                }
-                const role: Player = Util.sanitizeRole(message.role);
-                let assignedRole = Util.getAssignedRole(socket, roomHost, roomGuest);
-                const rooms = Object.keys(socket.rooms);
-                if (rooms.includes(roomSpec)) {
-                    if (role === Player.HOST && !draftsStore.isPlayerConnected(draftId, role)) {
-                        logger.info("Setting player role to 'HOST': %s", message.name, {draftId});
-                        socket.join(roomHost); // async
-                        socket.leave(roomSpec); // async
-                        connectPlayer(draftId, Player.HOST, message.name);
-                        assignedRole = Player.HOST;
-                    } else if (role === Player.GUEST && !draftsStore.isPlayerConnected(draftId, role)) {
-                        logger.info("Setting player role to 'GUEST': %s", message.name, {draftId});
-                        socket.join(roomGuest); // async
-                        socket.leave(roomSpec); // async
-                        connectPlayer(draftId, Player.GUEST, message.name);
-                        assignedRole = Player.GUEST;
-                    } else {
-                        logger.info("Setting role not possible: %s", role, {draftId});
-                    }
-                } else {
-                    logger.info("Player is not registered as spectator currently. No action taken.", {draftId});
-                }
-
-                socket.nsp
-                    .in(roomHost)
-                    .in(roomGuest)
-                    .in(roomSpec)
-                    .emit("player_set_role", {name: message.name, playerType: assignedRole});
-                fn({
-                    ...draftsStore.getDraftViewsOrThrow(draftId).getDraftForPlayer(assignedRole),
-                    yourPlayerType: assignedRole,
-                });
-            });
-
-            socket.on("set_name", (message: ISetNameMessage, fn: () => void) => {
-                logger.info("Player wants to set own name: %s", JSON.stringify(message), {draftId});
-                if (!draftsStore.has(draftId)) {
-                    logger.warn("Draft does not exist", {draftId});
-                    socket.emit('message', 'This draft does not exist.');
-                    return;
-                }
-                let assignedRole = Util.getAssignedRole(socket, roomHost, roomGuest);
-                if (assignedRole === Player.HOST) {
-                    logger.info("Setting HOST player name to: %s", message.name, {draftId});
-                    setPlayerName(draftId, Player.HOST, message.name);
-                } else if (assignedRole === Player.GUEST) {
-                    logger.info("Setting GUEST player name to: %s", message.name, {draftId});
-                    setPlayerName(draftId, Player.GUEST, message.name);
-                } else {
-                    logger.info("Player is not registered as HOST or GUEST currently. No action taken.", {draftId});
-                    return;
-                }
-
-                socket.nsp
-                    .in(roomHost)
-                    .in(roomGuest)
-                    .in(roomSpec)
-                    .emit("player_set_name", {name: message.name, playerType: assignedRole});
-                fn();
-            });
-
-            socket.on("ready", (message: {}, fn: (dc: IDraftConfig) => void) => {
-                if (!draftsStore.has(draftId)) {
-                    logger.warn("Player wants to indicate readyness, but Draft does not exist", {draftId});
-                    socket.emit('message', 'This draft does not exist.');
-                    return;
-                }
-                let assignedRole: Player = Player.NONE;
-                let wasAlreadyReady = false;
-                if (Object.keys(socket.rooms).includes(roomHost)) {
-                    wasAlreadyReady = draftsStore.setPlayerReady(draftId, Player.HOST);
-                    assignedRole = Player.HOST;
-                } else if (Object.keys(socket.rooms).includes(roomGuest)) {
-                    wasAlreadyReady = draftsStore.setPlayerReady(draftId, Player.GUEST);
-                    assignedRole = Player.GUEST;
-                }
-                logger.info("Player indicates they are ready: %s", assignedRole, {draftId});
-                if (!wasAlreadyReady && draftsStore.playersAreReady(draftId)) {
-                    logger.info("Both Players are ready, starting countdown.", {draftId});
-                    draftsStore.startCountdown(draftId, socket);
-                    draftsStore.setStartTimestamp(draftId);
-                }
-                socket.nsp
-                    .in(roomHost)
-                    .in(roomGuest)
-                    .in(roomSpec)
-                    .emit("player_ready", {playerType: assignedRole});
-                fn({
-                    ...draftsStore.getDraftViewsOrThrow(draftId).getDraftForPlayer(assignedRole),
-                    yourPlayerType: assignedRole
-                });
-            });
-
-            socket.on("act", Listeners.actListener(draftsStore, draftId, validateAndApply, socket, roomHost, roomGuest, roomSpec));
-
-            socket.on('disconnecting', function () {
-                const assignedRole = Util.getAssignedRole(socket, roomHost, roomGuest);
-                logger.info("Player disconnected: %s", assignedRole, {draftId});
-                if (!draftsStore.has(draftId)) {
-                    return;
-                }
-                draftsStore.disconnectPlayer(draftId, assignedRole);
-            });
-
-            let draftState = {
-                ...draftsStore.getDraftViewsOrThrow(draftId).getDraftForPlayer(Player.NONE),
-                yourPlayerType: yourPlayerType
-            };
-            logger.info("Emitting draft_state: %s", JSON.stringify(draftState), {draftId});
-            socket.emit("draft_state", draftState);
-        });
-
-        const httpServer = server.listen(port, () => {
-            logger.info("Listening on: %d", port);
-        });
-        const httpServerAddr = httpServer.address();
-
-
-        function validateAndApply(draftId: string, message: DraftEvent): ValidationId[] {
-            return validator.validateAndApply(draftId, message);
-        }
-
-        setInterval(() => {
-            draftsStore.purgeStaleDrafts()
-        }, ONE_HOUR);
-
-        return {httpServer, httpServerAddr, io};
-    }, SERVER_STATE_FILE: 'serverState.json'
-};
+    }
+}
