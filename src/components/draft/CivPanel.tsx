@@ -204,7 +204,7 @@ class CivPanel extends React.Component<IProps, IState> {
                 return false;
             }
             const civilisation = this.props.civilisation as Civilisation;
-            let draftsStore = new DraftsStore();
+            let draftsStore = new DraftsStore(null);
             draftsStore.createDraft('draftId', draft);
             const errors = Validator.checkAllValidations('draftId', draftsStore, new PlayerEvent(player, triggerAction, civilisation, whoAmI));
             return errors.length === 0;

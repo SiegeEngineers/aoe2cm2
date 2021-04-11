@@ -13,6 +13,7 @@ import {ActListener} from "../util/ActListener";
 import {logger} from "../util/Logger";
 import {IRecentDraft, IServerState} from "../types";
 import fs from "fs";
+import path from "path";
 
 interface ICountdownValues {
     timeout?: NodeJS.Timeout;
@@ -22,13 +23,13 @@ interface ICountdownValues {
 
 
 export class DraftsStore {
-    // visible for testing
-    static RECENT_DRAFTS_FILE = 'recentDrafts.json';
     private drafts: Map<string, DraftViews> = new Map<string, DraftViews>();
     private countdowns: Map<String, ICountdownValues> = new Map<String, ICountdownValues>();
     private readonly state: IServerState;
+    readonly recentDraftsFile: string | null;
 
-    constructor(state: IServerState = {maintenanceMode: false, hiddenPresetIds: []}) {
+    constructor(baseDirectory: string | null, state: IServerState = {maintenanceMode: false, hiddenPresetIds: []}) {
+        this.recentDraftsFile = baseDirectory ? path.join(baseDirectory, 'recentDrafts.json') : null;
         this.state = state;
     }
 
@@ -55,7 +56,7 @@ export class DraftsStore {
     public getRecentDrafts(): IRecentDraft[] {
         const ongoingDrafts = this.getOngoingDrafts();
 
-        const recentDrafts = DraftsStore.loadRecentDrafts();
+        const recentDrafts = this.loadRecentDrafts();
         if (ongoingDrafts.length < 10) {
             const iterations = 10 - ongoingDrafts.length;
             for (let i = 0; i < iterations; i++) {
@@ -333,7 +334,7 @@ export class DraftsStore {
         if(this.presetIdIsHidden(draft)){
             return;
         }
-        const recentDrafts = DraftsStore.loadRecentDrafts();
+        const recentDrafts = this.loadRecentDrafts();
         recentDrafts.unshift({
             title: draft.preset.name,
             draftId: draftId,
@@ -344,20 +345,26 @@ export class DraftsStore {
         while (recentDrafts.length > 10) {
             recentDrafts.pop();
         }
-        DraftsStore.saveRecentDrafts(recentDrafts);
+        this.saveRecentDrafts(recentDrafts);
     }
 
-    private static loadRecentDrafts() {
-        if (fs.existsSync(DraftsStore.RECENT_DRAFTS_FILE)) {
-            const fileContent = fs.readFileSync(DraftsStore.RECENT_DRAFTS_FILE);
+    private loadRecentDrafts() {
+        if (this.recentDraftsFile === null) {
+            return [];
+        }
+        if (fs.existsSync(this.recentDraftsFile)) {
+            const fileContent = fs.readFileSync(this.recentDraftsFile);
             return JSON.parse(fileContent.toString()) as IRecentDraft[];
         } else {
             return [];
         }
     }
 
-    private static saveRecentDrafts(recentDrafts: IRecentDraft[]) {
-        fs.writeFileSync(DraftsStore.RECENT_DRAFTS_FILE, JSON.stringify(recentDrafts));
+    private saveRecentDrafts(recentDrafts: IRecentDraft[]) {
+        if (this.recentDraftsFile === null) {
+            return;
+        }
+        fs.writeFileSync(this.recentDraftsFile, JSON.stringify(recentDrafts));
     }
 
     public purgeStaleDrafts() {

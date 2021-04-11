@@ -24,11 +24,13 @@ const ONE_HOUR = 1000 * 60 * 60;
 
 export class DraftServer {
     readonly serverStateFile: string;
+    readonly baseDir: string;
     readonly dataDirectory: string;
     readonly presetDirectory: string;
 
     constructor(baseDir: string = './') {
         this.serverStateFile = path.join(baseDir, 'serverState.json');
+        this.baseDir = baseDir;
         this.dataDirectory = path.join(baseDir, 'data');
         this.presetDirectory = path.join(baseDir, 'presets');
     }
@@ -61,7 +63,7 @@ export class DraftServer {
         const server = new Server(app);
         const io = socketio(server, {cookie: false});
         const state: IServerState = this.loadState();
-        const draftsStore = new DraftsStore(state);
+        const draftsStore = new DraftsStore(this.baseDir, state);
 
         this.setUpApiRoutes(app, state, draftsStore, io);
         this.setUpSocketIo(io, draftsStore);

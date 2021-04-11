@@ -9,33 +9,30 @@ import temp from "temp";
 import fs from "fs";
 import path from "path";
 
-const ORIGINAL_RECENT_DRAFTS_FILE_VALUE = DraftsStore.RECENT_DRAFTS_FILE;
+let dirPath: string;
 beforeEach(() => {
     temp.track();
-    const dirPath = temp.mkdirSync('draftsStoreTest');
-    const inputPath = path.join(dirPath, 'recentDrafts.json');
-    fs.writeFileSync(inputPath, "[]");
-    DraftsStore.RECENT_DRAFTS_FILE = inputPath;
+    dirPath = temp.mkdirSync('draftsStoreTest');
+    fs.writeFileSync(path.join(dirPath, 'recentDrafts.json'), "[]");
 });
 
 afterEach(() => {
     temp.cleanupSync();
-    DraftsStore.RECENT_DRAFTS_FILE = ORIGINAL_RECENT_DRAFTS_FILE_VALUE;
 });
 
 it('test get empty ongoing drafts', () => {
-    const draftsStore = new DraftsStore();
+    const draftsStore = new DraftsStore(dirPath);
     expect(draftsStore.getOngoingDrafts()).toEqual([]);
 });
 
 it('test do not get drafts without both connected players', () => {
-    const draftsStore = new DraftsStore();
+    const draftsStore = new DraftsStore(dirPath);
     draftsStore.createDraft('draftId', new Draft('nameHost', 'nameGuest', Preset.SIMPLE));
     expect(draftsStore.getOngoingDrafts()).toEqual([]);
 });
 
 it('test get all eleven ongoing drafts', () => {
-    const draftsStore = new DraftsStore();
+    const draftsStore = new DraftsStore(dirPath);
     for (let i = 0; i < 11; i++) {
         const draftId = `draft${i}`;
         addDraft(draftId, i, draftsStore);
@@ -45,7 +42,7 @@ it('test get all eleven ongoing drafts', () => {
 });
 
 it('test get ten of eleven finished drafts', () => {
-    const draftsStore = new DraftsStore();
+    const draftsStore = new DraftsStore(dirPath);
     for (let i = 0; i < 11; i++) {
         const draftId = `draft${i}`;
         addDraft(draftId, i, draftsStore);
@@ -56,7 +53,7 @@ it('test get ten of eleven finished drafts', () => {
 });
 
 it('test get ongoing drafts before finished drafts', () => {
-    const draftsStore = new DraftsStore();
+    const draftsStore = new DraftsStore(dirPath);
     for (let i = 0; i < 5; i++) {
         const draftId = `draft${i}`;
         addDraft(draftId, i, draftsStore);
@@ -71,7 +68,7 @@ it('test get ongoing drafts before finished drafts', () => {
 });
 
 it('hidden presets do not get stored', () => {
-    const draftsStore = new DraftsStore({maintenanceMode:false, hiddenPresetIds:['hidden']});
+    const draftsStore = new DraftsStore(dirPath, {maintenanceMode: false, hiddenPresetIds: ['hidden']});
     for (let i = 0; i < 3; i++) {
         const draftId = `draft${i}`;
         addDraft(draftId, i, draftsStore);
@@ -91,7 +88,7 @@ it('hidden presets do not get stored', () => {
 });
 
 it('hidden live presets do not get displayed', () => {
-    const draftsStore = new DraftsStore({maintenanceMode:false, hiddenPresetIds:['live']});
+    const draftsStore = new DraftsStore(dirPath, {maintenanceMode: false, hiddenPresetIds: ['live']});
     for (let i = 0; i < 3; i++) {
         const draftId = `draft${i}`;
         addDraft(draftId, i, draftsStore);
