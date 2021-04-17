@@ -70,7 +70,7 @@ class ReplayControls extends React.Component<IProps, IState> {
                                       onClick={this.restart} aria-label="Restart">
             <RestartIcon size={48} /></button>;
 
-        return <div className="columns is-mobile">
+        return <div id="replay-controls" className="columns is-mobile">
             <div className="column has-text-centered">
                 <div id="spectator-controls" className="buttons is-centered">
                     {this.hasDraftEnded() ? null : this.state.isRunning ? pauseButton : runButton}

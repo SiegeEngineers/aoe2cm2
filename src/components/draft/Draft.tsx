@@ -197,7 +197,7 @@ class Draft extends React.Component<IProps, IState> {
                                 smooch={this.state.smooch}
                                 simplifiedUI={this.state.simplifiedUI}/>
 
-                    <div className="columns is-mobile">
+                    <div id="messages" className="columns is-mobile">
                         <div id="action-text" className="column has-text-centered is-size-4">
                             <Messages/>
                         </div>
@@ -211,7 +211,7 @@ class Draft extends React.Component<IProps, IState> {
                 </div>
             </section>
 
-            <section className="section pt-0">
+            <section id="toggles" className="section pt-0">
                 <div className="container is-mobile has-text-centered">
                     <div className="field is-grouped is-grouped-centered">
                         <p className="control">
@@ -239,7 +239,7 @@ class Draft extends React.Component<IProps, IState> {
                 </div>
             </section>
 
-            {!this.state.simplifiedUI && <section className="section pt-0">
+            {!this.state.simplifiedUI && <section id="how-it-works" className="section pt-0">
                 <div className="container is-desktop has-text-centered" style={{maxWidth: "808px"}}>
                     <details>
                         <summary className="has-cursor-pointer"><Trans i18nKey='menu.howItWorks'>How it works</Trans></summary>
