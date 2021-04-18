@@ -97,6 +97,11 @@ export class DraftServer {
                 if (fs.existsSync(draftPath)) {
                     logger.info("Found recorded draft. Sending replay.", {draftId});
                     socket.emit('replay', JSON.parse(fs.readFileSync(draftPath).toString('utf8')));
+                } else if (draftsStore.hasArchive(draftId)) {
+                    logger.info("Found archived draft. Sending replay.", {draftId});
+                    const archiveFolder = draftsStore.getArchiveFolder(draftId);
+                    const archivedDraftPath = path.join(this.dataDirectory, archiveFolder, `${draftId}.json`);
+                    socket.emit('replay', JSON.parse(fs.readFileSync(archivedDraftPath).toString('utf8')));
                 } else {
                     logger.info("No recorded draft found.", {draftId});
                     socket.emit('message', 'This draft does not exist.');
@@ -333,7 +338,13 @@ export class DraftServer {
             res.json(draftsStore.getRecentDrafts());
         });
         app.get('/api/draft/:id', (req, res) => {
-            res.sendFile(req.params.id + '.json', {'root': this.currentDataDirectory}, DraftServer.plain404(res));
+            const draftId = req.params.id;
+            if (draftsStore.hasArchive(draftId)) {
+                const archiveDirectory = draftsStore.getArchiveFolder(draftId);
+                res.sendFile(draftId + '.json', {'root': path.join(this.dataDirectory, archiveDirectory)}, DraftServer.plain404(res));
+            } else {
+                res.sendFile(draftId + '.json', {'root': this.currentDataDirectory}, DraftServer.plain404(res));
+            }
         });
 
         const indexPath = __dirname + '/index.html';

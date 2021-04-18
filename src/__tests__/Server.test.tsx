@@ -4,6 +4,7 @@ import request from "request";
 import temp from "temp";
 import * as fs from "fs";
 import path from "path";
+import {default as io} from "socket.io-client";
 
 let httpServer: any;
 let httpServerAddr: any;
@@ -15,6 +16,8 @@ beforeEach(() => {
     temp.track();
     dirPath = temp.mkdirSync('serverTest');
     fs.mkdirSync(path.join(dirPath, 'data', 'current'), {recursive: true});
+    fs.mkdirSync(path.join(dirPath, 'data', '2020'), {recursive: true});
+    fs.writeFileSync(path.join(dirPath, 'data', '2020', `uvwxyz.json`), '{}');
     draftServer = new DraftServer(dirPath);
 });
 
@@ -96,17 +99,32 @@ it('get finished draft', (done) => {
             done();
         });
 });
-//
-// it('get old finished draft', (done) => {
-//     const draftId = 'uvwxyz';
-//     fs.writeFileSync(path.join(dirPath, 'data', '2020', `${draftId}.json`), '{}');
-//
-//     request.get(`http://[${httpServerAddr.address}]:${httpServerAddr.port}/api/draft/${draftId}`,
-//         (error, response, body) => {
-//             expect(response.statusCode).toEqual(200);
-//             const json = JSON.parse(body);
-//             expect(json).toEqual({});
-//             done();
-//         });
-// });
+
+it('get old finished draft', (done) => {
+    const draftId = 'uvwxyz';
+
+    request.get(`http://[${httpServerAddr.address}]:${httpServerAddr.port}/api/draft/${draftId}`,
+        (error, response, body) => {
+            expect(response.statusCode).toEqual(200);
+            const json = JSON.parse(body);
+            expect(json).toEqual({});
+            done();
+        });
+});
+
+it('get old finished draft via socketio', (done) => {
+    const draftId = 'uvwxyz';
+
+    const socket = io.connect(`http://[${httpServerAddr.address}]:${httpServerAddr.port}`, {
+        query: {draftId: draftId},
+        reconnectionDelay: 0,
+        forceNew: true,
+        transports: ['websocket'],
+    });
+
+    socket.on("replay", (message: any) => {
+        expect(message).toEqual({});
+        done();
+    });
+});
 

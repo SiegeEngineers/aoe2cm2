@@ -14,6 +14,7 @@ import {logger} from "../util/Logger";
 import {IRecentDraft, IServerState} from "../types";
 import fs from "fs";
 import path from "path";
+import {DraftsArchive} from "./DraftsArchive";
 
 interface ICountdownValues {
     timeout?: NodeJS.Timeout;
@@ -27,10 +28,17 @@ export class DraftsStore {
     private countdowns: Map<String, ICountdownValues> = new Map<String, ICountdownValues>();
     private readonly state: IServerState;
     readonly recentDraftsFile: string | null;
+    readonly draftsArchive?: DraftsArchive;
 
     constructor(baseDirectory: string | null, state: IServerState = {maintenanceMode: false, hiddenPresetIds: []}) {
         this.recentDraftsFile = baseDirectory ? path.join(baseDirectory, 'recentDrafts.json') : null;
         this.state = state;
+        if (baseDirectory !== null){
+            const dataPath = path.join(baseDirectory, 'data');
+            if(fs.existsSync(dataPath)) {
+                this.draftsArchive = new DraftsArchive(dataPath);
+            }
+        }
     }
 
     public createDraft(draftId: string, draft: Draft) {
@@ -101,6 +109,20 @@ export class DraftsStore {
 
     public has(draftId: string): boolean {
         return this.drafts.has(draftId);
+    }
+
+    public hasArchive(draftId: string): boolean {
+        if (this.draftsArchive) {
+            return this.draftsArchive.hasDraftId(draftId);
+        }
+        return false;
+    }
+
+    public getArchiveFolder(draftId: string): string {
+        if (this.draftsArchive) {
+            return this.draftsArchive.getFolderForDraftId(draftId);
+        }
+        return '';
     }
 
     public connectPlayer(draftId: string, player: Player, name: string) {
