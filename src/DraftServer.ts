@@ -25,6 +25,7 @@ const ONE_HOUR = 1000 * 60 * 60;
 export class DraftServer {
     readonly serverStateFile: string;
     readonly baseDir: string;
+    readonly currentDataDirectory: string;
     readonly dataDirectory: string;
     readonly presetDirectory: string;
 
@@ -32,6 +33,7 @@ export class DraftServer {
         this.serverStateFile = path.join(baseDir, 'serverState.json');
         this.baseDir = baseDir;
         this.dataDirectory = path.join(baseDir, 'data');
+        this.currentDataDirectory = path.join(this.dataDirectory, 'current');
         this.presetDirectory = path.join(baseDir, 'presets');
     }
 
@@ -91,7 +93,7 @@ export class DraftServer {
             const roomSpec: string = `${draftId}-spec`;
 
             if (!draftsStore.has(draftId)) {
-                const draftPath = path.join(this.dataDirectory, `${draftId}.json`);
+                const draftPath = path.join(this.currentDataDirectory, `${draftId}.json`);
                 if (fs.existsSync(draftPath)) {
                     logger.info("Found recorded draft. Sending replay.", {draftId});
                     socket.emit('replay', JSON.parse(fs.readFileSync(draftPath).toString('utf8')));
@@ -203,7 +205,7 @@ export class DraftServer {
                 logger.info("Player indicates they are ready: %s", assignedRole, {draftId});
                 if (!wasAlreadyReady && draftsStore.playersAreReady(draftId)) {
                     logger.info("Both Players are ready, starting countdown.", {draftId});
-                    draftsStore.startCountdown(draftId, socket, this.dataDirectory);
+                    draftsStore.startCountdown(draftId, socket, this.currentDataDirectory);
                     draftsStore.setStartTimestamp(draftId);
                 }
                 socket.nsp
@@ -223,7 +225,7 @@ export class DraftServer {
                 return validator.validateAndApply(draftId, message);
             }
 
-            socket.on("act", new ActListener(this.dataDirectory).actListener(draftsStore, draftId, validateAndApply, socket, roomHost, roomGuest, roomSpec));
+            socket.on("act", new ActListener(this.currentDataDirectory).actListener(draftsStore, draftId, validateAndApply, socket, roomHost, roomGuest, roomSpec));
 
             socket.on('disconnecting', function () {
                 const assignedRole = Util.getAssignedRole(socket, roomHost, roomGuest);
@@ -331,7 +333,7 @@ export class DraftServer {
             res.json(draftsStore.getRecentDrafts());
         });
         app.get('/api/draft/:id', (req, res) => {
-            res.sendFile(req.params.id + '.json', {'root': this.dataDirectory}, DraftServer.plain404(res));
+            res.sendFile(req.params.id + '.json', {'root': this.currentDataDirectory}, DraftServer.plain404(res));
         });
 
         const indexPath = __dirname + '/index.html';

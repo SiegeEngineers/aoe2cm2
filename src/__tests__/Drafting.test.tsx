@@ -23,7 +23,7 @@ let draftServer: DraftServer;
 beforeAll(() => {
     temp.track();
     const dirPath = temp.mkdirSync('serverTest');
-    fs.mkdirSync(path.join(dirPath, 'data'));
+    fs.mkdirSync(path.join(dirPath, 'data', 'current'), {recursive: true});
     draftServer = new DraftServer(dirPath);
 });
 

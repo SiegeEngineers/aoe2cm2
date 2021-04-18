@@ -9,11 +9,12 @@ let httpServer: any;
 let httpServerAddr: any;
 let ioServer: any;
 let draftServer: DraftServer;
+let dirPath: string;
 
 beforeEach(() => {
     temp.track();
-    const dirPath = temp.mkdirSync('serverTest');
-    fs.mkdirSync(path.join(dirPath, 'data'));
+    dirPath = temp.mkdirSync('serverTest');
+    fs.mkdirSync(path.join(dirPath, 'data', 'current'), {recursive: true});
     draftServer = new DraftServer(dirPath);
 });
 
@@ -81,3 +82,31 @@ it('hiddenPresetIds can be filled', (done) => {
             done();
         });
 });
+
+
+it('get finished draft', (done) => {
+    const draftId = 'abcdef';
+    fs.writeFileSync(path.join(dirPath, 'data', 'current', `${draftId}.json`), '{}');
+
+    request.get(`http://[${httpServerAddr.address}]:${httpServerAddr.port}/api/draft/${draftId}`,
+        (error, response, body) => {
+            expect(response.statusCode).toEqual(200);
+            const json = JSON.parse(body);
+            expect(json).toEqual({});
+            done();
+        });
+});
+//
+// it('get old finished draft', (done) => {
+//     const draftId = 'uvwxyz';
+//     fs.writeFileSync(path.join(dirPath, 'data', '2020', `${draftId}.json`), '{}');
+//
+//     request.get(`http://[${httpServerAddr.address}]:${httpServerAddr.port}/api/draft/${draftId}`,
+//         (error, response, body) => {
+//             expect(response.statusCode).toEqual(200);
+//             const json = JSON.parse(body);
+//             expect(json).toEqual({});
+//             done();
+//         });
+// });
+
