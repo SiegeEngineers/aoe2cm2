@@ -93,18 +93,23 @@ export class DraftServer {
             const roomSpec: string = `${draftId}-spec`;
 
             if (!draftsStore.has(draftId)) {
-                const draftPath = path.join(this.currentDataDirectory, `${draftId}.json`);
-                if (fs.existsSync(draftPath)) {
-                    logger.info("Found recorded draft. Sending replay.", {draftId});
-                    socket.emit('replay', JSON.parse(fs.readFileSync(draftPath).toString('utf8')));
-                } else if (draftsStore.hasArchive(draftId)) {
-                    logger.info("Found archived draft. Sending replay.", {draftId});
-                    const archiveFolder = draftsStore.getArchiveFolder(draftId);
-                    const archivedDraftPath = path.join(this.dataDirectory, archiveFolder, `${draftId}.json`);
-                    socket.emit('replay', JSON.parse(fs.readFileSync(archivedDraftPath).toString('utf8')));
-                } else {
-                    logger.info("No recorded draft found.", {draftId});
-                    socket.emit('message', 'This draft does not exist.');
+                try {
+                    const draftPath = path.join(this.currentDataDirectory, `${draftId}.json`);
+                    if (fs.existsSync(draftPath)) {
+                        logger.info("Found recorded draft. Sending replay.", {draftId});
+                        socket.emit('replay', JSON.parse(fs.readFileSync(draftPath).toString('utf8')));
+                    } else if (draftsStore.hasArchive(draftId)) {
+                        logger.info("Found archived draft. Sending replay.", {draftId});
+                        const archiveFolder = draftsStore.getArchiveFolder(draftId);
+                        const archivedDraftPath = path.join(this.dataDirectory, archiveFolder, `${draftId}.json`);
+                        socket.emit('replay', JSON.parse(fs.readFileSync(archivedDraftPath).toString('utf8')));
+                    } else {
+                        logger.info("No recorded draft found.", {draftId});
+                        socket.emit('message', 'This draft does not exist.');
+                    }
+                } catch (e) {
+                    logger.error('Sending replay file failed', {draftId});
+                    logger.error(e.message, {draftId});
                 }
                 logger.info("Disconnecting.", {draftId});
                 socket.disconnect(true);
