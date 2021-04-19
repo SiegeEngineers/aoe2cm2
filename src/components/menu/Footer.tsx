@@ -11,7 +11,7 @@ class Footer extends React.Component<object, object> {
                             Created by <a href="https://aoe2.se">
                             <img alt='SiegeEngineers logo' className='inline-logo'
                                  style={{verticalAlign: "text-bottom"}}
-                                 src="/images/SiegeEngineers.png"/> Siege Engineers</a> (2019 &ndash; 2020)
+                                 src="/images/SiegeEngineers.png"/> Siege Engineers</a> (2019 &ndash; 2021)
                             &bull;
                             Based on the first version by <span className='is-family-code'>pip</span>&nbsp; &bull;
                             Contribute on <a href="https://github.com/SiegeEngineers/aoe2cm2">GitHub</a>
