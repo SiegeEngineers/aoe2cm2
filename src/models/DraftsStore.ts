@@ -29,12 +29,14 @@ export class DraftsStore {
     private readonly state: IServerState;
     readonly recentDraftsFile: string | null;
     readonly draftsArchive?: DraftsArchive;
+    readonly currentDataPath?: string;
 
     constructor(baseDirectory: string | null, state: IServerState = {maintenanceMode: false, hiddenPresetIds: []}) {
         this.recentDraftsFile = baseDirectory ? path.join(baseDirectory, 'recentDrafts.json') : null;
         this.state = state;
         if (baseDirectory !== null){
             const dataPath = path.join(baseDirectory, 'data');
+            this.currentDataPath = path.join(dataPath, 'current');
             if(fs.existsSync(dataPath)) {
                 this.draftsArchive = new DraftsArchive(dataPath);
             }
@@ -116,6 +118,16 @@ export class DraftsStore {
             return this.draftsArchive.hasDraftId(draftId);
         }
         return false;
+    }
+
+    public draftIdExists(draftId: string): boolean {
+        return this.has(draftId)
+            || this.hasArchive(draftId)
+            || this.hasCurrent(draftId);
+    }
+
+    private hasCurrent(draftId: string) {
+        return this.currentDataPath !== undefined && fs.existsSync(path.join(this.currentDataPath, `${draftId}.json`));
     }
 
     public getArchiveFolder(draftId: string): string {

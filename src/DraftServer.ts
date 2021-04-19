@@ -292,7 +292,7 @@ export class DraftServer {
             }
 
             let draftId = Util.newDraftId();
-            while (draftsStore.has(draftId)) {
+            while (draftsStore.draftIdExists(draftId)) {
                 draftId += Util.randomChar();
             }
             const pojo: Preset = req.body.preset as Preset;
