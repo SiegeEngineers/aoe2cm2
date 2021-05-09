@@ -1,7 +1,9 @@
-import Civilisation from "./Civilisation";
 import Turn from "./Turn";
 import {CivilisationEncoder} from "../util/CivilisationEncoder";
 import {Assert} from "../util/Assert";
+import Civilisation from "./Civilisation";
+import DraftOption from "./DraftOption";
+import {Util} from "../util/Util";
 
 class Preset {
 
@@ -39,34 +41,52 @@ class Preset {
         Turn.GUEST_NONEXCLUSIVE_PICK,
         Turn.HOST_NONEXCLUSIVE_PICK
     ]);
+
     public readonly name: string;
     public presetId?: string
-    public readonly encodedCivilisations: string;
+    public readonly encodedCivilisations?: string;
+    public readonly draftOptions?: DraftOption[];
     public readonly turns: Turn[];
 
-    constructor(name: string, civilisations: Civilisation[], turns: Turn[] = [], presetId?: string) {
+    constructor(name: string, draftOptions: DraftOption[], turns: Turn[] = [], presetId?: string) {
         this.name = name;
         this.presetId = presetId;
-        this.encodedCivilisations = CivilisationEncoder.encodeCivilisationArray(civilisations);
+        if (Util.isCivilisationArray(draftOptions)) {
+            this.encodedCivilisations = CivilisationEncoder.encodeCivilisationArray(draftOptions);
+        } else {
+            this.draftOptions = draftOptions;
+        }
         this.turns = turns;
     }
 
-    public static fromPojo(preset: { name: string, encodedCivilisations: string, turns: Turn[], presetId?: string } | undefined): Preset | undefined {
+    public static fromPojo(preset: { name: string, encodedCivilisations?: string, draftOptions?: DraftOption[], turns: Turn[], presetId?: string } | undefined): Preset | undefined {
         if (preset === undefined) {
             return undefined;
         }
         Assert.isString(preset.name);
         Assert.isString(preset.encodedCivilisations);
         Assert.isOptionalString(preset.presetId);
-        return new Preset(preset.name, CivilisationEncoder.decodeCivilisationArray(preset.encodedCivilisations), Turn.fromPojoArray(preset.turns), preset.presetId);
+        let draftOptions: DraftOption[] = [];
+        if (preset.encodedCivilisations) {
+            draftOptions = CivilisationEncoder.decodeCivilisationArray(preset.encodedCivilisations);
+        } else if (preset.draftOptions) {
+            draftOptions = preset.draftOptions;
+        }
+        return new Preset(preset.name, draftOptions, Turn.fromPojoArray(preset.turns), preset.presetId);
     }
 
     public addTurn(turn: Turn) {
         this.turns.push(turn);
     }
 
-    get civilisations(): Civilisation[] {
-        return CivilisationEncoder.decodeCivilisationArray(this.encodedCivilisations);
+    get options(): DraftOption[] {
+        if (this.encodedCivilisations) {
+            return CivilisationEncoder.decodeCivilisationArray(this.encodedCivilisations);
+        }
+        if (this.draftOptions) {
+            return this.draftOptions;
+        }
+        throw new Error('Invalid Preset without either encodedCivilisations or draftOptions');
     }
 }
 

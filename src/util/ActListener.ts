@@ -44,8 +44,8 @@ export class ActListener {
                 }
             }
 
-            const civilisationsList = draftsStore.getDraftOrThrow(draftId).preset.civilisations.slice();
-            message = Util.setRandomCivilisationIfNeeded(message, draftId, draftsStore, civilisationsList);
+            const civilisationsList = draftsStore.getDraftOrThrow(draftId).preset.options.slice();
+            message = Util.setRandomDraftOptionIfNeeded(message, draftId, draftsStore, civilisationsList);
             logger.info("Augmented message: %s", JSON.stringify(message), {draftId});
 
             const validationErrors: ValidationId[] = validateAndApply(draftId, message);

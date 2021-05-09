@@ -1,8 +1,8 @@
-enum CivPanelType {
+enum DraftOptionPanelType {
     PICK = "pick",
     BAN = "ban",
     STEAL = "steal",
     CHOICE = "choice"
 }
 
-export default CivPanelType;
+export default DraftOptionPanelType;

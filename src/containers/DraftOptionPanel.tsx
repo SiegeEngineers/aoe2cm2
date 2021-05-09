@@ -1,10 +1,10 @@
 import {ApplicationState} from '../types';
 import {connect} from 'react-redux';
-import CivPanel from "../components/draft/CivPanel";
 import ActionType, {actionTypeFromAction} from "../constants/ActionType";
 import PlayerEvent from "../models/PlayerEvent";
 import {Dispatch} from "redux";
 import * as actions from "../actions";
+import DraftOptionPanel from "../components/draft/DraftOptionPanel";
 
 
 export function mapStateToProps(state: ApplicationState) {
@@ -42,4 +42,4 @@ export function mapDispatchToProps(dispatch: Dispatch<actions.Action>) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CivPanel);
+export default connect(mapStateToProps, mapDispatchToProps)(DraftOptionPanel);

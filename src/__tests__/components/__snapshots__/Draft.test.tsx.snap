@@ -7,6 +7,7 @@ exports[`Draft renders correctly 1`] = `
   nextAction={0}
   preset={
     Preset {
+      "draftOptions": undefined,
       "encodedCivilisations": "1fffffffff",
       "name": "Default Preset",
       "presetId": undefined,

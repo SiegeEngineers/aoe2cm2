@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PlayerEvent can deserialize new state 1`] = `
-PlayerEvent {
+exports[`LegacyPlayerEvent can deserialize new state 1`] = `
+LegacyPlayerEvent {
   "actionType": "PICK",
   "civilisation": Object {},
   "executingPlayer": "GUEST",
@@ -10,8 +10,8 @@ PlayerEvent {
 }
 `;
 
-exports[`PlayerEvent can deserialize old state 1`] = `
-PlayerEvent {
+exports[`LegacyPlayerEvent can deserialize old state 1`] = `
+LegacyPlayerEvent {
   "actionType": "PICK",
   "civilisation": Object {},
   "executingPlayer": "HOST",

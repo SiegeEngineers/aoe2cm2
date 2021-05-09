@@ -1,9 +1,8 @@
 import * as React from 'react';
 import ActionType from "../../constants/ActionType";
-import Civilisation from "../../models/Civilisation";
 import PlayerEvent from "../../models/PlayerEvent";
 import Player from "../../constants/Player";
-import CivPanelType from "../../constants/CivPanelType";
+import DraftOptionPanelType from "../../constants/DraftOptionPanelType";
 import {Util} from "../../util/Util";
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
 import {Validator} from "../../models/Validator";
@@ -11,13 +10,17 @@ import {DraftsStore} from "../../models/DraftsStore";
 import Draft from "../../models/Draft";
 import {IDraftState} from "../../types";
 import Preset from "../../models/Preset";
+import DraftOption from "../../models/DraftOption";
 
 interface IProps extends WithTranslation {
-    civilisation?: Civilisation;
+    draftOption?: DraftOption;
+    isRandomlyChosen?: boolean;
     active: boolean;
-    sniped?: Civilisation;
-    stolen?: Civilisation;
-    civPanelType: CivPanelType;
+    sniped?: boolean;
+    isRandomlyChosenForSnipe?: boolean;
+    stolen?: boolean;
+    isRandomlyChosenForSteal?: boolean;
+    draftOptionPanelType: DraftOptionPanelType;
     whoAmI?: Player;
     triggerAction?: ActionType;
     byOpponent?: boolean;
@@ -36,7 +39,7 @@ interface IState {
     used: string;
 }
 
-class CivPanel extends React.Component<IProps, IState> {
+class DraftOptionPanel extends React.Component<IProps, IState> {
 
     USED_CLASSES = ['is-hidden', 'used-crown', 'used-skull'];
 
@@ -46,42 +49,42 @@ class CivPanel extends React.Component<IProps, IState> {
     }
 
     public render() {
-        const civilisation: Civilisation | undefined = this.props.civilisation;
+        const draftOption: DraftOption | undefined = this.props.draftOption;
         let image = <></>;
         let imageSrc: string = "";
-        let civilisationKey = '';
-        let civilisationName = '';
+        let draftOptionKey = '';
+        let draftOptionName = '';
         let textClass: string = 'stretchy-text';
         let imageContainerClass: string = 'stretchy-image civ-indicator';
-        if (civilisation !== undefined) {
-            civilisationName = civilisation.name;
-            imageSrc = `/images/civs/${civilisationName.toLowerCase()}.png`;
-            image = <img src={imageSrc} alt={civilisationName}/>;
+        if (draftOption !== undefined) {
+            draftOptionName = draftOption.name;
+            imageSrc = draftOption.imageUrls.unit;
+            image = <img src={imageSrc} alt={draftOptionName}/>;
             if (this.props.iconStyle === 'emblems') {
-                imageSrc = `/images/civemblems/${civilisationName.toLowerCase()}.png`;
-                image = <img src={imageSrc} alt={civilisationName}/>;
+                imageSrc = draftOption.imageUrls.emblem;
+                image = <img src={imageSrc} alt={draftOptionName}/>;
             }
-            if (this.props.iconStyle === 'units-animated' && !Util.isTechnicalCivilisation(civilisation)) {
-                let imageSrc = `/images/units-animated/${civilisationName.toLowerCase()}-right.apng`;
+            if (this.props.iconStyle === 'units-animated' && !Util.isTechnicalDraftOption(draftOption)) {
+                let imageSrc = draftOption.imageUrls.animated_right;
                 let imageKey = 'animated-right';
                 if (this.useFlippedImage()) {
-                    imageSrc = `/images/units-animated/${civilisationName.toLowerCase()}-left.apng`;
+                    imageSrc = draftOption.imageUrls.animated_left;
                     imageKey = 'animated-left';
                 }
-                image = <img className={'directional'} src={imageSrc} alt={civilisationName} key={imageKey}/>;
+                image = <img className={'directional'} src={imageSrc} alt={draftOptionName} key={imageKey}/>;
             }
-            civilisationKey = 'civs.' + civilisationName;
-            if (Util.isTechnicalCivilisation(civilisation)) {
+            draftOptionKey = 'civs.' + draftOptionName;
+            if (Util.isTechnicalDraftOption(draftOption)) {
                 textClass += ' is-hidden';
             }
         }
-        let className: string = 'civ-panel ' + this.props.civPanelType.toString();
+        let className: string = 'civ-panel ' + this.props.draftOptionPanelType.toString();
         if (this.props.byOpponent) {
             className += ' by-opponent';
         }
         let onClickAction = () => {
         };
-        if (this.props.civPanelType === CivPanelType.CHOICE) {
+        if (this.props.draftOptionPanelType === DraftOptionPanelType.CHOICE) {
             className += ' is-inline-block';
             if (this.isValidOption()) {
                 onClickAction = this.onClickCiv;
@@ -90,7 +93,7 @@ class CivPanel extends React.Component<IProps, IState> {
                 className += ' choice-disabled';
             }
         } else {
-            if ((this.props.civPanelType === CivPanelType.PICK || this.props.civPanelType === CivPanelType.STEAL) && this.isDraftCompleted()) {
+            if ((this.props.draftOptionPanelType === DraftOptionPanelType.PICK || this.props.draftOptionPanelType === DraftOptionPanelType.STEAL) && this.isDraftCompleted()) {
                 onClickAction = () => {
                     this.setState({...this.state, used: this.nextUsed(this.state.used)});
                 }
@@ -99,11 +102,11 @@ class CivPanel extends React.Component<IProps, IState> {
         }
         if (this.props.active) {
             className += " active-choice";
-        } else if (civilisation !== undefined) {
+        } else if (draftOption !== undefined) {
             className += ' has-value';
         }
         let contentClass: string = "box-content element-stack";
-        if (this.props.civilisation !== undefined) {
+        if (this.props.draftOption !== undefined) {
             contentClass += " is-visible";
         }
         let snipeMarkerClass = "stretchy-image snipe-marker";
@@ -123,15 +126,15 @@ class CivPanel extends React.Component<IProps, IState> {
             className += ' is-used';
         }
         let randomMarkerClass = "random-pick";
-        if (!this.props.civilisation || !this.props.civilisation.isRandomlyChosenCiv) {
+        if (!this.props.draftOption || !this.props.isRandomlyChosen) {
             randomMarkerClass += ' is-hidden';
         }
         let snipeRandomMarkerClass = "random-snipe";
-        if (!this.props.sniped || !this.props.sniped.isRandomlyChosenCiv) {
+        if (!this.props.sniped || !this.props.isRandomlyChosenForSnipe) {
             snipeRandomMarkerClass += ' is-hidden';
         }
         let stealRandomMarkerClass = "random-steal";
-        if (!this.props.stolen || !this.props.stolen.isRandomlyChosenCiv) {
+        if (!this.props.stolen || !this.props.isRandomlyChosenForSteal) {
             stealRandomMarkerClass += ' is-hidden';
         }
 
@@ -156,7 +159,7 @@ class CivPanel extends React.Component<IProps, IState> {
                         <div className={snipeRandomMarkerClass} title="Random Snipe"/>
                         <div className={usedMarkerClass}/>
                         <div className={textClass}>
-                            <Trans>{civilisationKey}</Trans>
+                            <Trans>{draftOptionKey}</Trans>
                         </div>
                     </div>
                 </div>
@@ -165,23 +168,23 @@ class CivPanel extends React.Component<IProps, IState> {
     }
 
     private useFlippedImage() {
-        return this.props.civPanelType !== CivPanelType.CHOICE
+        return this.props.draftOptionPanelType !== DraftOptionPanelType.CHOICE
             && this.props.smooch
             && ((this.props.side === Player.HOST && !this.props.flipped)
                 || (this.props.side === Player.GUEST && this.props.flipped));
     }
 
     private onClickCiv = () => {
-        if (Util.notUndefined(this.props.onClickCivilisation, this.props.civilisation, this.props.whoAmI, this.props.player, this.props.triggerAction)) {
+        if (Util.notUndefined(this.props.onClickCivilisation, this.props.draftOption, this.props.whoAmI, this.props.player, this.props.triggerAction)) {
             const whoAmI = this.props.whoAmI as Player;
             const player = this.props.player as Player;
             if (whoAmI === Player.NONE) {
                 return;
             }
-            const civilisation = this.props.civilisation as Civilisation;
+            const draftOption = this.props.draftOption as DraftOption;
             const triggerAction = this.props.triggerAction as ActionType;
             const onClickCivilisation = this.props.onClickCivilisation as (playerEvent: PlayerEvent, callback: any) => void;
-            onClickCivilisation(new PlayerEvent(player, triggerAction, civilisation, whoAmI), (data: any) => {
+            onClickCivilisation(new PlayerEvent(player, triggerAction, draftOption.id, false, whoAmI), (data: any) => {
                 console.log('act callback', data);
                 if (data.status !== 'ok') {
                     alert(Util.buildValidationErrorMessage(data));
@@ -192,7 +195,7 @@ class CivPanel extends React.Component<IProps, IState> {
 
 
     private isValidOption() {
-        if (Util.notUndefined(this.props.draft, this.props.whoAmI, this.props.triggerAction, this.props.player, this.props.civilisation)) {
+        if (Util.notUndefined(this.props.draft, this.props.whoAmI, this.props.triggerAction, this.props.player, this.props.draftOption)) {
             const whoAmI = this.props.whoAmI as Player;
             const player = this.props.player as Player;
             if (whoAmI === Player.NONE) {
@@ -203,10 +206,10 @@ class CivPanel extends React.Component<IProps, IState> {
             if (![ActionType.PICK, ActionType.BAN, ActionType.SNIPE, ActionType.STEAL].includes(triggerAction)) {
                 return false;
             }
-            const civilisation = this.props.civilisation as Civilisation;
+            const draftOption = this.props.draftOption as DraftOption;
             let draftsStore = new DraftsStore(null);
             draftsStore.createDraft('draftId', draft);
-            const errors = Validator.checkAllValidations('draftId', draftsStore, new PlayerEvent(player, triggerAction, civilisation, whoAmI));
+            const errors = Validator.checkAllValidations('draftId', draftsStore, new PlayerEvent(player, triggerAction, draftOption.id, false, whoAmI));
             return errors.length === 0;
         }
         return false;
@@ -228,4 +231,4 @@ class CivPanel extends React.Component<IProps, IState> {
     }
 }
 
-export default withTranslation()(CivPanel);
+export default withTranslation()(DraftOptionPanel);

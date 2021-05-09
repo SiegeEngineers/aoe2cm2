@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CivGrid renders correctly 1`] = `
+exports[`DraftOptionGrid renders correctly 1`] = `
 <div
   className="chooser"
   id="civgrid"
@@ -10,458 +10,685 @@ exports[`CivGrid renders correctly 1`] = `
   >
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
-        Civilisation {
-          "gameVersion": 1,
-          "isRandomlyChosenCiv": false,
+      draftOption={
+        DraftOption {
+          "id": "RANDOM",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/random-left.apng",
+            "animated_right": "/images/units-animated/random-right.apng",
+            "emblem": "/images/civemblems/random.png",
+            "unit": "/images/civs/random.png",
+          },
           "name": "RANDOM",
         }
       }
+      draftOptionPanelType="choice"
       key="-1"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 2,
-          "isRandomlyChosenCiv": false,
+          "id": "Aztecs",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/aztecs-left.apng",
+            "animated_right": "/images/units-animated/aztecs-right.apng",
+            "emblem": "/images/civemblems/aztecs.png",
+            "unit": "/images/civs/aztecs.png",
+          },
           "name": "Aztecs",
         }
       }
+      draftOptionPanelType="choice"
       key="0"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 4,
-          "isRandomlyChosenCiv": false,
+          "id": "Berbers",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/berbers-left.apng",
+            "animated_right": "/images/units-animated/berbers-right.apng",
+            "emblem": "/images/civemblems/berbers.png",
+            "unit": "/images/civs/berbers.png",
+          },
           "name": "Berbers",
         }
       }
+      draftOptionPanelType="choice"
       key="1"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 1,
-          "isRandomlyChosenCiv": false,
+          "id": "Britons",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/britons-left.apng",
+            "animated_right": "/images/units-animated/britons-right.apng",
+            "emblem": "/images/civemblems/britons.png",
+            "unit": "/images/civs/britons.png",
+          },
           "name": "Britons",
         }
       }
+      draftOptionPanelType="choice"
       key="2"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 5,
-          "isRandomlyChosenCiv": false,
+          "id": "Burmese",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/burmese-left.apng",
+            "animated_right": "/images/units-animated/burmese-right.apng",
+            "emblem": "/images/civemblems/burmese.png",
+            "unit": "/images/civs/burmese.png",
+          },
           "name": "Burmese",
         }
       }
+      draftOptionPanelType="choice"
       key="3"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 1,
-          "isRandomlyChosenCiv": false,
+          "id": "Byzantines",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/byzantines-left.apng",
+            "animated_right": "/images/units-animated/byzantines-right.apng",
+            "emblem": "/images/civemblems/byzantines.png",
+            "unit": "/images/civs/byzantines.png",
+          },
           "name": "Byzantines",
         }
       }
+      draftOptionPanelType="choice"
       key="4"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 1,
-          "isRandomlyChosenCiv": false,
+          "id": "Celts",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/celts-left.apng",
+            "animated_right": "/images/units-animated/celts-right.apng",
+            "emblem": "/images/civemblems/celts.png",
+            "unit": "/images/civs/celts.png",
+          },
           "name": "Celts",
         }
       }
+      draftOptionPanelType="choice"
       key="5"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 1,
-          "isRandomlyChosenCiv": false,
+          "id": "Chinese",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/chinese-left.apng",
+            "animated_right": "/images/units-animated/chinese-right.apng",
+            "emblem": "/images/civemblems/chinese.png",
+            "unit": "/images/civs/chinese.png",
+          },
           "name": "Chinese",
         }
       }
+      draftOptionPanelType="choice"
       key="6"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 4,
-          "isRandomlyChosenCiv": false,
+          "id": "Ethiopians",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/ethiopians-left.apng",
+            "animated_right": "/images/units-animated/ethiopians-right.apng",
+            "emblem": "/images/civemblems/ethiopians.png",
+            "unit": "/images/civs/ethiopians.png",
+          },
           "name": "Ethiopians",
         }
       }
+      draftOptionPanelType="choice"
       key="7"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 1,
-          "isRandomlyChosenCiv": false,
+          "id": "Franks",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/franks-left.apng",
+            "animated_right": "/images/units-animated/franks-right.apng",
+            "emblem": "/images/civemblems/franks.png",
+            "unit": "/images/civs/franks.png",
+          },
           "name": "Franks",
         }
       }
+      draftOptionPanelType="choice"
       key="8"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 1,
-          "isRandomlyChosenCiv": false,
+          "id": "Goths",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/goths-left.apng",
+            "animated_right": "/images/units-animated/goths-right.apng",
+            "emblem": "/images/civemblems/goths.png",
+            "unit": "/images/civs/goths.png",
+          },
           "name": "Goths",
         }
       }
+      draftOptionPanelType="choice"
       key="9"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 2,
-          "isRandomlyChosenCiv": false,
+          "id": "Huns",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/huns-left.apng",
+            "animated_right": "/images/units-animated/huns-right.apng",
+            "emblem": "/images/civemblems/huns.png",
+            "unit": "/images/civs/huns.png",
+          },
           "name": "Huns",
         }
       }
+      draftOptionPanelType="choice"
       key="10"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 3,
-          "isRandomlyChosenCiv": false,
+          "id": "Incas",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/incas-left.apng",
+            "animated_right": "/images/units-animated/incas-right.apng",
+            "emblem": "/images/civemblems/incas.png",
+            "unit": "/images/civs/incas.png",
+          },
           "name": "Incas",
         }
       }
+      draftOptionPanelType="choice"
       key="11"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 3,
-          "isRandomlyChosenCiv": false,
+          "id": "Indians",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/indians-left.apng",
+            "animated_right": "/images/units-animated/indians-right.apng",
+            "emblem": "/images/civemblems/indians.png",
+            "unit": "/images/civs/indians.png",
+          },
           "name": "Indians",
         }
       }
+      draftOptionPanelType="choice"
       key="12"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 3,
-          "isRandomlyChosenCiv": false,
+          "id": "Italians",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/italians-left.apng",
+            "animated_right": "/images/units-animated/italians-right.apng",
+            "emblem": "/images/civemblems/italians.png",
+            "unit": "/images/civs/italians.png",
+          },
           "name": "Italians",
         }
       }
+      draftOptionPanelType="choice"
       key="13"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 1,
-          "isRandomlyChosenCiv": false,
+          "id": "Japanese",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/japanese-left.apng",
+            "animated_right": "/images/units-animated/japanese-right.apng",
+            "emblem": "/images/civemblems/japanese.png",
+            "unit": "/images/civs/japanese.png",
+          },
           "name": "Japanese",
         }
       }
+      draftOptionPanelType="choice"
       key="14"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 5,
-          "isRandomlyChosenCiv": false,
+          "id": "Khmer",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/khmer-left.apng",
+            "animated_right": "/images/units-animated/khmer-right.apng",
+            "emblem": "/images/civemblems/khmer.png",
+            "unit": "/images/civs/khmer.png",
+          },
           "name": "Khmer",
         }
       }
+      draftOptionPanelType="choice"
       key="15"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 2,
-          "isRandomlyChosenCiv": false,
+          "id": "Koreans",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/koreans-left.apng",
+            "animated_right": "/images/units-animated/koreans-right.apng",
+            "emblem": "/images/civemblems/koreans.png",
+            "unit": "/images/civs/koreans.png",
+          },
           "name": "Koreans",
         }
       }
+      draftOptionPanelType="choice"
       key="16"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 3,
-          "isRandomlyChosenCiv": false,
+          "id": "Magyars",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/magyars-left.apng",
+            "animated_right": "/images/units-animated/magyars-right.apng",
+            "emblem": "/images/civemblems/magyars.png",
+            "unit": "/images/civs/magyars.png",
+          },
           "name": "Magyars",
         }
       }
+      draftOptionPanelType="choice"
       key="17"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 5,
-          "isRandomlyChosenCiv": false,
+          "id": "Malay",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/malay-left.apng",
+            "animated_right": "/images/units-animated/malay-right.apng",
+            "emblem": "/images/civemblems/malay.png",
+            "unit": "/images/civs/malay.png",
+          },
           "name": "Malay",
         }
       }
+      draftOptionPanelType="choice"
       key="18"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 4,
-          "isRandomlyChosenCiv": false,
+          "id": "Malians",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/malians-left.apng",
+            "animated_right": "/images/units-animated/malians-right.apng",
+            "emblem": "/images/civemblems/malians.png",
+            "unit": "/images/civs/malians.png",
+          },
           "name": "Malians",
         }
       }
+      draftOptionPanelType="choice"
       key="19"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 2,
-          "isRandomlyChosenCiv": false,
+          "id": "Mayans",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/mayans-left.apng",
+            "animated_right": "/images/units-animated/mayans-right.apng",
+            "emblem": "/images/civemblems/mayans.png",
+            "unit": "/images/civs/mayans.png",
+          },
           "name": "Mayans",
         }
       }
+      draftOptionPanelType="choice"
       key="20"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 1,
-          "isRandomlyChosenCiv": false,
+          "id": "Mongols",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/mongols-left.apng",
+            "animated_right": "/images/units-animated/mongols-right.apng",
+            "emblem": "/images/civemblems/mongols.png",
+            "unit": "/images/civs/mongols.png",
+          },
           "name": "Mongols",
         }
       }
+      draftOptionPanelType="choice"
       key="21"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 1,
-          "isRandomlyChosenCiv": false,
+          "id": "Persians",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/persians-left.apng",
+            "animated_right": "/images/units-animated/persians-right.apng",
+            "emblem": "/images/civemblems/persians.png",
+            "unit": "/images/civs/persians.png",
+          },
           "name": "Persians",
         }
       }
+      draftOptionPanelType="choice"
       key="22"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 4,
-          "isRandomlyChosenCiv": false,
+          "id": "Portuguese",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/portuguese-left.apng",
+            "animated_right": "/images/units-animated/portuguese-right.apng",
+            "emblem": "/images/civemblems/portuguese.png",
+            "unit": "/images/civs/portuguese.png",
+          },
           "name": "Portuguese",
         }
       }
+      draftOptionPanelType="choice"
       key="23"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 1,
-          "isRandomlyChosenCiv": false,
+          "id": "Saracens",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/saracens-left.apng",
+            "animated_right": "/images/units-animated/saracens-right.apng",
+            "emblem": "/images/civemblems/saracens.png",
+            "unit": "/images/civs/saracens.png",
+          },
           "name": "Saracens",
         }
       }
+      draftOptionPanelType="choice"
       key="24"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 3,
-          "isRandomlyChosenCiv": false,
+          "id": "Slavs",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/slavs-left.apng",
+            "animated_right": "/images/units-animated/slavs-right.apng",
+            "emblem": "/images/civemblems/slavs.png",
+            "unit": "/images/civs/slavs.png",
+          },
           "name": "Slavs",
         }
       }
+      draftOptionPanelType="choice"
       key="25"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 2,
-          "isRandomlyChosenCiv": false,
+          "id": "Spanish",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/spanish-left.apng",
+            "animated_right": "/images/units-animated/spanish-right.apng",
+            "emblem": "/images/civemblems/spanish.png",
+            "unit": "/images/civs/spanish.png",
+          },
           "name": "Spanish",
         }
       }
+      draftOptionPanelType="choice"
       key="26"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 1,
-          "isRandomlyChosenCiv": false,
+          "id": "Teutons",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/teutons-left.apng",
+            "animated_right": "/images/units-animated/teutons-right.apng",
+            "emblem": "/images/civemblems/teutons.png",
+            "unit": "/images/civs/teutons.png",
+          },
           "name": "Teutons",
         }
       }
+      draftOptionPanelType="choice"
       key="27"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 1,
-          "isRandomlyChosenCiv": false,
+          "id": "Turks",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/turks-left.apng",
+            "animated_right": "/images/units-animated/turks-right.apng",
+            "emblem": "/images/civemblems/turks.png",
+            "unit": "/images/civs/turks.png",
+          },
           "name": "Turks",
         }
       }
+      draftOptionPanelType="choice"
       key="28"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 5,
-          "isRandomlyChosenCiv": false,
+          "id": "Vietnamese",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/vietnamese-left.apng",
+            "animated_right": "/images/units-animated/vietnamese-right.apng",
+            "emblem": "/images/civemblems/vietnamese.png",
+            "unit": "/images/civs/vietnamese.png",
+          },
           "name": "Vietnamese",
         }
       }
+      draftOptionPanelType="choice"
       key="29"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 1,
-          "isRandomlyChosenCiv": false,
+          "id": "Vikings",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/vikings-left.apng",
+            "animated_right": "/images/units-animated/vikings-right.apng",
+            "emblem": "/images/civemblems/vikings.png",
+            "unit": "/images/civs/vikings.png",
+          },
           "name": "Vikings",
         }
       }
+      draftOptionPanelType="choice"
       key="30"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 6,
-          "isRandomlyChosenCiv": false,
+          "id": "Bulgarians",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/bulgarians-left.apng",
+            "animated_right": "/images/units-animated/bulgarians-right.apng",
+            "emblem": "/images/civemblems/bulgarians.png",
+            "unit": "/images/civs/bulgarians.png",
+          },
           "name": "Bulgarians",
         }
       }
+      draftOptionPanelType="choice"
       key="31"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 6,
-          "isRandomlyChosenCiv": false,
+          "id": "Cumans",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/cumans-left.apng",
+            "animated_right": "/images/units-animated/cumans-right.apng",
+            "emblem": "/images/civemblems/cumans.png",
+            "unit": "/images/civs/cumans.png",
+          },
           "name": "Cumans",
         }
       }
+      draftOptionPanelType="choice"
       key="32"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 6,
-          "isRandomlyChosenCiv": false,
+          "id": "Lithuanians",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/lithuanians-left.apng",
+            "animated_right": "/images/units-animated/lithuanians-right.apng",
+            "emblem": "/images/civemblems/lithuanians.png",
+            "unit": "/images/civs/lithuanians.png",
+          },
           "name": "Lithuanians",
         }
       }
+      draftOptionPanelType="choice"
       key="33"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 6,
-          "isRandomlyChosenCiv": false,
+          "id": "Tatars",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/tatars-left.apng",
+            "animated_right": "/images/units-animated/tatars-right.apng",
+            "emblem": "/images/civemblems/tatars.png",
+            "unit": "/images/civs/tatars.png",
+          },
           "name": "Tatars",
         }
       }
+      draftOptionPanelType="choice"
       key="34"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 7,
-          "isRandomlyChosenCiv": false,
+          "id": "Burgundians",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/burgundians-left.apng",
+            "animated_right": "/images/units-animated/burgundians-right.apng",
+            "emblem": "/images/civemblems/burgundians.png",
+            "unit": "/images/civs/burgundians.png",
+          },
           "name": "Burgundians",
         }
       }
+      draftOptionPanelType="choice"
       key="35"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
-      civilisation={
+      draftOption={
         Civilisation {
           "gameVersion": 7,
-          "isRandomlyChosenCiv": false,
+          "id": "Sicilians",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/sicilians-left.apng",
+            "animated_right": "/images/units-animated/sicilians-right.apng",
+            "emblem": "/images/civemblems/sicilians.png",
+            "unit": "/images/civs/sicilians.png",
+          },
           "name": "Sicilians",
         }
       }
+      draftOptionPanelType="choice"
       key="36"
     />
   </div>

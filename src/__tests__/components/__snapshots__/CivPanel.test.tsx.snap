@@ -1,1127 +1,1723 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BAN CivPanels render correctly 1`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 2,
-      "isRandomlyChosenCiv": false,
+      "id": "Aztecs",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/aztecs-left.apng",
+        "animated_right": "/images/units-animated/aztecs-right.apng",
+        "emblem": "/images/civemblems/aztecs.png",
+        "unit": "/images/civs/aztecs.png",
+      },
       "name": "Aztecs",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 2`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 4,
-      "isRandomlyChosenCiv": false,
+      "id": "Berbers",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/berbers-left.apng",
+        "animated_right": "/images/units-animated/berbers-right.apng",
+        "emblem": "/images/civemblems/berbers.png",
+        "unit": "/images/civs/berbers.png",
+      },
       "name": "Berbers",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 3`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 1,
-      "isRandomlyChosenCiv": false,
+      "id": "Britons",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/britons-left.apng",
+        "animated_right": "/images/units-animated/britons-right.apng",
+        "emblem": "/images/civemblems/britons.png",
+        "unit": "/images/civs/britons.png",
+      },
       "name": "Britons",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 4`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 5,
-      "isRandomlyChosenCiv": false,
+      "id": "Burmese",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/burmese-left.apng",
+        "animated_right": "/images/units-animated/burmese-right.apng",
+        "emblem": "/images/civemblems/burmese.png",
+        "unit": "/images/civs/burmese.png",
+      },
       "name": "Burmese",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 5`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 1,
-      "isRandomlyChosenCiv": false,
+      "id": "Byzantines",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/byzantines-left.apng",
+        "animated_right": "/images/units-animated/byzantines-right.apng",
+        "emblem": "/images/civemblems/byzantines.png",
+        "unit": "/images/civs/byzantines.png",
+      },
       "name": "Byzantines",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 6`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 1,
-      "isRandomlyChosenCiv": false,
+      "id": "Celts",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/celts-left.apng",
+        "animated_right": "/images/units-animated/celts-right.apng",
+        "emblem": "/images/civemblems/celts.png",
+        "unit": "/images/civs/celts.png",
+      },
       "name": "Celts",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 7`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 1,
-      "isRandomlyChosenCiv": false,
+      "id": "Chinese",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/chinese-left.apng",
+        "animated_right": "/images/units-animated/chinese-right.apng",
+        "emblem": "/images/civemblems/chinese.png",
+        "unit": "/images/civs/chinese.png",
+      },
       "name": "Chinese",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 8`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 4,
-      "isRandomlyChosenCiv": false,
+      "id": "Ethiopians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/ethiopians-left.apng",
+        "animated_right": "/images/units-animated/ethiopians-right.apng",
+        "emblem": "/images/civemblems/ethiopians.png",
+        "unit": "/images/civs/ethiopians.png",
+      },
       "name": "Ethiopians",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 9`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 1,
-      "isRandomlyChosenCiv": false,
+      "id": "Franks",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/franks-left.apng",
+        "animated_right": "/images/units-animated/franks-right.apng",
+        "emblem": "/images/civemblems/franks.png",
+        "unit": "/images/civs/franks.png",
+      },
       "name": "Franks",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 10`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 1,
-      "isRandomlyChosenCiv": false,
+      "id": "Goths",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/goths-left.apng",
+        "animated_right": "/images/units-animated/goths-right.apng",
+        "emblem": "/images/civemblems/goths.png",
+        "unit": "/images/civs/goths.png",
+      },
       "name": "Goths",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 11`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 2,
-      "isRandomlyChosenCiv": false,
+      "id": "Huns",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/huns-left.apng",
+        "animated_right": "/images/units-animated/huns-right.apng",
+        "emblem": "/images/civemblems/huns.png",
+        "unit": "/images/civs/huns.png",
+      },
       "name": "Huns",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 12`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 3,
-      "isRandomlyChosenCiv": false,
+      "id": "Incas",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/incas-left.apng",
+        "animated_right": "/images/units-animated/incas-right.apng",
+        "emblem": "/images/civemblems/incas.png",
+        "unit": "/images/civs/incas.png",
+      },
       "name": "Incas",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 13`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 3,
-      "isRandomlyChosenCiv": false,
+      "id": "Indians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/indians-left.apng",
+        "animated_right": "/images/units-animated/indians-right.apng",
+        "emblem": "/images/civemblems/indians.png",
+        "unit": "/images/civs/indians.png",
+      },
       "name": "Indians",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 14`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 3,
-      "isRandomlyChosenCiv": false,
+      "id": "Italians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/italians-left.apng",
+        "animated_right": "/images/units-animated/italians-right.apng",
+        "emblem": "/images/civemblems/italians.png",
+        "unit": "/images/civs/italians.png",
+      },
       "name": "Italians",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 15`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 1,
-      "isRandomlyChosenCiv": false,
+      "id": "Japanese",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/japanese-left.apng",
+        "animated_right": "/images/units-animated/japanese-right.apng",
+        "emblem": "/images/civemblems/japanese.png",
+        "unit": "/images/civs/japanese.png",
+      },
       "name": "Japanese",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 16`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 5,
-      "isRandomlyChosenCiv": false,
+      "id": "Khmer",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/khmer-left.apng",
+        "animated_right": "/images/units-animated/khmer-right.apng",
+        "emblem": "/images/civemblems/khmer.png",
+        "unit": "/images/civs/khmer.png",
+      },
       "name": "Khmer",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 17`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 2,
-      "isRandomlyChosenCiv": false,
+      "id": "Koreans",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/koreans-left.apng",
+        "animated_right": "/images/units-animated/koreans-right.apng",
+        "emblem": "/images/civemblems/koreans.png",
+        "unit": "/images/civs/koreans.png",
+      },
       "name": "Koreans",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 18`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 3,
-      "isRandomlyChosenCiv": false,
+      "id": "Magyars",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/magyars-left.apng",
+        "animated_right": "/images/units-animated/magyars-right.apng",
+        "emblem": "/images/civemblems/magyars.png",
+        "unit": "/images/civs/magyars.png",
+      },
       "name": "Magyars",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 19`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 5,
-      "isRandomlyChosenCiv": false,
+      "id": "Malay",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/malay-left.apng",
+        "animated_right": "/images/units-animated/malay-right.apng",
+        "emblem": "/images/civemblems/malay.png",
+        "unit": "/images/civs/malay.png",
+      },
       "name": "Malay",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 20`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 4,
-      "isRandomlyChosenCiv": false,
+      "id": "Malians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/malians-left.apng",
+        "animated_right": "/images/units-animated/malians-right.apng",
+        "emblem": "/images/civemblems/malians.png",
+        "unit": "/images/civs/malians.png",
+      },
       "name": "Malians",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 21`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 2,
-      "isRandomlyChosenCiv": false,
+      "id": "Mayans",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/mayans-left.apng",
+        "animated_right": "/images/units-animated/mayans-right.apng",
+        "emblem": "/images/civemblems/mayans.png",
+        "unit": "/images/civs/mayans.png",
+      },
       "name": "Mayans",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 22`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 1,
-      "isRandomlyChosenCiv": false,
+      "id": "Mongols",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/mongols-left.apng",
+        "animated_right": "/images/units-animated/mongols-right.apng",
+        "emblem": "/images/civemblems/mongols.png",
+        "unit": "/images/civs/mongols.png",
+      },
       "name": "Mongols",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 23`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 1,
-      "isRandomlyChosenCiv": false,
+      "id": "Persians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/persians-left.apng",
+        "animated_right": "/images/units-animated/persians-right.apng",
+        "emblem": "/images/civemblems/persians.png",
+        "unit": "/images/civs/persians.png",
+      },
       "name": "Persians",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 24`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 4,
-      "isRandomlyChosenCiv": false,
+      "id": "Portuguese",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/portuguese-left.apng",
+        "animated_right": "/images/units-animated/portuguese-right.apng",
+        "emblem": "/images/civemblems/portuguese.png",
+        "unit": "/images/civs/portuguese.png",
+      },
       "name": "Portuguese",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 25`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 1,
-      "isRandomlyChosenCiv": false,
+      "id": "Saracens",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/saracens-left.apng",
+        "animated_right": "/images/units-animated/saracens-right.apng",
+        "emblem": "/images/civemblems/saracens.png",
+        "unit": "/images/civs/saracens.png",
+      },
       "name": "Saracens",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 26`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 3,
-      "isRandomlyChosenCiv": false,
+      "id": "Slavs",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/slavs-left.apng",
+        "animated_right": "/images/units-animated/slavs-right.apng",
+        "emblem": "/images/civemblems/slavs.png",
+        "unit": "/images/civs/slavs.png",
+      },
       "name": "Slavs",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 27`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 2,
-      "isRandomlyChosenCiv": false,
+      "id": "Spanish",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/spanish-left.apng",
+        "animated_right": "/images/units-animated/spanish-right.apng",
+        "emblem": "/images/civemblems/spanish.png",
+        "unit": "/images/civs/spanish.png",
+      },
       "name": "Spanish",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 28`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 1,
-      "isRandomlyChosenCiv": false,
+      "id": "Teutons",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/teutons-left.apng",
+        "animated_right": "/images/units-animated/teutons-right.apng",
+        "emblem": "/images/civemblems/teutons.png",
+        "unit": "/images/civs/teutons.png",
+      },
       "name": "Teutons",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 29`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 1,
-      "isRandomlyChosenCiv": false,
+      "id": "Turks",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/turks-left.apng",
+        "animated_right": "/images/units-animated/turks-right.apng",
+        "emblem": "/images/civemblems/turks.png",
+        "unit": "/images/civs/turks.png",
+      },
       "name": "Turks",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 30`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 5,
-      "isRandomlyChosenCiv": false,
+      "id": "Vietnamese",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/vietnamese-left.apng",
+        "animated_right": "/images/units-animated/vietnamese-right.apng",
+        "emblem": "/images/civemblems/vietnamese.png",
+        "unit": "/images/civs/vietnamese.png",
+      },
       "name": "Vietnamese",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 31`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 1,
-      "isRandomlyChosenCiv": false,
+      "id": "Vikings",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/vikings-left.apng",
+        "animated_right": "/images/units-animated/vikings-right.apng",
+        "emblem": "/images/civemblems/vikings.png",
+        "unit": "/images/civs/vikings.png",
+      },
       "name": "Vikings",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 32`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 6,
-      "isRandomlyChosenCiv": false,
+      "id": "Bulgarians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/bulgarians-left.apng",
+        "animated_right": "/images/units-animated/bulgarians-right.apng",
+        "emblem": "/images/civemblems/bulgarians.png",
+        "unit": "/images/civs/bulgarians.png",
+      },
       "name": "Bulgarians",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 33`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 6,
-      "isRandomlyChosenCiv": false,
+      "id": "Cumans",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/cumans-left.apng",
+        "animated_right": "/images/units-animated/cumans-right.apng",
+        "emblem": "/images/civemblems/cumans.png",
+        "unit": "/images/civs/cumans.png",
+      },
       "name": "Cumans",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 34`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 6,
-      "isRandomlyChosenCiv": false,
+      "id": "Lithuanians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/lithuanians-left.apng",
+        "animated_right": "/images/units-animated/lithuanians-right.apng",
+        "emblem": "/images/civemblems/lithuanians.png",
+        "unit": "/images/civs/lithuanians.png",
+      },
       "name": "Lithuanians",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 35`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 6,
-      "isRandomlyChosenCiv": false,
+      "id": "Tatars",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/tatars-left.apng",
+        "animated_right": "/images/units-animated/tatars-right.apng",
+        "emblem": "/images/civemblems/tatars.png",
+        "unit": "/images/civs/tatars.png",
+      },
       "name": "Tatars",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 36`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 7,
-      "isRandomlyChosenCiv": false,
+      "id": "Burgundians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/burgundians-left.apng",
+        "animated_right": "/images/units-animated/burgundians-right.apng",
+        "emblem": "/images/civemblems/burgundians.png",
+        "unit": "/images/civs/burgundians.png",
+      },
       "name": "Burgundians",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`BAN CivPanels render correctly 37`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 7,
-      "isRandomlyChosenCiv": false,
+      "id": "Sicilians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/sicilians-left.apng",
+        "animated_right": "/images/units-animated/sicilians-right.apng",
+        "emblem": "/images/civemblems/sicilians.png",
+        "unit": "/images/civs/sicilians.png",
+      },
       "name": "Sicilians",
     }
   }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 1`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 2,
-      "isRandomlyChosenCiv": false,
+      "id": "Aztecs",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/aztecs-left.apng",
+        "animated_right": "/images/units-animated/aztecs-right.apng",
+        "emblem": "/images/civemblems/aztecs.png",
+        "unit": "/images/civs/aztecs.png",
+      },
       "name": "Aztecs",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 2`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 4,
-      "isRandomlyChosenCiv": false,
+      "id": "Berbers",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/berbers-left.apng",
+        "animated_right": "/images/units-animated/berbers-right.apng",
+        "emblem": "/images/civemblems/berbers.png",
+        "unit": "/images/civs/berbers.png",
+      },
       "name": "Berbers",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 3`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 1,
-      "isRandomlyChosenCiv": false,
+      "id": "Britons",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/britons-left.apng",
+        "animated_right": "/images/units-animated/britons-right.apng",
+        "emblem": "/images/civemblems/britons.png",
+        "unit": "/images/civs/britons.png",
+      },
       "name": "Britons",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 4`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 5,
-      "isRandomlyChosenCiv": false,
+      "id": "Burmese",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/burmese-left.apng",
+        "animated_right": "/images/units-animated/burmese-right.apng",
+        "emblem": "/images/civemblems/burmese.png",
+        "unit": "/images/civs/burmese.png",
+      },
       "name": "Burmese",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 5`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 1,
-      "isRandomlyChosenCiv": false,
+      "id": "Byzantines",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/byzantines-left.apng",
+        "animated_right": "/images/units-animated/byzantines-right.apng",
+        "emblem": "/images/civemblems/byzantines.png",
+        "unit": "/images/civs/byzantines.png",
+      },
       "name": "Byzantines",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 6`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 1,
-      "isRandomlyChosenCiv": false,
+      "id": "Celts",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/celts-left.apng",
+        "animated_right": "/images/units-animated/celts-right.apng",
+        "emblem": "/images/civemblems/celts.png",
+        "unit": "/images/civs/celts.png",
+      },
       "name": "Celts",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 7`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 1,
-      "isRandomlyChosenCiv": false,
+      "id": "Chinese",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/chinese-left.apng",
+        "animated_right": "/images/units-animated/chinese-right.apng",
+        "emblem": "/images/civemblems/chinese.png",
+        "unit": "/images/civs/chinese.png",
+      },
       "name": "Chinese",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 8`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 4,
-      "isRandomlyChosenCiv": false,
+      "id": "Ethiopians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/ethiopians-left.apng",
+        "animated_right": "/images/units-animated/ethiopians-right.apng",
+        "emblem": "/images/civemblems/ethiopians.png",
+        "unit": "/images/civs/ethiopians.png",
+      },
       "name": "Ethiopians",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 9`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 1,
-      "isRandomlyChosenCiv": false,
+      "id": "Franks",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/franks-left.apng",
+        "animated_right": "/images/units-animated/franks-right.apng",
+        "emblem": "/images/civemblems/franks.png",
+        "unit": "/images/civs/franks.png",
+      },
       "name": "Franks",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 10`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 1,
-      "isRandomlyChosenCiv": false,
+      "id": "Goths",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/goths-left.apng",
+        "animated_right": "/images/units-animated/goths-right.apng",
+        "emblem": "/images/civemblems/goths.png",
+        "unit": "/images/civs/goths.png",
+      },
       "name": "Goths",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 11`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 2,
-      "isRandomlyChosenCiv": false,
+      "id": "Huns",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/huns-left.apng",
+        "animated_right": "/images/units-animated/huns-right.apng",
+        "emblem": "/images/civemblems/huns.png",
+        "unit": "/images/civs/huns.png",
+      },
       "name": "Huns",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 12`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 3,
-      "isRandomlyChosenCiv": false,
+      "id": "Incas",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/incas-left.apng",
+        "animated_right": "/images/units-animated/incas-right.apng",
+        "emblem": "/images/civemblems/incas.png",
+        "unit": "/images/civs/incas.png",
+      },
       "name": "Incas",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 13`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 3,
-      "isRandomlyChosenCiv": false,
+      "id": "Indians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/indians-left.apng",
+        "animated_right": "/images/units-animated/indians-right.apng",
+        "emblem": "/images/civemblems/indians.png",
+        "unit": "/images/civs/indians.png",
+      },
       "name": "Indians",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 14`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 3,
-      "isRandomlyChosenCiv": false,
+      "id": "Italians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/italians-left.apng",
+        "animated_right": "/images/units-animated/italians-right.apng",
+        "emblem": "/images/civemblems/italians.png",
+        "unit": "/images/civs/italians.png",
+      },
       "name": "Italians",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 15`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 1,
-      "isRandomlyChosenCiv": false,
+      "id": "Japanese",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/japanese-left.apng",
+        "animated_right": "/images/units-animated/japanese-right.apng",
+        "emblem": "/images/civemblems/japanese.png",
+        "unit": "/images/civs/japanese.png",
+      },
       "name": "Japanese",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 16`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 5,
-      "isRandomlyChosenCiv": false,
+      "id": "Khmer",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/khmer-left.apng",
+        "animated_right": "/images/units-animated/khmer-right.apng",
+        "emblem": "/images/civemblems/khmer.png",
+        "unit": "/images/civs/khmer.png",
+      },
       "name": "Khmer",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 17`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 2,
-      "isRandomlyChosenCiv": false,
+      "id": "Koreans",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/koreans-left.apng",
+        "animated_right": "/images/units-animated/koreans-right.apng",
+        "emblem": "/images/civemblems/koreans.png",
+        "unit": "/images/civs/koreans.png",
+      },
       "name": "Koreans",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 18`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 3,
-      "isRandomlyChosenCiv": false,
+      "id": "Magyars",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/magyars-left.apng",
+        "animated_right": "/images/units-animated/magyars-right.apng",
+        "emblem": "/images/civemblems/magyars.png",
+        "unit": "/images/civs/magyars.png",
+      },
       "name": "Magyars",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 19`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 5,
-      "isRandomlyChosenCiv": false,
+      "id": "Malay",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/malay-left.apng",
+        "animated_right": "/images/units-animated/malay-right.apng",
+        "emblem": "/images/civemblems/malay.png",
+        "unit": "/images/civs/malay.png",
+      },
       "name": "Malay",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 20`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 4,
-      "isRandomlyChosenCiv": false,
+      "id": "Malians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/malians-left.apng",
+        "animated_right": "/images/units-animated/malians-right.apng",
+        "emblem": "/images/civemblems/malians.png",
+        "unit": "/images/civs/malians.png",
+      },
       "name": "Malians",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 21`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 2,
-      "isRandomlyChosenCiv": false,
+      "id": "Mayans",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/mayans-left.apng",
+        "animated_right": "/images/units-animated/mayans-right.apng",
+        "emblem": "/images/civemblems/mayans.png",
+        "unit": "/images/civs/mayans.png",
+      },
       "name": "Mayans",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 22`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 1,
-      "isRandomlyChosenCiv": false,
+      "id": "Mongols",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/mongols-left.apng",
+        "animated_right": "/images/units-animated/mongols-right.apng",
+        "emblem": "/images/civemblems/mongols.png",
+        "unit": "/images/civs/mongols.png",
+      },
       "name": "Mongols",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 23`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 1,
-      "isRandomlyChosenCiv": false,
+      "id": "Persians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/persians-left.apng",
+        "animated_right": "/images/units-animated/persians-right.apng",
+        "emblem": "/images/civemblems/persians.png",
+        "unit": "/images/civs/persians.png",
+      },
       "name": "Persians",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 24`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 4,
-      "isRandomlyChosenCiv": false,
+      "id": "Portuguese",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/portuguese-left.apng",
+        "animated_right": "/images/units-animated/portuguese-right.apng",
+        "emblem": "/images/civemblems/portuguese.png",
+        "unit": "/images/civs/portuguese.png",
+      },
       "name": "Portuguese",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 25`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 1,
-      "isRandomlyChosenCiv": false,
+      "id": "Saracens",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/saracens-left.apng",
+        "animated_right": "/images/units-animated/saracens-right.apng",
+        "emblem": "/images/civemblems/saracens.png",
+        "unit": "/images/civs/saracens.png",
+      },
       "name": "Saracens",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 26`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 3,
-      "isRandomlyChosenCiv": false,
+      "id": "Slavs",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/slavs-left.apng",
+        "animated_right": "/images/units-animated/slavs-right.apng",
+        "emblem": "/images/civemblems/slavs.png",
+        "unit": "/images/civs/slavs.png",
+      },
       "name": "Slavs",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 27`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 2,
-      "isRandomlyChosenCiv": false,
+      "id": "Spanish",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/spanish-left.apng",
+        "animated_right": "/images/units-animated/spanish-right.apng",
+        "emblem": "/images/civemblems/spanish.png",
+        "unit": "/images/civs/spanish.png",
+      },
       "name": "Spanish",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 28`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 1,
-      "isRandomlyChosenCiv": false,
+      "id": "Teutons",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/teutons-left.apng",
+        "animated_right": "/images/units-animated/teutons-right.apng",
+        "emblem": "/images/civemblems/teutons.png",
+        "unit": "/images/civs/teutons.png",
+      },
       "name": "Teutons",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 29`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 1,
-      "isRandomlyChosenCiv": false,
+      "id": "Turks",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/turks-left.apng",
+        "animated_right": "/images/units-animated/turks-right.apng",
+        "emblem": "/images/civemblems/turks.png",
+        "unit": "/images/civs/turks.png",
+      },
       "name": "Turks",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 30`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 5,
-      "isRandomlyChosenCiv": false,
+      "id": "Vietnamese",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/vietnamese-left.apng",
+        "animated_right": "/images/units-animated/vietnamese-right.apng",
+        "emblem": "/images/civemblems/vietnamese.png",
+        "unit": "/images/civs/vietnamese.png",
+      },
       "name": "Vietnamese",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 31`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 1,
-      "isRandomlyChosenCiv": false,
+      "id": "Vikings",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/vikings-left.apng",
+        "animated_right": "/images/units-animated/vikings-right.apng",
+        "emblem": "/images/civemblems/vikings.png",
+        "unit": "/images/civs/vikings.png",
+      },
       "name": "Vikings",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 32`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 6,
-      "isRandomlyChosenCiv": false,
+      "id": "Bulgarians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/bulgarians-left.apng",
+        "animated_right": "/images/units-animated/bulgarians-right.apng",
+        "emblem": "/images/civemblems/bulgarians.png",
+        "unit": "/images/civs/bulgarians.png",
+      },
       "name": "Bulgarians",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 33`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 6,
-      "isRandomlyChosenCiv": false,
+      "id": "Cumans",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/cumans-left.apng",
+        "animated_right": "/images/units-animated/cumans-right.apng",
+        "emblem": "/images/civemblems/cumans.png",
+        "unit": "/images/civs/cumans.png",
+      },
       "name": "Cumans",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 34`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 6,
-      "isRandomlyChosenCiv": false,
+      "id": "Lithuanians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/lithuanians-left.apng",
+        "animated_right": "/images/units-animated/lithuanians-right.apng",
+        "emblem": "/images/civemblems/lithuanians.png",
+        "unit": "/images/civs/lithuanians.png",
+      },
       "name": "Lithuanians",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 35`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 6,
-      "isRandomlyChosenCiv": false,
+      "id": "Tatars",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/tatars-left.apng",
+        "animated_right": "/images/units-animated/tatars-right.apng",
+        "emblem": "/images/civemblems/tatars.png",
+        "unit": "/images/civs/tatars.png",
+      },
       "name": "Tatars",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 36`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 7,
-      "isRandomlyChosenCiv": false,
+      "id": "Burgundians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/burgundians-left.apng",
+        "animated_right": "/images/units-animated/burgundians-right.apng",
+        "emblem": "/images/civemblems/burgundians.png",
+        "unit": "/images/civs/burgundians.png",
+      },
       "name": "Burgundians",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`PICK CivPanels render correctly 37`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
-  civilisation={
+  draftOption={
     Civilisation {
       "gameVersion": 7,
-      "isRandomlyChosenCiv": false,
+      "id": "Sicilians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/sicilians-left.apng",
+        "animated_right": "/images/units-animated/sicilians-right.apng",
+        "emblem": "/images/civemblems/sicilians.png",
+        "unit": "/images/civs/sicilians.png",
+      },
       "name": "Sicilians",
     }
   }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`empty BAN CivPanel renders correctly 1`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="ban"
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
 
 exports[`empty PICK CivPanel renders correctly 1`] = `
-<CivPanel
+<DraftOptionPanel
   active={false}
-  civPanelType="pick"
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
   t={[Function]}
 />
 `;
