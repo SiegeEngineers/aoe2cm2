@@ -1,5 +1,4 @@
 import Draft from "./Draft";
-import Civilisation, {Name as CivilisationName} from "./Civilisation";
 import {DraftEvent} from "../types/DraftEvent";
 import {Util} from "../util/Util";
 import ActionType from "../constants/ActionType";
@@ -7,18 +6,19 @@ import Turn from "./Turn";
 import Exclusivity from "../constants/Exclusivity";
 import Player from "../constants/Player";
 import PlayerEvent from "./PlayerEvent";
+import DraftOption from "./DraftOption";
 
 class ValidOptions {
-    public pick: CivilisationName[];
-    public ban: CivilisationName[];
-    public snipe: CivilisationName[];
-    public steal: CivilisationName[];
+    public pick: string[];
+    public ban: string[];
+    public snipe: string[];
+    public steal: string[];
 
-    constructor(pick: Civilisation[], ban: Civilisation[], snipe: Civilisation[], steal: Civilisation[]) {
-        this.pick = pick.map(civ => civ.name);
-        this.ban = ban.map(civ => civ.name);
-        this.snipe = snipe.map(civ => civ.name);
-        this.steal = snipe.map(civ => civ.name);
+    constructor(pick: DraftOption[], ban: DraftOption[], snipe: DraftOption[], steal: DraftOption[]) {
+        this.pick = pick.map(option => option.id);
+        this.ban = ban.map(option => option.id);
+        this.snipe = snipe.map(option => option.id);
+        this.steal = steal.map(option => option.id);
     }
 }
 
@@ -28,16 +28,16 @@ class ValidCivs {
 
     constructor(draft: Draft) {
         this.host = new ValidOptions(
-            [...draft.preset.civilisations, Civilisation.RANDOM],
-            [...draft.preset.civilisations, Civilisation.RANDOM],
-            [Civilisation.RANDOM],
-            [Civilisation.RANDOM]
+            [...draft.preset.options, DraftOption.RANDOM],
+            [...draft.preset.options, DraftOption.RANDOM],
+            [DraftOption.RANDOM],
+            [DraftOption.RANDOM]
         );
         this.guest = new ValidOptions(
-            [...draft.preset.civilisations, Civilisation.RANDOM],
-            [...draft.preset.civilisations, Civilisation.RANDOM],
-            [Civilisation.RANDOM],
-            [Civilisation.RANDOM]);
+            [...draft.preset.options, DraftOption.RANDOM],
+            [...draft.preset.options, DraftOption.RANDOM],
+            [DraftOption.RANDOM],
+            [DraftOption.RANDOM]);
         for (let i = 0; i < draft.events.length; i++) {
             const event = draft.events[i];
 
@@ -85,19 +85,19 @@ class ValidCivs {
 
     private handleSnipe(event: PlayerEvent) {
         if (ValidCivs.isHostEvent(event)) {
-            this.removeHostSnipeAndSteal(event.civilisation);
+            this.removeHostSnipeAndSteal(event.chosenOptionId);
         }
         if (ValidCivs.isGuestEvent(event)) {
-            this.removeGuestSnipeAndSteal(event.civilisation);
+            this.removeGuestSnipeAndSteal(event.chosenOptionId);
         }
     }
 
     private handleSteal(event: PlayerEvent) {
         if (ValidCivs.isHostEvent(event)) {
-            this.removeHostSnipeAndSteal(event.civilisation);
+            this.removeHostSnipeAndSteal(event.chosenOptionId);
         }
         if (ValidCivs.isGuestEvent(event)) {
-            this.removeGuestSnipeAndSteal(event.civilisation);
+            this.removeGuestSnipeAndSteal(event.chosenOptionId);
         }
         this.addCivilisationToSnipesAndSteals(event);
     }
@@ -116,29 +116,29 @@ class ValidCivs {
 
     private handleNonExclusiveBan(event: PlayerEvent) {
         if (ValidCivs.isHostEvent(event)) {
-            this.removeGuestPick(event.civilisation);
+            this.removeGuestPick(event.chosenOptionId);
         }
         if (ValidCivs.isGuestEvent(event)) {
-            this.removeHostPick(event.civilisation);
+            this.removeHostPick(event.chosenOptionId);
         }
     }
 
     private handleExclusiveBan(event: PlayerEvent) {
         if (ValidCivs.isHostEvent(event)) {
-            this.removeGuestPick(event.civilisation);
-            this.removeHostBan(event.civilisation);
+            this.removeGuestPick(event.chosenOptionId);
+            this.removeHostBan(event.chosenOptionId);
         }
         if (ValidCivs.isGuestEvent(event)) {
-            this.removeHostPick(event.civilisation);
-            this.removeGuestBan(event.civilisation);
+            this.removeHostPick(event.chosenOptionId);
+            this.removeGuestBan(event.chosenOptionId);
         }
     }
 
     private handleGlobalBan(event: PlayerEvent) {
-        this.removeHostBan(event.civilisation);
-        this.removeGuestBan(event.civilisation);
-        this.removeHostPick(event.civilisation);
-        this.removeGuestPick(event.civilisation);
+        this.removeHostBan(event.chosenOptionId);
+        this.removeGuestBan(event.chosenOptionId);
+        this.removeHostPick(event.chosenOptionId);
+        this.removeGuestPick(event.chosenOptionId);
     }
 
     private handlePick(turn: Turn, event: PlayerEvent) {
@@ -153,31 +153,31 @@ class ValidCivs {
 
     private addCivilisationToSnipesAndSteals(event: PlayerEvent) {
         if (ValidCivs.isHostEvent(event)) {
-            this.guest.snipe.push(event.civilisation.name);
-            this.guest.steal.push(event.civilisation.name);
+            this.guest.snipe.push(event.chosenOptionId);
+            this.guest.steal.push(event.chosenOptionId);
         }
         if (ValidCivs.isGuestEvent(event)) {
-            this.host.snipe.push(event.civilisation.name);
-            this.host.steal.push(event.civilisation.name);
+            this.host.snipe.push(event.chosenOptionId);
+            this.host.steal.push(event.chosenOptionId);
         }
     }
 
     private handleExclusivePick(event: PlayerEvent) {
         if (ValidCivs.isHostEvent(event)) {
-            this.removeHostPick(event.civilisation);
-            this.removeGuestBan(event.civilisation);
+            this.removeHostPick(event.chosenOptionId);
+            this.removeGuestBan(event.chosenOptionId);
         }
         if (ValidCivs.isGuestEvent(event)) {
-            this.removeGuestPick(event.civilisation);
-            this.removeHostBan(event.civilisation);
+            this.removeGuestPick(event.chosenOptionId);
+            this.removeHostBan(event.chosenOptionId);
         }
     }
 
     private handleGlobalPick(event: PlayerEvent) {
-        this.removeHostPick(event.civilisation);
-        this.removeGuestBan(event.civilisation);
-        this.removeGuestPick(event.civilisation);
-        this.removeHostBan(event.civilisation);
+        this.removeHostPick(event.chosenOptionId);
+        this.removeGuestBan(event.chosenOptionId);
+        this.removeGuestPick(event.chosenOptionId);
+        this.removeHostBan(event.chosenOptionId);
     }
 
     private static isGlobal(turn: Turn) {
@@ -216,51 +216,51 @@ class ValidCivs {
         return event.player === Player.HOST;
     }
 
-    private removeHostPick(civilisation: Civilisation) {
-        const index = this.host.pick.indexOf(civilisation.name);
+    private removeHostPick(civilisationId: string) {
+        const index = this.host.pick.indexOf(civilisationId);
         if (index >= 0) {
             this.host.pick.splice(index, 1);
         }
     }
 
-    private removeHostBan(civilisation: Civilisation) {
-        const index = this.host.ban.indexOf(civilisation.name);
+    private removeHostBan(civilisationId: string) {
+        const index = this.host.ban.indexOf(civilisationId);
         if (index >= 0) {
             this.host.ban.splice(index, 1);
         }
     }
 
-    private removeHostSnipeAndSteal(civilisation: Civilisation) {
-        const snipeindex = this.host.snipe.indexOf(civilisation.name);
+    private removeHostSnipeAndSteal(civilisationId: string) {
+        const snipeindex = this.host.snipe.indexOf(civilisationId);
         if (snipeindex >= 0) {
             this.host.snipe.splice(snipeindex, 1);
         }
-        const stealindex = this.host.steal.indexOf(civilisation.name);
+        const stealindex = this.host.steal.indexOf(civilisationId);
         if (stealindex >= 0) {
             this.host.steal.splice(stealindex, 1);
         }
     }
 
-    private removeGuestPick(civilisation: Civilisation) {
-        const index = this.guest.pick.indexOf(civilisation.name);
+    private removeGuestPick(civilisationId: string) {
+        const index = this.guest.pick.indexOf(civilisationId);
         if (index >= 0) {
             this.guest.pick.splice(index, 1);
         }
     }
 
-    private removeGuestBan(civilisation: Civilisation) {
-        const index = this.guest.ban.indexOf(civilisation.name);
+    private removeGuestBan(civilisationId: string) {
+        const index = this.guest.ban.indexOf(civilisationId);
         if (index >= 0) {
             this.guest.ban.splice(index, 1);
         }
     }
 
-    private removeGuestSnipeAndSteal(civilisation: Civilisation) {
-        const snipeindex = this.guest.snipe.indexOf(civilisation.name);
+    private removeGuestSnipeAndSteal(civilisationId: string) {
+        const snipeindex = this.guest.snipe.indexOf(civilisationId);
         if (snipeindex >= 0) {
             this.guest.snipe.splice(snipeindex, 1);
         }
-        const stealindex = this.guest.steal.indexOf(civilisation.name);
+        const stealindex = this.guest.steal.indexOf(civilisationId);
         if (stealindex >= 0) {
             this.guest.steal.splice(stealindex, 1);
         }
@@ -272,16 +272,16 @@ class ValidCivs {
             validOptions = this.guest;
         }
         if (draftEvent.actionType === ActionType.PICK) {
-            return validOptions.pick.includes(draftEvent.civilisation.name);
+            return validOptions.pick.includes(draftEvent.chosenOptionId);
         }
         if (draftEvent.actionType === ActionType.BAN) {
-            return validOptions.ban.includes(draftEvent.civilisation.name);
+            return validOptions.ban.includes(draftEvent.chosenOptionId);
         }
         if (draftEvent.actionType === ActionType.SNIPE) {
-            return validOptions.snipe.includes(draftEvent.civilisation.name);
+            return validOptions.snipe.includes(draftEvent.chosenOptionId);
         }
         if (draftEvent.actionType === ActionType.STEAL) {
-            return validOptions.steal.includes(draftEvent.civilisation.name);
+            return validOptions.steal.includes(draftEvent.chosenOptionId);
         }
         throw new Error('Unknown ActionType: ' + draftEvent.actionType);
     }

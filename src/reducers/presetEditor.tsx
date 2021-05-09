@@ -2,7 +2,6 @@ import {IPresetEditorState} from "../types";
 import {PresetEditorAction} from "../actions";
 import {Actions} from "../constants";
 import Preset from "../models/Preset";
-import {CivilisationEncoder} from "../util/CivilisationEncoder";
 
 export const initialPresetEditorState: IPresetEditorState = {
     editorPreset: null
@@ -48,7 +47,7 @@ export const presetEditorReducer = (state: IPresetEditorState = initialPresetEdi
                 ...state,
                 editorPreset: new Preset(
                     state.editorPreset.name,
-                    CivilisationEncoder.decodeCivilisationArray(state.editorPreset.encodedCivilisations),
+                    state.editorPreset.options,
                     action.turns
                 )
             };
@@ -60,18 +59,18 @@ export const presetEditorReducer = (state: IPresetEditorState = initialPresetEdi
             } else {
                 return {
                     ...state,
-                    editorPreset: new Preset(action.value, state.editorPreset.civilisations, state.editorPreset.turns)
+                    editorPreset: new Preset(action.value, state.editorPreset.options, state.editorPreset.turns)
                 };
             }
 
-        case Actions.SET_EDITOR_CIVILISATIONS:
-            console.log(Actions.SET_EDITOR_CIVILISATIONS, action.value);
+        case Actions.SET_EDITOR_DRAFT_OPTIONS:
+            console.log(Actions.SET_EDITOR_DRAFT_OPTIONS, action.value);
             if (state.editorPreset === null) {
                 return state;
             } else {
                 return {
                     ...state,
-                    editorPreset: new Preset(state.editorPreset.name, CivilisationEncoder.decodeCivilisationArray(action.value), state.editorPreset.turns)
+                    editorPreset: new Preset(state.editorPreset.name, action.value, state.editorPreset.turns)
                 };
             }
 

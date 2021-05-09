@@ -4,9 +4,8 @@ import Turn from "../../models/Turn";
 import Player from "../../constants/Player";
 import {Dispatch} from "redux";
 import * as actions from "../../actions";
-
 import {
-    ISetEditorCivilisations,
+    ISetEditorDraftOptions,
     ISetEditorName,
     ISetEditorPreset,
     ISetEditorTurn,
@@ -17,14 +16,15 @@ import {ApplicationState} from "../../types";
 import Exclusivity from "../../constants/Exclusivity";
 import Action from "../../constants/Action";
 import NewDraftButton from "../NewDraftButton";
-import Civilisation from "../../models/Civilisation";
 import TurnRow from "../draft/TurnRow";
 import SavePresetButton from "../SavePresetButton";
-import {PresetCivilisationCheckbox} from "./PresetCivilisationCheckbox";
+import {PresetOptionCheckbox} from "./PresetOptionCheckbox";
 import TurnExplanation from "./TurnExplanation";
 import {Trans, withTranslation, WithTranslation} from "react-i18next";
 import {ReactSortable} from "react-sortablejs";
 import {PresetEditorTurn} from "./PresetEditorTurn";
+import Civilisation from "../../models/Civilisation";
+import DraftOption from "../../models/DraftOption";
 
 interface Props extends WithTranslation{
     preset: Preset | null,
@@ -32,7 +32,7 @@ interface Props extends WithTranslation{
     onValueChange: (turn: Turn | null, index: number) => ISetEditorTurn,
     onTurnOrderChange: (turns: Turn[]) => ISetEditorTurnOrder,
     onPresetNameChange: (value: string) => ISetEditorName,
-    onPresetCivilisationsChange: (value: string) => ISetEditorCivilisations
+    onPresetDraftOptionsChange: (value: DraftOption[]) => ISetEditorDraftOptions
 }
 
 class PresetEditor extends React.Component<Props, object> {
@@ -55,13 +55,13 @@ class PresetEditor extends React.Component<Props, object> {
                               className="columns is-mobile preset-editor-row"
                               onValueChange={this.props.onValueChange} key={turn.id}/>);
 
-        const presetCivilisations = this.props.preset.civilisations;
+        const presetOptions = this.props.preset.options;
 
         const civs = Civilisation.ALL.map((value: Civilisation, index: number) =>
-            <PresetCivilisationCheckbox presetCivilisations={presetCivilisations} value={value}
-                                        key={index}
-                                        disabled={false}
-                                        onPresetCivilisationsChange={this.props.onPresetCivilisationsChange}/>);
+            <PresetOptionCheckbox presetOptions={presetOptions} value={value}
+                                  key={index}
+                                  disabled={false}
+                                  onPresetDraftOptionsChange={this.props.onPresetDraftOptionsChange}/>);
 
         return (
             <React.Fragment>
@@ -166,7 +166,7 @@ export function mapDispatchToProps(dispatch: Dispatch<actions.Action>) {
         onSetEditorPreset: (preset: Preset) => dispatch(actions.setEditorPreset(preset)),
         onValueChange: (turn: Turn | null, index: number) => dispatch(actions.setEditorTurn(turn, index)),
         onTurnOrderChange: (turns: Turn[]) => dispatch(actions.setEditorTurnOrder(turns)),
-        onPresetCivilisationsChange: (value: string) => dispatch(actions.setEditorCivilisations(value)),
+        onPresetDraftOptionsChange: (value: DraftOption[]) => dispatch(actions.setEditorDraftOptions(value)),
         onPresetNameChange: (value: string) => dispatch(actions.setEditorName(value)),
     }
 }

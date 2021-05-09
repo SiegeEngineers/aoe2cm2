@@ -8,6 +8,7 @@ import {ICountdownValues, IDraftState} from "../types";
 import Preset from "../models/Preset";
 import Turn from "../models/Turn";
 import {ColorScheme} from "../constants/ColorScheme";
+import DraftOption from "../models/DraftOption";
 
 export interface IActionCompleted {
     type: ServerActions.EXECUTE_ACTION,
@@ -154,9 +155,9 @@ export interface ISetEditorName {
     value: string
 }
 
-export interface ISetEditorCivilisations {
-    type: Actions.SET_EDITOR_CIVILISATIONS
-    value: string
+export interface ISetEditorDraftOptions {
+    type: Actions.SET_EDITOR_DRAFT_OPTIONS
+    value: DraftOption[]
 }
 
 
@@ -208,7 +209,7 @@ export type PresetEditorAction = ISetEditorPreset
     | ISetEditorTurn
     | ISetEditorTurnOrder
     | ISetEditorName
-    | ISetEditorCivilisations;
+    | ISetEditorDraftOptions;
 
 export type Action = DraftAction
     | ReplayAction
@@ -407,10 +408,10 @@ export function setEditorName(value: string): ISetEditorName {
     }
 }
 
-export function setEditorCivilisations(value: string): ISetEditorCivilisations {
+export function setEditorDraftOptions(value: DraftOption[]): ISetEditorDraftOptions {
     return {
         value,
-        type: Actions.SET_EDITOR_CIVILISATIONS
+        type: Actions.SET_EDITOR_DRAFT_OPTIONS
     }
 }
 

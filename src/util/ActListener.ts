@@ -44,7 +44,7 @@ export class ActListener {
                 }
             }
 
-            const civilisationsList = draftsStore.getDraftOrThrow(draftId).preset.civilisations.slice();
+            const civilisationsList = draftsStore.getDraftOrThrow(draftId).preset.options.slice();
             message = Util.setRandomCivilisationIfNeeded(message, draftId, draftsStore, civilisationsList);
             logger.info("Augmented message: %s", JSON.stringify(message), {draftId});
 

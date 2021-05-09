@@ -4,9 +4,9 @@ import {default as ModelPreset} from "../../models/Preset"
 import TurnRow from "../draft/TurnRow";
 import NewDraftButton from "../NewDraftButton";
 import CustomisePresetButton from "../../containers/CustomisePresetButton";
-import Civilisation from "../../models/Civilisation";
 import CopyableInput from "../draft/CopyableInput";
-import {PresetCivilisationCheckbox} from "../PresetEditor/PresetCivilisationCheckbox";
+import {PresetOptionCheckbox} from "../PresetEditor/PresetOptionCheckbox";
+import Civilisation from "../../models/Civilisation";
 
 interface IState {
     preset?: ModelPreset;
@@ -34,11 +34,11 @@ class Preset extends React.Component<object, IState> {
         }
         if (this.state.preset !== undefined) {
 
-            const presetCivilisations = this.state.preset.civilisations;
+            const presetCivilisations = this.state.preset.options;
             const civs = Civilisation.ALL.map((value: Civilisation, index: number) =>
-                <PresetCivilisationCheckbox presetCivilisations={presetCivilisations} value={value}
-                                            key={index}
-                                            disabled={true}/>);
+                <PresetOptionCheckbox presetOptions={presetCivilisations} value={value}
+                                      key={index}
+                                      disabled={true}/>);
 
             return (
                 <div className='content box'>

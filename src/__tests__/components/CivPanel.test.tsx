@@ -1,32 +1,32 @@
 import {shallow} from "enzyme";
 import * as React from 'react';
-import CivPanel from "../../components/draft/CivPanel";
+import DraftOptionPanel from "../../components/draft/DraftOptionPanel";
 import Civilisation from "../../models/Civilisation";
-import CivPanelType from "../../constants/CivPanelType";
+import DraftOptionPanelType from "../../constants/DraftOptionPanelType";
 
 it('PICK CivPanels render correctly', () => {
     Civilisation.ALL.forEach((civ: Civilisation) => {
-            renderCivPanelAndCheckSnapshot(CivPanelType.PICK, civ);
+            renderCivPanelAndCheckSnapshot(DraftOptionPanelType.PICK, civ);
         }
     );
 });
 
 it('empty PICK CivPanel renders correctly', () => {
-    renderCivPanelAndCheckSnapshot(CivPanelType.PICK);
+    renderCivPanelAndCheckSnapshot(DraftOptionPanelType.PICK);
 });
 
 it('BAN CivPanels render correctly', () => {
     Civilisation.ALL.forEach((civ: Civilisation) => {
-            renderCivPanelAndCheckSnapshot(CivPanelType.BAN, civ);
+            renderCivPanelAndCheckSnapshot(DraftOptionPanelType.BAN, civ);
         }
     );
 });
 
 it('empty BAN CivPanel renders correctly', () => {
-    renderCivPanelAndCheckSnapshot(CivPanelType.BAN);
+    renderCivPanelAndCheckSnapshot(DraftOptionPanelType.BAN);
 });
 
-function renderCivPanelAndCheckSnapshot(civPanelType: CivPanelType, civ?: Civilisation) {
-    const civpanel = shallow(<CivPanel civilisation={civ} active={false} civPanelType={civPanelType}/>);
+function renderCivPanelAndCheckSnapshot(civPanelType: DraftOptionPanelType, civ?: Civilisation) {
+    const civpanel = shallow(<DraftOptionPanel draftOption={civ} active={false} civPanelType={civPanelType} nextAction={0} iconStyle={'units'}/>);
     expect(civpanel).toMatchSnapshot();
 }

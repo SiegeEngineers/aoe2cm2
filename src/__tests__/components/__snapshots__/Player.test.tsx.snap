@@ -6,6 +6,7 @@ exports[`Player renders correctly 1`] = `
   player="HOST"
   preset={
     Preset {
+      "draftOptions": undefined,
       "encodedCivilisations": "1fffffffff",
       "name": "Default Preset",
       "presetId": undefined,
