@@ -83,6 +83,7 @@ export const SocketUtil = {
 
         socket.on("replay", (message: any) => {
             console.log('message received:', "[replay]", message);
+            message = Util.transformDraftStateToCurrentFormat(message);
             const draftState = message as IDraftState;
             draftState.events = draftState.events.map(value => {
                 if (Util.isPlayerEvent(value)) {

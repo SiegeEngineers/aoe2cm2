@@ -78,3 +78,15 @@ it('Reject Array that contains non-Civilisation element', () => {
 it('RANDOM is not a technical draft option', () => {
     expect(Util.isTechnicalDraftOption(DraftOption.RANDOM)).toEqual(false);
 });
+
+it('Transforms legacy draft replay format', () => {
+    const legacyDraft = JSON.parse(fs.readFileSync(path.join(__filename, '..', 'testfiles', 'legacy.json')).toString('utf8'));
+    const transformed = Util.transformDraftStateToCurrentFormat(legacyDraft);
+    expect(transformed).toMatchSnapshot();
+});
+
+it('Does not modify current draft replay format', () => {
+    const draftInCurrentFormat = JSON.parse(fs.readFileSync(path.join(__filename, '..', 'testfiles', 'current.json')).toString('utf8'));
+    const transformed = Util.transformDraftStateToCurrentFormat(draftInCurrentFormat);
+    expect(transformed).toEqual(draftInCurrentFormat);
+});
