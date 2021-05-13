@@ -1,0 +1,355 @@
+{
+  "nextAction": 19,
+  "events": [
+    {
+      "player": "HOST",
+      "actionType": "pick",
+      "civilisation": {
+        "name": "Aztecs",
+        "gameVersion": 2,
+        "isRandomlyChosenCiv": false
+      },
+      "offset": 1395
+    },
+    {
+      "player": "GUEST",
+      "actionType": "pick",
+      "civilisation": {
+        "name": "Berbers",
+        "gameVersion": 4,
+        "isRandomlyChosenCiv": false
+      },
+      "offset": 2710
+    },
+    {
+      "player": "GUEST",
+      "actionType": "pick",
+      "civilisation": {
+        "name": "Britons",
+        "gameVersion": 1,
+        "isRandomlyChosenCiv": false
+      },
+      "offset": 3375
+    },
+    {
+      "player": "HOST",
+      "actionType": "pick",
+      "civilisation": {
+        "name": "Bulgarians",
+        "gameVersion": 6,
+        "isRandomlyChosenCiv": false
+      },
+      "offset": 4512
+    },
+    {
+      "player": "HOST",
+      "actionType": "pick",
+      "civilisation": {
+        "name": "Burmese",
+        "gameVersion": 5,
+        "isRandomlyChosenCiv": false
+      },
+      "offset": 5069
+    },
+    {
+      "player": "GUEST",
+      "actionType": "pick",
+      "civilisation": {
+        "name": "Byzantines",
+        "gameVersion": 1,
+        "isRandomlyChosenCiv": false
+      },
+      "offset": 6061
+    },
+    {
+      "player": "GUEST",
+      "actionType": "pick",
+      "civilisation": {
+        "name": "Celts",
+        "gameVersion": 1,
+        "isRandomlyChosenCiv": false
+      },
+      "offset": 6719
+    },
+    {
+      "player": "HOST",
+      "actionType": "pick",
+      "civilisation": {
+        "name": "Chinese",
+        "gameVersion": 1,
+        "isRandomlyChosenCiv": false
+      },
+      "offset": 7622
+    },
+    {
+      "player": "HOST",
+      "actionType": "pick",
+      "civilisation": {
+        "name": "Cumans",
+        "gameVersion": 6,
+        "isRandomlyChosenCiv": false
+      },
+      "offset": 8950
+    },
+    {
+      "player": "GUEST",
+      "actionType": "pick",
+      "civilisation": {
+        "name": "Ethiopians",
+        "gameVersion": 4,
+        "isRandomlyChosenCiv": false
+      },
+      "offset": 10311
+    },
+    {
+      "player": "GUEST",
+      "actionType": "pick",
+      "civilisation": {
+        "name": "Franks",
+        "gameVersion": 1,
+        "isRandomlyChosenCiv": true
+      },
+      "offset": 11515
+    },
+    {
+      "player": "HOST",
+      "actionType": "pick",
+      "civilisation": {
+        "name": "Goths",
+        "gameVersion": 1,
+        "isRandomlyChosenCiv": false
+      },
+      "offset": 12679
+    },
+    {
+      "player": "HOST",
+      "actionType": "pick",
+      "civilisation": {
+        "name": "Huns",
+        "gameVersion": 2,
+        "isRandomlyChosenCiv": false
+      },
+      "offset": 13324
+    },
+    {
+      "player": "GUEST",
+      "actionType": "pick",
+      "civilisation": {
+        "name": "Incas",
+        "gameVersion": 3,
+        "isRandomlyChosenCiv": false
+      },
+      "offset": 18113
+    },
+    {
+      "player": "HOST",
+      "actionType": "snipe",
+      "civilisation": {
+        "name": "Byzantines",
+        "gameVersion": 1,
+        "isRandomlyChosenCiv": false
+      },
+      "offset": 19752
+    },
+    {
+      "player": "HOST",
+      "actionType": "snipe",
+      "civilisation": {
+        "name": "Celts",
+        "gameVersion": 1,
+        "isRandomlyChosenCiv": false
+      },
+      "offset": 20646
+    },
+    {
+      "player": "GUEST",
+      "actionType": "snipe",
+      "civilisation": {
+        "name": "Huns",
+        "gameVersion": 2,
+        "isRandomlyChosenCiv": true
+      },
+      "offset": 22145
+    },
+    {
+      "player": "GUEST",
+      "actionType": "snipe",
+      "civilisation": {
+        "name": "Goths",
+        "gameVersion": 1,
+        "isRandomlyChosenCiv": false
+      },
+      "offset": 23261
+    },
+    {
+      "player": "NONE",
+      "action": "REVEAL_SNIPES",
+      "offset": 25269
+    }
+  ],
+  "nameHost": "Sultan Sanjar",
+  "nameGuest": "Mohammad Shah",
+  "preset": {
+    "name": "LAT AMERICA INVITAT",
+    "encodedCivilisations": "7ffffffff",
+    "turns": [
+      {
+        "id": "5cf13f8d-fefd-41bf-8be7-b98b53377cec",
+        "player": "HOST",
+        "action": "PICK",
+        "exclusivity": "GLOBAL",
+        "hidden": false,
+        "parallel": false
+      },
+      {
+        "id": "c492ae70-b6e2-4d2f-bace-fa3e49ab8be3",
+        "player": "GUEST",
+        "action": "PICK",
+        "exclusivity": "GLOBAL",
+        "hidden": false,
+        "parallel": false
+      },
+      {
+        "id": "e04f294f-9bd6-4907-afcf-bc877cff3cc5",
+        "player": "GUEST",
+        "action": "PICK",
+        "exclusivity": "GLOBAL",
+        "hidden": false,
+        "parallel": false
+      },
+      {
+        "id": "a366d64b-18eb-4f88-ab33-b691f6ab2e77",
+        "player": "HOST",
+        "action": "PICK",
+        "exclusivity": "GLOBAL",
+        "hidden": false,
+        "parallel": false
+      },
+      {
+        "id": "d781a89a-894d-434c-be4c-59bde9c527f3",
+        "player": "HOST",
+        "action": "PICK",
+        "exclusivity": "GLOBAL",
+        "hidden": false,
+        "parallel": false
+      },
+      {
+        "id": "e66c6fe0-10bd-484f-8404-c99629167017",
+        "player": "GUEST",
+        "action": "PICK",
+        "exclusivity": "GLOBAL",
+        "hidden": false,
+        "parallel": false
+      },
+      {
+        "id": "ae76b9fe-f89d-4f02-8605-fc06b2ad8d32",
+        "player": "GUEST",
+        "action": "PICK",
+        "exclusivity": "GLOBAL",
+        "hidden": false,
+        "parallel": false
+      },
+      {
+        "id": "e92b9b5c-da2d-4e58-8391-82a9cf45f6b5",
+        "player": "HOST",
+        "action": "PICK",
+        "exclusivity": "GLOBAL",
+        "hidden": false,
+        "parallel": false
+      },
+      {
+        "id": "3332fa77-ddb9-4cb2-b3eb-35590eb97cb4",
+        "player": "HOST",
+        "action": "PICK",
+        "exclusivity": "GLOBAL",
+        "hidden": false,
+        "parallel": false
+      },
+      {
+        "id": "a54e3267-a043-46a7-8444-7d0d14629086",
+        "player": "GUEST",
+        "action": "PICK",
+        "exclusivity": "GLOBAL",
+        "hidden": false,
+        "parallel": false
+      },
+      {
+        "id": "516cf7d9-be86-4c1e-8b2b-528747b6f8e8",
+        "player": "GUEST",
+        "action": "PICK",
+        "exclusivity": "GLOBAL",
+        "hidden": false,
+        "parallel": false
+      },
+      {
+        "id": "609ae9ca-18c2-48bc-8009-c0409331c7ea",
+        "player": "HOST",
+        "action": "PICK",
+        "exclusivity": "GLOBAL",
+        "hidden": false,
+        "parallel": false
+      },
+      {
+        "id": "338d52ae-f078-42d4-98b4-169fea319586",
+        "player": "HOST",
+        "action": "PICK",
+        "exclusivity": "GLOBAL",
+        "hidden": false,
+        "parallel": false
+      },
+      {
+        "id": "c0beb8d8-55d4-46fd-b1d0-9e26f5238a54",
+        "player": "GUEST",
+        "action": "PICK",
+        "exclusivity": "GLOBAL",
+        "hidden": false,
+        "parallel": false
+      },
+      {
+        "id": "621993a4-5f12-4a7b-933a-25c39a06f532",
+        "player": "HOST",
+        "action": "SNIPE",
+        "exclusivity": "GLOBAL",
+        "hidden": true,
+        "parallel": false
+      },
+      {
+        "id": "72899512-6df4-4cd2-a75d-1399a43bb72b",
+        "player": "HOST",
+        "action": "SNIPE",
+        "exclusivity": "GLOBAL",
+        "hidden": true,
+        "parallel": false
+      },
+      {
+        "id": "6a50dac4-ec52-4878-830e-bb8766b26cca",
+        "player": "GUEST",
+        "action": "SNIPE",
+        "exclusivity": "GLOBAL",
+        "hidden": true,
+        "parallel": false
+      },
+      {
+        "id": "c43342a1-b058-4936-80a8-479211e83101",
+        "player": "GUEST",
+        "action": "SNIPE",
+        "exclusivity": "GLOBAL",
+        "hidden": true,
+        "parallel": false
+      },
+      {
+        "id": "70a00e51-4399-41c0-92ba-835262343e48",
+        "player": "NONE",
+        "action": "REVEAL_SNIPES",
+        "exclusivity": "GLOBAL",
+        "hidden": false,
+        "parallel": false
+      }
+    ]
+  },
+  "hostConnected": false,
+  "guestConnected": false,
+  "hostReady": true,
+  "guestReady": true,
+  "startTimestamp": 0
+}

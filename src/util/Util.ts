@@ -51,6 +51,10 @@ export const Util = {
         return (event as PlayerEvent).chosenOptionId !== undefined;
     },
 
+    isLegacyPlayerEvent(event: unknown): event is PlayerEvent {
+        return (event as LegacyPlayerEvent).civilisation !== undefined;
+    },
+
     isAdminEvent(event: DraftEvent): event is AdminEvent {
         return !(event as AdminEvent).hasOwnProperty('chosenOptionId');
     },
@@ -205,5 +209,16 @@ export const Util = {
         } catch (e) {
             // ignore
         }
+    },
+
+    transformDraftStateToCurrentFormat(input: IDraftState): IDraftState {
+        for (let i = 0; i < input.events.length; i++) {
+            const event = input.events[i];
+            if (Util.isLegacyPlayerEvent(event)) {
+                const legacyEvent = input.events[i] as unknown;
+                input.events[i] = PlayerEvent.fromLegacy(legacyEvent as LegacyPlayerEvent);
+            }
+        }
+        return input;
     },
 };
