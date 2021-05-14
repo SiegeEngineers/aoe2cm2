@@ -45,13 +45,6 @@ enum Name {
 
     BURGUNDIANS = "Burgundians",
     SICILIANS = "Sicilians",
-
-    HIDDEN_PICK = "HIDDEN_PICK",
-    HIDDEN_BAN = "HIDDEN_BAN",
-    HIDDEN_SNIPE = "HIDDEN_SNIPE",
-    HIDDEN_STEAL = "HIDDEN_STEAL",
-    HIDDEN = "HIDDEN",
-    RANDOM = "RANDOM"
 }
 
 class Civilisation extends DraftOption {

@@ -2,7 +2,6 @@ import * as React from 'react';
 import DraftOptionPanel from "../../containers/DraftOptionPanel";
 import DraftOptionPanelType from "../../constants/DraftOptionPanelType";
 import DraftOption from "../../models/DraftOption";
-import Civilisation from "../../models/Civilisation";
 
 interface IProps {
     draftOptions: DraftOption[]
@@ -13,7 +12,7 @@ class DraftOptionGrid extends React.Component<IProps, object> {
 
         const panels = this.props.draftOptions.map((draftOption, index) => {
             return React.createElement(DraftOptionPanel, {
-                civPanelType: DraftOptionPanelType.CHOICE,
+                draftOptionPanelType: DraftOptionPanelType.CHOICE,
                 active: false,
                 draftOption: draftOption,
                 key: index
@@ -21,9 +20,9 @@ class DraftOptionGrid extends React.Component<IProps, object> {
         });
 
         const randomOption = React.createElement(DraftOptionPanel, {
-            civPanelType: DraftOptionPanelType.CHOICE,
+            draftOptionPanelType: DraftOptionPanelType.CHOICE,
             active: false,
-            draftOption: Civilisation.RANDOM,
+            draftOption: DraftOption.RANDOM,
             key: -1
         });
 

@@ -84,7 +84,7 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                     pickPanels.push(React.createElement(DraftOptionPanel, {
                         active: isThisPanelActive,
                         byOpponent: turn.player !== turn.executingPlayer,
-                        civPanelType: DraftOptionPanelType.PICK,
+                        draftOptionPanelType: DraftOptionPanelType.PICK,
                         draftOption: this.props.preset.options.find(value => value.id === pickedOptionId),
                         isRandomlyChosen: randomlyChosen,
                         key: picksIndex,
@@ -123,7 +123,7 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                     pickPanels.push(React.createElement(DraftOptionPanel, {
                         active: isThisPanelActive,
                         byOpponent: turn.player !== turn.executingPlayer,
-                        civPanelType: DraftOptionPanelType.STEAL,
+                        draftOptionPanelType: DraftOptionPanelType.STEAL,
                         draftOption: this.props.preset.options.find(value => value.id === pickedOptionId),
                         isRandomlyChosen: randomlyChosen,
                         key: picksIndex,
@@ -147,7 +147,7 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                     banPanels.push(React.createElement(DraftOptionPanel, {
                         active: isThisPanelActive,
                         byOpponent: turn.player !== turn.executingPlayer,
-                        civPanelType: DraftOptionPanelType.BAN,
+                        draftOptionPanelType: DraftOptionPanelType.BAN,
                         draftOption: this.props.preset.options.find(value => value.id === bannedOptionId),
                         isRandomlyChosen: randomlyChosen,
                         key: bansIndex,

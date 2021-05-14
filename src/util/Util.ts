@@ -103,23 +103,23 @@ export const Util = {
         return false;
     },
 
-    isRandomCivilisation(id: string): boolean {
+    isRandomDraftOption(id: string): boolean {
         return id.toUpperCase() === "RANDOM";
     },
 
-    getRandomCivilisationDraftOption(civilisationsList: DraftOption[]): DraftOption {
-        const maxCivilisationIndex = civilisationsList.length;
-        const randomCivIndex = Math.floor(Math.random() * maxCivilisationIndex);
-        return civilisationsList.splice(randomCivIndex, 1)[0];
+    getRandomDraftOption(draftOptions: DraftOption[]): DraftOption {
+        const maxIndex = draftOptions.length;
+        const randomIndex = Math.floor(Math.random() * maxIndex);
+        return draftOptions.splice(randomIndex, 1)[0];
     },
 
-    setRandomCivilisationIfNeeded(playerEvent: PlayerEvent, draftId: string,
-                                  draftStore: DraftsStore, civilisationsList: DraftOption[], round: number = 100): PlayerEvent {
+    setRandomDraftOptionIfNeeded(playerEvent: PlayerEvent, draftId: string,
+                                 draftStore: DraftsStore, civilisationsList: DraftOption[], round: number = 100): PlayerEvent {
         if (round < 0) {
             return new PlayerEvent(playerEvent.player, playerEvent.actionType, DraftOption.HIDDEN.id, false, playerEvent.executingPlayer);
         }
-        if (Util.isRandomCivilisation(playerEvent.chosenOptionId)) {
-            const randomDraftOption = Util.getRandomCivilisationDraftOption(civilisationsList);
+        if (Util.isRandomDraftOption(playerEvent.chosenOptionId)) {
+            const randomDraftOption = Util.getRandomDraftOption(civilisationsList);
             const playerEventForValidation = new PlayerEvent(playerEvent.player, playerEvent.actionType, randomDraftOption.id, true, playerEvent.executingPlayer);
             const errors = Validator.checkAllValidations(draftId, draftStore, playerEventForValidation);
             if (errors.length === 0) {
@@ -127,7 +127,7 @@ export const Util = {
                 playerEvent.isRandomlyChosen = true;
                 return playerEvent;
             } else {
-                return this.setRandomCivilisationIfNeeded(playerEvent, draftId, draftStore, civilisationsList, round - 1);
+                return this.setRandomDraftOptionIfNeeded(playerEvent, draftId, draftStore, civilisationsList, round - 1);
             }
         }
         return playerEvent;

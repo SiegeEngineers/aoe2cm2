@@ -10,7 +10,6 @@ exports[`DraftOptionGrid renders correctly 1`] = `
   >
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         DraftOption {
           "id": "RANDOM",
@@ -23,11 +22,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "RANDOM",
         }
       }
+      draftOptionPanelType="choice"
       key="-1"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 2,
@@ -41,11 +40,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Aztecs",
         }
       }
+      draftOptionPanelType="choice"
       key="0"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 4,
@@ -59,11 +58,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Berbers",
         }
       }
+      draftOptionPanelType="choice"
       key="1"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 1,
@@ -77,11 +76,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Britons",
         }
       }
+      draftOptionPanelType="choice"
       key="2"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 5,
@@ -95,11 +94,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Burmese",
         }
       }
+      draftOptionPanelType="choice"
       key="3"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 1,
@@ -113,11 +112,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Byzantines",
         }
       }
+      draftOptionPanelType="choice"
       key="4"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 1,
@@ -131,11 +130,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Celts",
         }
       }
+      draftOptionPanelType="choice"
       key="5"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 1,
@@ -149,11 +148,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Chinese",
         }
       }
+      draftOptionPanelType="choice"
       key="6"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 4,
@@ -167,11 +166,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Ethiopians",
         }
       }
+      draftOptionPanelType="choice"
       key="7"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 1,
@@ -185,11 +184,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Franks",
         }
       }
+      draftOptionPanelType="choice"
       key="8"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 1,
@@ -203,11 +202,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Goths",
         }
       }
+      draftOptionPanelType="choice"
       key="9"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 2,
@@ -221,11 +220,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Huns",
         }
       }
+      draftOptionPanelType="choice"
       key="10"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 3,
@@ -239,11 +238,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Incas",
         }
       }
+      draftOptionPanelType="choice"
       key="11"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 3,
@@ -257,11 +256,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Indians",
         }
       }
+      draftOptionPanelType="choice"
       key="12"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 3,
@@ -275,11 +274,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Italians",
         }
       }
+      draftOptionPanelType="choice"
       key="13"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 1,
@@ -293,11 +292,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Japanese",
         }
       }
+      draftOptionPanelType="choice"
       key="14"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 5,
@@ -311,11 +310,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Khmer",
         }
       }
+      draftOptionPanelType="choice"
       key="15"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 2,
@@ -329,11 +328,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Koreans",
         }
       }
+      draftOptionPanelType="choice"
       key="16"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 3,
@@ -347,11 +346,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Magyars",
         }
       }
+      draftOptionPanelType="choice"
       key="17"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 5,
@@ -365,11 +364,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Malay",
         }
       }
+      draftOptionPanelType="choice"
       key="18"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 4,
@@ -383,11 +382,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Malians",
         }
       }
+      draftOptionPanelType="choice"
       key="19"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 2,
@@ -401,11 +400,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Mayans",
         }
       }
+      draftOptionPanelType="choice"
       key="20"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 1,
@@ -419,11 +418,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Mongols",
         }
       }
+      draftOptionPanelType="choice"
       key="21"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 1,
@@ -437,11 +436,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Persians",
         }
       }
+      draftOptionPanelType="choice"
       key="22"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 4,
@@ -455,11 +454,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Portuguese",
         }
       }
+      draftOptionPanelType="choice"
       key="23"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 1,
@@ -473,11 +472,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Saracens",
         }
       }
+      draftOptionPanelType="choice"
       key="24"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 3,
@@ -491,11 +490,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Slavs",
         }
       }
+      draftOptionPanelType="choice"
       key="25"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 2,
@@ -509,11 +508,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Spanish",
         }
       }
+      draftOptionPanelType="choice"
       key="26"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 1,
@@ -527,11 +526,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Teutons",
         }
       }
+      draftOptionPanelType="choice"
       key="27"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 1,
@@ -545,11 +544,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Turks",
         }
       }
+      draftOptionPanelType="choice"
       key="28"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 5,
@@ -563,11 +562,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Vietnamese",
         }
       }
+      draftOptionPanelType="choice"
       key="29"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 1,
@@ -581,11 +580,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Vikings",
         }
       }
+      draftOptionPanelType="choice"
       key="30"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 6,
@@ -599,11 +598,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Bulgarians",
         }
       }
+      draftOptionPanelType="choice"
       key="31"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 6,
@@ -617,11 +616,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Cumans",
         }
       }
+      draftOptionPanelType="choice"
       key="32"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 6,
@@ -635,11 +634,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Lithuanians",
         }
       }
+      draftOptionPanelType="choice"
       key="33"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 6,
@@ -653,11 +652,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Tatars",
         }
       }
+      draftOptionPanelType="choice"
       key="34"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 7,
@@ -671,11 +670,11 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Burgundians",
         }
       }
+      draftOptionPanelType="choice"
       key="35"
     />
     <Connect(Component)
       active={false}
-      civPanelType="choice"
       draftOption={
         Civilisation {
           "gameVersion": 7,
@@ -689,6 +688,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
           "name": "Sicilians",
         }
       }
+      draftOptionPanelType="choice"
       key="36"
     />
   </div>

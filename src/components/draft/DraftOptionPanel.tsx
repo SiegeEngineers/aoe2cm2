@@ -20,7 +20,7 @@ interface IProps extends WithTranslation {
     isRandomlyChosenForSnipe?: boolean;
     stolen?: boolean;
     isRandomlyChosenForSteal?: boolean;
-    civPanelType: DraftOptionPanelType;
+    draftOptionPanelType: DraftOptionPanelType;
     whoAmI?: Player;
     triggerAction?: ActionType;
     byOpponent?: boolean;
@@ -78,13 +78,13 @@ class DraftOptionPanel extends React.Component<IProps, IState> {
                 textClass += ' is-hidden';
             }
         }
-        let className: string = 'civ-panel ' + this.props.civPanelType.toString();
+        let className: string = 'civ-panel ' + this.props.draftOptionPanelType.toString();
         if (this.props.byOpponent) {
             className += ' by-opponent';
         }
         let onClickAction = () => {
         };
-        if (this.props.civPanelType === DraftOptionPanelType.CHOICE) {
+        if (this.props.draftOptionPanelType === DraftOptionPanelType.CHOICE) {
             className += ' is-inline-block';
             if (this.isValidOption()) {
                 onClickAction = this.onClickCiv;
@@ -93,7 +93,7 @@ class DraftOptionPanel extends React.Component<IProps, IState> {
                 className += ' choice-disabled';
             }
         } else {
-            if ((this.props.civPanelType === DraftOptionPanelType.PICK || this.props.civPanelType === DraftOptionPanelType.STEAL) && this.isDraftCompleted()) {
+            if ((this.props.draftOptionPanelType === DraftOptionPanelType.PICK || this.props.draftOptionPanelType === DraftOptionPanelType.STEAL) && this.isDraftCompleted()) {
                 onClickAction = () => {
                     this.setState({...this.state, used: this.nextUsed(this.state.used)});
                 }
@@ -168,7 +168,7 @@ class DraftOptionPanel extends React.Component<IProps, IState> {
     }
 
     private useFlippedImage() {
-        return this.props.civPanelType !== DraftOptionPanelType.CHOICE
+        return this.props.draftOptionPanelType !== DraftOptionPanelType.CHOICE
             && this.props.smooch
             && ((this.props.side === Player.HOST && !this.props.flipped)
                 || (this.props.side === Player.GUEST && this.props.flipped));

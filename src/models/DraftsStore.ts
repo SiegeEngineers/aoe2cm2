@@ -14,7 +14,7 @@ import {IRecentDraft, IServerState} from "../types";
 import fs from "fs";
 import path from "path";
 import {DraftsArchive} from "./DraftsArchive";
-import Civilisation from "./Civilisation";
+import DraftOption from "./DraftOption";
 
 interface ICountdownValues {
     timeout?: NodeJS.Timeout;
@@ -300,7 +300,7 @@ export class DraftsStore {
                         const expectedActions = this.getExpectedActions(draftId);
                         if (expectedActions.length > 0) {
                             for (let expectedAction of expectedActions) {
-                                const message = new PlayerEvent(expectedAction.player, actionTypeFromAction(expectedAction.action), Civilisation.RANDOM.id, false, expectedAction.executingPlayer);
+                                const message = new PlayerEvent(expectedAction.player, actionTypeFromAction(expectedAction.action), DraftOption.RANDOM.id, false, expectedAction.executingPlayer);
                                 logger.info('Countdown ran out, executing action on player\'s behalf: %s', JSON.stringify(message), {draftId});
                                 actListener(message, () => {
                                 });
