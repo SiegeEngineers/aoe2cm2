@@ -64,7 +64,7 @@ class Preset {
             return undefined;
         }
         Assert.isString(preset.name);
-        Assert.isString(preset.encodedCivilisations);
+        Assert.isOptionalString(preset.encodedCivilisations);
         Assert.isOptionalString(preset.presetId);
         let draftOptions: DraftOption[] = [];
         if (preset.encodedCivilisations) {
