@@ -4,13 +4,14 @@ import PlayerEvent from "../../models/PlayerEvent";
 import Player from "../../constants/Player";
 import DraftOptionPanelType from "../../constants/DraftOptionPanelType";
 import {Util} from "../../util/Util";
-import {Trans, WithTranslation, withTranslation} from "react-i18next";
+import {WithTranslation, withTranslation} from "react-i18next";
 import {Validator} from "../../models/Validator";
 import {DraftsStore} from "../../models/DraftsStore";
 import Draft from "../../models/Draft";
 import {IDraftState} from "../../types";
 import Preset from "../../models/Preset";
 import DraftOption from "../../models/DraftOption";
+import i18next from "i18next";
 
 interface IProps extends WithTranslation {
     draftOption?: DraftOption;
@@ -159,7 +160,7 @@ class DraftOptionPanel extends React.Component<IProps, IState> {
                         <div className={snipeRandomMarkerClass} title="Random Snipe"/>
                         <div className={usedMarkerClass}/>
                         <div className={textClass}>
-                            <Trans>{draftOptionKey}</Trans>
+                            {i18next.t([draftOptionKey, draftOptionName])}
                         </div>
                     </div>
                 </div>
