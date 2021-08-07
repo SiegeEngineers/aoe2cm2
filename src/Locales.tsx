@@ -3,6 +3,7 @@ import es_ES from "./languages/es_ES.json";
 import de_DE from "./languages/de_DE.json";
 import pt_BR from "./languages/pt_BR.json";
 import zh_CN from "./languages/zh_CN.json";
+import zh_TW from "./languages/zh_TW.json";
 
 const availableLocales = {
     "en-GB": {
@@ -29,6 +30,11 @@ const availableLocales = {
         translation: zh_CN,
         displayName: "中文",
         cta: "将语言设置为中文"
+    },
+    "zh-TW": {
+        translation: zh_TW,
+        displayName: "繁體中文",
+        cta: "將語言設置為繁體中文"
     }
 }
 
