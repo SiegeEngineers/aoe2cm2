@@ -32,6 +32,7 @@ interface IProps extends WithTranslation {
     flipped?: boolean;
     smooch?: boolean;
     side?: Player;
+    displayOnly?: boolean;
 
     onClickCivilisation?: (playerEvent: PlayerEvent, callback: any) => void;
 }
@@ -90,6 +91,8 @@ class DraftOptionPanel extends React.Component<IProps, IState> {
             if (this.isValidOption()) {
                 onClickAction = this.onClickCiv;
                 className += ' choice-' + this.props.triggerAction;
+            } else if(this.props.displayOnly) {
+                className += ' choice-display';
             } else {
                 className += ' choice-disabled';
             }
@@ -169,8 +172,7 @@ class DraftOptionPanel extends React.Component<IProps, IState> {
     }
 
     private useFlippedImage() {
-        return this.props.draftOptionPanelType !== DraftOptionPanelType.CHOICE
-            && this.props.smooch
+        return this.props.smooch
             && ((this.props.side === Player.HOST && !this.props.flipped)
                 || (this.props.side === Player.GUEST && this.props.flipped));
     }

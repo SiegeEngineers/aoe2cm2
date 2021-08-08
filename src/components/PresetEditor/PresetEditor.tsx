@@ -24,6 +24,8 @@ import {ReactSortable} from "react-sortablejs";
 import {PresetEditorTurn} from "./PresetEditorTurn";
 import DraftOption from "../../models/DraftOption";
 import PresetEditorCivSelection from "./PresetEditorCivSelection";
+import PresetEditorCustomOptions from "./PresetEditorCustomOptions";
+import Civilisation from "../../models/Civilisation";
 
 interface Props extends WithTranslation{
     preset: Preset | null,
@@ -54,11 +56,32 @@ class PresetEditor extends React.Component<Props, object> {
                               className="columns is-mobile preset-editor-row"
                               onValueChange={this.props.onValueChange} key={turn.id}/>);
 
+        const customOptions: boolean = !this.props.preset.encodedCivilisations;
+        let optionsSelection = customOptions ? <PresetEditorCustomOptions/> : <PresetEditorCivSelection/>;
+
         return (
             <React.Fragment>
                 <div className={'content box'}>
-                    <h3>1. <Trans i18nKey="presetEditor.availableCivs">Available Civilisations</Trans></h3>
-                    <PresetEditorCivSelection/>
+                    <h3>1. <Trans i18nKey="presetEditor.availableDraftOptions">Available Draft Options</Trans></h3>
+
+                    <p className="control">
+                        <input id="toggleCustomDraftOptions" type="checkbox" name="toggleCustomDraftOptions"
+                               className="switch is-small is-rounded is-info" checked={!customOptions} onChange={() => {
+                            if (customOptions) {
+                                this.props.onPresetDraftOptionsChange(Civilisation.ALL);
+                            } else {
+                                const draftOption = new DraftOption(Civilisation.AZTECS.id, Civilisation.AZTECS.name);
+                                for (let imageUrlsKey in draftOption.imageUrls) {
+                                    draftOption.imageUrls[imageUrlsKey] = 'https://aoe2cm.net' + draftOption.imageUrls[imageUrlsKey];
+                                }
+                                this.props.onPresetDraftOptionsChange([draftOption]);
+                            }
+                        }}/>
+                        <label htmlFor="toggleCustomDraftOptions" style={{paddingTop: 1}}><Trans
+                            i18nKey='presetEditor.useCivilisationsAsDraftOptions'>Use civilisations</Trans></label>
+                    </p>
+
+                    {optionsSelection}
 
                     <h3>2. <Trans i18nKey="presetEditor.turns">Turns</Trans></h3>
                     <TurnRow turns={this.props.preset.turns}/>

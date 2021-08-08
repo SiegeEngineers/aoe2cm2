@@ -245,14 +245,23 @@
   },
   "presetEditor": {
     "helpAndInstructions": "Help and Instructions",
-    "availableCivs": "Available Civilisations",
+    "availableDraftOptions": "Available Draft Options",
+    "useCivilisationsAsDraftOptions": "Use regular civilisations",
     "turns": "Turns",
     "createSaveDraft": "Create Draft or Save",
     "host": "Host",
     "guest": "Guest",
     "admin": "Admin",
     "new": "New",
-    "presetName": "Preset Name"
+    "presetName": "Preset Name",
+    "warning": "<0>Attention!</0><1/>This is advanced stuff, and you probably do not need it if you just want to create a regular old civilisation draft.<3/><4>Please use image urls which you expect to still be working in about ten years or more!</4>",
+    "option": {
+      "name": "Name",
+      "unitImageUrl": "Unit image URL",
+      "emblemImageUrl": "Emblem image URL",
+      "animatedUnitImageUrlLeft": "Animated unit image URL (left)",
+      "animatedUnitImageUrlRight": "Animated unit image URL (right)"
+    }
   },
   "createNewDraft": "Create new draft from this Preset",
   "createNewPreset": "Create new Preset",
