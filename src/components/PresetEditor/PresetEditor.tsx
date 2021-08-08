@@ -18,13 +18,12 @@ import Action from "../../constants/Action";
 import NewDraftButton from "../NewDraftButton";
 import TurnRow from "../draft/TurnRow";
 import SavePresetButton from "../SavePresetButton";
-import {PresetOptionCheckbox} from "./PresetOptionCheckbox";
 import TurnExplanation from "./TurnExplanation";
 import {Trans, withTranslation, WithTranslation} from "react-i18next";
 import {ReactSortable} from "react-sortablejs";
 import {PresetEditorTurn} from "./PresetEditorTurn";
-import Civilisation from "../../models/Civilisation";
 import DraftOption from "../../models/DraftOption";
+import PresetEditorCivSelection from "./PresetEditorCivSelection";
 
 interface Props extends WithTranslation{
     preset: Preset | null,
@@ -55,21 +54,11 @@ class PresetEditor extends React.Component<Props, object> {
                               className="columns is-mobile preset-editor-row"
                               onValueChange={this.props.onValueChange} key={turn.id}/>);
 
-        const presetOptions = this.props.preset.options;
-
-        const civs = Civilisation.ALL.map((value: Civilisation, index: number) =>
-            <PresetOptionCheckbox presetOptions={presetOptions} value={value}
-                                  key={index}
-                                  disabled={false}
-                                  onPresetDraftOptionsChange={this.props.onPresetDraftOptionsChange}/>);
-
         return (
             <React.Fragment>
                 <div className={'content box'}>
                     <h3>1. <Trans i18nKey="presetEditor.availableCivs">Available Civilisations</Trans></h3>
-                    <div className="is-flex" style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-                        {civs}
-                    </div>
+                    <PresetEditorCivSelection/>
 
                     <h3>2. <Trans i18nKey="presetEditor.turns">Turns</Trans></h3>
                     <TurnRow turns={this.props.preset.turns}/>
