@@ -11,7 +11,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
     preset={
       Preset {
         "draftOptions": undefined,
-        "encodedCivilisations": "1fffffffff",
+        "encodedCivilisations": "7fffffffff",
         "name": "Default Preset",
         "presetId": undefined,
         "turns": Array [
@@ -215,7 +215,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
     preset={
       Preset {
         "draftOptions": undefined,
-        "encodedCivilisations": "1fffffffff",
+        "encodedCivilisations": "7fffffffff",
         "name": "Default Preset",
         "presetId": undefined,
         "turns": Array [

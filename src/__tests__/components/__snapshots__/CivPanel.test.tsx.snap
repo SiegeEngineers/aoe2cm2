@@ -851,6 +851,52 @@ exports[`BAN CivPanels render correctly 37`] = `
 />
 `;
 
+exports[`BAN CivPanels render correctly 38`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "gameVersion": 8,
+      "id": "Bohemians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/bohemians-left.apng",
+        "animated_right": "/images/units-animated/bohemians-right.apng",
+        "emblem": "/images/civemblems/bohemians.png",
+        "unit": "/images/civs/bohemians.png",
+      },
+      "name": "Bohemians",
+    }
+  }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`BAN CivPanels render correctly 39`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "gameVersion": 8,
+      "id": "Poles",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/poles-left.apng",
+        "animated_right": "/images/units-animated/poles-right.apng",
+        "emblem": "/images/civemblems/poles.png",
+        "unit": "/images/civs/poles.png",
+      },
+      "name": "Poles",
+    }
+  }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
 exports[`PICK CivPanels render correctly 1`] = `
 <DraftOptionPanel
   active={false}
@@ -1693,6 +1739,52 @@ exports[`PICK CivPanels render correctly 37`] = `
         "unit": "/images/civs/sicilians.png",
       },
       "name": "Sicilians",
+    }
+  }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 38`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "gameVersion": 8,
+      "id": "Bohemians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/bohemians-left.apng",
+        "animated_right": "/images/units-animated/bohemians-right.apng",
+        "emblem": "/images/civemblems/bohemians.png",
+        "unit": "/images/civs/bohemians.png",
+      },
+      "name": "Bohemians",
+    }
+  }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 39`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "gameVersion": 8,
+      "id": "Poles",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/poles-left.apng",
+        "animated_right": "/images/units-animated/poles-right.apng",
+        "emblem": "/images/civemblems/poles.png",
+        "unit": "/images/civs/poles.png",
+      },
+      "name": "Poles",
     }
   }
   draftOptionPanelType="pick"

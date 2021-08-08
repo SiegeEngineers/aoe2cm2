@@ -19,11 +19,11 @@ it('vikings only yields 2^30', () => {
     expect(encoded).toEqual('40000000');
 });
 
-it('all 37 civs yield 2^37-1', () => {
+it('all 39 civs yield 2^39-1', () => {
     const encoded = CivilisationEncoder.encodeCivilisationArray(Civilisation.ALL);
-    expect(Civilisation.ALL.length).toEqual(37);
-    expect(encoded).toEqual(CivilisationEncoder.toHexString(Math.pow(2, 37) - 1));
-    expect(encoded).toEqual('1fffffffff');
+    expect(Civilisation.ALL.length).toEqual(39);
+    expect(encoded).toEqual(CivilisationEncoder.toHexString(Math.pow(2, 39) - 1));
+    expect(encoded).toEqual('7fffffffff');
 });
 
 it('decode 0 yields empty array', () => {
@@ -43,8 +43,8 @@ it('decode 2^30 yields vikings', () => {
 
 });
 
-it('decode 2^37-1 yields all civs', () => {
-    const decoded = CivilisationEncoder.decodeCivilisationArray('1fffffffff');
+it('decode 2^39-1 yields all civs', () => {
+    const decoded = CivilisationEncoder.decodeCivilisationArray('7fffffffff');
     expect(decoded).toEqual([...Civilisation.ALL].sort((a, b) => a.name.localeCompare(b.name)));
 
 });

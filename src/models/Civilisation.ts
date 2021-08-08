@@ -45,6 +45,9 @@ enum Name {
 
     BURGUNDIANS = "Burgundians",
     SICILIANS = "Sicilians",
+
+    BOHEMIANS = "Bohemians",
+    POLES = "Poles",
 }
 
 class Civilisation extends DraftOption {
@@ -93,6 +96,9 @@ class Civilisation extends DraftOption {
     public static readonly BURGUNDIANS: Civilisation = new Civilisation(Name.BURGUNDIANS, GameVersion.LORDS_OF_THE_WEST);
     public static readonly SICILIANS: Civilisation = new Civilisation(Name.SICILIANS, GameVersion.LORDS_OF_THE_WEST);
 
+    public static readonly BOHEMIANS: Civilisation = new Civilisation(Name.BOHEMIANS, GameVersion.DAWN_OF_THE_DUKES);
+    public static readonly POLES: Civilisation = new Civilisation(Name.POLES, GameVersion.DAWN_OF_THE_DUKES);
+
 
     // DO NOT CHANGE THE ORDER OF ELEMENTS IN THIS ARRAY!!!
     // ONLY APPEND NEW CIVILISATIONS AT THE END!!!
@@ -134,6 +140,8 @@ class Civilisation extends DraftOption {
         Civilisation.TATARS,
         Civilisation.BURGUNDIANS,
         Civilisation.SICILIANS,
+        Civilisation.BOHEMIANS,
+        Civilisation.POLES,
     ];
 
     public readonly gameVersion: GameVersion;
