@@ -12,6 +12,7 @@ import Turn from "../../models/Turn";
 import {DraftEvent} from "../../types/DraftEvent";
 import AdminEvent from "../../models/AdminEvent";
 import Exclusivity from "../../constants/Exclusivity";
+import DraftOption from "../../models/DraftOption";
 
 const NAME_HOST: string = 'Yodit';
 const NAME_GUEST: string = 'Saladin';
@@ -364,6 +365,30 @@ it('VLD_909: illegal preset id', () => {
     let preset = new Preset("test", Civilisation.ALL, [new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL)], 'abc/123');
     const errors: ValidationId[] = Validator.validatePreset(preset);
     expect(errors).toEqual([ValidationId.VLD_909]);
+});
+
+it('VLD_910: illegal draft option id', () => {
+    let preset = new Preset("test", [new DraftOption('', 'name')], [Turn.HOST_PICK, Turn.GUEST_PICK]);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([ValidationId.VLD_910]);
+});
+
+it('VLD_911: draft option ids not unique', () => {
+    let preset = new Preset("test", [new DraftOption('id', 'name 1'), new DraftOption('id', 'name 2')], [Turn.HOST_PICK, Turn.GUEST_PICK]);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([ValidationId.VLD_911]);
+});
+
+it('VLD_911: draft option names not unique but ids unique', () => {
+    let preset = new Preset("test", [new DraftOption('id1', 'name'), new DraftOption('id2', 'name')], [Turn.HOST_PICK, Turn.GUEST_PICK]);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([]);
+});
+
+it('VLD_999: totally wrong preset format', () => {
+    let preset = {absolute: "garbage"} as unknown as Preset;
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([ValidationId.VLD_999]);
 });
 
 describe('Execute parallel turn: Inverse order (1)', () => {

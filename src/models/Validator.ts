@@ -51,18 +51,22 @@ export class Validator {
     }
 
     public static validatePreset(preset: Preset | undefined) {
-        if (preset === undefined) {
-            return [ValidationId.VLD_900];
-        }
-        const validationErrors: ValidationId[] = [];
-        for (let validation of PresetValidation.ALL) {
-            const validationResult = validation.apply(preset);
-            if (validationResult !== undefined) {
-                if (!validationErrors.includes(validationResult)) {
-                    validationErrors.push(validationResult);
+        try {
+            if (preset === undefined) {
+                return [ValidationId.VLD_900];
+            }
+            const validationErrors: ValidationId[] = [];
+            for (let validation of PresetValidation.ALL) {
+                const validationResult = validation.apply(preset);
+                if (validationResult !== undefined) {
+                    if (!validationErrors.includes(validationResult)) {
+                        validationErrors.push(validationResult);
+                    }
                 }
             }
+            return validationErrors;
+        } catch (e) {
+            return [ValidationId.VLD_999]
         }
-        return validationErrors;
     }
 }
