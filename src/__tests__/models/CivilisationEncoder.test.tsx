@@ -46,7 +46,6 @@ it('decode 2^30 yields vikings', () => {
 it('decode 2^39-1 yields all civs', () => {
     const decoded = CivilisationEncoder.decodeCivilisationArray('7fffffffff');
     expect(decoded).toEqual([...Civilisation.ALL].sort((a, b) => a.name.localeCompare(b.name)));
-
 });
 
 it('decode invalid yields empty array', () => {
@@ -56,4 +55,16 @@ it('decode invalid yields empty array', () => {
 
 it('assert order of civilisations has not changed', () => {
     expect(Civilisation.ALL).toMatchSnapshot();
+});
+
+describe('The decoding shortcut does not lie', () => {
+    it.each`
+    civilisationArray | expectedLength
+    ${'7ffffffff'}    | ${35}
+    ${'1fffffffff'}   | ${37}
+    ${'7fffffffff'}   | ${39}
+  `('$civilisationArray', ({civilisationArray, expectedLength}) => {
+        const decoded = CivilisationEncoder.decodeCivilisationArray(civilisationArray);
+        expect(decoded.length).toEqual(expectedLength);
+    });
 });
