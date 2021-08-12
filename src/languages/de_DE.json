@@ -129,6 +129,7 @@
   "<0></0>BAN": "BANN",
   "flip": "Vertausche die Positionen von Host und Gast",
   "smooch": "Knutschmodus umschalten",
+  "simplifiedUI": "schlichte Darstellung",
   "validationFailed": "Validierungsfehler:",
   "errors": {
     "VLD_000": "Draft erwartet derzeit keine Aktion",
