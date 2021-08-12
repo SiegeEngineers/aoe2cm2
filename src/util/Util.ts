@@ -1,16 +1,18 @@
-import Civilisation from "../models/Civilisation";
 import Action from "../constants/Action";
 import {DraftEvent} from "../types/DraftEvent";
 import PlayerEvent from "../models/PlayerEvent";
 import AdminEvent from "../models/AdminEvent";
 import Turn from "../models/Turn";
 import ActionType from "../constants/ActionType";
-import GameVersion from "../constants/GameVersion";
 import {Validator} from "../models/Validator";
 import {DraftsStore} from "../models/DraftsStore";
 import Exclusivity from "../constants/Exclusivity";
 import i18next from 'i18next';
 import Player from "../constants/Player";
+import DraftOption from "../models/DraftOption";
+import {IDraftState} from "../types";
+import LegacyPlayerEvent from "../models/LegacyPlayerEvent";
+import Civilisation from "../models/Civilisation";
 
 const CHARACTERS: string = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
@@ -46,61 +48,86 @@ export const Util = {
     },
 
     isPlayerEvent(event: DraftEvent): event is PlayerEvent {
-        return (event as PlayerEvent).civilisation !== undefined;
+        return (event as PlayerEvent).chosenOptionId !== undefined;
+    },
+
+    isLegacyPlayerEvent(event: unknown): event is PlayerEvent {
+        return (event as LegacyPlayerEvent).civilisation !== undefined;
     },
 
     isAdminEvent(event: DraftEvent): event is AdminEvent {
-        return !(event as AdminEvent).hasOwnProperty('civilisation');
+        return !(event as AdminEvent).hasOwnProperty('chosenOptionId');
+    },
+
+    isCivilisation(draftOption: DraftOption): draftOption is Civilisation {
+        return (draftOption as Civilisation).hasOwnProperty('gameVersion');
+    },
+
+    isCivilisationArray(draftOptions: DraftOption[]): draftOptions is Civilisation[] {
+        for (const draftOption of draftOptions) {
+            if (!Util.isCivilisation(draftOption)) {
+                return false;
+            }
+        }
+        return true;
     },
 
     isHidden(turn: Turn): boolean {
         return (turn.hidden);
     },
 
-    getHiddenCivilisationForActionType(actionType: ActionType): Civilisation {
+    getHiddenDraftOptionForActionType(actionType: ActionType): DraftOption {
         switch (actionType) {
             case ActionType.PICK:
-                return Civilisation.HIDDEN_PICK;
+                return DraftOption.HIDDEN_PICK;
             case ActionType.BAN:
-                return Civilisation.HIDDEN_BAN;
+                return DraftOption.HIDDEN_BAN;
             case ActionType.SNIPE:
-                return Civilisation.HIDDEN_SNIPE;
+                return DraftOption.HIDDEN_SNIPE;
             case ActionType.STEAL:
-                return Civilisation.HIDDEN_STEAL;
+                return DraftOption.HIDDEN_STEAL;
             default:
-                return Civilisation.HIDDEN;
+                return DraftOption.HIDDEN;
         }
     },
 
-    isTechnicalCivilisation(civilisation: Civilisation): boolean {
-        return civilisation.gameVersion === GameVersion.TECHNICAL;
+    isTechnicalDraftOption(draftOption: DraftOption): boolean {
+        switch (draftOption.id) {
+            case DraftOption.HIDDEN.id:
+            case DraftOption.HIDDEN_PICK.id:
+            case DraftOption.HIDDEN_BAN.id:
+            case DraftOption.HIDDEN_SNIPE.id:
+            case DraftOption.HIDDEN_STEAL.id:
+                return true;
+        }
+        return false;
     },
 
-    isRandomCivilisation(civilisation: Civilisation): boolean {
-        return civilisation.name.toUpperCase() === "RANDOM";
+    isRandomDraftOption(id: string): boolean {
+        return id.toUpperCase() === "RANDOM";
     },
 
-    getRandomCivilisation(civilisationsList: Civilisation[]): Civilisation {
-        const maxCivilisationIndex = civilisationsList.length;
-        const randomCivIndex = Math.floor(Math.random() * maxCivilisationIndex);
-        return civilisationsList.splice(randomCivIndex, 1)[0];
+    getRandomDraftOption(draftOptions: DraftOption[]): DraftOption {
+        const maxIndex = draftOptions.length;
+        const randomIndex = Math.floor(Math.random() * maxIndex);
+        return draftOptions.splice(randomIndex, 1)[0];
     },
 
-    setRandomCivilisationIfNeeded(playerEvent: PlayerEvent, draftId: string,
-                                  draftStore: DraftsStore, civilisationsList: Civilisation[], round: number = 100): PlayerEvent {
+    setRandomDraftOptionIfNeeded(playerEvent: PlayerEvent, draftId: string,
+                                 draftStore: DraftsStore, civilisationsList: DraftOption[], round: number = 100): PlayerEvent {
         if (round < 0) {
-            return new PlayerEvent(playerEvent.player, playerEvent.actionType, Civilisation.HIDDEN, playerEvent.executingPlayer);
+            return new PlayerEvent(playerEvent.player, playerEvent.actionType, DraftOption.HIDDEN.id, false, playerEvent.executingPlayer);
         }
-        if (Util.isRandomCivilisation(playerEvent.civilisation)) {
-            const randomCiv = Util.getRandomCivilisation(civilisationsList);
-            const playerEventForValidation = new PlayerEvent(playerEvent.player, playerEvent.actionType, randomCiv, playerEvent.executingPlayer);
+        if (Util.isRandomDraftOption(playerEvent.chosenOptionId)) {
+            const randomDraftOption = Util.getRandomDraftOption(civilisationsList);
+            const playerEventForValidation = new PlayerEvent(playerEvent.player, playerEvent.actionType, randomDraftOption.id, true, playerEvent.executingPlayer);
             const errors = Validator.checkAllValidations(draftId, draftStore, playerEventForValidation);
             if (errors.length === 0) {
-                playerEvent.civilisation = randomCiv;
-                playerEvent.civilisation.isRandomlyChosenCiv = true;
+                playerEvent.chosenOptionId = randomDraftOption.id;
+                playerEvent.isRandomlyChosen = true;
                 return playerEvent;
             } else {
-                return this.setRandomCivilisationIfNeeded(playerEvent, draftId, draftStore, civilisationsList, round - 1);
+                return this.setRandomDraftOptionIfNeeded(playerEvent, draftId, draftStore, civilisationsList, round - 1);
             }
         }
         return playerEvent;
@@ -136,8 +163,11 @@ export const Util = {
         return message;
     },
 
-    sanitizeDraftId(draftIdRaw: string) {
-        return draftIdRaw.replace(new RegExp(`[^${CHARACTERS}]`, 'g'), '_');
+    sanitizeDraftId(draftIdRaw: any) {
+        if (typeof draftIdRaw === "string") {
+            return draftIdRaw.replace(new RegExp(`[^${CHARACTERS}]`, 'g'), '_');
+        }
+        return '__invalid__';
     },
 
     sanitizeRole(roleRaw: Player) {
@@ -163,5 +193,32 @@ export const Util = {
     isRequestFromLocalhost(req: any) {
         const ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
         return ip === '::ffff:127.0.0.1' || ip === '::1';
-    }
+    },
+
+    getIconStyleFromLocalStorage(defaultIfError: string = 'units'): string {
+        try {
+            return localStorage.getItem('iconStyle') || defaultIfError;
+        } catch (e) {
+            return defaultIfError;
+        }
+    },
+
+    writeIconStyleToLocalStorage(iconStyle: string) {
+        try {
+            localStorage.setItem('iconStyle', iconStyle);
+        } catch (e) {
+            // ignore
+        }
+    },
+
+    transformDraftStateToCurrentFormat(input: IDraftState): IDraftState {
+        for (let i = 0; i < input.events.length; i++) {
+            const event = input.events[i];
+            if (Util.isLegacyPlayerEvent(event)) {
+                const legacyEvent = input.events[i] as unknown;
+                input.events[i] = PlayerEvent.fromLegacy(legacyEvent as LegacyPlayerEvent);
+            }
+        }
+        return input;
+    },
 };

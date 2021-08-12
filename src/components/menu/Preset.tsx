@@ -4,16 +4,27 @@ import {default as ModelPreset} from "../../models/Preset"
 import TurnRow from "../draft/TurnRow";
 import NewDraftButton from "../NewDraftButton";
 import CustomisePresetButton from "../../containers/CustomisePresetButton";
-import Civilisation from "../../models/Civilisation";
 import CopyableInput from "../draft/CopyableInput";
-import {PresetCivilisationCheckbox} from "../PresetEditor/PresetCivilisationCheckbox";
+import {PresetOptionCheckbox} from "../PresetEditor/PresetOptionCheckbox";
+import Civilisation from "../../models/Civilisation";
+import DraftOptionPanelType from "../../constants/DraftOptionPanelType";
+import DraftOptionPanel from "../draft/DraftOptionPanel";
+import DraftOption from "../../models/DraftOption";
+import {ApplicationState} from "../../types";
+import {Dispatch} from "redux";
+import * as actions from "../../actions";
+import {connect} from "react-redux";
 
 interface IState {
     preset?: ModelPreset;
     presetExists: boolean;
 }
 
-class Preset extends React.Component<object, IState> {
+interface IProps {
+    iconStyle: string;
+}
+
+class Preset extends React.Component<IProps, IState> {
 
     state: IState = {presetExists: true};
 
@@ -34,11 +45,21 @@ class Preset extends React.Component<object, IState> {
         }
         if (this.state.preset !== undefined) {
 
-            const presetCivilisations = this.state.preset.civilisations;
-            const civs = Civilisation.ALL.map((value: Civilisation, index: number) =>
-                <PresetCivilisationCheckbox presetCivilisations={presetCivilisations} value={value}
-                                            key={index}
-                                            disabled={true}/>);
+            const presetCivilisations = this.state.preset.options;
+            let civs;
+            let itemAlignment = '';
+            if (this.state.preset.encodedCivilisations) {
+                civs = Civilisation.ALL.map((value: Civilisation, index: number) =>
+                    <PresetOptionCheckbox presetOptions={presetCivilisations} value={value}
+                                          key={index}
+                                          disabled={true}/>)
+            } else {
+                civs = presetCivilisations.map((value: DraftOption, index: number) =>
+                    <DraftOptionPanel draftOption={value} active={false}
+                                      draftOptionPanelType={DraftOptionPanelType.CHOICE} nextAction={0}
+                                      displayOnly={true} iconStyle={this.props.iconStyle}/>);
+                itemAlignment = ' flex-justify-center';
+            }
 
             return (
                 <div className='content box'>
@@ -46,7 +67,7 @@ class Preset extends React.Component<object, IState> {
 
                     <TurnRow turns={this.state.preset.turns}/>
 
-                    <div className="is-flex" style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+                    <div className={"is-flex" + itemAlignment} style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                         {civs}
                     </div>
 
@@ -90,4 +111,15 @@ class Preset extends React.Component<object, IState> {
     };
 }
 
-export default Preset;
+
+function mapStateToProps(state: ApplicationState) {
+    return {
+        iconStyle: state.iconStyle.iconStyle,
+    };
+}
+
+function mapDispatchToProps(dispatch: Dispatch<actions.Action>) {
+    return {};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Preset);

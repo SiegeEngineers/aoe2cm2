@@ -1,0 +1,87 @@
+{
+  "nextAction": 4,
+  "events": [
+    {
+      "player": "HOST",
+      "executingPlayer": "HOST",
+      "actionType": "ban",
+      "chosenOptionId": "Aztecs",
+      "isRandomlyChosen": false,
+      "offset": 758
+    },
+    {
+      "player": "GUEST",
+      "executingPlayer": "GUEST",
+      "actionType": "ban",
+      "chosenOptionId": "Berbers",
+      "isRandomlyChosen": false,
+      "offset": 2488
+    },
+    {
+      "player": "GUEST",
+      "executingPlayer": "GUEST",
+      "actionType": "pick",
+      "chosenOptionId": "Britons",
+      "isRandomlyChosen": false,
+      "offset": 4532
+    },
+    {
+      "player": "HOST",
+      "executingPlayer": "HOST",
+      "actionType": "pick",
+      "chosenOptionId": "Bulgarians",
+      "isRandomlyChosen": false,
+      "offset": 6251
+    }
+  ],
+  "nameHost": "Minkhaung",
+  "nameGuest": "King Wenceslas",
+  "preset": {
+    "name": "Simple Preset",
+    "presetId": "simple",
+    "encodedCivilisations": "7ffffffff",
+    "turns": [
+      {
+        "id": "ea3d5e27-3adf-43cc-acdd-a9619936498a",
+        "player": "HOST",
+        "action": "BAN",
+        "exclusivity": "NONEXCLUSIVE",
+        "hidden": false,
+        "executingPlayer": "HOST",
+        "parallel": false
+      },
+      {
+        "id": "d9ab7f0d-30dc-401a-9de6-abfc4ccfbb04",
+        "player": "GUEST",
+        "action": "BAN",
+        "exclusivity": "NONEXCLUSIVE",
+        "hidden": false,
+        "executingPlayer": "GUEST",
+        "parallel": false
+      },
+      {
+        "id": "5389d101-7eab-4453-9ed0-ba8d4a1ca6a2",
+        "player": "GUEST",
+        "action": "PICK",
+        "exclusivity": "NONEXCLUSIVE",
+        "hidden": false,
+        "executingPlayer": "GUEST",
+        "parallel": false
+      },
+      {
+        "id": "b6dc1234-a482-4ba9-9fac-214c3b1d4807",
+        "player": "HOST",
+        "action": "PICK",
+        "exclusivity": "NONEXCLUSIVE",
+        "hidden": false,
+        "executingPlayer": "HOST",
+        "parallel": false
+      }
+    ]
+  },
+  "hostConnected": false,
+  "guestConnected": false,
+  "hostReady": true,
+  "guestReady": true,
+  "startTimestamp": 0
+}

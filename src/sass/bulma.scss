@@ -36,8 +36,33 @@ $family-monospace: 'Consolas', 'Monaco', monospace;
 
 @import "../../node_modules/bulma/bulma.sass";
 
+$switch-focus: none;
+@import "../../node_modules/bulma-switch/src/sass/index.sass";
+
 // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-@import url('https://fonts.googleapis.com/css2?family=Crete+Round:ital@0;1&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=Crete+Round:ital@0;1&display=swap');
+// Serve Google Fonts locally to account for where Google is not accessible
+// Generated using https://google-webfonts-helper.herokuapp.com/fonts/crete-round?subsets=latin,latin-ext
+/* crete-round-regular - latin-ext_latin */
+@font-face {
+  font-family: 'Crete Round';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Crete Round'), local('CreteRound-Regular'),
+  url('/fonts/crete-round-v8-latin-ext_latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+  url('/fonts/crete-round-v8-latin-ext_latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* crete-round-italic - latin-ext_latin */
+@font-face {
+  font-family: 'Crete Round';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Crete Round Italic'), local('CreteRound-Italic'),
+  url('/fonts/crete-round-v8-latin-ext_latin-italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+  url('/fonts/crete-round-v8-latin-ext_latin-italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
 
 .content h1, .content h2, .content h3, .content h4, .content h5, .content h6, .navbar-brand h1 {
   font-family: 'Crete Round', sans-serif;
@@ -230,7 +255,7 @@ label.civ-select:hover {
 /** grid stuff **/
 
 .chooser {
-  max-width: 808px;
+  max-width: 898px;
   display: block;
   margin: 8px auto;
   border-radius: 2px;
@@ -239,13 +264,16 @@ label.civ-select:hover {
   box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.12), inset 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
+.options-preview .pick {
+  width: 80px;
+  height: 80px;
+}
+
 .choice {
   box-sizing: border-box;
   width: 80px;
   transition: all 0.25s ease;
   margin: 4px;
-  padding: 8px;
-  background: rgba(153, 153, 153, 0.4);
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   cursor: pointer;
 }
@@ -326,6 +354,11 @@ div.stretchy-wrapper {
   border-radius: 2px;
 }
 
+div.stretchy-background {
+  position: relative;
+  border-radius: 4px;
+}
+
 div.stretchy-wrapper > div.stretchy-image {
   position: absolute;
   top: 0;
@@ -334,8 +367,23 @@ div.stretchy-wrapper > div.stretchy-image {
   right: 0;
 }
 
-.stretchy-image.is-stolen,
-.stretchy-image.is-sniped {
+.civ-panel {
+  position: relative;
+}
+
+div.stretchy-background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.is-stolen .civ-indicator,
+.is-stolen .stretchy-background,
+.is-sniped .civ-indicator,
+.is-sniped .stretchy-background,
+.is-used .civ-indicator {
   filter: grayscale(100%);
 }
 
@@ -363,7 +411,6 @@ div.stretchy-wrapper > div.stretchy-text {
   box-shadow: none;
   border-radius: 4px;
   margin: 4px;
-  padding: 8px;
   box-sizing: content-box;
   opacity: 0.4;
 }
@@ -373,38 +420,51 @@ div.stretchy-wrapper > div.stretchy-text {
 }
 
 .pick {
-  width: 96px;
-  height: 96px;
-  background: $pick-green;
+  width: 112px;
+  height: 112px;
 }
 
 .steal {
-  width: 96px;
-  height: 96px;
-  background: $steal-gold;
+  width: 112px;
+  height: 112px;
 }
 
 .ban {
-  width: 64px;
-  height: 64px;
+  width: 80px;
+  height: 80px;
+}
+
+.pick .stretchy-background {
+  background: $pick-green;
+}
+
+.steal .stretchy-background {
+  background: $steal-gold;
+}
+
+.ban .stretchy-background {
   background: $ban-red;
 }
 
-.pick.by-opponent {
+.choice .stretchy-background {
+  background: rgba(153, 153, 153, 0.4);
+}
+
+.pick.by-opponent .stretchy-background {
   background: $pick-by-opponent;
 }
 
-.ban.by-opponent {
+.ban.by-opponent .stretchy-background {
   background: $ban-by-opponent;
 }
 
-.steal.by-opponent {
+.steal.by-opponent .stretchy-background {
   background: $steal-by-opponent;
 }
 
 .pick img, .steal img, .ban img {
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .pick .chosen-hidden img, .steal .chosen-hidden img, .ban .chosen-hidden img {
@@ -419,6 +479,10 @@ div.stretchy-wrapper > div.stretchy-text {
 .ban .chosen-hidden .stretchy-image {
   background-image: url('/images/hidden_ban.png');
   background-size: contain;
+}
+
+.element-stack {
+  padding: 8px;
 }
 
 .picks .box-content, .bans .box-content {
@@ -438,6 +502,10 @@ div.stretchy-wrapper > div.stretchy-text {
   opacity: 1
 }
 
+.random-pick.animated {
+  background-image: url('/images/units-animated/random-right.apng');
+}
+
 .random-snipe {
   display: block;
   position: absolute;
@@ -451,6 +519,10 @@ div.stretchy-wrapper > div.stretchy-text {
   opacity: 1;
 }
 
+.random-snipe.animated {
+  background-image: url('/images/units-animated/random-right.apng');
+}
+
 .random-steal {
   display: block;
   position: absolute;
@@ -462,6 +534,10 @@ div.stretchy-wrapper > div.stretchy-text {
   background-size: 20px 20px;
   background-repeat: no-repeat;
   opacity: 1;
+}
+
+.random-steal.animated {
+  background-image: url('/images/units-animated/random-right.apng');
 }
 
 .ban .random-pick {
@@ -619,6 +695,10 @@ div.stretchy-wrapper > div.stretchy-text {
   transform: scaleX(-1);
 }
 
+img.directional {
+  transform: none !important;
+}
+
 .back-icon.header-navigation {
   display: inline-block;
   width: 48px;
@@ -751,4 +831,53 @@ html.has-theme-dark {
 
 body.has-theme-dark {
   @import "bulma-dark.scss";
+}
+
+// Simple UI
+html.has-simple-ui {
+  background: none;
+
+  body {
+    background: none;
+  }
+
+  .box {
+    background: none !important;
+    box-shadow: none;
+  }
+
+  .ban {
+    width: 112px;
+    height: 112px;
+  }
+
+  .ban .random-pick {
+    top: 0;
+    left: -2px;
+    width: 32px;
+    height: 32px;
+    background-size: 32px 32px;
+  }
+
+  .player.box {
+    max-width: 650px;
+    padding: 0;
+  }
+
+  #player-guest.column, #player-host.column {
+    margin: 0;
+    padding: 0.6rem;
+  }
+
+  .footer {
+    background: none;
+  }
+}
+
+.is-flex-grow-1 {
+  flex-grow: 1;
+}
+
+.is-justify-content-center {
+  justify-content: center;
 }

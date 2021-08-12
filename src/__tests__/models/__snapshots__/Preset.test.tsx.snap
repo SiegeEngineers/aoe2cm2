@@ -2,6 +2,7 @@
 
 exports[`preset from valid pojo works 1`] = `
 Preset {
+  "draftOptions": undefined,
   "encodedCivilisations": "1",
   "name": "some-name",
   "presetId": undefined,

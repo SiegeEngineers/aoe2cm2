@@ -113,6 +113,30 @@ export class PresetValidation {
         return true;
     });
 
+    public static readonly VLD_910: PresetValidation = new PresetValidation(ValidationId.VLD_910, (preset: Preset) => {
+        if (preset.draftOptions) {
+            for (let draftOption of preset.draftOptions) {
+                if (!draftOption.id) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    });
+
+    public static readonly VLD_911: PresetValidation = new PresetValidation(ValidationId.VLD_911, (preset: Preset) => {
+        if (preset.draftOptions) {
+            const ids = new Set();
+            for (let draftOption of preset.draftOptions) {
+                if (ids.has(draftOption.id)) {
+                    return false;
+                }
+                ids.add(draftOption.id);
+            }
+        }
+        return true;
+    });
+
     public static readonly ALL: PresetValidation[] = [
         PresetValidation.VLD_901,
         PresetValidation.VLD_902,
@@ -123,6 +147,8 @@ export class PresetValidation {
         PresetValidation.VLD_907,
         PresetValidation.VLD_908,
         PresetValidation.VLD_909,
+        PresetValidation.VLD_910,
+        PresetValidation.VLD_911,
     ];
 
     private readonly validationId: ValidationId;

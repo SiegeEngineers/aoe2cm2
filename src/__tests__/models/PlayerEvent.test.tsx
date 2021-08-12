@@ -1,11 +1,11 @@
-import PlayerEvent from "../../models/PlayerEvent";
+import LegacyPlayerEvent from "../../models/LegacyPlayerEvent";
 
-it('PlayerEvent can deserialize old state', () => {
-    const source = JSON.parse('{"player": "HOST", "actionType": "PICK", "civilisation": {}, "offset": 123}') as PlayerEvent;
-    expect(PlayerEvent.from(source)).toMatchSnapshot();
+it('LegacyPlayerEvent can deserialize old state', () => {
+    const source = JSON.parse('{"player": "HOST", "actionType": "PICK", "civilisation": {}, "offset": 123}') as LegacyPlayerEvent;
+    expect(LegacyPlayerEvent.from(source)).toMatchSnapshot();
 });
 
-it('PlayerEvent can deserialize new state', () => {
-    const source = JSON.parse('{"player": "HOST", "actionType": "PICK", "civilisation": {}, "offset": 123, "executingPlayer": "GUEST"}') as PlayerEvent;
-    expect(PlayerEvent.from(source)).toMatchSnapshot();
+it('LegacyPlayerEvent can deserialize new state', () => {
+    const source = JSON.parse('{"player": "HOST", "actionType": "PICK", "civilisation": {}, "offset": 123, "executingPlayer": "GUEST"}') as LegacyPlayerEvent;
+    expect(LegacyPlayerEvent.from(source)).toMatchSnapshot();
 });

@@ -1,5 +1,4 @@
-# aoe2cm
-Captains Mode for Age of Empires II
+# Captains Mode for Age of Empires II
 
 This is a recreation of the original [aoe2cm by pip](https://github.com/aocpip/aoe2cm) 
 with additional features such as snipe turns and user generated presets.
@@ -118,3 +117,22 @@ action is not broadcasted.
 
 ![Sequence diagram of a session](session.png)
 
+## Translations
+If you would like to see this app in one of the languages in which it isn't 
+translated yet, you are welcome to submit the translations &ndash; provided 
+you are willing to volunteer to keep it up to date in the future as well 😁
+
+### How to submit
+You can  make a copy of [this file](src/languages/en_GB.json), translate it and 
+submit the new file with translations via a 
+PR ([example here](https://github.com/SiegeEngineers/aoe2cm2/pull/45)). 
+Or, share the file with `hszemi#2325` or `Jester#5115` on Discord.
+
+### Current locale maintainers
+
+- `de_DE`: hszemi#2325
+- `en_GB`: hszemi#2325
+- `es_ES`: Brian#8296
+- `pt_BR`: marciocolombia#0637
+- `zh_CN`: HeavenlyChorus#8242
+- `zh_TW`: jkb#2180

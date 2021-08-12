@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`successful join gets a draft config 1`] = `
+Object {
+  "events": Array [],
+  "guestConnected": false,
+  "guestReady": false,
+  "hostConnected": true,
+  "hostReady": false,
+  "nameGuest": "…",
+  "nameHost": "Saladin",
+  "nextAction": 0,
+  "preset": Object {
+    "encodedCivilisations": "7fffffffff",
+    "name": "Simple Preset",
+    "turns": Array [
+      Object {
+        "action": "BAN",
+        "exclusivity": "NONEXCLUSIVE",
+        "executingPlayer": "HOST",
+        "hidden": false,
+        "id": "mocked-uuid",
+        "parallel": false,
+        "player": "HOST",
+      },
+      Object {
+        "action": "BAN",
+        "exclusivity": "NONEXCLUSIVE",
+        "executingPlayer": "GUEST",
+        "hidden": false,
+        "id": "mocked-uuid",
+        "parallel": false,
+        "player": "GUEST",
+      },
+      Object {
+        "action": "PICK",
+        "exclusivity": "NONEXCLUSIVE",
+        "executingPlayer": "GUEST",
+        "hidden": false,
+        "id": "mocked-uuid",
+        "parallel": false,
+        "player": "GUEST",
+      },
+      Object {
+        "action": "PICK",
+        "exclusivity": "NONEXCLUSIVE",
+        "executingPlayer": "HOST",
+        "hidden": false,
+        "id": "mocked-uuid",
+        "parallel": false,
+        "player": "HOST",
+      },
+    ],
+  },
+  "startTimestamp": 0,
+  "yourPlayerType": "HOST",
+}
+`;

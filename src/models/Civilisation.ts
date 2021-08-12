@@ -1,4 +1,5 @@
 import GameVersion from "../constants/GameVersion";
+import DraftOption from "./DraftOption";
 
 enum Name {
     BRITONS = "Britons",
@@ -45,15 +46,11 @@ enum Name {
     BURGUNDIANS = "Burgundians",
     SICILIANS = "Sicilians",
 
-    HIDDEN_PICK = "HIDDEN_PICK",
-    HIDDEN_BAN = "HIDDEN_BAN",
-    HIDDEN_SNIPE = "HIDDEN_SNIPE",
-    HIDDEN_STEAL = "HIDDEN_STEAL",
-    HIDDEN = "HIDDEN",
-    RANDOM = "RANDOM"
+    BOHEMIANS = "Bohemians",
+    POLES = "Poles",
 }
 
-class Civilisation {
+class Civilisation extends DraftOption {
 
     public static readonly BRITONS: Civilisation = new Civilisation(Name.BRITONS, GameVersion.AOK);
     public static readonly BYZANTINES: Civilisation = new Civilisation(Name.BYZANTINES, GameVersion.AOK);
@@ -68,7 +65,6 @@ class Civilisation {
     public static readonly TEUTONS: Civilisation = new Civilisation(Name.TEUTONS, GameVersion.AOK);
     public static readonly TURKS: Civilisation = new Civilisation(Name.TURKS, GameVersion.AOK);
     public static readonly VIKINGS: Civilisation = new Civilisation(Name.VIKINGS, GameVersion.AOK);
-    public static readonly RANDOM: Civilisation = new Civilisation(Name.RANDOM, GameVersion.AOK);
 
     public static readonly AZTECS: Civilisation = new Civilisation(Name.AZTECS, GameVersion.CONQUERORS);
     public static readonly HUNS: Civilisation = new Civilisation(Name.HUNS, GameVersion.CONQUERORS);
@@ -100,11 +96,9 @@ class Civilisation {
     public static readonly BURGUNDIANS: Civilisation = new Civilisation(Name.BURGUNDIANS, GameVersion.LORDS_OF_THE_WEST);
     public static readonly SICILIANS: Civilisation = new Civilisation(Name.SICILIANS, GameVersion.LORDS_OF_THE_WEST);
 
-    public static readonly HIDDEN_PICK: Civilisation = new Civilisation(Name.HIDDEN_PICK, GameVersion.TECHNICAL);
-    public static readonly HIDDEN_BAN: Civilisation = new Civilisation(Name.HIDDEN_BAN, GameVersion.TECHNICAL);
-    public static readonly HIDDEN_SNIPE: Civilisation = new Civilisation(Name.HIDDEN_SNIPE, GameVersion.TECHNICAL);
-    public static readonly HIDDEN_STEAL: Civilisation = new Civilisation(Name.HIDDEN_STEAL, GameVersion.TECHNICAL);
-    public static readonly HIDDEN: Civilisation = new Civilisation(Name.HIDDEN, GameVersion.TECHNICAL);
+    public static readonly BOHEMIANS: Civilisation = new Civilisation(Name.BOHEMIANS, GameVersion.DAWN_OF_THE_DUKES);
+    public static readonly POLES: Civilisation = new Civilisation(Name.POLES, GameVersion.DAWN_OF_THE_DUKES);
+
 
     // DO NOT CHANGE THE ORDER OF ELEMENTS IN THIS ARRAY!!!
     // ONLY APPEND NEW CIVILISATIONS AT THE END!!!
@@ -146,14 +140,14 @@ class Civilisation {
         Civilisation.TATARS,
         Civilisation.BURGUNDIANS,
         Civilisation.SICILIANS,
+        Civilisation.BOHEMIANS,
+        Civilisation.POLES,
     ];
 
-    public readonly name: Name;
     public readonly gameVersion: GameVersion;
-    public isRandomlyChosenCiv: boolean = false;
 
     private constructor(name: Name, gameVersion: GameVersion) {
-        this.name = name;
+        super(name);
         this.gameVersion = gameVersion;
     }
 

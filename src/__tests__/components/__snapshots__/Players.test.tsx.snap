@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CivGrid renders correctly 1`] = `
+exports[`DraftOptionGrid renders correctly 1`] = `
 <div
   className="columns is-mobile player-panels"
 >
@@ -10,7 +10,8 @@ exports[`CivGrid renders correctly 1`] = `
     player="HOST"
     preset={
       Preset {
-        "encodedCivilisations": "1fffffffff",
+        "draftOptions": undefined,
+        "encodedCivilisations": "7fffffffff",
         "name": "Default Preset",
         "presetId": undefined,
         "turns": Array [
@@ -213,7 +214,8 @@ exports[`CivGrid renders correctly 1`] = `
     player="GUEST"
     preset={
       Preset {
-        "encodedCivilisations": "1fffffffff",
+        "draftOptions": undefined,
+        "encodedCivilisations": "7fffffffff",
         "name": "Default Preset",
         "presetId": undefined,
         "turns": Array [

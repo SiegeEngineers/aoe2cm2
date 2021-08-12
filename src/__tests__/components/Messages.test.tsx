@@ -103,7 +103,7 @@ describe('parallel turn H-G: Step 2, Host picks before Guest', () => {
                                             nameHost={'nameHost'}
                                             nameGuest={'nameGuest'}
                                             preset={preset}
-                                            events={[new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS)]}
+                                            events={[new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id)]}
                                             sendReady={() => {
                                             }}/>);
         expect(component.dive()).toMatchSnapshot();
@@ -124,7 +124,7 @@ describe('parallel turn H-G: Step 2, Guest picks before Host', () => {
                                             nameHost={'nameHost'}
                                             nameGuest={'nameGuest'}
                                             preset={preset}
-                                            events={[new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS)]}
+                                            events={[new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS.id)]}
                                             sendReady={() => {
                                             }}/>);
         expect(component.dive()).toMatchSnapshot();
@@ -166,7 +166,7 @@ describe('parallel turn G-H: Step 2, Host picks before Guest', () => {
                                             nameHost={'nameHost'}
                                             nameGuest={'nameGuest'}
                                             preset={preset}
-                                            events={[new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS)]}
+                                            events={[new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id)]}
                                             sendReady={() => {
                                             }}/>);
         expect(component.dive()).toMatchSnapshot();
@@ -187,7 +187,7 @@ describe('parallel turn G-H: Step 2, Guest picks before Host,', () => {
                                             nameHost={'nameHost'}
                                             nameGuest={'nameGuest'}
                                             preset={preset}
-                                            events={[new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS)]}
+                                            events={[new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS.id)]}
                                             sendReady={() => {
                                             }}/>);
         expect(component.dive()).toMatchSnapshot();

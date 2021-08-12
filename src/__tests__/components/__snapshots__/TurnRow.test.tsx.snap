@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CivGrid renders correctly 1`] = `
+exports[`TurnRow renders correctly 1`] = `
 <TurnRow
   t={[Function]}
   turns={

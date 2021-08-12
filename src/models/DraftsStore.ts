@@ -7,12 +7,14 @@ import DraftViews from "./DraftViews";
 import {setInterval} from "timers";
 import socketio from "socket.io";
 import PlayerEvent from "./PlayerEvent";
-import Civilisation from "./Civilisation";
 import {actionTypeFromAction} from "../constants/ActionType";
-import {Listeners} from "../util/Listeners";
+import {ActListener} from "../util/ActListener";
 import {logger} from "../util/Logger";
-import {IRecentDraft} from "../types";
+import {IRecentDraft, IServerState} from "../types";
 import fs from "fs";
+import path from "path";
+import {DraftsArchive} from "./DraftsArchive";
+import DraftOption from "./DraftOption";
 
 interface ICountdownValues {
     timeout?: NodeJS.Timeout;
@@ -22,10 +24,24 @@ interface ICountdownValues {
 
 
 export class DraftsStore {
-    // visible for testing
-    static RECENT_DRAFTS_FILE = 'recentDrafts.json';
     private drafts: Map<string, DraftViews> = new Map<string, DraftViews>();
     private countdowns: Map<String, ICountdownValues> = new Map<String, ICountdownValues>();
+    private readonly state: IServerState;
+    readonly recentDraftsFile: string | null;
+    readonly draftsArchive?: DraftsArchive;
+    readonly currentDataPath?: string;
+
+    constructor(baseDirectory: string | null, state: IServerState = {maintenanceMode: false, hiddenPresetIds: []}) {
+        this.recentDraftsFile = baseDirectory ? path.join(baseDirectory, 'recentDrafts.json') : null;
+        this.state = state;
+        if (baseDirectory !== null){
+            const dataPath = path.join(baseDirectory, 'data');
+            this.currentDataPath = path.join(dataPath, 'current');
+            if(fs.existsSync(dataPath)) {
+                this.draftsArchive = new DraftsArchive(dataPath);
+            }
+        }
+    }
 
     public createDraft(draftId: string, draft: Draft) {
         this.assertDraftDoesNotExist(draftId);
@@ -50,7 +66,7 @@ export class DraftsStore {
     public getRecentDrafts(): IRecentDraft[] {
         const ongoingDrafts = this.getOngoingDrafts();
 
-        const recentDrafts = DraftsStore.loadRecentDrafts();
+        const recentDrafts = this.loadRecentDrafts();
         if (ongoingDrafts.length < 10) {
             const iterations = 10 - ongoingDrafts.length;
             for (let i = 0; i < iterations; i++) {
@@ -70,6 +86,7 @@ export class DraftsStore {
             .map((value: string) => {
                 return {...this.getDraftOrThrow(value), draftId: value};
             })
+            .filter((draft) => !this.presetIdIsHidden(draft))
             .filter((draft) => draft.hostConnected && draft.guestConnected)
             .sort((a, b) => (a.startTimestamp > b.startTimestamp) ? -1 : 1)
             .map((draft) => {
@@ -84,12 +101,40 @@ export class DraftsStore {
         return ongoingDrafts;
     }
 
+    private presetIdIsHidden(draft: { preset: Preset}) {
+        return draft.preset.presetId !== undefined && this.state.hiddenPresetIds.includes(draft.preset.presetId);
+    }
+
     public getDraftIds(): string[] {
         return Array.from(this.drafts.keys());
     }
 
     public has(draftId: string): boolean {
         return this.drafts.has(draftId);
+    }
+
+    public hasArchive(draftId: string): boolean {
+        if (this.draftsArchive) {
+            return this.draftsArchive.hasDraftId(draftId);
+        }
+        return false;
+    }
+
+    public draftIdExists(draftId: string): boolean {
+        return this.has(draftId)
+            || this.hasArchive(draftId)
+            || this.hasCurrent(draftId);
+    }
+
+    private hasCurrent(draftId: string) {
+        return this.currentDataPath !== undefined && fs.existsSync(path.join(this.currentDataPath, `${draftId}.json`));
+    }
+
+    public getArchiveFolder(draftId: string): string {
+        if (this.draftsArchive) {
+            return this.draftsArchive.getFolderForDraftId(draftId);
+        }
+        return '';
     }
 
     public connectPlayer(draftId: string, player: Player, name: string) {
@@ -225,7 +270,7 @@ export class DraftsStore {
         logger.info('Pausing countdown for draftId %s', draftId, {draftId});
     }
 
-    public startCountdown(draftId: string, socket: socketio.Socket) {
+    public startCountdown(draftId: string, socket: socketio.Socket, dataDirectory: string) {
         const expectedActions = this.getExpectedActions(draftId);
         if (expectedActions.length > 0) {
             const interval: NodeJS.Timeout = setInterval(() => {
@@ -248,14 +293,14 @@ export class DraftsStore {
                     }
 
                     if (value === -1) {
-                        const actListener = Listeners.actListener(this, draftId, (draftId: string, message: DraftEvent) => {
+                        const actListener = new ActListener(dataDirectory).actListener(this, draftId, (draftId: string, message: DraftEvent) => {
                             this.addDraftEvent(draftId, message);
                             return [];
                         }, socket, roomHost, roomGuest, roomSpec, true);
                         const expectedActions = this.getExpectedActions(draftId);
                         if (expectedActions.length > 0) {
                             for (let expectedAction of expectedActions) {
-                                const message = new PlayerEvent(expectedAction.player, actionTypeFromAction(expectedAction.action), Civilisation.RANDOM, expectedAction.executingPlayer);
+                                const message = new PlayerEvent(expectedAction.player, actionTypeFromAction(expectedAction.action), DraftOption.RANDOM.id, false, expectedAction.executingPlayer);
                                 logger.info('Countdown ran out, executing action on player\'s behalf: %s', JSON.stringify(message), {draftId});
                                 actListener(message, () => {
                                 });
@@ -279,7 +324,7 @@ export class DraftsStore {
         draft.startTimestamp = Date.now();
     }
 
-    public restartOrCancelCountdown(draftId: string) {
+    public restartOrCancelCountdown(draftId: string, dataDirectory: string) {
         let countdown = this.countdowns.get(draftId);
         if (countdown !== undefined) {
             if (countdown.timeout !== undefined) {
@@ -296,7 +341,7 @@ export class DraftsStore {
                 .in(roomSpec)
                 .emit("countdown", {value: 0, display: false});
             if (expectedActions.length > 0) {
-                this.startCountdown(draftId, countdown.socket);
+                this.startCountdown(draftId, countdown.socket, dataDirectory);
             }
         }
     }
@@ -320,7 +365,10 @@ export class DraftsStore {
 
     addRecentDraft(draftId: string) {
         const draft = this.getDraftOrThrow(draftId);
-        const recentDrafts = DraftsStore.loadRecentDrafts();
+        if(this.presetIdIsHidden(draft)){
+            return;
+        }
+        const recentDrafts = this.loadRecentDrafts();
         recentDrafts.unshift({
             title: draft.preset.name,
             draftId: draftId,
@@ -331,20 +379,26 @@ export class DraftsStore {
         while (recentDrafts.length > 10) {
             recentDrafts.pop();
         }
-        DraftsStore.saveRecentDrafts(recentDrafts);
+        this.saveRecentDrafts(recentDrafts);
     }
 
-    private static loadRecentDrafts() {
-        if (fs.existsSync(DraftsStore.RECENT_DRAFTS_FILE)) {
-            const fileContent = fs.readFileSync(DraftsStore.RECENT_DRAFTS_FILE);
+    private loadRecentDrafts() {
+        if (this.recentDraftsFile === null) {
+            return [];
+        }
+        if (fs.existsSync(this.recentDraftsFile)) {
+            const fileContent = fs.readFileSync(this.recentDraftsFile);
             return JSON.parse(fileContent.toString()) as IRecentDraft[];
         } else {
             return [];
         }
     }
 
-    private static saveRecentDrafts(recentDrafts: IRecentDraft[]) {
-        fs.writeFileSync(DraftsStore.RECENT_DRAFTS_FILE, JSON.stringify(recentDrafts));
+    private saveRecentDrafts(recentDrafts: IRecentDraft[]) {
+        if (this.recentDraftsFile === null) {
+            return;
+        }
+        fs.writeFileSync(this.recentDraftsFile, JSON.stringify(recentDrafts));
     }
 
     public purgeStaleDrafts() {

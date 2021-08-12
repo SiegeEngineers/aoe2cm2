@@ -2,6 +2,7 @@ import Preset from "../models/Preset";
 import {Util} from "./Util";
 import fs from "fs";
 import {logger} from "./Logger";
+import path from "path";
 
 export const PresetUtil = {
     newPresetId(): string {
@@ -13,15 +14,16 @@ export const PresetUtil = {
         return fs.existsSync(path);
     },
 
-    createPreset(preset: Preset) {
+    createPreset(preset: Preset, presetDirectory: string) {
         let presetId = PresetUtil.newPresetId();
         while (PresetUtil.presetExists(presetId)) {
             presetId += Util.randomChar();
         }
         preset.presetId = presetId;
-        fs.writeFile(`presets/${presetId}.json`, JSON.stringify(preset), (err) => {
+        const presetPath = path.join(presetDirectory,`${presetId}.json`);
+        fs.writeFile(presetPath, JSON.stringify(preset), (err) => {
             if (err) throw err;
-            logger.info(`Preset saved to presets/${presetId}.json`, {presetId});
+            logger.info(`Preset saved to ${presetPath}`, {presetId});
         });
         return presetId;
     },

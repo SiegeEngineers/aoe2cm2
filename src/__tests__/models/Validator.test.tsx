@@ -12,6 +12,7 @@ import Turn from "../../models/Turn";
 import {DraftEvent} from "../../types/DraftEvent";
 import AdminEvent from "../../models/AdminEvent";
 import Exclusivity from "../../constants/Exclusivity";
+import DraftOption from "../../models/DraftOption";
 
 const NAME_HOST: string = 'Yodit';
 const NAME_GUEST: string = 'Saladin';
@@ -23,7 +24,7 @@ it('VLD_000: host not ready', () => {
 
     draftsStore.setPlayerReady(DRAFT_ID, Player.GUEST);
     const validator = new Validator(draftsStore);
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS.id ));
     expect(errors).toEqual([ValidationId.VLD_000]);
 });
 
@@ -33,20 +34,20 @@ it('VLD_000: guest not ready', () => {
 
     draftsStore.setPlayerReady(DRAFT_ID, Player.HOST);
     const validator = new Validator(draftsStore);
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS.id));
     expect(errors).toEqual([ValidationId.VLD_000]);
 });
 
 it('VLD_000: draft finished', () => {
     let preset = Preset.SIMPLE;
     let draftsStore = prepareReadyStore(preset, [
-        new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS),
-        new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS),
-        new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.BRITONS),
-        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.BRITONS)
+        new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS.id),
+        new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS.id),
+        new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.BRITONS.id),
+        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.BRITONS.id)
     ]);
     const validator = new Validator(draftsStore);
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id));
     expect(errors).toEqual([ValidationId.VLD_000]);
 });
 
@@ -54,7 +55,7 @@ it('VLD_001: wrong player to act', () => {
     let preset = Preset.SIMPLE;
     const validator = new Validator(prepareReadyStore(preset));
     expect(preset.turns[0].player).toEqual(Player.HOST);
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS.id));
     expect(errors).toEqual([ValidationId.VLD_001]);
 });
 
@@ -63,130 +64,130 @@ it('VLD_002: wrong action', () => {
     const validator = new Validator(prepareReadyStore(preset));
     expect(preset.turns[0].action).toEqual(Action.BAN);
     expect(preset.turns[0].exclusivity).toEqual(Exclusivity.NONEXCLUSIVE);
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id));
     expect(errors).toEqual([ValidationId.VLD_002]);
 });
 
 it('VLD_010: civ already globally banned by same player', () => {
     let preset = new Preset("test", Civilisation.ALL, [Turn.HOST_GLOBAL_BAN, Turn.HOST_NONEXCLUSIVE_PICK]);
-    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS)]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS));
+    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS.id)]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id));
     expect(errors).toEqual([ValidationId.VLD_010]);
 });
 
 it('VLD_010: civ already globally banned by opponent', () => {
     let preset = new Preset("test", Civilisation.ALL, [Turn.HOST_GLOBAL_BAN, Turn.GUEST_NONEXCLUSIVE_PICK]);
-    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS)]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS));
+    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS.id)]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS.id));
     expect(errors).toEqual([ValidationId.VLD_010]);
 });
 
 it('VLD_010: civ already banned for host', () => {
     let preset = new Preset("test", Civilisation.ALL, [Turn.HOST_NONEXCLUSIVE_BAN, Turn.GUEST_NONEXCLUSIVE_PICK]);
-    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS)]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS));
+    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS.id)]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS.id));
     expect(errors).toEqual([ValidationId.VLD_010]);
 });
 
 it('VLD_010: civ already hidden/revealed banned for host', () => {
     let preset = new Preset("test", Civilisation.ALL, [Turn.HOST_HIDDEN_BAN, Turn.REVEAL_ALL, Turn.GUEST_NONEXCLUSIVE_PICK]);
-    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS), new AdminEvent(Player.NONE, Action.REVEAL_ALL)]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS));
+    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS.id), new AdminEvent(Player.NONE, Action.REVEAL_ALL)]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS.id));
     expect(errors).toEqual([ValidationId.VLD_010]);
 });
 
 it('VLD_010: civ already hidden/revealed banned for guest', () => {
     let preset = new Preset("test", Civilisation.ALL, [Turn.GUEST_HIDDEN_BAN, Turn.REVEAL_ALL, Turn.HOST_NONEXCLUSIVE_PICK]);
-    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS), new AdminEvent(Player.NONE, Action.REVEAL_ALL)]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS));
+    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS.id), new AdminEvent(Player.NONE, Action.REVEAL_ALL)]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id));
     expect(errors).toEqual([ValidationId.VLD_010]);
 });
 
 it('VLD_010: civ already banned for guest', () => {
     let preset = new Preset("test", Civilisation.ALL, [Turn.GUEST_NONEXCLUSIVE_BAN, Turn.HOST_NONEXCLUSIVE_PICK]);
-    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS)]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS));
+    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS.id)]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id));
     expect(errors).toEqual([ValidationId.VLD_010]);
 });
 
 it('VLD_010: civ already picked by host', () => {
     let preset = new Preset("test", Civilisation.ALL, [Turn.HOST_PICK, Turn.HOST_NONEXCLUSIVE_PICK]);
-    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS)]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS));
+    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id)]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id));
     expect(errors).toEqual([ValidationId.VLD_010]);
 });
 
 it('VLD_010: two nonexclusive picks in a row', () => {
     let preset = new Preset("test", Civilisation.ALL, [Turn.HOST_NONEXCLUSIVE_PICK, Turn.HOST_NONEXCLUSIVE_PICK]);
-    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS)]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS));
+    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id)]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id));
     expect(errors).toEqual([]);
 });
 
 it('VLD_010: civ already picked by guest', () => {
     let preset = new Preset("test", Civilisation.ALL, [Turn.GUEST_PICK, Turn.GUEST_NONEXCLUSIVE_PICK]);
-    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS)]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS));
+    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS.id)]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS.id));
     expect(errors).toEqual([ValidationId.VLD_010]);
 });
 
 it('VLD_010: civ already picked by opponent', () => {
     let preset = new Preset("test", Civilisation.ALL, [Turn.HOST_PICK, Turn.GUEST_NONEXCLUSIVE_PICK]);
-    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS)]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS));
+    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id)]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS.id));
     expect(errors).toEqual([]);
 });
 
 it('VLD_010: civ already globally picked by same player', () => {
     let preset = new Preset("test", Civilisation.ALL, [Turn.HOST_GLOBAL_PICK, Turn.HOST_NONEXCLUSIVE_PICK]);
-    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS)]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS));
+    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id)]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id));
     expect(errors).toEqual([ValidationId.VLD_010]);
 });
 
 it('VLD_010: civ already globally picked by opponent', () => {
     let preset = new Preset("test", Civilisation.ALL, [Turn.HOST_GLOBAL_PICK, Turn.GUEST_NONEXCLUSIVE_PICK]);
-    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS)]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS));
+    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id)]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS.id));
     expect(errors).toEqual([ValidationId.VLD_010]);
 });
 
 it('VLD_010: civ already banned by host', () => {
     let preset = new Preset("test", Civilisation.ALL, [Turn.HOST_BAN, Turn.HOST_NONEXCLUSIVE_BAN]);
-    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS)]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS));
+    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS.id)]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS.id));
     expect(errors).toEqual([ValidationId.VLD_010]);
 });
 
 it('VLD_010: civ already banned by guest', () => {
     let preset = new Preset("test", Civilisation.ALL, [Turn.GUEST_BAN, Turn.GUEST_NONEXCLUSIVE_BAN]);
-    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS)]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS));
+    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS.id)]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS.id));
     expect(errors).toEqual([ValidationId.VLD_010]);
 });
 
 it('VLD_010: two nonexclusive bans in a row', () => {
     let preset = new Preset("test", Civilisation.ALL, [Turn.GUEST_NONEXCLUSIVE_BAN, Turn.GUEST_NONEXCLUSIVE_BAN]);
-    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS)]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS));
+    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS.id)]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS.id));
     expect(errors).toEqual([]);
 });
 
 it('VLD_010: civ to snipe not yet picked by opponent', () => {
     let preset = new Preset("test", Civilisation.ALL, [Turn.HOST_NONEXCLUSIVE_PICK, Turn.GUEST_SNIPE]);
-    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS)]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.SNIPE, Civilisation.BRITONS));
+    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id)]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.SNIPE, Civilisation.BRITONS.id));
     expect(errors).toEqual([ValidationId.VLD_010]);
 });
 
 it('VLD_010: opponent does not have a non-sniped pick of the civ to snipe', () => {
     let preset = new Preset("test", Civilisation.ALL, [Turn.HOST_NONEXCLUSIVE_PICK, Turn.HOST_NONEXCLUSIVE_PICK, Turn.GUEST_SNIPE, Turn.GUEST_SNIPE]);
     const validator = new Validator(prepareReadyStore(preset, [
-        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS),
-        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.BRITONS),
-        new PlayerEvent(Player.GUEST, ActionType.SNIPE, Civilisation.AZTECS)
+        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id),
+        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.BRITONS.id),
+        new PlayerEvent(Player.GUEST, ActionType.SNIPE, Civilisation.AZTECS.id)
     ]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.SNIPE, Civilisation.AZTECS));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.SNIPE, Civilisation.AZTECS.id));
     expect(errors).toEqual([ValidationId.VLD_010]);
 });
 
@@ -366,6 +367,30 @@ it('VLD_909: illegal preset id', () => {
     expect(errors).toEqual([ValidationId.VLD_909]);
 });
 
+it('VLD_910: illegal draft option id', () => {
+    let preset = new Preset("test", [new DraftOption('', 'name')], [Turn.HOST_PICK, Turn.GUEST_PICK]);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([ValidationId.VLD_910]);
+});
+
+it('VLD_911: draft option ids not unique', () => {
+    let preset = new Preset("test", [new DraftOption('id', 'name 1'), new DraftOption('id', 'name 2')], [Turn.HOST_PICK, Turn.GUEST_PICK]);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([ValidationId.VLD_911]);
+});
+
+it('VLD_911: draft option names not unique but ids unique', () => {
+    let preset = new Preset("test", [new DraftOption('id1', 'name'), new DraftOption('id2', 'name')], [Turn.HOST_PICK, Turn.GUEST_PICK]);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([]);
+});
+
+it('VLD_999: totally wrong preset format', () => {
+    let preset = {absolute: "garbage"} as unknown as Preset;
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([ValidationId.VLD_999]);
+});
+
 describe('Execute parallel turn: Inverse order (1)', () => {
     it.each`
     action          | actionType         | exclusivity
@@ -381,7 +406,7 @@ describe('Execute parallel turn: Inverse order (1)', () => {
             new Turn(Player.GUEST, action, exclusivity),
         ]);
         const validator = new Validator(prepareReadyStore(preset, []));
-        const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, actionType, Civilisation.AZTECS));
+        const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, actionType, Civilisation.AZTECS.id));
         expect(errors).toEqual([]);
     });
 });
@@ -400,8 +425,8 @@ describe('Execute parallel turn: Inverse order (2)', () => {
             new Turn(Player.HOST, action, exclusivity, false, true),
             new Turn(Player.GUEST, action, exclusivity),
         ]);
-        const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.GUEST, actionType, Civilisation.AZTECS)]));
-        const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, actionType, Civilisation.BRITONS));
+        const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.GUEST, actionType, Civilisation.AZTECS.id)]));
+        const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, actionType, Civilisation.BRITONS.id));
         expect(errors).toEqual([]);
     });
 });
@@ -415,12 +440,12 @@ it('Execute parallel turn: Inverse snipe order (2)', () => {
     ]);
     const validator = new Validator(prepareReadyStore(preset,
         [
-            new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS),
-            new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.BRITONS)
+            new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id),
+            new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.BRITONS.id)
         ]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.SNIPE, Civilisation.AZTECS));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.SNIPE, Civilisation.AZTECS.id));
     expect(errors).toEqual([]);
-    const errors2: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.SNIPE, Civilisation.BRITONS));
+    const errors2: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.SNIPE, Civilisation.BRITONS.id));
     expect(errors2).toEqual([]);
 });
 
@@ -430,7 +455,7 @@ it('Execute parallel turn: Regular order (1)', () => {
         new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL),
     ]);
     const validator = new Validator(prepareReadyStore(preset, []));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id));
     expect(errors).toEqual([]);
 });
 
@@ -439,8 +464,8 @@ it('Execute parallel turn: Regular order (2)', () => {
         new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, true),
         new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL),
     ]);
-    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS)]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.BRITONS));
+    const validator = new Validator(prepareReadyStore(preset, [new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id)]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.BRITONS.id));
     expect(errors).toEqual([]);
 });
 
@@ -451,10 +476,10 @@ it('Snipe globally banned civ', () => {
         new Turn(Player.GUEST, Action.SNIPE, Exclusivity.GLOBAL),
     ]);
     const validator = new Validator(prepareReadyStore(preset, [
-        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS),
-        new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS),
+        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id),
+        new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS.id),
     ]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.SNIPE, Civilisation.AZTECS));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.SNIPE, Civilisation.AZTECS.id));
     expect(errors).toEqual([]);
 });
 
@@ -467,12 +492,12 @@ it('Double Snipe', () => {
         new Turn(Player.GUEST, Action.SNIPE, Exclusivity.GLOBAL),
     ]);
     const validator = new Validator(prepareReadyStore(preset, [
-        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS),
-        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.BRITONS),
-        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.CHINESE),
-        new PlayerEvent(Player.GUEST, ActionType.SNIPE, Civilisation.BRITONS),
+        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id),
+        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.BRITONS.id),
+        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.CHINESE.id),
+        new PlayerEvent(Player.GUEST, ActionType.SNIPE, Civilisation.BRITONS.id),
     ]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.SNIPE, Civilisation.CHINESE));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.SNIPE, Civilisation.CHINESE.id));
     expect(errors).toEqual([]);
 });
 
@@ -483,9 +508,9 @@ it('Duplicate hidden global pick', () => {
         new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL),
     ]);
     const validator = new Validator(prepareReadyStore(preset, [
-        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS),
+        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id),
     ]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS.id));
     expect(errors).toEqual([]);
 });
 
@@ -496,9 +521,9 @@ it('Duplicate hidden global pick 2', () => {
         new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL),
     ]);
     const validator = new Validator(prepareReadyStore(preset, [
-        new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS),
+        new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS.id),
     ]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id));
     expect(errors).toEqual([]);
 });
 
@@ -509,9 +534,9 @@ it('Duplicate hidden global pick parallel inverse', () => {
         new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL),
     ]);
     const validator = new Validator(prepareReadyStore(preset, [
-        new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS),
+        new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS.id),
     ]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id));
     expect(errors).toEqual([]);
 });
 
@@ -522,9 +547,9 @@ it('Duplicate hidden global pick 2 parallel inverse', () => {
         new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL),
     ]);
     const validator = new Validator(prepareReadyStore(preset, [
-        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS),
+        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id),
     ]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS.id));
     expect(errors).toEqual([]);
 });
 
@@ -535,9 +560,9 @@ it('Duplicate hidden global ban', () => {
         new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL),
     ]);
     const validator = new Validator(prepareReadyStore(preset, [
-        new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS),
+        new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS.id),
     ]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS.id));
     expect(errors).toEqual([]);
 });
 
@@ -548,9 +573,9 @@ it('Duplicate hidden global ban 2', () => {
         new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL),
     ]);
     const validator = new Validator(prepareReadyStore(preset, [
-        new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS),
+        new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS.id),
     ]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS.id));
     expect(errors).toEqual([]);
 });
 
@@ -561,9 +586,9 @@ it('Duplicate hidden global ban parallel inverse', () => {
         new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL),
     ]);
     const validator = new Validator(prepareReadyStore(preset, [
-        new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS),
+        new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS.id),
     ]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS.id));
     expect(errors).toEqual([]);
 });
 
@@ -574,9 +599,9 @@ it('Duplicate hidden global ban 2 parallel inverse', () => {
         new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL),
     ]);
     const validator = new Validator(prepareReadyStore(preset, [
-        new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS),
+        new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS.id),
     ]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS.id));
     expect(errors).toEqual([]);
 });
 
@@ -586,9 +611,9 @@ it('Hidden pick first and last', ()=>{
         new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, true),
     ]);
     const validator = new Validator(prepareReadyStore(preset, [
-        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS),
+        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id),
     ]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.VIKINGS));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.VIKINGS.id));
     expect(errors).toEqual([]);
 });
 
@@ -598,9 +623,9 @@ it('Hidden ban first and last', ()=>{
         new Turn(Player.GUEST, Action.BAN, Exclusivity.GLOBAL, true),
     ]);
     const validator = new Validator(prepareReadyStore(preset, [
-        new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS),
+        new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS.id),
     ]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.VIKINGS));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.VIKINGS.id));
     expect(errors).toEqual([]);
 });
 
@@ -609,7 +634,7 @@ it('Inverse turn', ()=>{
         new Turn(Player.HOST, Action.BAN, Exclusivity.GLOBAL, false, false, Player.GUEST),
     ]);
     const validator = new Validator(prepareReadyStore(preset, []));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.VIKINGS, Player.GUEST));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.VIKINGS.id, false, Player.GUEST));
     expect(errors).toEqual([]);
 });
 
@@ -619,9 +644,9 @@ it('Inverse turns inverse order', ()=>{
         new Turn(Player.GUEST, Action.BAN, Exclusivity.GLOBAL, false, false, Player.HOST),
     ]);
     const validator = new Validator(prepareReadyStore(preset, [
-        new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.VIKINGS, Player.HOST)
+        new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.VIKINGS.id, false, Player.HOST)
     ]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.VIETNAMESE, Player.GUEST));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.VIETNAMESE.id, false, Player.GUEST));
     expect(errors).toEqual([]);
 });
 
@@ -630,7 +655,7 @@ it('VLD_001: Inverse turn by wrong player', ()=>{
         new Turn(Player.HOST, Action.BAN, Exclusivity.GLOBAL, false, false, Player.GUEST),
     ]);
     const validator = new Validator(prepareReadyStore(preset, []));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.VIKINGS, Player.HOST));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.VIKINGS.id, false, Player.HOST));
     expect(errors).toEqual([ValidationId.VLD_001]);
 });
 
@@ -641,7 +666,7 @@ it('VLD_001: Inverse turns inverse order 1', ()=>{
     ]);
     const validator = new Validator(prepareReadyStore(preset, [
     ]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.VIKINGS, Player.HOST));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.VIKINGS.id, false, Player.HOST));
     expect(errors).toEqual([ValidationId.VLD_001]);
 });
 
@@ -651,9 +676,9 @@ it('VLD_001: Inverse turns inverse order 2', ()=>{
         new Turn(Player.GUEST, Action.BAN, Exclusivity.GLOBAL, false, false, Player.HOST),
     ]);
     const validator = new Validator(prepareReadyStore(preset, [
-        new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.VIKINGS, Player.HOST)
+        new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.VIKINGS.id, false, Player.HOST)
     ]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.VIETNAMESE, Player.HOST));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.VIETNAMESE.id, false, Player.HOST));
     expect(errors).toEqual([ValidationId.VLD_001]);
 });
 
@@ -663,9 +688,9 @@ it('Steal picked civ', () => {
         new Turn(Player.GUEST, Action.STEAL, Exclusivity.GLOBAL),
     ]);
     const validator = new Validator(prepareReadyStore(preset, [
-        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS),
+        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id),
     ]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.STEAL, Civilisation.AZTECS));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.STEAL, Civilisation.AZTECS.id));
     expect(errors).toEqual([]);
 });
 
@@ -675,9 +700,9 @@ it('Steal nonpicked civ', () => {
         new Turn(Player.GUEST, Action.STEAL, Exclusivity.GLOBAL),
     ]);
     const validator = new Validator(prepareReadyStore(preset, [
-        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS),
+        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id),
     ]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.STEAL, Civilisation.BRITONS));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.STEAL, Civilisation.BRITONS.id));
     expect(errors).toEqual([ValidationId.VLD_010]);
 });
 
@@ -688,10 +713,10 @@ it('Steal back stolen civ', () => {
         new Turn(Player.HOST, Action.STEAL, Exclusivity.GLOBAL),
     ]);
     const validator = new Validator(prepareReadyStore(preset, [
-        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS),
-        new PlayerEvent(Player.GUEST, ActionType.STEAL, Civilisation.AZTECS),
+        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id),
+        new PlayerEvent(Player.GUEST, ActionType.STEAL, Civilisation.AZTECS.id),
     ]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.STEAL, Civilisation.AZTECS));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.STEAL, Civilisation.AZTECS.id));
     expect(errors).toEqual([]);
 });
 
@@ -702,10 +727,10 @@ it('Steal banned civ', () => {
         new Turn(Player.GUEST, Action.STEAL, Exclusivity.GLOBAL),
     ]);
     const validator = new Validator(prepareReadyStore(preset, [
-        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS),
-        new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS),
+        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id),
+        new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS.id),
     ]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.STEAL, Civilisation.AZTECS));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.STEAL, Civilisation.AZTECS.id));
     expect(errors).toEqual([]);
 });
 
@@ -716,10 +741,10 @@ it('Steal previously sniped civ', () => {
         new Turn(Player.GUEST, Action.STEAL, Exclusivity.GLOBAL),
     ]);
     const validator = new Validator(prepareReadyStore(preset, [
-        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS),
-        new PlayerEvent(Player.GUEST, ActionType.SNIPE, Civilisation.AZTECS),
+        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id),
+        new PlayerEvent(Player.GUEST, ActionType.SNIPE, Civilisation.AZTECS.id),
     ]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.STEAL, Civilisation.AZTECS));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.STEAL, Civilisation.AZTECS.id));
     expect(errors).toEqual([ValidationId.VLD_010]);
 });
 
@@ -729,9 +754,9 @@ it('VLD_010 Cannot ban a globally banned civ again 1', () => {
         new Turn(Player.GUEST, Action.BAN, Exclusivity.GLOBAL),
     ]);
     const validator = new Validator(prepareReadyStore(preset, [
-        new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS),
+        new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS.id),
     ]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS.id));
     expect(errors).toEqual([ValidationId.VLD_010]);
 });
 
@@ -741,9 +766,9 @@ it('VLD_010 Cannot ban a globally banned civ again 2', () => {
         new Turn(Player.HOST, Action.BAN, Exclusivity.NONEXCLUSIVE),
     ]);
     const validator = new Validator(prepareReadyStore(preset, [
-        new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS),
+        new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.AZTECS.id),
     ]));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS.id));
     expect(errors).toEqual([ValidationId.VLD_010]);
 });
 
@@ -758,9 +783,9 @@ describe('VLD_010 dumb bans: globally ban an exclusively picked civ by opponent'
             new Turn(player2, Action.BAN, Exclusivity.GLOBAL),
         ]);
         const validator = new Validator(prepareReadyStore(preset, [
-            new PlayerEvent(player1, ActionType.PICK, Civilisation.AZTECS),
+            new PlayerEvent(player1, ActionType.PICK, Civilisation.AZTECS.id),
         ]));
-        const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(player2, ActionType.BAN, Civilisation.AZTECS));
+        const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(player2, ActionType.BAN, Civilisation.AZTECS.id));
         expect(errors).toEqual([ValidationId.VLD_010]);
     })
 });
@@ -776,9 +801,9 @@ describe('VLD_010 bans: globally ban an exclusively picked civ by yourself', () 
             new Turn(player2, Action.BAN, Exclusivity.GLOBAL),
         ]);
         const validator = new Validator(prepareReadyStore(preset, [
-            new PlayerEvent(player1, ActionType.PICK, Civilisation.AZTECS),
+            new PlayerEvent(player1, ActionType.PICK, Civilisation.AZTECS.id),
         ]));
-        const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(player2, ActionType.BAN, Civilisation.AZTECS));
+        const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(player2, ActionType.BAN, Civilisation.AZTECS.id));
         expect(errors).toEqual([]);
     })
 });
@@ -796,9 +821,9 @@ describe('VLD_010 dumb bans: ban a globally picked civ', () => {
             new Turn(player2, Action.BAN, banExclusivity),
         ]);
         const validator = new Validator(prepareReadyStore(preset, [
-            new PlayerEvent(player1, ActionType.PICK, Civilisation.AZTECS),
+            new PlayerEvent(player1, ActionType.PICK, Civilisation.AZTECS.id),
         ]));
-        const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(player2, ActionType.BAN, Civilisation.AZTECS));
+        const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(player2, ActionType.BAN, Civilisation.AZTECS.id));
         expect(errors).toEqual([ValidationId.VLD_010]);
     })
 });
@@ -814,9 +839,9 @@ describe('VLD_010 bans: globally ban an exclusively banned civ by opponent', () 
             new Turn(player2, Action.BAN, Exclusivity.GLOBAL),
         ]);
         const validator = new Validator(prepareReadyStore(preset, [
-            new PlayerEvent(player1, ActionType.BAN, Civilisation.AZTECS),
+            new PlayerEvent(player1, ActionType.BAN, Civilisation.AZTECS.id),
         ]));
-        const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(player2, ActionType.BAN, Civilisation.AZTECS));
+        const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(player2, ActionType.BAN, Civilisation.AZTECS.id));
         expect(errors).toEqual([]);
     })
 });
@@ -832,9 +857,9 @@ describe('VLD_010 dumb bans: globally ban an exclusively banned civ by yourself'
             new Turn(player2, Action.BAN, Exclusivity.GLOBAL),
         ]);
         const validator = new Validator(prepareReadyStore(preset, [
-            new PlayerEvent(player1, ActionType.BAN, Civilisation.AZTECS),
+            new PlayerEvent(player1, ActionType.BAN, Civilisation.AZTECS.id),
         ]));
-        const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(player2, ActionType.BAN, Civilisation.AZTECS));
+        const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(player2, ActionType.BAN, Civilisation.AZTECS.id));
         expect(errors).toEqual([ValidationId.VLD_010]);
     })
 });
@@ -845,9 +870,9 @@ it('Validator does not modify offsets', () => {
         new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL),
         new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL)
     ]);
-    const firstEvent = new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS);
+    const firstEvent = new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id);
     firstEvent.offset = expectedOffset;
-    const secondEvent = new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.BRITONS);
+    const secondEvent = new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.BRITONS.id);
     const draftsStore = prepareReadyStore(preset, [firstEvent]);
     expect(draftsStore.getEvents(DRAFT_ID)[0].offset).toEqual(expectedOffset);
 
@@ -859,7 +884,7 @@ it('Validator does not modify offsets', () => {
 const prepareStore = (preset: Preset, events: DraftEvent[] = []): DraftsStore => {
     const draft = new Draft(NAME_HOST, NAME_GUEST, preset);
     draft.events.push(...events);
-    const draftsStore = new DraftsStore();
+    const draftsStore = new DraftsStore(null);
     draftsStore.createDraft(DRAFT_ID, draft);
     return draftsStore;
 };

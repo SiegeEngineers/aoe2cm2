@@ -1,5 +1,5 @@
 import * as React from "react";
-import CivGrid from "./CivGrid";
+import DraftOptionGrid from "./DraftOptionGrid";
 import Messages from "../../containers/Messages";
 import DraftState from "./DraftState";
 import TurnRow from "./TurnRow";
@@ -20,6 +20,7 @@ import {default as ModelAction} from "../../constants/Action";
 import ReplayControls from "../../containers/ReplayControls";
 import {RouteComponentProps} from "react-router";
 import HowItWorks from "../menu/HowItWorks";
+import ColorSchemeHelpers from "../../util/ColorSchemeHelpers";
 
 interface IProps extends WithTranslation, RouteComponentProps<any> {
     nameHost: string;
@@ -52,6 +53,7 @@ interface IState {
     joined: boolean;
     flipped: boolean;
     smooch: boolean;
+    simplifiedUI: boolean;
 }
 
 class Draft extends React.Component<IProps, IState> {
@@ -61,11 +63,13 @@ class Draft extends React.Component<IProps, IState> {
         let query = new URLSearchParams(this.props.location.search);
         const flipped = query.get('flipped') === 'true' || false;
         const smooch = query.get('smooch') === 'true' || false;
-        this.state = {joined: false, flipped, smooch};
+        const simplifiedUI = query.get('simplified') === 'true' || false;
+        this.state = {joined: false, flipped, smooch, simplifiedUI};
     }
 
 
     componentDidMount(): void {
+        this.updateTitle();
         this.props.triggerConnect();
     }
 
@@ -87,7 +91,10 @@ class Draft extends React.Component<IProps, IState> {
                 this.props.showNameModal();
             }
         }
+        this.updateTitle();
+    }
 
+    private updateTitle() {
         const title = this.getTitle();
         if (document.title !== title) {
             document.title = title;
@@ -105,6 +112,7 @@ class Draft extends React.Component<IProps, IState> {
         if (this.props.triggerDisconnect) {
             this.props.triggerDisconnect();
         }
+        ColorSchemeHelpers.removeThemeClassName('has-simple-ui')
         if (this.props.history.length > 2 && document.referrer) {
             // go back if there is a possibility
             this.props.history.goBack();
@@ -118,7 +126,7 @@ class Draft extends React.Component<IProps, IState> {
         const newFlippedValue = !this.state.flipped;
         let searchParams = new URLSearchParams(this.props.location.search);
         searchParams.set('flipped', newFlippedValue.toString());
-        this.props.history.push({
+        this.props.history.replace({
             search: searchParams.toString()
         });
         this.setState({...this.state, flipped: newFlippedValue});
@@ -128,22 +136,39 @@ class Draft extends React.Component<IProps, IState> {
         const newSmoochValue = !this.state.smooch;
         let searchParams = new URLSearchParams(this.props.location.search);
         searchParams.set('smooch', newSmoochValue.toString());
-        this.props.history.push({
+        this.props.history.replace({
             search: searchParams.toString()
         });
         this.setState({...this.state, smooch: newSmoochValue});
     }
 
+    private toggleSimplifiedUI():void{
+        console.log('Simplified UI Toggle')
+        const newSimplifiedUIValue = !this.state.simplifiedUI;
+        let searchParams = new URLSearchParams(this.props.location.search);
+        searchParams.set('simplified', newSimplifiedUIValue.toString());
+        this.props.history.replace({
+            search: searchParams.toString()
+        });
+        this.setState({...this.state, simplifiedUI: newSimplifiedUIValue});
+    }
+
     public render() {
         let presetName: JSX.Element = <>{this.props.preset.name}</>;
         if(this.props.preset.presetId){
-            presetName = <Link to={'/preset/'+this.props.preset.presetId}>{presetName}</Link>
+            presetName = <Link to={'/preset/'+this.props.preset.presetId}>{presetName}</Link>;
         }
         const turns = this.props.preset.turns;
 
         let className = 'section';
         className += this.state.flipped ? ' flipped' : '';
         className += this.state.smooch ? ' smooch' : '';
+
+        if(this.state.simplifiedUI) {
+            ColorSchemeHelpers.addThemeClassName('has-simple-ui');
+        } else {
+            ColorSchemeHelpers.removeThemeClassName('has-simple-ui');
+        }
 
         return (
             <>
@@ -165,10 +190,14 @@ class Draft extends React.Component<IProps, IState> {
 
                     <TurnRow turns={turns}/>
 
-                    <DraftState nameHost={this.props.nameHost} nameGuest={this.props.nameGuest}
-                                preset={this.props.preset}/>
+                    <DraftState nameHost={this.props.nameHost}
+                                nameGuest={this.props.nameGuest}
+                                preset={this.props.preset}
+                                flipped={this.state.flipped}
+                                smooch={this.state.smooch}
+                                simplifiedUI={this.state.simplifiedUI}/>
 
-                    <div className="columns is-mobile">
+                    <div id="messages" className="columns is-mobile">
                         <div id="action-text" className="column has-text-centered is-size-4">
                             <Messages/>
                         </div>
@@ -176,13 +205,41 @@ class Draft extends React.Component<IProps, IState> {
 
                     <ReplayControls/>
 
-                    <DraftIdInfo/>
+                    {!this.state.simplifiedUI && <DraftIdInfo/>}
 
-                    <CivGrid civilisations={this.props.preset.civilisations}/>
+                    <DraftOptionGrid draftOptions={this.props.preset.options}/>
                 </div>
             </section>
 
-            <section className="section pt-0">
+            <section id="toggles" className="section pt-0">
+                <div className="container is-mobile has-text-centered">
+                    <div className="field is-grouped is-grouped-centered">
+                        <p className="control">
+                            <input id="toggleFlip" type="checkbox" name="toggleSmooch"
+                                   className="switch is-small is-rounded is-info" checked={this.state.flipped} onChange={() => {
+                                this.flip()
+                            }}/>
+                            <label htmlFor="toggleFlip" style={{paddingTop:1}}><Trans i18nKey='flip'>Flip Host and Guest positions</Trans></label>
+                        </p>
+                        <p className="control">
+                            <input id="toggleSmooch" type="checkbox" name="toggleSmooch"
+                                   className="switch is-small is-rounded is-info" checked={this.state.smooch} onChange={() => {
+                                this.toggleSmooch()
+                            }}/>
+                            <label htmlFor="toggleSmooch" style={{paddingTop:1}}><Trans i18nKey='smooch'>Smooch Mode</Trans></label>
+                        </p>
+                        <p className="control">
+                            <input id="toggleSimplifiedUI" type="checkbox" name="toggleSimplifiedUI"
+                                   className="switch is-small is-rounded is-info" checked={this.state.simplifiedUI} onChange={() => {
+                                this.toggleSimplifiedUI()
+                            }}/>
+                            <label htmlFor="toggleSimplifiedUI" style={{paddingTop:1}}><Trans i18nKey='simplifiedUI'>Simplified UI</Trans></label>
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            {!this.state.simplifiedUI && <section id="how-it-works" className="section pt-0">
                 <div className="container is-desktop has-text-centered" style={{maxWidth: "808px"}}>
                     <details>
                         <summary className="has-cursor-pointer"><Trans i18nKey='menu.howItWorks'>How it works</Trans></summary>
@@ -190,19 +247,11 @@ class Draft extends React.Component<IProps, IState> {
                     </details>
                 </div>
             </section>
+            }
 
-            <div className="container is-desktop has-text-centered mb-3" style={{maxWidth: "808px"}}>
-                <button className={'button is-small'} onClick={()=>{this.flip()}}>
-                    <Trans i18nKey='flip'>Flip Host and Guest positions</Trans>
-                </button>
-                <button className={'button is-small'} onClick={()=>{this.toggleSmooch()}}>
-                    <Trans i18nKey='smooch'>Toggle smooch mode</Trans>
-                </button>
-            </div>
-        </>
+            </>
         );
     }
-
 }
 
 export default withTranslation()(withRouter(Draft));

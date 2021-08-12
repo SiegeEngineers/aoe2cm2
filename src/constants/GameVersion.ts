@@ -7,6 +7,7 @@ enum GameVersion {
     RISE_OF_RAJAS,
     DEFINITIVE_EDITION,
     LORDS_OF_THE_WEST,
+    DAWN_OF_THE_DUKES,
 }
 
 export default GameVersion;

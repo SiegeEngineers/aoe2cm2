@@ -1,10 +1,10 @@
 import * as React from "react";
-import LanguageSelector from "../../containers/LanguageSelector";
 import UsernameSelector from "../../containers/UsernameSelector";
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
 import IconStyleSelector from "../../containers/IconStyleSelector";
 import ColorSchemeToggle from "../../containers/ColorSchemeToggle";
 import {Link} from "react-router-dom";
+import LocaleSelector from "./LocaleSelector";
 
 class NavBar extends React.Component<WithTranslation, object> {
     public render() {
@@ -22,12 +22,7 @@ class NavBar extends React.Component<WithTranslation, object> {
                         </div>
                     </div>
                     <div className="navbar-item">
-                        <div className={'buttons has-addons'}>
-                            <LanguageSelector language={'en-GB'} displayString={'EN'} tooltipString={'Switch language to English'}/>
-                            <LanguageSelector language={'es-ES'} displayString={'ES'} tooltipString={'Cambiar el idioma a español'}/>
-                            <LanguageSelector language={'de-DE'} displayString={'DE'} tooltipString={'Sprache zu Deutsch ändern'}/>
-                            <LanguageSelector language={'zh-CN'} displayString={'中文'} tooltipString={'将语言设置为中文'}/>
-                        </div>
+                        <LocaleSelector/>
                     </div>
                     <div className="navbar-item">
                         <div className={'buttons'}>
@@ -38,6 +33,7 @@ class NavBar extends React.Component<WithTranslation, object> {
                         <div className={'buttons has-addons'}>
                             <IconStyleSelector iconStyle={'units'} displayString={this.props.t('navbar.showUnits')}/>
                             <IconStyleSelector iconStyle={'emblems'} displayString={this.props.t('navbar.showEmblems')}/>
+                            <IconStyleSelector iconStyle={'units-animated'} displayString={this.props.t('navbar.showUnitsAnimated')}/>
                         </div>
                     </div>
                 </div>

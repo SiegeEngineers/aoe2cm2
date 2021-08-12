@@ -2,15 +2,15 @@ import * as React from 'react';
 import ActionType, {actionTypeFromAction} from "../../constants/ActionType";
 import {default as ModelPlayer} from '../../constants/Player';
 import {default as ModelPreset} from '../../models/Preset';
-import CivPanel from "../../containers/CivPanel";
-import Civilisation from "../../models/Civilisation";
+import DraftOptionPanel from "../../containers/DraftOptionPanel";
 import {DraftEvent} from "../../types/DraftEvent";
 import PlayerEvent from "../../models/PlayerEvent";
 import Turn from "../../models/Turn";
-import CivPanelType from "../../constants/CivPanelType";
+import DraftOptionPanelType from "../../constants/DraftOptionPanelType";
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
 import PlayerOnlineStatus from "../../containers/PlayerOnlineStatus";
 import WhoAmIIndicator from "../../containers/WhoAmIIndicator";
+import DraftOption from "../../models/DraftOption";
 
 interface IProps extends WithTranslation {
     preset: ModelPreset;
@@ -18,13 +18,16 @@ interface IProps extends WithTranslation {
     name: string;
     nextAction?: number;
     events?: DraftEvent[];
+    flipped: boolean;
+    smooch: boolean;
+    simplifiedUI?: boolean
 }
 
 interface IState {
-    bannedCivs: Civilisation[];
-    pickedCivs: Civilisation[];
-    snipedCivs: Civilisation[];
-    stolenCivs: Civilisation[];
+    bans: PlayerEvent[];
+    picks: PlayerEvent[];
+    snipes: PlayerEvent[];
+    steals: PlayerEvent[];
 }
 
 class PlayerDraftState extends React.Component<IProps, IState> {
@@ -45,8 +48,8 @@ class PlayerDraftState extends React.Component<IProps, IState> {
         let bansIndex = 0;
         const pickPanels = [];
         const banPanels = [];
-        const snipes: Civilisation[] = [...this.state.snipedCivs];
-        const steals: Civilisation[] = [...this.state.stolenCivs];
+        const snipes: PlayerEvent[] = [...this.state.snipes];
+        const steals: PlayerEvent[] = [...this.state.steals];
         let hasActivePanel = false;
         for (let i = 0; i < this.props.preset.turns.length; i++) {
             const turn: Turn = this.props.preset.turns[i];
@@ -55,59 +58,102 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                 const isThisPanelActive = this.isActive(i);
                 hasActivePanel = hasActivePanel || isThisPanelActive;
                 if (actionType === ActionType.PICK) {
-                    let pickedCiv;
-                    let sniped = undefined;
-                    let stolen = undefined;
-                    if (this.state.pickedCivs.length > picksIndex) {
-                        pickedCiv = this.state.pickedCivs[picksIndex];
-                        sniped = removeIfContains(snipes, pickedCiv);
-                        if (!sniped) {
-                            stolen = removeIfContains(steals, pickedCiv);
+                    let pickedOptionId: string | undefined;
+                    let randomlyChosen = false;
+                    let sniped = false;
+                    let randomlyChosenForSnipe = false;
+                    let stolen = false;
+                    let randomlyChosenForSteal = false;
+                    if (this.state.picks.length > picksIndex) {
+                        const pick = this.state.picks[picksIndex];
+                        pickedOptionId = pick.chosenOptionId;
+                        randomlyChosen = pick.isRandomlyChosen;
+                        const snipeEvent = removeIfContains(snipes, pick);
+                        if (snipeEvent) {
+                            sniped = true;
+                            randomlyChosenForSnipe = snipeEvent.isRandomlyChosen;
+                        } else {
+                            const stealEvent = removeIfContains(steals, pick);
+                            if (stealEvent) {
+                                stolen = true;
+                                randomlyChosenForSteal = stealEvent.isRandomlyChosen;
+                            }
                         }
                     }
                     picksIndex++;
-                    pickPanels.push(React.createElement(CivPanel, {
+                    pickPanels.push(React.createElement(DraftOptionPanel, {
                         active: isThisPanelActive,
                         byOpponent: turn.player !== turn.executingPlayer,
-                        civPanelType: CivPanelType.PICK,
-                        civilisation: pickedCiv,
+                        draftOptionPanelType: DraftOptionPanelType.PICK,
+                        draftOption: this.props.preset.options.find(value => value.id === pickedOptionId),
+                        isRandomlyChosen: randomlyChosen,
                         key: picksIndex,
                         sniped,
-                        stolen
+                        isRandomlyChosenForSnipe: randomlyChosenForSnipe,
+                        stolen,
+                        isRandomlyChosenForSteal: randomlyChosenForSteal,
+                        flipped: this.props.flipped,
+                        smooch: this.props.smooch,
+                        side: this.props.player,
                     }));
                 } else if (actionType === ActionType.STEAL) {
-                    let pickedCiv;
-                    let sniped = undefined;
-                    let stolen = undefined;
-                    if (this.state.pickedCivs.length > picksIndex) {
-                        pickedCiv = this.state.pickedCivs[picksIndex];
-                        sniped = removeIfContains(snipes, pickedCiv);
-                        if (!sniped && pickedCiv !== Civilisation.HIDDEN_STEAL) {
-                            stolen = removeIfContains(steals, pickedCiv);
+                    let pickedOptionId: string | undefined;
+                    let randomlyChosen = false;
+                    let sniped = false;
+                    let randomlyChosenForSnipe = false;
+                    let stolen = false;
+                    let randomlyChosenForSteal = false;
+                    if (this.state.picks.length > picksIndex) {
+                        const pick = this.state.picks[picksIndex];
+                        pickedOptionId = pick.chosenOptionId;
+                        randomlyChosen = pick.isRandomlyChosen;
+                        const snipeEvent = removeIfContains(snipes, pick);
+                        if (snipeEvent) {
+                            sniped = true;
+                            randomlyChosenForSnipe = snipeEvent.isRandomlyChosen;
+                        } else if (pickedOptionId !== DraftOption.HIDDEN_STEAL.id) {
+                            const stealEvent = removeIfContains(steals, pick);
+                            if (stealEvent) {
+                                stolen = true;
+                                randomlyChosenForSteal = stealEvent.isRandomlyChosen;
+                            }
                         }
                     }
                     picksIndex++;
-                    pickPanels.push(React.createElement(CivPanel, {
+                    pickPanels.push(React.createElement(DraftOptionPanel, {
                         active: isThisPanelActive,
                         byOpponent: turn.player !== turn.executingPlayer,
-                        civPanelType: CivPanelType.STEAL,
-                        civilisation: pickedCiv,
+                        draftOptionPanelType: DraftOptionPanelType.STEAL,
+                        draftOption: this.props.preset.options.find(value => value.id === pickedOptionId),
+                        isRandomlyChosen: randomlyChosen,
                         key: picksIndex,
                         sniped,
-                        stolen
+                        isRandomlyChosenForSnipe: randomlyChosenForSnipe,
+                        stolen,
+                        isRandomlyChosenForSteal: randomlyChosenForSteal,
+                        flipped: this.props.flipped,
+                        smooch: this.props.smooch,
+                        side: this.props.player,
                     }));
                 } else if (actionType === ActionType.BAN) {
-                    let bannedCiv;
-                    if (this.state.bannedCivs.length > bansIndex) {
-                        bannedCiv = this.state.bannedCivs[bansIndex];
+                    let bannedOptionId: string | undefined;
+                    let randomlyChosen = false;
+                    if (this.state.bans.length > bansIndex) {
+                        const ban = this.state.bans[bansIndex];
+                        bannedOptionId = ban.chosenOptionId;
+                        randomlyChosen = ban.isRandomlyChosen;
                     }
                     bansIndex++;
-                    banPanels.push(React.createElement(CivPanel, {
+                    banPanels.push(React.createElement(DraftOptionPanel, {
                         active: isThisPanelActive,
                         byOpponent: turn.player !== turn.executingPlayer,
-                        civPanelType: CivPanelType.BAN,
-                        civilisation: bannedCiv,
+                        draftOptionPanelType: DraftOptionPanelType.BAN,
+                        draftOption: this.props.preset.options.find(value => value.id === bannedOptionId),
+                        isRandomlyChosen: randomlyChosen,
                         key: bansIndex,
+                        flipped: this.props.flipped,
+                        smooch: this.props.smooch,
+                        side: this.props.player,
                     }));
 
                 }
@@ -121,21 +167,23 @@ class PlayerDraftState extends React.Component<IProps, IState> {
             <div id={playerId} className="column is-half">
                 <div className={playerClass + " box content is-inline-block"}>
                     <div className="is-uppercase has-text-grey is-size-7 pb-2 captains-line">
-                        <span className={'player-type'}><Trans>{this.props.player}</Trans></span>&nbsp;
-                        <WhoAmIIndicator forPlayer={this.props.player}/>&nbsp;
-                        <PlayerOnlineStatus forPlayer={this.props.player}/>
+                        {!this.props.simplifiedUI && <>
+                            <span className={'player-type'}><Trans>{this.props.player}</Trans></span>&nbsp;
+                            <WhoAmIIndicator forPlayer={this.props.player}/>&nbsp;
+                            <PlayerOnlineStatus forPlayer={this.props.player}/>
+                        </>}
                     </div>
                     <div className="player-head">
                         <h4 className="player-name">{this.props.name}</h4>
                     </div>
                     <div className="chosen">
                         {pickPanels.length > 0 && <>
-                            <div className="is-uppercase has-text-grey is-size-7 pb-2 sub-heading"><Trans>Picks</Trans></div>
+                            {!this.props.simplifiedUI && <div className="is-uppercase has-text-grey is-size-7 pb-2 sub-heading"><Trans>Picks</Trans></div>}
                             <div className="picks">
-                                {pickPanels}
+                                {pickPanels}{this.props.simplifiedUI && banPanels.length > 0 && banPanels}
                             </div>
                         </>}
-                        {banPanels.length > 0 && <>
+                        {!this.props.simplifiedUI && banPanels.length > 0 && <>
                             <div className="is-uppercase has-text-grey is-size-7 py-2 sub-heading"><Trans>Bans</Trans></div>
                             <div className="bans">
                                 {banPanels}
@@ -184,9 +232,9 @@ class PlayerDraftState extends React.Component<IProps, IState> {
     }
 }
 
-function removeIfContains(haystack: Civilisation[], needle: Civilisation): Civilisation | undefined {
-    const index: number = haystack.findIndex((value: Civilisation) => {
-        return value.name === needle.name && value.gameVersion === needle.gameVersion
+function removeIfContains(haystack: PlayerEvent[], needle: PlayerEvent): PlayerEvent | undefined {
+    const index: number = haystack.findIndex((value: PlayerEvent) => {
+        return value.chosenOptionId === needle.chosenOptionId
     });
     if (index > -1) {
         return haystack.splice(index, 1)[0];
@@ -197,7 +245,7 @@ function removeIfContains(haystack: Civilisation[], needle: Civilisation): Civil
 
 function eventsToState(events: DraftEvent[] | undefined, player: ModelPlayer): IState {
     if (events === undefined) {
-        return {bannedCivs: [], pickedCivs: [], snipedCivs: [], stolenCivs: []};
+        return {bans: [], picks: [], snipes: [], steals: []};
     } else {
         events = events as DraftEvent[];
     }
@@ -205,18 +253,18 @@ function eventsToState(events: DraftEvent[] | undefined, player: ModelPlayer): I
         .filter(e => e.hasOwnProperty('actionType'))
         .map(e => e as PlayerEvent)
         .filter(e => e.player === player);
-    const picks: Civilisation[] = [];
-    const bans: Civilisation[] = [];
+    const picks: PlayerEvent[] = [];
+    const bans: PlayerEvent[] = [];
     for (const event of playerEvents) {
         switch (event.actionType) {
             case ActionType.PICK:
-                picks.push(event.civilisation);
+                picks.push(event);
                 break;
             case ActionType.BAN:
-                bans.push(event.civilisation);
+                bans.push(event);
                 break;
             case ActionType.STEAL:
-                picks.push(event.civilisation);
+                picks.push(event);
                 break;
         }
     }
@@ -224,19 +272,19 @@ function eventsToState(events: DraftEvent[] | undefined, player: ModelPlayer): I
         .filter(e => e.hasOwnProperty('actionType'))
         .map(e => e as PlayerEvent)
         .filter(e => e.player !== player);
-    const snipes: Civilisation[] = [];
-    const steals: Civilisation[] = [];
+    const snipes: PlayerEvent[] = [];
+    const steals: PlayerEvent[] = [];
     for (const event of opponentEvents) {
         switch (event.actionType) {
             case ActionType.SNIPE:
-                snipes.push(event.civilisation);
+                snipes.push(event);
                 break;
             case ActionType.STEAL:
-                steals.push(event.civilisation);
+                steals.push(event);
                 break;
         }
     }
-    return {bannedCivs: bans, pickedCivs: picks, snipedCivs: snipes, stolenCivs: steals};
+    return {bans: bans, picks: picks, snipes: snipes, steals: steals};
 }
 
 export default withTranslation()(PlayerDraftState);
