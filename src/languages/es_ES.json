@@ -145,7 +145,10 @@
     "VLD_906": "El Borrador contiene un baneo oculto y una selección sin una revelación entre medio",
     "VLD_907": "El Borrador contiene un turno oculto que nunca es revelado",
     "VLD_908": "El Borrador no contiene turnos",
-    "VLD_909": "El presetId proporcionado no es válido"
+    "VLD_909": "El presetId proporcionado no es válido",
+    "VLD_910": "Tus DraftOptions contienen un DraftOption id inválido",
+    "VLD_911": "Tus DraftOptions ids no son únicos, probablemente por que ambos tienen el mismo nombre",
+    "VLD_999": "Ocurrió un error durante la validación"
   },
   "menu": {
     "welcome": "Bienvenido",
@@ -242,14 +245,23 @@
   },
   "presetEditor": {
     "helpAndInstructions": "Ayuda y instrucciónes",
-    "availableCivs": "Civilizaciónes habilitadas",
+    "availableDraftOptions": "Opciones del Draft habilitadas",
     "turns": "Turnos",
     "createSaveDraft": "Crear Draft o Guardar",
     "host": "Anfitrión",
     "guest": "Invitado",
     "admin": "Administrador",
     "new": "Nuevo",
-    "presetName": "Nombre del Borrador"
+    "presetName": "Nombre del Borrador",
+    "useCivilisationsAsDraftOptions": "Usar civilizaciónes comúnes",
+    "warning": "<0>Importante!</0><1/>Estas son opciones avanzadas, y probablemente no las necesites si simplemente quieres crear un draft de civilizaciónes comúnes.<3/><4>Por favor use URLs de imágenes que esperes que sigan funcionando en 10 años o mas!</4>",
+    "option": {
+      "animatedUnitImageUrlLeft": "URL de la imágen animada de la unidad (izquierda)",
+      "animatedUnitImageUrlRight": "URL de la imágen animada de la unidad (derecha)",
+      "emblemImageUrl": "URL de la imágen del emblema",
+      "name": "Nombre",
+      "unitImageUrl": "URL de la imágen de la unidad"
+    }
   },
   "createNewDraft": "Crear un Draft",
   "createNewPreset": "Crear un nuevo Borrador",
