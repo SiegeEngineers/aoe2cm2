@@ -145,6 +145,9 @@
     "VLD_907": "预设里有无法被展示的隐藏轮次",
     "VLD_908": "预设里没有任何轮次",
     "VLD_909": "所给的presetId无效"
+    "VLD_910": "你的 BP可选项 的名字无效",
+    "VLD_911": "你的 BP可选项 的名字不能重复",
+    "VLD_999": "验证时出错"
   },
   "menu": {
     "welcome": "欢迎",
@@ -241,14 +244,23 @@
   },
   "presetEditor": {
     "helpAndInstructions": "帮助/说明",
-    "availableCivs": "民族",
+    "availableDraftOptions": "BP可选项",
+    "useCivilisationsAsDraftOptions": "使用常规民族",
     "turns": "轮次",
     "createSaveDraft": "建立或保存",
     "host": "主机",
     "guest": "受邀者",
     "admin": "Admin",
     "new": "新建",
-    "presetName": "预设名称"
+    "presetName": "预设名称",
+    "warning": "<0>注意</0><1/>这里比较高级，如果你只是想选正常的民族就不用看了。<3/><4>请使用长期有效的图片链接，三年五载别过期的！</4>",
+    "option": {
+      "name": "名称",
+      "unitImageUrl": "单位 图片链接",
+      "emblemImageUrl": "图徽 图片链接",
+      "animatedUnitImageUrlLeft": "动态单位（左） 图片链接",
+      "animatedUnitImageUrlRight": "动态单位（右） 图片链接"
+    }
   },
   "createNewDraft": "用此预设建立",
   "createNewPreset": "创建新预设",
