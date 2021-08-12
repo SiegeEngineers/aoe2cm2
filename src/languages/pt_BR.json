@@ -39,10 +39,10 @@
     "Sicilians": "Sicilianos",
     "Bohemians": "Boêmios",
     "Poles": "Poloneses",
-    "HIDDEN_PICK": "Escolha Oculta",
-    "HIDDEN_BAN": "Banimento Oculto",
-    "HIDDEN_SNIPE": "Exclusão Oculta",
-    "HIDDEN": "Oculto",
+    "HIDDEN_PICK": "",
+    "HIDDEN_BAN": "",
+    "HIDDEN_SNIPE": "",
+    "HIDDEN": "",
     "RANDOM": "Aleatório"
   },
   "messages": {
@@ -129,6 +129,7 @@
   "<0></0>BAN": "<0></0>BANIR",
   "flip": "Inverta a posição do Anfitrião e do Convidado",
   "smooch": "Alternar modo smooch",
+  "simplifiedUI": "IU simplificada",
   "validationFailed": "A(s) validação(ões) falhou(aram):",
   "errors": {
     "VLD_000": "O draft não está esperando por ações atualmente",
@@ -144,7 +145,10 @@
     "VLD_906": "A predefinição contém um turno com banimento oculto e uma escolha sem revelação no meio",
     "VLD_907": "A predefinição contém um turno oculto que nunca é revelado",
     "VLD_908": "A prredefinição não contém turnos",
-    "VLD_909": "O presetId fornecido é inválido"
+    "VLD_909": "O presetId fornecido é inválido",
+    "VLD_910": "Suas Opções de Draft contém um id de Opção de Draft inválido",
+    "VLD_911": "Seus ids de Opções de Draft não são únicos, provavelmente pelo motivo de dois terem o mesmo nome",
+    "VLD_999": "Algo muito errado aconteceu durante a validação"
   },
   "menu": {
     "welcome": "Bem-vindo",
@@ -241,14 +245,23 @@
   },
   "presetEditor": {
     "helpAndInstructions": "Ajuda e Instruções",
-    "availableCivs": "Civilizações Disponíveis",
+    "availableDraftOptions": "Opções de Draft Disponíveis",
+    "useCivilisationsAsDraftOptions": "Use as civilizações normais",
     "turns": "Turnos",
     "createSaveDraft": "Crie um Draft ou Salve",
     "host": "Anfitrião",
     "guest": "Convidado",
     "admin": "Administrador",
     "new": "Novo",
-    "presetName": "Nome da Definição"
+    "presetName": "Nome da Definição",
+    "warning": "<0>Atenção!</0><1/>Isso é algo avançado,e você provavelmente não vai precisar disso se você quer criar um draft normal com as civilizações antigas.<3/><4>Por favor, use as urls de imagem que você espera que estejam funcionando daqui a dez anos ou mais!</4>",
+    "option": {
+      "name": "Nome",
+      "unitImageUrl": "URL da imagem da unidade",
+      "emblemImageUrl": "URL da imagem do emblema",
+      "animatedUnitImageUrlLeft": "URL da imgagem animada da unidade (esquerda)",
+      "animatedUnitImageUrlRight": "URL da imgagem animada da unidade (direita)"
+    }
   },
   "createNewDraft": "Crie um novo draft a partir desta Definição",
   "createNewPreset": "Crie uma nova Definição",
