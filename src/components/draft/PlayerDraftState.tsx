@@ -57,6 +57,7 @@ class PlayerDraftState extends React.Component<IProps, IState> {
             if (this.props.player === turn.player) {
                 const isThisPanelActive = this.isActive(i);
                 hasActivePanel = hasActivePanel || isThisPanelActive;
+                const validDraftOptions = [...this.props.preset.options, ...DraftOption.TECHNICAL_DRAFT_OPTIONS];
                 if (actionType === ActionType.PICK) {
                     let pickedOptionId: string | undefined;
                     let randomlyChosen = false;
@@ -85,7 +86,7 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                         active: isThisPanelActive,
                         byOpponent: turn.player !== turn.executingPlayer,
                         draftOptionPanelType: DraftOptionPanelType.PICK,
-                        draftOption: this.props.preset.options.find(value => value.id === pickedOptionId),
+                        draftOption: validDraftOptions.find(value => value.id === pickedOptionId),
                         isRandomlyChosen: randomlyChosen,
                         key: picksIndex,
                         sniped,
@@ -124,7 +125,7 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                         active: isThisPanelActive,
                         byOpponent: turn.player !== turn.executingPlayer,
                         draftOptionPanelType: DraftOptionPanelType.STEAL,
-                        draftOption: this.props.preset.options.find(value => value.id === pickedOptionId),
+                        draftOption: validDraftOptions.find(value => value.id === pickedOptionId),
                         isRandomlyChosen: randomlyChosen,
                         key: picksIndex,
                         sniped,
@@ -148,7 +149,7 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                         active: isThisPanelActive,
                         byOpponent: turn.player !== turn.executingPlayer,
                         draftOptionPanelType: DraftOptionPanelType.BAN,
-                        draftOption: this.props.preset.options.find(value => value.id === bannedOptionId),
+                        draftOption: validDraftOptions.find(value => value.id === bannedOptionId),
                         isRandomlyChosen: randomlyChosen,
                         key: bansIndex,
                         flipped: this.props.flipped,
