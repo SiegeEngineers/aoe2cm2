@@ -144,7 +144,10 @@
     "VLD_906": "預設裡有隱藏禁&選之間無展示輪次",
     "VLD_907": "預設裡有無法被展示的隱藏輪次",
     "VLD_908": "預設裡沒有任何輪次",
-    "VLD_909": "所給的presetId無效"
+    "VLD_909": "所給的presetId無效",
+    "VLD_910": "你的文明選項含有不合法的文明",
+    "VLD_911": "你的文明選項並非彼此唯一，可能有兩者(或以上)是重複的",
+    "VLD_999": "驗證時有些東西出錯了"
   },
   "menu": {
     "welcome": "歡迎",
@@ -241,14 +244,23 @@
   },
   "presetEditor": {
     "helpAndInstructions": "幫助/說明",
-    "availableCivs": "文明",
+    "availableDraftOptions": "可選用文明",
+    "useCivilisationsAsDraftOptions": "使用一般的文明",
     "turns": "輪次",
     "createSaveDraft": "建立或保存",
     "host": "主持者",
     "guest": "受邀者",
     "admin": "Admin",
     "new": "新建",
-    "presetName": "預設名稱"
+    "presetName": "預設名稱",
+    "warning": "<0>注意！</0><1/>這是進階的東西，如果你只是想產生一個一般文明的BP那大概不用管。<3/><4>請使用長期(至少數年)有效的圖片連結！</4>",
+    "option": {
+      "name": "名稱",
+      "unitImageUrl": "單位的圖片連結",
+      "emblemImageUrl": "徽章的圖片連結",
+      "animatedUnitImageUrlLeft": "左方動態單位的圖片連結",
+      "animatedUnitImageUrlRight": "右方動態單位的圖片連結"
+    }
   },
   "createNewDraft": "用此預設建立",
   "createNewPreset": "創建新預設",
