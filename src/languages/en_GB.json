@@ -130,6 +130,7 @@
   "flip": "Flip Host and Guest positions",
   "smooch": "Smooch mode",
   "simplifiedUI": "Simplified UI",
+  "enlarged": "Enlarge Panels",
   "validationFailed": "Validation(s) failed:",
   "errors": {
     "VLD_000": "Draft is currently not expecting actions",

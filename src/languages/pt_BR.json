@@ -130,6 +130,7 @@
   "flip": "Inverta a posição do Anfitrião e do Convidado",
   "smooch": "Alternar modo smooch",
   "simplifiedUI": "IU simplificada",
+  "enlarged": "Ampliar Painéis",
   "validationFailed": "A(s) validação(ões) falhou(aram):",
   "errors": {
     "VLD_000": "O draft não está esperando por ações atualmente",
@@ -254,7 +255,7 @@
     "admin": "Administrador",
     "new": "Novo",
     "presetName": "Nome da Definição",
-    "warning": "<0>Atenção!</0><1/>Isso é algo avançado,e você provavelmente não vai precisar disso se você quer criar um draft normal com as civilizações antigas.<3/><4>Por favor, use as urls de imagem que você espera que estejam funcionando daqui a dez anos ou mais!</4>",
+    "warning": "<0>Atenção!</0><1/>Isso é algo avançado, e você provavelmente não vai precisar disso se você quer criar um draft normal com as civilizações antigas.<3/><4>Por favor, use as urls de imagem que você espera que estejam funcionando daqui a dez anos ou mais!</4>",
     "option": {
       "name": "Nome",
       "unitImageUrl": "URL da imagem da unidade",

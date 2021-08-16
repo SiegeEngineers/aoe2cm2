@@ -129,7 +129,8 @@
   "<0></0>BAN": "<0></0>BAN",
   "flip": "Voltear posiciones de Anfitrión e Invitado",
   "smooch": "Modo de beso",
-  "simplifiedUI": "Interfaz Simplificada",
+  "simplifiedUI": "Interfaz simplificada",
+  "enlarged": "Agrandar paneles",
   "validationFailed": "Fallaron la/s validaciónes:",
   "errors": {
     "VLD_000": "El Draft no esta esperando acciónes",

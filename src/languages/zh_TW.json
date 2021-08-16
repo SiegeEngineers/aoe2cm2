@@ -129,6 +129,8 @@
   "<0></0>BAN": "<0></0>禁",
   "flip": "左右交換",
   "smooch": "面對面開關",
+  "simplifiedUI": "簡化版介面",
+  "enlarged": "放大面板",
   "validationFailed": "錯誤提示:",
   "errors": {
     "VLD_000": "現在無需任何操作",
