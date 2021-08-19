@@ -36,6 +36,9 @@ class NavBar extends React.Component<WithTranslation, object> {
                             <IconStyleSelector iconStyle={'units-animated'} displayString={this.props.t('navbar.showUnitsAnimated')}/>
                         </div>
                     </div>
+                    <div className="navbar-item">
+                        <a href="https://siegeengineers.org/donate" className="button is-light">Donate</a>
+                    </div>
                 </div>
             </nav>
         );
