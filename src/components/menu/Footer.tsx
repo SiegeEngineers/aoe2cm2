@@ -19,20 +19,22 @@ class Footer extends React.Component<object, object> {
                             </p>
                             <p>
                                 Age of Empires II &copy; Microsoft Corporation. <b>Captains Mode for Age of Empires
-                                II</b> was created under Microsoft's "<a href="https://www.xbox.com/en-us/developers/rules"
-                                                                         rel='nofollow'>
-                                Game Content Usage Rules</a>" using assets from Age of Empires II, and it is not endorsed by
-                                or affiliated with Microsoft.
+                                II</b> was created under Microsoft's "<a
+                                href="https://www.xbox.com/en-us/developers/rules" rel='nofollow'>
+                                Game Content Usage Rules</a>" using assets from Age of Empires II, and it is not
+                                endorsed by or affiliated with Microsoft.
                             </p>
                         </div>
-                        <div className="column is-half content is-small has-text-right">
-                            <p>
-                                <a href="https://siegeengineers.org/donate">Support this project</a>
-                                &nbsp;&nbsp;&bull;&nbsp;&nbsp;
-                                <a href="https://github.com/SiegeEngineers/aoe2cm2">Contribute on GitHub</a>
-                                &nbsp;&nbsp;&bull;&nbsp;&nbsp;
-                                <Link to="/api">API</Link>
-                            </p>
+                        <div className="column is-half">
+                            <nav className="breadcrumb is-small is-right has-bullet-separator"
+                                 aria-label="footer links">
+                                <ul>
+                                    <li><a href="https://siegeengineers.org/donate">Support this project</a></li>
+                                    <li><a href="https://github.com/SiegeEngineers/aoe2cm2">Contribute on GitHub</a>
+                                    </li>
+                                    <li><Link to="/api">API</Link></li>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>
