@@ -34,7 +34,6 @@ class Menu extends React.Component<WithTranslation, object> {
                             <TabLink to='/spectate' activeClassName="is-active"><Trans>menu.spectate</Trans></TabLink>
                             {/*<TabLink to='/practice' activeClassName="is-active"><Trans>menu.practice</Trans></TabLink>*/}
                             <TabLink to='/help' activeClassName="is-active"><Trans>menu.howItWorks</Trans></TabLink>
-                            <TabLink to={{pathname:"https://siegeengineers.org/donate"}} target="_top"><Trans>menu.donate</Trans></TabLink>
                         </ul>
                     </div>
                     <Switch>
@@ -58,7 +57,6 @@ class Menu extends React.Component<WithTranslation, object> {
 interface IProps extends RouteComponentProps<any> {
     to: H.LocationDescriptor | ((location: H.Location) => H.LocationDescriptor);
     activeClassName?: string;
-    target?: string;
 }
 
 class TabLinkBase extends React.Component<IProps> {
@@ -67,7 +65,7 @@ class TabLinkBase extends React.Component<IProps> {
 
         return (
             <li className={(isActive && this.props.activeClassName) || ''}>
-                <NavLink to={this.props.to} strict={true} target={this.props.target}>
+                <NavLink to={this.props.to} strict={true}>
                     {this.props.children}
                 </NavLink>
             </li>
