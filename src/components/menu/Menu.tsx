@@ -12,6 +12,7 @@ import PresetEditor from "../PresetEditor/PresetEditor";
 import NotFound404 from "../404";
 import HowItWorks from "./HowItWorks";
 import API from "./API";
+import * as H from "history";
 
 class Menu extends React.Component<WithTranslation, object> {
     public render() {
@@ -33,6 +34,7 @@ class Menu extends React.Component<WithTranslation, object> {
                             <TabLink to='/spectate' activeClassName="is-active"><Trans>menu.spectate</Trans></TabLink>
                             {/*<TabLink to='/practice' activeClassName="is-active"><Trans>menu.practice</Trans></TabLink>*/}
                             <TabLink to='/help' activeClassName="is-active"><Trans>menu.howItWorks</Trans></TabLink>
+                            <TabLink to={{pathname:"https://siegeengineers.org/donate"}}><Trans>menu.donate</Trans></TabLink>
                         </ul>
                     </div>
                     <Switch>
@@ -54,8 +56,8 @@ class Menu extends React.Component<WithTranslation, object> {
 
 
 interface IProps extends RouteComponentProps<any> {
-    to: string;
-    activeClassName: string;
+    to: H.LocationDescriptor | ((location: H.Location) => H.LocationDescriptor);
+    activeClassName?: string;
 }
 
 class TabLinkBase extends React.Component<IProps> {
