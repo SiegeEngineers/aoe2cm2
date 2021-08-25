@@ -12,7 +12,6 @@ import PresetEditor from "../PresetEditor/PresetEditor";
 import NotFound404 from "../404";
 import HowItWorks from "./HowItWorks";
 import API from "./API";
-import * as H from "history";
 
 class Menu extends React.Component<WithTranslation, object> {
     public render() {
