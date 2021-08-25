@@ -55,8 +55,8 @@ class Menu extends React.Component<WithTranslation, object> {
 
 
 interface IProps extends RouteComponentProps<any> {
-    to: H.LocationDescriptor | ((location: H.Location) => H.LocationDescriptor);
-    activeClassName?: string;
+    to: string;
+    activeClassName: string;
 }
 
 class TabLinkBase extends React.Component<IProps> {
