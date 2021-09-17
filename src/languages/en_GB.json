@@ -94,7 +94,7 @@
     "specParallelTurnsStealPick": "Waiting for <1>{{firstTurnPlayer}}</1> to decide on a <3><4>Steal</4></3> and for <5>{{secondTurnPlayer}}</5> to decide on a <7><8>Pick</8></7>",
     "specParallelTurnsStealBan": "Waiting for <1>{{firstTurnPlayer}}</1> to decide on a <3><4>Steal</4></3> and for <5>{{secondTurnPlayer}}</5> to decide on a <7><8>Ban</8></7>",
     "specParallelTurnsStealSnipe": "Waiting for <1>{{firstTurnPlayer}}</1> to decide on a <3><4>Steal</4></3> and for <5>{{secondTurnPlayer}}</5> to decide on a <7><8>Snipe</8></7>",
-    "specParallelTurnsStealSteal": "Waiting for <1>{{firstTurnPlayer}}</1> to decide on a <3><4>Steal</4></3> and for <5>{{secondTurnPlayer}}</5> to decide on a <7><8>Snipe</8></7>"
+    "specParallelTurnsStealSteal": "Waiting for <1>{{firstTurnPlayer}}</1> to decide on a <3><4>Steal</4></3> and for <5>{{secondTurnPlayer}}</5> to decide on a <7><8>Steal</8></7>"
   },
   "modal": {
     "header": "Welcome",
@@ -136,7 +136,7 @@
     "VLD_000": "Draft is currently not expecting actions",
     "VLD_001": "Acting user is not supposed to act according to preset",
     "VLD_002": "Action is unexpected according to preset",
-    "VLD_010": "Action is not permissible with that civilization or option",
+    "VLD_010": "Action is not permissible with that option",
     "VLD_900": "The server could not process the preset properly",
     "VLD_901": "The preset contains an invalid sequence of parallel turns",
     "VLD_902": "The preset contains a parallel turn that does not require player interaction",
@@ -162,7 +162,7 @@
   "instructions": {
     "home": {
       "title": "What is Captains Mode?",
-      "1": "Captains mode is a turn-based civilisation picker.",
+      "1": "Captains mode is a turn-based civilisation picker. It can also be used to draft from custom options.",
       "2": "The tournament Admin creates a <1>Preset</1> which can be used to create <3>Drafts</3>. During a Draft, the two captains pick, ban, steal, or snipe civilisations or options in a predefined order as per the rules in the chosen Preset to determine which civilisations will be available to each captain in a match.",
       "3": "For each turn captains have <1>30 seconds</1>. In case of a timeout, a random civilisation or option is selected for the captain.",
       "getStarted": {
