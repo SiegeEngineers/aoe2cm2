@@ -92,15 +92,7 @@ export const Util = {
     },
 
     isTechnicalDraftOption(draftOption: DraftOption): boolean {
-        switch (draftOption.id) {
-            case DraftOption.HIDDEN.id:
-            case DraftOption.HIDDEN_PICK.id:
-            case DraftOption.HIDDEN_BAN.id:
-            case DraftOption.HIDDEN_SNIPE.id:
-            case DraftOption.HIDDEN_STEAL.id:
-                return true;
-        }
-        return false;
+        return DraftOption.TECHNICAL_DRAFT_OPTIONS.map(value => value.id).includes(draftOption.id);
     },
 
     isRandomDraftOption(id: string): boolean {

@@ -1813,3 +1813,113 @@ exports[`empty PICK CivPanel renders correctly 1`] = `
   t={[Function]}
 />
 `;
+
+exports[`technical PICK DraftOptionPanels render correctly 1`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    DraftOption {
+      "id": "HIDDEN_PICK",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/hidden_pick-left.apng",
+        "animated_right": "/images/units-animated/hidden_pick-right.apng",
+        "emblem": "/images/civemblems/hidden_pick.png",
+        "unit": "/images/civs/hidden_pick.png",
+      },
+      "name": "HIDDEN_PICK",
+    }
+  }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`technical PICK DraftOptionPanels render correctly 2`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    DraftOption {
+      "id": "HIDDEN_BAN",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/hidden_ban-left.apng",
+        "animated_right": "/images/units-animated/hidden_ban-right.apng",
+        "emblem": "/images/civemblems/hidden_ban.png",
+        "unit": "/images/civs/hidden_ban.png",
+      },
+      "name": "HIDDEN_BAN",
+    }
+  }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`technical PICK DraftOptionPanels render correctly 3`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    DraftOption {
+      "id": "HIDDEN_SNIPE",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/hidden_snipe-left.apng",
+        "animated_right": "/images/units-animated/hidden_snipe-right.apng",
+        "emblem": "/images/civemblems/hidden_snipe.png",
+        "unit": "/images/civs/hidden_snipe.png",
+      },
+      "name": "HIDDEN_SNIPE",
+    }
+  }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`technical PICK DraftOptionPanels render correctly 4`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    DraftOption {
+      "id": "HIDDEN_STEAL",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/hidden_steal-left.apng",
+        "animated_right": "/images/units-animated/hidden_steal-right.apng",
+        "emblem": "/images/civemblems/hidden_steal.png",
+        "unit": "/images/civs/hidden_steal.png",
+      },
+      "name": "HIDDEN_STEAL",
+    }
+  }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`technical PICK DraftOptionPanels render correctly 5`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    DraftOption {
+      "id": "HIDDEN",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/hidden-left.apng",
+        "animated_right": "/images/units-animated/hidden-right.apng",
+        "emblem": "/images/civemblems/hidden.png",
+        "unit": "/images/civs/hidden.png",
+      },
+      "name": "HIDDEN",
+    }
+  }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;

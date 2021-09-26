@@ -129,6 +129,8 @@
   "<0></0>BAN": "BANN",
   "flip": "Vertausche die Positionen von Host und Gast",
   "smooch": "Knutschmodus umschalten",
+  "simplifiedUI": "schlichte Darstellung",
+  "enlarged": "Panels vergrößern",
   "validationFailed": "Validierungsfehler:",
   "errors": {
     "VLD_000": "Draft erwartet derzeit keine Aktion",
@@ -154,7 +156,8 @@
     "hostOrJoin": "Zum Draft",
     "spectate": "Zusehen",
     "practice": "Üben",
-    "howItWorks": "Anleitung"
+    "howItWorks": "Anleitung",
+    "donate": "Spenden"
   },
   "instructions": {
     "home": {

@@ -53,6 +53,7 @@ interface IState {
     joined: boolean;
     flipped: boolean;
     smooch: boolean;
+    enlarged: boolean;
     simplifiedUI: boolean;
 }
 
@@ -64,7 +65,8 @@ class Draft extends React.Component<IProps, IState> {
         const flipped = query.get('flipped') === 'true' || false;
         const smooch = query.get('smooch') === 'true' || false;
         const simplifiedUI = query.get('simplified') === 'true' || false;
-        this.state = {joined: false, flipped, smooch, simplifiedUI};
+        const enlarged = query.get('enlarged') === 'true' || false;
+        this.state = {joined: false, flipped, smooch, simplifiedUI, enlarged};
     }
 
 
@@ -143,7 +145,6 @@ class Draft extends React.Component<IProps, IState> {
     }
 
     private toggleSimplifiedUI():void{
-        console.log('Simplified UI Toggle')
         const newSimplifiedUIValue = !this.state.simplifiedUI;
         let searchParams = new URLSearchParams(this.props.location.search);
         searchParams.set('simplified', newSimplifiedUIValue.toString());
@@ -151,6 +152,16 @@ class Draft extends React.Component<IProps, IState> {
             search: searchParams.toString()
         });
         this.setState({...this.state, simplifiedUI: newSimplifiedUIValue});
+    }
+
+    private toggleEnlarged():void{
+        const newEnlargedValue = !this.state.enlarged;
+        let searchParams = new URLSearchParams(this.props.location.search);
+        searchParams.set('enlarged', newEnlargedValue.toString());
+        this.props.history.replace({
+            search: searchParams.toString()
+        });
+        this.setState({...this.state, enlarged: newEnlargedValue});
     }
 
     public render() {
@@ -163,6 +174,7 @@ class Draft extends React.Component<IProps, IState> {
         let className = 'section';
         className += this.state.flipped ? ' flipped' : '';
         className += this.state.smooch ? ' smooch' : '';
+        className += this.state.enlarged ? ' enlarged' : '';
 
         if(this.state.simplifiedUI) {
             ColorSchemeHelpers.addThemeClassName('has-simple-ui');
@@ -234,6 +246,13 @@ class Draft extends React.Component<IProps, IState> {
                                 this.toggleSimplifiedUI()
                             }}/>
                             <label htmlFor="toggleSimplifiedUI" style={{paddingTop:1}}><Trans i18nKey='simplifiedUI'>Simplified UI</Trans></label>
+                        </p>
+                        <p className="control">
+                            <input id="toggleEnlarged" type="checkbox" name="toggleEnlarged"
+                                   className="switch is-small is-rounded is-info" checked={this.state.enlarged} onChange={() => {
+                                this.toggleEnlarged()
+                            }}/>
+                            <label htmlFor="toggleEnlarged" style={{paddingTop:1}}><Trans i18nKey='enlarged'>Enlarge Panels</Trans></label>
                         </p>
                     </div>
                 </div>

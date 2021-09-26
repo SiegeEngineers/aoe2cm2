@@ -22,6 +22,13 @@ class DraftOption {
     public static readonly HIDDEN_STEAL: DraftOption = new DraftOption(Name.HIDDEN_STEAL);
     public static readonly HIDDEN: DraftOption = new DraftOption(Name.HIDDEN);
     public static readonly RANDOM: DraftOption = new DraftOption(Name.RANDOM);
+    public static readonly TECHNICAL_DRAFT_OPTIONS: DraftOption[] = [
+        DraftOption.HIDDEN_PICK,
+        DraftOption.HIDDEN_BAN,
+        DraftOption.HIDDEN_SNIPE,
+        DraftOption.HIDDEN_STEAL,
+        DraftOption.HIDDEN,
+    ];
 
     public readonly id: string;
     public readonly name: string;

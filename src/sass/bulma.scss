@@ -434,6 +434,26 @@ div.stretchy-wrapper > div.stretchy-text {
   height: 80px;
 }
 
+.enlarged .pick {
+  width: 150px;
+  height: 150px;
+}
+
+.enlarged .steal {
+  width: 150px;
+  height: 150px;
+}
+
+.enlarged .ban {
+  width: 120px;
+  height: 120px;
+}
+
+.pick, .steal, .ban {
+  transition: width .6s, height .6s;
+}
+
+
 .pick .stretchy-background {
   background: $pick-green;
 }
@@ -849,6 +869,10 @@ html.has-simple-ui {
   .ban {
     width: 112px;
     height: 112px;
+  }
+  .enlarged .ban {
+    width: 150px;
+    height: 150px;
   }
 
   .ban .random-pick {
