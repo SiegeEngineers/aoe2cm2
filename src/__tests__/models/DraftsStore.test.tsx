@@ -4,10 +4,10 @@ import Preset from "../../models/Preset";
 import Player from "../../constants/Player";
 import PlayerEvent from "../../models/PlayerEvent";
 import ActionType from "../../constants/ActionType";
-import LegacyCivilisation from "../../models/LegacyCivilisation";
 import temp from "temp";
 import fs from "fs";
 import path from "path";
+import Civilisation from "../../models/Civilisation";
 
 let dirPath: string;
 beforeEach(() => {
@@ -116,8 +116,8 @@ function addDraft(draftId: string, i: number, draftsStore: DraftsStore, presetId
     draftsStore.setPlayerReady(draftId, Player.HOST);
     draftsStore.setPlayerReady(draftId, Player.GUEST);
     draftsStore.getDraftOrThrow(draftId).startTimestamp = i;
-    draftsStore.addDraftEvent(draftId, new PlayerEvent(Player.HOST, ActionType.BAN, LegacyCivilisation.AZTECS));
-    draftsStore.addDraftEvent(draftId, new PlayerEvent(Player.GUEST, ActionType.BAN, LegacyCivilisation.BERBERS));
-    draftsStore.addDraftEvent(draftId, new PlayerEvent(Player.GUEST, ActionType.BAN, LegacyCivilisation.BRITONS));
-    draftsStore.addDraftEvent(draftId, new PlayerEvent(Player.HOST, ActionType.BAN, LegacyCivilisation.BULGARIANS));
+    draftsStore.addDraftEvent(draftId, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS.id));
+    draftsStore.addDraftEvent(draftId, new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.BERBERS.id));
+    draftsStore.addDraftEvent(draftId, new PlayerEvent(Player.GUEST, ActionType.BAN, Civilisation.BRITONS.id));
+    draftsStore.addDraftEvent(draftId, new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.BULGARIANS.id));
 }

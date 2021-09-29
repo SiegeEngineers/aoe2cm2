@@ -2,9 +2,13 @@
 
 exports[`Draft renders correctly 1`] = `
 <withRouter(Draft)
+  act={[Function]}
+  guestConnected={false}
+  hostConnected={false}
   nameGuest="Beastly Barbarossa"
   nameHost="Sneaky Saladin"
   nextAction={0}
+  ownName=""
   preset={
     Preset {
       "draftOptions": undefined,
@@ -204,7 +208,15 @@ exports[`Draft renders correctly 1`] = `
       ],
     }
   }
+  replayEvents={Array []}
+  setCountdownValue={[Function]}
+  setEvents={[Function]}
+  setOwnRole={[Function]}
+  showNameModal={[Function]}
+  showRoleModal={[Function]}
   t={[Function]}
+  triggerConnect={[Function]}
+  triggerSetRole={[Function]}
   whoAmI="HOST"
 />
 `;
