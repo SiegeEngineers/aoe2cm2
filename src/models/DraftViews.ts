@@ -70,11 +70,11 @@ class DraftViews {
                 specMessage = new PlayerEvent(draftEvent.player, draftEvent.actionType, hiddenDraftOption.id, false, draftEvent.executingPlayer);
             }
             this.specEvents.push(specMessage);
-            if (draftEvent.player === Player.HOST) {
+            if (draftEvent.executingPlayer === Player.HOST) {
                 this.hostEvents.push(draftEvent);
                 this.guestEvents.push(specMessage);
             }
-            if (draftEvent.player === Player.GUEST) {
+            if (draftEvent.executingPlayer === Player.GUEST) {
                 this.guestEvents.push(draftEvent);
                 this.hostEvents.push(specMessage);
             }
