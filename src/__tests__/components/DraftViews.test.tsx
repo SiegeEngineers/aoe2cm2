@@ -93,3 +93,51 @@ it('Guest and Spec can see hidden Host pick after reveal', () => {
     expect(guestEvent.chosenOptionId).toEqual(Civilisation.AZTECS.id);
     expect(specEvent.chosenOptionId).toEqual(Civilisation.AZTECS.id);
 });
+
+it('Non-hidden second parallel turns should not be hidden', () => {
+    const draftViews = prepareDraftViews([
+        new Turn(Player.HOST, Action.PICK, Exclusivity.NONEXCLUSIVE, true, true),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.NONEXCLUSIVE, false, false),
+        Turn.REVEAL_ALL,
+    ]);
+
+    draftViews.addDraftEvent(new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS.id));
+    draftViews.addDraftEvent(new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.BRITONS.id));
+
+    const firstHostEvent = draftViews.getHostDraft().events[0] as PlayerEvent;
+    const firstGuestEvent = draftViews.getGuestDraft().events[0] as PlayerEvent;
+    const firstSpecEvent = draftViews.getSpecDraft().events[0] as PlayerEvent;
+    const secondHostEvent = draftViews.getHostDraft().events[1] as PlayerEvent;
+    const secondGuestEvent = draftViews.getGuestDraft().events[1] as PlayerEvent;
+    const secondSpecEvent = draftViews.getSpecDraft().events[1] as PlayerEvent;
+    expect(firstHostEvent.chosenOptionId).toEqual(Civilisation.AZTECS.id);
+    expect(firstGuestEvent.chosenOptionId).toEqual(Civilisation.AZTECS.id);
+    expect(firstSpecEvent.chosenOptionId).toEqual(Civilisation.AZTECS.id);
+    expect(secondHostEvent.chosenOptionId).toEqual(Civilisation.BRITONS.id);
+    expect(secondGuestEvent.chosenOptionId).toEqual(Civilisation.HIDDEN_PICK.id);
+    expect(secondSpecEvent.chosenOptionId).toEqual(Civilisation.HIDDEN_PICK.id);
+});
+
+it('Non-hidden first parallel turns should not be hidden', () => {
+    const draftViews = prepareDraftViews([
+        new Turn(Player.HOST, Action.PICK, Exclusivity.NONEXCLUSIVE, false, true),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.NONEXCLUSIVE, true, false),
+        Turn.REVEAL_ALL,
+    ]);
+
+    draftViews.addDraftEvent(new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS.id));
+    draftViews.addDraftEvent(new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.BRITONS.id));
+
+    const firstHostEvent = draftViews.getHostDraft().events[0] as PlayerEvent;
+    const firstGuestEvent = draftViews.getGuestDraft().events[0] as PlayerEvent;
+    const firstSpecEvent = draftViews.getSpecDraft().events[0] as PlayerEvent;
+    const secondHostEvent = draftViews.getHostDraft().events[1] as PlayerEvent;
+    const secondGuestEvent = draftViews.getGuestDraft().events[1] as PlayerEvent;
+    const secondSpecEvent = draftViews.getSpecDraft().events[1] as PlayerEvent;
+    expect(firstHostEvent.chosenOptionId).toEqual(Civilisation.HIDDEN_PICK.id);
+    expect(firstGuestEvent.chosenOptionId).toEqual(Civilisation.AZTECS.id);
+    expect(firstSpecEvent.chosenOptionId).toEqual(Civilisation.HIDDEN_PICK.id);
+    expect(secondHostEvent.chosenOptionId).toEqual(Civilisation.BRITONS.id);
+    expect(secondGuestEvent.chosenOptionId).toEqual(Civilisation.BRITONS.id);
+    expect(secondSpecEvent.chosenOptionId).toEqual(Civilisation.BRITONS.id);
+});

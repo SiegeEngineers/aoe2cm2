@@ -65,7 +65,7 @@ class DraftViews {
 
         if (Util.isPlayerEvent(draftEvent)) {
             let specMessage = draftEvent;
-            if (this.isLastActionHidden()) {
+            if (this.isLastActionHidden(draftEvent)) {
                 const hiddenDraftOption = Util.getHiddenDraftOptionForActionType(draftEvent.actionType);
                 specMessage = new PlayerEvent(draftEvent.player, draftEvent.actionType, hiddenDraftOption.id, false, draftEvent.executingPlayer);
             }
@@ -139,12 +139,22 @@ class DraftViews {
         }
     }
 
-    private isLastActionHidden(): boolean {
+    private isLastActionHidden(draftEvent: DraftEvent): boolean {
         const lastAction = this.actualDraft.nextAction - 1;
         if (lastAction < 0 || lastAction >= this.actualDraft.preset.turns.length) {
             return false;
         }
-        return Util.isHidden(this.actualDraft.preset.turns[lastAction]);
+        let selectedTurn = this.actualDraft.preset.turns[lastAction];
+        if (Util.isPlayerEvent(draftEvent)) {
+            if (draftEvent.player !== selectedTurn.player) {
+                if (selectedTurn.parallel && this.actualDraft.preset.turns.length > lastAction + 1) {
+                    selectedTurn = this.actualDraft.preset.turns[lastAction + 1];
+                } else if (lastAction > 0) {
+                    selectedTurn = this.actualDraft.preset.turns[lastAction - 1];
+                }
+            }
+        }
+        return Util.isHidden(selectedTurn);
     }
 
     shouldRestartOrCancelCountdown() {
