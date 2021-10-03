@@ -15,7 +15,7 @@ class NavBar extends React.Component<WithTranslation, object> {
                 </div>
                 <div className="navbar-end is-flex-touch">
                     <div className="navbar-item">
-                        <a href="https://siegeengineers.org/donate" className="button is-ghost"><Trans>menu.donate</Trans></a>
+                        <a href="https://siegeengineers.org/donate/?from=aoe2cm" className="button is-ghost"><Trans>menu.donate</Trans></a>
                     </div>
                     <div className="navbar-item">
                         <Trans i18nKey="youAre">You are:</Trans> &nbsp;
