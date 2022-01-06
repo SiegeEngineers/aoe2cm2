@@ -7,7 +7,7 @@ class Footer extends React.Component<object, object> {
             <footer className="footer px-4 py-6">
                 <div className="container">
                     <div className="columns">
-                        <div className="column is-half content is-small mb-0">
+                        <div className="column is-two-thirds content is-small mb-0">
                             <p>
                                 Created by <a href="https://siegeengineers.org">
                                 <img alt='SiegeEngineers logo' className='inline-logo'
@@ -18,14 +18,15 @@ class Footer extends React.Component<object, object> {
                                 Based on the first version by <span className='is-family-code'>pip</span>
                             </p>
                             <p>
-                                Age of Empires II &copy; Microsoft Corporation. <b>Captains Mode for Age of Empires
-                                II</b> was created under Microsoft's "<a
+                                Age of Empires &copy; Microsoft Corporation. <b>Captains Mode for Age of Empires</b> was
+                                created under Microsoft's "<a
                                 href="https://www.xbox.com/en-us/developers/rules" rel='nofollow'>
-                                Game Content Usage Rules</a>" using assets from Age of Empires II, and it is not
+                                Game Content Usage Rules</a>" using assets from Age of Empires II, Age of Empires III,
+                                and Age of Empires IV, and it is not
                                 endorsed by or affiliated with Microsoft.
                             </p>
                         </div>
-                        <div className="column is-half">
+                        <div className="column is-one-third">
                             <nav className="breadcrumb is-small is-right has-bullet-separator"
                                  aria-label="footer links">
                                 <ul>

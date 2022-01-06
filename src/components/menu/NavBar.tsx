@@ -11,7 +11,7 @@ class NavBar extends React.Component<WithTranslation, object> {
         return (
             <nav className="navbar is-flex-touch" role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
-                    <h1 className="navbar-item"><Link to={"/"}>Captains Mode for Age of Empires II</Link></h1>
+                    <h1 className="navbar-item"><Link to={"/"}>Captains Mode for Age of Empires</Link></h1>
                 </div>
                 <div className="navbar-end is-flex-touch">
                     <div className="navbar-item">

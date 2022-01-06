@@ -248,7 +248,6 @@
   "presetEditor": {
     "helpAndInstructions": "幫助/說明",
     "availableDraftOptions": "可選用文明",
-    "useCivilisationsAsDraftOptions": "使用一般的文明",
     "turns": "回合",
     "createSaveDraft": "建立或保存",
     "host": "主持者",

@@ -43,7 +43,26 @@
     "HIDDEN_BAN": "",
     "HIDDEN_SNIPE": "",
     "HIDDEN": "",
-    "RANDOM": "Aleatório"
+    "RANDOM": "Aleatório",
+    "aoe3": {
+      "Aztec": "Asteca",
+      "British": "Britânicos",
+      "Chinese": "Chinês",
+      "Dutch": "Holandês",
+      "French": "Francês",
+      "German": "Alemão",
+      "Incan": "Inca",
+      "Indian": "Indiano",
+      "Haudenosaunee": "Haudenosaunee",
+      "Japanese": "Japonês",
+      "Ottoman": "Otomano",
+      "Portuguese": "Português",
+      "Russian": "Russo",
+      "Lakota": "Lakota",
+      "Spanish": "Espanhol",
+      "Swedish": "Sueco",
+      "USA": "EUA"
+    }
   },
   "messages": {
     "finished": "Concluído.",
@@ -248,7 +267,6 @@
   "presetEditor": {
     "helpAndInstructions": "Ajuda e Instruções",
     "availableDraftOptions": "Opções de Draft Disponíveis",
-    "useCivilisationsAsDraftOptions": "Use as civilizações normais",
     "turns": "Turnos",
     "createSaveDraft": "Crie um Draft ou Salve",
     "host": "Anfitrião",

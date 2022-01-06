@@ -20,10 +20,10 @@ class Menu extends React.Component<WithTranslation, object> {
                 <div className="container is-desktop">
                     <Modal/>
                     <div className="has-text-centered pb-5">
-                        <img src="/images/aoe2cm2.png" alt="AoE II - Captains Mode Logo"/>
+                        <img src="/images/aoe2cm2.png" alt="Age of Empires - Captains Mode Logo"/>
                     </div>
                     <div className="has-text-centered">
-                        <h1 className="title is-hidden">Age of Empires II</h1>
+                        <h1 className="title is-hidden">Age of Empires</h1>
                         <h2 className="subtitle is-hidden">Captains Mode</h2>
                     </div>
                     <div className="tabs is-centered">

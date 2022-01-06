@@ -43,7 +43,39 @@
     "HIDDEN_BAN": "",
     "HIDDEN_SNIPE": "",
     "HIDDEN": "",
-    "RANDOM": "Random"
+    "RANDOM": "Random",
+    "aoe3": {
+      "Aztec": "Aztec",
+      "British": "British",
+      "Chinese": "Chinese",
+      "Dutch": "Dutch",
+      "French": "French",
+      "German": "German",
+      "Incan": "Incan",
+      "Indian": "Indian",
+      "Haudenosaunee": "Haudenosaunee",
+      "Japanese": "Japanese",
+      "Ottoman": "Ottoman",
+      "Portuguese": "Portuguese",
+      "Russian": "Russian",
+      "Lakota": "Lakota",
+      "Spanish": "Spanish",
+      "Swedish": "Swedish",
+      "USA": "USA",
+      "Ethiopians": "Ethiopians",
+      "Hausa": "Hausa",
+      "Mexico": "Mexico"
+    },
+    "aoe4": {
+      "Rus": "Rus",
+      "HolyRomanEmpire": "Holy Roman Empire",
+      "Chinese": "Chinese",
+      "English": "English",
+      "DelhiSultanate": "Delhi Sultanate",
+      "Mongols": "Mongols",
+      "AbbasidDynasty": "Abbasid Dynasty",
+      "French": "French"
+    }
   },
   "messages": {
     "finished": "Finished.",
@@ -248,7 +280,10 @@
   "presetEditor": {
     "helpAndInstructions": "Help and Instructions",
     "availableDraftOptions": "Available Draft Options",
-    "useCivilisationsAsDraftOptions": "Use regular civilisations",
+    "aoe2Civs": "AoE2 civs",
+    "aoe3Civs": "AoE3 civs",
+    "aoe4Civs": "AoE4 civs",
+    "customOptions": "Custom",
     "turns": "Turns",
     "createSaveDraft": "Create Draft or Save",
     "host": "Host",
