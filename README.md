@@ -136,3 +136,11 @@ Or, share the file with `hszemi#2325` or `Jester#5115` on Discord.
 - `pt_BR`: marciocolombia#0637
 - `zh_CN`: HeavenlyChorus#8242
 - `zh_TW`: jkb#2180
+
+### Housekeeping
+
+To move all drafts older than X days to another folder, execute the following in `data/current`:
+
+```sh
+for f in `find . -ctime +X`; do mv $f ../another-folder/; done
+```
