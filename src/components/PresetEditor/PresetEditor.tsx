@@ -26,6 +26,8 @@ import DraftOption from "../../models/DraftOption";
 import PresetEditorCivSelection from "./PresetEditorCivSelection";
 import PresetEditorCustomOptions from "./PresetEditorCustomOptions";
 import Civilisation from "../../models/Civilisation";
+import Aoe3Civilisation from "../../models/Aoe3Civilisation";
+import Aoe4Civilisation from "../../models/Aoe4Civilisation";
 
 interface Props extends WithTranslation{
     preset: Preset | null,
@@ -36,7 +38,16 @@ interface Props extends WithTranslation{
     onPresetDraftOptionsChange: (value: DraftOption[]) => ISetEditorDraftOptions
 }
 
-class PresetEditor extends React.Component<Props, object> {
+interface State {
+    defaultDraftOptions: DraftOption[]
+}
+
+class PresetEditor extends React.Component<Props, State> {
+
+    constructor(props: Props) {
+        super(props);
+        this.state = {defaultDraftOptions: Civilisation.ALL};
+    }
 
     componentDidMount(): void {
         if (this.props.preset === null || this.props.preset === undefined) {
@@ -56,8 +67,8 @@ class PresetEditor extends React.Component<Props, object> {
                               className="columns is-mobile preset-editor-row"
                               onValueChange={this.props.onValueChange} key={turn.id}/>);
 
-        const customOptions: boolean = !this.props.preset.encodedCivilisations;
-        let optionsSelection = customOptions ? <PresetEditorCustomOptions/> : <PresetEditorCivSelection/>;
+        const customOptions: boolean = this.state.defaultDraftOptions.length === 0;
+        let optionsSelection = customOptions ? <PresetEditorCustomOptions/> : <PresetEditorCivSelection availableOptions={this.state.defaultDraftOptions}/>;
 
         return (
             <React.Fragment>
@@ -65,20 +76,29 @@ class PresetEditor extends React.Component<Props, object> {
                     <h3>1. <Trans i18nKey="presetEditor.availableDraftOptions">Available Draft Options</Trans></h3>
 
                     <p className="control">
-                        <input id="toggleCustomDraftOptions" type="checkbox" name="toggleCustomDraftOptions"
-                               className="switch is-small is-rounded is-info" checked={!customOptions} onChange={() => {
-                            if (customOptions) {
-                                this.props.onPresetDraftOptionsChange(Civilisation.ALL);
-                            } else {
-                                const draftOption = new DraftOption(Civilisation.AZTECS.id, Civilisation.AZTECS.name);
-                                for (let imageUrlsKey in draftOption.imageUrls) {
-                                    draftOption.imageUrls[imageUrlsKey] = 'https://aoe2cm.net' + draftOption.imageUrls[imageUrlsKey];
-                                }
-                                this.props.onPresetDraftOptionsChange([draftOption]);
+                        <button className="button" onClick={()=>{
+                            this.setState({defaultDraftOptions: Civilisation.ALL});
+                            this.props.onPresetDraftOptionsChange([...Civilisation.ALL]);
+                        }}><Trans i18nKey="presetEditor.aoe2Civs">AoE2 civs</Trans></button>
+
+                        <button className="button" onClick={()=>{
+                            this.setState({defaultDraftOptions: Aoe3Civilisation.ALL});
+                            this.props.onPresetDraftOptionsChange([...Aoe3Civilisation.ALL]);
+                        }}><Trans i18nKey="presetEditor.aoe3Civs">AoE3 civs</Trans></button>
+
+                        <button className="button" onClick={()=>{
+                            this.setState({defaultDraftOptions: Aoe4Civilisation.ALL});
+                            this.props.onPresetDraftOptionsChange([...Aoe4Civilisation.ALL]);
+                        }}><Trans i18nKey="presetEditor.aoe4Civs">AoE4 civs</Trans></button>
+
+                        <button className="button" onClick={()=>{
+                            this.setState({defaultDraftOptions: []});
+                            const draftOption = new DraftOption(Civilisation.AZTECS.id, Civilisation.AZTECS.name);
+                            for (let imageUrlsKey in draftOption.imageUrls) {
+                                draftOption.imageUrls[imageUrlsKey] = 'https://aoe2cm.net' + draftOption.imageUrls[imageUrlsKey];
                             }
-                        }}/>
-                        <label htmlFor="toggleCustomDraftOptions" style={{paddingTop: 1}}><Trans
-                            i18nKey='presetEditor.useCivilisationsAsDraftOptions'>Use civilisations</Trans></label>
+                            this.props.onPresetDraftOptionsChange([draftOption]);
+                        }}><Trans i18nKey="presetEditor.customOptions">Custom</Trans></button>
                     </p>
 
                     {optionsSelection}

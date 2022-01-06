@@ -43,7 +43,26 @@
     "HIDDEN_BAN": "",
     "HIDDEN_SNIPE": "",
     "HIDDEN": "",
-    "RANDOM": "Zufällig"
+    "RANDOM": "Zufällig",
+    "aoe3": {
+      "Aztec":"Azteken",
+      "British":"Briten",
+      "Chinese":"Chinesen",
+      "Dutch":"Holländer",
+      "French":"Franzosen",
+      "German":"Deutsche",
+      "Incan":"Inka",
+      "Indian":"Inder",
+      "Haudenosaunee":"Haudenosaunee",
+      "Japanese":"Japaner",
+      "Ottoman":"Osmanen",
+      "Portuguese":"Portugiesen",
+      "Russian":"Russen",
+      "Lakota":"Lakota",
+      "Spanish":"Spanier",
+      "Swedish":"Schweden",
+      "USA":"USA"
+    }
   },
   "messages": {
     "finished": "Beendet.",
@@ -248,7 +267,10 @@
   "presetEditor": {
     "helpAndInstructions": "Hilfe und Anleitung",
     "availableDraftOptions": "Verfügbare Draft-Optionen",
-    "useCivilisationsAsDraftOptions": "Reguläre Zivilisationen benutzen",
+    "aoe2Civs": "AoE2-Zivilisationen",
+    "aoe3Civs": "AoE3-Zivilisationen",
+    "aoe4Civs": "AoE4-Zivilisationen",
+    "customOptions": "Individuell",
     "turns": "Züge",
     "createSaveDraft": "Draft erstellen oder speichern",
     "host": "Host",

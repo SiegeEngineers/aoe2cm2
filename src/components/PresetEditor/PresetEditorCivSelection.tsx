@@ -4,7 +4,6 @@ import * as actions from "../../actions";
 import {ISetEditorDraftOptions} from "../../actions";
 import {PresetOptionCheckbox} from "./PresetOptionCheckbox";
 import {withTranslation, WithTranslation} from "react-i18next";
-import Civilisation from "../../models/Civilisation";
 import DraftOption from "../../models/DraftOption";
 import {ApplicationState} from "../../types";
 import {Dispatch} from "redux";
@@ -12,7 +11,8 @@ import {connect} from "react-redux";
 
 interface Props extends WithTranslation {
     preset: Preset | null,
-    onPresetDraftOptionsChange: (value: DraftOption[]) => ISetEditorDraftOptions
+    availableOptions: DraftOption[],
+    onPresetDraftOptionsChange: (value: DraftOption[]) => ISetEditorDraftOptions,
 }
 
 class PresetEditorCivSelection extends React.Component<Props, object> {
@@ -24,7 +24,7 @@ class PresetEditorCivSelection extends React.Component<Props, object> {
 
         const presetOptions = this.props.preset.options;
 
-        const civs = Civilisation.ALL.map((value: Civilisation, index: number) =>
+        const civs = this.props.availableOptions.map((value: DraftOption, index: number) =>
             <PresetOptionCheckbox presetOptions={presetOptions} value={value}
                                   key={index}
                                   disabled={false}

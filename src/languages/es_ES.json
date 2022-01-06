@@ -43,7 +43,26 @@
     "HIDDEN_BAN": "",
     "HIDDEN_SNIPE": "",
     "HIDDEN": "",
-    "RANDOM": "Al azar"
+    "RANDOM": "Al azar",
+    "aoe3": {
+      "Aztec": "aztecas",
+      "British": "británicos",
+      "Chinese": "chinos",
+      "Dutch": "holandeses",
+      "French": "franceses",
+      "German": "alemanes",
+      "Incan": "incas",
+      "Indian": "indios",
+      "Haudenosaunee": "iroqueses",
+      "Japanese": "japoneses",
+      "Ottoman": "otomanos",
+      "Portuguese": "portugueses",
+      "Russian": "rusos",
+      "Lakota": "lakotas",
+      "Spanish": "españoles",
+      "Swedish": "suecos",
+      "USA": "estados unidos"
+    }
   },
   "messages": {
     "finished": "Finalizado.",
@@ -255,7 +274,6 @@
     "admin": "Administrador",
     "new": "Nuevo",
     "presetName": "Nombre del Borrador",
-    "useCivilisationsAsDraftOptions": "Usar civilizaciónes comúnes",
     "warning": "<0>Importante!</0><1/>Estas son opciones avanzadas, y probablemente no las necesites si simplemente quieres crear un draft de civilizaciónes comúnes.<3/><4>Por favor use URLs de imágenes que esperes que sigan funcionando en 10 años o mas!</4>",
     "option": {
       "animatedUnitImageUrlLeft": "URL de la imágen animada de la unidad (izquierda)",
