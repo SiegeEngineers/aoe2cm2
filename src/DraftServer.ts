@@ -279,6 +279,16 @@ export class DraftServer {
             }
             res.json(state);
         });
+        app.post('/api/reload-archive', (req, res) => {
+            if (!Util.isRequestFromLocalhost(req)) {
+                res.status(403).end();
+                return;
+            }
+            logger.info('Reloading draft archive data');
+            const response = draftsStore.reloadArchiveData();
+            res.json(response);
+            logger.info('Reloading draft archive data finished');
+        });
         app.post('/api/draft/new', (req, res) => {
             logger.info('Received request to create a new draft: %s', JSON.stringify(req.body));
 

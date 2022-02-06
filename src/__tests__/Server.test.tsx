@@ -43,6 +43,33 @@ afterEach((done) => {
     done();
 });
 
+it('reloading drafts archive', (done) => {
+    const draftId = 'abcde';
+    fs.writeFileSync(path.join(dirPath, 'data', '2020', `abcde.json`), '{}');
+
+    request.get(`http://[${httpServerAddr.address}]:${httpServerAddr.port}/api/draft/${draftId}`,
+        (error, response, body) => {
+            expect(response.statusCode).toEqual(404);
+
+            request.post(`http://[${httpServerAddr.address}]:${httpServerAddr.port}/api/reload-archive`,
+                {headers: {'Content-Type': 'application/json; charset=UTF-8'}},
+                (error, response, body) => {
+                    expect(response.statusCode).toEqual(200);
+                    const json = JSON.parse(body);
+                    expect(json).toEqual(true);
+
+                    request.get(`http://[${httpServerAddr.address}]:${httpServerAddr.port}/api/draft/${draftId}`,
+                        (error, response, body) => {
+                            expect(response.statusCode).toEqual(200);
+                            const json = JSON.parse(body);
+                            expect(json).toEqual({});
+                            done();
+                        });
+                });
+        });
+});
+
+
 it('maintenanceMode is initially false', (done) => {
     request.get(`http://[${httpServerAddr.address}]:${httpServerAddr.port}/api/state`, (error, response, body) => {
         expect(response.statusCode).toEqual(200);

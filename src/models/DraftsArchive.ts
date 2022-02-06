@@ -2,17 +2,23 @@ import path from "path";
 import * as fs from "fs";
 
 export class DraftsArchive {
-    private drafts: Map<string, Set<string>>
+    private drafts: Map<string, Set<string>> = new Map<string, Set<string>>();
+    private readonly dataDirectory: string
 
     constructor(dataDirectory: string) {
-        const elements = fs.readdirSync(dataDirectory)
+        this.dataDirectory = dataDirectory;
+        this.reloadArchiveData();
+    }
+
+    public reloadArchiveData() {
+        const elements = fs.readdirSync(this.dataDirectory)
         this.drafts = new Map<string, Set<string>>();
         for (let element of elements) {
-            if (DraftsArchive.isArchiveDirectory(dataDirectory, element)) {
+            if (DraftsArchive.isArchiveDirectory(this.dataDirectory, element)) {
                 const draftIdsForFolder = new Set<string>();
-                const files = fs.readdirSync(path.join(dataDirectory, element))
+                const files = fs.readdirSync(path.join(this.dataDirectory, element))
                 for (let file of files) {
-                    if (DraftsArchive.isStoredDraft(dataDirectory, element, file)) {
+                    if (DraftsArchive.isStoredDraft(this.dataDirectory, element, file)) {
                         const draftId = DraftsArchive.getDraftId(file);
                         draftIdsForFolder.add(draftId);
                     }

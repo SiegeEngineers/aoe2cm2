@@ -62,7 +62,6 @@ export class DraftsStore {
         return draft.getExpectedActions(offset);
     }
 
-
     public getRecentDrafts(): IRecentDraft[] {
         const ongoingDrafts = this.getOngoingDrafts();
 
@@ -116,6 +115,14 @@ export class DraftsStore {
     public hasArchive(draftId: string): boolean {
         if (this.draftsArchive) {
             return this.draftsArchive.hasDraftId(draftId);
+        }
+        return false;
+    }
+
+    public reloadArchiveData(): boolean {
+        if (this.draftsArchive) {
+            this.draftsArchive.reloadArchiveData();
+            return true;
         }
         return false;
     }
