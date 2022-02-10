@@ -59,7 +59,7 @@
     "enzyme-adapter-react-16": "^1.15.3",
     "enzyme-to-json": "^3.5.0",
     "get-port": "^5.1.1",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "react-test-renderer": "^16.13.1",
     "request": "^2.88.2",
     "temp": "^0.9.4",
