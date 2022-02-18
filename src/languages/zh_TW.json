@@ -43,7 +43,39 @@
     "HIDDEN_BAN": "",
     "HIDDEN_SNIPE": "",
     "HIDDEN": "",
-    "RANDOM": "隨機"
+    "RANDOM": "隨機",
+    "aoe3": {
+      "Aztec": "阿茲特克",
+      "British": "英國",
+      "Chinese": "中國",
+      "Dutch": "荷蘭",
+      "French": "法國",
+      "German": "德國",
+      "Incan": "印加",
+      "Indian": "印度",
+      "Haudenosaunee": "豪丹諾蘇尼",
+      "Japanese": "日本",
+      "Ottoman": "鄂圖曼土耳其",
+      "Portuguese": "葡萄牙",
+      "Russian": "俄羅斯",
+      "Lakota": "拉科塔",
+      "Spanish": "西班牙",
+      "Swedish": "瑞典",
+      "USA": "美國",
+      "Ethiopians": "衣索比亞",
+      "Hausa": "豪薩",
+      "Mexico": "墨西哥"
+    },
+    "aoe4": {
+      "Rus": "羅斯人",
+      "HolyRomanEmpire": "神聖羅馬帝國",
+      "Chinese": "中國人",
+      "English": "英格蘭人",
+      "DehliSultanate": "德里蘇丹國",
+      "Mongols": "蒙古人",
+      "AbbasidDynasty": "阿拔斯王朝",
+      "French": "法蘭西人"
+    }
   },
   "messages": {
     "finished": "結束。",
@@ -248,6 +280,10 @@
   "presetEditor": {
     "helpAndInstructions": "幫助/說明",
     "availableDraftOptions": "可選用文明",
+    "aoe2Civs": "世紀2文明",
+    "aoe3Civs": "世紀3文明",
+    "aoe4Civs": "世紀4文明",
+    "customOptions": "自訂選項",
     "turns": "回合",
     "createSaveDraft": "建立或保存",
     "host": "主持者",
