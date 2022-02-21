@@ -167,5 +167,20 @@ hr {
   color: $scheme-invert-ter;
 }
 
+.civ-selector-tabs.tabs.is-boxed {
+  ul {
+    li.is-active {
+      a, a:hover {
+        background-color: #242424;
+      }
+    }
+    li {
+      a:hover {
+        background-color: #363636;
+      }
+    }
+  }
+}
+
 @import "bulma-dark-tags";
 @import "bulma-dark-switch";

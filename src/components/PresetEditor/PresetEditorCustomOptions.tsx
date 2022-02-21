@@ -26,15 +26,16 @@ class PresetEditorCustomOptions extends React.Component<Props, object> {
 
         const options = presetOptions.map((value: DraftOption, index: number) => <PresetOption draftOptionIndex={index}
                                                                                                key={index}/>);
-
         return (
             <>
-                <div className="notification is-primary">
-                    <Trans i18nKey="presetEditor.warning">
-                    <strong>Attention!</strong><br/>
-                    This is advanced stuff, and you probably do not need it if you just want to create a regular old civilisation draft.<br/>
-                    <strong>Please use image urls which you expect to still be working in about ten years or more!</strong>
-                    </Trans>
+                <div className="message is-warning">
+                    <div className="message-body">
+                        <Trans i18nKey="presetEditor.warning">
+                        <strong>Attention!</strong><br/>
+                        This is advanced stuff, and you probably do not need it if you just want to create a regular old civilisation draft.<br/>
+                        <strong>Please use image urls which you expect to still be working in about ten years or more!</strong>
+                        </Trans>
+                    </div>
                 </div>
                 <div>
                     <ReactSortable<DraftOption> list={presetOptions}

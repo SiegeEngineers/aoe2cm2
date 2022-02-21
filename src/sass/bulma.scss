@@ -905,3 +905,13 @@ html.has-simple-ui {
 .is-justify-content-center {
   justify-content: center;
 }
+
+.civ-selector-tabs {
+  ul {
+    margin-left: 0;
+    text-transform: uppercase;
+    li:first-child {
+      margin-left: 10px;
+    }
+  }
+}
