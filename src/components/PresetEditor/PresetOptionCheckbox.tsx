@@ -13,7 +13,7 @@ interface IProps extends WithTranslation {
 export const PresetOptionCheckbox = withTranslation()(({presetOptions, value, onPresetDraftOptionsChange, disabled, t}: IProps) =>
     <label className="checkbox is-inline-block civ-select" style={{width: "20%", padding: 5}}>
         <input type='checkbox'
-               defaultChecked={presetOptions.includes(value)}
+               checked={presetOptions.includes(value)}
                disabled={disabled}
                onClick={
                    () => {

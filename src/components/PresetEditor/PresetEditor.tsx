@@ -28,8 +28,10 @@ import PresetEditorCustomOptions from "./PresetEditorCustomOptions";
 import Civilisation from "../../models/Civilisation";
 import Aoe3Civilisation from "../../models/Aoe3Civilisation";
 import Aoe4Civilisation from "../../models/Aoe4Civilisation";
+import {RouteComponentProps} from "react-router";
+import CivilisationSet from "../../models/CivilisationSet";
 
-interface Props extends WithTranslation{
+interface Props extends WithTranslation, RouteComponentProps<any>{
     preset: Preset | null,
     onSetEditorPreset: (preset: Preset) => ISetEditorPreset,
     onValueChange: (turn: Turn | null, index: number) => ISetEditorTurn,
@@ -39,14 +41,15 @@ interface Props extends WithTranslation{
 }
 
 interface State {
-    defaultDraftOptions: DraftOption[]
+    defaultDraftOptions: DraftOption[],
+    activeCivilisationSet: String
 }
 
 class PresetEditor extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
-        this.state = {defaultDraftOptions: Civilisation.ALL};
+        this.state = {defaultDraftOptions: Civilisation.ALL, activeCivilisationSet: CivilisationSet.AOE2};
     }
 
     componentDidMount(): void {
@@ -54,6 +57,25 @@ class PresetEditor extends React.Component<Props, State> {
             this.props.onSetEditorPreset(Preset.NEW);
         }
         document.title = 'Preset Editor – AoE2 Captains Mode';
+        const civs = (this.props.location.hash || CivilisationSet.AOE2).replace("#", '');
+        switch (civs) {
+            default:
+            case CivilisationSet.AOE2:
+                this.setState({defaultDraftOptions: Civilisation.ALL, activeCivilisationSet: CivilisationSet.AOE2});
+                this.props.onPresetDraftOptionsChange([...Civilisation.ALL]);
+                break;
+            case CivilisationSet.AOE3:
+                this.setState({defaultDraftOptions: Aoe3Civilisation.ALL, activeCivilisationSet: CivilisationSet.AOE3});
+                this.props.onPresetDraftOptionsChange([...Aoe3Civilisation.ALL]);
+                break;
+            case CivilisationSet.AOE4:
+                this.setState({defaultDraftOptions: Aoe4Civilisation.ALL, activeCivilisationSet: CivilisationSet.AOE4});
+                this.props.onPresetDraftOptionsChange([...Aoe4Civilisation.ALL]);
+                break;
+            case CivilisationSet.CUSTOM:
+                this.activateCustomDraftOptionsTab();
+                break;
+        }
     }
 
     public render() {
@@ -75,31 +97,41 @@ class PresetEditor extends React.Component<Props, State> {
                 <div className={'content box'}>
                     <h3>1. <Trans i18nKey="presetEditor.availableDraftOptions">Available Draft Options</Trans></h3>
 
-                    <p className="control">
-                        <button className="button" onClick={()=>{
-                            this.setState({defaultDraftOptions: Civilisation.ALL});
-                            this.props.onPresetDraftOptionsChange([...Civilisation.ALL]);
-                        }}><Trans i18nKey="presetEditor.aoe2Civs">AoE2 civs</Trans></button>
-
-                        <button className="button" onClick={()=>{
-                            this.setState({defaultDraftOptions: Aoe3Civilisation.ALL});
-                            this.props.onPresetDraftOptionsChange([...Aoe3Civilisation.ALL]);
-                        }}><Trans i18nKey="presetEditor.aoe3Civs">AoE3 civs</Trans></button>
-
-                        <button className="button" onClick={()=>{
-                            this.setState({defaultDraftOptions: Aoe4Civilisation.ALL});
-                            this.props.onPresetDraftOptionsChange([...Aoe4Civilisation.ALL]);
-                        }}><Trans i18nKey="presetEditor.aoe4Civs">AoE4 civs</Trans></button>
-
-                        <button className="button" onClick={()=>{
-                            this.setState({defaultDraftOptions: []});
-                            const draftOption = new DraftOption(Civilisation.AZTECS.id, Civilisation.AZTECS.name);
-                            for (let imageUrlsKey in draftOption.imageUrls) {
-                                draftOption.imageUrls[imageUrlsKey] = 'https://aoe2cm.net' + draftOption.imageUrls[imageUrlsKey];
-                            }
-                            this.props.onPresetDraftOptionsChange([draftOption]);
-                        }}><Trans i18nKey="presetEditor.customOptions">Custom</Trans></button>
-                    </p>
+                    <div className="tabs is-boxed is-small civ-selector-tabs">
+                        <ul>
+                            <li className={this.state.activeCivilisationSet === CivilisationSet.AOE2 ? "is-active" : ""}>
+                                <a href="#aoe2" onClick={()=>{
+                                    this.setState({defaultDraftOptions: Civilisation.ALL, activeCivilisationSet: CivilisationSet.AOE2});
+                                    this.props.onPresetDraftOptionsChange([...Civilisation.ALL]);
+                                }}>
+                                    <Trans i18nKey="presetEditor.aoe2Civs">AoE2 civs</Trans>
+                                </a>
+                            </li>
+                            <li className={this.state.activeCivilisationSet === CivilisationSet.AOE3 ? "is-active" : ""}>
+                                <a href="#aoe3" onClick={()=>{
+                                    this.setState({defaultDraftOptions: Aoe3Civilisation.ALL, activeCivilisationSet: CivilisationSet.AOE3});
+                                    this.props.onPresetDraftOptionsChange([...Aoe3Civilisation.ALL]);
+                                }}>
+                                    <Trans i18nKey="presetEditor.aoe3Civs">AoE3 civs</Trans>
+                                </a>
+                            </li>
+                            <li className={this.state.activeCivilisationSet === CivilisationSet.AOE4 ? "is-active" : ""}>
+                                <a href="#aoe4" onClick={()=>{
+                                    this.setState({defaultDraftOptions: Aoe4Civilisation.ALL, activeCivilisationSet: CivilisationSet.AOE4});
+                                    this.props.onPresetDraftOptionsChange([...Aoe4Civilisation.ALL]);
+                                }}>
+                                    <Trans i18nKey="presetEditor.aoe4Civs">AoE4 civs</Trans>
+                                </a>
+                            </li>
+                            <li className={this.state.activeCivilisationSet === CivilisationSet.CUSTOM ? "is-active" : ""}>
+                                <a href="#custom" onClick={()=>{
+                                    this.activateCustomDraftOptionsTab();
+                                }}>
+                                    <Trans i18nKey="presetEditor.customOptions">Custom</Trans>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
 
                     {optionsSelection}
 
@@ -184,6 +216,15 @@ class PresetEditor extends React.Component<Props, State> {
                 </div>
             </React.Fragment>
         );
+    }
+
+    private activateCustomDraftOptionsTab() {
+        this.setState({defaultDraftOptions: [], activeCivilisationSet: CivilisationSet.CUSTOM});
+        const draftOption = new DraftOption(Civilisation.AZTECS.id, Civilisation.AZTECS.name);
+        for (let imageUrlsKey in draftOption.imageUrls) {
+            draftOption.imageUrls[imageUrlsKey] = 'https://aoe2cm.net' + draftOption.imageUrls[imageUrlsKey];
+        }
+        this.props.onPresetDraftOptionsChange([draftOption]);
     }
 }
 
