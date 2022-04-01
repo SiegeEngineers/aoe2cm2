@@ -195,7 +195,7 @@
     "home": {
       "title": "Qu'est-ce que le mode Capitaine?",
       "1": "Le mode Capitaine permet d'effectuer une sélection de civilisations au tour par tour. Cette sélection peut être préréglée ou customisée.",
-      "2": "L'administrateur d'un tournoi crée un <1>Préréglage</1> qui peut être utilisé pour faire des sélections, aussi appelées <3>Drafts</3>. Durant une draft, les deux capitaines vont choisir, bannir, voler ou sniper des civilisations ou des options dans un ordre prédéfini par les règles du préréglage choisi afin de déterminer quelles civilisations vont être disponibles pour chacun des capitaines durant un match.",
+      "2": "L'administrateur d'un tournoi crée un <1>Préréglage</1> qui peut être utilisé pour faire des sélections, aussi appelées <3>Drafts</3>. Durant une draft, les deux capitaines vont choisir, bannir, voler ou sniper des civilisations ou des options dans un ordre prédéfini par les règles du préréglage choisi, afin de déterminer quelles civilisations ou options vont être disponibles pour chacun des capitaines durant un match.",
       "3": "Les capitaines disposent de <1>30 secondes</1> à chaque tour. Dans le cas où le temps limite est dépassé, une civilisation ou une option aléatoire sera sélectionnée pour le capitaine.",
       "getStarted": {
         "title": "Démarrer",
@@ -223,7 +223,7 @@
       "4": "Un <1>PICK EXCLUSIF</1> ou <3/> empêche seulement le joueur actif de choisir cette civilisation ou cette option dans les tours suivants.",
       "5": "Un <1>PICK NON-EXCLUSIF</1> ou <3/> ne fait ni l'un ni l'autre, les deux joueurs pourront choisir cette civilisation ou cette option à nouveau dans les tours suivants.",
       "6": "Un <1>BAN</1> empêche la civilisation ou l'option concernée d'être sélectionnée dans les tours suivants.",
-      "7": "Un <1>BAN GLOBAL</1> ou <3/> empêche les deux joueurs de séletionner cette civilisation ou cette option dans les tours suivants.",
+      "7": "Un <1>BAN GLOBAL</1> ou <3/> empêche les deux joueurs de sélectionner cette civilisation ou cette option dans les tours suivants.",
       "8": "Un <1>BAN EXCLUSIF</1> ou <3/> empêche seulement l'adversaire de choisir cette civilisation ou cette option dans les tours suivants, le joueur actif ne pourra plus bannir de nouveau cette civilisation ou cette option.",
       "9": "Un <1>BAN NON-EXCLUSIF</1> ou <3/> empêche seulement l'adversaire de choisir cette civilisation ou cette option dans les tours suivants, et le joueur actif pourra bannir de nouveau cette civilisation ou cette option, ce qui n'a aucun sens, donc il vaut mieux utiliser <5>EXCLUSIF</5> à la place.",
       "10": "Un <1/> permet à un joueur de supprimer une civilisation ou une option que son adversaire avait précédemment choisie. Les modificateurs <3>GLOBAL</3>, <5>EXCLUSIF</5> et <7>NON-EXCLUSIF</7> n'ont aucun sens ici.",
@@ -232,8 +232,8 @@
     "adminTurns": {
       "title": "Tours de l'administrateur",
       "1": "Les tours de l'administrateur ou <1/> révèlent les actions précédentes qui étaient cachées.",
-      "2": "Les tours <1>RÉVÉLER_PICK</1>, <3>RÉVÉLER_BANS</3> and <5>RÉVÉLER_SNIPES</5> révèlent les actions cachées respectives qui ont déjà eu lieu.",
-      "3": "<0>RÉVÉLER_TOUT</0> révèle toutes les actions cachées qui ont eu lieu auparavant."
+      "2": "Les tours <1>REVEAL_PICKS</1>, <3>REVEAL_BANS</3> and <5>REVEAL_SNIPES</5> révèlent les actions cachées respectives qui ont déjà eu lieu.",
+      "3": "<0>REVEAL_ALL</0> révèle toutes les actions cachées qui ont eu lieu auparavant."
     },
     "presetEditor": {
       "title": "Éditeur de préréglage",
@@ -244,15 +244,15 @@
     },
     "presetModifiers": {
       "title": "Modificateurs",
-      "1": "Si tu veux que les joueurs effectuent un tour en parallèle, coche les cases <1>PARALLÈLE</1> du <3>premier</3> des tours concernés (mais ne le coche pas pour le deuxième).",
-      "2": "Coche la case <1>CACHÉ</1> pour cacher la civilisation ou l'option choisie durant ce tour à l'adversaire et aux spectateurs jusqu'à ce qu'il soit révélé par un tour administrateur (voir ci-dessous).",
-      "3": "Si tu coches la case <1>À LA PLACE DE L'ADVERSAIRE</1>, le joueur effectuera le tour à la place de son adversaire. Cela peut être utilisé pour laisser un joueur choisir des civilisations ou des options que son adversaire devra ensuite utiliser."
+      "1": "Si tu veux que les joueurs effectuent un tour en parallèle, coche les cases <1>PARALLEL</1> du <3>premier</3> des tours concernés (mais ne le coche pas pour le deuxième).",
+      "2": "Coche la case <1>HIDDEN</1> pour cacher la civilisation ou l'option choisie durant ce tour à l'adversaire et aux spectateurs jusqu'à ce qu'il soit révélé par un tour administrateur (voir ci-dessous).",
+      "3": "Si tu coches la case <1>AS OPPONENT</1>, le joueur effectuera le tour à la place de son adversaire. Cela peut être utilisé pour laisser un joueur choisir des civilisations ou des options que son adversaire devra ensuite utiliser."
     },
     "draftModifiers": {
       "title": "Modificateurs",
-      "1": "Un modificateur <1>PARALLÈLE</1> signifie que les deux joueurs effectueront leur tour en parallèle.",
-      "2": "Un modificateur <1>CACHÉ</1> cache la civilisation ou l'option sélectionnée durant ce tour à l'adversaire et aux spectateurs jusqu'à ce que cela soit révélé par un tour administrateur (voir ci-dessous).",
-      "3": "Un modificateur <1>À LA PLACE DE L'ADVERSAIRE</1> signifie que le tour sera effectué par le joueur à place de son adversaire. Cela est utilisé pour laisser un joueur choisir des civilisations ou des options que son adversaire devra utiliser."
+      "1": "Un modificateur <1>PARALLEL</1> signifie que les deux joueurs effectueront leur tour en parallèle.",
+      "2": "Un modificateur <1>HIDDEN</1> cache la civilisation ou l'option sélectionnée durant ce tour à l'adversaire et aux spectateurs jusqu'à ce que cela soit révélé par un tour administrateur (voir ci-dessous).",
+      "3": "Un modificateur <1>AS OPPONENT</1> signifie que le tour sera effectué par le joueur à la place de son adversaire. Cela est utilisé pour laisser un joueur choisir des civilisations ou des options que son adversaire devra utiliser."
     }
   },
   "presets": {
