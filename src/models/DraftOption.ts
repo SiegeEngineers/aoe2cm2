@@ -49,6 +49,15 @@ class DraftOption {
         }
     }
 
+    public static equals(first: DraftOption, second: DraftOption) {
+        return first.id === second.id
+            && first.name === second.name
+            && first.imageUrls.unit === second.imageUrls.unit
+            && first.imageUrls.emblem === second.imageUrls.emblem
+            && first.imageUrls.animated_left === second.imageUrls.animated_left
+            && first.imageUrls.animated_right === second.imageUrls.animated_right;
+    }
+
 }
 
 export default DraftOption;
