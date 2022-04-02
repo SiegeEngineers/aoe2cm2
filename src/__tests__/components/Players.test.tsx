@@ -1,5 +1,4 @@
 import {shallow} from "enzyme";
-import * as React from "react";
 import DraftState from "../../components/draft/DraftState";
 import Preset from "../../models/Preset";
 

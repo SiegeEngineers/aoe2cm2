@@ -1,5 +1,5 @@
-import * as reactI18next from "react-i18next";
 import * as React from "react";
+import * as reactI18next from "react-i18next";
 
 export const hasChildren = (node: React.ReactElement) => node && node.props && node.props.children;
 

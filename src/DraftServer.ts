@@ -1,6 +1,6 @@
 import express, {Express, Response as ExpressResponse} from "express";
-import {Server} from "http"
-import socketio from "socket.io";
+import {createServer, Server} from "http"
+import {Server as SocketioServer, Socket} from "socket.io";
 import Player from "./constants/Player";
 import {IDraftConfig} from "./types/IDraftConfig";
 import {ISetRoleMessage} from "./types/ISetRoleMessage";
@@ -56,14 +56,14 @@ export class DraftServer {
         }
     };
 
-    serve(port: string | number | undefined): { httpServerAddr: AddressInfo | string | null; io: SocketIO.Server; httpServer: Server } {
+    serve(port: string | number | undefined): { httpServerAddr: AddressInfo | string | null; io: SocketioServer; httpServer: Server } {
         logger.info("Starting DraftServer on port %d", port);
         const app = express();
         app.set("port", port);
         app.use(express.json());
 
-        const server = new Server(app);
-        const io = socketio(server, {cookie: false});
+        const server = createServer(app);
+        const io = new SocketioServer(server, {cookie: false});
         const state: IServerState = this.loadState();
         const draftsStore = new DraftsStore(this.baseDir, state);
 
@@ -82,9 +82,9 @@ export class DraftServer {
         return {httpServer, httpServerAddr, io};
     }
 
-    private setUpSocketIo(io: SocketIO.Server, draftsStore: DraftsStore) {
-        io.on("connection", (socket: socketio.Socket) => {
-            const draftIdRaw: string = socket.handshake.query.draftId;
+    private setUpSocketIo(io: SocketioServer, draftsStore: DraftsStore) {
+        io.on("connection", (socket: Socket) => {
+            const draftIdRaw: string | string[] | undefined = socket.handshake.query.draftId;
             const draftId = Util.sanitizeDraftId(draftIdRaw);
             logger.info('Connection for draftId: %s', draftId, {draftId});
 
@@ -116,13 +116,12 @@ export class DraftServer {
                 return;
             }
 
-            const rooms = Object.keys(socket.rooms);
-            logger.debug("rooms: %s", JSON.stringify(rooms), {draftId});
+            logger.debug("rooms: %s", JSON.stringify(socket.rooms), {draftId});
             let yourPlayerType = Player.NONE;
-            if (rooms.includes(roomHost)) {
+            if (socket.rooms.has(roomHost)) {
                 socket.join(roomHost); // async
                 yourPlayerType = Player.HOST;
-            } else if (rooms.includes(roomGuest)) {
+            } else if (socket.rooms.has(roomGuest)) {
                 socket.join(roomGuest); // async
                 yourPlayerType = Player.GUEST;
             } else {
@@ -138,8 +137,7 @@ export class DraftServer {
                 }
                 const role: Player = Util.sanitizeRole(message.role);
                 let assignedRole = Util.getAssignedRole(socket, roomHost, roomGuest);
-                const rooms = Object.keys(socket.rooms);
-                if (rooms.includes(roomSpec)) {
+                if (socket.rooms.has(roomSpec)) {
                     if (role === Player.HOST && !draftsStore.isPlayerConnected(draftId, role)) {
                         logger.info("Setting player role to 'HOST': %s", message.name, {draftId});
                         socket.join(roomHost); // async
@@ -205,10 +203,10 @@ export class DraftServer {
                 }
                 let assignedRole: Player = Player.NONE;
                 let wasAlreadyReady = false;
-                if (Object.keys(socket.rooms).includes(roomHost)) {
+                if (socket.rooms.has(roomHost)) {
                     wasAlreadyReady = draftsStore.setPlayerReady(draftId, Player.HOST);
                     assignedRole = Player.HOST;
-                } else if (Object.keys(socket.rooms).includes(roomGuest)) {
+                } else if (socket.rooms.has(roomGuest)) {
                     wasAlreadyReady = draftsStore.setPlayerReady(draftId, Player.GUEST);
                     assignedRole = Player.GUEST;
                 }
@@ -255,7 +253,7 @@ export class DraftServer {
         });
     }
 
-    private setUpApiRoutes(app: Express, state: IServerState, draftsStore: DraftsStore, io: SocketIO.Server) {
+    private setUpApiRoutes(app: Express, state: IServerState, draftsStore: DraftsStore, io: SocketioServer) {
         app.post('/api/state', (req, res) => {
             if (!Util.isRequestFromLocalhost(req)) {
                 res.status(403).end();
@@ -334,7 +332,12 @@ export class DraftServer {
         app.get('/api/connections', (req, res) => {
             if (Util.isRequestFromLocalhost(req)) {
                 // @ts-ignore
-                res.json({connections: io.engine.clientsCount, rooms: io.sockets.adapter.rooms});
+                res.json({
+                    connections: io.engine.clientsCount,
+                    rooms: Array.from(io.sockets.adapter.rooms.keys())
+                        .filter(value => value.includes('-spec') || value.includes('-host') || value.includes('-guest'))
+                        .sort()
+                });
             } else {
                 // @ts-ignore
                 res.json({connections: io.engine.clientsCount});

@@ -1,5 +1,4 @@
 import {shallow} from "enzyme";
-import * as React from "react";
 import TurnRow from "../../components/draft/TurnRow";
 import Preset from "../../models/Preset";
 

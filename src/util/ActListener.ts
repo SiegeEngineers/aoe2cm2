@@ -10,6 +10,7 @@ import fs from "fs";
 import {logger} from "./Logger";
 import AdminEvent from "../models/AdminEvent";
 import path from "path";
+import {Socket} from "socket.io";
 
 export class ActListener {
     readonly dataDirectory: string;
@@ -18,7 +19,7 @@ export class ActListener {
         this.dataDirectory = dataDirectory;
     }
 
-    actListener(draftsStore: DraftsStore, draftId: string, validateAndApply: (draftId: string, message: DraftEvent) => ValidationId[], socket: SocketIO.Socket, roomHost: string, roomGuest: string, roomSpec: string, skipSourceValidation = false) {
+    actListener(draftsStore: DraftsStore, draftId: string, validateAndApply: (draftId: string, message: DraftEvent) => ValidationId[], socket: Socket, roomHost: string, roomGuest: string, roomSpec: string, skipSourceValidation = false) {
         return (message: PlayerEvent, fn: (retval: any) => void) => {
             logger.info("Got act message: %s", JSON.stringify(message), {draftId});
 
@@ -88,7 +89,7 @@ export class ActListener {
         return false;
     }
 
-    scheduleAdminEvent(adminEventCounter: number, draftsStore: DraftsStore, draftId: string, draftViews: DraftViews, socket: SocketIO.Socket, roomHost: string, roomGuest: string, roomSpec: string) {
+    scheduleAdminEvent(adminEventCounter: number, draftsStore: DraftsStore, draftId: string, draftViews: DraftViews, socket: Socket, roomHost: string, roomGuest: string, roomSpec: string) {
         const expectedActions = draftsStore.getExpectedActions(draftId, adminEventCounter - 1);
         const expectedAction = expectedActions[0];
         if (expectedAction.player === Player.NONE) { // Admin Event
@@ -125,7 +126,7 @@ export class ActListener {
         }
     }
 
-    finishDraftIfNoFurtherActions(draftViews: DraftViews, socket: SocketIO.Socket, draftsStore: DraftsStore,
+    finishDraftIfNoFurtherActions(draftViews: DraftViews, socket: Socket, draftsStore: DraftsStore,
                                   draftId: string, roomHost: string, roomGuest: string, roomSpec: string) {
         if (!draftViews.getActualDraft().hasNextAction()) {
             const draft = draftsStore.getDraftOrThrow(draftId);
@@ -137,12 +138,11 @@ export class ActListener {
             fs.writeFile(draftPath, JSON.stringify(draft), (err) => {
                 logger.info("No further action expected. Disconnecting clients.", {draftId});
                 for (let room of [roomHost, roomGuest, roomSpec]) {
-                    socket.nsp.in(room).clients((error: any, clientIds: string[]) => {
-                        if (error) throw error;
-                        for (let clientId of clientIds) {
-                            socket.nsp.connected[clientId].disconnect(true);
-                        }
-                    });
+                    socket.nsp.in(room).allSockets().then(
+                        value => value.forEach(
+                            socketId => socket.nsp.sockets.get(socketId)?.disconnect(true)
+                        )
+                    )
                 }
                 if (err) throw err;
                 logger.info(`Draft saved to ${draftPath}`, {draftId});

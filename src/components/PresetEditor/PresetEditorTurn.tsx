@@ -1,4 +1,3 @@
-import * as React from "react";
 import DragIcon from "mdi-react/DragIcon";
 import Player from "../../constants/Player";
 import PlayerTurnSettings from "./PlayerTurnSettings";

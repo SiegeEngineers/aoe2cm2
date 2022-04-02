@@ -1,5 +1,4 @@
 import {shallow} from "enzyme";
-import * as React from "react";
 import {default as ModelPlayer} from "../../constants/Player";
 import Preset from "../../models/Preset";
 import Player from "../../components/draft/PlayerDraftState";

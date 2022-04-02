@@ -1,4 +1,3 @@
-import * as React from "react";
 import {Trans, withTranslation} from "react-i18next";
 import TurnTag from "../draft/TurnTag";
 import {default as ModelTurn} from "../../models/Turn";

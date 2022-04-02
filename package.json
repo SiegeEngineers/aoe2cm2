@@ -20,11 +20,11 @@
     "react-i18next": "^11.7.0",
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^4.0.3",
     "react-sortablejs": "^2.0.11",
     "redux": "^4.0.5",
-    "socket.io": "^2.3.0",
-    "socket.io-client": "^2.3.0",
+    "socket.io": "^4.4.1",
+    "socket.io-client": "^4.4.1",
     "uuid": "^8.3.0",
     "winston": "^3.3.3"
   },
@@ -59,11 +59,11 @@
     "enzyme-adapter-react-16": "^1.15.3",
     "enzyme-to-json": "^3.5.0",
     "get-port": "^5.1.1",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.1",
     "react-test-renderer": "^16.13.1",
     "request": "^2.88.2",
     "temp": "^0.9.4",
-    "typescript": "^3.9.7"
+    "typescript": "^4.3.5"
   },
   "browserslist": [
     ">0.2%",
@@ -71,5 +71,11 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "proxy": "http://localhost:3000/"
+  "proxy": "http://localhost:3000/",
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  }
 }

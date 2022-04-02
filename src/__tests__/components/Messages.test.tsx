@@ -1,5 +1,4 @@
 import {render, shallow} from "enzyme";
-import * as React from "react";
 import Messages from "../../components/draft/Messages";
 import Player from "../../constants/Player";
 import Turn from "../../models/Turn";

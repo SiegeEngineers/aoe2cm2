@@ -50,8 +50,8 @@ $switch-focus: none;
   font-weight: 400;
   font-display: swap;
   src: local('Crete Round'), local('CreteRound-Regular'),
-  url('/fonts/crete-round-v8-latin-ext_latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-  url('/fonts/crete-round-v8-latin-ext_latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  url('../fonts/crete-round-v8-latin-ext_latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+  url('../fonts/crete-round-v8-latin-ext_latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 /* crete-round-italic - latin-ext_latin */
 @font-face {
@@ -60,8 +60,8 @@ $switch-focus: none;
   font-weight: 400;
   font-display: swap;
   src: local('Crete Round Italic'), local('CreteRound-Italic'),
-  url('/fonts/crete-round-v8-latin-ext_latin-italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-  url('/fonts/crete-round-v8-latin-ext_latin-italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  url('../fonts/crete-round-v8-latin-ext_latin-italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+  url('../fonts/crete-round-v8-latin-ext_latin-italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
 .content h1, .content h2, .content h3, .content h4, .content h5, .content h6, .navbar-brand h1 {
@@ -492,12 +492,12 @@ div.stretchy-wrapper > div.stretchy-text {
 }
 
 .pick .chosen-hidden .stretchy-image, .steal .chosen-hidden .stretchy-image, {
-  background-image: url('/images/hidden_pick.png');
+  background-image: url('../images/hidden_pick.png');
   background-size: contain;
 }
 
 .ban .chosen-hidden .stretchy-image {
-  background-image: url('/images/hidden_ban.png');
+  background-image: url('../images/hidden_ban.png');
   background-size: contain;
 }
 
@@ -516,14 +516,14 @@ div.stretchy-wrapper > div.stretchy-text {
   height: 32px;
   top: 0;
   left: -2px;
-  background-image: url('/images/random.png');
+  background-image: url('../images/random.png');
   background-size: 32px 32px;
   background-repeat: no-repeat;
   opacity: 1
 }
 
 .random-pick.animated {
-  background-image: url('/images/units-animated/random-right.apng');
+  background-image: url('../images/units-animated/random-right.apng');
 }
 
 .random-snipe {
@@ -533,14 +533,14 @@ div.stretchy-wrapper > div.stretchy-text {
   height: 32px;
   top: 32px;
   right: 32px;
-  background-image: url('/images/random.png');
+  background-image: url('../images/random.png');
   background-size: 32px 32px;
   background-repeat: no-repeat;
   opacity: 1;
 }
 
 .random-snipe.animated {
-  background-image: url('/images/units-animated/random-right.apng');
+  background-image: url('../images/units-animated/random-right.apng');
 }
 
 .random-steal {
@@ -550,14 +550,14 @@ div.stretchy-wrapper > div.stretchy-text {
   height: 32px;
   top: 45px;
   right: 56px;
-  background-image: url('/images/random.png');
+  background-image: url('../images/random.png');
   background-size: 20px 20px;
   background-repeat: no-repeat;
   opacity: 1;
 }
 
 .random-steal.animated {
-  background-image: url('/images/units-animated/random-right.apng');
+  background-image: url('../images/units-animated/random-right.apng');
 }
 
 .ban .random-pick {
@@ -735,19 +735,19 @@ img.directional {
 }
 
 .steal-marker {
-  background-image: url('/images/steal-marker.svg');
+  background-image: url('../images/steal-marker.svg');
 }
 
 .snipe-marker {
-  background-image: url('/images/snipe-marker.svg');
+  background-image: url('../images/snipe-marker.svg');
 }
 
 .used-marker.used-crown {
-  background-image: url('/images/crown.svg');
+  background-image: url('../images/crown.svg');
 }
 
 .used-marker.used-skull {
-  background-image: url('/images/skull.svg');
+  background-image: url('../images/skull.svg');
 }
 
 .green-status-marker {

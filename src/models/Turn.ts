@@ -1,7 +1,7 @@
 import Action from "../constants/Action";
 import Player from "../constants/Player";
 import {Assert} from "../util/Assert";
-import { v4 as uuid } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import Exclusivity from "../constants/Exclusivity";
 
 class Turn {
@@ -48,7 +48,7 @@ class Turn {
     public readonly id: string;
 
     constructor(player: Player, action: Action, exclusivity: Exclusivity, hidden: boolean = false, parallel: boolean = false, executingPlayer: Player = player) {
-        this.id = uuid();
+        this.id = uuidv4();
         this.player = player;
         this.action = action;
         this.exclusivity = exclusivity;
