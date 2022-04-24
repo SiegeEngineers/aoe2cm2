@@ -188,6 +188,12 @@ export const Util = {
         return ip === '::ffff:127.0.0.1' || ip === '::1';
     },
 
+    isRequestForPreview(req: any) {
+        const userAgent: string = req.header('user-agent');
+        const previewAgents = ['discordbot', 'facebookexternalhit', 'twitterbot'];
+        return previewAgents.some(value => userAgent.toLowerCase().includes(value));
+    },
+
     getIconStyleFromLocalStorage(defaultIfError: string = 'units'): string {
         try {
             return localStorage.getItem('iconStyle') || defaultIfError;
@@ -213,5 +219,39 @@ export const Util = {
             }
         }
         return input;
+    },
+
+    draftToPreviewPage(draftId: string, draft: IDraftState): string {
+        const presetName = draft.preset ? draft.preset.name : 'Unknown Preset';
+        return `<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Draft: ${presetName}</title>
+    <!-- Facebook Open Graph -->
+    <meta property="og:site_name" content="aoe2cm.net"/>
+    <meta property="og:title" content="${presetName}"/>
+    <meta property="og:url" content="https://aoe2cm.net/draft/${draftId}"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:description" content="${draft.nameHost} vs ${draft.nameGuest}"/>
+    <meta property="og:image" content="https://aoe2cm.net/images/aoe2cm2.png"/>
+    <meta property="og:image:width" content="310"/>
+    <meta property="og:image:height" content="310"/>
+    <!-- Schema.org -->
+    <meta itemprop="name" content="aoe2cm.net Draft"/>
+    <meta itemprop="headline" content="${presetName}"/>
+    <meta itemprop="description" content="${draft.nameHost} vs ${draft.nameGuest}"/>
+    <meta itemprop="image" content="https://aoe2cm.net/images/aoe2cm2.png"/>
+    <meta itemprop="author" content="aoe2cm.net"/>
+    <!-- Twitter Cards -->
+    <meta name="twitter:title" content="${presetName}"/>
+    <meta name="twitter:url" content="https://aoe2cm.net/draft/${draftId}"/>
+    <meta name="twitter:description" content="${draft.nameHost} vs ${draft.nameGuest}"/>
+    <meta name="twitter:image" content="https://aoe2cm.net/images/aoe2cm2.png"/>
+    <meta name="twitter:card" content="summary"/>
+</head>
+<body>
+This is a preview generated for preview bots.
+</body>`;
     },
 };

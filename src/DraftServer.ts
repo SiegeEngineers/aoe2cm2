@@ -367,11 +367,15 @@ export class DraftServer {
 
         const indexPath = __dirname + '/index.html';
 
-        app.use('/draft/[a-zA-Z]+', (req, res) => {
-            if (fs.existsSync(indexPath)) {
-                res.sendFile(indexPath);
+        app.use('/draft/:draftid', (req, res) => {
+            if (Util.isRequestForPreview(req)) {
+                this.handlePreviewRequest(req, res, draftsStore);
             } else {
-                res.sendFile('maintenance.html', {'root': __dirname + '/../public'});
+                if (fs.existsSync(indexPath)) {
+                    res.sendFile(indexPath);
+                } else {
+                    res.sendFile('maintenance.html', {'root': __dirname + '/../public'});
+                }
             }
         });
 
@@ -383,5 +387,30 @@ export class DraftServer {
                 res.sendFile('maintenance.html', {'root': __dirname + '/../public'});
             }
         });
+    }
+
+    private handlePreviewRequest(req: any, res: any, draftsStore: DraftsStore) {
+        try {
+            const draftId = req.params.draftid;
+
+            if (draftsStore.has(draftId)) {
+                const content = draftsStore.getDraftOrThrow(draftId);
+                res.send(Util.draftToPreviewPage(draftId, content));
+            } else {
+                let draftPath = path.join(this.currentDataDirectory, draftId + '.json');
+                if (draftsStore.hasArchive(draftId)) {
+                    const archiveDirectory = draftsStore.getArchiveFolder(draftId);
+                    draftPath = path.join(this.dataDirectory, archiveDirectory, draftId + '.json');
+                }
+                if (fs.existsSync(draftPath)) {
+                    const content = JSON.parse(fs.readFileSync(draftPath).toString());
+                    res.send(Util.draftToPreviewPage(draftId, content));
+                } else {
+                    res.sendStatus(404);
+                }
+            }
+        } catch (e) {
+            res.send('an error occured');
+        }
     }
 }
