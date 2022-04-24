@@ -43,7 +43,7 @@ interface IState {
 
 class DraftOptionPanel extends React.Component<IProps, IState> {
 
-    USED_CLASSES = ['is-hidden', 'used-crown', 'used-skull'];
+    USED_CLASSES = ['is-hidden', 'used-crown', 'used-skull', 'used-check'];
 
     constructor(props: IProps) {
         super(props);
