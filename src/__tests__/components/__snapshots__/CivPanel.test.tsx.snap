@@ -897,6 +897,98 @@ exports[`BAN CivPanels render correctly 39`] = `
 />
 `;
 
+exports[`BAN CivPanels render correctly 40`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "gameVersion": 9,
+      "id": "Bengalis",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/bengalis-left.apng",
+        "animated_right": "/images/units-animated/bengalis-right.apng",
+        "emblem": "/images/civemblems/bengalis.png",
+        "unit": "/images/civs/bengalis.png",
+      },
+      "name": "Bengalis",
+    }
+  }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`BAN CivPanels render correctly 41`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "gameVersion": 9,
+      "id": "Dravidians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/dravidians-left.apng",
+        "animated_right": "/images/units-animated/dravidians-right.apng",
+        "emblem": "/images/civemblems/dravidians.png",
+        "unit": "/images/civs/dravidians.png",
+      },
+      "name": "Dravidians",
+    }
+  }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`BAN CivPanels render correctly 42`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "gameVersion": 9,
+      "id": "Gurjaras",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/gurjaras-left.apng",
+        "animated_right": "/images/units-animated/gurjaras-right.apng",
+        "emblem": "/images/civemblems/gurjaras.png",
+        "unit": "/images/civs/gurjaras.png",
+      },
+      "name": "Gurjaras",
+    }
+  }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`BAN CivPanels render correctly 43`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "gameVersion": 9,
+      "id": "Hindustanis",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/hindustanis-left.apng",
+        "animated_right": "/images/units-animated/hindustanis-right.apng",
+        "emblem": "/images/civemblems/hindustanis.png",
+        "unit": "/images/civs/hindustanis.png",
+      },
+      "name": "Hindustanis",
+    }
+  }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
 exports[`PICK CivPanels render correctly 1`] = `
 <DraftOptionPanel
   active={false}
@@ -1785,6 +1877,98 @@ exports[`PICK CivPanels render correctly 39`] = `
         "unit": "/images/civs/poles.png",
       },
       "name": "Poles",
+    }
+  }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 40`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "gameVersion": 9,
+      "id": "Bengalis",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/bengalis-left.apng",
+        "animated_right": "/images/units-animated/bengalis-right.apng",
+        "emblem": "/images/civemblems/bengalis.png",
+        "unit": "/images/civs/bengalis.png",
+      },
+      "name": "Bengalis",
+    }
+  }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 41`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "gameVersion": 9,
+      "id": "Dravidians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/dravidians-left.apng",
+        "animated_right": "/images/units-animated/dravidians-right.apng",
+        "emblem": "/images/civemblems/dravidians.png",
+        "unit": "/images/civs/dravidians.png",
+      },
+      "name": "Dravidians",
+    }
+  }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 42`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "gameVersion": 9,
+      "id": "Gurjaras",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/gurjaras-left.apng",
+        "animated_right": "/images/units-animated/gurjaras-right.apng",
+        "emblem": "/images/civemblems/gurjaras.png",
+        "unit": "/images/civs/gurjaras.png",
+      },
+      "name": "Gurjaras",
+    }
+  }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 43`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "gameVersion": 9,
+      "id": "Hindustanis",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/hindustanis-left.apng",
+        "animated_right": "/images/units-animated/hindustanis-right.apng",
+        "emblem": "/images/civemblems/hindustanis.png",
+        "unit": "/images/civs/hindustanis.png",
+      },
+      "name": "Hindustanis",
     }
   }
   draftOptionPanelType="pick"

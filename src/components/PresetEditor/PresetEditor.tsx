@@ -77,7 +77,7 @@ class PresetEditor extends React.Component<Props, State> {
             switch (civs) {
                 default:
                 case CivilisationSet.AOE2:
-                    this.props.onPresetDraftOptionsChange([...Civilisation.ALL]);
+                    this.props.onPresetDraftOptionsChange([...Civilisation.ALL_ACTIVE]);
                     break;
                 case CivilisationSet.AOE3:
                     this.props.onPresetDraftOptionsChange([...Aoe3Civilisation.ALL]);
@@ -143,7 +143,7 @@ class PresetEditor extends React.Component<Props, State> {
                                         defaultDraftOptions: Civilisation.ALL,
                                         activeCivilisationSet: CivilisationSet.AOE2
                                     });
-                                    this.props.onPresetDraftOptionsChange([...Civilisation.ALL]);
+                                    this.props.onPresetDraftOptionsChange([...Civilisation.ALL_ACTIVE]);
                                 }}>
                                     <Trans i18nKey="presetEditor.aoe2Civs">AoE2 civs</Trans>
                                 </a>

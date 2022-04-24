@@ -9,9 +9,9 @@ class Preset {
 
     public static readonly EMPTY: Preset = new Preset('', [], []);
 
-    public static readonly NEW: Preset = new Preset('', Civilisation.ALL, []);
+    public static readonly NEW: Preset = new Preset('', Civilisation.ALL_ACTIVE, []);
 
-    public static readonly SAMPLE: Preset = new Preset('Default Preset', Civilisation.ALL, [
+    public static readonly SAMPLE: Preset = new Preset('Default Preset', Civilisation.ALL_ACTIVE, [
         Turn.HOST_GLOBAL_BAN,
         Turn.GUEST_GLOBAL_BAN,
         Turn.HOST_HIDDEN_BAN,
@@ -35,7 +35,7 @@ class Preset {
         Turn.REVEAL_ALL
     ]);
 
-    public static readonly SIMPLE: Preset = new Preset('Simple Preset', Civilisation.ALL, [
+    public static readonly SIMPLE: Preset = new Preset('Simple Preset', Civilisation.ALL_ACTIVE, [
         Turn.HOST_NONEXCLUSIVE_BAN,
         Turn.GUEST_NONEXCLUSIVE_BAN,
         Turn.GUEST_NONEXCLUSIVE_PICK,

@@ -727,6 +727,78 @@ exports[`DraftOptionGrid renders correctly 1`] = `
       draftOptionPanelType="choice"
       key="38"
     />
+    <Connect(Component)
+      active={false}
+      draftOption={
+        Civilisation {
+          "gameVersion": 9,
+          "id": "Bengalis",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/bengalis-left.apng",
+            "animated_right": "/images/units-animated/bengalis-right.apng",
+            "emblem": "/images/civemblems/bengalis.png",
+            "unit": "/images/civs/bengalis.png",
+          },
+          "name": "Bengalis",
+        }
+      }
+      draftOptionPanelType="choice"
+      key="39"
+    />
+    <Connect(Component)
+      active={false}
+      draftOption={
+        Civilisation {
+          "gameVersion": 9,
+          "id": "Dravidians",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/dravidians-left.apng",
+            "animated_right": "/images/units-animated/dravidians-right.apng",
+            "emblem": "/images/civemblems/dravidians.png",
+            "unit": "/images/civs/dravidians.png",
+          },
+          "name": "Dravidians",
+        }
+      }
+      draftOptionPanelType="choice"
+      key="40"
+    />
+    <Connect(Component)
+      active={false}
+      draftOption={
+        Civilisation {
+          "gameVersion": 9,
+          "id": "Gurjaras",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/gurjaras-left.apng",
+            "animated_right": "/images/units-animated/gurjaras-right.apng",
+            "emblem": "/images/civemblems/gurjaras.png",
+            "unit": "/images/civs/gurjaras.png",
+          },
+          "name": "Gurjaras",
+        }
+      }
+      draftOptionPanelType="choice"
+      key="41"
+    />
+    <Connect(Component)
+      active={false}
+      draftOption={
+        Civilisation {
+          "gameVersion": 9,
+          "id": "Hindustanis",
+          "imageUrls": Object {
+            "animated_left": "/images/units-animated/hindustanis-left.apng",
+            "animated_right": "/images/units-animated/hindustanis-right.apng",
+            "emblem": "/images/civemblems/hindustanis.png",
+            "unit": "/images/civs/hindustanis.png",
+          },
+          "name": "Hindustanis",
+        }
+      }
+      draftOptionPanelType="choice"
+      key="42"
+    />
   </div>
 </div>
 `;

@@ -7,7 +7,7 @@ exports[`Player renders correctly 1`] = `
   preset={
     Preset {
       "draftOptions": undefined,
-      "encodedCivilisations": "7fffffffff",
+      "encodedCivilisations": "7ffffffefff",
       "name": "Default Preset",
       "presetId": undefined,
       "turns": Array [
