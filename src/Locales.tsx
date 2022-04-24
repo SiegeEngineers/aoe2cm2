@@ -34,7 +34,7 @@ const availableLocales = {
     },
     "zh-CN": {
         translation: zh_CN,
-        displayName: "中文",
+        displayName: "简体中文",
         cta: "将语言设置为中文"
     },
     "zh-TW": {
