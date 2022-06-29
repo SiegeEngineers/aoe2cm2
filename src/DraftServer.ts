@@ -107,7 +107,7 @@ export class DraftServer {
                         logger.info("No recorded draft found.", {draftId});
                         socket.emit('message', 'This draft does not exist.');
                     }
-                } catch (e) {
+                } catch (e: any) {
                     logger.error('Sending replay file failed', {draftId});
                     logger.error(e.message, {draftId});
                 }
