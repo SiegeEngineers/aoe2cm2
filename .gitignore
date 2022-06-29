@@ -6,6 +6,7 @@ recentDrafts.json
 serverState.json
 *.log
 *.log.xz
+*.log.gz
 
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 .idea/

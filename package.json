@@ -26,7 +26,8 @@
     "socket.io": "^4.4.1",
     "socket.io-client": "^4.4.1",
     "uuid": "^8.3.0",
-    "winston": "^3.3.3"
+    "winston": "^3.8.0",
+    "winston-daily-rotate-file": "^4.7.1"
   },
   "scripts": {
     "start": "export PORT=3001 && react-scripts start",
