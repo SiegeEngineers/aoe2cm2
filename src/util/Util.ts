@@ -103,7 +103,11 @@ export const Util = {
     getRandomDraftOption(draftOptions: DraftOption[]): DraftOption {
         const maxIndex = draftOptions.length;
         const randomIndex = Math.floor(Math.random() * maxIndex);
-        return draftOptions.splice(randomIndex, 1)[0];
+        const randomOption = draftOptions.splice(randomIndex, 1)[0];
+        if (!randomOption) {
+            return DraftOption.RANDOM;
+        }
+        return randomOption;
     },
 
     setRandomDraftOptionIfNeeded(playerEvent: PlayerEvent, draftId: string,

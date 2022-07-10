@@ -864,6 +864,26 @@ describe('VLD_010 dumb bans: globally ban an exclusively banned civ by yourself'
     })
 });
 
+describe('VLD_010 no more options left, must choose random', () => {
+    it.each`
+    player1         | player2         | actionType         | action
+    ${Player.HOST}  | ${Player.GUEST} | ${ActionType.PICK} | ${Action.PICK}
+    ${Player.HOST}  | ${Player.GUEST} | ${ActionType.BAN}  | ${Action.BAN}
+    ${Player.GUEST} | ${Player.HOST}  | ${ActionType.PICK} | ${Action.PICK}
+    ${Player.GUEST} | ${Player.HOST}  | ${ActionType.BAN}  | ${Action.BAN}
+  `('$player1 $player2 $actionType', ({player1, player2, actionType, action}) => {
+        let preset = new Preset("test", [Civilisation.AZTECS], [
+            new Turn(player1, action, Exclusivity.GLOBAL),
+            new Turn(player2, action, Exclusivity.GLOBAL),
+        ]);
+        const validator = new Validator(prepareReadyStore(preset, [
+            new PlayerEvent(player1, actionType, Civilisation.AZTECS.id),
+        ]));
+        const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(player2, actionType, Civilisation.RANDOM.id));
+        expect(errors).toEqual([]);
+    })
+});
+
 it('Validator does not modify offsets', () => {
     const expectedOffset = -1337;
     let preset = new Preset("test", Civilisation.ALL, [

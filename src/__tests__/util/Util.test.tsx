@@ -90,3 +90,9 @@ it('Does not modify current draft replay format', () => {
     const transformed = Util.transformDraftStateToCurrentFormat(draftInCurrentFormat);
     expect(transformed).toEqual(draftInCurrentFormat);
 });
+
+it('Test getting random ID from zero DraftOptions', () => {
+    const draftOptions: DraftOption[] = []
+    const randomOption = Util.getRandomDraftOption(draftOptions);
+    expect(randomOption.id).toEqual('RANDOM');
+});
