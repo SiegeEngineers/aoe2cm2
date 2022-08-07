@@ -15,7 +15,8 @@ class DraftOptionGrid extends React.Component<IProps, object> {
                 draftOptionPanelType: DraftOptionPanelType.CHOICE,
                 active: false,
                 draftOption: draftOption,
-                key: index
+                key: index,
+                highlighted: false,
             });
         });
 
@@ -23,7 +24,8 @@ class DraftOptionGrid extends React.Component<IProps, object> {
             draftOptionPanelType: DraftOptionPanelType.CHOICE,
             active: false,
             draftOption: DraftOption.RANDOM,
-            key: -1
+            key: -1,
+            highlighted: false,
         });
 
         return (

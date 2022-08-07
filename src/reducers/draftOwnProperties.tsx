@@ -8,6 +8,7 @@ export const initialDraftOwnPropertiesState: IDraftOwnPropertiesState = {
     whoAmI: undefined,
     ownName: NameGenerator.getNameFromLocalStorage(),
     nextAction: 0,
+    highlightedAction: null,
 };
 
 export const draftOwnPropertiesReducer = (state: IDraftOwnPropertiesState = initialDraftOwnPropertiesState, action: DraftOwnPropertiesAction) => {
@@ -54,6 +55,12 @@ export const draftOwnPropertiesReducer = (state: IDraftOwnPropertiesState = init
                 ...state,
                 whoAmI: Player.NONE,
                 nextAction: action.value.events.length
+            };
+        case Actions.SET_HIGHLIGHTED_ACTION:
+            console.log(Actions.SET_HIGHLIGHTED_ACTION, action.value);
+            return {
+                ...state,
+                highlightedAction: action.value,
             };
     }
     return state;

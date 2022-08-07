@@ -38,6 +38,7 @@ export interface IDraftOwnPropertiesState {
     whoAmI?: Player;
     ownName: string | null;
     nextAction: number;
+    highlightedAction: number | null;
 }
 
 export interface ICountdownState {

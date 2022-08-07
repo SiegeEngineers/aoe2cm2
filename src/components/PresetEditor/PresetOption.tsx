@@ -107,23 +107,23 @@ class PresetOption extends React.Component<IProps, object> {
                         </div>
                         <div className={'columns options-preview'}>
                             <div className={'column has-text-centered'}>
-                                <DraftOptionPanel draftOption={draftOption} active={false}
+                                <DraftOptionPanel draftOption={draftOption} active={false} highlighted={false}
                                                   draftOptionPanelType={DraftOptionPanelType.CHOICE} nextAction={0}
                                                   displayOnly={true} iconStyle={'units'}/>
                             </div>
                             <div className={'column has-text-centered'}>
-                                <DraftOptionPanel draftOption={draftOption} active={false}
+                                <DraftOptionPanel draftOption={draftOption} active={false} highlighted={false}
                                                   draftOptionPanelType={DraftOptionPanelType.CHOICE} nextAction={0}
                                                   displayOnly={true} iconStyle={'emblems'}/>
                             </div>
                             <div className={'column has-text-centered'}>
-                                <DraftOptionPanel draftOption={draftOption} active={false}
+                                <DraftOptionPanel draftOption={draftOption} active={false} highlighted={false}
                                                   draftOptionPanelType={DraftOptionPanelType.CHOICE} nextAction={0}
                                                   displayOnly={true} smooch={true} side={Player.HOST}
                                                   iconStyle={'units-animated'}/>
                             </div>
                             <div className={'column has-text-centered'}>
-                                <DraftOptionPanel draftOption={draftOption} active={false}
+                                <DraftOptionPanel draftOption={draftOption} active={false} highlighted={false}
                                                   draftOptionPanelType={DraftOptionPanelType.CHOICE} nextAction={0}
                                                   displayOnly={true} smooch={true} side={Player.GUEST}
                                                   iconStyle={'units-animated'}/>

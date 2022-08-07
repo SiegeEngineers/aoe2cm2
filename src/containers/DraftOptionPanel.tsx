@@ -38,7 +38,8 @@ export function mapStateToProps(state: ApplicationState) {
 
 export function mapDispatchToProps(dispatch: Dispatch<actions.Action>) {
     return {
-        onClickCivilisation: (playerEvent: PlayerEvent, callback: any) => dispatch(actions.clickOnCiv(playerEvent, callback))
+        onClickCivilisation: (playerEvent: PlayerEvent, callback: any) => dispatch(actions.clickOnCiv(playerEvent, callback)),
+        onHighlightedActionChanged: (value: number | null) => dispatch(actions.setHighlightedAction(value)),
     };
 }
 

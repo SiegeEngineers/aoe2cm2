@@ -160,6 +160,11 @@ export interface ISetEditorDraftOptions {
     value: DraftOption[]
 }
 
+export interface ISetHighlightedAction {
+    type: Actions.SET_HIGHLIGHTED_ACTION,
+    value: number | null;
+}
+
 
 export type DraftAction = IConnectPlayer
     | ISetPlayerName
@@ -192,7 +197,8 @@ export type DraftOwnPropertiesAction = IApplyConfig
     | ISetEvents
     | ISetDraftEvents
     | IReplayEvent
-    | IDisconnect;
+    | IDisconnect
+    | ISetHighlightedAction;
 
 export type LanguageAction = ISetLanguage;
 
@@ -419,5 +425,12 @@ export function setCountdownValue(value: ICountdownValues): ICountdownEvent {
     return {
         type: ServerActions.SET_COUNTDOWN_VALUE,
         value
+    }
+}
+
+export function setHighlightedAction(value: number | null): ISetHighlightedAction {
+    return {
+        value,
+        type: Actions.SET_HIGHLIGHTED_ACTION
     }
 }

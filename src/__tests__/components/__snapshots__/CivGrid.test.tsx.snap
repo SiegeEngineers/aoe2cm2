@@ -23,6 +23,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="-1"
     />
     <Connect(Component)
@@ -41,6 +42,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="0"
     />
     <Connect(Component)
@@ -59,6 +61,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="1"
     />
     <Connect(Component)
@@ -77,6 +80,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="2"
     />
     <Connect(Component)
@@ -95,6 +99,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="3"
     />
     <Connect(Component)
@@ -113,6 +118,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="4"
     />
     <Connect(Component)
@@ -131,6 +137,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="5"
     />
     <Connect(Component)
@@ -149,6 +156,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="6"
     />
     <Connect(Component)
@@ -167,6 +175,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="7"
     />
     <Connect(Component)
@@ -185,6 +194,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="8"
     />
     <Connect(Component)
@@ -203,6 +213,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="9"
     />
     <Connect(Component)
@@ -221,6 +232,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="10"
     />
     <Connect(Component)
@@ -239,6 +251,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="11"
     />
     <Connect(Component)
@@ -257,6 +270,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="12"
     />
     <Connect(Component)
@@ -275,6 +289,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="13"
     />
     <Connect(Component)
@@ -293,6 +308,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="14"
     />
     <Connect(Component)
@@ -311,6 +327,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="15"
     />
     <Connect(Component)
@@ -329,6 +346,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="16"
     />
     <Connect(Component)
@@ -347,6 +365,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="17"
     />
     <Connect(Component)
@@ -365,6 +384,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="18"
     />
     <Connect(Component)
@@ -383,6 +403,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="19"
     />
     <Connect(Component)
@@ -401,6 +422,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="20"
     />
     <Connect(Component)
@@ -419,6 +441,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="21"
     />
     <Connect(Component)
@@ -437,6 +460,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="22"
     />
     <Connect(Component)
@@ -455,6 +479,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="23"
     />
     <Connect(Component)
@@ -473,6 +498,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="24"
     />
     <Connect(Component)
@@ -491,6 +517,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="25"
     />
     <Connect(Component)
@@ -509,6 +536,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="26"
     />
     <Connect(Component)
@@ -527,6 +555,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="27"
     />
     <Connect(Component)
@@ -545,6 +574,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="28"
     />
     <Connect(Component)
@@ -563,6 +593,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="29"
     />
     <Connect(Component)
@@ -581,6 +612,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="30"
     />
     <Connect(Component)
@@ -599,6 +631,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="31"
     />
     <Connect(Component)
@@ -617,6 +650,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="32"
     />
     <Connect(Component)
@@ -635,6 +669,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="33"
     />
     <Connect(Component)
@@ -653,6 +688,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="34"
     />
     <Connect(Component)
@@ -671,6 +707,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="35"
     />
     <Connect(Component)
@@ -689,6 +726,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="36"
     />
     <Connect(Component)
@@ -707,6 +745,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="37"
     />
     <Connect(Component)
@@ -725,6 +764,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="38"
     />
     <Connect(Component)
@@ -743,6 +783,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="39"
     />
     <Connect(Component)
@@ -761,6 +802,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="40"
     />
     <Connect(Component)
@@ -779,6 +821,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="41"
     />
     <Connect(Component)
@@ -797,6 +840,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
         }
       }
       draftOptionPanelType="choice"
+      highlighted={false}
       key="42"
     />
   </div>

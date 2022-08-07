@@ -20,7 +20,8 @@ interface IProps extends WithTranslation {
     events?: DraftEvent[];
     flipped: boolean;
     smooch: boolean;
-    simplifiedUI?: boolean
+    simplifiedUI?: boolean;
+    highlightedAction: number | null;
 }
 
 interface IState {
@@ -56,6 +57,7 @@ class PlayerDraftState extends React.Component<IProps, IState> {
             const actionType = actionTypeFromAction(turn.action);
             if (this.props.player === turn.player) {
                 const isThisPanelActive = this.isActive(i);
+                const isThisPanelHighlighted = this.props.highlightedAction === i;
                 hasActivePanel = hasActivePanel || isThisPanelActive;
                 const validDraftOptions = [...this.props.preset.options, ...DraftOption.TECHNICAL_DRAFT_OPTIONS];
                 if (actionType === ActionType.PICK) {
@@ -84,6 +86,8 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                     picksIndex++;
                     pickPanels.push(React.createElement(DraftOptionPanel, {
                         active: isThisPanelActive,
+                        highlighted: isThisPanelHighlighted,
+                        turnNumber: i,
                         byOpponent: turn.player !== turn.executingPlayer,
                         draftOptionPanelType: DraftOptionPanelType.PICK,
                         draftOption: validDraftOptions.find(value => value.id === pickedOptionId),
@@ -123,6 +127,8 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                     picksIndex++;
                     pickPanels.push(React.createElement(DraftOptionPanel, {
                         active: isThisPanelActive,
+                        highlighted: isThisPanelHighlighted,
+                        turnNumber: i,
                         byOpponent: turn.player !== turn.executingPlayer,
                         draftOptionPanelType: DraftOptionPanelType.STEAL,
                         draftOption: validDraftOptions.find(value => value.id === pickedOptionId),
@@ -147,6 +153,8 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                     bansIndex++;
                     banPanels.push(React.createElement(DraftOptionPanel, {
                         active: isThisPanelActive,
+                        highlighted: isThisPanelHighlighted,
+                        turnNumber: i,
                         byOpponent: turn.player !== turn.executingPlayer,
                         draftOptionPanelType: DraftOptionPanelType.BAN,
                         draftOption: validDraftOptions.find(value => value.id === bannedOptionId),

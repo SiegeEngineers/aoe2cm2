@@ -12,11 +12,14 @@ import {IDraftState} from "../../types";
 import Preset from "../../models/Preset";
 import DraftOption from "../../models/DraftOption";
 import i18next from "i18next";
+import {ISetHighlightedAction} from "../../actions";
 
 interface IProps extends WithTranslation {
     draftOption?: DraftOption;
     isRandomlyChosen?: boolean;
     active: boolean;
+    highlighted: boolean;
+    turnNumber?: number;
     sniped?: boolean;
     isRandomlyChosenForSnipe?: boolean;
     stolen?: boolean;
@@ -35,6 +38,7 @@ interface IProps extends WithTranslation {
     displayOnly?: boolean;
 
     onClickCivilisation?: (playerEvent: PlayerEvent, callback: any) => void;
+    onHighlightedActionChanged?: (value: number | null) => ISetHighlightedAction;
 }
 
 interface IState {
@@ -109,6 +113,9 @@ class DraftOptionPanel extends React.Component<IProps, IState> {
         } else if (draftOption !== undefined) {
             className += ' has-value';
         }
+        if (this.props.highlighted) {
+            className += " highlighted";
+        }
         let contentClass: string = "box-content element-stack";
         if (this.props.draftOption !== undefined) {
             contentClass += " is-visible";
@@ -147,9 +154,22 @@ class DraftOptionPanel extends React.Component<IProps, IState> {
             stealRandomMarkerClass += ' animated';
             snipeRandomMarkerClass += ' animated';
         }
+        const onMouseEnter = () => {
+            if ((this.props.onHighlightedActionChanged !== undefined) && (this.props.turnNumber !== undefined)) {
+                this.props.onHighlightedActionChanged(this.props.turnNumber);
+            }
+        }
+        const onMouseLeave = () => {
+            if ((this.props.onHighlightedActionChanged !== undefined)) {
+                this.props.onHighlightedActionChanged(null);
+            }
+        }
 
         return (
-            <div className={className} onClick={onClickAction}>
+            <div className={className} onClick={onClickAction}
+                 onMouseEnter={onMouseEnter}
+                 onMouseLeave={onMouseLeave}
+            >
                 <div className={'stretchy-background'}/>
                 <div className={contentClass}>
                     <div className="stretchy-wrapper">

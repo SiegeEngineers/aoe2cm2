@@ -55,7 +55,7 @@ class Preset extends React.Component<IProps, IState> {
                                           disabled={true}/>)
             } else {
                 civs = presetCivilisations.map((value: DraftOption, index: number) =>
-                    <DraftOptionPanel draftOption={value} active={false}
+                    <DraftOptionPanel draftOption={value} active={false} highlighted={false}
                                       draftOptionPanelType={DraftOptionPanelType.CHOICE} nextAction={0}
                                       displayOnly={true} iconStyle={this.props.iconStyle}/>);
                 itemAlignment = ' flex-justify-center';

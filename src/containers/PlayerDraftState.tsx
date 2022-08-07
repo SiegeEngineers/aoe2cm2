@@ -6,7 +6,8 @@ import PlayerDraftState from "../components/draft/PlayerDraftState";
 export function mapStateToProps(state: ApplicationState) {
     return {
         events: state.draft.events,
-        nextAction: (state.draft.hostReady && state.draft.guestReady) ? state.ownProperties.nextAction : -1
+        nextAction: (state.draft.hostReady && state.draft.guestReady) ? state.ownProperties.nextAction : -1,
+        highlightedAction: state.ownProperties.highlightedAction,
     };
 }
 

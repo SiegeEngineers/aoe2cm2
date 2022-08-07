@@ -4,12 +4,15 @@ import {WithTranslation, withTranslation} from "react-i18next";
 import Player from "../../constants/Player";
 import TurnTag from "./TurnTag";
 import Action from "../../constants/Action";
+import {ISetHighlightedAction} from "../../actions";
 
 interface IProps extends WithTranslation {
     turn: ModelTurn;
     turnNumber: number;
     nextAction?: number;
     lastTurnWasParallel: boolean;
+    highlightedAction: number | null;
+    onHighlightedActionChanged: (value: number | null) => ISetHighlightedAction;
 }
 
 interface IState {
@@ -76,9 +79,15 @@ class Turn extends React.Component<IProps, IState> {
         if (turn.player !== turn.executingPlayer) {
             turnClassName += ' for-opponent';
         }
+        if (this.props.highlightedAction === this.props.turnNumber) {
+            turnClassName += ' highlighted';
+        }
 
         return (
-            <div data-tooltip={toTitle(turn, this.props.lastTurnWasParallel)} className={turnClassName}>
+            <div data-tooltip={toTitle(turn, this.props.lastTurnWasParallel)} className={turnClassName}
+                 onMouseEnter={() => this.props.onHighlightedActionChanged(this.props.turnNumber)}
+                 onMouseLeave={() => this.props.onHighlightedActionChanged(null)}
+            >
                 <div className='bar'/>
                 <TurnTag turn={this.props.turn}/>
             </div>
