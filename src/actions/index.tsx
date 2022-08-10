@@ -145,6 +145,11 @@ export interface ISetEditorTurn {
     index: number
 }
 
+export interface IDuplicateEditorTurn {
+    type: Actions.DUPLICATE_EDITOR_TURN
+    index: number
+}
+
 export interface ISetEditorTurnOrder {
     type: Actions.SET_EDITOR_TURN_ORDER
     turns: Turn[]
@@ -213,6 +218,7 @@ export type ModalAction = IShowNameModal
 
 export type PresetEditorAction = ISetEditorPreset
     | ISetEditorTurn
+    | IDuplicateEditorTurn
     | ISetEditorTurnOrder
     | ISetEditorName
     | ISetEditorDraftOptions;
@@ -397,6 +403,13 @@ export function setEditorTurn(value: Turn | null, index: number): ISetEditorTurn
         value,
         index,
         type: Actions.SET_EDITOR_TURN
+    }
+}
+
+export function duplicateEditorTurn(index: number): IDuplicateEditorTurn {
+    return {
+        index,
+        type: Actions.DUPLICATE_EDITOR_TURN
     }
 }
 

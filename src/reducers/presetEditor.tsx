@@ -37,6 +37,21 @@ export const presetEditorReducer = (state: IPresetEditorState = initialPresetEdi
                 };
             }
 
+        case Actions.DUPLICATE_EDITOR_TURN:
+            console.log(Actions.DUPLICATE_EDITOR_TURN, action.index);
+            const editorPreset2 = state.editorPreset;
+            if (editorPreset2 === null) {
+                return state;
+            } else {
+                if (editorPreset2.turns.length > action.index) {
+                    editorPreset2.turns.splice(action.index, 0, editorPreset2.turns[action.index]);
+                }
+                return {
+                    ...state,
+                    editorPreset: Preset.fromPojo(editorPreset2) as Preset
+                };
+            }
+
         case Actions.SET_EDITOR_TURN_ORDER:
             console.log(Actions.SET_EDITOR_TURN_ORDER, action.turns);
 

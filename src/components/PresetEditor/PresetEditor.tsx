@@ -5,6 +5,7 @@ import Player from "../../constants/Player";
 import {Dispatch} from "redux";
 import * as actions from "../../actions";
 import {
+    IDuplicateEditorTurn,
     ISetEditorDraftOptions,
     ISetEditorName,
     ISetEditorPreset,
@@ -37,6 +38,7 @@ interface Props extends WithTranslation, RouteComponentProps<any> {
     preset: Preset | null,
     onSetEditorPreset: (preset: Preset) => ISetEditorPreset,
     onValueChange: (turn: Turn | null, index: number) => ISetEditorTurn,
+    onDuplicateTurn: (index: number) => IDuplicateEditorTurn,
     onTurnOrderChange: (turns: Turn[]) => ISetEditorTurnOrder,
     onPresetNameChange: (value: string) => ISetEditorName,
     onPresetDraftOptionsChange: (value: DraftOption[]) => ISetEditorDraftOptions
@@ -125,7 +127,9 @@ class PresetEditor extends React.Component<Props, State> {
             <PresetEditorTurn index={index}
                               turn={turn}
                               className="columns is-mobile preset-editor-row"
-                              onValueChange={this.props.onValueChange} key={turn.id}/>);
+                              onValueChange={this.props.onValueChange}
+                              onDuplicateTurn={this.props.onDuplicateTurn}
+                              key={turn.id}/>);
 
         const customOptions: boolean = this.state.defaultDraftOptions.length === 0;
         let optionsSelection = customOptions ? <PresetEditorCustomOptions/> : <PresetEditorCivSelection availableOptions={this.state.defaultDraftOptions}/>;
@@ -288,6 +292,7 @@ export function mapDispatchToProps(dispatch: Dispatch<actions.Action>) {
     return {
         onSetEditorPreset: (preset: Preset) => dispatch(actions.setEditorPreset(preset)),
         onValueChange: (turn: Turn | null, index: number) => dispatch(actions.setEditorTurn(turn, index)),
+        onDuplicateTurn: (index: number) => dispatch(actions.duplicateEditorTurn(index)),
         onTurnOrderChange: (turns: Turn[]) => dispatch(actions.setEditorTurnOrder(turns)),
         onPresetDraftOptionsChange: (value: DraftOption[]) => dispatch(actions.setEditorDraftOptions(value)),
         onPresetNameChange: (value: string) => dispatch(actions.setEditorName(value)),
