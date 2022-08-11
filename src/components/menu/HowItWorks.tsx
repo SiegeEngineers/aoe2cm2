@@ -5,7 +5,7 @@ import {Trans} from "react-i18next";
 class HowItWorks extends React.Component<object, object> {
 
     componentDidMount() {
-        document.title = 'How it Works – AoE2 Captains Mode';
+        document.title = 'How it Works – AoE Captains Mode';
     }
 
     public render() {

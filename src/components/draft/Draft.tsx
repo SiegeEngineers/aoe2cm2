@@ -107,7 +107,7 @@ class Draft extends React.Component<IProps, IState> {
         const host = this.props.nameHost;
         const guest = this.props.nameGuest;
         const preset = this.props.preset.name;
-        return `${host} vs ${guest} – "${preset}" – AoE2 Captains Mode`;
+        return `${host} vs ${guest} – "${preset}" – AoE Captains Mode`;
     }
 
     private disconnectAndGoBack(): void {

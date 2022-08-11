@@ -19,7 +19,7 @@ class Presets extends React.Component<WithTranslation, IState> {
 
     componentDidMount() {
         this.loadPresetList();
-        document.title = 'Presets – AoE2 Captains Mode';
+        document.title = 'Presets – AoE Captains Mode';
     }
 
     public render() {

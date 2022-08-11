@@ -57,7 +57,7 @@ class PresetEditor extends React.Component<Props, State> {
     }
 
     componentDidMount(): void {
-        document.title = 'Preset Editor – AoE2 Captains Mode';
+        document.title = 'Preset Editor – AoE Captains Mode';
         const civs = this.getInitialCivilisationSet();
         switch (civs) {
             default:

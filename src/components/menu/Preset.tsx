@@ -101,10 +101,10 @@ class Preset extends React.Component<IProps, IState> {
                 const result = JSON.parse(request.responseText);
                 const preset = ModelPreset.fromPojo(result);
                 this.setState({preset});
-                document.title = `Preset "${preset?.name}" – AoE2 Captains Mode`;
+                document.title = `Preset "${preset?.name}" – AoE Captains Mode`;
             } else if (request.readyState === XMLHttpRequest.DONE && request.status === 404) {
                 this.setState({presetExists: false});
-                document.title = 'Preset not found – AoE2 Captains Mode';
+                document.title = 'Preset not found – AoE Captains Mode';
             }
         };
         request.send();
