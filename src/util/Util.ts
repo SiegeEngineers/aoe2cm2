@@ -14,6 +14,7 @@ import {IDraftState} from "../types";
 import LegacyPlayerEvent from "../models/LegacyPlayerEvent";
 import Civilisation from "../models/Civilisation";
 import {Socket} from "socket.io";
+import {SessionStore} from "../SessionStore";
 
 const CHARACTERS: string = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
@@ -187,9 +188,31 @@ export const Util = {
         return assignedRole;
     },
 
-    isRequestFromLocalhost(req: any) {
+    isRequestFromLocalhost(req: any): boolean {
         const ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
         return ip === '::ffff:127.0.0.1' || ip === '::1';
+    },
+
+    isAuthenticatedRequest(req: any, sessionStore: SessionStore): boolean {
+        if (Util.isRequestFromLocalhost(req)) {
+            return true;
+        }
+        const apiKey = req.header('x-auth-token');
+        if (apiKey) {
+            return sessionStore.isApiKeyValid(apiKey);
+        }
+        return false;
+    },
+
+    getAuthenticatedUser(req: any, sessionStore: SessionStore): string | undefined {
+        if (Util.isRequestFromLocalhost(req)) {
+            return 'LOCALHOST';
+        }
+        const apiKey = req.header('x-auth-token');
+        if (apiKey) {
+            return sessionStore.getUser(apiKey);
+        }
+        return undefined;
     },
 
     isRequestForPreview(req: any) {

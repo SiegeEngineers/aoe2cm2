@@ -18,6 +18,8 @@ beforeEach(() => {
     fs.mkdirSync(path.join(dirPath, 'data', 'current'), {recursive: true});
     fs.mkdirSync(path.join(dirPath, 'data', '2020'), {recursive: true});
     fs.writeFileSync(path.join(dirPath, 'data', '2020', `uvwxyz.json`), '{}');
+    fs.writeFileSync(path.join(dirPath, 'users.json'),
+        '{"admin":"$2b$05$g9CBZUm26K/pRhFeWvsZk.jGo3rza6SX6W98r8pZ6pxeDvrmPmWcm"}');
     draftServer = new DraftServer(dirPath);
 });
 
@@ -155,3 +157,30 @@ it('get old finished draft via socketio', (done) => {
     });
 });
 
+
+it('login works', (done) => {
+    request.post(`http://[${httpServerAddr.address}]:${httpServerAddr.port}/api/login`,
+        {
+            form: {user: 'admin', password: 'password'},
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        },
+        (error, response, body) => {
+            expect(response.statusCode).toEqual(200);
+            const json = JSON.parse(body);
+            expect(json.apiKey).toBeTruthy();
+            done();
+        });
+});
+
+it('wrong login yields 401', (done) => {
+    request.post(`http://[${httpServerAddr.address}]:${httpServerAddr.port}/api/login`,
+        {
+            form: {user: 'admin', password: 'wrong password'},
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        },
+        (error, response, body) => {
+            expect(response.statusCode).toEqual(401);
+            expect(body).toEqual('');
+            done();
+        });
+});

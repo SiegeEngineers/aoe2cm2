@@ -10,6 +10,7 @@
     "@types/socket.io": "^2.1.10",
     "@types/socket.io-client": "^1.4.33",
     "@types/uuid": "^8.0.1",
+    "bcrypt": "^5.0.1",
     "bulma-switch": "^2.0.0",
     "express": "^4.17.1",
     "i18next": "^19.6.3",
@@ -46,6 +47,7 @@
     ]
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/enzyme": "^3.10.5",
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/jest": "^26.0.9",
