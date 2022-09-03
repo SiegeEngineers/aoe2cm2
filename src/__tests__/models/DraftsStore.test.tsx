@@ -31,25 +31,34 @@ it('test do not get drafts without both connected players', () => {
     expect(draftsStore.getOngoingDrafts()).toEqual([]);
 });
 
-it('test get all eleven ongoing drafts', () => {
+it('test get all 31 ongoing drafts', () => {
     const draftsStore = new DraftsStore(dirPath);
-    for (let i = 0; i < 11; i++) {
+    for (let i = 0; i < 31; i++) {
         const draftId = `draft${i}`;
         addDraft(draftId, i, draftsStore);
     }
     expect(draftsStore.getRecentDrafts().map((draft) => draft.draftId))
-        .toEqual(['draft10', 'draft9', 'draft8', 'draft7', 'draft6', 'draft5', 'draft4', 'draft3', 'draft2', 'draft1', 'draft0'])
+        .toEqual([
+            'draft30', 'draft29', 'draft28', 'draft27', 'draft26', 'draft25', 'draft24', 'draft23', 'draft22', 'draft21',
+            'draft20', 'draft19', 'draft18', 'draft17', 'draft16', 'draft15', 'draft14', 'draft13', 'draft12', 'draft11',
+            'draft10', 'draft9', 'draft8', 'draft7', 'draft6', 'draft5', 'draft4', 'draft3', 'draft2', 'draft1',
+            'draft0',
+        ])
 });
 
-it('test get ten of eleven finished drafts', () => {
+it('test get 30 of 31 finished drafts', () => {
     const draftsStore = new DraftsStore(dirPath);
-    for (let i = 0; i < 11; i++) {
+    for (let i = 0; i < 31; i++) {
         const draftId = `draft${i}`;
         addDraft(draftId, i, draftsStore);
         draftsStore.finishDraft(draftId);
     }
     expect(draftsStore.getRecentDrafts().map((draft) => draft.draftId))
-        .toEqual(['draft10', 'draft9', 'draft8', 'draft7', 'draft6', 'draft5', 'draft4', 'draft3', 'draft2', 'draft1'])
+        .toEqual([
+            'draft30', 'draft29', 'draft28', 'draft27', 'draft26', 'draft25', 'draft24', 'draft23', 'draft22', 'draft21',
+            'draft20', 'draft19', 'draft18', 'draft17', 'draft16', 'draft15', 'draft14', 'draft13', 'draft12', 'draft11',
+            'draft10', 'draft9', 'draft8', 'draft7', 'draft6', 'draft5', 'draft4', 'draft3', 'draft2', 'draft1',
+        ])
 });
 
 it('test get ongoing drafts before finished drafts', () => {
@@ -58,13 +67,17 @@ it('test get ongoing drafts before finished drafts', () => {
         const draftId = `draft${i}`;
         addDraft(draftId, i, draftsStore);
     }
-    for (let i = 5; i < 11; i++) {
+    for (let i = 5; i < 31; i++) {
         const draftId = `draft${i}`;
         addDraft(draftId, i, draftsStore);
         draftsStore.finishDraft(draftId);
     }
     expect(draftsStore.getRecentDrafts().map((draft) => draft.draftId))
-        .toEqual(['draft4', 'draft3', 'draft2', 'draft1', 'draft0', 'draft10', 'draft9', 'draft8', 'draft7', 'draft6'])
+        .toEqual([
+            'draft4', 'draft3', 'draft2', 'draft1', 'draft0',
+            'draft30', 'draft29', 'draft28', 'draft27', 'draft26', 'draft25', 'draft24', 'draft23', 'draft22', 'draft21',
+            'draft20', 'draft19', 'draft18', 'draft17', 'draft16', 'draft15', 'draft14', 'draft13', 'draft12', 'draft11',
+            'draft10', 'draft9', 'draft8', 'draft7', 'draft6',])
 });
 
 it('hidden presets do not get stored', () => {
