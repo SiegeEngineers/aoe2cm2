@@ -23,6 +23,8 @@ interface ICountdownValues {
 }
 
 
+const RECENT_DRAFTS_LIST_LENGTH = 30;
+
 export class DraftsStore {
     private drafts: Map<string, DraftViews> = new Map<string, DraftViews>();
     private countdowns: Map<String, ICountdownValues> = new Map<String, ICountdownValues>();
@@ -66,8 +68,8 @@ export class DraftsStore {
         const ongoingDrafts = this.getOngoingDrafts();
 
         const recentDrafts = this.loadRecentDrafts();
-        if (ongoingDrafts.length < 10) {
-            const iterations = 10 - ongoingDrafts.length;
+        if (ongoingDrafts.length < RECENT_DRAFTS_LIST_LENGTH) {
+            const iterations = RECENT_DRAFTS_LIST_LENGTH - ongoingDrafts.length;
             for (let i = 0; i < iterations; i++) {
                 if (recentDrafts.length > i) {
                     ongoingDrafts.push(recentDrafts[i]);
@@ -383,7 +385,7 @@ export class DraftsStore {
             nameHost: draft.nameHost,
             nameGuest: draft.nameGuest
         });
-        while (recentDrafts.length > 10) {
+        while (recentDrafts.length > RECENT_DRAFTS_LIST_LENGTH) {
             recentDrafts.pop();
         }
         this.saveRecentDrafts(recentDrafts);
