@@ -18,6 +18,7 @@ import {ISetNameMessage} from "./types/ISetNameMessage";
 import {PresetUtil} from "./util/PresetUtil";
 import {IServerState} from "./types";
 import path from "path";
+import {SessionStore} from "./models/SessionStore";
 
 const ONE_HOUR = 1000 * 60 * 60;
 
@@ -28,6 +29,8 @@ export class DraftServer {
     readonly currentDataDirectory: string;
     readonly dataDirectory: string;
     readonly presetDirectory: string;
+    readonly usersFile: string;
+    readonly sessionsFile: string;
 
     constructor(baseDir: string = './') {
         this.serverStateFile = path.join(baseDir, 'serverState.json');
@@ -35,6 +38,8 @@ export class DraftServer {
         this.dataDirectory = path.join(baseDir, 'data');
         this.currentDataDirectory = path.join(this.dataDirectory, 'current');
         this.presetDirectory = path.join(baseDir, 'presets');
+        this.usersFile = path.join(baseDir, 'users.json');
+        this.sessionsFile = path.join(baseDir, 'sessions.json');
     }
 
     private loadState(): IServerState {
@@ -66,8 +71,9 @@ export class DraftServer {
         const io = new SocketioServer(server, {cookie: false});
         const state: IServerState = this.loadState();
         const draftsStore = new DraftsStore(this.baseDir, state);
+        const sessionStore = new SessionStore(this.usersFile, this.sessionsFile);
 
-        this.setUpApiRoutes(app, state, draftsStore, io);
+        this.setUpApiRoutes(app, state, draftsStore, sessionStore, io);
         this.setUpSocketIo(io, draftsStore);
 
         const httpServer = server.listen(port, () => {
@@ -253,13 +259,24 @@ export class DraftServer {
         });
     }
 
-    private setUpApiRoutes(app: Express, state: IServerState, draftsStore: DraftsStore, io: SocketioServer) {
+    private setUpApiRoutes(app: Express, state: IServerState, draftsStore: DraftsStore, sessionStore: SessionStore, io: SocketioServer) {
+        app.post('/api/login', express.urlencoded({extended: false}), function (req, res) {
+            const user = req.body.user;
+            const pass = req.body.password;
+            let apiKey = sessionStore.authenticate(user, pass);
+            if (apiKey) {
+                res.status(200).json({apiKey: apiKey});
+            }
+            res.status(401).end()
+        });
+
         app.post('/api/state', (req, res) => {
-            if (!Util.isRequestFromLocalhost(req)) {
+            if (!Util.isAuthenticatedRequest(req, sessionStore)) {
                 res.status(403).end();
                 return;
             }
-            logger.info('Received request to set state mode: %s', JSON.stringify(req.body));
+            const user = Util.getAuthenticatedUser(req, sessionStore);
+            logger.info("Received request by user '%s' to set state mode: %s", user, JSON.stringify(req.body));
             for (let key in req.body) {
                 if (state.hasOwnProperty(key) && req.body.hasOwnProperty(key)) {
                     state[key] = req.body[key];
@@ -271,18 +288,19 @@ export class DraftServer {
             logger.info('Persisted new state');
         });
         app.get('/api/state', (req, res) => {
-            if (!Util.isRequestFromLocalhost(req)) {
+            if (!Util.isAuthenticatedRequest(req, sessionStore)) {
                 res.status(403).end();
                 return;
             }
             res.json(state);
         });
         app.post('/api/reload-archive', (req, res) => {
-            if (!Util.isRequestFromLocalhost(req)) {
+            if (!Util.isAuthenticatedRequest(req, sessionStore)) {
                 res.status(403).end();
                 return;
             }
-            logger.info('Reloading draft archive data');
+            const user = Util.getAuthenticatedUser(req, sessionStore);
+            logger.info("Reloading draft archive data, requested by user '%s'", user);
             const response = draftsStore.reloadArchiveData();
             res.json(response);
             logger.info('Reloading draft archive data finished');
@@ -330,7 +348,7 @@ export class DraftServer {
             }
         });
         app.get('/api/connections', (req, res) => {
-            if (Util.isRequestFromLocalhost(req)) {
+            if (Util.isAuthenticatedRequest(req, sessionStore)) {
                 // @ts-ignore
                 res.json({
                     connections: io.engine.clientsCount,

@@ -4,6 +4,8 @@ presets.json
 alerts.json
 recentDrafts.json
 serverState.json
+sessions.json
+users.json
 *.log
 *.log.xz
 *.log.gz

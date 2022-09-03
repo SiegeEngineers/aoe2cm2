@@ -133,14 +133,33 @@ Or, share the file with `hszemi#2325` or `Jester#5115` on Discord.
 - `de_DE`: hszemi#2325
 - `en_GB`: hszemi#2325
 - `es_ES`: Brian#8296
+- `fr_FR`: [TabA] Phare_Macie#1818
 - `pt_BR`: marciocolombia#0637
 - `zh_CN`: HeavenlyChorus#8242
 - `zh_TW`: jkb#2180
 
-### Housekeeping
+## Housekeeping
 
 To move all drafts older than X days to another folder, execute the following in `data/current`:
 
 ```sh
 for f in `find . -ctime +X`; do mv $f ../another-folder/; done
+```
+
+## Adding users
+
+Generate a new password salted and hashed with bcrypt, e. g. using htpasswd:
+
+```sh
+$ htpasswd -nbB user password
+user:$2y$05$Kqxufpc5Vawgbhmv8xf/..SrY2LvuPSerYcn/4HgkC5hjsOWXmp2e
+```
+
+Create or edit `users.json` and add the username and hash as key-value pair.
+The bcrypt implementation does not like the 2y format, simply replace the 2y at the beginning with 2b.
+
+```json
+{
+  "user": "$2b$05$Kqxufpc5Vawgbhmv8xf/..SrY2LvuPSerYcn/4HgkC5hjsOWXmp2e"
+}
 ```
