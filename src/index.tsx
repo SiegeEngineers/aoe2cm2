@@ -25,6 +25,7 @@ import SpectateDraft from "./containers/SpectateDraft";
 import {initialColorSchemeState} from "./reducers/colorScheme";
 import {initialReplayState} from "./reducers/replay";
 import {initialIconStyleState} from "./reducers/iconStyle";
+import {initialAdminState} from "./reducers/admin";
 
 const createMySocketMiddleware = () => {
 
@@ -112,7 +113,8 @@ const store: Store = createStore<ApplicationState, Action, any, Store>(updateSta
         language: initialLanguageState,
         colorScheme: initialColorSchemeState,
         modal: initialModalState,
-        presetEditor: initialPresetEditorState
+        presetEditor: initialPresetEditorState,
+        admin: initialAdminState,
     },
     applyMiddleware(createMySocketMiddleware()));
 
@@ -133,6 +135,8 @@ ReactDOM.render(
                     <Route path="/spectate" component={Menu}/>
                     <Route path="/practice" component={Menu}/>
                     <Route path="/api" component={Menu}/>
+                    <Route path="/admin/login" component={Menu}/>
+                    <Route path="/admin" component={Menu}/>
                     <Route component={Menu}/>
                 </Switch>
             <Footer/>

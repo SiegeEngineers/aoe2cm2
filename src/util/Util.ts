@@ -237,6 +237,31 @@ export const Util = {
         }
     },
 
+    getApiKeyFromLocalStorage(defaultIfError: string | undefined = undefined): string | undefined {
+        try {
+            return localStorage.getItem('apiKey') || defaultIfError;
+        } catch (e) {
+            return defaultIfError;
+        }
+    },
+
+    writeApiKeyToLocalStorage(apiKey: string | undefined) {
+        try {
+            if(apiKey){
+                localStorage.setItem('apiKey', apiKey);
+            } else {
+                localStorage.removeItem('apiKey');
+            }
+        } catch (e) {
+            // ignore
+        }
+    },
+
+    formatTimestamp(ts: number){
+        const date = new Date(ts * 1000);
+        return date.toISOString();
+    },
+
     transformDraftStateToCurrentFormat(input: IDraftState): IDraftState {
         for (let i = 0; i < input.events.length; i++) {
             const event = input.events[i];

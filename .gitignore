@@ -6,6 +6,7 @@ recentDrafts.json
 serverState.json
 sessions.json
 users.json
+presets-and-drafts.json
 *.log
 *.log.xz
 *.log.gz

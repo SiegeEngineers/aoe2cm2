@@ -73,6 +73,16 @@ export interface ISetLanguage {
     language: string
 }
 
+export interface ISetApiKey {
+    type: Actions.SET_API_KEY,
+    apiKey?: string
+}
+
+export interface ISetAdminPresetName {
+    type: Actions.SET_ADMIN_PRESET_NAME,
+    name?: string
+}
+
 export interface ISetIconStyle {
     type: Actions.SET_ICON_STYLE,
     iconStyle: string
@@ -207,6 +217,9 @@ export type DraftOwnPropertiesAction = IApplyConfig
 
 export type LanguageAction = ISetLanguage;
 
+export type AdminAction = ISetApiKey
+    | ISetAdminPresetName;
+
 export type IconStyleAction = ISetIconStyle;
 
 export type ColorSchemeAction = ISetColorScheme;
@@ -231,7 +244,8 @@ export type Action = DraftAction
     | IconStyleAction
     | ColorSchemeAction
     | ModalAction
-    | PresetEditorAction;
+    | PresetEditorAction
+    | AdminAction;
 
 export function connectPlayer(player: Player, value: string): IConnectPlayer {
     return {
@@ -321,6 +335,20 @@ export function setLanguage(language: string): ISetLanguage {
     return {
         language,
         type: Actions.SET_LANGUAGE
+    }
+}
+
+export function setApiKey(apiKey: string | undefined): ISetApiKey {
+    return {
+        apiKey,
+        type: Actions.SET_API_KEY
+    }
+}
+
+export function setAdminPresetName(name: string | undefined): ISetAdminPresetName {
+    return {
+        name,
+        type: Actions.SET_ADMIN_PRESET_NAME
     }
 }
 

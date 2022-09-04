@@ -31,7 +31,8 @@ export interface ApplicationState {
     iconStyle: IIconStyleState,
     modal: IModalState,
     presetEditor: IPresetEditorState,
-    colorScheme: IColorSchemeState
+    colorScheme: IColorSchemeState,
+    admin: IAdminState,
 }
 
 export interface IDraftOwnPropertiesState {
@@ -88,7 +89,30 @@ export interface IAlert {
     closable: boolean;
 }
 
+export interface IAdminState {
+    apiKey?: string;
+    presetName?: string;
+}
+
 export interface IServerState {
     maintenanceMode: boolean
     hiddenPresetIds: string[]
+}
+
+export interface IPresetAndDraftList {
+    presets: IPresetMetaData[]
+    drafts: { [key: string]: IDraftMetaData[] }
+}
+
+export interface IPresetMetaData {
+    code: string
+    name: string
+    created: number
+}
+
+export interface IDraftMetaData {
+    code: string
+    host: string
+    guest: string
+    created: number
 }

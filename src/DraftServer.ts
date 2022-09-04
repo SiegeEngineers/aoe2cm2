@@ -294,6 +294,13 @@ export class DraftServer {
             }
             res.json(state);
         });
+        app.get('/api/presets-and-drafts', (req, res) => {
+            if (!Util.isAuthenticatedRequest(req, sessionStore)) {
+                res.status(403).end();
+                return;
+            }
+            res.sendFile('presets-and-drafts.json', {'root': __dirname + '/..'});
+        });
         app.post('/api/reload-archive', (req, res) => {
             if (!Util.isAuthenticatedRequest(req, sessionStore)) {
                 res.status(403).end();

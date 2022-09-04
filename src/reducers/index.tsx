@@ -8,6 +8,7 @@ import {combineReducers} from 'redux';
 import {iconStyleReducer} from "./iconStyle";
 import {replayReducer} from "./replay";
 import {colorSchemeReducer} from "./colorScheme";
+import {adminReducer} from "./admin";
 
 export default combineReducers({
     draft: draftReducer,
@@ -15,6 +16,7 @@ export default combineReducers({
     replay: replayReducer,
     ownProperties: draftOwnPropertiesReducer,
     language: languageReducer,
+    admin: adminReducer,
     iconStyle: iconStyleReducer,
     colorScheme: colorSchemeReducer,
     modal: modalReducer,
