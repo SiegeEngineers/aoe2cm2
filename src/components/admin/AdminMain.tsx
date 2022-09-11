@@ -5,16 +5,17 @@ import {connect} from "react-redux";
 import {ApplicationState, IPresetAndDraftList, IServerState} from "../../types";
 import {withTranslation, WithTranslation} from "react-i18next";
 import {Redirect, RouteComponentProps} from "react-router";
-import PresetsAndDrafts from "./PresetsAndDrafts";
+import PresetList from "./PresetList";
 
 interface Props extends WithTranslation, RouteComponentProps<any> {
-    apiKey: string | undefined;
-    onSetApiKey: (apiKey: string | undefined) => void;
+    apiKey: string | undefined
+    onSetApiKey: (apiKey: string | undefined) => void
+    onSetAdminPresetsAndDrafts: (presetsAndDrafts: IPresetAndDraftList | undefined) => void
+    presetsAndDrafts?: IPresetAndDraftList
 }
 
 interface State {
     serverState: IServerState
-    presetsAndDrafts?: IPresetAndDraftList
 }
 
 class AdminMain extends React.Component<Props, State> {
@@ -23,7 +24,6 @@ class AdminMain extends React.Component<Props, State> {
         super(props);
         this.state = {
             serverState: {maintenanceMode: false, hiddenPresetIds: []},
-            presetsAndDrafts: undefined,
         };
     }
 
@@ -60,7 +60,7 @@ class AdminMain extends React.Component<Props, State> {
                 this.props.onSetApiKey(undefined);
                 return Promise.reject('Authorization failed');
             })
-            .then((json) => this.setState({...this.state, presetsAndDrafts: json}));
+            .then((json) => this.props.onSetAdminPresetsAndDrafts(json));
     }
 
     private toggleMaintenanceMode() {
@@ -121,8 +121,11 @@ class AdminMain extends React.Component<Props, State> {
     }
 
     componentDidMount() {
+        document.title = 'Admin – AoE Captains Mode';
         this.fetchState();
-        this.fetchPresetsAndDrafts();
+        if (!this.props.presetsAndDrafts) {
+            this.fetchPresetsAndDrafts();
+        }
     }
 
     public render() {
@@ -136,9 +139,16 @@ class AdminMain extends React.Component<Props, State> {
                 <h2>Admin Main</h2>
                 <button className={'button'} onClick={() => this.logout()}>Logout</button>
 
-                <h3>Presets and Drafts</h3>
+                <h3>Presets</h3>
 
-                <PresetsAndDrafts data={this.state.presetsAndDrafts}/>
+                <p>
+                    This is the list of all presets.
+                    Click on the name of a preset to list all drafts with that name
+                    (but not necessarily of that specific preset).
+                </p>
+
+                <PresetList presets={this.props.presetsAndDrafts?.presets || []}
+                            draftsKeys={Object.keys(this.props.presetsAndDrafts?.drafts || {})}/>
 
                 <hr/>
 
@@ -204,12 +214,14 @@ class AdminMain extends React.Component<Props, State> {
 export function mapStateToProps(state: ApplicationState) {
     return {
         apiKey: state.admin.apiKey,
+        presetsAndDrafts: state.admin.presetsAndDrafts,
     }
 }
 
 export function mapDispatchToProps(dispatch: Dispatch<actions.Action>) {
     return {
         onSetApiKey: (apiKey: string | undefined) => dispatch(actions.setApiKey(apiKey)),
+        onSetAdminPresetsAndDrafts: (presetsAndDrafts: IPresetAndDraftList | undefined) => dispatch(actions.setAdminPresetsAndDrafts(presetsAndDrafts)),
     }
 }
 

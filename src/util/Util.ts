@@ -37,6 +37,15 @@ export const Util = {
         return '';
     },
 
+    getPresetNameFromUrl(): string {
+        const match: RegExpMatchArray | null = window.location.pathname.match(/\/admin\/draft\/(.+)\/?.*/);
+        if (match !== null) {
+            return decodeURI(match[1]);
+        }
+        alert('Could not get preset name from url');
+        return '';
+    },
+
     isPick(action: Action): boolean {
         return (action === Action.PICK);
     },

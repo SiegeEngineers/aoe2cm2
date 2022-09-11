@@ -14,6 +14,7 @@ import HowItWorks from "./HowItWorks";
 import API from "./API";
 import Login from "../admin/Login";
 import AdminMain from "../admin/AdminMain";
+import DraftList from "../admin/DraftList";
 
 class Menu extends React.Component<WithTranslation, object> {
     public render() {
@@ -47,6 +48,7 @@ class Menu extends React.Component<WithTranslation, object> {
                         <Route path="/help" component={HowItWorks}/>
                         <Route path="/api" component={API}/>
                         <Route path="/admin/login" component={Login}/>
+                        <Route path="/admin/draft/:draftName" component={DraftList}/>
                         <Route path="/admin" component={AdminMain}/>
                         <Route component={NotFound404}/>
                     </Switch>

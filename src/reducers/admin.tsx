@@ -5,7 +5,7 @@ import {Util} from "../util/Util";
 
 export const initialAdminState: IAdminState = {
     apiKey: Util.getApiKeyFromLocalStorage(),
-    presetName: undefined,
+    presetsAndDrafts: undefined,
 };
 
 export const adminReducer = (state: IAdminState = initialAdminState, action: AdminAction) => {
@@ -16,11 +16,11 @@ export const adminReducer = (state: IAdminState = initialAdminState, action: Adm
             ...state,
             apiKey: action.apiKey
         };
-    } else if (action.type === Actions.SET_ADMIN_PRESET_NAME) {
-        console.log(Actions.SET_ADMIN_PRESET_NAME, action.name);
+    } else if (action.type === Actions.SET_ADMIN_PRESETS_AND_DRAFTS) {
+        console.log(Actions.SET_ADMIN_PRESETS_AND_DRAFTS, action.presetsAndDrafts);
         return {
             ...state,
-            presetName: action.name
+            presetsAndDrafts: action.presetsAndDrafts
         };
     } else {
         return state;

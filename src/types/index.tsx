@@ -91,7 +91,7 @@ export interface IAlert {
 
 export interface IAdminState {
     apiKey?: string;
-    presetName?: string;
+    presetsAndDrafts?: IPresetAndDraftList;
 }
 
 export interface IServerState {

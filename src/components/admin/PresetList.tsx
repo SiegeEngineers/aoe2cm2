@@ -1,5 +1,5 @@
 import * as React from "react";
-import {ApplicationState, IPresetMetaData} from "../../types";
+import {ApplicationState, IPresetAndDraftList, IPresetMetaData} from "../../types";
 import {Link} from "react-router-dom";
 import {Dispatch} from "redux";
 import * as actions from "../../actions";
@@ -9,36 +9,54 @@ import {Util} from "../../util/Util";
 interface Props {
     presets: IPresetMetaData[]
     draftsKeys: string[]
-    onSelectPreset: (name: string) => void
+    onSetAdminPresetsAndDrafts: (presetsAndDrafts: IPresetAndDraftList | undefined) => void
 }
 
 interface State {
+    shortList: boolean
 }
+
+const FILTERED_LIST_LENGTH = 200;
 
 class PresetList extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
-        this.state = {};
+        this.state = {shortList: true};
+    }
+
+    private toggleFullList() {
+        this.setState({shortList: !this.state.shortList});
     }
 
     public render() {
-        const presetRows = this.props.presets.map(preset => {
-            const listDraftsButton = this.props.draftsKeys.includes(preset.name) ?
-                <button className={'button is-link is-small'}
-                        onClick={() => this.props.onSelectPreset(preset.name)}>{preset.name}</button> :
-                <span className="tag">{preset.name}</span>
-            return (<tr>
-                <td><Link to={`/preset/${preset.code}`}>{preset.code}</Link></td>
-                <td>
-                    {listDraftsButton}
-                </td>
-                <td>{Util.formatTimestamp(preset.created)}</td>
-            </tr>)
+        const filterValue = this.props.presets.map(value => value.created).sort()[Math.max(0, this.props.presets.length - FILTERED_LIST_LENGTH)];
+        const presetRows = this.props.presets
+            .filter(value => this.state.shortList ? (value.created > filterValue) : true)
+            .map(preset => {
+                const listDraftsLink = this.props.draftsKeys.includes(preset.name) ?
+                    <Link to={`/admin/draft/${preset.name}`}>{preset.name}</Link> :
+                    <span className="has-text-grey">{preset.name}</span>
+                return (<tr>
+                    <td><Link to={`/preset/${preset.code}`}>{preset.code}</Link></td>
+                    <td>
+                        {listDraftsLink}
+                    </td>
+                    <td>{Util.formatTimestamp(preset.created)}</td>
+                </tr>)
         });
         return (
             <div>
-                <table className="table is-striped is-narrow is-hoverable">
+                <p>
+                    <input id="toggleFullList" type="checkbox" name="toggleFullList"
+                           className="switch is-small is-rounded is-info"
+                           checked={this.state.shortList} onChange={() => {
+                        this.toggleFullList()
+                    }}/>
+                    <label htmlFor="toggleFullList">Show only latest {FILTERED_LIST_LENGTH} Presets</label>
+                </p>
+
+                <table className="table is-striped is-narrow is-hoverable preset-list">
                     <thead>
                     <tr>
                         <th>Code</th>
@@ -62,7 +80,7 @@ export function mapStateToProps(state: ApplicationState) {
 
 export function mapDispatchToProps(dispatch: Dispatch<actions.Action>) {
     return {
-        onSelectPreset: (name: string | undefined) => dispatch(actions.setAdminPresetName(name)),
+        onSetAdminPresetsAndDrafts: (presetsAndDrafts: IPresetAndDraftList | undefined) => dispatch(actions.setAdminPresetsAndDrafts(presetsAndDrafts)),
     }
 }
 

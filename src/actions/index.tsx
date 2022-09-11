@@ -4,7 +4,7 @@ import {default as ModelAction} from "../constants/Action";
 import {DraftEvent} from "../types/DraftEvent";
 import {IDraftConfig} from "../types/IDraftConfig";
 import PlayerEvent from "../models/PlayerEvent";
-import {ICountdownValues, IDraftState} from "../types";
+import {ICountdownValues, IDraftState, IPresetAndDraftList} from "../types";
 import Preset from "../models/Preset";
 import Turn from "../models/Turn";
 import {ColorScheme} from "../constants/ColorScheme";
@@ -78,9 +78,9 @@ export interface ISetApiKey {
     apiKey?: string
 }
 
-export interface ISetAdminPresetName {
-    type: Actions.SET_ADMIN_PRESET_NAME,
-    name?: string
+export interface ISetAdminPresetsAndDrafts {
+    type: Actions.SET_ADMIN_PRESETS_AND_DRAFTS,
+    presetsAndDrafts?: IPresetAndDraftList
 }
 
 export interface ISetIconStyle {
@@ -218,7 +218,7 @@ export type DraftOwnPropertiesAction = IApplyConfig
 export type LanguageAction = ISetLanguage;
 
 export type AdminAction = ISetApiKey
-    | ISetAdminPresetName;
+    | ISetAdminPresetsAndDrafts;
 
 export type IconStyleAction = ISetIconStyle;
 
@@ -345,10 +345,10 @@ export function setApiKey(apiKey: string | undefined): ISetApiKey {
     }
 }
 
-export function setAdminPresetName(name: string | undefined): ISetAdminPresetName {
+export function setAdminPresetsAndDrafts(presetsAndDrafts: IPresetAndDraftList | undefined): ISetAdminPresetsAndDrafts {
     return {
-        name,
-        type: Actions.SET_ADMIN_PRESET_NAME
+        presetsAndDrafts,
+        type: Actions.SET_ADMIN_PRESETS_AND_DRAFTS
     }
 }
 

@@ -136,6 +136,7 @@ ReactDOM.render(
                     <Route path="/practice" component={Menu}/>
                     <Route path="/api" component={Menu}/>
                     <Route path="/admin/login" component={Menu}/>
+                    <Route path="/admin/draft/:draftName" component={Menu}/>
                     <Route path="/admin" component={Menu}/>
                     <Route component={Menu}/>
                 </Switch>

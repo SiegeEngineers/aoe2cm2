@@ -938,3 +938,7 @@ html.has-simple-ui {
     background-position: 0 50%;
   }
 }
+
+.preset-list td:nth-child(3) {
+  min-width: 30ex;
+}
