@@ -37,7 +37,7 @@ export const Util = {
         return '';
     },
 
-    getPresetNameFromUrl(): string {
+    getPresetIdOrNameFromUrl(): string {
         const match: RegExpMatchArray | null = window.location.pathname.match(/\/admin\/draft\/(.+)\/?.*/);
         if (match !== null) {
             return decodeURI(match[1]);

@@ -101,7 +101,9 @@ export interface IServerState {
 
 export interface IPresetAndDraftList {
     presets: IPresetMetaData[]
-    drafts: { [key: string]: IDraftMetaData[] }
+    drafts: { [draftId: string]: IDraftMetaData }
+    drafts_by_preset_id: { [presetId: string]: string[] }
+    drafts_by_title: { [presetId: string]: string[] }
 }
 
 export interface IPresetMetaData {
@@ -111,7 +113,6 @@ export interface IPresetMetaData {
 }
 
 export interface IDraftMetaData {
-    code: string
     host: string
     guest: string
     created: number

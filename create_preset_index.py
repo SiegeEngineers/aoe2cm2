@@ -12,7 +12,7 @@ def main():
     except Exception:
         pass
 
-    info = {'presets':[], 'drafts':{}, 'timestamp': {'presets':'', 'drafts':''}}
+    info = {'presets':[], 'drafts':{}, 'drafts_by_preset_id':{}, 'drafts_by_title':{}, 'timestamp': {'presets':'', 'drafts':''}}
     output_json = Path(__file__).with_name('presets-and-drafts.json')
     if output_json.exists():
         info = json.loads(output_json.read_text())

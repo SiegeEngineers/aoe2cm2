@@ -14,18 +14,18 @@ interface Props {
 }
 
 interface State {
-    presetTitle: string
+    presetIdOrName: string
 }
 
 class DraftList extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
-        this.state = {presetTitle: ''};
+        this.state = {presetIdOrName: ''};
     }
 
-    private fetchPresetsAndDrafts() {
-        fetch('/api/presets-and-drafts', {
+    private async fetchPresetsAndDrafts() {
+        return fetch('/api/presets-and-drafts', {
             headers: {
                 'X-Auth-Token': this.props.apiKey as string
             }
@@ -42,11 +42,16 @@ class DraftList extends React.Component<Props, State> {
 
 
     componentDidMount() {
-        let presetTitle = Util.getPresetNameFromUrl();
-        document.title = presetTitle + ' Drafts – AoE Captains Mode';
-        this.setState({presetTitle: presetTitle});
+        let presetIdOrName = Util.getPresetIdOrNameFromUrl();
+        document.title = presetIdOrName + ' Drafts – AoE Captains Mode';
+        this.setState({presetIdOrName: presetIdOrName});
         if (!this.props.presetsAndDrafts) {
-            this.fetchPresetsAndDrafts();
+            this.fetchPresetsAndDrafts().then(() => {
+                const preset = this.props.presetsAndDrafts?.presets.find((value) => value.code === presetIdOrName);
+                if (preset) {
+                    document.title = preset.name + ' Drafts – AoE Captains Mode';
+                }
+            });
         }
     }
 
@@ -54,14 +59,24 @@ class DraftList extends React.Component<Props, State> {
         let draftRows = [<tr>
             <td colSpan={3}>Loading…</td>
         </tr>];
-        if (this.state.presetTitle && this.props.presetsAndDrafts) {
-            if (this.props.presetsAndDrafts.drafts[this.state.presetTitle]) {
-                draftRows = this.props.presetsAndDrafts.drafts[this.state.presetTitle].map(draft => <tr>
-                    <td><Link to={`/draft/${draft.code}`}><code>{draft.code}</code></Link></td>
-                    <td><span className="tag is-info">{draft.host}</span></td>
-                    <td><span className="tag is-warning">{draft.guest}</span></td>
-                    <td>{Util.formatTimestamp(draft.created)}</td>
-                </tr>);
+        let header = <h3>Drafts Titled »{this.state.presetIdOrName}«</h3>;
+        if (this.props.presetsAndDrafts?.drafts_by_preset_id.hasOwnProperty(this.state.presetIdOrName)) {
+            const title = this.props.presetsAndDrafts?.presets?.find(item => item.code === this.state.presetIdOrName)?.name;
+            header = <h3>Drafts for Preset ID {this.state.presetIdOrName} »<Link to={`/admin/draft/${title}`}>{title}</Link>«</h3>;
+        }
+        if (this.state.presetIdOrName && this.props.presetsAndDrafts) {
+            const draftIds = this.getDraftIds();
+            if (draftIds) {
+                draftRows = [];
+                for (const draftId of draftIds) {
+                    const draft = this.props.presetsAndDrafts.drafts[draftId];
+                    draftRows.push(<tr>
+                        <td><Link to={`/draft/${draftId}`}><code>{draftId}</code></Link></td>
+                        <td><span className="tag is-info">{draft.host}</span></td>
+                        <td><span className="tag is-warning">{draft.guest}</span></td>
+                        <td>{Util.formatTimestamp(draft.created)}</td>
+                    </tr>);
+                }
             } else {
                 draftRows = [<tr>
                     <td colSpan={3}>No drafts.</td>
@@ -70,7 +85,7 @@ class DraftList extends React.Component<Props, State> {
         }
         return (
             <div className={'content box'}>
-                <h3>Drafts Titled »{this.state.presetTitle}«</h3>
+                {header}
 
                 <p><Link to={'/admin/'}>« Back to Admin</Link></p>
 
@@ -89,6 +104,15 @@ class DraftList extends React.Component<Props, State> {
                 </table>
             </div>
         );
+    }
+
+    private getDraftIds(): string[] {
+        if (!this.props.presetsAndDrafts) {
+            return [];
+        }
+        return this.props.presetsAndDrafts.drafts_by_preset_id[this.state.presetIdOrName]
+            || this.props.presetsAndDrafts.drafts_by_title[this.state.presetIdOrName]
+            || [];
     }
 }
 

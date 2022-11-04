@@ -147,8 +147,7 @@ class AdminMain extends React.Component<Props, State> {
                     (but not necessarily of that specific preset).
                 </p>
 
-                <PresetList presets={this.props.presetsAndDrafts?.presets || []}
-                            draftsKeys={Object.keys(this.props.presetsAndDrafts?.drafts || {})}/>
+                <PresetList presetsAndDrafts={this.props.presetsAndDrafts}/>
 
                 <hr/>
 
