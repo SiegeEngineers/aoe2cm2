@@ -9,6 +9,8 @@ enum Name {
     MONGOLS = "aoe4.Mongols",
     ABBASID_DYNASTY = "aoe4.AbbasidDynasty",
     FRENCH = "aoe4.French",
+    OTTOMANS = "aoe4.Ottomans",
+    MALIANS = "aoe4.Malians",
 }
 
 class Aoe4Civilisation extends DraftOption {
@@ -21,6 +23,8 @@ class Aoe4Civilisation extends DraftOption {
     public static readonly MONGOLS: Aoe4Civilisation = new Aoe4Civilisation(Name.MONGOLS);
     public static readonly ABBASID_DYNASTY: Aoe4Civilisation = new Aoe4Civilisation(Name.ABBASID_DYNASTY);
     public static readonly FRENCH: Aoe4Civilisation = new Aoe4Civilisation(Name.FRENCH);
+    public static readonly OTTOMANS: Aoe4Civilisation = new Aoe4Civilisation(Name.OTTOMANS);
+    public static readonly MALIANS: Aoe4Civilisation = new Aoe4Civilisation(Name.MALIANS);
 
 
 
@@ -35,6 +39,8 @@ class Aoe4Civilisation extends DraftOption {
         Aoe4Civilisation.MONGOLS,
         Aoe4Civilisation.ABBASID_DYNASTY,
         Aoe4Civilisation.FRENCH,
+        Aoe4Civilisation.OTTOMANS,
+        Aoe4Civilisation.MALIANS,
     ];
 
     private constructor(name: Name) {
