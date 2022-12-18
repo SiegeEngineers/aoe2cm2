@@ -137,6 +137,14 @@ class Messages extends React.Component<IProps, object> {
         return '';
     }
 
+    private getPlayerNameForDisplay(nextTurn: Turn) {
+        const name = this.getPlayerName(nextTurn).trim();
+        if (name.length > 32) {
+            return name.substring(0, 30) + '…';
+        }
+        return name;
+    }
+
     private handleParallelTurn() {
         const firstTurn = this.getFirstTurnOfParallelTurn() as Turn;
         const secondTurn = this.getSecondTurnOfParallelTurn() as Turn;
@@ -289,7 +297,7 @@ class Messages extends React.Component<IProps, object> {
             }
         } else {
             if (this.props.whoAmI === Player.NONE) {
-                const playerName = this.getPlayerName(turn);
+                const playerName = this.getPlayerNameForDisplay(turn);
                 switch (turn.action) {
                     case Action.PICK:
                         return forOpponent ? (
@@ -377,8 +385,8 @@ class Messages extends React.Component<IProps, object> {
     }
 
     private messageForTurns(firstTurn: Turn, secondTurn: Turn) {
-        const firstTurnPlayer = this.getPlayerName(firstTurn);
-        const secondTurnPlayer = this.getPlayerName(secondTurn);
+        const firstTurnPlayer = this.getPlayerNameForDisplay(firstTurn);
+        const secondTurnPlayer = this.getPlayerNameForDisplay(secondTurn);
         if (firstTurn.action === Action.PICK) {
             if (secondTurn.action === Action.PICK) {
                 return (

@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`32 long name is not shortened 1`] = `
+<span>
+  12345678901234567890123456789012
+</span>
+`;
+
+exports[`33 long name is shortened after 30 characters 1`] = `
+<abbr
+  title="123456789012345678901234567890123"
+>
+  123456789012345678901234567890…
+</abbr>
+`;
+
+exports[`Long name is shortened 1`] = `
+<abbr
+  title="123456789012345678901234567890123456789"
+>
+  123456789012345678901234567890…
+</abbr>
+`;
+
+exports[`Short name is not shortened 1`] = `
+<span>
+  Player Name
+</span>
+`;
+
+exports[`Whitespace is trimmed before shortening 1`] = `
+<span>
+  1234567890123
+</span>
+`;

@@ -11,6 +11,7 @@ import {Trans, WithTranslation, withTranslation} from "react-i18next";
 import PlayerOnlineStatus from "../../containers/PlayerOnlineStatus";
 import WhoAmIIndicator from "../../containers/WhoAmIIndicator";
 import DraftOption from "../../models/DraftOption";
+import CustomName from './CustomName';
 
 interface IProps extends WithTranslation {
     preset: ModelPreset;
@@ -183,7 +184,7 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                         </>}
                     </div>
                     <div className="player-head">
-                        <h4 className="player-name">{this.props.name}</h4>
+                        <h4 className="player-name"><CustomName name={this.props.name}/></h4>
                     </div>
                     <div className="chosen">
                         {pickPanels.length > 0 && <>
