@@ -288,6 +288,7 @@
     "admin": "Administrador",
     "new": "Nuevo",
     "presetName": "Nombre del Borrador",
+    "transform": "Transformar selección en opciones personalizadas",
     "warning": "<0>Importante!</0><1/>Estas son opciones avanzadas, y probablemente no las necesites si simplemente quieres crear un draft de civilizaciónes comúnes.<3/><4>Por favor use URLs de imágenes que esperes que sigan funcionando en 10 años o mas!</4>",
     "option": {
       "animatedUnitImageUrlLeft": "URL de la imágen animada de la unidad (izquierda)",

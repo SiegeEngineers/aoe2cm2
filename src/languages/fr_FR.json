@@ -300,6 +300,7 @@
     "admin": "Administrateur",
     "new": "Nouveau",
     "presetName": "Nom du préréglage",
+    "transform": "Transformer en options personnalisables de draft",
     "warning": "<0>Attention !</0><1/> Ceci est une option avancée, et tu n'en as probablement pas besoin pour une draft normale de civilisations.<3/><4>Merci d'utiliser des urls d'images qui devraient durer 10 ans ou plus !</4>",
     "option": {
       "name": "Nom",

@@ -21,10 +21,10 @@ interface IProps extends WithTranslation {
 class PresetOption extends React.Component<IProps, object> {
 
     public render() {
-        if (this.props.preset === null || this.props.preset === undefined || this.props.preset.draftOptions === undefined) {
+        if (this.props.preset === null || this.props.preset === undefined || this.props.preset.options === undefined) {
             return null;
         }
-        const draftOption = this.props.preset.draftOptions[this.props.draftOptionIndex];
+        const draftOption = this.props.preset.options[this.props.draftOptionIndex];
         return (
             <div className={'columns'}>
                 <div className="column is-1 has-text-vcentered is-size-5 has-text-grey has-text-left">
@@ -133,10 +133,10 @@ class PresetOption extends React.Component<IProps, object> {
                 </div>
                 <div className="column is-1 has-text-vcentered flex-justify-center">
                     <button className="delete is-medium" onClick={() => {
-                        if (this.props.preset === undefined || this.props.preset === null || this.props.preset.draftOptions === undefined) {
+                        if (this.props.preset === undefined || this.props.preset === null || this.props.preset.options === undefined) {
                             return;
                         }
-                        const draftOptions = [...this.props.preset.draftOptions];
+                        const draftOptions = [...this.props.preset.options];
                         draftOptions.splice(this.props.draftOptionIndex, 1);
                         this.props.onPresetDraftOptionsChange(draftOptions);
                     }}/>
@@ -146,20 +146,20 @@ class PresetOption extends React.Component<IProps, object> {
     }
 
     private updateName(value: string) {
-        if (this.props.preset === null || this.props.preset === undefined || this.props.preset.draftOptions === undefined) {
+        if (this.props.preset === null || this.props.preset === undefined || this.props.preset.options === undefined) {
             return;
         }
-        const draftOptions = [...this.props.preset?.draftOptions];
+        const draftOptions = [...this.props.preset?.options];
         const oldDraftOption = draftOptions[this.props.draftOptionIndex];
         draftOptions[this.props.draftOptionIndex] = new DraftOption(value, value, oldDraftOption.imageUrls);
         this.props.onPresetDraftOptionsChange(draftOptions);
     }
 
     private updateImageUrlUnit(value: string) {
-        if (this.props.preset === null || this.props.preset === undefined || this.props.preset.draftOptions === undefined) {
+        if (this.props.preset === null || this.props.preset === undefined || this.props.preset.options === undefined) {
             return;
         }
-        const draftOptions = [...this.props.preset?.draftOptions];
+        const draftOptions = [...this.props.preset?.options];
         const oldDraftOption = draftOptions[this.props.draftOptionIndex];
         draftOptions[this.props.draftOptionIndex] = new DraftOption(oldDraftOption.id, oldDraftOption.name, {
             unit: value,
@@ -171,10 +171,10 @@ class PresetOption extends React.Component<IProps, object> {
     }
 
     private updateImageUrlEmblem(value: string) {
-        if (this.props.preset === null || this.props.preset === undefined || this.props.preset.draftOptions === undefined) {
+        if (this.props.preset === null || this.props.preset === undefined || this.props.preset.options === undefined) {
             return;
         }
-        const draftOptions = [...this.props.preset?.draftOptions];
+        const draftOptions = [...this.props.preset?.options];
         const oldDraftOption = draftOptions[this.props.draftOptionIndex];
         draftOptions[this.props.draftOptionIndex] = new DraftOption(oldDraftOption.id, oldDraftOption.name, {
             unit: oldDraftOption.imageUrls.unit,
@@ -186,10 +186,10 @@ class PresetOption extends React.Component<IProps, object> {
     }
 
     private updateImageUrlAnimatedLeft(value: string) {
-        if (this.props.preset === null || this.props.preset === undefined || this.props.preset.draftOptions === undefined) {
+        if (this.props.preset === null || this.props.preset === undefined || this.props.preset.options === undefined) {
             return;
         }
-        const draftOptions = [...this.props.preset?.draftOptions];
+        const draftOptions = [...this.props.preset?.options];
         const oldDraftOption = draftOptions[this.props.draftOptionIndex];
         draftOptions[this.props.draftOptionIndex] = new DraftOption(oldDraftOption.id, oldDraftOption.name, {
             unit: oldDraftOption.imageUrls.unit,
@@ -201,10 +201,10 @@ class PresetOption extends React.Component<IProps, object> {
     }
 
     private updateImageUrlAnimatedRight(value: string) {
-        if (this.props.preset === null || this.props.preset === undefined || this.props.preset.draftOptions === undefined) {
+        if (this.props.preset === null || this.props.preset === undefined || this.props.preset.options === undefined) {
             return;
         }
-        const draftOptions = [...this.props.preset?.draftOptions];
+        const draftOptions = [...this.props.preset?.options];
         const oldDraftOption = draftOptions[this.props.draftOptionIndex];
         draftOptions[this.props.draftOptionIndex] = new DraftOption(oldDraftOption.id, oldDraftOption.name, {
             unit: oldDraftOption.imageUrls.unit,

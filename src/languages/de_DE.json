@@ -300,6 +300,7 @@
     "admin": "Admin",
     "new": "Neu",
     "presetName": "Name des Presets",
+    "transform": "In individuelle Draft-Optionen umwandeln",
     "warning": "<0>Obacht!</0><1/>Dies ist eine Spezialfunktion, die du vermutlich nicht brauchst, wenn du lediglich einen normalen Zivilisations-Draft erstellen möchtest.<3/><4>Bitte benutze für die Bilder nur URLs, bei denen du davon ausgehst, dass sie auch in zehn oder mehr Jahren noch funktionieren!</4>",
     "option": {
       "name": "Name",

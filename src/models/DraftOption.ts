@@ -33,14 +33,14 @@ class DraftOption {
     public readonly id: string;
     public readonly name: string;
     public readonly imageUrls: ImageUrls;
-    public readonly translationPrefix: string;
+    public readonly i18nPrefix: string;
 
 
-    constructor(id: string, name: string = id, imageUrls: ImageUrls = DraftOption.defaultImageUrlsForCivilisation(id), translationPrefix = 'civs.') {
+    constructor(id: string, name: string = id, imageUrls: ImageUrls = DraftOption.defaultImageUrlsForCivilisation(id), i18nPrefix = 'civs.') {
         this.id = id;
         this.name = name;
         this.imageUrls = imageUrls;
-        this.translationPrefix = translationPrefix;
+        this.i18nPrefix = i18nPrefix;
     }
 
     public static defaultImageUrlsForCivilisation(name: string): ImageUrls {

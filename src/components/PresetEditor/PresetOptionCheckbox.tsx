@@ -28,6 +28,6 @@ export const PresetOptionCheckbox = withTranslation()(({presetOptions, value, on
                        }
                    }
                }/>
-        &nbsp;{t(value.translationPrefix + value.name)}
+        &nbsp;{t(value.i18nPrefix + value.name)}
     </label>
 );

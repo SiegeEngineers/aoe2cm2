@@ -3,8 +3,9 @@ import Civilisation from "../models/Civilisation";
 export const CivilisationEncoder = {
     encodeCivilisationArray(civilisations: Civilisation[]): string {
         let encoded: number = 0;
+        const civilisationIds = civilisations.map(value => value.id);
         for (let i = 0; i < Civilisation.ALL.length; i++) {
-            if (civilisations.includes(Civilisation.ALL[i])) {
+            if (civilisationIds.includes(Civilisation.ALL[i].id)) {
                 encoded += Math.pow(2, i);
             }
         }

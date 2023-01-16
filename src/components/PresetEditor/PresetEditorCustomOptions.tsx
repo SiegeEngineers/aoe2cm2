@@ -54,12 +54,12 @@ class PresetEditorCustomOptions extends React.Component<Props, object> {
     }
 
     private addNewDraftOption() {
-        if (this.props.preset === null || this.props.preset === undefined || this.props.preset.draftOptions === undefined) {
+        if (this.props.preset === null || this.props.preset === undefined || this.props.preset.options === undefined) {
             return;
         }
         this.props.onPresetDraftOptionsChange(
             [
-                ...this.props.preset.draftOptions,
+                ...this.props.preset.options,
                 new DraftOption('', '', {
                     unit: '',
                     emblem: '',

@@ -208,6 +208,15 @@ class PresetEditor extends React.Component<Props, State> {
 
                     {optionsSelection}
 
+                    {this.state.activeCivilisationSet !== CivilisationSet.CUSTOM &&
+                        <button className="button is-small mt-3" onClick={() => {
+                        this.setState({
+                            defaultDraftOptions: [],
+                            activeCivilisationSet: CivilisationSet.CUSTOM
+                        });
+                    }}><Trans i18nKey="presetEditor.transform">Transform into individual draft options</Trans>
+                    </button>}
+
                     <h3>2. <Trans i18nKey="presetEditor.turns">Turns</Trans></h3>
                     <TurnRow turns={this.props.preset.turns}/>
                     <div>
