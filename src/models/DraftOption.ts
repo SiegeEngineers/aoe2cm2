@@ -1,4 +1,4 @@
-interface ImageUrls {
+export interface ImageUrls {
     readonly unit: string;
     readonly emblem: string;
     readonly animated_left: string;
@@ -33,11 +33,14 @@ class DraftOption {
     public readonly id: string;
     public readonly name: string;
     public readonly imageUrls: ImageUrls;
+    public readonly translationPrefix: string;
 
-    constructor(id: string, name: string = id, imageUrls: ImageUrls = DraftOption.defaultImageUrlsForCivilisation(id)) {
+
+    constructor(id: string, name: string = id, imageUrls: ImageUrls = DraftOption.defaultImageUrlsForCivilisation(id), translationPrefix = 'civs.') {
         this.id = id;
         this.name = name;
         this.imageUrls = imageUrls;
+        this.translationPrefix = translationPrefix;
     }
 
     public static defaultImageUrlsForCivilisation(name: string): ImageUrls {

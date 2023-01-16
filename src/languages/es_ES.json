@@ -276,6 +276,11 @@
   "presetEditor": {
     "helpAndInstructions": "Ayuda y instrucciónes",
     "availableDraftOptions": "Opciones del Draft habilitadas",
+    "aoe2Civs": "Civilizaciones AoE2",
+    "aoe2Maps": "Mapas AOE2",
+    "aoe3Civs": "Civilizaciones AoE3",
+    "aoe4Civs": "Civilizaciones AoE4",
+    "customOptions": "Personalizado",
     "turns": "Turnos",
     "createSaveDraft": "Crear Draft o Guardar",
     "host": "Anfitrión",

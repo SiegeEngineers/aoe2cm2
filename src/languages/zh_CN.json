@@ -288,6 +288,11 @@
   "presetEditor": {
     "helpAndInstructions": "帮助/说明",
     "availableDraftOptions": "BP可选项",
+    "aoe2Civs": "帝国2民族",
+    "aoe2Maps": "帝国2地图",
+    "aoe3Civs": "帝国3民族",
+    "aoe4Civs": "帝国4民族",
+    "customOptions": "自定义选项",
     "turns": "轮次",
     "createSaveDraft": "建立或保存",
     "host": "主机",

@@ -31,8 +31,7 @@ import Aoe3Civilisation from "../../models/Aoe3Civilisation";
 import Aoe4Civilisation from "../../models/Aoe4Civilisation";
 import {RouteComponentProps} from "react-router";
 import CivilisationSet from "../../models/CivilisationSet";
-import aoe3Civilisation from "../../models/Aoe3Civilisation";
-import aoe4Civilisation from "../../models/Aoe4Civilisation";
+import Aoe2Map from "../../models/Aoe2Map";
 
 interface Props extends WithTranslation, RouteComponentProps<any> {
     preset: Preset | null,
@@ -64,6 +63,9 @@ class PresetEditor extends React.Component<Props, State> {
             case CivilisationSet.AOE2:
                 this.setState({defaultDraftOptions: Civilisation.ALL, activeCivilisationSet: CivilisationSet.AOE2});
                 break;
+            case CivilisationSet.AOE2MAPS:
+                this.setState({defaultDraftOptions: Aoe2Map.ALL, activeCivilisationSet: CivilisationSet.AOE2MAPS});
+                break;
             case CivilisationSet.AOE3:
                 this.setState({defaultDraftOptions: Aoe3Civilisation.ALL, activeCivilisationSet: CivilisationSet.AOE3});
                 break;
@@ -80,6 +82,9 @@ class PresetEditor extends React.Component<Props, State> {
                 default:
                 case CivilisationSet.AOE2:
                     this.props.onPresetDraftOptionsChange([...Civilisation.ALL_ACTIVE]);
+                    break;
+                case CivilisationSet.AOE2MAPS:
+                    this.props.onPresetDraftOptionsChange([]);
                     break;
                 case CivilisationSet.AOE3:
                     this.props.onPresetDraftOptionsChange([...Aoe3Civilisation.ALL]);
@@ -106,9 +111,11 @@ class PresetEditor extends React.Component<Props, State> {
                 const draftOptions = this.props.preset.draftOptions;
                 if (draftOptions.every(draftOption => Civilisation.ALL.some(aoe2civ => DraftOption.equals(draftOption, aoe2civ)))) {
                     return CivilisationSet.AOE2;
-                } else if (draftOptions.every(draftOption => aoe3Civilisation.ALL.some(aoe3civ => DraftOption.equals(draftOption, aoe3civ)))) {
+                } else if (draftOptions.every(draftOption => Aoe2Map.ALL.some(aoe2map => DraftOption.equals(draftOption, aoe2map)))) {
+                    return CivilisationSet.AOE2MAPS;
+                } else if (draftOptions.every(draftOption => Aoe3Civilisation.ALL.some(aoe3civ => DraftOption.equals(draftOption, aoe3civ)))) {
                     return CivilisationSet.AOE3;
-                } else if (draftOptions.every(draftOption => aoe4Civilisation.ALL.some(aoe4civ => DraftOption.equals(draftOption, aoe4civ)))) {
+                } else if (draftOptions.every(draftOption => Aoe4Civilisation.ALL.some(aoe4civ => DraftOption.equals(draftOption, aoe4civ)))) {
                     return CivilisationSet.AOE4;
                 } else {
                     return CivilisationSet.CUSTOM;
@@ -150,6 +157,17 @@ class PresetEditor extends React.Component<Props, State> {
                                     this.props.onPresetDraftOptionsChange([...Civilisation.ALL_ACTIVE]);
                                 }}>
                                     <Trans i18nKey="presetEditor.aoe2Civs">AoE2 civs</Trans>
+                                </a>
+                            </li>
+                            <li className={this.state.activeCivilisationSet === CivilisationSet.AOE2MAPS ? "is-active" : ""}>
+                                <a href="#aoe2maps" onClick={() => {
+                                    this.setState({
+                                        defaultDraftOptions: Aoe2Map.ALL,
+                                        activeCivilisationSet: CivilisationSet.AOE2MAPS
+                                    });
+                                    this.props.onPresetDraftOptionsChange([]);
+                                }}>
+                                    <Trans i18nKey="presetEditor.aoe2Maps">AoE2 maps</Trans>
                                 </a>
                             </li>
                             <li className={this.state.activeCivilisationSet === CivilisationSet.AOE3 ? "is-active" : ""}>
