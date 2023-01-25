@@ -138,6 +138,21 @@ Or, share the file with `hszemi#2325` or `Jester#5115` on Discord.
 - `zh_CN`: HeavenlyChorus#8242
 - `zh_TW`: jkb#2180
 
+## Deploying
+
+Locally:
+```shell
+npm run build-client
+rsync -avzP build/* aoe2cm:~/aoe2cm2/build
+# or rsync -avzP build/* aoe2se:~/aoe2cm2/build for the staging environment
+```
+
+On the server:
+```shell
+git pull --rebase
+./deploy.sh
+```
+
 ## Housekeeping
 
 To move all drafts older than X days to another folder, execute the following in `data/current`:
