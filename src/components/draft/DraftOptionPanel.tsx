@@ -9,10 +9,10 @@ import {Validator} from "../../models/Validator";
 import {DraftsStore} from "../../models/DraftsStore";
 import Draft from "../../models/Draft";
 import {IDraftState} from "../../types";
-import Preset from "../../models/Preset";
 import DraftOption from "../../models/DraftOption";
 import i18next from "i18next";
 import {ISetHighlightedAction} from "../../actions";
+import Marker from "./Marker";
 
 interface IProps extends WithTranslation {
     draftOption?: DraftOption;
@@ -43,15 +43,13 @@ interface IProps extends WithTranslation {
 
 interface IState {
     used: string;
+    counter: number;
 }
 
 class DraftOptionPanel extends React.Component<IProps, IState> {
-
-    USED_CLASSES = ['is-hidden', 'used-crown', 'used-skull', 'used-check'];
-
     constructor(props: IProps) {
         super(props);
-        this.state = {used: this.USED_CLASSES[0]};
+        this.state = {used: 'is-hidden', counter: 0};
     }
 
     public render() {
@@ -88,7 +86,7 @@ class DraftOptionPanel extends React.Component<IProps, IState> {
         if (this.props.byOpponent) {
             className += ' by-opponent';
         }
-        let onClickAction = () => {
+        let onClickAction = (e: React.MouseEvent<HTMLDivElement>) => {
         };
         if (this.props.draftOptionPanelType === DraftOptionPanelType.CHOICE) {
             className += ' is-inline-block';
@@ -101,11 +99,6 @@ class DraftOptionPanel extends React.Component<IProps, IState> {
                 className += ' choice-disabled';
             }
         } else {
-            if ((this.props.draftOptionPanelType === DraftOptionPanelType.PICK || this.props.draftOptionPanelType === DraftOptionPanelType.STEAL)) {
-                onClickAction = () => {
-                    this.setState({...this.state, used: this.nextUsed(this.state.used)});
-                }
-            }
             className += ' is-inline-block';
         }
         if (this.props.active) {
@@ -133,7 +126,7 @@ class DraftOptionPanel extends React.Component<IProps, IState> {
             stealMarkerClass += ' is-hidden';
         }
         let usedMarkerClass = "stretchy-image used-marker " + this.state.used;
-        if (this.state.used !== this.USED_CLASSES[0]) {
+        if (this.state.used !== 'is-hidden') {
             className += ' is-used';
         }
         let randomMarkerClass = "random-pick";
@@ -165,6 +158,45 @@ class DraftOptionPanel extends React.Component<IProps, IState> {
             }
         }
 
+        let markerSelection = null;
+        if (this.props.draftOptionPanelType === DraftOptionPanelType.PICK || this.props.draftOptionPanelType === DraftOptionPanelType.STEAL) {
+            markerSelection = <div className="marker-selection">
+                <div className="columns has-background-white-bis">
+                    <div className="column select-crown-icon" onClick={() => this.toggleMarker('used-crown')}>
+                    </div>
+                    <div className="column select-skull-icon" onClick={() => this.toggleMarker('used-skull')}>
+                    </div>
+                    <div className="column select-check-icon" onClick={() => this.toggleMarker('used-check')}>
+                    </div>
+                    <div className="column dropdown is-up is-right is-hoverable">
+                        <div className="dropdown-trigger has-text-centered">
+                            {this.state.counter}
+                        </div>
+                        <div className="dropdown-menu">
+                            <div className="dropdown-content">
+                                <div className="is-flex is-flex-direction-column">
+                                    <div className="is-flex is-flex-direction-row">
+                                        <Marker number={0} onClick={() => this.setState({counter: 0})}/>
+                                        <Marker number={1} onClick={() => this.setState({counter: 1})}/>
+                                        <Marker number={2} onClick={() => this.setState({counter: 2})}/>
+                                        <Marker number={3} onClick={() => this.setState({counter: 3})}/>
+                                        <Marker number={4} onClick={() => this.setState({counter: 4})}/>
+                                    </div>
+                                    <div className="is-flex is-flex-direction-row">
+                                        <Marker number={5} onClick={() => this.setState({counter: 5})}/>
+                                        <Marker number={6} onClick={() => this.setState({counter: 6})}/>
+                                        <Marker number={7} onClick={() => this.setState({counter: 7})}/>
+                                        <Marker number={8} onClick={() => this.setState({counter: 8})}/>
+                                        <Marker number={9} onClick={() => this.setState({counter: 9})}/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>;
+        }
+
         return (
             <div className={className} onClick={onClickAction}
                  onMouseEnter={onMouseEnter}
@@ -172,6 +204,7 @@ class DraftOptionPanel extends React.Component<IProps, IState> {
             >
                 <div className={'stretchy-background'}/>
                 <div className={contentClass}>
+                    {markerSelection}
                     <div className="stretchy-wrapper">
                         <div className={imageContainerClass}>
                             {image}
@@ -181,6 +214,9 @@ class DraftOptionPanel extends React.Component<IProps, IState> {
                         <div className={stealRandomMarkerClass} title="Random Steal"/>
                         <div className={snipeMarkerClass}/>
                         <div className={snipeRandomMarkerClass} title="Random Snipe"/>
+                        <div className="stretchy-image counter">
+                            {this.state.counter > 0 ? <Marker number={this.state.counter}/> : ''}
+                        </div>
                         <div className={usedMarkerClass}/>
                         <div className={textClass}>
                             {i18next.t([draftOptionKey, draftOptionName])}
@@ -197,7 +233,7 @@ class DraftOptionPanel extends React.Component<IProps, IState> {
                 || (this.props.side === Player.GUEST && this.props.flipped));
     }
 
-    private onClickCiv = () => {
+    private onClickCiv = (e: React.MouseEvent<HTMLDivElement>) => {
         if (Util.notUndefined(this.props.onClickCivilisation, this.props.draftOption, this.props.whoAmI, this.props.player, this.props.triggerAction)) {
             const whoAmI = this.props.whoAmI as Player;
             const player = this.props.player as Player;
@@ -238,19 +274,12 @@ class DraftOptionPanel extends React.Component<IProps, IState> {
         return false;
     }
 
-    private isDraftCompleted(): boolean {
-        if (this.props.draft === undefined || this.props.draft.preset === undefined) {
-            return false;
+    private toggleMarker(marker: string) {
+        if (this.state.used === marker) {
+            this.setState({used: 'is-hidden'});
         } else {
-            const draft = this.props.draft;
-            const preset = draft.preset as Preset;
-            return this.props.nextAction >= preset.turns.length;
+            this.setState({used: marker});
         }
-    }
-
-    private nextUsed(current: string) {
-        const index = (this.USED_CLASSES.indexOf(current) + 1) % this.USED_CLASSES.length;
-        return this.USED_CLASSES[index];
     }
 }
 

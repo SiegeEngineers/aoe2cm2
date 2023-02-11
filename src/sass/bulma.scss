@@ -369,6 +369,15 @@ div.stretchy-wrapper > div.stretchy-image {
 
 .civ-panel {
   position: relative;
+  user-select: none;
+}
+
+.civ-panel .column {
+  padding: 0;
+}
+
+.civ-panel .dropdown-menu {
+  min-width: 0;
 }
 
 div.stretchy-background {
@@ -754,6 +763,55 @@ img.directional {
   background-image: url('../images/check.svg');
 }
 
+.select-crown-icon {
+  background-image: url('../images/crown.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.select-skull-icon {
+  background-image: url('../images/skull.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.select-check-icon {
+  background-image: url('../images/check.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.marker-selection {
+  position: relative;
+  z-index: 100;
+}
+.marker-selection,
+.marker-selection * {
+  transition: none;
+}
+
+.marker-selection .dropdown-content {
+  padding: .2rem;
+}
+
+.marker {
+  display: inline-block;
+  border-radius: .2rem;
+  width: 1.5em;
+  height: 1.5em;
+  font-weight: bold;
+  font-size: 80%;
+  text-align: center;
+}
+
+.civ-panel .columns {
+  visibility: hidden;
+}
+
+.civ-panel:hover .columns {
+  visibility: visible;
+}
+
 .green-status-marker {
   color: $pick-green;
 }
@@ -941,4 +999,11 @@ html.has-simple-ui {
 
 .preset-list td:nth-child(3) {
   min-width: 30ex;
+}
+
+.stretchy-wrapper .counter {
+  text-align: right;
+  margin-right: .2em;
+  font-size: 110%;
+  color: white;
 }
