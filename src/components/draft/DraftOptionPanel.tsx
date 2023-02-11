@@ -101,7 +101,7 @@ class DraftOptionPanel extends React.Component<IProps, IState> {
                 className += ' choice-disabled';
             }
         } else {
-            if ((this.props.draftOptionPanelType === DraftOptionPanelType.PICK || this.props.draftOptionPanelType === DraftOptionPanelType.STEAL) && this.isDraftCompleted()) {
+            if ((this.props.draftOptionPanelType === DraftOptionPanelType.PICK || this.props.draftOptionPanelType === DraftOptionPanelType.STEAL)) {
                 onClickAction = () => {
                     this.setState({...this.state, used: this.nextUsed(this.state.used)});
                 }
