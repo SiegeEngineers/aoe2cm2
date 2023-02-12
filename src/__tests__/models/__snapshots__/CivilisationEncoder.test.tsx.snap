@@ -4,6 +4,7 @@ exports[`assert order of civilisations has not changed 1`] = `
 Array [
   Civilisation {
     "gameVersion": 2,
+    "i18nPrefix": "civs.",
     "id": "Aztecs",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/aztecs-left.apng",
@@ -15,6 +16,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 4,
+    "i18nPrefix": "civs.",
     "id": "Berbers",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/berbers-left.apng",
@@ -26,6 +28,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 1,
+    "i18nPrefix": "civs.",
     "id": "Britons",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/britons-left.apng",
@@ -37,6 +40,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 5,
+    "i18nPrefix": "civs.",
     "id": "Burmese",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/burmese-left.apng",
@@ -48,6 +52,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 1,
+    "i18nPrefix": "civs.",
     "id": "Byzantines",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/byzantines-left.apng",
@@ -59,6 +64,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 1,
+    "i18nPrefix": "civs.",
     "id": "Celts",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/celts-left.apng",
@@ -70,6 +76,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 1,
+    "i18nPrefix": "civs.",
     "id": "Chinese",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/chinese-left.apng",
@@ -81,6 +88,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 4,
+    "i18nPrefix": "civs.",
     "id": "Ethiopians",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/ethiopians-left.apng",
@@ -92,6 +100,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 1,
+    "i18nPrefix": "civs.",
     "id": "Franks",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/franks-left.apng",
@@ -103,6 +112,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 1,
+    "i18nPrefix": "civs.",
     "id": "Goths",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/goths-left.apng",
@@ -114,6 +124,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 2,
+    "i18nPrefix": "civs.",
     "id": "Huns",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/huns-left.apng",
@@ -125,6 +136,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 3,
+    "i18nPrefix": "civs.",
     "id": "Incas",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/incas-left.apng",
@@ -136,6 +148,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 3,
+    "i18nPrefix": "civs.",
     "id": "Indians",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/indians-left.apng",
@@ -147,6 +160,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 3,
+    "i18nPrefix": "civs.",
     "id": "Italians",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/italians-left.apng",
@@ -158,6 +172,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 1,
+    "i18nPrefix": "civs.",
     "id": "Japanese",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/japanese-left.apng",
@@ -169,6 +184,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 5,
+    "i18nPrefix": "civs.",
     "id": "Khmer",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/khmer-left.apng",
@@ -180,6 +196,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 2,
+    "i18nPrefix": "civs.",
     "id": "Koreans",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/koreans-left.apng",
@@ -191,6 +208,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 3,
+    "i18nPrefix": "civs.",
     "id": "Magyars",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/magyars-left.apng",
@@ -202,6 +220,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 5,
+    "i18nPrefix": "civs.",
     "id": "Malay",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/malay-left.apng",
@@ -213,6 +232,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 4,
+    "i18nPrefix": "civs.",
     "id": "Malians",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/malians-left.apng",
@@ -224,6 +244,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 2,
+    "i18nPrefix": "civs.",
     "id": "Mayans",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/mayans-left.apng",
@@ -235,6 +256,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 1,
+    "i18nPrefix": "civs.",
     "id": "Mongols",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/mongols-left.apng",
@@ -246,6 +268,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 1,
+    "i18nPrefix": "civs.",
     "id": "Persians",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/persians-left.apng",
@@ -257,6 +280,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 4,
+    "i18nPrefix": "civs.",
     "id": "Portuguese",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/portuguese-left.apng",
@@ -268,6 +292,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 1,
+    "i18nPrefix": "civs.",
     "id": "Saracens",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/saracens-left.apng",
@@ -279,6 +304,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 3,
+    "i18nPrefix": "civs.",
     "id": "Slavs",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/slavs-left.apng",
@@ -290,6 +316,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 2,
+    "i18nPrefix": "civs.",
     "id": "Spanish",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/spanish-left.apng",
@@ -301,6 +328,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 1,
+    "i18nPrefix": "civs.",
     "id": "Teutons",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/teutons-left.apng",
@@ -312,6 +340,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 1,
+    "i18nPrefix": "civs.",
     "id": "Turks",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/turks-left.apng",
@@ -323,6 +352,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 5,
+    "i18nPrefix": "civs.",
     "id": "Vietnamese",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/vietnamese-left.apng",
@@ -334,6 +364,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 1,
+    "i18nPrefix": "civs.",
     "id": "Vikings",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/vikings-left.apng",
@@ -345,6 +376,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 6,
+    "i18nPrefix": "civs.",
     "id": "Bulgarians",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/bulgarians-left.apng",
@@ -356,6 +388,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 6,
+    "i18nPrefix": "civs.",
     "id": "Cumans",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/cumans-left.apng",
@@ -367,6 +400,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 6,
+    "i18nPrefix": "civs.",
     "id": "Lithuanians",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/lithuanians-left.apng",
@@ -378,6 +412,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 6,
+    "i18nPrefix": "civs.",
     "id": "Tatars",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/tatars-left.apng",
@@ -389,6 +424,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 7,
+    "i18nPrefix": "civs.",
     "id": "Burgundians",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/burgundians-left.apng",
@@ -400,6 +436,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 7,
+    "i18nPrefix": "civs.",
     "id": "Sicilians",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/sicilians-left.apng",
@@ -411,6 +448,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 8,
+    "i18nPrefix": "civs.",
     "id": "Bohemians",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/bohemians-left.apng",
@@ -422,6 +460,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 8,
+    "i18nPrefix": "civs.",
     "id": "Poles",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/poles-left.apng",
@@ -433,6 +472,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 9,
+    "i18nPrefix": "civs.",
     "id": "Bengalis",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/bengalis-left.apng",
@@ -444,6 +484,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 9,
+    "i18nPrefix": "civs.",
     "id": "Dravidians",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/dravidians-left.apng",
@@ -455,6 +496,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 9,
+    "i18nPrefix": "civs.",
     "id": "Gurjaras",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/gurjaras-left.apng",
@@ -466,6 +508,7 @@ Array [
   },
   Civilisation {
     "gameVersion": 9,
+    "i18nPrefix": "civs.",
     "id": "Hindustanis",
     "imageUrls": Object {
       "animated_left": "/images/units-animated/hindustanis-left.apng",

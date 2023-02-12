@@ -6,6 +6,7 @@ exports[`BAN CivPanels render correctly 1`] = `
   draftOption={
     Civilisation {
       "gameVersion": 2,
+      "i18nPrefix": "civs.",
       "id": "Aztecs",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/aztecs-left.apng",
@@ -29,6 +30,7 @@ exports[`BAN CivPanels render correctly 2`] = `
   draftOption={
     Civilisation {
       "gameVersion": 4,
+      "i18nPrefix": "civs.",
       "id": "Berbers",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/berbers-left.apng",
@@ -52,6 +54,7 @@ exports[`BAN CivPanels render correctly 3`] = `
   draftOption={
     Civilisation {
       "gameVersion": 1,
+      "i18nPrefix": "civs.",
       "id": "Britons",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/britons-left.apng",
@@ -75,6 +78,7 @@ exports[`BAN CivPanels render correctly 4`] = `
   draftOption={
     Civilisation {
       "gameVersion": 5,
+      "i18nPrefix": "civs.",
       "id": "Burmese",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/burmese-left.apng",
@@ -98,6 +102,7 @@ exports[`BAN CivPanels render correctly 5`] = `
   draftOption={
     Civilisation {
       "gameVersion": 1,
+      "i18nPrefix": "civs.",
       "id": "Byzantines",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/byzantines-left.apng",
@@ -121,6 +126,7 @@ exports[`BAN CivPanels render correctly 6`] = `
   draftOption={
     Civilisation {
       "gameVersion": 1,
+      "i18nPrefix": "civs.",
       "id": "Celts",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/celts-left.apng",
@@ -144,6 +150,7 @@ exports[`BAN CivPanels render correctly 7`] = `
   draftOption={
     Civilisation {
       "gameVersion": 1,
+      "i18nPrefix": "civs.",
       "id": "Chinese",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/chinese-left.apng",
@@ -167,6 +174,7 @@ exports[`BAN CivPanels render correctly 8`] = `
   draftOption={
     Civilisation {
       "gameVersion": 4,
+      "i18nPrefix": "civs.",
       "id": "Ethiopians",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/ethiopians-left.apng",
@@ -190,6 +198,7 @@ exports[`BAN CivPanels render correctly 9`] = `
   draftOption={
     Civilisation {
       "gameVersion": 1,
+      "i18nPrefix": "civs.",
       "id": "Franks",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/franks-left.apng",
@@ -213,6 +222,7 @@ exports[`BAN CivPanels render correctly 10`] = `
   draftOption={
     Civilisation {
       "gameVersion": 1,
+      "i18nPrefix": "civs.",
       "id": "Goths",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/goths-left.apng",
@@ -236,6 +246,7 @@ exports[`BAN CivPanels render correctly 11`] = `
   draftOption={
     Civilisation {
       "gameVersion": 2,
+      "i18nPrefix": "civs.",
       "id": "Huns",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/huns-left.apng",
@@ -259,6 +270,7 @@ exports[`BAN CivPanels render correctly 12`] = `
   draftOption={
     Civilisation {
       "gameVersion": 3,
+      "i18nPrefix": "civs.",
       "id": "Incas",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/incas-left.apng",
@@ -282,6 +294,7 @@ exports[`BAN CivPanels render correctly 13`] = `
   draftOption={
     Civilisation {
       "gameVersion": 3,
+      "i18nPrefix": "civs.",
       "id": "Indians",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/indians-left.apng",
@@ -305,6 +318,7 @@ exports[`BAN CivPanels render correctly 14`] = `
   draftOption={
     Civilisation {
       "gameVersion": 3,
+      "i18nPrefix": "civs.",
       "id": "Italians",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/italians-left.apng",
@@ -328,6 +342,7 @@ exports[`BAN CivPanels render correctly 15`] = `
   draftOption={
     Civilisation {
       "gameVersion": 1,
+      "i18nPrefix": "civs.",
       "id": "Japanese",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/japanese-left.apng",
@@ -351,6 +366,7 @@ exports[`BAN CivPanels render correctly 16`] = `
   draftOption={
     Civilisation {
       "gameVersion": 5,
+      "i18nPrefix": "civs.",
       "id": "Khmer",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/khmer-left.apng",
@@ -374,6 +390,7 @@ exports[`BAN CivPanels render correctly 17`] = `
   draftOption={
     Civilisation {
       "gameVersion": 2,
+      "i18nPrefix": "civs.",
       "id": "Koreans",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/koreans-left.apng",
@@ -397,6 +414,7 @@ exports[`BAN CivPanels render correctly 18`] = `
   draftOption={
     Civilisation {
       "gameVersion": 3,
+      "i18nPrefix": "civs.",
       "id": "Magyars",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/magyars-left.apng",
@@ -420,6 +438,7 @@ exports[`BAN CivPanels render correctly 19`] = `
   draftOption={
     Civilisation {
       "gameVersion": 5,
+      "i18nPrefix": "civs.",
       "id": "Malay",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/malay-left.apng",
@@ -443,6 +462,7 @@ exports[`BAN CivPanels render correctly 20`] = `
   draftOption={
     Civilisation {
       "gameVersion": 4,
+      "i18nPrefix": "civs.",
       "id": "Malians",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/malians-left.apng",
@@ -466,6 +486,7 @@ exports[`BAN CivPanels render correctly 21`] = `
   draftOption={
     Civilisation {
       "gameVersion": 2,
+      "i18nPrefix": "civs.",
       "id": "Mayans",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/mayans-left.apng",
@@ -489,6 +510,7 @@ exports[`BAN CivPanels render correctly 22`] = `
   draftOption={
     Civilisation {
       "gameVersion": 1,
+      "i18nPrefix": "civs.",
       "id": "Mongols",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/mongols-left.apng",
@@ -512,6 +534,7 @@ exports[`BAN CivPanels render correctly 23`] = `
   draftOption={
     Civilisation {
       "gameVersion": 1,
+      "i18nPrefix": "civs.",
       "id": "Persians",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/persians-left.apng",
@@ -535,6 +558,7 @@ exports[`BAN CivPanels render correctly 24`] = `
   draftOption={
     Civilisation {
       "gameVersion": 4,
+      "i18nPrefix": "civs.",
       "id": "Portuguese",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/portuguese-left.apng",
@@ -558,6 +582,7 @@ exports[`BAN CivPanels render correctly 25`] = `
   draftOption={
     Civilisation {
       "gameVersion": 1,
+      "i18nPrefix": "civs.",
       "id": "Saracens",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/saracens-left.apng",
@@ -581,6 +606,7 @@ exports[`BAN CivPanels render correctly 26`] = `
   draftOption={
     Civilisation {
       "gameVersion": 3,
+      "i18nPrefix": "civs.",
       "id": "Slavs",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/slavs-left.apng",
@@ -604,6 +630,7 @@ exports[`BAN CivPanels render correctly 27`] = `
   draftOption={
     Civilisation {
       "gameVersion": 2,
+      "i18nPrefix": "civs.",
       "id": "Spanish",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/spanish-left.apng",
@@ -627,6 +654,7 @@ exports[`BAN CivPanels render correctly 28`] = `
   draftOption={
     Civilisation {
       "gameVersion": 1,
+      "i18nPrefix": "civs.",
       "id": "Teutons",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/teutons-left.apng",
@@ -650,6 +678,7 @@ exports[`BAN CivPanels render correctly 29`] = `
   draftOption={
     Civilisation {
       "gameVersion": 1,
+      "i18nPrefix": "civs.",
       "id": "Turks",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/turks-left.apng",
@@ -673,6 +702,7 @@ exports[`BAN CivPanels render correctly 30`] = `
   draftOption={
     Civilisation {
       "gameVersion": 5,
+      "i18nPrefix": "civs.",
       "id": "Vietnamese",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/vietnamese-left.apng",
@@ -696,6 +726,7 @@ exports[`BAN CivPanels render correctly 31`] = `
   draftOption={
     Civilisation {
       "gameVersion": 1,
+      "i18nPrefix": "civs.",
       "id": "Vikings",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/vikings-left.apng",
@@ -719,6 +750,7 @@ exports[`BAN CivPanels render correctly 32`] = `
   draftOption={
     Civilisation {
       "gameVersion": 6,
+      "i18nPrefix": "civs.",
       "id": "Bulgarians",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/bulgarians-left.apng",
@@ -742,6 +774,7 @@ exports[`BAN CivPanels render correctly 33`] = `
   draftOption={
     Civilisation {
       "gameVersion": 6,
+      "i18nPrefix": "civs.",
       "id": "Cumans",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/cumans-left.apng",
@@ -765,6 +798,7 @@ exports[`BAN CivPanels render correctly 34`] = `
   draftOption={
     Civilisation {
       "gameVersion": 6,
+      "i18nPrefix": "civs.",
       "id": "Lithuanians",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/lithuanians-left.apng",
@@ -788,6 +822,7 @@ exports[`BAN CivPanels render correctly 35`] = `
   draftOption={
     Civilisation {
       "gameVersion": 6,
+      "i18nPrefix": "civs.",
       "id": "Tatars",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/tatars-left.apng",
@@ -811,6 +846,7 @@ exports[`BAN CivPanels render correctly 36`] = `
   draftOption={
     Civilisation {
       "gameVersion": 7,
+      "i18nPrefix": "civs.",
       "id": "Burgundians",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/burgundians-left.apng",
@@ -834,6 +870,7 @@ exports[`BAN CivPanels render correctly 37`] = `
   draftOption={
     Civilisation {
       "gameVersion": 7,
+      "i18nPrefix": "civs.",
       "id": "Sicilians",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/sicilians-left.apng",
@@ -857,6 +894,7 @@ exports[`BAN CivPanels render correctly 38`] = `
   draftOption={
     Civilisation {
       "gameVersion": 8,
+      "i18nPrefix": "civs.",
       "id": "Bohemians",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/bohemians-left.apng",
@@ -880,6 +918,7 @@ exports[`BAN CivPanels render correctly 39`] = `
   draftOption={
     Civilisation {
       "gameVersion": 8,
+      "i18nPrefix": "civs.",
       "id": "Poles",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/poles-left.apng",
@@ -903,6 +942,7 @@ exports[`BAN CivPanels render correctly 40`] = `
   draftOption={
     Civilisation {
       "gameVersion": 9,
+      "i18nPrefix": "civs.",
       "id": "Bengalis",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/bengalis-left.apng",
@@ -926,6 +966,7 @@ exports[`BAN CivPanels render correctly 41`] = `
   draftOption={
     Civilisation {
       "gameVersion": 9,
+      "i18nPrefix": "civs.",
       "id": "Dravidians",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/dravidians-left.apng",
@@ -949,6 +990,7 @@ exports[`BAN CivPanels render correctly 42`] = `
   draftOption={
     Civilisation {
       "gameVersion": 9,
+      "i18nPrefix": "civs.",
       "id": "Gurjaras",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/gurjaras-left.apng",
@@ -972,6 +1014,7 @@ exports[`BAN CivPanels render correctly 43`] = `
   draftOption={
     Civilisation {
       "gameVersion": 9,
+      "i18nPrefix": "civs.",
       "id": "Hindustanis",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/hindustanis-left.apng",
@@ -995,6 +1038,7 @@ exports[`PICK CivPanels render correctly 1`] = `
   draftOption={
     Civilisation {
       "gameVersion": 2,
+      "i18nPrefix": "civs.",
       "id": "Aztecs",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/aztecs-left.apng",
@@ -1018,6 +1062,7 @@ exports[`PICK CivPanels render correctly 2`] = `
   draftOption={
     Civilisation {
       "gameVersion": 4,
+      "i18nPrefix": "civs.",
       "id": "Berbers",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/berbers-left.apng",
@@ -1041,6 +1086,7 @@ exports[`PICK CivPanels render correctly 3`] = `
   draftOption={
     Civilisation {
       "gameVersion": 1,
+      "i18nPrefix": "civs.",
       "id": "Britons",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/britons-left.apng",
@@ -1064,6 +1110,7 @@ exports[`PICK CivPanels render correctly 4`] = `
   draftOption={
     Civilisation {
       "gameVersion": 5,
+      "i18nPrefix": "civs.",
       "id": "Burmese",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/burmese-left.apng",
@@ -1087,6 +1134,7 @@ exports[`PICK CivPanels render correctly 5`] = `
   draftOption={
     Civilisation {
       "gameVersion": 1,
+      "i18nPrefix": "civs.",
       "id": "Byzantines",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/byzantines-left.apng",
@@ -1110,6 +1158,7 @@ exports[`PICK CivPanels render correctly 6`] = `
   draftOption={
     Civilisation {
       "gameVersion": 1,
+      "i18nPrefix": "civs.",
       "id": "Celts",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/celts-left.apng",
@@ -1133,6 +1182,7 @@ exports[`PICK CivPanels render correctly 7`] = `
   draftOption={
     Civilisation {
       "gameVersion": 1,
+      "i18nPrefix": "civs.",
       "id": "Chinese",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/chinese-left.apng",
@@ -1156,6 +1206,7 @@ exports[`PICK CivPanels render correctly 8`] = `
   draftOption={
     Civilisation {
       "gameVersion": 4,
+      "i18nPrefix": "civs.",
       "id": "Ethiopians",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/ethiopians-left.apng",
@@ -1179,6 +1230,7 @@ exports[`PICK CivPanels render correctly 9`] = `
   draftOption={
     Civilisation {
       "gameVersion": 1,
+      "i18nPrefix": "civs.",
       "id": "Franks",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/franks-left.apng",
@@ -1202,6 +1254,7 @@ exports[`PICK CivPanels render correctly 10`] = `
   draftOption={
     Civilisation {
       "gameVersion": 1,
+      "i18nPrefix": "civs.",
       "id": "Goths",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/goths-left.apng",
@@ -1225,6 +1278,7 @@ exports[`PICK CivPanels render correctly 11`] = `
   draftOption={
     Civilisation {
       "gameVersion": 2,
+      "i18nPrefix": "civs.",
       "id": "Huns",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/huns-left.apng",
@@ -1248,6 +1302,7 @@ exports[`PICK CivPanels render correctly 12`] = `
   draftOption={
     Civilisation {
       "gameVersion": 3,
+      "i18nPrefix": "civs.",
       "id": "Incas",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/incas-left.apng",
@@ -1271,6 +1326,7 @@ exports[`PICK CivPanels render correctly 13`] = `
   draftOption={
     Civilisation {
       "gameVersion": 3,
+      "i18nPrefix": "civs.",
       "id": "Indians",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/indians-left.apng",
@@ -1294,6 +1350,7 @@ exports[`PICK CivPanels render correctly 14`] = `
   draftOption={
     Civilisation {
       "gameVersion": 3,
+      "i18nPrefix": "civs.",
       "id": "Italians",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/italians-left.apng",
@@ -1317,6 +1374,7 @@ exports[`PICK CivPanels render correctly 15`] = `
   draftOption={
     Civilisation {
       "gameVersion": 1,
+      "i18nPrefix": "civs.",
       "id": "Japanese",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/japanese-left.apng",
@@ -1340,6 +1398,7 @@ exports[`PICK CivPanels render correctly 16`] = `
   draftOption={
     Civilisation {
       "gameVersion": 5,
+      "i18nPrefix": "civs.",
       "id": "Khmer",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/khmer-left.apng",
@@ -1363,6 +1422,7 @@ exports[`PICK CivPanels render correctly 17`] = `
   draftOption={
     Civilisation {
       "gameVersion": 2,
+      "i18nPrefix": "civs.",
       "id": "Koreans",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/koreans-left.apng",
@@ -1386,6 +1446,7 @@ exports[`PICK CivPanels render correctly 18`] = `
   draftOption={
     Civilisation {
       "gameVersion": 3,
+      "i18nPrefix": "civs.",
       "id": "Magyars",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/magyars-left.apng",
@@ -1409,6 +1470,7 @@ exports[`PICK CivPanels render correctly 19`] = `
   draftOption={
     Civilisation {
       "gameVersion": 5,
+      "i18nPrefix": "civs.",
       "id": "Malay",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/malay-left.apng",
@@ -1432,6 +1494,7 @@ exports[`PICK CivPanels render correctly 20`] = `
   draftOption={
     Civilisation {
       "gameVersion": 4,
+      "i18nPrefix": "civs.",
       "id": "Malians",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/malians-left.apng",
@@ -1455,6 +1518,7 @@ exports[`PICK CivPanels render correctly 21`] = `
   draftOption={
     Civilisation {
       "gameVersion": 2,
+      "i18nPrefix": "civs.",
       "id": "Mayans",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/mayans-left.apng",
@@ -1478,6 +1542,7 @@ exports[`PICK CivPanels render correctly 22`] = `
   draftOption={
     Civilisation {
       "gameVersion": 1,
+      "i18nPrefix": "civs.",
       "id": "Mongols",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/mongols-left.apng",
@@ -1501,6 +1566,7 @@ exports[`PICK CivPanels render correctly 23`] = `
   draftOption={
     Civilisation {
       "gameVersion": 1,
+      "i18nPrefix": "civs.",
       "id": "Persians",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/persians-left.apng",
@@ -1524,6 +1590,7 @@ exports[`PICK CivPanels render correctly 24`] = `
   draftOption={
     Civilisation {
       "gameVersion": 4,
+      "i18nPrefix": "civs.",
       "id": "Portuguese",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/portuguese-left.apng",
@@ -1547,6 +1614,7 @@ exports[`PICK CivPanels render correctly 25`] = `
   draftOption={
     Civilisation {
       "gameVersion": 1,
+      "i18nPrefix": "civs.",
       "id": "Saracens",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/saracens-left.apng",
@@ -1570,6 +1638,7 @@ exports[`PICK CivPanels render correctly 26`] = `
   draftOption={
     Civilisation {
       "gameVersion": 3,
+      "i18nPrefix": "civs.",
       "id": "Slavs",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/slavs-left.apng",
@@ -1593,6 +1662,7 @@ exports[`PICK CivPanels render correctly 27`] = `
   draftOption={
     Civilisation {
       "gameVersion": 2,
+      "i18nPrefix": "civs.",
       "id": "Spanish",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/spanish-left.apng",
@@ -1616,6 +1686,7 @@ exports[`PICK CivPanels render correctly 28`] = `
   draftOption={
     Civilisation {
       "gameVersion": 1,
+      "i18nPrefix": "civs.",
       "id": "Teutons",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/teutons-left.apng",
@@ -1639,6 +1710,7 @@ exports[`PICK CivPanels render correctly 29`] = `
   draftOption={
     Civilisation {
       "gameVersion": 1,
+      "i18nPrefix": "civs.",
       "id": "Turks",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/turks-left.apng",
@@ -1662,6 +1734,7 @@ exports[`PICK CivPanels render correctly 30`] = `
   draftOption={
     Civilisation {
       "gameVersion": 5,
+      "i18nPrefix": "civs.",
       "id": "Vietnamese",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/vietnamese-left.apng",
@@ -1685,6 +1758,7 @@ exports[`PICK CivPanels render correctly 31`] = `
   draftOption={
     Civilisation {
       "gameVersion": 1,
+      "i18nPrefix": "civs.",
       "id": "Vikings",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/vikings-left.apng",
@@ -1708,6 +1782,7 @@ exports[`PICK CivPanels render correctly 32`] = `
   draftOption={
     Civilisation {
       "gameVersion": 6,
+      "i18nPrefix": "civs.",
       "id": "Bulgarians",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/bulgarians-left.apng",
@@ -1731,6 +1806,7 @@ exports[`PICK CivPanels render correctly 33`] = `
   draftOption={
     Civilisation {
       "gameVersion": 6,
+      "i18nPrefix": "civs.",
       "id": "Cumans",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/cumans-left.apng",
@@ -1754,6 +1830,7 @@ exports[`PICK CivPanels render correctly 34`] = `
   draftOption={
     Civilisation {
       "gameVersion": 6,
+      "i18nPrefix": "civs.",
       "id": "Lithuanians",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/lithuanians-left.apng",
@@ -1777,6 +1854,7 @@ exports[`PICK CivPanels render correctly 35`] = `
   draftOption={
     Civilisation {
       "gameVersion": 6,
+      "i18nPrefix": "civs.",
       "id": "Tatars",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/tatars-left.apng",
@@ -1800,6 +1878,7 @@ exports[`PICK CivPanels render correctly 36`] = `
   draftOption={
     Civilisation {
       "gameVersion": 7,
+      "i18nPrefix": "civs.",
       "id": "Burgundians",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/burgundians-left.apng",
@@ -1823,6 +1902,7 @@ exports[`PICK CivPanels render correctly 37`] = `
   draftOption={
     Civilisation {
       "gameVersion": 7,
+      "i18nPrefix": "civs.",
       "id": "Sicilians",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/sicilians-left.apng",
@@ -1846,6 +1926,7 @@ exports[`PICK CivPanels render correctly 38`] = `
   draftOption={
     Civilisation {
       "gameVersion": 8,
+      "i18nPrefix": "civs.",
       "id": "Bohemians",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/bohemians-left.apng",
@@ -1869,6 +1950,7 @@ exports[`PICK CivPanels render correctly 39`] = `
   draftOption={
     Civilisation {
       "gameVersion": 8,
+      "i18nPrefix": "civs.",
       "id": "Poles",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/poles-left.apng",
@@ -1892,6 +1974,7 @@ exports[`PICK CivPanels render correctly 40`] = `
   draftOption={
     Civilisation {
       "gameVersion": 9,
+      "i18nPrefix": "civs.",
       "id": "Bengalis",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/bengalis-left.apng",
@@ -1915,6 +1998,7 @@ exports[`PICK CivPanels render correctly 41`] = `
   draftOption={
     Civilisation {
       "gameVersion": 9,
+      "i18nPrefix": "civs.",
       "id": "Dravidians",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/dravidians-left.apng",
@@ -1938,6 +2022,7 @@ exports[`PICK CivPanels render correctly 42`] = `
   draftOption={
     Civilisation {
       "gameVersion": 9,
+      "i18nPrefix": "civs.",
       "id": "Gurjaras",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/gurjaras-left.apng",
@@ -1961,6 +2046,7 @@ exports[`PICK CivPanels render correctly 43`] = `
   draftOption={
     Civilisation {
       "gameVersion": 9,
+      "i18nPrefix": "civs.",
       "id": "Hindustanis",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/hindustanis-left.apng",
@@ -2003,6 +2089,7 @@ exports[`technical PICK DraftOptionPanels render correctly 1`] = `
   active={false}
   draftOption={
     DraftOption {
+      "i18nPrefix": "civs.",
       "id": "HIDDEN_PICK",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/hidden_pick-left.apng",
@@ -2025,6 +2112,7 @@ exports[`technical PICK DraftOptionPanels render correctly 2`] = `
   active={false}
   draftOption={
     DraftOption {
+      "i18nPrefix": "civs.",
       "id": "HIDDEN_BAN",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/hidden_ban-left.apng",
@@ -2047,6 +2135,7 @@ exports[`technical PICK DraftOptionPanels render correctly 3`] = `
   active={false}
   draftOption={
     DraftOption {
+      "i18nPrefix": "civs.",
       "id": "HIDDEN_SNIPE",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/hidden_snipe-left.apng",
@@ -2069,6 +2158,7 @@ exports[`technical PICK DraftOptionPanels render correctly 4`] = `
   active={false}
   draftOption={
     DraftOption {
+      "i18nPrefix": "civs.",
       "id": "HIDDEN_STEAL",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/hidden_steal-left.apng",
@@ -2091,6 +2181,7 @@ exports[`technical PICK DraftOptionPanels render correctly 5`] = `
   active={false}
   draftOption={
     DraftOption {
+      "i18nPrefix": "civs.",
       "id": "HIDDEN",
       "imageUrls": Object {
         "animated_left": "/images/units-animated/hidden-left.apng",
