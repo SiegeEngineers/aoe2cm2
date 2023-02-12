@@ -1007,3 +1007,15 @@ html.has-simple-ui {
   font-size: 110%;
   color: white;
 }
+
+.choice-host {
+  background-color: $host-cyan;
+}
+
+.choice-guest {
+  background-color: $guest-gold;
+}
+
+.choice-host.choice-guest {
+  background: linear-gradient(to right, $guest-gold 50%, $host-cyan 50%);
+}

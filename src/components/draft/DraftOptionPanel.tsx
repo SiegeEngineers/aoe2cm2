@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ActionType from "../../constants/ActionType";
+import ActionType, {actionTypeFromAction} from "../../constants/ActionType";
 import PlayerEvent from "../../models/PlayerEvent";
 import Player from "../../constants/Player";
 import DraftOptionPanelType from "../../constants/DraftOptionPanelType";
@@ -93,10 +93,16 @@ class DraftOptionPanel extends React.Component<IProps, IState> {
             if (this.isValidOption()) {
                 onClickAction = this.onClickCiv;
                 className += ' choice-' + this.props.triggerAction;
-            } else if(this.props.displayOnly) {
+            } else if (this.props.displayOnly) {
                 className += ' choice-display';
             } else {
                 className += ' choice-disabled';
+            }
+            if (this.isValidOptionFor(Player.HOST)) {
+                className += ' choice-host';
+            }
+            if (this.isValidOptionFor(Player.GUEST)) {
+                className += ' choice-guest';
             }
         } else {
             className += ' is-inline-block';
@@ -256,20 +262,52 @@ class DraftOptionPanel extends React.Component<IProps, IState> {
     private isValidOption() {
         if (Util.notUndefined(this.props.draft, this.props.whoAmI, this.props.triggerAction, this.props.player, this.props.draftOption)) {
             const whoAmI = this.props.whoAmI as Player;
-            const player = this.props.player as Player;
             if (whoAmI === Player.NONE) {
                 return false;
             }
-            const draft = Draft.from(this.props.draft as Draft);
             const triggerAction = this.props.triggerAction as ActionType;
             if (![ActionType.PICK, ActionType.BAN, ActionType.SNIPE, ActionType.STEAL].includes(triggerAction)) {
                 return false;
             }
+            return this.isValidOptionFor(whoAmI);
+        }
+        return false;
+    }
+
+    private isValidOptionFor(executingPlayer: Player) {
+        if (Util.notUndefined(this.props.draft, this.props.draftOption)) {
+            const draft = Draft.from(this.props.draft as Draft);
             const draftOption = this.props.draftOption as DraftOption;
             let draftsStore = new DraftsStore(null);
             draftsStore.createDraft('draftId', draft);
-            const errors = Validator.checkAllValidations('draftId', draftsStore, new PlayerEvent(player, triggerAction, draftOption.id, false, whoAmI));
-            return errors.length === 0;
+
+
+            let triggerAction: ActionType = ActionType.NOTHING;
+            const index = this.props.nextAction;
+            let player = executingPlayer;
+            if (draft.preset && index < draft.preset.turns.length) {
+
+                let turn = draft.preset.turns[index];
+                if (turn.executingPlayer !== executingPlayer) {
+                    if (turn.parallel && (index + 1) < draft.preset.turns.length) {
+                        turn = draft.preset.turns[index + 1];
+                    } else if((index - 1) >= 0 && draft.preset.turns[index - 1].parallel) {
+                        turn = draft.preset.turns[index - 1];
+                    }
+                }
+                if (turn.executingPlayer === executingPlayer) {
+                    triggerAction = actionTypeFromAction(turn.action);
+                    player = turn.player;
+                } else {
+                    return false;
+                }
+
+
+                const errors = Validator.checkAllValidations('draftId', draftsStore, new PlayerEvent(player, triggerAction, draftOption.id, false, executingPlayer));
+                if (errors.length === 0) {
+                    return true;
+                }
+            }
         }
         return false;
     }
