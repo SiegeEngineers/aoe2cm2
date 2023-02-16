@@ -16,7 +16,7 @@ class RecentDraftRow extends React.Component<IProps, object> {
         const i18nKey = this.props.recentDraft.ongoing ? 'spectate.watchLive' : 'spectate.watch';
         return <tr>
             <td>
-                <CustomName name={this.props.recentDraft.title}/>
+                <CustomName name={this.props.recentDraft.title} length={50}/>
             </td>
             <td className="has-text-right">
                 <span className={'player-host'}><CustomName name={this.props.recentDraft.nameHost}/></span>
