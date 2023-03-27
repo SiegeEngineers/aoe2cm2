@@ -11,9 +11,11 @@ import {logger} from "./Logger";
 import AdminEvent from "../models/AdminEvent";
 import path from "path";
 import {Socket} from "socket.io";
+import DraftOption from "../models/DraftOption";
 
 export class ActListener {
     readonly dataDirectory: string;
+    private static readonly adminTurnDelay = 2000;
 
     constructor(dataDirectory: string) {
         this.dataDirectory = dataDirectory;
@@ -84,15 +86,16 @@ export class ActListener {
     static nextActionIsAdminEvent(draftsStore: DraftsStore, draftId: string, offset: number) {
         const expectedActions = draftsStore.getExpectedActions(draftId, offset);
         if (expectedActions.length === 1) {
-            return expectedActions[0].player === Player.NONE;
+            return expectedActions[0].executingPlayer === Player.NONE;
         }
         return false;
     }
 
+
     static scheduleAdminEvent(adminEventCounter: number, draftsStore: DraftsStore, draftId: string, draftViews: DraftViews, socket: Socket, roomHost: string, roomGuest: string, roomSpec: string, dataDirectory: string) {
         const expectedActions = draftsStore.getExpectedActions(draftId, adminEventCounter - 1);
         const expectedAction = expectedActions[0];
-        if (expectedAction.player === Player.NONE) { // Admin Event
+        if (expectedAction.executingPlayer === Player.NONE) { // Admin Event
             if (actionTypeFromAction(expectedAction.action) === ActionType.REVEAL) {
                 const draftEvent = new AdminEvent(expectedAction.player, expectedAction.action);
                 setTimeout(() => {
@@ -119,7 +122,32 @@ export class ActListener {
                     draftsStore.addDraftEvent(draftId, draftEvent);
                     draftsStore.restartOrCancelCountdown(draftId, dataDirectory);
                     ActListener.finishDraftIfNoFurtherActions(draftViews, socket, draftsStore, draftId, roomHost, roomGuest, roomSpec, dataDirectory);
-                }, adminEventCounter * 2000);
+                }, adminEventCounter * this.adminTurnDelay);
+            } else if ([ActionType.PICK, ActionType.BAN, ActionType.STEAL, ActionType.SNIPE].includes(actionTypeFromAction(expectedAction.action))) {
+                setTimeout(() => {
+                    let draftEvent = new PlayerEvent(expectedAction.player, actionTypeFromAction(expectedAction.action), DraftOption.RANDOM.id, false, Player.NONE);
+                    const civilisationsList = draftsStore.getDraftOrThrow(draftId).preset.options.slice();
+                    draftEvent = Util.setRandomDraftOptionIfNeeded(draftEvent, draftId, draftsStore, civilisationsList);
+                    draftEvent.isRandomlyChosen = (expectedAction.player !== Player.NONE);
+                    logger.info('Executing admin event: %s', JSON.stringify(draftEvent), {draftId});
+
+                    draftsStore.addDraftEvent(draftId, draftEvent);
+
+                    const draftViews = draftsStore.getDraftViewsOrThrow(draftId);
+
+                    socket.nsp
+                        .in(roomHost)
+                        .emit("playerEvent", draftViews.getLastEventForHost());
+                    socket.nsp
+                        .in(roomGuest)
+                        .emit("playerEvent", draftViews.getLastEventForGuest());
+                    socket.nsp
+                        .in(roomSpec)
+                        .emit("playerEvent", draftViews.getLastEventForSpec());
+
+                    draftsStore.restartOrCancelCountdown(draftId, dataDirectory);
+                    ActListener.finishDraftIfNoFurtherActions(draftViews, socket, draftsStore, draftId, roomHost, roomGuest, roomSpec, dataDirectory);
+                }, adminEventCounter * this.adminTurnDelay);
             } else {
                 throw new Error("Unknown expected action! " + expectedAction);
             }

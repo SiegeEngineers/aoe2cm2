@@ -9,9 +9,17 @@ import {Barrier} from "../test/Barrier";
 import temp from "temp";
 import * as fs from "fs";
 import path from "path";
+import {BarrierPromise} from "../test/BarrierPromise";
+import Civilisation from "../models/Civilisation";
+import Turn from "../models/Turn";
+import Action from "../constants/Action";
+import Exclusivity from "../constants/Exclusivity";
+import {ActListener} from "../util/ActListener";
 
 let hostSocket: any;
+let hostEmit: any;
 let clientSocket: any;
+let guestEmit: any;
 let spectatorSocket: any;
 let httpServer: any;
 let httpServerAddr: any;
@@ -58,20 +66,34 @@ function connect() {
     });
 }
 
-beforeEach((done) => {
-    const barrier = new Barrier(3, done);
-    request.post(`http://[${httpServerAddr.address}]:${httpServerAddr.port}/api/draft/new`,
-        {body: JSON.stringify({preset: Preset.SIMPLE}), headers: {'Content-Type': 'application/json; charset=UTF-8'}},
+async function createDraftForPreset(preset: Preset) {
+    const barrier = new BarrierPromise(3);
+    await request.post(`http://[${httpServerAddr.address}]:${httpServerAddr.port}/api/draft/new`,
+        {body: JSON.stringify({preset: preset}), headers: {'Content-Type': 'application/json; charset=UTF-8'}},
         (error, response, body) => {
             const draftIdContainer: { draftId: string } = JSON.parse(body);
             draftId = draftIdContainer.draftId;
 
             hostSocket = connect();
+            hostEmit = (action: string, data: object) => {
+                return new Promise<object>((resolve, reject) => {
+                    hostSocket.emit(action, data, (response: object) => {
+                        resolve(response);
+                    })
+                })
+            };
             hostSocket.on('connect', () => {
                 barrier.trigger();
             });
 
             clientSocket = connect();
+            guestEmit = (action: string, data: object) => {
+                return new Promise<object>((resolve, reject) => {
+                    clientSocket.emit(action, data, (response: object) => {
+                        resolve(response);
+                    })
+                })
+            };
             clientSocket.on('connect', () => {
                 barrier.trigger();
             });
@@ -81,7 +103,8 @@ beforeEach((done) => {
                 barrier.trigger();
             });
         });
-});
+    return barrier.promise;
+}
 
 afterEach((done) => {
     if (hostSocket.connected) {
@@ -97,146 +120,199 @@ afterEach((done) => {
 });
 
 it('successful join gets a draft config', (done) => {
-    hostSocket.emit('set_role', {name: 'Saladin', role: Player.HOST}, (data: IDraftConfig) => {
-        data.startTimestamp = 0;
-        expect(data).toMatchSnapshot();
-        done();
+    createDraftForPreset(Preset.SIMPLE).then(value => {
+        hostSocket.emit('set_role', {name: 'Saladin', role: Player.HOST}, (data: IDraftConfig) => {
+            data.startTimestamp = 0;
+            expect(data).toMatchSnapshot();
+            done();
+        });
     });
 });
 
 
 it('should send player_set_role when player sets role', (done) => {
-    const barrier = new Barrier(2, done);
-    hostSocket.once("player_set_role", (message: any) => {
-        expect(message.name).toBe('Saladin');
-        expect(message.playerType).toBe(Player.HOST);
-
+    createDraftForPreset(Preset.SIMPLE).then(value => {
+        const barrier = new Barrier(2, done);
         hostSocket.once("player_set_role", (message: any) => {
-            expect(message.name).toBe('Barbarossa');
-            expect(message.playerType).toBe(Player.GUEST);
-            barrier.trigger();
-        });
-        clientSocket.emit('set_role', {name: 'Barbarossa', role: Player.GUEST}, () => {
-        });
-    });
+            expect(message.name).toBe('Saladin');
+            expect(message.playerType).toBe(Player.HOST);
 
-    clientSocket.once("player_set_role", (message: any) => {
-        expect(message.name).toBe('Saladin');
-        expect(message.playerType).toBe(Player.HOST);
+            hostSocket.once("player_set_role", (message: any) => {
+                expect(message.name).toBe('Barbarossa');
+                expect(message.playerType).toBe(Player.GUEST);
+                barrier.trigger();
+            });
+            guestEmit('set_role', {name: 'Barbarossa', role: Player.GUEST});
+        });
 
         clientSocket.once("player_set_role", (message: any) => {
-            expect(message.name).toBe('Barbarossa');
-            expect(message.playerType).toBe(Player.GUEST);
-            barrier.trigger();
-        });
-    });
+            expect(message.name).toBe('Saladin');
+            expect(message.playerType).toBe(Player.HOST);
 
-    hostSocket.emit('set_role', {name: 'Saladin', role: Player.HOST}, () => {
+            clientSocket.once("player_set_role", (message: any) => {
+                expect(message.name).toBe('Barbarossa');
+                expect(message.playerType).toBe(Player.GUEST);
+                barrier.trigger();
+            });
+        });
+
+        hostEmit('set_role', {name: 'Saladin', role: Player.HOST});
     });
 });
 
 it('players can change their names', (done) => {
-    const barrier = new Barrier(4, done);
-    hostSocket.once('player_set_name', (message: any) => {
-        expect(message.name).toEqual('Attila The Hun');
+    createDraftForPreset(Preset.SIMPLE).then(value => {
+        const barrier = new Barrier(4, done);
         hostSocket.once('player_set_name', (message: any) => {
-            expect(message.name).toEqual('Bleda The Hun');
-            barrier.trigger();
-        });
-    });
-    clientSocket.once('player_set_name', (message: any) => {
-        expect(message.name).toEqual('Attila The Hun');
-        clientSocket.once('player_set_name', (message: any) => {
-            expect(message.name).toEqual('Bleda The Hun');
-            barrier.trigger();
-        });
-    });
-    spectatorSocket.once('player_set_name', (message: any) => {
-        expect(message.name).toEqual('Attila The Hun');
-        spectatorSocket.once('player_set_name', (message: any) => {
-            expect(message.name).toEqual('Bleda The Hun');
-            barrier.trigger();
-        });
-    });
-    const newHostName = "Attila The Hun";
-    const newGuestName = "Bleda The Hun";
-    hostSocket.emit('set_role', {name: 'Saladin', role: Player.HOST}, () => {
-        clientSocket.emit('set_role', {name: 'Barbarossa', role: Player.GUEST}, () => {
-            clientSocket.emit('ready', {}, () => {
-                hostSocket.emit('set_name', {
-                    "name": newHostName
-                }, () => {
-                    hostSocket.emit('ready', {}, () => {
-                        clientSocket.emit('set_name', {
-                            "name": newGuestName
-                        }, () => {
-                            // done
-                            const secondSpectatorSocket = io.connect(`http://[${httpServerAddr.address}]:${httpServerAddr.port}`, {
-                                query: {draftId: draftId},
-                                reconnectionDelay: 0,
-                                forceNew: true,
-                                transports: ['websocket'],
-                            });
-                            secondSpectatorSocket.once('draft_state', (message: any) => {
-                                expect(message.nameHost).toEqual(newHostName);
-                                expect(message.nameGuest).toEqual(newGuestName);
-                                barrier.trigger();
-                            });
-                        });
-                    });
-                });
+            expect(message.name).toEqual('Attila The Hun');
+            hostSocket.once('player_set_name', (message: any) => {
+                expect(message.name).toEqual('Bleda The Hun');
+                barrier.trigger();
             });
         });
+        clientSocket.once('player_set_name', (message: any) => {
+            expect(message.name).toEqual('Attila The Hun');
+            clientSocket.once('player_set_name', (message: any) => {
+                expect(message.name).toEqual('Bleda The Hun');
+                barrier.trigger();
+            });
+        });
+        spectatorSocket.once('player_set_name', (message: any) => {
+            expect(message.name).toEqual('Attila The Hun');
+            spectatorSocket.once('player_set_name', (message: any) => {
+                expect(message.name).toEqual('Bleda The Hun');
+                barrier.trigger();
+            });
+        });
+        const newHostName = "Attila The Hun";
+        const newGuestName = "Bleda The Hun";
+        hostEmit('set_role', {name: 'Saladin', role: Player.HOST})
+            .then(() => guestEmit('set_role', {name: 'Barbarossa', role: Player.GUEST}))
+            .then(() => guestEmit('ready', {}))
+            .then(() => hostEmit('set_name', {"name": newHostName}))
+            .then(() => hostEmit('ready', {}))
+            .then(() => guestEmit('set_name', {"name": newGuestName}))
+            .then(() => {
+                // done
+                const secondSpectatorSocket = io.connect(`http://[${httpServerAddr.address}]:${httpServerAddr.port}`, {
+                    query: {draftId: draftId},
+                    reconnectionDelay: 0,
+                    forceNew: true,
+                    transports: ['websocket'],
+                });
+                secondSpectatorSocket.once('draft_state', (message: any) => {
+                    expect(message.nameHost).toEqual(newHostName);
+                    expect(message.nameGuest).toEqual(newGuestName);
+                    barrier.trigger();
+                });
+            });
     });
 });
 
 it('fully execute sample draft', (done) => {
-    const barrier = new Barrier(2, done);
-    hostSocket.once('disconnect', () => {
-        barrier.trigger();
-    });
-    clientSocket.once('disconnect', () => {
-        barrier.trigger();
-    });
-    hostSocket.emit('set_role', {name: 'Saladin', role: Player.HOST}, () => {
-        clientSocket.emit('set_role', {name: 'Barbarossa', role: Player.GUEST}, () => {
-            clientSocket.emit('ready', {}, () => {
-                hostSocket.emit('ready', {}, () => {
-                    hostSocket.emit('act', {
-                        "player": "HOST",
-                        "executingPlayer": "HOST",
-                        "actionType": "ban",
-                        "chosenOptionId": "Celts",
-                        "isRandomlyChosen": false,
-                    }, () => {
-                        clientSocket.emit('act', {
-                            "player": "GUEST",
-                            "executingPlayer": "GUEST",
-                            "actionType": "ban",
-                            "chosenOptionId": "Celts",
-                            "isRandomlyChosen": false,
-                        }, () => {
-                            clientSocket.emit('act', {
-                                "player": "GUEST",
-                                "executingPlayer": "GUEST",
-                                "actionType": "pick",
-                                "chosenOptionId": "Slavs",
-                                "isRandomlyChosen": false,
-                            }, () => {
-                                hostSocket.emit('act', {
-                                    "player": "HOST",
-                                    "executingPlayer": "HOST",
-                                    "actionType": "pick",
-                                    "chosenOptionId": "Slavs",
-                                    "isRandomlyChosen": false,
-                                }, () => {
-                                    // preset done
-                                });
-                            });
-                        });
-                    });
-                });
-            });
+    createDraftForPreset(Preset.SIMPLE).then(value => {
+        const barrier = new Barrier(2, done);
+        hostSocket.once('disconnect', () => {
+            barrier.trigger();
         });
+        clientSocket.once('disconnect', () => {
+            barrier.trigger();
+        });
+
+        hostEmit('set_role', {name: 'Saladin', role: Player.HOST})
+            .then(() => guestEmit('set_role', {name: 'Barbarossa', role: Player.GUEST}))
+            .then(() => guestEmit('ready', {}))
+            .then(() => hostEmit('ready', {}))
+            .then(() => hostEmit('act', {
+                "player": "HOST",
+                "executingPlayer": "HOST",
+                "actionType": "ban",
+                "chosenOptionId": "Celts",
+                "isRandomlyChosen": false,
+            }))
+            .then(() => guestEmit('act', {
+                "player": "GUEST",
+                "executingPlayer": "GUEST",
+                "actionType": "ban",
+                "chosenOptionId": "Celts",
+                "isRandomlyChosen": false,
+            }))
+            .then(() => guestEmit('act', {
+                "player": "GUEST",
+                "executingPlayer": "GUEST",
+                "actionType": "pick",
+                "chosenOptionId": "Slavs",
+                "isRandomlyChosen": false,
+            }))
+            .then(() => hostEmit('act', {
+                "player": "HOST",
+                "executingPlayer": "HOST",
+                "actionType": "pick",
+                "chosenOptionId": "Slavs",
+                "isRandomlyChosen": false,
+            }));
+    });
+});
+
+it('preset consisting only of admin action', (done) => {
+    Reflect.set(ActListener, "adminTurnDelay", 10);
+    const preset = new Preset('Admin only preset', Civilisation.ALL_ACTIVE, [
+        new Turn(Player.NONE, Action.PICK, Exclusivity.NONEXCLUSIVE),
+        new Turn(Player.HOST, Action.PICK, Exclusivity.NONEXCLUSIVE, false, false, Player.NONE),
+        new Turn(Player.HOST, Action.PICK, Exclusivity.NONEXCLUSIVE, false, false, Player.NONE),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.NONEXCLUSIVE, false, false, Player.NONE),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.NONEXCLUSIVE, false, false, Player.NONE),
+        new Turn(Player.NONE, Action.BAN, Exclusivity.NONEXCLUSIVE),
+        new Turn(Player.HOST, Action.BAN, Exclusivity.NONEXCLUSIVE, false, false, Player.NONE),
+        new Turn(Player.GUEST, Action.BAN, Exclusivity.NONEXCLUSIVE, false, false, Player.NONE),
+        new Turn(Player.HOST, Action.SNIPE, Exclusivity.NONEXCLUSIVE, false, false, Player.NONE),
+        new Turn(Player.GUEST, Action.SNIPE, Exclusivity.NONEXCLUSIVE, false, false, Player.NONE),
+        new Turn(Player.HOST, Action.STEAL, Exclusivity.NONEXCLUSIVE, false, false, Player.NONE),
+        new Turn(Player.GUEST, Action.STEAL, Exclusivity.NONEXCLUSIVE, false, false, Player.NONE),
+    ]);
+    createDraftForPreset(preset).then(value => {
+        const barrier = new Barrier(2, done);
+        hostSocket.once('disconnect', () => {
+            barrier.trigger();
+        });
+        clientSocket.once('disconnect', () => {
+            barrier.trigger();
+        });
+
+        hostEmit('set_role', {name: 'Saladin', role: Player.HOST})
+            .then(() => guestEmit('set_role', {name: 'Barbarossa', role: Player.GUEST}))
+            .then(() => guestEmit('ready', {}))
+            .then(() => hostEmit('ready', {}));
+    });
+});
+
+it('draft with invalid act', (done) => {
+    createDraftForPreset(Preset.SIMPLE).then(value => {
+
+        hostEmit('set_role', {name: 'Saladin', role: Player.HOST})
+            .then(() => guestEmit('set_role', {name: 'Barbarossa', role: Player.GUEST}))
+            .then(() => guestEmit('ready', {}))
+            .then(() => hostEmit('ready', {}))
+            .then(() => hostEmit('act', {
+                "player": "HOST",
+                "executingPlayer": "HOST",
+                "actionType": "ban",
+                "chosenOptionId": "Celts",
+                "isRandomlyChosen": false,
+            }))
+            .then(() => hostEmit('act', {
+                "player": "HOST",
+                "executingPlayer": "HOST",
+                "actionType": "ban",
+                "chosenOptionId": "Mongols",
+                "isRandomlyChosen": false,
+            }))
+            .then((response: object) => {
+                expect(response).toEqual({
+                    "status": "error",
+                    "validationErrors": ["VLD_001"],
+                });
+                done();
+            });
     });
 });

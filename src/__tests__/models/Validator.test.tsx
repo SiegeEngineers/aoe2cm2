@@ -385,6 +385,54 @@ it('VLD_911: draft option names not unique but ids unique', () => {
     expect(errors).toEqual([]);
 });
 
+it('VLD_912: admin snipes are forbidden', () => {
+    let preset = new Preset("test", Civilisation.ALL, [new Turn(Player.NONE, Action.SNIPE, Exclusivity.NONEXCLUSIVE)]);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([ValidationId.VLD_912]);
+});
+
+it('VLD_912: admin snipes as other player are allowed', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.HOST, Action.SNIPE, Exclusivity.NONEXCLUSIVE, false, false, Player.NONE),
+        new Turn(Player.GUEST, Action.SNIPE, Exclusivity.NONEXCLUSIVE, false, false, Player.NONE),
+    ]);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([]);
+});
+
+it('VLD_912: admin steals are forbidden', () => {
+    let preset = new Preset("test", Civilisation.ALL, [new Turn(Player.NONE, Action.STEAL, Exclusivity.NONEXCLUSIVE)]);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([ValidationId.VLD_912]);
+});
+
+it('VLD_912: admin steals as other player are allowed', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.HOST, Action.STEAL, Exclusivity.NONEXCLUSIVE, false, false, Player.NONE),
+        new Turn(Player.GUEST, Action.STEAL, Exclusivity.NONEXCLUSIVE, false, false, Player.NONE),
+    ]);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([]);
+});
+
+it('VLD_913: admin turns must not be hidden', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.NONE, Action.PICK, Exclusivity.NONEXCLUSIVE, true),
+        new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL),
+    ]);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([ValidationId.VLD_913]);
+});
+
+it('VLD_914: only admins may do the admin turns', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.HOST, Action.REVEAL_ALL, Exclusivity.GLOBAL),
+        new Turn(Player.GUEST, Action.REVEAL_ALL, Exclusivity.GLOBAL),
+    ]);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([ValidationId.VLD_914]);
+});
+
 it('VLD_999: totally wrong preset format', () => {
     let preset = {absolute: "garbage"} as unknown as Preset;
     const errors: ValidationId[] = Validator.validatePreset(preset);

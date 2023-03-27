@@ -25,19 +25,27 @@ class ValidOptions {
 class ValidCivs {
     public readonly host: ValidOptions;
     public readonly guest: ValidOptions;
+    public readonly admin: ValidOptions;
 
     constructor(draft: Draft) {
         this.host = new ValidOptions(
             [...draft.preset.options, DraftOption.RANDOM],
             [...draft.preset.options, DraftOption.RANDOM],
             [DraftOption.RANDOM],
-            [DraftOption.RANDOM]
+            [DraftOption.RANDOM],
         );
         this.guest = new ValidOptions(
             [...draft.preset.options, DraftOption.RANDOM],
             [...draft.preset.options, DraftOption.RANDOM],
             [DraftOption.RANDOM],
-            [DraftOption.RANDOM]);
+            [DraftOption.RANDOM],
+        );
+        this.admin = new ValidOptions(
+            [...draft.preset.options, DraftOption.RANDOM],
+            [...draft.preset.options, DraftOption.RANDOM],
+            [DraftOption.RANDOM],
+            [DraftOption.RANDOM],
+        );
         for (let i = 0; i < draft.events.length; i++) {
             const event = draft.events[i];
 
@@ -121,6 +129,10 @@ class ValidCivs {
         if (ValidCivs.isGuestEvent(event)) {
             this.removeHostPick(event.chosenOptionId);
         }
+        if (ValidCivs.isAdminEvent(event)) {
+            this.removeHostPick(event.chosenOptionId);
+            this.removeGuestPick(event.chosenOptionId);
+        }
     }
 
     private handleExclusiveBan(event: PlayerEvent) {
@@ -137,8 +149,10 @@ class ValidCivs {
     private handleGlobalBan(event: PlayerEvent) {
         this.removeHostBan(event.chosenOptionId);
         this.removeGuestBan(event.chosenOptionId);
+        this.removeAdminBan(event.chosenOptionId);
         this.removeHostPick(event.chosenOptionId);
         this.removeGuestPick(event.chosenOptionId);
+        this.removeAdminPick(event.chosenOptionId);
     }
 
     private handlePick(turn: Turn, event: PlayerEvent) {
@@ -171,13 +185,18 @@ class ValidCivs {
             this.removeGuestPick(event.chosenOptionId);
             this.removeHostBan(event.chosenOptionId);
         }
+        if (ValidCivs.isAdminEvent(event)) {
+            this.removeAdminPick(event.chosenOptionId);
+        }
     }
 
     private handleGlobalPick(event: PlayerEvent) {
         this.removeHostPick(event.chosenOptionId);
-        this.removeGuestBan(event.chosenOptionId);
-        this.removeGuestPick(event.chosenOptionId);
         this.removeHostBan(event.chosenOptionId);
+        this.removeGuestPick(event.chosenOptionId);
+        this.removeGuestBan(event.chosenOptionId);
+        this.removeAdminPick(event.chosenOptionId);
+        this.removeAdminBan(event.chosenOptionId);
     }
 
     private static isGlobal(turn: Turn) {
@@ -214,6 +233,11 @@ class ValidCivs {
 
     private static isHostEvent(event: PlayerEvent) {
         return event.player === Player.HOST;
+    }
+
+
+    private static isAdminEvent(event: PlayerEvent) {
+        return event.player === Player.NONE;
     }
 
     private removeHostPick(civilisationId: string) {
@@ -266,10 +290,27 @@ class ValidCivs {
         }
     }
 
+    private removeAdminPick(civilisationId: string) {
+        const index = this.admin.pick.indexOf(civilisationId);
+        if (index >= 0) {
+            this.admin.pick.splice(index, 1);
+        }
+    }
+
+    private removeAdminBan(civilisationId: string) {
+        const index = this.admin.ban.indexOf(civilisationId);
+        if (index >= 0) {
+            this.admin.ban.splice(index, 1);
+        }
+    }
+
     validateDraftEvent(draftEvent: PlayerEvent): boolean {
         let validOptions = this.host;
         if (draftEvent.player === Player.GUEST) {
             validOptions = this.guest;
+        }
+        if (draftEvent.player === Player.NONE) {
+            validOptions = this.admin;
         }
         if (draftEvent.actionType === ActionType.PICK) {
             return validOptions.pick.includes(draftEvent.chosenOptionId);

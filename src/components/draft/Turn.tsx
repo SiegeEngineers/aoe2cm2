@@ -38,7 +38,7 @@ const toTitle = (turn: ModelTurn, lastTurnWasParallel: boolean): string => {
         suffixes = ` (${suffixList.join(" + ")})`;
     }
     if (turn.player !== turn.executingPlayer) {
-        suffixes += ' for opponent';
+        suffixes += ' for ' + turn.player;
     }
     return `${turn.executingPlayer}: ${turn.action}${suffixes}`;
 };

@@ -6,6 +6,7 @@ import HiddenCheckbox from "./HiddenCheckbox";
 import ExclusivityDropdown from "./ExclusivityDropdown";
 import ParallelCheckbox from "./ParallelCheckbox";
 import AsOpponentCheckbox from "./AsOpponentCheckbox";
+import AsPlayerDropdown from "./AsPlayerDropdown";
 
 interface Props {
     turn: Turn,
@@ -18,9 +19,12 @@ class PlayerTurnSettings extends React.Component<Props, object> {
         if (this.props.turn.executingPlayer !== this.props.player) {
             return null;
         }
-        if (this.props.turn.player === Player.NONE) {
+        if (this.props.turn.executingPlayer === Player.NONE) {
             return <div>
                 <ActionDropdown turn={this.props.turn} index={this.props.index}/>
+                <ExclusivityDropdown turn={this.props.turn} index={this.props.index}/>
+                <br/>
+                <AsPlayerDropdown turn={this.props.turn} index={this.props.index}/>
             </div>;
         }
         return <React.Fragment>

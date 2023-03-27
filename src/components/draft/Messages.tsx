@@ -298,11 +298,12 @@ class Messages extends React.Component<IProps, object> {
         } else {
             if (this.props.whoAmI === Player.NONE) {
                 const playerName = this.getPlayerNameForDisplay(turn);
+                const targetPlayerName = this.getTargetPlayerNameForDisplay(turn);
                 switch (turn.action) {
                     case Action.PICK:
                         return forOpponent ? (
                             <div><Trans i18nKey='messages.specPickAsOpponent'>Waiting
-                                for <b>{{playerName}}</b> to {PICK} a civilization for their opponent</Trans>
+                                for <b>{{playerName}}</b> to {PICK} a civilization for <b>{{targetPlayerName}}</b></Trans>
                                 <Countdown/></div>
                         ) : (
                             <div><Trans i18nKey='messages.specPick'>Waiting
@@ -312,7 +313,8 @@ class Messages extends React.Component<IProps, object> {
                     case Action.BAN:
                         return forOpponent ? (
                             <div><Trans i18nKey='messages.specBanAsOpponent'>Waiting
-                                for <b>{{playerName}}</b> to {BAN} a civilization in their opponent's place</Trans>
+                                for <b>{{playerName}}</b> to {BAN} a civilization in
+                                <b>{{targetPlayerName}}</b>'s place</Trans>
                                 <Countdown/></div>
                         ) : (
                             <div><Trans i18nKey='messages.specBan'>Waiting
@@ -323,17 +325,17 @@ class Messages extends React.Component<IProps, object> {
                         return forOpponent ? (
                             <div><Trans i18nKey='messages.specSnipeAsOpponent'>Waiting
                                 for <b>{{playerName}}</b> to {SNIPE} one of their civilisations
-                                in their opponent's place</Trans> <Countdown/></div>
+                                in <b>{{targetPlayerName}}</b>'s place</Trans> <Countdown/></div>
                         ) : (
                             <div><Trans i18nKey='messages.specSnipe'>Waiting
                                 for <b>{{playerName}}</b> to {SNIPE} a
-                                civilization of the opponent</Trans> <Countdown/></div>
+                                civilization of <b>{{targetPlayerName}}</b></Trans> <Countdown/></div>
                         );
                     case Action.STEAL:
                         return (
                             <div><Trans i18nKey='messages.specSteal'>Waiting
                                 for <b>{{playerName}}</b> to {STEAL} a
-                                civilization from the opponent</Trans> <Countdown/></div>
+                                civilization from <b>{{targetPlayerName}}</b></Trans> <Countdown/></div>
                         );
                 }
             } else {
