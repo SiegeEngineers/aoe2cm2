@@ -219,6 +219,22 @@ export class DraftServer {
                 logger.info("Player indicates they are ready: %s", assignedRole, {draftId});
                 if (!wasAlreadyReady && draftsStore.playersAreReady(draftId)) {
                     logger.info("Both Players are ready, starting countdown.", {draftId});
+
+                    const draftViews = draftsStore.getDraftViewsOrThrow(draftId);
+                    let adminEventCounter = 0;
+                    while (ActListener.nextActionIsAdminEvent(draftsStore, draftId, adminEventCounter)) {
+                        adminEventCounter++;
+                        ActListener.scheduleAdminEvent(adminEventCounter, draftsStore, draftId, draftViews, socket, roomHost, roomGuest, roomSpec, this.currentDataDirectory);
+                    }
+                    if (draftViews.shouldRestartOrCancelCountdown()) {
+                        draftsStore.restartOrCancelCountdown(draftId, this.dataDirectory);
+                    }
+                    ActListener.finishDraftIfNoFurtherActions(draftViews, socket, draftsStore, draftId, roomHost, roomGuest, roomSpec, this.currentDataDirectory);
+
+                    if (!draftViews.getActualDraft().hasNextAction()) {
+                        return;
+                    }
+
                     draftsStore.startCountdown(draftId, socket, this.currentDataDirectory);
                     draftsStore.setStartTimestamp(draftId);
                 }
