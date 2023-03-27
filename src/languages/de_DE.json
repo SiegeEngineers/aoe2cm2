@@ -189,6 +189,7 @@
     "VLD_909": "Die angegebene presetId ist ungültig",
     "VLD_910": "Deine Draft-Optionen enthalten eine ungültige ID",
     "VLD_911": "Die IDs deiner Draft-Optionen sind nicht eindeutig, vermutlich weil ein Name doppelt vorkommt",
+    "VLD_912": "Admin-Züge können nicht STEAL oder SNIPE ausführen",
     "VLD_999": "Irgendetwas ist bei der Validierung gehörig schief gelaufen"
   },
   "menu": {

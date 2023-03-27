@@ -16,11 +16,13 @@ class ActionDropdown extends React.Component<Props, object> {
     render() {
         const options = [];
         let i = 0;
-        if (this.props.turn.player === Player.NONE) {
+        if (this.props.turn.executingPlayer === Player.NONE) {
             options.push(<option key={i++} value={Action.REVEAL_ALL}>{Action.REVEAL_ALL}</option>);
             options.push(<option key={i++} value={Action.REVEAL_PICKS}>{Action.REVEAL_PICKS}</option>);
             options.push(<option key={i++} value={Action.REVEAL_BANS}>{Action.REVEAL_BANS}</option>);
             options.push(<option key={i++} value={Action.REVEAL_SNIPES}>{Action.REVEAL_SNIPES}</option>);
+            options.push(<option key={i++} value={Action.PICK}>{Action.PICK}</option>);
+            options.push(<option key={i++} value={Action.BAN}>{Action.BAN}</option>);
         } else {
             options.push(<option key={i++} value={Action.PICK}>{Action.PICK}</option>);
             options.push(<option key={i++} value={Action.BAN}>{Action.BAN}</option>);
@@ -30,7 +32,12 @@ class ActionDropdown extends React.Component<Props, object> {
         return <div className="select is-small">
             <select value={this.props.turn.action} onChange={(event) => {
                 const t = this.props.turn;
-                const newTurn = new Turn(t.player, event.target.value as Action, t.exclusivity, t.hidden, t.parallel, t.executingPlayer);
+                const newAction = event.target.value as Action;
+                let player = t.player;
+                if (t.executingPlayer === Player.NONE && ![Action.PICK, Action.BAN].includes(newAction)) {
+                    player = Player.NONE;
+                }
+                const newTurn = new Turn(player, newAction, t.exclusivity, t.hidden, t.parallel, t.executingPlayer);
                 this.props.onValueChange(newTurn, this.props.index)
             }}>{options}
             </select>

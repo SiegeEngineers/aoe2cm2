@@ -78,6 +78,10 @@ class DraftViews {
                 this.guestEvents.push(draftEvent);
                 this.hostEvents.push(specMessage);
             }
+            if (draftEvent.executingPlayer === Player.NONE) {
+                this.guestEvents.push(draftEvent);
+                this.hostEvents.push(draftEvent);
+            }
         } else {
             this.hostEvents.push(draftEvent);
             this.guestEvents.push(draftEvent);

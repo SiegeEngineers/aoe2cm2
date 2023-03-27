@@ -137,6 +137,39 @@ export class PresetValidation {
         return true;
     });
 
+    public static readonly VLD_912: PresetValidation = new PresetValidation(ValidationId.VLD_912, (preset: Preset) => {
+        for (let turn of preset.turns) {
+            if (turn.player === Player.NONE) {
+                if (turn.action === Action.STEAL || turn.action === Action.SNIPE) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    });
+
+    public static readonly VLD_913: PresetValidation = new PresetValidation(ValidationId.VLD_913, (preset: Preset) => {
+        for (let turn of preset.turns) {
+            if (turn.player === Player.NONE) {
+                if (turn.hidden) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    });
+
+    public static readonly VLD_914: PresetValidation = new PresetValidation(ValidationId.VLD_914, (preset: Preset) => {
+        for (let turn of preset.turns) {
+            if ([Action.REVEAL_ALL, Action.REVEAL_PICKS, Action.REVEAL_BANS, Action.REVEAL_SNIPES].includes(turn.action)) {
+                if (turn.player !== Player.NONE) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    });
+
     public static readonly ALL: PresetValidation[] = [
         PresetValidation.VLD_901,
         PresetValidation.VLD_902,
@@ -149,6 +182,9 @@ export class PresetValidation {
         PresetValidation.VLD_909,
         PresetValidation.VLD_910,
         PresetValidation.VLD_911,
+        PresetValidation.VLD_912,
+        PresetValidation.VLD_913,
+        PresetValidation.VLD_914,
     ];
 
     private readonly validationId: ValidationId;

@@ -189,6 +189,7 @@
     "VLD_909": "The given presetId is invalid",
     "VLD_910": "Your DraftOptions contain an invalid DraftOption id",
     "VLD_911": "Your DraftOptions ids are not unique, probably because two have the same name",
+    "VLD_912": "Admin turns cannot steal or snipe",
     "VLD_999": "Something went very wrong during validation"
   },
   "menu": {

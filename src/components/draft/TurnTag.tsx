@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {default as ModelTurn} from '../../models/Turn'
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
-import Player from "../../constants/Player";
 import Exclusivity from "../../constants/Exclusivity";
 import Action from "../../constants/Action";
 
@@ -15,7 +14,7 @@ class TurnTag extends React.Component<IProps> {
         const turn: ModelTurn = this.props.turn;
 
         let prefix: string = '';
-        if (turn.player !== Player.NONE && ![Action.SNIPE, Action.STEAL].includes(turn.action)) {
+        if ([Action.PICK, Action.BAN].includes(turn.action)) {
             if (turn.exclusivity === Exclusivity.GLOBAL) {
                 prefix = 'g';
             } else if (turn.exclusivity === Exclusivity.NONEXCLUSIVE) {
