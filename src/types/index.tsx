@@ -110,6 +110,7 @@ export interface IPresetMetaData {
     code: string
     name: string
     created: number
+    last_draft: number
 }
 
 export interface IDraftMetaData {

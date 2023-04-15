@@ -21,7 +21,7 @@ class PresetList extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
-        this.state = {shortList: true, nameFilter: "", daysPast: 90};
+        this.state = {shortList: true, nameFilter: "", daysPast: 10};
     }
 
     private toggleFullList() {
@@ -35,16 +35,16 @@ class PresetList extends React.Component<Props, State> {
         const displayLimitTimestamp = (Date.now() / 1000) - (this.state.daysPast * 24 * 60 * 60);
         const presetRows = this.props.presetsAndDrafts.presets
             .sort((a, b) => {
-                if (a.created < b.created) {
+                if (a.last_draft < b.last_draft) {
                     return 1;
                 }
-                if (a.created > b.created) {
+                if (a.last_draft > b.last_draft) {
                     return -1;
                 }
                 return 0;
             })
             .filter(value => this.state.shortList ? (this.props.presetsAndDrafts?.drafts_by_preset_id[value.code]?.length) : true)
-            .filter(value => this.state.shortList ? (value.created > displayLimitTimestamp) : true)
+            .filter(value => this.state.shortList ? (value.last_draft > displayLimitTimestamp) : true)
             .filter(value => value.name.includes(this.state.nameFilter))
             .map(preset => {
                 let listDraftsTitle = <span className="has-text-grey">{preset.name}</span>;
@@ -75,6 +75,7 @@ class PresetList extends React.Component<Props, State> {
                         </Link>
                     </td>
                     <td>{Util.formatTimestamp(preset.created)}</td>
+                    <td>{Util.formatTimestamp(preset.last_draft)}</td>
                 </tr>)
             });
         return (
@@ -86,14 +87,14 @@ class PresetList extends React.Component<Props, State> {
                         this.toggleFullList()
                     }}/>
                     <label htmlFor="toggleFullList">
-                        Show only presets created in the past <input type="text" value={this.state.daysPast}
+                        Show only presets with drafts in the past <input type="text" value={this.state.daysPast}
                                                                      style={{width: "2em"}}
                                                                      onChange={(event) => {
                                                                          const newValue = parseInt(event.target.value);
                                                                          if (newValue) {
                                                                              this.setState({daysPast: newValue});
                                                                          }
-                                                                     }}/> days with drafts
+                                                                     }}/> days
                     </label>
                 </div>
                 <div className="field has-addons mt-2 mb-0">
@@ -116,6 +117,7 @@ class PresetList extends React.Component<Props, State> {
                         <th>Code</th>
                         <th>Name</th>
                         <th>Created</th>
+                        <th>Last Draft</th>
                     </tr>
                     </thead>
                     <tbody>
