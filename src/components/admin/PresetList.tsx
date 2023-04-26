@@ -45,7 +45,7 @@ class PresetList extends React.Component<Props, State> {
             })
             .filter(value => this.state.shortList ? (this.props.presetsAndDrafts?.drafts_by_preset_id[value.code]?.length) : true)
             .filter(value => this.state.shortList ? (value.last_draft > displayLimitTimestamp) : true)
-            .filter(value => value.name.includes(this.state.nameFilter))
+            .filter(value => value.name.toLowerCase().includes(this.state.nameFilter.toLowerCase()))
             .map(preset => {
                 let listDraftsTitle = <span className="has-text-grey">{preset.name}</span>;
                 let countLinkClass = 'tag';
