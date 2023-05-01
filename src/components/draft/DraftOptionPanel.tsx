@@ -243,7 +243,7 @@ class DraftOptionPanel extends React.Component<IProps, IState> {
         if (Util.notUndefined(this.props.onClickCivilisation, this.props.draftOption, this.props.whoAmI, this.props.player, this.props.triggerAction)) {
             const whoAmI = this.props.whoAmI as Player;
             const player = this.props.player as Player;
-            if (whoAmI === Player.NONE) {
+            if (whoAmI === Player.SPEC) {
                 return;
             }
             const draftOption = this.props.draftOption as DraftOption;
@@ -262,7 +262,7 @@ class DraftOptionPanel extends React.Component<IProps, IState> {
     private isValidOption() {
         if (Util.notUndefined(this.props.draft, this.props.whoAmI, this.props.triggerAction, this.props.player, this.props.draftOption)) {
             const whoAmI = this.props.whoAmI as Player;
-            if (whoAmI === Player.NONE) {
+            if (whoAmI === Player.SPEC) {
                 return false;
             }
             const triggerAction = this.props.triggerAction as ActionType;

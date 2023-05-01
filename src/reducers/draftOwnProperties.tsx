@@ -53,7 +53,7 @@ export const draftOwnPropertiesReducer = (state: IDraftOwnPropertiesState = init
             console.log(ServerActions.APPLY_REPLAY, action.value);
             return {
                 ...state,
-                whoAmI: Player.NONE,
+                whoAmI: Player.SPEC,
                 nextAction: action.value.events.length
             };
         case Actions.SET_HIGHLIGHTED_ACTION:

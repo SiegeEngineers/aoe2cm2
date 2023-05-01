@@ -184,11 +184,11 @@ export const Util = {
         if (roleRaw === Player.HOST) {
             return Player.HOST;
         }
-        return Player.NONE;
+        return Player.SPEC;
     },
 
     getAssignedRole(socket: Socket, roomHost: string, roomGuest: string): Player {
-        let assignedRole: Player = Player.NONE;
+        let assignedRole: Player = Player.SPEC;
         if (socket.rooms.has(roomHost)) {
             assignedRole = Player.HOST;
         } else if (socket.rooms.has(roomGuest)) {

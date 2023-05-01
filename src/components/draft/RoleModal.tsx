@@ -52,7 +52,7 @@ class RoleModal extends React.Component<IProps, object> {
                                     </div>
                                 </button>
                                 <button className="role-button button is-light" onClick={() => {
-                                    this.props.setRoleCallback(Player.NONE)
+                                    this.props.setRoleCallback(Player.SPEC)
                                 }}>
                                     <div className="role">
                                         <div className="box-content is-visible">

@@ -80,10 +80,10 @@ class Draft extends React.Component<IProps, IState> {
             if (!this.props.hostConnected || !this.props.guestConnected) {
                 this.props.showRoleModal();
             } else {
-                this.props.setOwnRole(Player.NONE);
+                this.props.setOwnRole(Player.SPEC);
                 this.setState({joined: true});
             }
-        } else if (this.props.whoAmI !== Player.NONE && !this.state.joined) {
+        } else if (this.props.whoAmI !== Player.SPEC && !this.state.joined) {
             let username: string | null = NameGenerator.getNameFromLocalStorage(this.props.ownName);
             console.log("componentDidMount", this.props.triggerSetRole, username);
             if (username !== null) {

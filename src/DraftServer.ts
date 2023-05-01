@@ -123,7 +123,7 @@ export class DraftServer {
             }
 
             logger.debug("rooms: %s", JSON.stringify(socket.rooms), {draftId});
-            let yourPlayerType = Player.NONE;
+            let yourPlayerType = Player.SPEC;
             if (socket.rooms.has(roomHost)) {
                 socket.join(roomHost); // async
                 yourPlayerType = Player.HOST;
@@ -207,7 +207,7 @@ export class DraftServer {
                     socket.emit('message', 'This draft does not exist.');
                     return;
                 }
-                let assignedRole: Player = Player.NONE;
+                let assignedRole: Player = Player.SPEC;
                 let wasAlreadyReady = false;
                 if (socket.rooms.has(roomHost)) {
                     wasAlreadyReady = draftsStore.setPlayerReady(draftId, Player.HOST);
@@ -267,7 +267,7 @@ export class DraftServer {
             });
 
             let draftState = {
-                ...draftsStore.getDraftViewsOrThrow(draftId).getDraftForPlayer(Player.NONE),
+                ...draftsStore.getDraftViewsOrThrow(draftId).getDraftForPlayer(Player.SPEC),
                 yourPlayerType: yourPlayerType
             };
             logger.info("Emitting draft_state: %s", JSON.stringify(draftState), {draftId});

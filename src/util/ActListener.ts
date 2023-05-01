@@ -28,7 +28,7 @@ export class ActListener {
             const assignedRole = Util.getAssignedRole(socket, roomHost, roomGuest);
 
             if (!skipSourceValidation) {
-                if (assignedRole === Player.NONE) {
+                if (assignedRole === Player.SPEC) {
                     logger.warn("Discarding spectator message", {draftId});
                     socket.emit('message', 'You shall not act.');
                     return;

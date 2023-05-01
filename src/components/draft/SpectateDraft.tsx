@@ -13,7 +13,7 @@ interface IProps extends WithTranslation {
 class SpectateDraft extends React.Component<IProps, object> {
 
     componentDidMount(): void {
-        this.props.setOwnRole(Player.NONE);
+        this.props.setOwnRole(Player.SPEC);
     }
 
     public render() {

@@ -133,6 +133,8 @@ class Messages extends React.Component<IProps, object> {
             return this.props.nameHost;
         } else if (nextTurn.executingPlayer === Player.GUEST) {
             return this.props.nameGuest;
+        } else if (nextTurn.executingPlayer === Player.NONE) {
+            return 'ADMIN';
         }
         return '';
     }
@@ -145,11 +147,30 @@ class Messages extends React.Component<IProps, object> {
         return name;
     }
 
+    private getTargetPlayerName(nextTurn: Turn) {
+        if (nextTurn.player === Player.HOST) {
+            return this.props.nameHost;
+        } else if (nextTurn.player === Player.GUEST) {
+            return this.props.nameGuest;
+        } else if (nextTurn.player === Player.NONE) {
+            return 'ADMIN';
+        }
+        return '';
+    }
+
+    private getTargetPlayerNameForDisplay(nextTurn: Turn) {
+        const name = this.getTargetPlayerName(nextTurn).trim();
+        if (name.length > 32) {
+            return name.substring(0, 30) + '…';
+        }
+        return name;
+    }
+
     private handleParallelTurn() {
         const firstTurn = this.getFirstTurnOfParallelTurn() as Turn;
         const secondTurn = this.getSecondTurnOfParallelTurn() as Turn;
         const nextTurn = this.getNextTurn() as Turn;
-        if (this.props.whoAmI === Player.NONE) {
+        if (this.props.whoAmI === Player.SPEC) {
             if (nextTurn.parallel) {
                 return this.messageForTurns(firstTurn, secondTurn);
             } else {
@@ -296,7 +317,7 @@ class Messages extends React.Component<IProps, object> {
                     );
             }
         } else {
-            if (this.props.whoAmI === Player.NONE) {
+            if (this.props.whoAmI === Player.SPEC) {
                 const playerName = this.getPlayerNameForDisplay(turn);
                 const targetPlayerName = this.getTargetPlayerNameForDisplay(turn);
                 switch (turn.action) {

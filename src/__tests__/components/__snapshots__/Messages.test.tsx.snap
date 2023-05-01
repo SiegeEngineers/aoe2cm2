@@ -121,33 +121,9 @@ exports[`parallel turn G-H: Step 1 perspective: HOST 1`] = `
 exports[`parallel turn G-H: Step 1 perspective: NONE 1`] = `
 <div>
   <Trans
-    i18nKey="messages.specParallelTurnsPickPick"
+    i18nKey="messages.waitingForPick"
   >
-    Waiting for 
-    <b>
-      <Component />
-    </b>
-     to 
-    <span
-      className="has-text-success"
-    >
-      <b>
-        Pick
-      </b>
-    </span>
-     and for 
-    <b>
-      <Component />
-    </b>
-     to 
-    <span
-      className="has-text-success"
-    >
-      <b>
-        Pick
-      </b>
-    </span>
-     a civilisation
+    Waiting for the other captain to pick…
   </Trans>
   <Connect(Countdown) />
 </div>
@@ -185,21 +161,9 @@ exports[`parallel turn G-H: Step 2, Guest picks before Host, perspective: HOST 1
 exports[`parallel turn G-H: Step 2, Guest picks before Host, perspective: NONE 1`] = `
 <div>
   <Trans
-    i18nKey="messages.specPick"
+    i18nKey="messages.waitingForPick"
   >
-    Waiting for 
-    <b>
-      <Component />
-    </b>
-     to 
-    <span
-      className="has-text-success"
-    >
-      <b>
-        Pick
-      </b>
-    </span>
-     a civilization
+    Waiting for the other captain to pick…
   </Trans>
   <Connect(Countdown) />
 </div>
@@ -237,21 +201,9 @@ exports[`parallel turn G-H: Step 2, Host picks before Guest perspective: HOST 1`
 exports[`parallel turn G-H: Step 2, Host picks before Guest perspective: NONE 1`] = `
 <div>
   <Trans
-    i18nKey="messages.specPick"
+    i18nKey="messages.waitingForPick"
   >
-    Waiting for 
-    <b>
-      <Component />
-    </b>
-     to 
-    <span
-      className="has-text-success"
-    >
-      <b>
-        Pick
-      </b>
-    </span>
-     a civilization
+    Waiting for the other captain to pick…
   </Trans>
   <Connect(Countdown) />
 </div>
@@ -343,21 +295,9 @@ exports[`parallel turn H-G: Step 2, Guest picks before Host perspective: HOST 1`
 exports[`parallel turn H-G: Step 2, Guest picks before Host perspective: NONE 1`] = `
 <div>
   <Trans
-    i18nKey="messages.specPick"
+    i18nKey="messages.waitingForPick"
   >
-    Waiting for 
-    <b>
-      <Component />
-    </b>
-     to 
-    <span
-      className="has-text-success"
-    >
-      <b>
-        Pick
-      </b>
-    </span>
-     a civilization
+    Waiting for the other captain to pick…
   </Trans>
   <Connect(Countdown) />
 </div>
@@ -395,21 +335,9 @@ exports[`parallel turn H-G: Step 2, Host picks before Guest perspective: HOST 1`
 exports[`parallel turn H-G: Step 2, Host picks before Guest perspective: NONE 1`] = `
 <div>
   <Trans
-    i18nKey="messages.specPick"
+    i18nKey="messages.waitingForPick"
   >
-    Waiting for 
-    <b>
-      <Component />
-    </b>
-     to 
-    <span
-      className="has-text-success"
-    >
-      <b>
-        Pick
-      </b>
-    </span>
-     a civilization
+    Waiting for the other captain to pick…
   </Trans>
   <Connect(Countdown) />
 </div>
@@ -594,21 +522,9 @@ exports[`picks, bans, and snipes: HOST sees prompt for HOST turn (SNIPE) 1`] = `
 exports[`picks, bans, and snipes: NONE sees prompt for HOST turn (BAN) 1`] = `
 <div>
   <Trans
-    i18nKey="messages.specBan"
+    i18nKey="messages.waitingForBan"
   >
-    Waiting for 
-    <b>
-      <Component />
-    </b>
-     to 
-    <span
-      className="has-text-danger"
-    >
-      <b>
-        Ban
-      </b>
-    </span>
-     a civilization
+    Waiting for the other captain to ban…
   </Trans>
   <Connect(Countdown) />
 </div>
@@ -617,21 +533,9 @@ exports[`picks, bans, and snipes: NONE sees prompt for HOST turn (BAN) 1`] = `
 exports[`picks, bans, and snipes: NONE sees prompt for HOST turn (PICK) 1`] = `
 <div>
   <Trans
-    i18nKey="messages.specPick"
+    i18nKey="messages.waitingForPick"
   >
-    Waiting for 
-    <b>
-      <Component />
-    </b>
-     to 
-    <span
-      className="has-text-success"
-    >
-      <b>
-        Pick
-      </b>
-    </span>
-     a civilization
+    Waiting for the other captain to pick…
   </Trans>
   <Connect(Countdown) />
 </div>
@@ -640,23 +544,10 @@ exports[`picks, bans, and snipes: NONE sees prompt for HOST turn (PICK) 1`] = `
 exports[`picks, bans, and snipes: NONE sees prompt for HOST turn (SNIPE) 1`] = `
 <div>
   <Trans
-    i18nKey="messages.specSnipe"
+    i18nKey="messages.waitingForSnipe"
   >
-    Waiting for 
-    <b>
-      <Component />
-    </b>
-     to 
-    <span
-      className="has-text-info"
-    >
-      <b>
-        Snipe
-      </b>
-    </span>
-     a civilization of the opponent
+    Waiting for the other captain to snipe one of your civilisations…
   </Trans>
-   
   <Connect(Countdown) />
 </div>
 `;

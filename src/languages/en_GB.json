@@ -192,6 +192,7 @@
     "VLD_912": "Admin turns cannot steal or snipe",
     "VLD_913": "Admin turns cannot be hidden",
     "VLD_914": "Only Admin turns can use the reveal action",
+    "VLD_915": "Turns must not involve the specator role",
     "VLD_999": "Something went very wrong during validation"
   },
   "menu": {

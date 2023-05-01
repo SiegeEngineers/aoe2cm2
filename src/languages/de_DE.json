@@ -192,6 +192,7 @@
     "VLD_912": "Admin-Züge können nicht STEAL oder SNIPE ausführen",
     "VLD_913": "Admin-Züge können nicht versteckt sein",
     "VLD_914": "Nur Admin-Züge dürfen vorherige versteckte Züge aufdecken",
+    "VLD_915": "Die Beobachterinnenrolle darf keine Züge ausführen",
     "VLD_999": "Irgendetwas ist bei der Validierung gehörig schief gelaufen"
   },
   "menu": {

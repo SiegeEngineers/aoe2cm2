@@ -433,6 +433,22 @@ it('VLD_914: only admins may do the admin turns', () => {
     expect(errors).toEqual([ValidationId.VLD_914]);
 });
 
+it('VLD_915: no spec player in turns', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.SPEC, Action.PICK, Exclusivity.GLOBAL),
+    ]);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([ValidationId.VLD_915]);
+});
+
+it('VLD_915: no executing spec player in turns', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, false, false, Player.SPEC),
+    ]);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([ValidationId.VLD_915]);
+});
+
 it('VLD_999: totally wrong preset format', () => {
     let preset = {absolute: "garbage"} as unknown as Preset;
     const errors: ValidationId[] = Validator.validatePreset(preset);

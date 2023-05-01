@@ -48,7 +48,7 @@ export class PresetValidation {
 
     public static readonly VLD_905: PresetValidation = new PresetValidation(ValidationId.VLD_905, (preset: Preset) => {
         let lastTurnHadParallelMarker = false;
-        let lastTurnPlayer = Player.NONE;
+        let lastTurnPlayer = Player.SPEC;
         for (let turn of preset.turns) {
             if (lastTurnHadParallelMarker && lastTurnPlayer === turn.executingPlayer) {
                 return false;
@@ -170,6 +170,15 @@ export class PresetValidation {
         return true;
     });
 
+    public static readonly VLD_915: PresetValidation = new PresetValidation(ValidationId.VLD_915, (preset: Preset) => {
+        for (let turn of preset.turns) {
+            if (turn.player === Player.SPEC || turn.executingPlayer === Player.SPEC) {
+                return false;
+            }
+        }
+        return true;
+    });
+
     public static readonly ALL: PresetValidation[] = [
         PresetValidation.VLD_901,
         PresetValidation.VLD_902,
@@ -185,6 +194,7 @@ export class PresetValidation {
         PresetValidation.VLD_912,
         PresetValidation.VLD_913,
         PresetValidation.VLD_914,
+        PresetValidation.VLD_915,
     ];
 
     private readonly validationId: ValidationId;
