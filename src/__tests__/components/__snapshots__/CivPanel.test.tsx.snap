@@ -1032,6 +1032,30 @@ exports[`BAN CivPanels render correctly 43`] = `
 />
 `;
 
+exports[`BAN CivPanels render correctly 44`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "gameVersion": 10,
+      "i18nPrefix": "civs.",
+      "id": "Romans",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/romans-left.apng",
+        "animated_right": "/images/units-animated/romans-right.apng",
+        "emblem": "/images/civemblems/romans.png",
+        "unit": "/images/civs/romans.png",
+      },
+      "name": "Romans",
+    }
+  }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
 exports[`PICK CivPanels render correctly 1`] = `
 <DraftOptionPanel
   active={false}
@@ -2055,6 +2079,30 @@ exports[`PICK CivPanels render correctly 43`] = `
         "unit": "/images/civs/hindustanis.png",
       },
       "name": "Hindustanis",
+    }
+  }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 44`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "gameVersion": 10,
+      "i18nPrefix": "civs.",
+      "id": "Romans",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/romans-left.apng",
+        "animated_right": "/images/units-animated/romans-right.apng",
+        "emblem": "/images/civemblems/romans.png",
+        "unit": "/images/civs/romans.png",
+      },
+      "name": "Romans",
     }
   }
   draftOptionPanelType="pick"

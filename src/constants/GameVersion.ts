@@ -9,6 +9,7 @@ enum GameVersion {
     LORDS_OF_THE_WEST,
     DAWN_OF_THE_DUKES,
     DYNASTIES_OF_INDIA,
+    RETURN_OF_ROME,
 }
 
 export default GameVersion;
