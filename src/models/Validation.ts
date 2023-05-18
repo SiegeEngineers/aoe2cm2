@@ -10,6 +10,13 @@ import ValidCivs from "./ValidCivs";
 
 export class Validation {
     public static readonly VLD_000: Validation = new Validation(ValidationId.VLD_000, (draft: Draft, draftEvent: DraftEvent) => {
+        if (Util.isPlayerEvent(draftEvent)) {
+            if (draftEvent.executingPlayer === Player.NONE) {
+                return true;
+            }
+        } else if (Util.isAdminEvent(draftEvent)) {
+            return true;
+        }
         if (!draft.draftCanBeStarted()) {
             return false;
         }

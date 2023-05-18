@@ -280,8 +280,16 @@ export class DraftsStore {
     }
 
     public startCountdown(draftId: string, socket: socketio.Socket, dataDirectory: string) {
+        let countdown = this.countdowns.get(draftId);
+        if (countdown && countdown.timeout) {
+            return;
+        }
         const expectedActions = this.getExpectedActions(draftId);
         if (expectedActions.length > 0) {
+            let initialValue = 30;
+            if (countdown !== undefined) {
+                initialValue = countdown.value;
+            }
             const interval: NodeJS.Timeout = setInterval(() => {
                 const roomHost: string = `${draftId}-host`;
                 const roomGuest: string = `${draftId}-guest`;
@@ -319,11 +327,6 @@ export class DraftsStore {
 
                 }
             }, 1000);
-            let initialValue = 30;
-            let countdown = this.countdowns.get(draftId);
-            if (countdown !== undefined) {
-                initialValue = countdown.value;
-            }
             this.countdowns.set(draftId, {timeout: interval, value: initialValue, socket});
         }
     }
@@ -338,6 +341,7 @@ export class DraftsStore {
         if (countdown !== undefined) {
             if (countdown.timeout !== undefined) {
                 clearInterval(countdown.timeout);
+                countdown.timeout = undefined;
                 this.resetCountdownValue(draftId);
             }
             const expectedActions = this.getExpectedActions(draftId);

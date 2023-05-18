@@ -227,7 +227,7 @@ export class DraftServer {
                         ActListener.scheduleAdminEvent(adminEventCounter, draftsStore, draftId, draftViews, socket, roomHost, roomGuest, roomSpec, this.currentDataDirectory);
                     }
                     if (draftViews.shouldRestartOrCancelCountdown()) {
-                        draftsStore.restartOrCancelCountdown(draftId, this.dataDirectory);
+                        draftsStore.restartOrCancelCountdown(draftId, this.currentDataDirectory);
                     }
                     ActListener.finishDraftIfNoFurtherActions(draftViews, socket, draftsStore, draftId, roomHost, roomGuest, roomSpec, this.currentDataDirectory);
 
