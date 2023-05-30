@@ -49,6 +49,25 @@
     "HIDDEN_SNIPE": "",
     "HIDDEN": "",
     "RANDOM": "Aleatória",
+    "aoe1": {
+      "Assyrians": "Assírios",
+      "Babylonians": "Babilônicos",
+      "Carthaginians": "Cartagineses",
+      "Choson": "Choson",
+      "Egyptians": "Egípcios",
+      "Greeks": "Gregos",
+      "Hittites": "Hititas",
+      "LacViet": "Lac Viet",
+      "Macedonians": "Macedônios",
+      "Minoans": "Minoicos",
+      "Palmyrans": "Palmarianos",
+      "Persians": "Persas",
+      "Phoenicians": "Fenícios",
+      "Romans": "Romanos",
+      "Shang": "Shang",
+      "Sumerians": "Sumérios",
+      "Yamato": "Yamato"
+    },
     "aoe3": {
       "Aztec": "Azteca",
       "British": "Britânica",
@@ -289,6 +308,7 @@
   "presetEditor": {
     "helpAndInstructions": "Ajuda e Instruções",
     "availableDraftOptions": "Opções de Draft Disponíveis",
+    "aoe1Civs": "Civilizações do AoE1",
     "aoe2Civs": "Civilizações do AoE2",
     "aoe2Maps": "Mapas do AOE2",
     "aoe3Civs": "Civilizações do AoE3",

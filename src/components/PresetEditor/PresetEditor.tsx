@@ -32,6 +32,7 @@ import Aoe4Civilisation from "../../models/Aoe4Civilisation";
 import {RouteComponentProps} from "react-router";
 import CivilisationSet from "../../models/CivilisationSet";
 import Aoe2Map from "../../models/Aoe2Map";
+import Aoe1Civilisation from "../../models/Aoe1Civilisation";
 
 interface Props extends WithTranslation, RouteComponentProps<any> {
     preset: Preset | null,
@@ -59,6 +60,9 @@ class PresetEditor extends React.Component<Props, State> {
         document.title = 'Preset Editor – AoE Captains Mode';
         const civs = this.getInitialCivilisationSet();
         switch (civs) {
+            case CivilisationSet.AOE1:
+                this.setState({defaultDraftOptions: Aoe1Civilisation.ALL, activeCivilisationSet: CivilisationSet.AOE1});
+                break;
             default:
             case CivilisationSet.AOE2:
                 this.setState({defaultDraftOptions: Civilisation.ALL, activeCivilisationSet: CivilisationSet.AOE2});
@@ -79,6 +83,9 @@ class PresetEditor extends React.Component<Props, State> {
         if (this.props.preset === null || this.props.preset === undefined) {
             this.props.onSetEditorPreset(Preset.NEW);
             switch (civs) {
+                case CivilisationSet.AOE1:
+                    this.props.onPresetDraftOptionsChange([...Aoe1Civilisation.ALL]);
+                    break;
                 default:
                 case CivilisationSet.AOE2:
                     this.props.onPresetDraftOptionsChange([...Civilisation.ALL_ACTIVE]);
@@ -109,7 +116,9 @@ class PresetEditor extends React.Component<Props, State> {
             }
             if (this.props.preset.draftOptions) {
                 const draftOptions = this.props.preset.draftOptions;
-                if (draftOptions.every(draftOption => Civilisation.ALL.some(aoe2civ => DraftOption.equals(draftOption, aoe2civ)))) {
+                if (draftOptions.every(draftOption => Aoe1Civilisation.ALL.some(aoe1civ => DraftOption.equals(draftOption, aoe1civ)))) {
+                    return CivilisationSet.AOE1;
+                } else if (draftOptions.every(draftOption => Civilisation.ALL.some(aoe2civ => DraftOption.equals(draftOption, aoe2civ)))) {
                     return CivilisationSet.AOE2;
                 } else if (draftOptions.every(draftOption => Aoe2Map.ALL.some(aoe2map => DraftOption.equals(draftOption, aoe2map)))) {
                     return CivilisationSet.AOE2MAPS;
@@ -148,6 +157,17 @@ class PresetEditor extends React.Component<Props, State> {
 
                     <div className="tabs is-boxed is-small civ-selector-tabs">
                         <ul>
+                            <li className={this.state.activeCivilisationSet === CivilisationSet.AOE1 ? "is-active" : ""}>
+                                <a href="#aoe1" onClick={() => {
+                                    this.setState({
+                                        defaultDraftOptions: Aoe1Civilisation.ALL,
+                                        activeCivilisationSet: CivilisationSet.AOE1
+                                    });
+                                    this.props.onPresetDraftOptionsChange([...Aoe1Civilisation.ALL]);
+                                }}>
+                                    <Trans i18nKey="presetEditor.aoe1Civs">AoE1 civs</Trans>
+                                </a>
+                            </li>
                             <li className={this.state.activeCivilisationSet === CivilisationSet.AOE2 ? "is-active" : ""}>
                                 <a href="#aoe2" onClick={() => {
                                     this.setState({
