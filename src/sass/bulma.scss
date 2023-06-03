@@ -410,6 +410,12 @@ div.stretchy-wrapper > div.stretchy-text {
   letter-spacing: -0.5px;
 }
 
+.pick div.stretchy-wrapper > div.stretchy-text,
+.steal div.stretchy-wrapper > div.stretchy-text,
+html.has-simple-ui .ban div.stretchy-wrapper > div.stretchy-text{
+  font-size: 14px;
+}
+
 .choice img {
   display: block;
   width: 100%;
