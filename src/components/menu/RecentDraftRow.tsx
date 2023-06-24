@@ -2,6 +2,7 @@ import * as React from "react";
 import {IRecentDraft} from "../../types";
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
 import CustomName from "../draft/CustomName";
+import {Link} from "react-router-dom";
 
 interface IProps extends WithTranslation {
     recentDraft: IRecentDraft,
@@ -28,9 +29,9 @@ class RecentDraftRow extends React.Component<IProps, object> {
                 <span className={'player-guest'}><CustomName name={this.props.recentDraft.nameGuest}/></span>
             </td>
             <td className="has-text-right">
-                <button className="button is-small is-link is-light" onClick={() => this.props.callback(draftId)}>
+                <Link className="button is-small is-link is-light" to={'/spectate/' + draftId}>
                     <Trans i18nKey={i18nKey}>Watch</Trans>
-                </button>
+                </Link>
             </td>
         </tr>;
     }
