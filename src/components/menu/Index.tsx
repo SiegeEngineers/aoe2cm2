@@ -46,7 +46,7 @@ class Index extends React.Component<WithTranslation, IState> {
                     <h4><Trans i18nKey='instructions.home.reportIssue.title'>Found an Issue?</Trans></h4>
                     <p className={"is-small"}>
                         <Trans i18nKey='instructions.home.reportIssue.github'>Have you found or experienced a problem on this site? Check the <a href={"https://github.com/SiegeEngineers/aoe2cm2/issues"}>list of known issues on GitHub</a>.</Trans>&nbsp;
-                        <Trans i18nKey='instructions.home.reportIssue.discord'>If your problem is not listed there, report it on GitHub or describe it to <code>hszemi#2325</code> on Discord. Make sure to include a link to your draft if you have one!</Trans>
+                        <Trans i18nKey='instructions.home.reportIssue.discord'>If your problem is not listed there, report it on GitHub or describe it to <code>hszemi</code> on Discord. Make sure to include a link to your draft if you have one!</Trans>
                     </p>
                 </div>
             </div>
