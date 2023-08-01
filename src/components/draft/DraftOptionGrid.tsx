@@ -41,8 +41,8 @@ class DraftOptionGrid extends React.Component<IProps, object> {
     }
 
     private compareDraftOptions(a: DraftOption, b: DraftOption) {
-        const aName = i18next.t(['civs.' + a.name, a.name]);
-        const bName = i18next.t(['civs.' + b.name, b.name]);
+        const aName = i18next.t(['civs.' + a.name, a.id]);
+        const bName = i18next.t(['civs.' + b.name, b.id]);
         return aName.localeCompare(bName, i18n.language);
     }
 }
