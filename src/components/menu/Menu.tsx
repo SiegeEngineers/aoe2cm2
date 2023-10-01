@@ -5,7 +5,7 @@ import Practice from "./Practice";
 import Presets from "./Presets";
 import Preset from "./Preset";
 import Index from "./Index";
-import Spectate from "./Spectate";
+import SpectateRecentDrafts from "../../containers/SpectateRecentDrafts";
 import {Trans, withTranslation, WithTranslation} from "react-i18next";
 import Modal from "../../containers/Modal";
 import PresetEditor from "../PresetEditor/PresetEditor";
@@ -43,7 +43,7 @@ class Menu extends React.Component<WithTranslation, object> {
                         <Route path="/presets" component={Presets}/>
                         <Route path="/preset/create" component={PresetEditor}/>
                         <Route path="/preset/:id" component={Preset}/>
-                        <Route path="/spectate" component={Spectate}/>
+                        <Route path="/spectate" component={SpectateRecentDrafts}/>
                         <Route path="/practice" component={Practice}/>
                         <Route path="/help" component={HowItWorks}/>
                         <Route path="/api" component={API}/>

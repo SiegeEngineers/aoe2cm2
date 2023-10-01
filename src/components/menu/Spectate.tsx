@@ -1,26 +1,61 @@
 import * as React from "react";
 import {Redirect} from "react-router";
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
-import {IRecentDraft} from "../../types";
+import {IRecentDraft, IRecentDraftsState} from "../../types";
 import {default as RecentDraftRow} from "./RecentDraftRow";
+
+interface IProps extends WithTranslation, IRecentDraftsState {
+    specateDrafts: () => void;
+    resetRecentDraftCursor: () => void;
+}
 
 interface IState {
     draftId: string | null;
-    recentDrafts: IRecentDraft[];
+    autoRefresh: boolean;
+    paused: boolean;
+    pausedNewDraftIndex: number;
+    pausedDrafts: IRecentDraft[] | null;
 }
 
-class Spectate extends React.Component<WithTranslation, IState> {
-    constructor(props: WithTranslation) {
+class Spectate extends React.Component<IProps, IState> {
+    constructor(props: IProps) {
         super(props);
-        this.state = {draftId: null, recentDrafts: []};
+        this.state = {draftId: null, autoRefresh: true, paused: false, pausedNewDraftIndex: -1, pausedDrafts: []};
     }
 
     componentDidMount(): void {
-        fetch('/api/recentdrafts')
-            .then((response) => response.json())
-            .then((json) => this.setState({recentDrafts: json}));
         document.title = 'Spectate – AoE Captains Mode';
+        if (!this.props.drafts.length) {
+            this.props.specateDrafts();
+        }
     }
+
+    handleUnpause() {
+        this.setState({autoRefresh: true, paused: false, pausedNewDraftIndex: -1, pausedDrafts: null});
+        if (this.props.newDraftIndex !== -1) {
+            this.props.resetRecentDraftCursor();
+        }
+    }
+
+    private mouseEnterList = () => {
+        if (this.state.autoRefresh && !this.state.paused) {
+            this.setState({paused: true, pausedNewDraftIndex: this.props.newDraftIndex, pausedDrafts: this.props.drafts});
+        }
+    }
+
+    private mouseLeaveList = () => {
+        if (this.state.autoRefresh && this.state.paused) {
+            this.handleUnpause();
+        }
+    }
+
+    private toggleAutoRefresh = () => {
+        if (this.state.autoRefresh) {
+            this.setState({autoRefresh: false, pausedNewDraftIndex: this.props.newDraftIndex, pausedDrafts: this.props.drafts});
+        } else {
+            this.handleUnpause();
+        }
+    };
 
     public render() {
         if (this.state.draftId !== null) {
@@ -28,9 +63,13 @@ class Spectate extends React.Component<WithTranslation, IState> {
             return (<Redirect push to={target}/>);
         }
 
-        const recentDrafts = this.state.recentDrafts.map((value) => <RecentDraftRow recentDraft={value}
-                                                                                    key={value.draftId}
-                                                                                    callback={this.recentDraftCallback}/>)
+        const allDrafts = this.state.autoRefresh && !this.state.paused ? this.props.drafts : this.state.pausedDrafts || [];
+        const newDraftIndex = this.state.autoRefresh && !this.state.paused ? this.props.newDraftIndex : this.state.pausedNewDraftIndex;
+
+        const recentDrafts = allDrafts.map((value, index) => <RecentDraftRow recentDraft={value}
+                                                                            key={value.draftId}
+                                                                            isLastNew={index === newDraftIndex}
+                                                                            callback={this.recentDraftCallback}/>);
 
         return (
             <div className="container">
@@ -59,8 +98,22 @@ class Spectate extends React.Component<WithTranslation, IState> {
                     </div>
                 </div>
                 <div id="recent_drafts" className="box content">
-                    <h3><Trans i18nKey='spectate.recentDraftsTitle'>Recent Drafts</Trans></h3>
-                    <table className="table is-narrow is-hoverable is-fullwidth">
+                    <div className="recent-drafts-header">
+                        <h3><Trans i18nKey='spectate.recentDraftsTitle'>Recent Drafts</Trans></h3>
+                        <div>
+                            <div className="button is-small is-inverted" onClick={this.toggleAutoRefresh}>
+                                <span><Trans i18nKey="spectate.autoUpdate">Auto Update</Trans></span>
+                                <span className="icon">
+                                    {
+                                        !this.state.autoRefresh ? <i className="fas fa-times"></i> :
+                                        this.state.paused ? <i className="fas fa-pause"></i> :
+                                        <i className="fas fa-check"></i>
+                                    }
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <table className="table is-narrow is-hoverable is-fullwidth" onMouseEnter={this.mouseEnterList} onMouseLeave={this.mouseLeaveList}>
                         <thead>
                         <tr className="table-header">
                             <th className="has-text-left"><Trans i18nKey="spectate.draftName">Draft Name</Trans></th>
@@ -71,7 +124,12 @@ class Spectate extends React.Component<WithTranslation, IState> {
                         </tr>
                         </thead>
                         <tbody>
-                        {recentDrafts}
+                            {                  
+                                !this.props.drafts.length ?
+                                    <tr><td><span>Loading…</span></td></tr>
+                                :
+                                    recentDrafts
+                            }
                         </tbody>
                     </table>
                 </div>

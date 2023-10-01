@@ -146,6 +146,31 @@ label.civ-select:hover {
   border-radius: $radius-small;
 }
 
+#recent_drafts {
+  tr.last-new-draft {
+    border-bottom: 2px solid #f99;
+  }
+
+  div.recent-drafts-header {
+    & > h3 {
+      display: inline-block;
+    }
+
+    & > div {
+      float: right;
+      opacity: 0.5;
+
+      &:hover {
+        opacity: initial;
+      }
+    }
+
+    .icon { 
+      font-size: 1.35em;
+      color: $grey-dark;
+    }
+  }
+}
 
 /* TURNS ROW */
 .turn-row {

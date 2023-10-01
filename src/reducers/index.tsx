@@ -6,6 +6,7 @@ import {modalReducer} from "./modal";
 import {presetEditorReducer} from "./presetEditor";
 import {combineReducers} from 'redux';
 import {iconStyleReducer} from "./iconStyle";
+import {recentDraftsReducer} from "./recentDrafts";
 import {replayReducer} from "./replay";
 import {colorSchemeReducer} from "./colorScheme";
 import {adminReducer} from "./admin";
@@ -20,5 +21,6 @@ export default combineReducers({
     iconStyle: iconStyleReducer,
     colorScheme: colorSchemeReducer,
     modal: modalReducer,
-    presetEditor: presetEditorReducer
+    presetEditor: presetEditorReducer,
+    recentDrafts: recentDraftsReducer
 });

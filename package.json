@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@creativebulma/bulma-tooltip": "^1.2.0",
+    "@fortawesome/fontawesome-free": "^5.15.4",
     "@types/express": "^4.17.17",
     "@types/react-redux": "^7.1.25",
     "@types/react-router-dom": "^5.3.3",
@@ -76,7 +77,6 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "proxy": "http://localhost:3000/",
   "eslintConfig": {
     "extends": [
       "react-app",

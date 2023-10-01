@@ -5,6 +5,7 @@ import CustomName from "../draft/CustomName";
 import {Link} from "react-router-dom";
 
 interface IProps extends WithTranslation {
+    isLastNew: boolean,
     recentDraft: IRecentDraft,
     callback: (draftId: string) => void,
 }
@@ -15,7 +16,7 @@ class RecentDraftRow extends React.Component<IProps, object> {
     render() {
         const draftId = this.props.recentDraft.draftId;
         const i18nKey = this.props.recentDraft.ongoing ? 'spectate.watchLive' : 'spectate.watch';
-        return <tr>
+        return <tr className={this.props.isLastNew ? 'last-new-draft' : undefined}>
             <td>
                 <CustomName name={this.props.recentDraft.title} length={50}/>
             </td>

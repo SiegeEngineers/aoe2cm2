@@ -21,7 +21,7 @@ export class ActListener {
         this.dataDirectory = dataDirectory;
     }
 
-    actListener(draftsStore: DraftsStore, draftId: string, validateAndApply: (draftId: string, message: DraftEvent) => ValidationId[], socket: Socket, roomHost: string, roomGuest: string, roomSpec: string, skipSourceValidation = false) {
+    actListener(draftsStore: DraftsStore, draftId: string, validateAndApply: (draftId: string, message: DraftEvent) => ValidationId[], socket: Socket, roomLobby: string, roomHost: string, roomGuest: string, roomSpec: string, skipSourceValidation = false) {
         return (message: PlayerEvent, fn: (retval: any) => void) => {
             logger.info("Got act message: %s", JSON.stringify(message), {draftId});
 
@@ -70,12 +70,12 @@ export class ActListener {
                 let adminEventCounter = 0;
                 while (ActListener.nextActionIsAdminEvent(draftsStore, draftId, adminEventCounter)) {
                     adminEventCounter++;
-                    ActListener.scheduleAdminEvent(adminEventCounter, draftsStore, draftId, draftViews, socket, roomHost, roomGuest, roomSpec, this.dataDirectory);
+                    ActListener.scheduleAdminEvent(adminEventCounter, draftsStore, draftId, draftViews, socket, roomLobby, roomHost, roomGuest, roomSpec, this.dataDirectory);
                 }
                 if (draftViews.shouldRestartOrCancelCountdown()) {
                     draftsStore.restartOrCancelCountdown(draftId, this.dataDirectory);
                 }
-                ActListener.finishDraftIfNoFurtherActions(draftViews, socket, draftsStore, draftId, roomHost, roomGuest, roomSpec, this.dataDirectory);
+                ActListener.finishDraftIfNoFurtherActions(draftViews, socket, draftsStore, draftId, roomLobby, roomHost, roomGuest, roomSpec, this.dataDirectory);
             } else {
                 logger.info("Validation yielded errors: %s", JSON.stringify(validationErrors), {draftId});
                 fn({status: 'error', validationErrors});
@@ -92,7 +92,7 @@ export class ActListener {
     }
 
 
-    static scheduleAdminEvent(adminEventCounter: number, draftsStore: DraftsStore, draftId: string, draftViews: DraftViews, socket: Socket, roomHost: string, roomGuest: string, roomSpec: string, dataDirectory: string) {
+    static scheduleAdminEvent(adminEventCounter: number, draftsStore: DraftsStore, draftId: string, draftViews: DraftViews, socket: Socket, roomLobby: string, roomHost: string, roomGuest: string, roomSpec: string, dataDirectory: string) {
         const expectedActions = draftsStore.getExpectedActions(draftId, adminEventCounter - 1);
         const expectedAction = expectedActions[0];
         if (expectedAction.executingPlayer === Player.NONE) { // Admin Event
@@ -121,7 +121,7 @@ export class ActListener {
                         });
                     draftsStore.addDraftEvent(draftId, draftEvent);
                     draftsStore.restartOrCancelCountdown(draftId, dataDirectory);
-                    ActListener.finishDraftIfNoFurtherActions(draftViews, socket, draftsStore, draftId, roomHost, roomGuest, roomSpec, dataDirectory);
+                    ActListener.finishDraftIfNoFurtherActions(draftViews, socket, draftsStore, draftId, roomLobby, roomHost, roomGuest, roomSpec, dataDirectory);
                 }, adminEventCounter * this.adminTurnDelay);
             } else if ([ActionType.PICK, ActionType.BAN, ActionType.STEAL, ActionType.SNIPE].includes(actionTypeFromAction(expectedAction.action))) {
                 setTimeout(() => {
@@ -146,7 +146,7 @@ export class ActListener {
                         .emit("playerEvent", draftViews.getLastEventForSpec());
 
                     draftsStore.restartOrCancelCountdown(draftId, dataDirectory);
-                    ActListener.finishDraftIfNoFurtherActions(draftViews, socket, draftsStore, draftId, roomHost, roomGuest, roomSpec, dataDirectory);
+                    ActListener.finishDraftIfNoFurtherActions(draftViews, socket, draftsStore, draftId, roomLobby, roomHost, roomGuest, roomSpec, dataDirectory);
                 }, adminEventCounter * this.adminTurnDelay);
             } else {
                 throw new Error("Unknown expected action! " + expectedAction);
@@ -155,7 +155,7 @@ export class ActListener {
     }
 
     static finishDraftIfNoFurtherActions(draftViews: DraftViews, socket: Socket, draftsStore: DraftsStore,
-                                  draftId: string, roomHost: string, roomGuest: string, roomSpec: string, dataDirectory: string) {
+                                  draftId: string, roomLobby: string, roomHost: string, roomGuest: string, roomSpec: string, dataDirectory: string) {
         if (!draftViews.getActualDraft().hasNextAction()) {
             const draft = draftsStore.getDraftOrThrow(draftId);
             draft.startTimestamp = 0;
@@ -172,6 +172,7 @@ export class ActListener {
                         )
                     )
                 }
+                socket.nsp.in(roomLobby).emit('draft_finished', draftsStore.getLobbyDraft(draftId));
                 if (err) throw err;
                 logger.info(`Draft saved to ${draftPath}`, {draftId});
                 draftsStore.finishDraft(draftId);
