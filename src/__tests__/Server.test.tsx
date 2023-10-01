@@ -3,11 +3,12 @@ import getPort from "get-port";
 import request from "request";
 import temp from "temp";
 import * as fs from "fs";
+import {AddressInfo} from "net";
 import path from "path";
 import {default as io} from "socket.io-client";
 
 let httpServer: any;
-let httpServerAddr: any;
+let httpServerAddr: string;
 let ioServer: any;
 let draftServer: DraftServer;
 let dirPath: string;
@@ -33,7 +34,8 @@ beforeEach((done) => {
         console.log("Got port: " + port);
         const serve = draftServer.serve(port);
         httpServer = serve.httpServer;
-        httpServerAddr = serve.httpServerAddr;
+        const addr = serve.httpServerAddr as AddressInfo;
+        httpServerAddr = `[${addr.address}]:${addr.port}`;
         ioServer = serve.io;
         done();
     });
@@ -49,18 +51,18 @@ it('reloading drafts archive', (done) => {
     const draftId = 'abcde';
     fs.writeFileSync(path.join(dirPath, 'data', '2020', `abcde.json`), '{}');
 
-    request.get(`http://[${httpServerAddr.address}]:${httpServerAddr.port}/api/draft/${draftId}`,
+    request.get(`http://${httpServerAddr}/api/draft/${draftId}`,
         (error, response, body) => {
             expect(response.statusCode).toEqual(404);
 
-            request.post(`http://[${httpServerAddr.address}]:${httpServerAddr.port}/api/reload-archive`,
+            request.post(`http://${httpServerAddr}/api/reload-archive`,
                 {headers: {'Content-Type': 'application/json; charset=UTF-8'}},
                 (error, response, body) => {
                     expect(response.statusCode).toEqual(200);
                     const json = JSON.parse(body);
                     expect(json).toEqual(true);
 
-                    request.get(`http://[${httpServerAddr.address}]:${httpServerAddr.port}/api/draft/${draftId}`,
+                    request.get(`http://${httpServerAddr}/api/draft/${draftId}`,
                         (error, response, body) => {
                             expect(response.statusCode).toEqual(200);
                             const json = JSON.parse(body);
@@ -73,7 +75,7 @@ it('reloading drafts archive', (done) => {
 
 
 it('maintenanceMode is initially false', (done) => {
-    request.get(`http://[${httpServerAddr.address}]:${httpServerAddr.port}/api/state`, (error, response, body) => {
+    request.get(`http://${httpServerAddr}/api/state`, (error, response, body) => {
         expect(response.statusCode).toEqual(200);
         const json = JSON.parse(body);
         expect(json.maintenanceMode).toEqual(false);
@@ -82,7 +84,7 @@ it('maintenanceMode is initially false', (done) => {
 });
 
 it('maintenanceMode can be set to true', (done) => {
-    request.post(`http://[${httpServerAddr.address}]:${httpServerAddr.port}/api/state`,
+    request.post(`http://${httpServerAddr}/api/state`,
         {body: JSON.stringify({maintenanceMode: true}), headers: {'Content-Type': 'application/json; charset=UTF-8'}},
         (error, response, body) => {
             expect(response.statusCode).toEqual(200);
@@ -93,7 +95,7 @@ it('maintenanceMode can be set to true', (done) => {
 });
 
 it('hiddenPresetIds is initially empty', (done) => {
-    request.get(`http://[${httpServerAddr.address}]:${httpServerAddr.port}/api/state`, (error, response, body) => {
+    request.get(`http://${httpServerAddr}/api/state`, (error, response, body) => {
         expect(response.statusCode).toEqual(200);
         const json = JSON.parse(body);
         expect(json.hiddenPresetIds).toEqual([]);
@@ -102,7 +104,7 @@ it('hiddenPresetIds is initially empty', (done) => {
 });
 
 it('hiddenPresetIds can be filled', (done) => {
-    request.post(`http://[${httpServerAddr.address}]:${httpServerAddr.port}/api/state`,
+    request.post(`http://${httpServerAddr}/api/state`,
         {
             body: JSON.stringify({hiddenPresetIds: ['abc', 'xyz']}),
             headers: {'Content-Type': 'application/json; charset=UTF-8'}
@@ -120,7 +122,7 @@ it('get finished draft', (done) => {
     const draftId = 'abcdef';
     fs.writeFileSync(path.join(dirPath, 'data', 'current', `${draftId}.json`), '{}');
 
-    request.get(`http://[${httpServerAddr.address}]:${httpServerAddr.port}/api/draft/${draftId}`,
+    request.get(`http://${httpServerAddr}/api/draft/${draftId}`,
         (error, response, body) => {
             expect(response.statusCode).toEqual(200);
             const json = JSON.parse(body);
@@ -132,7 +134,7 @@ it('get finished draft', (done) => {
 it('get old finished draft', (done) => {
     const draftId = 'uvwxyz';
 
-    request.get(`http://[${httpServerAddr.address}]:${httpServerAddr.port}/api/draft/${draftId}`,
+    request.get(`http://${httpServerAddr}/api/draft/${draftId}`,
         (error, response, body) => {
             expect(response.statusCode).toEqual(200);
             const json = JSON.parse(body);
@@ -144,7 +146,7 @@ it('get old finished draft', (done) => {
 it('get old finished draft via socketio', (done) => {
     const draftId = 'uvwxyz';
 
-    const socket = io.connect(`http://[${httpServerAddr.address}]:${httpServerAddr.port}`, {
+    const socket = io.connect(`http://${httpServerAddr}`, {
         query: {draftId: draftId},
         reconnectionDelay: 0,
         forceNew: true,
@@ -157,9 +159,8 @@ it('get old finished draft via socketio', (done) => {
     });
 });
 
-
 it('login works', (done) => {
-    request.post(`http://[${httpServerAddr.address}]:${httpServerAddr.port}/api/login`,
+    request.post(`http://${httpServerAddr}/api/login`,
         {
             form: {user: 'admin', password: 'password'},
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -173,7 +174,7 @@ it('login works', (done) => {
 });
 
 it('wrong login yields 401', (done) => {
-    request.post(`http://[${httpServerAddr.address}]:${httpServerAddr.port}/api/login`,
+    request.post(`http://${httpServerAddr}/api/login`,
         {
             form: {user: 'admin', password: 'wrong password'},
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}

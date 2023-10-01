@@ -5,10 +5,12 @@ import {
     IApplyConfig,
     IConnectPlayer,
     ICountdownEvent,
+    IRemoveDrafts,
     IReplayEvent,
     ISetEvents,
     ISetPlayerName,
-    ISetReady
+    ISetReady,
+    IUpdateDrafts
 } from "../actions";
 import {ServerActions} from "../constants";
 import {default as ModelAction} from "../constants/Action";
@@ -17,10 +19,38 @@ import {IPlayerWithNameMessage} from "../types/IPlayerWithNameMessage";
 import Player from "../constants/Player";
 import PlayerEvent from "../models/PlayerEvent";
 import {Util} from "./Util";
-import {ICountdownValues, IDraftState} from "../types";
+import {ICountdownValues, IDraftState, IRecentDraft} from "../types";
 import {IDraftConfig} from "../types/IDraftConfig";
 
 export const SocketUtil = {
+    initLobbySocketIfFirstUse(socket: SocketIOClient.Socket | null, storeAPI: { dispatch: (arg0: Action) => void }): SocketIOClient.Socket {
+        if (socket !== null) {
+            return socket;
+        }
+        socket = io({ query: {lobby: true}});
+
+        socket.on("recent_drafts", (data: IRecentDraft[]) => {
+            console.log("recent_drafts", data);
+            storeAPI.dispatch({type: ServerActions.UPDATE_DRAFTS, value: data} as IUpdateDrafts);
+        });
+
+        socket.on("draft_update", (data: IRecentDraft) => {
+            console.log("draft_update", data);
+            storeAPI.dispatch({type: ServerActions.UPDATE_DRAFTS, value: [data]} as IUpdateDrafts);
+        });
+
+        socket.on("draft_abandoned", (data: string) => {
+            console.log("draft_abandoned", data);
+            storeAPI.dispatch({type: ServerActions.REMOVE_DRAFTS, value: [data]} as IRemoveDrafts);
+        });
+
+        socket.on("draft_finished", (data: IRecentDraft) => {
+            console.log("draft_finished", data);
+            storeAPI.dispatch({type: ServerActions.UPDATE_DRAFTS, value: [data]} as IUpdateDrafts);
+        });
+
+        return socket;
+    },
     initSocketIfFirstUse(socket: SocketIOClient.Socket | null, storeAPI: { dispatch: (arg0: Action) => void }): SocketIOClient.Socket {
         if (socket !== null) {
             return socket;

@@ -82,6 +82,19 @@ export class DraftsStore {
         return ongoingDrafts;
     }
 
+    public getLobbyDraft(draftId: string): IRecentDraft {
+        const draft = this.getDraftOrThrow(draftId);
+
+        return {
+            draftId: draftId,
+            ongoing: draft.hasNextAction(),
+            presetId: draft.preset.presetId,
+            title: draft.preset.name,
+            nameHost: draft.nameHost,
+            nameGuest: draft.nameGuest,
+        };
+    }
+
     getOngoingDrafts() {
         const ongoingDrafts: IRecentDraft[] = this.getDraftIds()
             .map((value: string) => {
@@ -94,6 +107,7 @@ export class DraftsStore {
                 return {
                     draftId: draft.draftId,
                     ongoing: true,
+                    presetId: draft.preset.presetId,
                     title: draft.preset.name,
                     nameHost: draft.nameHost,
                     nameGuest: draft.nameGuest,
@@ -104,6 +118,11 @@ export class DraftsStore {
 
     private presetIdIsHidden(draft: { preset: Preset}) {
         return draft.preset.presetId !== undefined && this.state.hiddenPresetIds.includes(draft.preset.presetId);
+    }
+
+    public draftIsHidden(draftId: string) {
+        const draft = this.getDraftGracefully(draftId);
+        return draft === undefined || this.presetIdIsHidden(draft);
     }
 
     public getDraftIds(): string[] {
@@ -201,6 +220,11 @@ export class DraftsStore {
         }
     }
 
+    public isPlayersConnected(draftId: string) {
+        const draft: Draft = this.getDraftOrThrow(draftId);
+        return draft.hostConnected && draft.guestConnected;
+    }
+
     public isPlayerConnected(draftId: string, player: Player) {
         const draft: Draft = this.getDraftOrThrow(draftId);
         switch (player) {
@@ -291,6 +315,7 @@ export class DraftsStore {
                 initialValue = countdown.value;
             }
             const interval: NodeJS.Timeout = setInterval(() => {
+                const roomLobby: string = 'lobby';
                 const roomHost: string = `${draftId}-host`;
                 const roomGuest: string = `${draftId}-guest`;
                 const roomSpec: string = `${draftId}-spec`;
@@ -313,7 +338,7 @@ export class DraftsStore {
                         const actListener = new ActListener(dataDirectory).actListener(this, draftId, (draftId: string, message: DraftEvent) => {
                             this.addDraftEvent(draftId, message);
                             return [];
-                        }, socket, roomHost, roomGuest, roomSpec, true);
+                        }, socket, roomLobby, roomHost, roomGuest, roomSpec, true);
                         const expectedActions = this.getExpectedActions(draftId);
                         if (expectedActions.length > 0) {
                             for (let expectedAction of expectedActions) {
@@ -385,6 +410,7 @@ export class DraftsStore {
         recentDrafts.unshift({
             title: draft.preset.name,
             draftId: draftId,
+            presetId: draft.preset.presetId,
             ongoing: false,
             nameHost: draft.nameHost,
             nameGuest: draft.nameGuest

@@ -4,7 +4,7 @@ import {default as ModelAction} from "../constants/Action";
 import {DraftEvent} from "../types/DraftEvent";
 import {IDraftConfig} from "../types/IDraftConfig";
 import PlayerEvent from "../models/PlayerEvent";
-import {ICountdownValues, IDraftState, IPresetAndDraftList} from "../types";
+import {ICountdownValues, IDraftState, IPresetAndDraftList, IRecentDraft} from "../types";
 import Preset from "../models/Preset";
 import Turn from "../models/Turn";
 import {ColorScheme} from "../constants/ColorScheme";
@@ -180,6 +180,27 @@ export interface ISetHighlightedAction {
     value: number | null;
 }
 
+export interface ISpectateDrafts {
+    type: ClientActions.SPECTATE_DRAFTS
+}
+
+export interface IUnspectateDrafts {
+    type: ClientActions.UNSPECTATE_DRAFTS
+}
+
+export interface IResetRecentDraftsCursor {
+    type: ClientActions.RESET_RECENT_DRAFTS_CURSOR
+}
+
+export interface IUpdateDrafts {
+    type: ServerActions.UPDATE_DRAFTS,
+    value: IRecentDraft[]
+}
+
+export interface IRemoveDrafts {
+    type: ServerActions.REMOVE_DRAFTS,
+    value: string[]
+}
 
 export type DraftAction = IConnectPlayer
     | ISetPlayerName
@@ -236,6 +257,12 @@ export type PresetEditorAction = ISetEditorPreset
     | ISetEditorName
     | ISetEditorDraftOptions;
 
+export type RecentDraftsAction = ISpectateDrafts
+    | IUnspectateDrafts
+    | IResetRecentDraftsCursor
+    | IUpdateDrafts
+    | IRemoveDrafts;
+
 export type Action = DraftAction
     | ReplayAction
     | DraftCountdownAction
@@ -245,6 +272,7 @@ export type Action = DraftAction
     | ColorSchemeAction
     | ModalAction
     | PresetEditorAction
+    | RecentDraftsAction
     | AdminAction;
 
 export function connectPlayer(player: Player, value: string): IConnectPlayer {
@@ -473,5 +501,23 @@ export function setHighlightedAction(value: number | null): ISetHighlightedActio
     return {
         value,
         type: Actions.SET_HIGHLIGHTED_ACTION
+    }
+}
+
+export function spectateDrafts(): ISpectateDrafts {
+    return {
+        type: ClientActions.SPECTATE_DRAFTS
+    }
+}
+
+export function resetRecentDraftCursor(): IResetRecentDraftsCursor {
+    return {
+        type: ClientActions.RESET_RECENT_DRAFTS_CURSOR
+    }
+}
+
+export function unspectateDrafts(): IUnspectateDrafts {
+    return {
+        type: ClientActions.UNSPECTATE_DRAFTS
     }
 }

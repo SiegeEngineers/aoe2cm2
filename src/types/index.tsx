@@ -32,6 +32,7 @@ export interface ApplicationState {
     modal: IModalState,
     presetEditor: IPresetEditorState,
     colorScheme: IColorSchemeState,
+    recentDrafts: IRecentDraftsState,
     admin: IAdminState,
 }
 
@@ -77,6 +78,7 @@ export interface ICountdownValues {
 export interface IRecentDraft {
     title: string;
     draftId: string;
+    presetId?: string;
     nameHost: string;
     nameGuest: string;
     ongoing: boolean;
@@ -117,4 +119,10 @@ export interface IDraftMetaData {
     host: string
     guest: string
     created: number
+}
+
+export interface IRecentDraftsState {
+    subscribeCount: number
+    drafts: IRecentDraft[]
+    newDraftIndex: number
 }

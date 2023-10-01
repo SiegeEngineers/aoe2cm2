@@ -76,7 +76,6 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "proxy": "http://localhost:3000/",
   "eslintConfig": {
     "extends": [
       "react-app",
