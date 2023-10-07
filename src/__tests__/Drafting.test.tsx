@@ -2,12 +2,14 @@ import {default as io} from "socket.io-client"
 import {DraftServer} from "../DraftServer";
 import request from "request"
 import Player from "../constants/Player";
+import {IRecentDraft} from "../types";
 import {IDraftConfig} from "../types/IDraftConfig";
 import getPort from "get-port";
 import Preset from "../models/Preset";
 import {Barrier} from "../test/Barrier";
 import temp from "temp";
 import * as fs from "fs";
+import {AddressInfo} from "net";
 import path from "path";
 import {BarrierPromise} from "../test/BarrierPromise";
 import Civilisation from "../models/Civilisation";
@@ -22,7 +24,7 @@ let clientSocket: any;
 let guestEmit: any;
 let spectatorSocket: any;
 let httpServer: any;
-let httpServerAddr: any;
+let httpServerAddr: string;
 let ioServer: any;
 let draftId: string;
 let draftServer: DraftServer;
@@ -45,7 +47,8 @@ beforeAll((done) => {
         console.log("Got port: " + port);
         const serve = draftServer.serve(port);
         httpServer = serve.httpServer;
-        httpServerAddr = serve.httpServerAddr;
+        const addr = serve.httpServerAddr as AddressInfo;
+        httpServerAddr = `[${addr.address}]:${addr.port}`;
         ioServer = serve.io;
         done();
     });
@@ -58,7 +61,7 @@ afterAll((done) => {
 });
 
 function connect() {
-    return io.connect(`http://[${httpServerAddr.address}]:${httpServerAddr.port}`, {
+    return io.connect(`http://${httpServerAddr}`, {
         query: {draftId: draftId},
         reconnectionDelay: 0,
         forceNew: true,
@@ -68,7 +71,7 @@ function connect() {
 
 async function createDraftForPreset(preset: Preset) {
     const barrier = new BarrierPromise(3);
-    await request.post(`http://[${httpServerAddr.address}]:${httpServerAddr.port}/api/draft/new`,
+    await request.post(`http://${httpServerAddr}/api/draft/new`,
         {body: JSON.stringify({preset: preset}), headers: {'Content-Type': 'application/json; charset=UTF-8'}},
         (error, response, body) => {
             const draftIdContainer: { draftId: string } = JSON.parse(body);
@@ -194,7 +197,7 @@ it('players can change their names', (done) => {
             .then(() => guestEmit('set_name', {"name": newGuestName}))
             .then(() => {
                 // done
-                const secondSpectatorSocket = io.connect(`http://[${httpServerAddr.address}]:${httpServerAddr.port}`, {
+                const secondSpectatorSocket = io.connect(`http://${httpServerAddr}`, {
                     query: {draftId: draftId},
                     reconnectionDelay: 0,
                     forceNew: true,
