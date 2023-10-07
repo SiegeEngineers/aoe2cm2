@@ -23,6 +23,8 @@ let hostEmit: any;
 let clientSocket: any;
 let guestEmit: any;
 let spectatorSocket: any;
+let lobbySocket: any;
+let lobbyEmit: any;
 let httpServer: any;
 let httpServerAddr: string;
 let ioServer: any;
@@ -69,9 +71,18 @@ function connect() {
     });
 }
 
-async function createDraftForPreset(preset: Preset) {
-    const barrier = new BarrierPromise(3);
-    await request.post(`http://${httpServerAddr}/api/draft/new`,
+function connectLobby() {
+    return io.connect(`http://${httpServerAddr}`, {
+        query: {lobby: true},
+        reconnectionDelay: 0,
+        forceNew: true,
+        transports: ['websocket'],
+    });
+}
+
+function createDraftForPreset(preset: Preset) {
+    const barrier = new BarrierPromise(4);
+    request.post(`http://${httpServerAddr}/api/draft/new`,
         {body: JSON.stringify({preset: preset}), headers: {'Content-Type': 'application/json; charset=UTF-8'}},
         (error, response, body) => {
             const draftIdContainer: { draftId: string } = JSON.parse(body);
@@ -105,6 +116,19 @@ async function createDraftForPreset(preset: Preset) {
             spectatorSocket.on('connect', () => {
                 barrier.trigger();
             });
+
+            lobbySocket = connectLobby();
+            lobbyEmit = (action: string, data: object) => {
+                return new Promise<object>((resolve, reject) => {
+                    lobbySocket.emit(action, data, (response: object) => {
+                        resolve(response);
+                    })
+                })
+            };
+            lobbySocket.on('connect', () => {
+                barrier.trigger();
+            });
+
         });
     return barrier.promise;
 }
@@ -118,6 +142,9 @@ afterEach((done) => {
     }
     if (spectatorSocket.connected) {
         spectatorSocket.disconnect();
+    }
+    if (lobbySocket.connected) {
+        lobbySocket.disconnect();
     }
     done();
 });
@@ -317,5 +344,126 @@ it('draft with invalid act', (done) => {
                 });
                 done();
             });
+    });
+});
+
+it('ongoing draft with only host not visible in lobby', (done) => {
+    createDraftForPreset(Preset.SIMPLE).then(value => {
+        hostEmit('set_role', {name: 'Saladin', role: Player.HOST})
+            .then(() => guestEmit('set_role', {name: 'Barbarossa', role: Player.GUEST}))
+            .then(() => lobbyEmit('spectate_drafts', {}))
+            .then((drafts: IRecentDraft[]) => {
+                expect(drafts.filter(draft => draft.draftId === draftId)).toHaveLength(1);
+                done();
+            });
+    });
+});
+
+it('ongoing draft should be visible in lobby', (done) => {
+    createDraftForPreset(Preset.SIMPLE).then(value => {
+        hostEmit('set_role', {name: 'Saladin', role: Player.HOST})
+            .then(() => guestEmit('set_role', {name: 'Barbarossa', role: Player.GUEST}))
+            .then(() => lobbyEmit('spectate_drafts', {}))
+            .then((drafts: IRecentDraft[]) => {
+                expect(drafts.filter(draft => draft.draftId === draftId)).toHaveLength(1);
+                done();
+            });
+    });
+});
+
+it('ongoing draft should become visible in lobby once second player joins', (done) => {
+    createDraftForPreset(Preset.SIMPLE).then(() => {
+        lobbySocket.once('draft_update', (draft:IRecentDraft) => {
+            expect(draft.draftId).toBe(draftId);
+            done();
+        });
+
+        hostEmit('set_role', {name: 'Saladin', role: Player.HOST})
+            .then(() => lobbyEmit('spectate_drafts', {}))
+            .then((drafts: IRecentDraft[]) => {
+                expect(drafts.filter(draft => draft.draftId === draftId)).toHaveLength(0);
+            })
+            .then(() => guestEmit('set_role', {name: 'Barbarossa', role: Player.GUEST}));
+    });
+});
+
+it('ongoing draft with member leaving should be abandoned', (done) => {
+    createDraftForPreset(Preset.SIMPLE).then(value => {
+        lobbySocket.once('draft_abandoned', (draft:string) => {
+            expect(draft).toBe(draftId);
+            done();
+        });
+
+        hostEmit('set_role', {name: 'Saladin', role: Player.HOST})
+            .then(() => guestEmit('set_role', {name: 'Barbarossa', role: Player.GUEST}))
+            .then(() => lobbyEmit('spectate_drafts', {}))
+            .then((drafts: IRecentDraft[]) => {
+                expect(drafts.filter(draft => draft.draftId === draftId)).toHaveLength(1);
+            })
+            .then(() => clientSocket.disconnect());
+    });
+});
+
+it('ongoing draft should notify when players are ready', (done) => {
+    createDraftForPreset(Preset.SIMPLE).then(value => {
+        lobbySocket.once('draft_update', (draft:IRecentDraft) => {
+            expect(draft.draftId).toBe(draftId);
+            done();
+        });
+
+        hostEmit('set_role', {name: 'Saladin', role: Player.HOST})
+            .then(() => guestEmit('set_role', {name: 'Barbarossa', role: Player.GUEST}))
+            .then(() => lobbyEmit('spectate_drafts', {}))
+            .then((drafts: IRecentDraft[]) => {
+                expect(drafts.filter(draft => draft.draftId === draftId)).toHaveLength(1);
+            })
+            .then(() => hostEmit('ready', {}))
+            .then(() => guestEmit('ready', {}));
+    });
+});
+
+it('ongoing draft should notify when draft finishes', (done) => {
+    createDraftForPreset(Preset.SIMPLE).then(value => {
+        lobbySocket.once('draft_update', (draft:IRecentDraft) => {
+            expect(draft.draftId).toBe(draftId);
+            done();
+        });
+
+        hostEmit('set_role', {name: 'Saladin', role: Player.HOST})
+            .then(() => guestEmit('set_role', {name: 'Barbarossa', role: Player.GUEST}))
+            .then(() => lobbyEmit('spectate_drafts', {}))
+            .then(() => hostEmit('ready', {}))
+            .then(() => guestEmit('ready', {}))
+            .then((drafts: IRecentDraft[]) => {
+                expect(drafts.filter(draft => draft.draftId === draftId)).toHaveLength(1);
+            })
+            .then(() => hostEmit('act', {
+                "player": "HOST",
+                "executingPlayer": "HOST",
+                "actionType": "ban",
+                "chosenOptionId": "Celts",
+                "isRandomlyChosen": false,
+            }))
+            .then(() => guestEmit('act', {
+                "player": "GUEST",
+                "executingPlayer": "GUEST",
+                "actionType": "ban",
+                "chosenOptionId": "Celts",
+                "isRandomlyChosen": false,
+            }))
+            .then(() => guestEmit('act', {
+                "player": "GUEST",
+                "executingPlayer": "GUEST",
+                "actionType": "pick",
+                "chosenOptionId": "Slavs",
+                "isRandomlyChosen": false,
+            }))
+            .then(() => hostEmit('act', {
+                "player": "HOST",
+                "executingPlayer": "HOST",
+                "actionType": "pick",
+                "chosenOptionId": "Slavs",
+                "isRandomlyChosen": false,
+            }));
     });
 });
