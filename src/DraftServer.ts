@@ -177,7 +177,7 @@ export class DraftServer {
                 logger.info("Player is not registered as spectator currently. No action taken.", {draftId});
             }
 
-            if (hasAssignedRole && draftsStore.isPlayersConnected(draftId)) {
+            if (hasAssignedRole && draftsStore.isPlayersConnected(draftId) && !draftsStore.draftIsHidden(draftId)) {
                 socket.nsp
                     .in(roomLobby)
                     .emit('draft_update', draftsStore.getLobbyDraft(draftId));
@@ -213,7 +213,7 @@ export class DraftServer {
                 return;
             }
 
-            if (draftsStore.isPlayersConnected(draftId)) {
+            if (draftsStore.isPlayersConnected(draftId) && !draftsStore.draftIsHidden(draftId)) {
                 socket.nsp
                     .in(roomLobby)
                     .emit('draft_update', draftsStore.getLobbyDraft(draftId));
@@ -261,7 +261,9 @@ export class DraftServer {
                     return;
                 }
                 
-                socket.nsp.in(roomLobby).emit('draft_update', draftsStore.getLobbyDraft(draftId));
+                if (!draftsStore.draftIsHidden(draftId)) {
+                    socket.nsp.in(roomLobby).emit('draft_update', draftsStore.getLobbyDraft(draftId));
+                }
 
                 draftsStore.startCountdown(draftId, socket, this.currentDataDirectory);
                 draftsStore.setStartTimestamp(draftId);
@@ -295,7 +297,7 @@ export class DraftServer {
             
             draftsStore.disconnectPlayer(draftId, assignedRole);
 
-            if (wasPublic) {
+            if (wasPublic && !draftsStore.draftIsHidden(draftId)) {
                 logger.info("Notifying lobby draft %s no longer has both players", draftId, {draftId});
                 socket.nsp.in(roomLobby).emit('draft_abandoned', draftId);
             }

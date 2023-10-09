@@ -120,6 +120,11 @@ export class DraftsStore {
         return draft.preset.presetId !== undefined && this.state.hiddenPresetIds.includes(draft.preset.presetId);
     }
 
+    public draftIsHidden(draftId: string) {
+        const draft = this.getDraftGracefully(draftId);
+        return draft === undefined || this.presetIdIsHidden(draft);
+    }
+
     public getDraftIds(): string[] {
         return Array.from(this.drafts.keys());
     }

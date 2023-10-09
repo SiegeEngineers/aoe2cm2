@@ -36,6 +36,7 @@ beforeAll(() => {
     temp.track();
     const dirPath = temp.mkdirSync('serverTest');
     fs.mkdirSync(path.join(dirPath, 'data', 'current'), {recursive: true});
+    fs.writeFileSync(path.join(dirPath, 'serverState.json'), JSON.stringify({maintenanceMode: false, hiddenPresetIds: ['hidden']}));
     draftServer = new DraftServer(dirPath);
 });
 
@@ -465,5 +466,57 @@ it('ongoing draft should notify when draft finishes', (done) => {
                 "chosenOptionId": "Slavs",
                 "isRandomlyChosen": false,
             }));
+    });
+});
+
+it('ongoing draft from hidden preset should not become visible in lobby', (done) => {
+    const hiddenPreset = Preset.fromPojo({...Preset.SIMPLE, presetId: 'hidden'})!;
+    createDraftForPreset(hiddenPreset).then(() => {
+        const fn = jest.fn();
+        lobbySocket.once('draft_update', (draft:IRecentDraft) => {
+            expect(draft.draftId).toBe(draftId);
+            fn();
+        });
+
+        hostEmit('set_role', {name: 'Saladin', role: Player.HOST})
+            .then(() => lobbyEmit('spectate_drafts', {}))
+            .then((drafts: IRecentDraft[]) => {
+                expect(drafts.filter(draft => draft.draftId === draftId)).toHaveLength(0);
+            })
+            .then(() => guestEmit('set_role', {name: 'Barbarossa', role: Player.GUEST}))
+            .then(() => hostEmit('ready', {}))
+            .then(() => guestEmit('ready', {}))
+            .then(() => hostEmit('act', {
+                "player": "HOST",
+                "executingPlayer": "HOST",
+                "actionType": "ban",
+                "chosenOptionId": "Celts",
+                "isRandomlyChosen": false,
+            }))
+            .then(() => guestEmit('act', {
+                "player": "GUEST",
+                "executingPlayer": "GUEST",
+                "actionType": "ban",
+                "chosenOptionId": "Celts",
+                "isRandomlyChosen": false,
+            }))
+            .then(() => guestEmit('act', {
+                "player": "GUEST",
+                "executingPlayer": "GUEST",
+                "actionType": "pick",
+                "chosenOptionId": "Slavs",
+                "isRandomlyChosen": false,
+            }))
+            .then(() => hostEmit('act', {
+                "player": "HOST",
+                "executingPlayer": "HOST",
+                "actionType": "pick",
+                "chosenOptionId": "Slavs",
+                "isRandomlyChosen": false,
+            }))
+            .then(() => {
+                expect(fn).toHaveBeenCalledTimes(0);
+                done();
+            });
     });
 });

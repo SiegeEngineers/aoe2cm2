@@ -172,7 +172,9 @@ export class ActListener {
                         )
                     )
                 }
-                socket.nsp.in(roomLobby).emit('draft_finished', draftsStore.getLobbyDraft(draftId));
+                if (!draftsStore.draftIsHidden(draftId)) {
+                    socket.nsp.in(roomLobby).emit('draft_finished', draftsStore.getLobbyDraft(draftId));
+                }
                 if (err) throw err;
                 logger.info(`Draft saved to ${draftPath}`, {draftId});
                 draftsStore.finishDraft(draftId);
