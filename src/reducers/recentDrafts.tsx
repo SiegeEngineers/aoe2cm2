@@ -3,6 +3,7 @@ import {RecentDraftsAction} from "../actions";
 import {ClientActions, ServerActions} from "../constants";
 
 export const initialRecentDraftsState: IRecentDraftsState = {
+    subscribeCount: 0,
     drafts: [],
     newDraftIndex: -1,
 };
@@ -35,7 +36,19 @@ function applyDraftRemoval(state: IRecentDraftsState, draftId: string) {
 }
 
 export const recentDraftsReducer = (state: IRecentDraftsState = initialRecentDraftsState, action: RecentDraftsAction) => {
-    if (action.type === ServerActions.UPDATE_DRAFTS) {
+    if (action.type === ClientActions.SPECTATE_DRAFTS) {
+        console.log(ClientActions.SPECTATE_DRAFTS);
+        return { 
+            ...state,
+            subscribeCount: state.subscribeCount + 1
+        };
+    } else if (action.type === ClientActions.UNSPECTATE_DRAFTS) {
+        console.log(ClientActions.UNSPECTATE_DRAFTS);
+        return { 
+            ...state,
+            subscribeCount: state.subscribeCount - 1
+        };
+    } else if (action.type === ServerActions.UPDATE_DRAFTS) {
         console.log(ServerActions.UPDATE_DRAFTS, action.value);
         
         if (!state.drafts.length) {

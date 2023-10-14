@@ -184,6 +184,10 @@ export interface ISpectateDrafts {
     type: ClientActions.SPECTATE_DRAFTS
 }
 
+export interface IUnspectateDrafts {
+    type: ClientActions.UNSPECTATE_DRAFTS
+}
+
 export interface IResetRecentDraftsCursor {
     type: ClientActions.RESET_RECENT_DRAFTS_CURSOR
 }
@@ -254,6 +258,7 @@ export type PresetEditorAction = ISetEditorPreset
     | ISetEditorDraftOptions;
 
 export type RecentDraftsAction = ISpectateDrafts
+    | IUnspectateDrafts
     | IResetRecentDraftsCursor
     | IUpdateDrafts
     | IRemoveDrafts;
@@ -508,5 +513,11 @@ export function spectateDrafts(): ISpectateDrafts {
 export function resetRecentDraftCursor(): IResetRecentDraftsCursor {
     return {
         type: ClientActions.RESET_RECENT_DRAFTS_CURSOR
+    }
+}
+
+export function unspectateDrafts(): IUnspectateDrafts {
+    return {
+        type: ClientActions.UNSPECTATE_DRAFTS
     }
 }

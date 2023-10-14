@@ -9,6 +9,7 @@ import CheckIcon from "mdi-react/CheckIcon";
 
 interface IProps extends WithTranslation, IRecentDraftsState {
     specateDrafts: () => void;
+    unspectateDrafts: () => void;
     resetRecentDraftCursor: () => void;
 }
 
@@ -21,6 +22,8 @@ interface IState {
     pausedDrafts: IRecentDraft[] | null;
 }
 
+const UNSUBSCRIBE_DELAY_MSEC = 15 * 60 * 1000;
+
 class Spectate extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
@@ -29,9 +32,11 @@ class Spectate extends React.Component<IProps, IState> {
 
     componentDidMount(): void {
         document.title = 'Spectate – AoE Captains Mode';
-        if (!this.props.drafts.length) {
-            this.props.specateDrafts();
-        }
+        this.props.specateDrafts();
+    }
+
+    componentWillUnmount(): void {
+        setTimeout(() => this.props.unspectateDrafts(), UNSUBSCRIBE_DELAY_MSEC);
     }
 
     handleUnpause() {

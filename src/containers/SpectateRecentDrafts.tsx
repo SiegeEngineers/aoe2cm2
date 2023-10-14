@@ -11,6 +11,7 @@ export function mapStateToProps(state: ApplicationState) {
 export function mapDispatchToProps(dispatch: Dispatch<actions.Action>) {
     return {
         specateDrafts: () => dispatch(actions.spectateDrafts()),
+        unspectateDrafts: () => dispatch(actions.unspectateDrafts()),
         resetRecentDraftCursor: () => dispatch(actions.resetRecentDraftCursor()),
     }
 }

@@ -122,6 +122,7 @@ export interface IDraftMetaData {
 }
 
 export interface IRecentDraftsState {
-    drafts: IRecentDraft[],
+    subscribeCount: number
+    drafts: IRecentDraft[]
     newDraftIndex: number
 }

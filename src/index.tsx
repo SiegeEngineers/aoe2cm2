@@ -37,13 +37,26 @@ const createMySocketMiddleware = () => {
         return (next: (arg0: any) => void) => (action: Action) => {
 
             if (action.type === ClientActions.SPECTATE_DRAFTS) {
-                console.log("SPECTATE_DRAFTS", SocketUtil.initSocketIfFirstUse, socket, storeAPI);
-                lobbySocket = SocketUtil.initLobbySocketIfFirstUse(lobbySocket, storeAPI) as SocketIOClient.Socket;
-                lobbySocket.emit('spectate_drafts', {}, (data: IRecentDraft[]) => {
-                    console.log('spectate_drafts callback', data);
-                    storeAPI.dispatch({type: ServerActions.UPDATE_DRAFTS, value: data} as IUpdateDrafts);
-                });
-                return;
+                const { subscribeCount } = storeAPI.getState().recentDrafts;
+                console.log("SPECTATE_DRAFTS", lobbySocket, subscribeCount);
+                if (subscribeCount === 0) {
+                    lobbySocket = SocketUtil.initLobbySocketIfFirstUse(lobbySocket, storeAPI) as SocketIOClient.Socket;
+                    lobbySocket.emit('spectate_drafts', {}, (data: IRecentDraft[]) => {
+                        console.log('spectate_drafts callback', data);
+                        storeAPI.dispatch({type: ServerActions.UPDATE_DRAFTS, value: data} as IUpdateDrafts);
+                    });
+                }
+            }
+
+            if (action.type === ClientActions.UNSPECTATE_DRAFTS) {
+                const { subscribeCount } = storeAPI.getState().recentDrafts;
+                console.log('UNSPECTATE_DRAFTS', lobbySocket, subscribeCount);
+                if (subscribeCount === 1) {
+                    if (lobbySocket !== null && lobbySocket.connected) {
+                        SocketUtil.disconnect(lobbySocket);
+                    }
+                    lobbySocket = null;
+                }
             }
 
             if (action.type === ClientActions.CONNECT_TO_SERVER) {
