@@ -3,6 +3,9 @@ import {Redirect} from "react-router";
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
 import {IRecentDraft, IRecentDraftsState} from "../../types";
 import {default as RecentDraftRow} from "./RecentDraftRow";
+import PauseIcon from "mdi-react/PauseIcon";
+import StopIcon from "mdi-react/StopIcon";
+import CheckIcon from "mdi-react/CheckIcon";
 
 interface IProps extends WithTranslation, IRecentDraftsState {
     specateDrafts: () => void;
@@ -12,6 +15,7 @@ interface IProps extends WithTranslation, IRecentDraftsState {
 interface IState {
     draftId: string | null;
     autoRefresh: boolean;
+    autoRefreshHover: boolean;
     paused: boolean;
     pausedNewDraftIndex: number;
     pausedDrafts: IRecentDraft[] | null;
@@ -20,7 +24,7 @@ interface IState {
 class Spectate extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
-        this.state = {draftId: null, autoRefresh: true, paused: false, pausedNewDraftIndex: -1, pausedDrafts: []};
+        this.state = {draftId: null, autoRefresh: true, autoRefreshHover: false, paused: false, pausedNewDraftIndex: -1, pausedDrafts: []};
     }
 
     componentDidMount(): void {
@@ -57,6 +61,14 @@ class Spectate extends React.Component<IProps, IState> {
         }
     };
 
+    private mouseEnterAutoRefresh = () => {
+        this.setState({autoRefreshHover: true});
+    }
+
+    private mouseLeaveAutoRefresh = () => {
+        this.setState({autoRefreshHover: false});
+    }
+
     public render() {
         if (this.state.draftId !== null) {
             const target = '/spectate/' + this.state.draftId;
@@ -70,6 +82,12 @@ class Spectate extends React.Component<IProps, IState> {
                                                                             key={value.draftId}
                                                                             isLastNew={index === newDraftIndex}
                                                                             callback={this.recentDraftCallback}/>);
+
+        const AutoRefreshIcon = 
+            this.state.autoRefreshHover ? (this.state.autoRefresh ? StopIcon : CheckIcon) :
+            !this.state.autoRefresh ? StopIcon :
+            this.state.paused ? PauseIcon :
+            CheckIcon;
 
         return (
             <div className="container">
@@ -101,14 +119,10 @@ class Spectate extends React.Component<IProps, IState> {
                     <div className="recent-drafts-header">
                         <h3><Trans i18nKey='spectate.recentDraftsTitle'>Recent Drafts</Trans></h3>
                         <div>
-                            <div className="button is-small is-inverted" onClick={this.toggleAutoRefresh}>
+                            <div className="button is-small is-inverted" onClick={this.toggleAutoRefresh} onMouseEnter={this.mouseEnterAutoRefresh} onMouseLeave={this.mouseLeaveAutoRefresh}>
                                 <span><Trans i18nKey="spectate.autoUpdate">Auto Update</Trans></span>
                                 <span className="icon">
-                                    {
-                                        !this.state.autoRefresh ? <i className="fas fa-times"></i> :
-                                        this.state.paused ? <i className="fas fa-pause"></i> :
-                                        <i className="fas fa-check"></i>
-                                    }
+                                    <AutoRefreshIcon size={20} />
                                 </span>
                             </div>
                         </div>
