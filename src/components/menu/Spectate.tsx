@@ -22,7 +22,7 @@ interface IState {
     pausedDrafts: IRecentDraft[] | null;
 }
 
-const UNSUBSCRIBE_DELAY_MSEC = 15 * 60 * 1000;
+const UNSUBSCRIBE_DELAY_MSEC = 5 * 60 * 1000;
 
 class Spectate extends React.Component<IProps, IState> {
     constructor(props: IProps) {
