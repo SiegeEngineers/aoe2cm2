@@ -33,6 +33,7 @@ interface IProps extends WithTranslation {
     setCountdownInterval: (value: NodeJS.Timeout | null) => void;
     setEventTimeouts: (value: NodeJS.Timeout[]) => void;
     setStopCountdown: (value: NodeJS.Timeout | null) => void;
+    setReady: (value: Player) => void;
 }
 
 interface IState {
@@ -167,6 +168,8 @@ class ReplayControls extends React.Component<IProps, IState> {
             draftViews.addDraftEvent(event);
         } else {
             draftViews.addDraftEvent(event);
+            this.props.setReady(Player.HOST)
+            this.props.setReady(Player.GUEST)
             this.props.act(draftViews.getLastEventForSpec());
         }
         this.setState({currentOffset: originalEventOffset});

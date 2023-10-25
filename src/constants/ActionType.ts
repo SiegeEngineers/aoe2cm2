@@ -6,6 +6,7 @@ enum ActionType {
     SNIPE = "snipe",
     STEAL = "steal",
     REVEAL = "reveal",
+    PAUSE = "pause",
     NOTHING = "nothing"
 }
 
@@ -24,6 +25,8 @@ export function actionTypeFromAction(action: Action) {
         case Action.REVEAL_SNIPES:
         case Action.REVEAL_ALL:
             return ActionType.REVEAL;
+        case Action.PAUSE:
+            return ActionType.PAUSE;
     }
 }
 

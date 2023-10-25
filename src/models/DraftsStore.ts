@@ -212,6 +212,17 @@ export class DraftsStore {
         }
     }
 
+    public pause(draftId: string) {
+        const draft = this.getDraftGracefully(draftId);
+        if (draft === undefined) {
+            return;
+        }
+        draft.guestReady = false;
+        draft.hostReady = false;
+        this.pauseCountdown(draftId);
+
+    }
+
     private getDraftGracefully(draftId: string): Draft | undefined {
         try {
             return this.getDraftOrThrow(draftId);
@@ -356,9 +367,11 @@ export class DraftsStore {
         }
     }
 
-    public setStartTimestamp(draftId: string) {
+    public setStartTimestampIfNecessary(draftId: string) {
         const draft = this.getDraftOrThrow(draftId);
-        draft.startTimestamp = Date.now();
+        if (!draft.startTimestamp) {
+            draft.startTimestamp = Date.now();
+        }
     }
 
     public restartOrCancelCountdown(draftId: string, dataDirectory: string) {

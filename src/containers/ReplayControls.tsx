@@ -31,6 +31,7 @@ export function mapDispatchToProps(dispatch: Dispatch<actions.Action>) {
         setCountdownInterval: (value: NodeJS.Timeout | null) => dispatch(actions.setCountdownInterval(value)),
         setEventTimeouts: (value: NodeJS.Timeout[]) => dispatch(actions.setEventTimeouts(value)),
         setStopCountdown: (value: NodeJS.Timeout | null) => dispatch(actions.setStopCountdown(value)),
+        setReady: (value: Player) => dispatch(actions.setReady(value)),
     }
 }
 

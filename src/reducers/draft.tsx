@@ -4,6 +4,7 @@ import {Actions, ClientActions, ServerActions} from "../constants";
 import Preset from "../models/Preset";
 import Player from "../constants/Player";
 import AdminEvent from "../models/AdminEvent";
+import Action from "../constants/Action";
 
 export const initialDraftState: IDraftState = {
     nameHost: "…",
@@ -72,6 +73,14 @@ export const draftReducer = (state: IDraftState = initialDraftState, action: Dra
             console.log(ServerActions.SET_EVENTS, action.value);
             const eventsCopy2 = [...action.value.events];
             eventsCopy2.push(new AdminEvent(action.value.player, action.value.action));
+            if (action.value.action === Action.PAUSE) {
+                return {
+                    ...state,
+                    hostReady: false,
+                    guestReady: false,
+                    events: eventsCopy2,
+                };
+            }
             return {
                 ...state,
                 events: eventsCopy2,

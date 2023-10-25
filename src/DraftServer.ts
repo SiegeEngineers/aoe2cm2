@@ -266,7 +266,7 @@ export class DraftServer {
                 }
 
                 draftsStore.startCountdown(draftId, socket, this.currentDataDirectory);
-                draftsStore.setStartTimestamp(draftId);
+                draftsStore.setStartTimestampIfNecessary(draftId);
             }
             socket.nsp
                 .in(roomHost)

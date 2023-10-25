@@ -317,6 +317,47 @@ it('preset consisting only of admin action', (done) => {
     });
 });
 
+
+it('draft with pause', (done) => {
+    Reflect.set(ActListener, "adminTurnDelay", 0);
+    const preset = new Preset('preset with pause', Civilisation.ALL_ACTIVE, [
+        new Turn(Player.HOST, Action.PICK, Exclusivity.NONEXCLUSIVE),
+        new Turn(Player.NONE, Action.PAUSE, Exclusivity.NONEXCLUSIVE),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.NONEXCLUSIVE),
+    ]);
+    createDraftForPreset(preset).then(value => {
+        const barrier = new Barrier(2, done);
+        hostSocket.once('disconnect', () => {
+            barrier.trigger();
+        });
+        clientSocket.once('disconnect', () => {
+            barrier.trigger();
+        });
+
+        hostEmit('set_role', {name: 'Saladin', role: Player.HOST})
+            .then(() => guestEmit('set_role', {name: 'Barbarossa', role: Player.GUEST}))
+            .then(() => guestEmit('ready', {}))
+            .then(() => hostEmit('ready', {}))
+            .then(() => hostEmit('act', {
+                "player": "HOST",
+                "executingPlayer": "HOST",
+                "actionType": "pick",
+                "chosenOptionId": "Celts",
+                "isRandomlyChosen": false,
+            }))
+            .then(() => guestEmit('ready', {}))
+            .then(() => hostEmit('ready', {}))
+            .then(() => guestEmit('act', {
+                "player": "GUEST",
+                "executingPlayer": "GUEST",
+                "actionType": "pick",
+                "chosenOptionId": "Celts",
+                "isRandomlyChosen": false,
+            }));
+    });
+});
+
+
 it('draft with invalid act', (done) => {
     createDraftForPreset(Preset.SIMPLE).then(value => {
 
