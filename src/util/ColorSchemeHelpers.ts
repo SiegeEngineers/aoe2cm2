@@ -6,9 +6,10 @@ class ColorSchemeHelpers {
         try {
             const preference = localStorage.getItem('preferred_color_scheme');
             let scheme: ColorScheme = ColorScheme.AUTO;
-            Object.keys(ColorScheme).forEach(function (key) {
-                if (ColorScheme[key] === preference) {
-                    scheme = ColorScheme[key];
+            Object.keys(ColorScheme).forEach(function (key: string) {
+                const k = key as keyof typeof ColorScheme;
+                if (ColorScheme[k] === preference) {
+                    scheme = ColorScheme[k];
                 }
             });
             return scheme;

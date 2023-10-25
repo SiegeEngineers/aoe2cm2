@@ -4,7 +4,7 @@
     "target": "es6",
     "moduleResolution": "node",
     "sourceMap": true,
-    "outDir": "build",
+    "outDir": "dist",
     "baseUrl": ".",
     "paths": {
       "*": [

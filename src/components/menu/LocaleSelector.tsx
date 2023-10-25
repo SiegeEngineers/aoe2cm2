@@ -16,12 +16,13 @@ class LocaleSelector extends React.Component<IProps, object> {
         let localeOptions: Array<ReactElement> = [];
         let currentLanguage = "Language";
         Object.keys(availableLocales).forEach(function (key) {
+            const k = key as keyof typeof availableLocales;
             if (key === i18n.language) {
-                currentLanguage = availableLocales[key]['displayName'];
+                currentLanguage = availableLocales[k]['displayName'];
             }
             localeOptions.push(<LocaleOption language={key}
-                                             displayString={availableLocales[key]['displayName']}
-                                             tooltipString={availableLocales[key]['cta']}
+                                             displayString={availableLocales[k]['displayName']}
+                                             tooltipString={availableLocales[k]['cta']}
                                              key={key}/>);
         });
 

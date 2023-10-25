@@ -25,7 +25,7 @@ import TurnExplanation from "./TurnExplanation";
 import {Trans, withTranslation, WithTranslation} from "react-i18next";
 import {ReactSortable} from "react-sortablejs";
 import {PresetEditorTurn} from "./PresetEditorTurn";
-import DraftOption from "../../models/DraftOption";
+import DraftOption, {ImageUrls} from "../../models/DraftOption";
 import PresetEditorCivSelection from "./PresetEditorCivSelection";
 import PresetEditorCustomOptions from "./PresetEditorCustomOptions";
 import Civilisation from "../../models/Civilisation";
@@ -356,7 +356,8 @@ class PresetEditor extends React.Component<Props, State> {
     private configureSampleDraftOption() {
         const draftOption = new DraftOption(Civilisation.AZTECS.id, Civilisation.AZTECS.name);
         for (let imageUrlsKey in draftOption.imageUrls) {
-            draftOption.imageUrls[imageUrlsKey] = 'https://aoe2cm.net' + draftOption.imageUrls[imageUrlsKey];
+            const key = imageUrlsKey as keyof ImageUrls;
+            draftOption.imageUrls[key] = 'https://aoe2cm.net' + draftOption.imageUrls[key];
         }
         this.props.onPresetDraftOptionsChange([draftOption]);
     }

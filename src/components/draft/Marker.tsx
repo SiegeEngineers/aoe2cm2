@@ -35,7 +35,8 @@ class Marker extends React.Component<IProps, IState> {
             8: {bg: "rgba(246,149,20,1)", fg: "rgba(0,0,0,1)"},
             9: {bg: "rgba(255,255,255,1)", fg: "rgba(0,0,0,1)"},
         };
-        return colours[index];
+        const idx = index as keyof typeof colours;
+        return colours[idx];
     }
 }
 

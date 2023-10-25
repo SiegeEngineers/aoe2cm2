@@ -1,8 +1,11 @@
+import {expect, it, vi} from 'vitest';
 import Preset from "../../models/Preset";
 import Turn from "../../models/Turn";
 import Exclusivity from "../../constants/Exclusivity";
 import Player from "../../constants/Player";
 import Action from "../../constants/Action";
+
+vi.mock('uuid');
 
 it('preset from invalid pojo throws', () => {
     expect(() => {

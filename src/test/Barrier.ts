@@ -1,9 +1,11 @@
+import {DoneCallback} from "vitest";
+
 export class Barrier {
     private readonly barrier: number;
     private called: number = 0;
-    private readonly done: jest.DoneCallback;
+    private readonly done: DoneCallback;
 
-    constructor(barrier: number, done: jest.DoneCallback) {
+    constructor(barrier: number, done: DoneCallback) {
         this.barrier = barrier;
         this.done = done;
     }

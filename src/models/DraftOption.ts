@@ -1,10 +1,10 @@
 import {Assert} from "../util/Assert";
 
 export interface ImageUrls {
-    readonly unit: string;
-    readonly emblem: string;
-    readonly animated_left: string;
-    readonly animated_right: string;
+    unit: string;
+    emblem: string;
+    animated_left: string;
+    animated_right: string;
 }
 
 enum Name {

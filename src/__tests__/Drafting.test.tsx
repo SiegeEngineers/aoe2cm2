@@ -1,4 +1,5 @@
-import {default as io} from "socket.io-client"
+import {beforeAll, afterAll, afterEach, expect, it, vi} from 'vitest';
+import { io } from 'socket.io-client';
 import {DraftServer} from "../DraftServer";
 import request from "request"
 import Player from "../constants/Player";
@@ -17,6 +18,8 @@ import Turn from "../models/Turn";
 import Action from "../constants/Action";
 import Exclusivity from "../constants/Exclusivity";
 import {ActListener} from "../util/ActListener";
+
+vi.mock('uuid')
 
 let hostSocket: any;
 let hostEmit: any;
@@ -45,7 +48,7 @@ afterAll(() => {
 });
 
 
-beforeAll((done) => {
+beforeAll(() => new Promise<void>(done => {
     getPort().then((port: number) => {
         console.log("Got port: " + port);
         const serve = draftServer.serve(port);
@@ -55,15 +58,16 @@ beforeAll((done) => {
         ioServer = serve.io;
         done();
     });
-});
+}));
 
-afterAll((done) => {
+afterAll(() => new Promise(done => {
     ioServer.close();
     httpServer.close();
     done();
-});
+}));
 
 function connect() {
+    // @ts-ignore
     return io.connect(`http://${httpServerAddr}`, {
         query: {draftId: draftId},
         reconnectionDelay: 0,
@@ -73,6 +77,7 @@ function connect() {
 }
 
 function connectLobby() {
+    // @ts-ignore
     return io.connect(`http://${httpServerAddr}`, {
         query: {lobby: true},
         reconnectionDelay: 0,
@@ -134,7 +139,7 @@ function createDraftForPreset(preset: Preset) {
     return barrier.promise;
 }
 
-afterEach((done) => {
+afterEach(() => new Promise<void>(done => {
     if (hostSocket.connected) {
         hostSocket.disconnect();
     }
@@ -148,9 +153,9 @@ afterEach((done) => {
         lobbySocket.disconnect();
     }
     done();
-});
+}));
 
-it('successful join gets a draft config', (done) => {
+it('successful join gets a draft config', () => new Promise<void>(done => {
     createDraftForPreset(Preset.SIMPLE).then(value => {
         hostSocket.emit('set_role', {name: 'Saladin', role: Player.HOST}, (data: IDraftConfig) => {
             data.startTimestamp = 0;
@@ -158,10 +163,10 @@ it('successful join gets a draft config', (done) => {
             done();
         });
     });
-});
+}));
 
 
-it('should send player_set_role when player sets role', (done) => {
+it('should send player_set_role when player sets role', () => new Promise<void>(done => {
     createDraftForPreset(Preset.SIMPLE).then(value => {
         const barrier = new Barrier(2, done);
         hostSocket.once("player_set_role", (message: any) => {
@@ -189,9 +194,9 @@ it('should send player_set_role when player sets role', (done) => {
 
         hostEmit('set_role', {name: 'Saladin', role: Player.HOST});
     });
-});
+}));
 
-it('players can change their names', (done) => {
+it('players can change their names', () => new Promise<void>(done => {
     createDraftForPreset(Preset.SIMPLE).then(value => {
         const barrier = new Barrier(4, done);
         hostSocket.once('player_set_name', (message: any) => {
@@ -225,6 +230,7 @@ it('players can change their names', (done) => {
             .then(() => guestEmit('set_name', {"name": newGuestName}))
             .then(() => {
                 // done
+                // @ts-ignore
                 const secondSpectatorSocket = io.connect(`http://${httpServerAddr}`, {
                     query: {draftId: draftId},
                     reconnectionDelay: 0,
@@ -238,9 +244,9 @@ it('players can change their names', (done) => {
                 });
             });
     });
-});
+}));
 
-it('fully execute sample draft', (done) => {
+it('fully execute sample draft', () => new Promise<void>(done => {
     createDraftForPreset(Preset.SIMPLE).then(value => {
         const barrier = new Barrier(2, done);
         hostSocket.once('disconnect', () => {
@@ -283,9 +289,9 @@ it('fully execute sample draft', (done) => {
                 "isRandomlyChosen": false,
             }));
     });
-});
+}));
 
-it('preset consisting only of admin action', (done) => {
+it('preset consisting only of admin action', () => new Promise<void>(done => {
     Reflect.set(ActListener, "adminTurnDelay", 10);
     const preset = new Preset('Admin only preset', Civilisation.ALL_ACTIVE, [
         new Turn(Player.NONE, Action.PICK, Exclusivity.NONEXCLUSIVE),
@@ -315,10 +321,10 @@ it('preset consisting only of admin action', (done) => {
             .then(() => guestEmit('ready', {}))
             .then(() => hostEmit('ready', {}));
     });
-});
+}));
 
 
-it('draft with pause', (done) => {
+it('draft with pause', () => new Promise<void>(done => {
     Reflect.set(ActListener, "adminTurnDelay", 0);
     const preset = new Preset('preset with pause', Civilisation.ALL_ACTIVE, [
         new Turn(Player.HOST, Action.PICK, Exclusivity.NONEXCLUSIVE),
@@ -355,9 +361,9 @@ it('draft with pause', (done) => {
                 "isRandomlyChosen": false,
             }));
     });
-});
+}));
 
-it('draft with categorylimit reset', (done) => {
+it('draft with categorylimit reset', () => new Promise<void>(done => {
     Reflect.set(ActListener, "adminTurnDelay", 0);
     const preset = new Preset('preset with pause', [Civilisation.AZTECS], [
         new Turn(Player.HOST, Action.PICK, Exclusivity.NONEXCLUSIVE),
@@ -392,10 +398,10 @@ it('draft with categorylimit reset', (done) => {
                 "isRandomlyChosen": false,
             }));
     });
-});
+}));
 
 
-it('draft with invalid act', (done) => {
+it('draft with invalid act', () => new Promise<void>(done => {
     createDraftForPreset(Preset.SIMPLE).then(value => {
 
         hostEmit('set_role', {name: 'Saladin', role: Player.HOST})
@@ -424,9 +430,9 @@ it('draft with invalid act', (done) => {
                 done();
             });
     });
-});
+}));
 
-it('ongoing draft with only host not visible in lobby', (done) => {
+it('ongoing draft with only host not visible in lobby', () => new Promise<void>(done => {
     createDraftForPreset(Preset.SIMPLE).then(value => {
         hostEmit('set_role', {name: 'Saladin', role: Player.HOST})
             .then(() => guestEmit('set_role', {name: 'Barbarossa', role: Player.GUEST}))
@@ -436,9 +442,9 @@ it('ongoing draft with only host not visible in lobby', (done) => {
                 done();
             });
     });
-});
+}));
 
-it('ongoing draft should be visible in lobby', (done) => {
+it('ongoing draft should be visible in lobby', () => new Promise<void>(done => {
     createDraftForPreset(Preset.SIMPLE).then(value => {
         hostEmit('set_role', {name: 'Saladin', role: Player.HOST})
             .then(() => guestEmit('set_role', {name: 'Barbarossa', role: Player.GUEST}))
@@ -448,9 +454,9 @@ it('ongoing draft should be visible in lobby', (done) => {
                 done();
             });
     });
-});
+}));
 
-it('ongoing draft should become visible in lobby once second player joins', (done) => {
+it('ongoing draft should become visible in lobby once second player joins', () => new Promise<void>(done => {
     createDraftForPreset(Preset.SIMPLE).then(() => {
         lobbySocket.once('draft_update', (draft:IRecentDraft) => {
             expect(draft.draftId).toBe(draftId);
@@ -464,9 +470,9 @@ it('ongoing draft should become visible in lobby once second player joins', (don
             })
             .then(() => guestEmit('set_role', {name: 'Barbarossa', role: Player.GUEST}));
     });
-});
+}));
 
-it('ongoing draft with member leaving should be abandoned', (done) => {
+it('ongoing draft with member leaving should be abandoned', () => new Promise<void>(done => {
     createDraftForPreset(Preset.SIMPLE).then(value => {
         lobbySocket.once('draft_abandoned', (draft:string) => {
             expect(draft).toBe(draftId);
@@ -481,9 +487,9 @@ it('ongoing draft with member leaving should be abandoned', (done) => {
             })
             .then(() => clientSocket.disconnect());
     });
-});
+}));
 
-it('ongoing draft should notify when players are ready', (done) => {
+it('ongoing draft should notify when players are ready', () => new Promise<void>(done => {
     createDraftForPreset(Preset.SIMPLE).then(value => {
         lobbySocket.once('draft_update', (draft:IRecentDraft) => {
             expect(draft.draftId).toBe(draftId);
@@ -499,9 +505,9 @@ it('ongoing draft should notify when players are ready', (done) => {
             .then(() => hostEmit('ready', {}))
             .then(() => guestEmit('ready', {}));
     });
-});
+}));
 
-it('ongoing draft should notify when draft finishes', (done) => {
+it('ongoing draft should notify when draft finishes', () => new Promise<void>(done => {
     createDraftForPreset(Preset.SIMPLE).then(value => {
         lobbySocket.once('draft_update', (draft:IRecentDraft) => {
             expect(draft.draftId).toBe(draftId);
@@ -545,12 +551,12 @@ it('ongoing draft should notify when draft finishes', (done) => {
                 "isRandomlyChosen": false,
             }));
     });
-});
+}));
 
-it('ongoing draft from hidden preset should not become visible in lobby', (done) => {
+it('ongoing draft from hidden preset should not become visible in lobby', () => new Promise<void>(done => {
     const hiddenPreset = Preset.fromPojo({...Preset.SIMPLE, presetId: 'hidden'})!;
     createDraftForPreset(hiddenPreset).then(() => {
-        const fn = jest.fn();
+        const fn = vi.fn();
         lobbySocket.once('draft_update', (draft:IRecentDraft) => {
             expect(draft.draftId).toBe(draftId);
             fn();
@@ -597,4 +603,4 @@ it('ongoing draft from hidden preset should not become visible in lobby', (done)
                 done();
             });
     });
-});
+}));

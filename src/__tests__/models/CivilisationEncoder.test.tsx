@@ -1,3 +1,4 @@
+import {expect, it, describe} from 'vitest';
 import {CivilisationEncoder} from "../../util/CivilisationEncoder";
 import Civilisation from "../../models/Civilisation";
 

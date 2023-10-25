@@ -345,6 +345,7 @@ export class DraftServer {
             logger.info("Received request by user '%s' to set state mode: %s", user, JSON.stringify(req.body));
             for (let key in req.body) {
                 if (state.hasOwnProperty(key) && req.body.hasOwnProperty(key)) {
+                    // @ts-ignore
                     state[key] = req.body[key];
                 }
             }
@@ -470,7 +471,7 @@ export class DraftServer {
             }
         });
 
-        app.use(express.static('build'));
+        app.use(express.static('dist'));
         app.use('/', (req, res) => {
             if (fs.existsSync(indexPath)) {
                 res.sendFile(indexPath);

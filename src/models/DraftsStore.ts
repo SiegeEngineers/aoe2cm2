@@ -4,7 +4,6 @@ import Preset from "./Preset";
 import Player from "../constants/Player";
 import Turn from "./Turn";
 import DraftViews from "./DraftViews";
-import {setInterval} from "timers";
 import socketio from "socket.io";
 import PlayerEvent from "./PlayerEvent";
 import {actionTypeFromAction} from "../constants/ActionType";

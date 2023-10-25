@@ -1,3 +1,4 @@
+import * as React from 'react';
 import {ISetEditorDraftOptions} from "../../actions";
 import {WithTranslation, withTranslation} from "react-i18next";
 import DraftOption from "../../models/DraftOption";

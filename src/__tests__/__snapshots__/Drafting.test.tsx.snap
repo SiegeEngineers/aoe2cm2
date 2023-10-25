@@ -1,8 +1,8 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`successful join gets a draft config 1`] = `
-Object {
-  "events": Array [],
+{
+  "events": [],
   "guestConnected": false,
   "guestReady": false,
   "hostConnected": true,
@@ -10,12 +10,19 @@ Object {
   "nameGuest": "…",
   "nameHost": "Saladin",
   "nextAction": 0,
-  "preset": Object {
-    "encodedCivilisations": "fffffffefff",
+  "preset": {
+    "categoryLimits": {
+      "ban": {},
+      "pick": {},
+    },
+    "encodedCivilisations": "3fffffffefff",
     "name": "Simple Preset",
-    "turns": Array [
-      Object {
+    "turns": [
+      {
         "action": "BAN",
+        "categories": [
+          "default",
+        ],
         "exclusivity": "NONEXCLUSIVE",
         "executingPlayer": "HOST",
         "hidden": false,
@@ -23,8 +30,11 @@ Object {
         "parallel": false,
         "player": "HOST",
       },
-      Object {
+      {
         "action": "BAN",
+        "categories": [
+          "default",
+        ],
         "exclusivity": "NONEXCLUSIVE",
         "executingPlayer": "GUEST",
         "hidden": false,
@@ -32,8 +42,11 @@ Object {
         "parallel": false,
         "player": "GUEST",
       },
-      Object {
+      {
         "action": "PICK",
+        "categories": [
+          "default",
+        ],
         "exclusivity": "NONEXCLUSIVE",
         "executingPlayer": "GUEST",
         "hidden": false,
@@ -41,8 +54,11 @@ Object {
         "parallel": false,
         "player": "GUEST",
       },
-      Object {
+      {
         "action": "PICK",
+        "categories": [
+          "default",
+        ],
         "exclusivity": "NONEXCLUSIVE",
         "executingPlayer": "HOST",
         "hidden": false,

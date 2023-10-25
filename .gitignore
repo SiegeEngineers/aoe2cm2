@@ -11,6 +11,8 @@ presets-and-drafts.json
 *.log.xz
 *.log.gz
 
+/dist
+
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 .idea/
 

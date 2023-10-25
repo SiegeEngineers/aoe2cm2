@@ -1,3 +1,4 @@
+import {describe, expect, it} from 'vitest';
 import {Util} from "../../util/Util";
 import * as fs from "fs";
 import path from "path";
@@ -15,28 +16,24 @@ it('sanitize handles common cases', () => {
 
 it('getIdFromUrl works on draft url', () => {
     const draftId = 'abcdef';
-    delete window.location;
     window.location = new URL('https://www.example.com/draft/' + draftId) as any;
     expect(Util.getIdFromUrl()).toEqual(draftId);
 });
 
 it('getIdFromUrl works on draft url with trailing slash', () => {
     const draftId = 'abcdef';
-    delete window.location;
     window.location = new URL('https://www.example.com/draft/' + draftId + '/') as any;
     expect(Util.getIdFromUrl()).toEqual(draftId);
 });
 
 it('getIdFromUrl works on spectate url', () => {
     const draftId = 'abcdef';
-    delete window.location;
     window.location = new URL('https://www.example.com/spectate/' + draftId) as any;
     expect(Util.getIdFromUrl()).toEqual(draftId);
 });
 
 it('getIdFromUrl works on spectate url with trailing slash', () => {
     const draftId = 'abcdef';
-    delete window.location;
     window.location = new URL('https://www.example.com/spectate/' + draftId + '/') as any;
     expect(Util.getIdFromUrl()).toEqual(draftId);
 });
