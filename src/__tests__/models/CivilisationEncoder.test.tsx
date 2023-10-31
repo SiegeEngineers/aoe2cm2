@@ -19,12 +19,12 @@ it('vikings only yields 2^30', () => {
     expect(encoded).toEqual('40000000');
 });
 
-it('all 43+1 civs yield 2^44-1', () => {
+it('all 45+1 civs yield 2^46-1', () => {
     const encoded = CivilisationEncoder.encodeCivilisationArray(Civilisation.ALL);
-    expect(Civilisation.ALL.length).toEqual(43+1);
-    expect(Civilisation.ALL_ACTIVE.length).toEqual(43);
-    expect(encoded).toEqual(CivilisationEncoder.toHexString(Math.pow(2, 44) - 1));
-    expect(encoded).toEqual('fffffffffff');
+    expect(Civilisation.ALL.length).toEqual(45+1);
+    expect(Civilisation.ALL_ACTIVE.length).toEqual(45);
+    expect(encoded).toEqual(CivilisationEncoder.toHexString(Math.pow(2, 46) - 1));
+    expect(encoded).toEqual('3fffffffffff');
 });
 
 it('decode 0 yields empty array', () => {
@@ -44,8 +44,8 @@ it('decode 2^30 yields vikings', () => {
 
 });
 
-it('decode 2^44-1 yields all civs', () => {
-    const decoded = CivilisationEncoder.decodeCivilisationArray('fffffffffff');
+it('decode 2^46-1 yields all civs', () => {
+    const decoded = CivilisationEncoder.decodeCivilisationArray('3fffffffffff');
     expect(decoded).toEqual([...Civilisation.ALL].sort((a, b) => a.name.localeCompare(b.name)));
 });
 
@@ -67,6 +67,7 @@ describe('The decoding shortcut does not lie', () => {
     ${'7ffffffffff'}   | ${43}
     ${'7ffffffefff'}   | ${42}
     ${'fffffffefff'}   | ${43}
+    ${'3fffffffefff'}   | ${45}
   `('$civilisationArray', ({civilisationArray, expectedLength}) => {
         const decoded = CivilisationEncoder.decodeCivilisationArray(civilisationArray);
         expect(decoded.length).toEqual(expectedLength);

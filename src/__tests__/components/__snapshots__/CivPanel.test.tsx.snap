@@ -1056,6 +1056,54 @@ exports[`BAN CivPanels render correctly 44`] = `
 />
 `;
 
+exports[`BAN CivPanels render correctly 45`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "gameVersion": 11,
+      "i18nPrefix": "civs.",
+      "id": "Armenians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/armenians-left.apng",
+        "animated_right": "/images/units-animated/armenians-right.apng",
+        "emblem": "/images/civemblems/armenians.png",
+        "unit": "/images/civs/armenians.png",
+      },
+      "name": "Armenians",
+    }
+  }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`BAN CivPanels render correctly 46`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "gameVersion": 11,
+      "i18nPrefix": "civs.",
+      "id": "Georgians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/georgians-left.apng",
+        "animated_right": "/images/units-animated/georgians-right.apng",
+        "emblem": "/images/civemblems/georgians.png",
+        "unit": "/images/civs/georgians.png",
+      },
+      "name": "Georgians",
+    }
+  }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
 exports[`PICK CivPanels render correctly 1`] = `
 <DraftOptionPanel
   active={false}
@@ -2103,6 +2151,54 @@ exports[`PICK CivPanels render correctly 44`] = `
         "unit": "/images/civs/romans.png",
       },
       "name": "Romans",
+    }
+  }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 45`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "gameVersion": 11,
+      "i18nPrefix": "civs.",
+      "id": "Armenians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/armenians-left.apng",
+        "animated_right": "/images/units-animated/armenians-right.apng",
+        "emblem": "/images/civemblems/armenians.png",
+        "unit": "/images/civs/armenians.png",
+      },
+      "name": "Armenians",
+    }
+  }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 46`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "gameVersion": 11,
+      "i18nPrefix": "civs.",
+      "id": "Georgians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/georgians-left.apng",
+        "animated_right": "/images/units-animated/georgians-right.apng",
+        "emblem": "/images/civemblems/georgians.png",
+        "unit": "/images/civs/georgians.png",
+      },
+      "name": "Georgians",
     }
   }
   draftOptionPanelType="pick"

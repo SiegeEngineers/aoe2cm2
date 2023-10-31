@@ -55,6 +55,9 @@ enum Name {
     HINDUSTANIS = "Hindustanis",
 
     ROMANS = "Romans",
+
+    ARMENIANS = "Armenians",
+    GEORGIANS = "Georgians",
 }
 
 class Civilisation extends DraftOption {
@@ -113,6 +116,9 @@ class Civilisation extends DraftOption {
 
     public static readonly ROMANS: Civilisation = new Civilisation(Name.ROMANS, GameVersion.RETURN_OF_ROME);
 
+    public static readonly ARMENIANS: Civilisation = new Civilisation(Name.ARMENIANS, GameVersion.THE_MOUNTAIN_ROYALS);
+    public static readonly GEORGIANS: Civilisation = new Civilisation(Name.GEORGIANS, GameVersion.THE_MOUNTAIN_ROYALS);
+
 
     // DO NOT CHANGE THE ORDER OF ELEMENTS IN THIS ARRAY!!!
     // ONLY APPEND NEW CIVILISATIONS AT THE END!!!
@@ -161,6 +167,8 @@ class Civilisation extends DraftOption {
         Civilisation.GURJARAS,
         Civilisation.HINDUSTANIS,
         Civilisation.ROMANS,
+        Civilisation.ARMENIANS,
+        Civilisation.GEORGIANS,
     ];
 
     public static readonly ALL_ACTIVE = Civilisation.ALL.filter(value => value.name !== Name.INDIANS);
