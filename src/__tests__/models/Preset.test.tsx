@@ -43,7 +43,7 @@ it('old turns without executingPlayer properties can be deserialised', () => {
 });
 
 
-it('new turns with executingPlayer properties can be deserialised', () => {
+it('old turns with executingPlayer properties but without categories can be deserialised', () => {
     const pojo = {
         name: "Preset name",
         encodedCivilisations: "0x1",
@@ -60,6 +60,27 @@ it('new turns with executingPlayer properties can be deserialised', () => {
     const preset = Preset.fromPojo(pojo) as Preset;
     expect(preset.turns[0].executingPlayer).toEqual(Player.GUEST);
 });
+
+
+it('new turns with executingPlayer and categories properties can be deserialised', () => {
+    const pojo = {
+        name: "Preset name",
+        encodedCivilisations: "0x1",
+        turns: [{
+            id: "mocked-uuid",
+            player: Player.HOST,
+            action: Action.PICK,
+            exclusivity: Exclusivity.NONEXCLUSIVE,
+            hidden: false,
+            parallel: false,
+            executingPlayer: Player.GUEST,
+            categories: ['my-category']
+        } as Turn]
+    };
+    const preset = Preset.fromPojo(pojo) as Preset;
+    expect(preset.turns[0].executingPlayer).toEqual(Player.GUEST);
+});
+
 
 
 it('old preset without presetId can be deserialised', () => {

@@ -47,8 +47,9 @@ class Turn {
     public readonly parallel: boolean;
     public readonly executingPlayer: Player;
     public readonly id: string;
+    public readonly categories: string[];
 
-    constructor(player: Player, action: Action, exclusivity: Exclusivity, hidden: boolean = false, parallel: boolean = false, executingPlayer: Player = player) {
+    constructor(player: Player, action: Action, exclusivity: Exclusivity, hidden: boolean = false, parallel: boolean = false, executingPlayer: Player = player, categories: string[] = ['default']) {
         this.id = uuidv4();
         this.player = player;
         this.action = action;
@@ -56,6 +57,7 @@ class Turn {
         this.hidden = hidden;
         this.executingPlayer = executingPlayer;
         this.parallel = parallel;
+        this.categories = categories;
     }
 
     static fromPojoArray(turns: Turn[]) {
@@ -67,7 +69,8 @@ class Turn {
             Assert.isExclusivity(turn.exclusivity);
             Assert.isBoolean(turn.hidden);
             Assert.isBoolean(turn.parallel);
-            retval.push(new Turn(turn.player, turn.action, turn.exclusivity, turn.hidden, turn.parallel, turn.executingPlayer));
+            Assert.isOptionalStringArray(turn.categories);
+            retval.push(new Turn(turn.player, turn.action, turn.exclusivity, turn.hidden, turn.parallel, turn.executingPlayer, turn.categories));
         }
         return retval;
     }

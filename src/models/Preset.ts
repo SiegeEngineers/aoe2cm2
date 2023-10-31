@@ -70,7 +70,7 @@ class Preset {
         if (preset.encodedCivilisations) {
             draftOptions = CivilisationEncoder.decodeCivilisationArray(preset.encodedCivilisations);
         } else if (preset.draftOptions) {
-            draftOptions = preset.draftOptions;
+            draftOptions = DraftOption.fromPojoArray(preset.draftOptions);
         }
         return new Preset(preset.name, draftOptions, Turn.fromPojoArray(preset.turns), preset.presetId);
     }

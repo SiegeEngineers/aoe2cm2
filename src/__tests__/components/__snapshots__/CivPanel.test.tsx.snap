@@ -5,6 +5,7 @@ exports[`BAN CivPanels render correctly 1`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 2,
       "i18nPrefix": "civs.",
       "id": "Aztecs",
@@ -29,6 +30,7 @@ exports[`BAN CivPanels render correctly 2`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 4,
       "i18nPrefix": "civs.",
       "id": "Berbers",
@@ -53,6 +55,7 @@ exports[`BAN CivPanels render correctly 3`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 1,
       "i18nPrefix": "civs.",
       "id": "Britons",
@@ -77,6 +80,7 @@ exports[`BAN CivPanels render correctly 4`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 5,
       "i18nPrefix": "civs.",
       "id": "Burmese",
@@ -101,6 +105,7 @@ exports[`BAN CivPanels render correctly 5`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 1,
       "i18nPrefix": "civs.",
       "id": "Byzantines",
@@ -125,6 +130,7 @@ exports[`BAN CivPanels render correctly 6`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 1,
       "i18nPrefix": "civs.",
       "id": "Celts",
@@ -149,6 +155,7 @@ exports[`BAN CivPanels render correctly 7`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 1,
       "i18nPrefix": "civs.",
       "id": "Chinese",
@@ -173,6 +180,7 @@ exports[`BAN CivPanels render correctly 8`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 4,
       "i18nPrefix": "civs.",
       "id": "Ethiopians",
@@ -197,6 +205,7 @@ exports[`BAN CivPanels render correctly 9`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 1,
       "i18nPrefix": "civs.",
       "id": "Franks",
@@ -221,6 +230,7 @@ exports[`BAN CivPanels render correctly 10`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 1,
       "i18nPrefix": "civs.",
       "id": "Goths",
@@ -245,6 +255,7 @@ exports[`BAN CivPanels render correctly 11`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 2,
       "i18nPrefix": "civs.",
       "id": "Huns",
@@ -269,6 +280,7 @@ exports[`BAN CivPanels render correctly 12`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 3,
       "i18nPrefix": "civs.",
       "id": "Incas",
@@ -293,6 +305,7 @@ exports[`BAN CivPanels render correctly 13`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 3,
       "i18nPrefix": "civs.",
       "id": "Indians",
@@ -317,6 +330,7 @@ exports[`BAN CivPanels render correctly 14`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 3,
       "i18nPrefix": "civs.",
       "id": "Italians",
@@ -341,6 +355,7 @@ exports[`BAN CivPanels render correctly 15`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 1,
       "i18nPrefix": "civs.",
       "id": "Japanese",
@@ -365,6 +380,7 @@ exports[`BAN CivPanels render correctly 16`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 5,
       "i18nPrefix": "civs.",
       "id": "Khmer",
@@ -389,6 +405,7 @@ exports[`BAN CivPanels render correctly 17`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 2,
       "i18nPrefix": "civs.",
       "id": "Koreans",
@@ -413,6 +430,7 @@ exports[`BAN CivPanels render correctly 18`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 3,
       "i18nPrefix": "civs.",
       "id": "Magyars",
@@ -437,6 +455,7 @@ exports[`BAN CivPanels render correctly 19`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 5,
       "i18nPrefix": "civs.",
       "id": "Malay",
@@ -461,6 +480,7 @@ exports[`BAN CivPanels render correctly 20`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 4,
       "i18nPrefix": "civs.",
       "id": "Malians",
@@ -485,6 +505,7 @@ exports[`BAN CivPanels render correctly 21`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 2,
       "i18nPrefix": "civs.",
       "id": "Mayans",
@@ -509,6 +530,7 @@ exports[`BAN CivPanels render correctly 22`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 1,
       "i18nPrefix": "civs.",
       "id": "Mongols",
@@ -533,6 +555,7 @@ exports[`BAN CivPanels render correctly 23`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 1,
       "i18nPrefix": "civs.",
       "id": "Persians",
@@ -557,6 +580,7 @@ exports[`BAN CivPanels render correctly 24`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 4,
       "i18nPrefix": "civs.",
       "id": "Portuguese",
@@ -581,6 +605,7 @@ exports[`BAN CivPanels render correctly 25`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 1,
       "i18nPrefix": "civs.",
       "id": "Saracens",
@@ -605,6 +630,7 @@ exports[`BAN CivPanels render correctly 26`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 3,
       "i18nPrefix": "civs.",
       "id": "Slavs",
@@ -629,6 +655,7 @@ exports[`BAN CivPanels render correctly 27`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 2,
       "i18nPrefix": "civs.",
       "id": "Spanish",
@@ -653,6 +680,7 @@ exports[`BAN CivPanels render correctly 28`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 1,
       "i18nPrefix": "civs.",
       "id": "Teutons",
@@ -677,6 +705,7 @@ exports[`BAN CivPanels render correctly 29`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 1,
       "i18nPrefix": "civs.",
       "id": "Turks",
@@ -701,6 +730,7 @@ exports[`BAN CivPanels render correctly 30`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 5,
       "i18nPrefix": "civs.",
       "id": "Vietnamese",
@@ -725,6 +755,7 @@ exports[`BAN CivPanels render correctly 31`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 1,
       "i18nPrefix": "civs.",
       "id": "Vikings",
@@ -749,6 +780,7 @@ exports[`BAN CivPanels render correctly 32`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 6,
       "i18nPrefix": "civs.",
       "id": "Bulgarians",
@@ -773,6 +805,7 @@ exports[`BAN CivPanels render correctly 33`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 6,
       "i18nPrefix": "civs.",
       "id": "Cumans",
@@ -797,6 +830,7 @@ exports[`BAN CivPanels render correctly 34`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 6,
       "i18nPrefix": "civs.",
       "id": "Lithuanians",
@@ -821,6 +855,7 @@ exports[`BAN CivPanels render correctly 35`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 6,
       "i18nPrefix": "civs.",
       "id": "Tatars",
@@ -845,6 +880,7 @@ exports[`BAN CivPanels render correctly 36`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 7,
       "i18nPrefix": "civs.",
       "id": "Burgundians",
@@ -869,6 +905,7 @@ exports[`BAN CivPanels render correctly 37`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 7,
       "i18nPrefix": "civs.",
       "id": "Sicilians",
@@ -893,6 +930,7 @@ exports[`BAN CivPanels render correctly 38`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 8,
       "i18nPrefix": "civs.",
       "id": "Bohemians",
@@ -917,6 +955,7 @@ exports[`BAN CivPanels render correctly 39`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 8,
       "i18nPrefix": "civs.",
       "id": "Poles",
@@ -941,6 +980,7 @@ exports[`BAN CivPanels render correctly 40`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 9,
       "i18nPrefix": "civs.",
       "id": "Bengalis",
@@ -965,6 +1005,7 @@ exports[`BAN CivPanels render correctly 41`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 9,
       "i18nPrefix": "civs.",
       "id": "Dravidians",
@@ -989,6 +1030,7 @@ exports[`BAN CivPanels render correctly 42`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 9,
       "i18nPrefix": "civs.",
       "id": "Gurjaras",
@@ -1013,6 +1055,7 @@ exports[`BAN CivPanels render correctly 43`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 9,
       "i18nPrefix": "civs.",
       "id": "Hindustanis",
@@ -1037,6 +1080,7 @@ exports[`BAN CivPanels render correctly 44`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 10,
       "i18nPrefix": "civs.",
       "id": "Romans",
@@ -1061,6 +1105,7 @@ exports[`BAN CivPanels render correctly 45`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 11,
       "i18nPrefix": "civs.",
       "id": "Armenians",
@@ -1085,6 +1130,7 @@ exports[`BAN CivPanels render correctly 46`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 11,
       "i18nPrefix": "civs.",
       "id": "Georgians",
@@ -1109,6 +1155,7 @@ exports[`PICK CivPanels render correctly 1`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 2,
       "i18nPrefix": "civs.",
       "id": "Aztecs",
@@ -1133,6 +1180,7 @@ exports[`PICK CivPanels render correctly 2`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 4,
       "i18nPrefix": "civs.",
       "id": "Berbers",
@@ -1157,6 +1205,7 @@ exports[`PICK CivPanels render correctly 3`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 1,
       "i18nPrefix": "civs.",
       "id": "Britons",
@@ -1181,6 +1230,7 @@ exports[`PICK CivPanels render correctly 4`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 5,
       "i18nPrefix": "civs.",
       "id": "Burmese",
@@ -1205,6 +1255,7 @@ exports[`PICK CivPanels render correctly 5`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 1,
       "i18nPrefix": "civs.",
       "id": "Byzantines",
@@ -1229,6 +1280,7 @@ exports[`PICK CivPanels render correctly 6`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 1,
       "i18nPrefix": "civs.",
       "id": "Celts",
@@ -1253,6 +1305,7 @@ exports[`PICK CivPanels render correctly 7`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 1,
       "i18nPrefix": "civs.",
       "id": "Chinese",
@@ -1277,6 +1330,7 @@ exports[`PICK CivPanels render correctly 8`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 4,
       "i18nPrefix": "civs.",
       "id": "Ethiopians",
@@ -1301,6 +1355,7 @@ exports[`PICK CivPanels render correctly 9`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 1,
       "i18nPrefix": "civs.",
       "id": "Franks",
@@ -1325,6 +1380,7 @@ exports[`PICK CivPanels render correctly 10`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 1,
       "i18nPrefix": "civs.",
       "id": "Goths",
@@ -1349,6 +1405,7 @@ exports[`PICK CivPanels render correctly 11`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 2,
       "i18nPrefix": "civs.",
       "id": "Huns",
@@ -1373,6 +1430,7 @@ exports[`PICK CivPanels render correctly 12`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 3,
       "i18nPrefix": "civs.",
       "id": "Incas",
@@ -1397,6 +1455,7 @@ exports[`PICK CivPanels render correctly 13`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 3,
       "i18nPrefix": "civs.",
       "id": "Indians",
@@ -1421,6 +1480,7 @@ exports[`PICK CivPanels render correctly 14`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 3,
       "i18nPrefix": "civs.",
       "id": "Italians",
@@ -1445,6 +1505,7 @@ exports[`PICK CivPanels render correctly 15`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 1,
       "i18nPrefix": "civs.",
       "id": "Japanese",
@@ -1469,6 +1530,7 @@ exports[`PICK CivPanels render correctly 16`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 5,
       "i18nPrefix": "civs.",
       "id": "Khmer",
@@ -1493,6 +1555,7 @@ exports[`PICK CivPanels render correctly 17`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 2,
       "i18nPrefix": "civs.",
       "id": "Koreans",
@@ -1517,6 +1580,7 @@ exports[`PICK CivPanels render correctly 18`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 3,
       "i18nPrefix": "civs.",
       "id": "Magyars",
@@ -1541,6 +1605,7 @@ exports[`PICK CivPanels render correctly 19`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 5,
       "i18nPrefix": "civs.",
       "id": "Malay",
@@ -1565,6 +1630,7 @@ exports[`PICK CivPanels render correctly 20`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 4,
       "i18nPrefix": "civs.",
       "id": "Malians",
@@ -1589,6 +1655,7 @@ exports[`PICK CivPanels render correctly 21`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 2,
       "i18nPrefix": "civs.",
       "id": "Mayans",
@@ -1613,6 +1680,7 @@ exports[`PICK CivPanels render correctly 22`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 1,
       "i18nPrefix": "civs.",
       "id": "Mongols",
@@ -1637,6 +1705,7 @@ exports[`PICK CivPanels render correctly 23`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 1,
       "i18nPrefix": "civs.",
       "id": "Persians",
@@ -1661,6 +1730,7 @@ exports[`PICK CivPanels render correctly 24`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 4,
       "i18nPrefix": "civs.",
       "id": "Portuguese",
@@ -1685,6 +1755,7 @@ exports[`PICK CivPanels render correctly 25`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 1,
       "i18nPrefix": "civs.",
       "id": "Saracens",
@@ -1709,6 +1780,7 @@ exports[`PICK CivPanels render correctly 26`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 3,
       "i18nPrefix": "civs.",
       "id": "Slavs",
@@ -1733,6 +1805,7 @@ exports[`PICK CivPanels render correctly 27`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 2,
       "i18nPrefix": "civs.",
       "id": "Spanish",
@@ -1757,6 +1830,7 @@ exports[`PICK CivPanels render correctly 28`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 1,
       "i18nPrefix": "civs.",
       "id": "Teutons",
@@ -1781,6 +1855,7 @@ exports[`PICK CivPanels render correctly 29`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 1,
       "i18nPrefix": "civs.",
       "id": "Turks",
@@ -1805,6 +1880,7 @@ exports[`PICK CivPanels render correctly 30`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 5,
       "i18nPrefix": "civs.",
       "id": "Vietnamese",
@@ -1829,6 +1905,7 @@ exports[`PICK CivPanels render correctly 31`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 1,
       "i18nPrefix": "civs.",
       "id": "Vikings",
@@ -1853,6 +1930,7 @@ exports[`PICK CivPanels render correctly 32`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 6,
       "i18nPrefix": "civs.",
       "id": "Bulgarians",
@@ -1877,6 +1955,7 @@ exports[`PICK CivPanels render correctly 33`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 6,
       "i18nPrefix": "civs.",
       "id": "Cumans",
@@ -1901,6 +1980,7 @@ exports[`PICK CivPanels render correctly 34`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 6,
       "i18nPrefix": "civs.",
       "id": "Lithuanians",
@@ -1925,6 +2005,7 @@ exports[`PICK CivPanels render correctly 35`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 6,
       "i18nPrefix": "civs.",
       "id": "Tatars",
@@ -1949,6 +2030,7 @@ exports[`PICK CivPanels render correctly 36`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 7,
       "i18nPrefix": "civs.",
       "id": "Burgundians",
@@ -1973,6 +2055,7 @@ exports[`PICK CivPanels render correctly 37`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 7,
       "i18nPrefix": "civs.",
       "id": "Sicilians",
@@ -1997,6 +2080,7 @@ exports[`PICK CivPanels render correctly 38`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 8,
       "i18nPrefix": "civs.",
       "id": "Bohemians",
@@ -2021,6 +2105,7 @@ exports[`PICK CivPanels render correctly 39`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 8,
       "i18nPrefix": "civs.",
       "id": "Poles",
@@ -2045,6 +2130,7 @@ exports[`PICK CivPanels render correctly 40`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 9,
       "i18nPrefix": "civs.",
       "id": "Bengalis",
@@ -2069,6 +2155,7 @@ exports[`PICK CivPanels render correctly 41`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 9,
       "i18nPrefix": "civs.",
       "id": "Dravidians",
@@ -2093,6 +2180,7 @@ exports[`PICK CivPanels render correctly 42`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 9,
       "i18nPrefix": "civs.",
       "id": "Gurjaras",
@@ -2117,6 +2205,7 @@ exports[`PICK CivPanels render correctly 43`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 9,
       "i18nPrefix": "civs.",
       "id": "Hindustanis",
@@ -2141,6 +2230,7 @@ exports[`PICK CivPanels render correctly 44`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 10,
       "i18nPrefix": "civs.",
       "id": "Romans",
@@ -2165,6 +2255,7 @@ exports[`PICK CivPanels render correctly 45`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 11,
       "i18nPrefix": "civs.",
       "id": "Armenians",
@@ -2189,6 +2280,7 @@ exports[`PICK CivPanels render correctly 46`] = `
   active={false}
   draftOption={
     Civilisation {
+      "category": "default",
       "gameVersion": 11,
       "i18nPrefix": "civs.",
       "id": "Georgians",
@@ -2233,6 +2325,7 @@ exports[`technical PICK DraftOptionPanels render correctly 1`] = `
   active={false}
   draftOption={
     DraftOption {
+      "category": "default",
       "i18nPrefix": "civs.",
       "id": "HIDDEN_PICK",
       "imageUrls": Object {
@@ -2256,6 +2349,7 @@ exports[`technical PICK DraftOptionPanels render correctly 2`] = `
   active={false}
   draftOption={
     DraftOption {
+      "category": "default",
       "i18nPrefix": "civs.",
       "id": "HIDDEN_BAN",
       "imageUrls": Object {
@@ -2279,6 +2373,7 @@ exports[`technical PICK DraftOptionPanels render correctly 3`] = `
   active={false}
   draftOption={
     DraftOption {
+      "category": "default",
       "i18nPrefix": "civs.",
       "id": "HIDDEN_SNIPE",
       "imageUrls": Object {
@@ -2302,6 +2397,7 @@ exports[`technical PICK DraftOptionPanels render correctly 4`] = `
   active={false}
   draftOption={
     DraftOption {
+      "category": "default",
       "i18nPrefix": "civs.",
       "id": "HIDDEN_STEAL",
       "imageUrls": Object {
@@ -2325,6 +2421,7 @@ exports[`technical PICK DraftOptionPanels render correctly 5`] = `
   active={false}
   draftOption={
     DraftOption {
+      "category": "default",
       "i18nPrefix": "civs.",
       "id": "HIDDEN",
       "imageUrls": Object {

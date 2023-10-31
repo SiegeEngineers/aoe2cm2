@@ -358,7 +358,7 @@ it('VLD_907: hidden steal with reveals', () => {
 it('VLD_908: no turns', () => {
     let preset = new Preset("test", Civilisation.ALL, []);
     const errors: ValidationId[] = Validator.validatePreset(preset);
-    expect(errors).toEqual([ValidationId.VLD_908]);
+    expect(errors).toEqual([ValidationId.VLD_908, ValidationId.VLD_917]);
 });
 
 it('VLD_909: illegal preset id', () => {
@@ -447,6 +447,37 @@ it('VLD_915: no executing spec player in turns', () => {
     ]);
     const errors: ValidationId[] = Validator.validatePreset(preset);
     expect(errors).toEqual([ValidationId.VLD_915]);
+});
+
+it('VLD_916: turn category not found in draftoptions', () => {
+    let preset = new Preset("test", [
+        new DraftOption('idB', 'nameB', undefined, undefined, 'CATEGORY_B'),
+        new DraftOption('idC', 'nameC', undefined, undefined, 'CATEGORY_C'),
+    ], [
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, false, false, Player.GUEST,
+            ['CATEGORY_A']),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, false, false, Player.GUEST,
+            ['CATEGORY_B']),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, false, false, Player.GUEST,
+            ['CATEGORY_C']),
+    ]);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([ValidationId.VLD_916]);
+});
+
+it('VLD_917: draftoption category not found in turns', () => {
+    let preset = new Preset("test", [
+        new DraftOption('idA', 'nameA', undefined, undefined, 'CATEGORY_A'),
+        new DraftOption('idB', 'nameB', undefined, undefined, 'CATEGORY_B'),
+        new DraftOption('idC', 'nameC', undefined, undefined, 'CATEGORY_C'),
+    ], [
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, false, false, Player.GUEST,
+            ['CATEGORY_B']),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, false, false, Player.GUEST,
+            ['CATEGORY_C']),
+    ]);
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([ValidationId.VLD_917]);
 });
 
 it('VLD_999: totally wrong preset format', () => {
@@ -946,6 +977,32 @@ describe('VLD_010 no more options left, must choose random', () => {
         const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(player2, actionType, Civilisation.RANDOM.id));
         expect(errors).toEqual([]);
     })
+});
+
+it('VLD_010 cannot pick civ from wrong category', () => {
+    let preset = new Preset("test", [
+        new DraftOption('first', 'first', DraftOption.defaultImageUrlsForCivilisation('first'), 'civs.', 'categoryA'),
+        new DraftOption('second', 'second', DraftOption.defaultImageUrlsForCivilisation('second'), 'civs.', 'categoryB'),
+    ], [
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL,false, false, Player.HOST, ['categoryA']),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, false, false, Player.GUEST, ['categoryB']),
+    ]);
+    const validator = new Validator(prepareReadyStore(preset, []));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, 'second'));
+    expect(errors).toEqual([ValidationId.VLD_010]);
+});
+
+it('VLD_010 can pick civ from right category', () => {
+    let preset = new Preset("test", [
+        new DraftOption('first', 'first', DraftOption.defaultImageUrlsForCivilisation('first'), 'civs.', 'categoryA'),
+        new DraftOption('second', 'second', DraftOption.defaultImageUrlsForCivilisation('second'), 'civs.', 'categoryB'),
+    ], [
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL,false, false, Player.HOST, ['categoryA']),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, false, false, Player.GUEST, ['categoryB']),
+    ]);
+    const validator = new Validator(prepareReadyStore(preset, []));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, 'first'));
+    expect(errors).toEqual([]);
 });
 
 it('Validator does not modify offsets', () => {

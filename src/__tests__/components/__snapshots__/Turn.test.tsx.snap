@@ -6,6 +6,9 @@ exports[`labels the turn with GPICK 1`] = `
   turn={
     Turn {
       "action": "PICK",
+      "categories": Array [
+        "default",
+      ],
       "exclusivity": "GLOBAL",
       "executingPlayer": "HOST",
       "hidden": false,
@@ -24,6 +27,9 @@ exports[`labels the turn with PICK 1`] = `
   turn={
     Turn {
       "action": "PICK",
+      "categories": Array [
+        "default",
+      ],
       "exclusivity": "NONEXCLUSIVE",
       "executingPlayer": "HOST",
       "hidden": false,
@@ -42,6 +48,9 @@ exports[`labels the turn with xPICK 1`] = `
   turn={
     Turn {
       "action": "PICK",
+      "categories": Array [
+        "default",
+      ],
       "exclusivity": "EXCLUSIVE",
       "executingPlayer": "HOST",
       "hidden": true,

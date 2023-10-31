@@ -13,6 +13,9 @@ exports[`Player renders correctly 1`] = `
       "turns": Array [
         Turn {
           "action": "BAN",
+          "categories": Array [
+            "default",
+          ],
           "exclusivity": "GLOBAL",
           "executingPlayer": "HOST",
           "hidden": false,
@@ -22,6 +25,9 @@ exports[`Player renders correctly 1`] = `
         },
         Turn {
           "action": "BAN",
+          "categories": Array [
+            "default",
+          ],
           "exclusivity": "GLOBAL",
           "executingPlayer": "GUEST",
           "hidden": false,
@@ -31,6 +37,9 @@ exports[`Player renders correctly 1`] = `
         },
         Turn {
           "action": "BAN",
+          "categories": Array [
+            "default",
+          ],
           "exclusivity": "NONEXCLUSIVE",
           "executingPlayer": "HOST",
           "hidden": true,
@@ -40,6 +49,9 @@ exports[`Player renders correctly 1`] = `
         },
         Turn {
           "action": "BAN",
+          "categories": Array [
+            "default",
+          ],
           "exclusivity": "NONEXCLUSIVE",
           "executingPlayer": "GUEST",
           "hidden": true,
@@ -49,6 +61,9 @@ exports[`Player renders correctly 1`] = `
         },
         Turn {
           "action": "REVEAL_ALL",
+          "categories": Array [
+            "default",
+          ],
           "exclusivity": "GLOBAL",
           "executingPlayer": "NONE",
           "hidden": false,
@@ -58,6 +73,9 @@ exports[`Player renders correctly 1`] = `
         },
         Turn {
           "action": "PICK",
+          "categories": Array [
+            "default",
+          ],
           "exclusivity": "GLOBAL",
           "executingPlayer": "HOST",
           "hidden": false,
@@ -67,6 +85,9 @@ exports[`Player renders correctly 1`] = `
         },
         Turn {
           "action": "PICK",
+          "categories": Array [
+            "default",
+          ],
           "exclusivity": "GLOBAL",
           "executingPlayer": "GUEST",
           "hidden": false,
@@ -76,6 +97,9 @@ exports[`Player renders correctly 1`] = `
         },
         Turn {
           "action": "PICK",
+          "categories": Array [
+            "default",
+          ],
           "exclusivity": "EXCLUSIVE",
           "executingPlayer": "HOST",
           "hidden": false,
@@ -85,6 +109,9 @@ exports[`Player renders correctly 1`] = `
         },
         Turn {
           "action": "PICK",
+          "categories": Array [
+            "default",
+          ],
           "exclusivity": "EXCLUSIVE",
           "executingPlayer": "GUEST",
           "hidden": false,
@@ -94,6 +121,9 @@ exports[`Player renders correctly 1`] = `
         },
         Turn {
           "action": "PICK",
+          "categories": Array [
+            "default",
+          ],
           "exclusivity": "NONEXCLUSIVE",
           "executingPlayer": "HOST",
           "hidden": true,
@@ -103,6 +133,9 @@ exports[`Player renders correctly 1`] = `
         },
         Turn {
           "action": "PICK",
+          "categories": Array [
+            "default",
+          ],
           "exclusivity": "NONEXCLUSIVE",
           "executingPlayer": "GUEST",
           "hidden": true,
@@ -112,6 +145,9 @@ exports[`Player renders correctly 1`] = `
         },
         Turn {
           "action": "PICK",
+          "categories": Array [
+            "default",
+          ],
           "exclusivity": "NONEXCLUSIVE",
           "executingPlayer": "HOST",
           "hidden": true,
@@ -121,6 +157,9 @@ exports[`Player renders correctly 1`] = `
         },
         Turn {
           "action": "PICK",
+          "categories": Array [
+            "default",
+          ],
           "exclusivity": "NONEXCLUSIVE",
           "executingPlayer": "GUEST",
           "hidden": true,
@@ -130,6 +169,9 @@ exports[`Player renders correctly 1`] = `
         },
         Turn {
           "action": "PICK",
+          "categories": Array [
+            "default",
+          ],
           "exclusivity": "NONEXCLUSIVE",
           "executingPlayer": "HOST",
           "hidden": true,
@@ -139,6 +181,9 @@ exports[`Player renders correctly 1`] = `
         },
         Turn {
           "action": "PICK",
+          "categories": Array [
+            "default",
+          ],
           "exclusivity": "NONEXCLUSIVE",
           "executingPlayer": "GUEST",
           "hidden": true,
@@ -148,6 +193,9 @@ exports[`Player renders correctly 1`] = `
         },
         Turn {
           "action": "PICK",
+          "categories": Array [
+            "default",
+          ],
           "exclusivity": "NONEXCLUSIVE",
           "executingPlayer": "HOST",
           "hidden": true,
@@ -157,6 +205,9 @@ exports[`Player renders correctly 1`] = `
         },
         Turn {
           "action": "PICK",
+          "categories": Array [
+            "default",
+          ],
           "exclusivity": "NONEXCLUSIVE",
           "executingPlayer": "GUEST",
           "hidden": true,
@@ -166,6 +217,9 @@ exports[`Player renders correctly 1`] = `
         },
         Turn {
           "action": "REVEAL_ALL",
+          "categories": Array [
+            "default",
+          ],
           "exclusivity": "GLOBAL",
           "executingPlayer": "NONE",
           "hidden": false,
@@ -175,6 +229,9 @@ exports[`Player renders correctly 1`] = `
         },
         Turn {
           "action": "SNIPE",
+          "categories": Array [
+            "default",
+          ],
           "exclusivity": "NONEXCLUSIVE",
           "executingPlayer": "HOST",
           "hidden": true,
@@ -184,6 +241,9 @@ exports[`Player renders correctly 1`] = `
         },
         Turn {
           "action": "SNIPE",
+          "categories": Array [
+            "default",
+          ],
           "exclusivity": "NONEXCLUSIVE",
           "executingPlayer": "GUEST",
           "hidden": true,
@@ -193,6 +253,9 @@ exports[`Player renders correctly 1`] = `
         },
         Turn {
           "action": "REVEAL_ALL",
+          "categories": Array [
+            "default",
+          ],
           "exclusivity": "GLOBAL",
           "executingPlayer": "NONE",
           "hidden": false,

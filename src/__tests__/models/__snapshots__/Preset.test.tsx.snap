@@ -9,6 +9,9 @@ Preset {
   "turns": Array [
     Turn {
       "action": "PICK",
+      "categories": Array [
+        "default",
+      ],
       "exclusivity": "NONEXCLUSIVE",
       "executingPlayer": "GUEST",
       "hidden": false,

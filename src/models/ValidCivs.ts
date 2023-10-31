@@ -26,6 +26,7 @@ class ValidCivs {
     public readonly host: ValidOptions;
     public readonly guest: ValidOptions;
     public readonly admin: ValidOptions;
+    public readonly draft: Draft;
 
     constructor(draft: Draft) {
         this.host = new ValidOptions(
@@ -52,6 +53,7 @@ class ValidCivs {
             const turn = ValidCivs.getRelevantTurnOrThrow(draft.preset.turns, i, event.player);
             this.applyEvent(turn, event);
         }
+        this.draft = draft;
     }
 
     private static getRelevantTurnOrThrow(turns: Turn[], i: number, eventPlayer: Player) {
@@ -304,7 +306,26 @@ class ValidCivs {
         }
     }
 
+    private isFromValidCategory(draftEvent: PlayerEvent) {
+        const option = this.draft.preset.options.find((option) => option.id === draftEvent.chosenOptionId);
+        if (!option) {
+            return true;
+        }
+        const expectedActions = this.draft.getExpectedActions()
+        for (let expectedAction of expectedActions) {
+            if (expectedAction.player === draftEvent.player) {
+                if (!expectedAction.categories.includes(option.category)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     validateDraftEvent(draftEvent: PlayerEvent): boolean {
+        if (!this.isFromValidCategory(draftEvent)) {
+            return false;
+        }
         let validOptions = this.host;
         if (draftEvent.player === Player.GUEST) {
             validOptions = this.guest;
