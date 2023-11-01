@@ -83,7 +83,7 @@ it('new turns with executingPlayer and categories properties can be deserialised
 
 
 
-it('old preset without presetId can be deserialised', () => {
+it('old preset without presetId and categoryLimits can be deserialised', () => {
     const pojo = {
         name: "Preset name",
         encodedCivilisations: "0x1",
@@ -99,10 +99,11 @@ it('old preset without presetId can be deserialised', () => {
     };
     const preset = Preset.fromPojo(pojo) as Preset;
     expect(preset.presetId).toBeUndefined();
+    expect(preset.categoryLimits).toEqual({pick: {}, ban: {}});
 });
 
 
-it('new preset with presetId can be deserialised', () => {
+it('old preset with presetID but without categoryLimits can be deserialised', () => {
     const pojo = {
         name: "Preset name",
         encodedCivilisations: "0x1",
@@ -119,5 +120,28 @@ it('new preset with presetId can be deserialised', () => {
     };
     const preset = Preset.fromPojo(pojo) as Preset;
     expect(preset.presetId).toEqual('abcdef');
+    expect(preset.categoryLimits).toEqual({pick: {}, ban: {}});
+});
+
+
+it('new preset with presetID categoryLimits can be deserialised', () => {
+    const pojo = {
+        name: "Preset name",
+        encodedCivilisations: "0x1",
+        turns: [{
+            id: "mocked-uuid",
+            player: Player.HOST,
+            action: Action.PICK,
+            exclusivity: Exclusivity.NONEXCLUSIVE,
+            hidden: false,
+            parallel: false,
+            executingPlayer: Player.GUEST
+        } as Turn],
+        presetId: 'abcdef',
+        categoryLimits: {pick: {default: 3}, ban: {default: 1}}
+    };
+    const preset = Preset.fromPojo(pojo) as Preset;
+    expect(preset.presetId).toEqual('abcdef');
+    expect(preset.categoryLimits).toEqual({pick: {default: 3}, ban: {default: 1}});
 });
 

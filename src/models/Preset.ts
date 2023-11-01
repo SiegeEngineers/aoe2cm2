@@ -4,6 +4,7 @@ import {Assert} from "../util/Assert";
 import Civilisation from "./Civilisation";
 import DraftOption from "./DraftOption";
 import {Util} from "../util/Util";
+import {ICategoryLimits} from "../types";
 
 class Preset {
 
@@ -47,8 +48,10 @@ class Preset {
     public readonly encodedCivilisations?: string;
     public readonly draftOptions?: DraftOption[];
     public readonly turns: Turn[];
+    public readonly categoryLimits: ICategoryLimits;
 
-    constructor(name: string, draftOptions: DraftOption[], turns: Turn[] = [], presetId?: string) {
+    constructor(name: string, draftOptions: DraftOption[], turns: Turn[] = [], presetId?: string,
+                categoryLimits: ICategoryLimits = {pick: {}, ban: {}}) {
         this.name = name;
         this.presetId = presetId;
         if (Util.isCivilisationArray(draftOptions)) {
@@ -57,9 +60,17 @@ class Preset {
             this.draftOptions = draftOptions;
         }
         this.turns = turns;
+        this.categoryLimits = categoryLimits;
     }
 
-    public static fromPojo(preset: { name: string, encodedCivilisations?: string, draftOptions?: DraftOption[], turns: Turn[], presetId?: string } | undefined): Preset | undefined {
+    public static fromPojo(preset: {
+        name: string,
+        encodedCivilisations?: string,
+        draftOptions?: DraftOption[],
+        turns: Turn[],
+        presetId?: string,
+        categoryLimits?: ICategoryLimits
+    } | undefined): Preset | undefined {
         if (preset === undefined) {
             return undefined;
         }
@@ -72,7 +83,8 @@ class Preset {
         } else if (preset.draftOptions) {
             draftOptions = DraftOption.fromPojoArray(preset.draftOptions);
         }
-        return new Preset(preset.name, draftOptions, Turn.fromPojoArray(preset.turns), preset.presetId);
+        Assert.isCategoryLimitsOrUndefined(preset.categoryLimits)
+        return new Preset(preset.name, draftOptions, Turn.fromPojoArray(preset.turns), preset.presetId, preset.categoryLimits);
     }
 
     public addTurn(turn: Turn) {

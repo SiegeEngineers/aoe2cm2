@@ -60,6 +60,28 @@ export const Assert = {
         }
         this.isImageUrls(arg);
     },
+    isCategoryLimits(arg: any) {
+        const argKeys = Object.keys(arg);
+        if (!argKeys.includes('pick') || !argKeys.includes('ban')){
+                throw new Error("Expected argument to be a valid CategoryLimits value, but was " + JSON.stringify(arg));
+        }
+        for (let key of Object.keys(arg.pick)) {
+            if (typeof arg.pick[key] !== "number") {
+                throw new Error("Expected argument to be a valid CategoryLimits value, but was " + JSON.stringify(arg));
+            }
+        }
+        for (let key of Object.keys(arg.ban)) {
+            if (typeof arg.ban[key] !== "number") {
+                throw new Error("Expected argument to be a valid CategoryLimits value, but was " + JSON.stringify(arg));
+            }
+        }
+    },
+    isCategoryLimitsOrUndefined(arg: any) {
+        if (arg === undefined) {
+            return;
+        }
+        this.isCategoryLimits(arg);
+    },
     isAction(arg: any) {
         if (!Object.keys(Action).includes(arg)) {
             throw new Error("Expected argument to be a valid Action value, but was " + arg);

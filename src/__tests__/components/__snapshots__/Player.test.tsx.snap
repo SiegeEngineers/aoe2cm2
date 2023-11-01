@@ -6,6 +6,10 @@ exports[`Player renders correctly 1`] = `
   player="HOST"
   preset={
     Preset {
+      "categoryLimits": Object {
+        "ban": Object {},
+        "pick": Object {},
+      },
       "draftOptions": undefined,
       "encodedCivilisations": "3fffffffefff",
       "name": "Default Preset",

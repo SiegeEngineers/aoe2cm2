@@ -282,6 +282,14 @@ export const Util = {
         return input;
     },
 
+    cloneLimits(limits: { [key: string]: number }): { [key: string]: number } {
+        const copy: { [key: string]: number } = {};
+        for (let key in limits) {
+            copy[key] = limits[key];
+        }
+        return copy;
+    },
+
     draftToPreviewPage(draftId: string, draft: IDraftState): string {
         const presetName = draft.preset ? draft.preset.name : 'Unknown Preset';
         return `<!doctype html>

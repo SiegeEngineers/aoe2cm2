@@ -126,3 +126,8 @@ export interface IRecentDraftsState {
     drafts: IRecentDraft[]
     newDraftIndex: number
 }
+
+export interface ICategoryLimits {
+    pick: { [key: string]: number }
+    ban: { [key: string]: number }
+}

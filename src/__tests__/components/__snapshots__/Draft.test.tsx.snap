@@ -11,6 +11,10 @@ exports[`Draft renders correctly 1`] = `
   ownName=""
   preset={
     Preset {
+      "categoryLimits": Object {
+        "ban": Object {},
+        "pick": Object {},
+      },
       "draftOptions": undefined,
       "encodedCivilisations": "3fffffffefff",
       "name": "Default Preset",

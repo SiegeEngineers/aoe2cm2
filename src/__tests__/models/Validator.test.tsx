@@ -480,6 +480,34 @@ it('VLD_917: draftoption category not found in turns', () => {
     expect(errors).toEqual([ValidationId.VLD_917]);
 });
 
+it('VLD_918: categoryLimits pick category not found in turns', () => {
+    let preset = new Preset("test", [
+        new DraftOption('idB', 'nameB', undefined, undefined, 'CATEGORY_A'),
+        new DraftOption('idC', 'nameC', undefined, undefined, 'CATEGORY_B'),
+    ], [
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, false, false, Player.GUEST,
+            ['CATEGORY_A']),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, false, false, Player.GUEST,
+            ['CATEGORY_B']),
+    ], 'presetID', {pick: {"CATEGORY_A": 1, "CATEGORY_B": 1, "CATEGORY_C": 1}, ban: {}});
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([ValidationId.VLD_918]);
+});
+
+it('VLD_918: categoryLimits ban category not found in turns', () => {
+    let preset = new Preset("test", [
+        new DraftOption('idB', 'nameB', undefined, undefined, 'CATEGORY_A'),
+        new DraftOption('idC', 'nameC', undefined, undefined, 'CATEGORY_B'),
+    ], [
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, false, false, Player.GUEST,
+            ['CATEGORY_A']),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, false, false, Player.GUEST,
+            ['CATEGORY_B']),
+    ], 'presetID', {pick: {}, ban: {"CATEGORY_A": 1, "CATEGORY_B": 1, "CATEGORY_C": 1}});
+    const errors: ValidationId[] = Validator.validatePreset(preset);
+    expect(errors).toEqual([ValidationId.VLD_918]);
+});
+
 it('VLD_999: totally wrong preset format', () => {
     let preset = {absolute: "garbage"} as unknown as Preset;
     const errors: ValidationId[] = Validator.validatePreset(preset);
@@ -979,30 +1007,70 @@ describe('VLD_010 no more options left, must choose random', () => {
     })
 });
 
-it('VLD_010 cannot pick civ from wrong category', () => {
-    let preset = new Preset("test", [
-        new DraftOption('first', 'first', DraftOption.defaultImageUrlsForCivilisation('first'), 'civs.', 'categoryA'),
-        new DraftOption('second', 'second', DraftOption.defaultImageUrlsForCivilisation('second'), 'civs.', 'categoryB'),
-    ], [
-        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL,false, false, Player.HOST, ['categoryA']),
-        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, false, false, Player.GUEST, ['categoryB']),
-    ]);
-    const validator = new Validator(prepareReadyStore(preset, []));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, 'second'));
-    expect(errors).toEqual([ValidationId.VLD_010]);
+describe('VLD_010 cannot use civ from wrong category', () => {
+    it.each`
+    player1         | player2         | actionType         | action
+    ${Player.HOST}  | ${Player.GUEST} | ${ActionType.PICK} | ${Action.PICK}
+    ${Player.HOST}  | ${Player.GUEST} | ${ActionType.BAN}  | ${Action.BAN}
+    ${Player.GUEST} | ${Player.HOST}  | ${ActionType.PICK} | ${Action.PICK}
+    ${Player.GUEST} | ${Player.HOST}  | ${ActionType.BAN}  | ${Action.BAN}
+  `('$player1 $player2 $actionType', ({player1, player2, actionType, action}) => {
+        let preset = new Preset("test", [
+            new DraftOption('first', 'first', DraftOption.defaultImageUrlsForCivilisation('first'), 'civs.', 'categoryA'),
+            new DraftOption('second', 'second', DraftOption.defaultImageUrlsForCivilisation('second'), 'civs.', 'categoryB'),
+        ], [
+            new Turn(player1, action, Exclusivity.GLOBAL, false, false, player1, ['categoryA']),
+            new Turn(player2, action, Exclusivity.GLOBAL, false, false, player2, ['categoryB']),
+        ]);
+        const validator = new Validator(prepareReadyStore(preset, []));
+        const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(player1, actionType, 'second'));
+        expect(errors).toEqual([ValidationId.VLD_010]);
+    });
 });
 
-it('VLD_010 can pick civ from right category', () => {
-    let preset = new Preset("test", [
-        new DraftOption('first', 'first', DraftOption.defaultImageUrlsForCivilisation('first'), 'civs.', 'categoryA'),
-        new DraftOption('second', 'second', DraftOption.defaultImageUrlsForCivilisation('second'), 'civs.', 'categoryB'),
-    ], [
-        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL,false, false, Player.HOST, ['categoryA']),
-        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, false, false, Player.GUEST, ['categoryB']),
-    ]);
-    const validator = new Validator(prepareReadyStore(preset, []));
-    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, 'first'));
-    expect(errors).toEqual([]);
+describe('VLD_010 can use civ from right category', () => {
+    it.each`
+    player1         | player2         | actionType         | action
+    ${Player.HOST}  | ${Player.GUEST} | ${ActionType.PICK} | ${Action.PICK}
+    ${Player.HOST}  | ${Player.GUEST} | ${ActionType.BAN}  | ${Action.BAN}
+    ${Player.GUEST} | ${Player.HOST}  | ${ActionType.PICK} | ${Action.PICK}
+    ${Player.GUEST} | ${Player.HOST}  | ${ActionType.BAN}  | ${Action.BAN}
+  `('$player1 $player2 $actionType', ({player1, player2, actionType, action}) => {
+        let preset = new Preset("test", [
+            new DraftOption('first', 'first', DraftOption.defaultImageUrlsForCivilisation('first'), 'civs.', 'categoryA'),
+            new DraftOption('second', 'second', DraftOption.defaultImageUrlsForCivilisation('second'), 'civs.', 'categoryB'),
+        ], [
+            new Turn(player1, action, Exclusivity.GLOBAL, false, false, player1, ['categoryA']),
+            new Turn(player2, action, Exclusivity.GLOBAL, false, false, player2, ['categoryB']),
+        ]);
+        const validator = new Validator(prepareReadyStore(preset, []));
+        const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(player1, actionType, 'first'));
+        expect(errors).toEqual([]);
+    });
+});
+
+describe('VLD_010 cannot exceed category limit', () => {
+    it.each`
+    player1         | player2         | actionType         | action
+    ${Player.HOST}  | ${Player.GUEST} | ${ActionType.PICK} | ${Action.PICK}
+    ${Player.HOST}  | ${Player.GUEST} | ${ActionType.BAN}  | ${Action.BAN}
+    ${Player.GUEST} | ${Player.HOST}  | ${ActionType.PICK} | ${Action.PICK}
+    ${Player.GUEST} | ${Player.HOST}  | ${ActionType.BAN}  | ${Action.BAN}
+  `('$player1 $player2 $actionType', ({player1, player2, actionType, action}) => {
+        let preset = new Preset("test", [
+            new DraftOption('first', 'first', DraftOption.defaultImageUrlsForCivilisation('first'), 'civs.', 'categoryA'),
+            new DraftOption('second', 'second', DraftOption.defaultImageUrlsForCivilisation('second'), 'civs.', 'categoryB'),
+            new DraftOption('third', 'third', DraftOption.defaultImageUrlsForCivilisation('third'), 'civs.', 'categoryB'),
+        ], [
+            new Turn(player1, action, Exclusivity.GLOBAL, false, false, player1, ['categoryA']),
+            new Turn(player2, action, Exclusivity.GLOBAL, false, false, player2, ['categoryB']),
+        ], 'presetID', {pick: {categoryB: 1}, ban: {categoryB: 1}});
+        const validator = new Validator(prepareReadyStore(preset, [
+            new PlayerEvent(player1, actionType, 'second'),
+        ]));
+        const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(player2, actionType, 'third'));
+        expect(errors).toEqual([ValidationId.VLD_010]);
+    });
 });
 
 it('Validator does not modify offsets', () => {

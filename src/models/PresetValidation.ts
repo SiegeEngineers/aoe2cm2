@@ -195,6 +195,14 @@ export class PresetValidation {
         return draftOptionCategories.every(value => turnCategories.includes(value));
     });
 
+    public static readonly VLD_918: PresetValidation = new PresetValidation(ValidationId.VLD_918, (preset: Preset) => {
+        let categoryLimitsCategories: string[] = Object.keys(preset.categoryLimits.pick);
+        categoryLimitsCategories = categoryLimitsCategories.concat(Object.keys(preset.categoryLimits.ban));
+        let turnCategories: string[] = [];
+        turnCategories = turnCategories.concat(...preset.turns.map(value => value.categories));
+        return categoryLimitsCategories.every(value => turnCategories.includes(value));
+    });
+
 
     public static readonly ALL: PresetValidation[] = [
         PresetValidation.VLD_901,
@@ -214,6 +222,7 @@ export class PresetValidation {
         PresetValidation.VLD_915,
         PresetValidation.VLD_916,
         PresetValidation.VLD_917,
+        PresetValidation.VLD_918,
     ];
 
     private readonly validationId: ValidationId;

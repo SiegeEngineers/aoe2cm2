@@ -7,18 +7,25 @@ import Exclusivity from "../constants/Exclusivity";
 import Player from "../constants/Player";
 import PlayerEvent from "./PlayerEvent";
 import DraftOption from "./DraftOption";
+import {ICategoryLimits} from "../types";
+import AdminEvent from "./AdminEvent";
+import Action from "../constants/Action";
 
 class ValidOptions {
     public pick: string[];
     public ban: string[];
     public snipe: string[];
     public steal: string[];
+    public categoryLimitPick: { [key: string]: number };
+    public categoryLimitBan: { [key: string]: number };
 
-    constructor(pick: DraftOption[], ban: DraftOption[], snipe: DraftOption[], steal: DraftOption[]) {
+    constructor(pick: DraftOption[], ban: DraftOption[], snipe: DraftOption[], steal: DraftOption[], limits: ICategoryLimits) {
         this.pick = pick.map(option => option.id);
         this.ban = ban.map(option => option.id);
         this.snipe = snipe.map(option => option.id);
         this.steal = steal.map(option => option.id);
+        this.categoryLimitPick = Util.cloneLimits(limits.pick);
+        this.categoryLimitBan = Util.cloneLimits(limits.ban);
     }
 }
 
@@ -29,23 +36,27 @@ class ValidCivs {
     public readonly draft: Draft;
 
     constructor(draft: Draft) {
+        this.draft = draft;
         this.host = new ValidOptions(
             [...draft.preset.options, DraftOption.RANDOM],
             [...draft.preset.options, DraftOption.RANDOM],
             [DraftOption.RANDOM],
             [DraftOption.RANDOM],
+            draft.preset.categoryLimits,
         );
         this.guest = new ValidOptions(
             [...draft.preset.options, DraftOption.RANDOM],
             [...draft.preset.options, DraftOption.RANDOM],
             [DraftOption.RANDOM],
             [DraftOption.RANDOM],
+            draft.preset.categoryLimits,
         );
         this.admin = new ValidOptions(
             [...draft.preset.options, DraftOption.RANDOM],
             [...draft.preset.options, DraftOption.RANDOM],
             [DraftOption.RANDOM],
             [DraftOption.RANDOM],
+            draft.preset.categoryLimits,
         );
         for (let i = 0; i < draft.events.length; i++) {
             const event = draft.events[i];
@@ -53,7 +64,6 @@ class ValidCivs {
             const turn = ValidCivs.getRelevantTurnOrThrow(draft.preset.turns, i, event.player);
             this.applyEvent(turn, event);
         }
-        this.draft = draft;
     }
 
     private static getRelevantTurnOrThrow(turns: Turn[], i: number, eventPlayer: Player) {
@@ -122,6 +132,12 @@ class ValidCivs {
         if (ValidCivs.isNonExclusive(turn)) {
             this.handleNonExclusiveBan(event);
         }
+        const category = this.getCategoryForEvent(event);
+        if (category && this.admin.categoryLimitBan[category]) {
+            this.admin.categoryLimitBan[category]--;
+            this.host.categoryLimitBan[category]--;
+            this.guest.categoryLimitBan[category]--;
+        }
     }
 
     private handleNonExclusiveBan(event: PlayerEvent) {
@@ -163,6 +179,12 @@ class ValidCivs {
         }
         if (ValidCivs.isExclusive(turn)) {
             this.handleExclusivePick(event);
+        }
+        const category = this.getCategoryForEvent(event);
+        if (category && this.admin.categoryLimitPick[category]) {
+            this.admin.categoryLimitPick[category]--;
+            this.host.categoryLimitPick[category]--;
+            this.guest.categoryLimitPick[category]--;
         }
         this.addCivilisationToSnipesAndSteals(event);
     }
@@ -307,19 +329,24 @@ class ValidCivs {
     }
 
     private isFromValidCategory(draftEvent: PlayerEvent) {
-        const option = this.draft.preset.options.find((option) => option.id === draftEvent.chosenOptionId);
-        if (!option) {
+        const category = this.getCategoryForEvent(draftEvent);
+        if (!category) {
             return true;
         }
         const expectedActions = this.draft.getExpectedActions()
         for (let expectedAction of expectedActions) {
             if (expectedAction.player === draftEvent.player) {
-                if (!expectedAction.categories.includes(option.category)) {
+                if (!expectedAction.categories.includes(category)) {
                     return false;
                 }
             }
         }
         return true;
+    }
+
+    private getCategoryForEvent(draftEvent: PlayerEvent): string | undefined {
+        const option = this.draft.preset.options.find((option) => option.id === draftEvent.chosenOptionId);
+        return option?.category;
     }
 
     validateDraftEvent(draftEvent: PlayerEvent): boolean {
@@ -334,9 +361,30 @@ class ValidCivs {
             validOptions = this.admin;
         }
         if (draftEvent.actionType === ActionType.PICK) {
+
+            const category = this.getCategoryForEvent(draftEvent);
+            if (category && validOptions.categoryLimitPick[category] !== undefined) {
+                if (validOptions.categoryLimitPick[category] <= 0) {
+                    return false;
+                }
+            }
+
             return validOptions.pick.includes(draftEvent.chosenOptionId);
         }
         if (draftEvent.actionType === ActionType.BAN) {
+
+            const category = this.getCategoryForEvent(draftEvent);
+            if (category && validOptions.categoryLimitBan[category] !== undefined) {
+                if (validOptions.categoryLimitBan[category] <= 0) {
+                    return false;
+                }
+            }
+            if (category && validOptions.categoryLimitPick[category] !== undefined) {
+                if (validOptions.categoryLimitPick[category] <= 0) {
+                    return false;
+                }
+            }
+
             return validOptions.ban.includes(draftEvent.chosenOptionId);
         }
         if (draftEvent.actionType === ActionType.SNIPE) {
