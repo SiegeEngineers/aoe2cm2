@@ -3,14 +3,14 @@
 exports[`NameGenerator yields deterministic results 1`] = `
 Array [
   "King Alfonso",
-  "Yuri II",
-  "Raymond, Prince of Antioch",
+  "Yaroslav the Wise",
+  "Lothair II",
   "King Alfonso",
-  "Prince John",
-  "Vikramaditya I",
-  "Smoke Monkey",
-  "Cuauhtemoc",
-  "Govind Tai",
-  "Dil Na'od",
+  "Henry Bolingbroke",
+  "Nasiruddin Mahmud Shah",
+  "Waterlily Jaguar",
+  "Maxixca",
+  "Avitus",
+  "Frumentius",
 ]
 `;
