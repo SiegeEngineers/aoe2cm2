@@ -83,6 +83,7 @@ class ValidCivs {
 
     private applyEvent(turn: Turn, event: DraftEvent) {
         if (Util.isAdminEvent(event)) {
+            this.handleAdminEvent(event)
             return;
         }
 
@@ -171,6 +172,17 @@ class ValidCivs {
         this.removeHostPick(event.chosenOptionId);
         this.removeGuestPick(event.chosenOptionId);
         this.removeAdminPick(event.chosenOptionId);
+    }
+
+    private handleAdminEvent(event: AdminEvent) {
+        if (event.action === Action.RESET_CL){
+            this.admin.categoryLimitPick = Util.cloneLimits(this.draft.preset.categoryLimits.pick);
+            this.admin.categoryLimitBan = Util.cloneLimits(this.draft.preset.categoryLimits.ban);
+            this.host.categoryLimitPick = Util.cloneLimits(this.draft.preset.categoryLimits.pick);
+            this.host.categoryLimitBan = Util.cloneLimits(this.draft.preset.categoryLimits.ban);
+            this.guest.categoryLimitPick = Util.cloneLimits(this.draft.preset.categoryLimits.pick);
+            this.guest.categoryLimitBan = Util.cloneLimits(this.draft.preset.categoryLimits.ban);
+        }
     }
 
     private handlePick(turn: Turn, event: PlayerEvent) {

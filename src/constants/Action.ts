@@ -8,6 +8,7 @@ enum Action {
     REVEAL_BANS = 'REVEAL_BANS',
     REVEAL_SNIPES = 'REVEAL_SNIPES',
     PAUSE = 'PAUSE',
+    RESET_CL = 'RESET_CL',
 }
 
 export default Action;

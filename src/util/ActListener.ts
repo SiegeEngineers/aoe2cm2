@@ -149,6 +149,31 @@ export class ActListener {
                     draftsStore.addDraftEvent(draftId, draftEvent);
                     ActListener.finishDraftIfNoFurtherActions(draftViews, socket, draftsStore, draftId, roomLobby, roomHost, roomGuest, roomSpec, dataDirectory);
                 }, adminEventCounter * this.adminTurnDelay);
+            } else if (actionTypeFromAction(expectedAction.action) === ActionType.RESET_CL) {
+                const draftEvent = new AdminEvent(expectedAction.player, expectedAction.action);
+                setTimeout(() => {
+                    logger.info('Executing admin event: %s', JSON.stringify(draftEvent), {draftId});
+                    socket.nsp
+                        .in(roomHost)
+                        .emit("adminEvent", {
+                            ...expectedAction,
+                            events: draftViews.getHostDraft().events
+                        });
+                    socket.nsp
+                        .in(roomGuest)
+                        .emit("adminEvent", {
+                            ...expectedAction,
+                            events: draftViews.getGuestDraft().events
+                        });
+                    socket.nsp
+                        .in(roomSpec)
+                        .emit("adminEvent", {
+                            ...expectedAction,
+                            events: draftViews.getSpecDraft().events
+                        });
+                    draftsStore.addDraftEvent(draftId, draftEvent);
+                    ActListener.finishDraftIfNoFurtherActions(draftViews, socket, draftsStore, draftId, roomLobby, roomHost, roomGuest, roomSpec, dataDirectory);
+                }, adminEventCounter * this.adminTurnDelay);
             } else if ([ActionType.PICK, ActionType.BAN, ActionType.STEAL, ActionType.SNIPE].includes(actionTypeFromAction(expectedAction.action))) {
                 setTimeout(() => {
                     let draftEvent = new PlayerEvent(expectedAction.player, actionTypeFromAction(expectedAction.action), DraftOption.RANDOM.id, false, Player.NONE);

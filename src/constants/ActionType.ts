@@ -7,6 +7,7 @@ enum ActionType {
     STEAL = "steal",
     REVEAL = "reveal",
     PAUSE = "pause",
+    RESET_CL = "reset_cl",
     NOTHING = "nothing"
 }
 
@@ -27,6 +28,8 @@ export function actionTypeFromAction(action: Action) {
             return ActionType.REVEAL;
         case Action.PAUSE:
             return ActionType.PAUSE;
+        case Action.RESET_CL:
+            return ActionType.RESET_CL;
     }
 }
 

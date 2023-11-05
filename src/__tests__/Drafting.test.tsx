@@ -357,6 +357,43 @@ it('draft with pause', (done) => {
     });
 });
 
+it('draft with categorylimit reset', (done) => {
+    Reflect.set(ActListener, "adminTurnDelay", 0);
+    const preset = new Preset('preset with pause', [Civilisation.AZTECS], [
+        new Turn(Player.HOST, Action.PICK, Exclusivity.NONEXCLUSIVE),
+        new Turn(Player.NONE, Action.RESET_CL, Exclusivity.NONEXCLUSIVE),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.NONEXCLUSIVE),
+    ], 'presetID', {pick: {default: 1}, ban: {}});
+    createDraftForPreset(preset).then(value => {
+        const barrier = new Barrier(2, done);
+        hostSocket.once('disconnect', () => {
+            barrier.trigger();
+        });
+        clientSocket.once('disconnect', () => {
+            barrier.trigger();
+        });
+
+        hostEmit('set_role', {name: 'Saladin', role: Player.HOST})
+            .then(() => guestEmit('set_role', {name: 'Barbarossa', role: Player.GUEST}))
+            .then(() => guestEmit('ready', {}))
+            .then(() => hostEmit('ready', {}))
+            .then(() => hostEmit('act', {
+                "player": "HOST",
+                "executingPlayer": "HOST",
+                "actionType": "pick",
+                "chosenOptionId": "Aztecs",
+                "isRandomlyChosen": false,
+            }))
+            .then(() => guestEmit('act', {
+                "player": "GUEST",
+                "executingPlayer": "GUEST",
+                "actionType": "pick",
+                "chosenOptionId": "Aztecs",
+                "isRandomlyChosen": false,
+            }));
+    });
+});
+
 
 it('draft with invalid act', (done) => {
     createDraftForPreset(Preset.SIMPLE).then(value => {

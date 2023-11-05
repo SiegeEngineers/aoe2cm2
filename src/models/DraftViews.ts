@@ -127,6 +127,7 @@ class DraftViews {
                 this.doReveal(ActionType.SNIPE);
                 break;
             case Action.PAUSE:
+            case Action.RESET_CL:
                 break;
             default:
                 throw new Error('Illegal/Unknown Action: ' + action);
