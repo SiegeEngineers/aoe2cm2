@@ -2,6 +2,7 @@ import {IPresetEditorState} from "../types";
 import {PresetEditorAction} from "../actions";
 import {Actions} from "../constants";
 import Preset from "../models/Preset";
+import Turn from "../models/Turn";
 
 export const initialPresetEditorState: IPresetEditorState = {
     editorPreset: null
@@ -44,7 +45,9 @@ export const presetEditorReducer = (state: IPresetEditorState = initialPresetEdi
                 return state;
             } else {
                 if (editorPreset2.turns.length > action.index) {
-                    editorPreset2.turns.splice(action.index, 0, editorPreset2.turns[action.index]);
+                    const t = editorPreset2.turns[action.index];
+                    const turnCopy = new Turn(t.player, t.action, t.exclusivity, t.hidden, t.parallel, t.executingPlayer, t.categories);
+                    editorPreset2.turns.splice(action.index, 0, turnCopy);
                 }
                 return {
                     ...state,
@@ -63,7 +66,9 @@ export const presetEditorReducer = (state: IPresetEditorState = initialPresetEdi
                 editorPreset: new Preset(
                     state.editorPreset.name,
                     state.editorPreset.options,
-                    action.turns
+                    action.turns,
+                    state.editorPreset.presetId,
+                    state.editorPreset.categoryLimits,
                 )
             };
 
@@ -74,7 +79,13 @@ export const presetEditorReducer = (state: IPresetEditorState = initialPresetEdi
             } else {
                 return {
                     ...state,
-                    editorPreset: new Preset(action.value, state.editorPreset.options, state.editorPreset.turns)
+                    editorPreset: new Preset(
+                        action.value,
+                        state.editorPreset.options,
+                        state.editorPreset.turns,
+                        state.editorPreset.presetId,
+                        state.editorPreset.categoryLimits,
+                    )
                 };
             }
 
@@ -83,9 +94,74 @@ export const presetEditorReducer = (state: IPresetEditorState = initialPresetEdi
             if (state.editorPreset === null) {
                 return state;
             } else {
+                const categoryLimits = JSON.parse(JSON.stringify(state.editorPreset.categoryLimits));;
+                const categories = [...new Set(action.value.map(value => value.category))].sort();
+                for (let cat in categoryLimits.pick) {
+                    if (!categories.includes(cat)) {
+                        delete categoryLimits.pick[cat];
+                    }
+                }
+                for (let cat in categoryLimits.ban) {
+                    if (!categories.includes(cat)) {
+                        delete categoryLimits.ban[cat];
+                    }
+                }
                 return {
                     ...state,
-                    editorPreset: new Preset(state.editorPreset.name, action.value, state.editorPreset.turns)
+                    editorPreset: new Preset(
+                        state.editorPreset.name,
+                        action.value,
+                        state.editorPreset.turns,
+                        state.editorPreset.presetId,
+                        categoryLimits,
+                    )
+                };
+            }
+        case Actions.SET_EDITOR_CATEGORY_LIMIT_PICK:
+            console.log(Actions.SET_EDITOR_CATEGORY_LIMIT_PICK, action.key, action.value);
+            if (state.editorPreset === null) {
+                return state;
+            } else {
+                const categoryLimits = JSON.parse(JSON.stringify(state.editorPreset.categoryLimits));
+                if (action.value === null) {
+                    delete categoryLimits.pick[action.key];
+                } else {
+                    categoryLimits.pick[action.key] = action.value;
+                }
+                return {
+                    ...state,
+                    editorPreset: new Preset(
+                        state.editorPreset.name,
+                        state.editorPreset.options,
+                        state.editorPreset.turns,
+                        state.editorPreset.presetId,
+                        categoryLimits,
+                    )
+                };
+            }
+        case Actions.SET_EDITOR_CATEGORY_LIMIT_BAN:
+            console.log(Actions.SET_EDITOR_CATEGORY_LIMIT_BAN, action.key, action.value);
+            if (state.editorPreset === null) {
+                return state;
+            } else {
+                const categoryLimits = {
+                    pick: state.editorPreset.categoryLimits.pick,
+                    ban: state.editorPreset.categoryLimits.ban
+                };
+                if (action.value === null) {
+                    delete categoryLimits.ban[action.key];
+                } else {
+                    categoryLimits.ban[action.key] = action.value;
+                }
+                return {
+                    ...state,
+                    editorPreset: new Preset(
+                        state.editorPreset.name,
+                        state.editorPreset.options,
+                        state.editorPreset.turns,
+                        state.editorPreset.presetId,
+                        categoryLimits,
+                    )
                 };
             }
 

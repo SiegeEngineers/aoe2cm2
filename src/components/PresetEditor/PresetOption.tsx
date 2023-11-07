@@ -105,6 +105,21 @@ class PresetOption extends React.Component<IProps, object> {
                                        }}/>
                             </div>
                         </div>
+                        <div className="field is-horizontal">
+                            <div className={'field-label is-small'}>
+                                <label className="label is-small">
+                                    <Trans i18nKey="presetEditor.option.categoryName">Category</Trans>
+                                </label>
+                            </div>
+                            <div className={'field-body'}>
+                                <input className="input is-small" type="text"
+                                       placeholder="default"
+                                       value={draftOption.category}
+                                       onChange={(event) => {
+                                           this.updateCategory(event.target.value);
+                                       }}/>
+                            </div>
+                        </div>
                         <div className={'columns options-preview'}>
                             <div className={'column has-text-centered'}>
                                 <DraftOptionPanel draftOption={draftOption} active={false} highlighted={false}
@@ -212,6 +227,15 @@ class PresetOption extends React.Component<IProps, object> {
             animated_left: oldDraftOption.imageUrls.animated_left,
             animated_right: value,
         });
+        this.props.onPresetDraftOptionsChange(draftOptions);
+    }
+    private updateCategory(value: string) {
+        if (this.props.preset === null || this.props.preset === undefined || this.props.preset.options === undefined) {
+            return;
+        }
+        const draftOptions = [...this.props.preset?.options];
+        const oldDraftOption = draftOptions[this.props.draftOptionIndex];
+        draftOptions[this.props.draftOptionIndex] = new DraftOption(oldDraftOption.id, oldDraftOption.name, oldDraftOption.imageUrls, oldDraftOption.i18nPrefix, value);
         this.props.onPresetDraftOptionsChange(draftOptions);
     }
 }

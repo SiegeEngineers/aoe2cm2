@@ -221,6 +221,9 @@
     "VLD_913": "Admin-Züge können nicht versteckt sein",
     "VLD_914": "Nur Admin-Züge dürfen vorherige versteckte Züge aufdecken",
     "VLD_915": "Die Beobachterinnenrolle darf keine Züge ausführen",
+    "VLD_916": "In den erlaubten Kategorien für einen Zug befindet sich eine Kategorie, welche nicht in den Draft-Optionen vorkommt",
+    "VLD_917": "Eine Draft-Option hat eine Kategorie, die in keinem Zug vorkommt",
+    "VLD_918": "In den Kategorie-Limits ist ein Limit für eine Kategorie definiert, welche in keinem Zug vorkommt",
     "VLD_999": "Irgendetwas ist bei der Validierung gehörig schief gelaufen"
   },
   "menu": {
@@ -327,6 +330,12 @@
     "aoe4Civs": "AoE4-Zivilisationen",
     "customOptions": "Individuell",
     "turns": "Züge",
+    "turnCategories": "Kategorien",
+    "turnCategoriesAll": "alle",
+    "categoryLimits": "Kategorie-Limits",
+    "categoryLimitsExplanation": "Hier kannst du für jede Kategorie die maximale Anzahl von Picks oder Bans über alle Optionen der Kategorie hinweg definieren. Lasse das Eingabefeld leer, um für eine Kategorie kein Limit zu setzen.",
+    "categoryLimitsPick": "Pick",
+    "categoryLimitsBan": "Ban",
     "createSaveDraft": "Draft erstellen oder speichern",
     "host": "Host",
     "guest": "Gast",
@@ -340,7 +349,8 @@
       "unitImageUrl": "URL der Einheitengrafik",
       "emblemImageUrl": "URL der Emblem-Grafik",
       "animatedUnitImageUrlLeft": "URL der animierten Einheitengrafik (links)",
-      "animatedUnitImageUrlRight": "URL der animierten Einheitengrafik (rechts)"
+      "animatedUnitImageUrlRight": "URL der animierten Einheitengrafik (rechts)",
+      "categoryName": "Kategorie"
     }
   },
   "createNewDraft": "Neuen Draft mit diesem Preset erstellen",

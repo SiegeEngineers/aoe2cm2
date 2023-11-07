@@ -6,6 +6,8 @@ import {Dispatch} from "redux";
 import * as actions from "../../actions";
 import {
     IDuplicateEditorTurn,
+    ISetEditorCategoryLimitBan,
+    ISetEditorCategoryLimitPick,
     ISetEditorDraftOptions,
     ISetEditorName,
     ISetEditorPreset,
@@ -42,6 +44,8 @@ interface Props extends WithTranslation, RouteComponentProps<any> {
     onTurnOrderChange: (turns: Turn[]) => ISetEditorTurnOrder,
     onPresetNameChange: (value: string) => ISetEditorName,
     onPresetDraftOptionsChange: (value: DraftOption[]) => ISetEditorDraftOptions
+    onSetCategoryLimitPick: (key: string, value: number | null) => ISetEditorCategoryLimitPick
+    onSetCategoryLimitBan: (key: string, value: number | null) => ISetEditorCategoryLimitBan
 }
 
 interface State {
@@ -149,6 +153,18 @@ class PresetEditor extends React.Component<Props, State> {
 
         const customOptions: boolean = this.state.defaultDraftOptions.length === 0;
         let optionsSelection = customOptions ? <PresetEditorCustomOptions/> : <PresetEditorCivSelection availableOptions={this.state.defaultDraftOptions}/>;
+
+        const categories = [...new Set(this.props.preset.options.map(value => value.category))].sort();
+        const categoryInputsPick = categories.map(category => <li>{category}: <input type="number"
+                                                                                     value={this.props.preset?.categoryLimits.pick[category]}
+                                                                                     onChange={event => this.props.onSetCategoryLimitPick(category, parseInt(event.target.value) || null)}
+                                                                                     key={'categoryInputsBan-' + category}/>
+        </li>);
+        const categoryInputsBan = categories.map(category => <li>{category}: <input type="number"
+                                                                                    value={this.props.preset?.categoryLimits.ban[category]}
+                                                                                    onChange={event => this.props.onSetCategoryLimitBan(category, parseInt(event.target.value) || null)}
+                                                                                    key={'categoryInputsBan-' + category}/>
+        </li>);
 
         return (
             <React.Fragment>
@@ -291,7 +307,24 @@ class PresetEditor extends React.Component<Props, State> {
                         </div>
                     </div>
                     <hr/>
-                    <h3>3. <Trans i18nKey="presetEditor.createSaveDraft">Create Draft or Save</Trans></h3>
+
+                    <h3>3. <Trans i18nKey="presetEditor.categoryLimits">Category Limits</Trans></h3>
+                    <p><Trans i18nKey="presetEditor.categoryLimitsExplanation">Here you may, for each category,
+                        define a maximum number of times Draft Options from it can be picked or banned.
+                        Leave the input emtpy to set no limit for a category.</Trans></p>
+                    <div className="columns">
+                        <div className="column">
+                            <h4><Trans i18nKey="presetEditor.categoryLimitsPick">Pick</Trans></h4>
+                            <ul>{categoryInputsPick}</ul>
+                        </div>
+                        <div className="column">
+                            <h4><Trans i18nKey="presetEditor.categoryLimitsBan">Ban</Trans></h4>
+                            <ul>{categoryInputsBan}</ul>
+                        </div>
+                    </div>
+                    <hr/>
+
+                    <h3>4. <Trans i18nKey="presetEditor.createSaveDraft">Create Draft or Save</Trans></h3>
                     <div className="field is-grouped">
                         <p className="control">
                             <input type={'text'} value={this.props.preset.name} className="input"
@@ -343,6 +376,8 @@ export function mapDispatchToProps(dispatch: Dispatch<actions.Action>) {
         onTurnOrderChange: (turns: Turn[]) => dispatch(actions.setEditorTurnOrder(turns)),
         onPresetDraftOptionsChange: (value: DraftOption[]) => dispatch(actions.setEditorDraftOptions(value)),
         onPresetNameChange: (value: string) => dispatch(actions.setEditorName(value)),
+        onSetCategoryLimitPick: (key: string, value: number | null) => dispatch(actions.setEditorCategoryLimitPick(key, value)),
+        onSetCategoryLimitBan: (key: string, value: number | null) => dispatch(actions.setEditorCategoryLimitBan(key, value)),
     }
 }
 

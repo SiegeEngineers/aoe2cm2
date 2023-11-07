@@ -221,6 +221,9 @@
     "VLD_913": "Admin turns cannot be hidden",
     "VLD_914": "Only Admin turns can use the reveal action",
     "VLD_915": "Turns must not involve the specator role",
+    "VLD_916": "There is a category in the allowed categories for a Turn which is not the category of any Draft Option",
+    "VLD_917": "There is a Draft Option which has a category that cannot be used in any Turn",
+    "VLD_918": "The Category Limits contain a category that cannot be used in any Turn",
     "VLD_999": "Something went very wrong during validation"
   },
   "menu": {
@@ -320,12 +323,19 @@
   "presetEditor": {
     "helpAndInstructions": "Help and Instructions",
     "availableDraftOptions": "Available Draft Options",
+    "aoe1Civs": "AoE1 civs",
     "aoe2Civs": "AoE2 civs",
     "aoe2Maps": "AoE2 maps",
     "aoe3Civs": "AoE3 civs",
     "aoe4Civs": "AoE4 civs",
     "customOptions": "Custom",
     "turns": "Turns",
+    "turnCategories": "Categories",
+    "turnCategoriesAll": "all",
+    "categoryLimits": "Category Limits",
+    "categoryLimitsExplanation": "Here you may, for each category, define a maximum number of times Draft Options from it can be picked or banned. Leave the input emtpy to set no limit for a category.",
+    "categoryLimitsPick": "Pick",
+    "categoryLimitsBan": "Ban",
     "createSaveDraft": "Create Draft or Save",
     "host": "Host",
     "guest": "Guest",
@@ -339,7 +349,8 @@
       "unitImageUrl": "Unit image URL",
       "emblemImageUrl": "Emblem image URL",
       "animatedUnitImageUrlLeft": "Animated unit image URL (left)",
-      "animatedUnitImageUrlRight": "Animated unit image URL (right)"
+      "animatedUnitImageUrlRight": "Animated unit image URL (right)",
+      "categoryName": "Category"
     }
   },
   "createNewDraft": "Create new draft from this Preset",

@@ -175,6 +175,18 @@ export interface ISetEditorDraftOptions {
     value: DraftOption[]
 }
 
+export interface ISetEditorCategoryLimitPick {
+    type: Actions.SET_EDITOR_CATEGORY_LIMIT_PICK
+    key: string
+    value: number | null
+}
+
+export interface ISetEditorCategoryLimitBan {
+    type: Actions.SET_EDITOR_CATEGORY_LIMIT_BAN
+    key: string
+    value: number | null
+}
+
 export interface ISetHighlightedAction {
     type: Actions.SET_HIGHLIGHTED_ACTION,
     value: number | null;
@@ -255,7 +267,9 @@ export type PresetEditorAction = ISetEditorPreset
     | IDuplicateEditorTurn
     | ISetEditorTurnOrder
     | ISetEditorName
-    | ISetEditorDraftOptions;
+    | ISetEditorDraftOptions
+    | ISetEditorCategoryLimitPick
+    | ISetEditorCategoryLimitBan;
 
 export type RecentDraftsAction = ISpectateDrafts
     | IUnspectateDrafts
@@ -487,6 +501,22 @@ export function setEditorDraftOptions(value: DraftOption[]): ISetEditorDraftOpti
     return {
         value,
         type: Actions.SET_EDITOR_DRAFT_OPTIONS
+    }
+}
+
+export function setEditorCategoryLimitPick(key: string, value: number | null): ISetEditorCategoryLimitPick {
+    return {
+        key,
+        value,
+        type: Actions.SET_EDITOR_CATEGORY_LIMIT_PICK
+    }
+}
+
+export function setEditorCategoryLimitBan(key: string, value: number | null): ISetEditorCategoryLimitBan {
+    return {
+        key,
+        value,
+        type: Actions.SET_EDITOR_CATEGORY_LIMIT_BAN
     }
 }
 

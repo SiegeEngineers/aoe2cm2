@@ -49,8 +49,8 @@ class Turn {
     public readonly id: string;
     public readonly categories: string[];
 
-    constructor(player: Player, action: Action, exclusivity: Exclusivity, hidden: boolean = false, parallel: boolean = false, executingPlayer: Player = player, categories: string[] = ['default']) {
-        this.id = uuidv4();
+    constructor(player: Player, action: Action, exclusivity: Exclusivity, hidden: boolean = false, parallel: boolean = false, executingPlayer: Player = player, categories: string[] = ['default'], id: string = uuidv4()) {
+        this.id = id;
         this.player = player;
         this.action = action;
         this.exclusivity = exclusivity;
@@ -70,7 +70,7 @@ class Turn {
             Assert.isBoolean(turn.hidden);
             Assert.isBoolean(turn.parallel);
             Assert.isOptionalStringArray(turn.categories);
-            retval.push(new Turn(turn.player, turn.action, turn.exclusivity, turn.hidden, turn.parallel, turn.executingPlayer, turn.categories));
+            retval.push(new Turn(turn.player, turn.action, turn.exclusivity, turn.hidden, turn.parallel, turn.executingPlayer, turn.categories, turn.id));
         }
         return retval;
     }

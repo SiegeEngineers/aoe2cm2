@@ -21,6 +21,7 @@ class ActionDropdown extends React.Component<Props, object> {
             options.push(<option key={i++} value={Action.REVEAL_PICKS}>{Action.REVEAL_PICKS}</option>);
             options.push(<option key={i++} value={Action.REVEAL_BANS}>{Action.REVEAL_BANS}</option>);
             options.push(<option key={i++} value={Action.REVEAL_SNIPES}>{Action.REVEAL_SNIPES}</option>);
+            options.push(<option key={i++} value={Action.RESET_CL}>{Action.RESET_CL}</option>);
             options.push(<option key={i++} value={Action.PAUSE}>{Action.PAUSE}</option>);
             options.push(<option key={i++} value={Action.PICK}>{Action.PICK}</option>);
             options.push(<option key={i++} value={Action.BAN}>{Action.BAN}</option>);
