@@ -93,6 +93,24 @@
       "Mexico": "méxico",
       "Italian": "italiano",
       "Maltese": "maltés"
+    },
+    "aoe4": {
+      "Rus": "Rus",
+      "HolyRomanEmpire": "Sacro Imperio Romano Germánico",
+      "Chinese": "Chinos",
+      "English": "Inglés",
+      "DelhiSultanate": "Sultanato de Delhi",
+      "Mongols": "Mongoles",
+      "AbbasidDynasty": "Dinastía abasí",
+      "French": "Franceses",
+      "Ottomans": "Otomanos",
+      "Malians": "Malienses",
+      "Byzantines": "Bizantinos",
+      "Japanese": "Japonés",
+      "Ayyubids": "Dinastía ayubí",
+      "ZhuXiLegacy": "Imperio de jade",
+      "JeanneDArc": "Juana de Arco",
+      "OrderOfTheDragon": "Orden del Dragón"
     }
   },
   "messages": {

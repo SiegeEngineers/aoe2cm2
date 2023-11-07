@@ -95,16 +95,22 @@
       "Maltese": "馬爾他"
     },
     "aoe4": {
-      "Rus": "羅斯人",
+      "Rus": "羅斯",
       "HolyRomanEmpire": "神聖羅馬帝國",
-      "Chinese": "中國人",
-      "English": "英格蘭人",
+      "Chinese": "中國",
+      "English": "英格蘭",
       "DelhiSultanate": "德里蘇丹國",
-      "Mongols": "蒙古人",
+      "Mongols": "蒙古",
       "AbbasidDynasty": "阿拔斯王朝",
-      "French": "法蘭西人",
+      "French": "法蘭西",
       "Ottomans": "鄂圖曼土耳其",
-      "Malians": "馬利"
+      "Malians": "馬利",
+      "Byzantines": "拜占庭",
+      "Japanese": "日文",
+      "Ayyubids": "蘇丹軍隊",
+      "ZhuXiLegacy": "翡翠帝國",
+      "JeanneDArc": "聖女貞德",
+      "OrderOfTheDragon": "龍騎士團"
     }
   },
   "messages": {

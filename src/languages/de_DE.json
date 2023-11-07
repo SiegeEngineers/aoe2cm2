@@ -104,7 +104,13 @@
       "AbbasidDynasty": "Abbasiden-Dynastie",
       "French": "Franzosen",
       "Ottomans": "Osmanen",
-      "Malians": "Malier"
+      "Malians": "Malier",
+      "Byzantines": "Byzantiner",
+      "Japanese": "Japaner",
+      "Ayyubids": "Ayyubiden",
+      "ZhuXiLegacy": "Vermächtnis von Zhu Xi",
+      "JeanneDArc": "Johanna von Orléans",
+      "OrderOfTheDragon": "Orden des Drachen"
     }
   },
   "messages": {

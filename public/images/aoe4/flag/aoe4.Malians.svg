@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="67.733337mm"
+   height="67.733337mm"
+   viewBox="0 0 67.733337 67.733337"
+   version="1.1"
+   id="svg841"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="aoe4.Malians.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs835" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="80"
+     inkscape:cy="135.71429"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1002"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata838">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-84.817857,-112.7881)">
+    <g
+       id="g21760"
+       transform="matrix(0.40447959,0,0,0.40447959,77.091783,-23.046737)"
+       inkscape:export-filename="./malians.png"
+       inkscape:export-xdpi="96.000008"
+       inkscape:export-ydpi="96.000008">
+      <rect
+         style="fill:#b12250;fill-opacity:0.996078;stroke:none;stroke-width:1.85208;stroke-linecap:square;stroke-linejoin:miter;paint-order:markers stroke fill"
+         id="rect15321"
+         width="167.45798"
+         height="167.45798"
+         x="19.101271"
+         y="335.82617" />
+      <rect
+         style="fill:#f1da3b;fill-opacity:0.996078;stroke:none;stroke-width:1.29068;stroke-linecap:square;stroke-linejoin:miter;paint-order:markers stroke fill"
+         id="rect18289"
+         width="116.69867"
+         height="116.69867"
+         x="44.480923"
+         y="361.20581" />
+      <g
+         id="g21715"
+         transform="translate(313.06609,40.7435)">
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#1a1a1a;stroke-width:9.63087;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m -230.81308,424.70053 v -19.12034 h 41.1545 v 19.15702"
+           id="path21173" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#1a1a1a;stroke-width:9.63083;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m -230.81307,347.54476 v 19.12034 h 41.15449 v -19.15702"
+           id="path21468" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#1a1a1a;stroke-width:9.63083;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M -210.23583,406.1085 V 345.93127"
+           id="path21503" />
+        <circle
+           style="fill:#1a1a1a;fill-opacity:0.996078;stroke:none;stroke-width:8.95666;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;paint-order:markers stroke fill"
+           id="path21607"
+           cx="-210.23582"
+           cy="344.3392"
+           r="11.453093" />
+      </g>
+    </g>
+  </g>
+</svg>

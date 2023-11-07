@@ -104,7 +104,13 @@
       "AbbasidDynasty": "Dynastie des Abbassides",
       "French": "Français",
       "Ottomans": "Ottomans",
-      "Malians": "Maliens"
+      "Malians": "Maliens",
+      "Byzantines": "Byzantins",
+      "Japanese": "Japonais",
+      "Ayyubids": "Ayyoubides",
+      "ZhuXiLegacy": "Empire de Jade",
+      "JeanneDArc": "Jeanne d'Arc",
+      "OrderOfTheDragon": "Ordre du Dragon"
     }
   },
   "messages": {

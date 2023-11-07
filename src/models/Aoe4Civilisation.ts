@@ -11,6 +11,12 @@ enum Name {
     FRENCH = "aoe4.French",
     OTTOMANS = "aoe4.Ottomans",
     MALIANS = "aoe4.Malians",
+    BYZANTINES = "aoe4.Byzantines",
+    JAPANESE = "aoe4.Japanese",
+    AYYUBIDS = "aoe4.Ayyubids",
+    ZHUXILEGACY = "aoe4.ZhuXiLegacy",
+    JEANNEDARC = "aoe4.JeanneDArc",
+    ORDEROFTHEDRAGON = "aoe4.OrderOfTheDragon",
 }
 
 class Aoe4Civilisation extends DraftOption {
@@ -25,6 +31,12 @@ class Aoe4Civilisation extends DraftOption {
     public static readonly FRENCH: Aoe4Civilisation = new Aoe4Civilisation(Name.FRENCH);
     public static readonly OTTOMANS: Aoe4Civilisation = new Aoe4Civilisation(Name.OTTOMANS);
     public static readonly MALIANS: Aoe4Civilisation = new Aoe4Civilisation(Name.MALIANS);
+    public static readonly BYZANTINES: Aoe4Civilisation = new Aoe4Civilisation(Name.BYZANTINES);
+    public static readonly JAPANESE: Aoe4Civilisation = new Aoe4Civilisation(Name.JAPANESE);
+    public static readonly AYYUBIDS: Aoe4Civilisation = new Aoe4Civilisation(Name.AYYUBIDS);
+    public static readonly ZHUXILEGACY: Aoe4Civilisation = new Aoe4Civilisation(Name.ZHUXILEGACY);
+    public static readonly JEANNEDARC: Aoe4Civilisation = new Aoe4Civilisation(Name.JEANNEDARC);
+    public static readonly ORDEROFTHEDRAGON: Aoe4Civilisation = new Aoe4Civilisation(Name.ORDEROFTHEDRAGON);
 
 
 
@@ -41,6 +53,12 @@ class Aoe4Civilisation extends DraftOption {
         Aoe4Civilisation.FRENCH,
         Aoe4Civilisation.OTTOMANS,
         Aoe4Civilisation.MALIANS,
+        Aoe4Civilisation.BYZANTINES,
+        Aoe4Civilisation.JAPANESE,
+        Aoe4Civilisation.AYYUBIDS,
+        Aoe4Civilisation.ZHUXILEGACY,
+        Aoe4Civilisation.JEANNEDARC,
+        Aoe4Civilisation.ORDEROFTHEDRAGON,
     ];
 
     private constructor(name: Name) {
