@@ -3,6 +3,7 @@ import es_ES from "./languages/es_ES.json";
 import de_DE from "./languages/de_DE.json";
 import fr_FR from "./languages/fr_FR.json";
 import pt_BR from "./languages/pt_BR.json";
+import pl_PL from "./languages/pl_PL.json";
 import zh_CN from "./languages/zh_CN.json";
 import zh_TW from "./languages/zh_TW.json";
 
@@ -31,6 +32,11 @@ const availableLocales = {
         translation: pt_BR,
         displayName: "Português",
         cta: "Mudar o idioma para português"
+    },
+    "pl-PL": {
+        translation: pl_PL,
+        displayName: "Polski",
+        cta: "Zmień język na polski"
     },
     "zh-CN": {
         translation: zh_CN,

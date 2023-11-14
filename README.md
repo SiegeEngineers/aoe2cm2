@@ -135,6 +135,7 @@ Or, share the file with `hszemi#2325` or `Jester#5115` on Discord.
 - `es_ES`: Brian#8296
 - `fr_FR`: [TabA] Phare_Macie#1818
 - `pt_BR`: marciocolombia#0637
+- `pl_PL`: nerfoxingaround
 - `zh_CN`: HeavenlyChorus#8242
 - `zh_TW`: jkb#2180
 
