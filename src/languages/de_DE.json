@@ -249,7 +249,7 @@
       "reportIssue": {
         "title": "Problem gefunden?",
         "github": "Hast du auf dieser Webseite ein Problem gefunden? Schau zunächst in die <1>Liste der bekannten Probleme auf GitHub</1>.",
-        "discord": "Falls dein Problem dort nicht aufgeführt ist, erstelle auf GitHub ein neues Issue, in dem du dein Problem beschreibst, oder kontaktiere direkt <1>hszemi#2325</1> auf Discord. Gib dabei den Link zu einem Draft mit dem Problem an, falls du einen hast!"
+        "discord": "Falls dein Problem dort nicht aufgeführt ist, erstelle auf GitHub ein neues Issue, in dem du dein Problem beschreibst, oder kontaktiere direkt <1>hszemi</1> auf Discord. Gib dabei den Link zu einem Draft mit dem Problem an, falls du einen hast!"
       }
     },
     "basics": {

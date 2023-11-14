@@ -126,18 +126,18 @@ you are willing to volunteer to keep it up to date in the future as well 😁
 You can  make a copy of [this file](src/languages/en_GB.json), translate it and 
 submit the new file with translations via a 
 PR ([example here](https://github.com/SiegeEngineers/aoe2cm2/pull/45)). 
-Or, share the file with `hszemi#2325` or `Jester#5115` on Discord.
+Or, share the file with `hszemi` or `jester_5115` on Discord.
 
 ### Current locale maintainers
 
-- `de_DE`: hszemi#2325
-- `en_GB`: hszemi#2325
-- `es_ES`: Brian#8296
-- `fr_FR`: [TabA] Phare_Macie#1818
-- `pt_BR`: marciocolombia#0637
+- `de_DE`: hszemi
+- `en_GB`: hszemi
+- `es_ES`: walls_and_bridges
+- `fr_FR`: phare_macie
+- `pt_BR`: marciocolombia
 - `pl_PL`: nerfoxingaround
-- `zh_CN`: HeavenlyChorus#8242
-- `zh_TW`: jkb#2180
+- `zh_CN`: heavenlychorus
+- `zh_TW`: ZeroCores#2180
 
 ## Deploying
 

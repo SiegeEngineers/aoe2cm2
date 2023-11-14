@@ -242,7 +242,7 @@
       "reportIssue": {
         "title": "Encontrou algum problema?",
         "github": "Você encontrou ou teve algum problema neste site? Confira aqui a <1>lista de problemas conhecidos no GitHub</1>.",
-        "discord": "Se seu problema não estiver listado lá, relate no GitHub ou descreva-o para <1>hszemi#2325</1> no Discord. Certifique-se de incluir um link para o seu draft, se você tiver um!"
+        "discord": "Se seu problema não estiver listado lá, relate no GitHub ou descreva-o para <1>hszemi</1> no Discord. Certifique-se de incluir um link para o seu draft, se você tiver um!"
       }
     },
     "basics": {

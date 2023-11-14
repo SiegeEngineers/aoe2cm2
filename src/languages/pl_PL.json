@@ -249,7 +249,7 @@
       "reportIssue": {
         "title": "Znalazłeś błąd?",
         "github": "Znalazłeś błąd lub napotkałeś problem na tej stronie? Odwiedź <1>listę znanych problemów na GitHubie</1>.",
-        "discord": "Jeśli nie znalazłeś swojego problemu na liście, zgłoś go na GitHubie i opisz go w wiadomości do <1>hszemi#2325</1> na Discordzie. Nie zapomnij uwzględnić link do draftu przy którym wystąpił problem, o ile istnieje."
+        "discord": "Jeśli nie znalazłeś swojego problemu na liście, zgłoś go na GitHubie i opisz go w wiadomości do <1>hszemi</1> na Discordzie. Nie zapomnij uwzględnić link do draftu przy którym wystąpił problem, o ile istnieje."
       }
     },
     "basics": {

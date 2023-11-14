@@ -242,7 +242,7 @@
       "reportIssue": {
         "title": "Has encontrado un bug?",
         "github": "Has encontrado o experimentado problemas en este sitio? Fijate la <1>lista de problemas investigados en GitHub</1>.",
-        "discord": "Si tu problema no se encuentra ahí, reportalo en el repositorio de SiegeEngineers/aoe2cm2 en GitHub o escribele a <1>hszemi#2325</1> en Discord. Asegúrate de incluir el link a tu Draft/Borrador si es que el problema se encuentra ahí!"
+        "discord": "Si tu problema no se encuentra ahí, reportalo en el repositorio de SiegeEngineers/aoe2cm2 en GitHub o escribele a <1>hszemi</1> en Discord. Asegúrate de incluir el link a tu Draft/Borrador si es que el problema se encuentra ahí!"
       }
     },
     "basics": {

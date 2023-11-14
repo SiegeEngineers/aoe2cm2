@@ -242,7 +242,7 @@
       "reportIssue": {
         "title": "发现了问题吗？",
         "github": "您有在网站上发现问题吗？查看 <1>GitHub上的Issues页</1>.",
-        "discord": "如果您发现的问题没有被列出，在GitHub上反馈，或者在Discord上私聊 <1>hszemi#2325</1> 。如果有BP链接的话，尽量附上链接。"
+        "discord": "如果您发现的问题没有被列出，在GitHub上反馈，或者在Discord上私聊 <1>hszemi</1> 。如果有BP链接的话，尽量附上链接。"
       }
     },
     "basics": {
