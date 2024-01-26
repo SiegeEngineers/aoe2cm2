@@ -1,9 +1,9 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`LegacyPlayerEvent can deserialize new state 1`] = `
 LegacyPlayerEvent {
   "actionType": "PICK",
-  "civilisation": Object {},
+  "civilisation": {},
   "executingPlayer": "GUEST",
   "offset": 123,
   "player": "HOST",
@@ -13,7 +13,7 @@ LegacyPlayerEvent {
 exports[`LegacyPlayerEvent can deserialize old state 1`] = `
 LegacyPlayerEvent {
   "actionType": "PICK",
-  "civilisation": Object {},
+  "civilisation": {},
   "executingPlayer": "HOST",
   "offset": 123,
   "player": "HOST",

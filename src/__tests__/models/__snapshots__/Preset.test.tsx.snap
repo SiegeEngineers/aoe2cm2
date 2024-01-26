@@ -1,19 +1,18 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`preset from valid pojo works 1`] = `
 Preset {
-  "categoryLimits": Object {
-    "ban": Object {},
-    "pick": Object {},
+  "categoryLimits": {
+    "ban": {},
+    "pick": {},
   },
-  "draftOptions": undefined,
   "encodedCivilisations": "1",
   "name": "some-name",
   "presetId": undefined,
-  "turns": Array [
+  "turns": [
     Turn {
       "action": "PICK",
-      "categories": Array [
+      "categories": [
         "default",
       ],
       "exclusivity": "NONEXCLUSIVE",

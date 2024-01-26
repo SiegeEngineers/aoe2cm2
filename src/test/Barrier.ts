@@ -1,9 +1,9 @@
 export class Barrier {
     private readonly barrier: number;
     private called: number = 0;
-    private readonly done: jest.DoneCallback;
+    private readonly done: (value: void | PromiseLike<void>) => void;
 
-    constructor(barrier: number, done: jest.DoneCallback) {
+    constructor(barrier: number, done: (value: void | PromiseLike<void>) => void) {
         this.barrier = barrier;
         this.done = done;
     }

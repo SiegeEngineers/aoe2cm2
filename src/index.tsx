@@ -1,3 +1,4 @@
+// import '@creativebulma/bulma-tooltip/dist/bulma-tooltip.min.css';
 import * as ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
@@ -9,8 +10,6 @@ import Menu from "./components/menu/Menu";
 import {ClientActions, ServerActions} from "./constants";
 import Draft from './containers/Draft';
 import './i18n';
-import './sass/bulma.scss';
-import '@creativebulma/bulma-tooltip/dist/bulma-tooltip.min.css';
 import {IDraftConfig} from "./types/IDraftConfig";
 import {SocketUtil} from "./util/SocketUtil";
 import {default as updateState} from './reducers';

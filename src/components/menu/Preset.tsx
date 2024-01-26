@@ -1,5 +1,4 @@
 import * as React from "react";
-import {PresetUtil} from "../../util/PresetUtil";
 import {default as ModelPreset} from "../../models/Preset"
 import TurnRow from "../draft/TurnRow";
 import NewDraftButton from "../NewDraftButton";
@@ -14,6 +13,7 @@ import {ApplicationState} from "../../types";
 import {Dispatch} from "redux";
 import * as actions from "../../actions";
 import {connect} from "react-redux";
+import { WebPresetUtil } from "../../util/WebPresetUtil";
 
 interface IState {
     preset?: ModelPreset;
@@ -29,7 +29,7 @@ class Preset extends React.Component<IProps, IState> {
     state: IState = {presetExists: true};
 
     componentDidMount() {
-        const presetId = PresetUtil.getIdFromUrl();
+        const presetId = WebPresetUtil.getIdFromUrl();
         if (presetId !== undefined) {
             this.loadPreset(presetId);
         }

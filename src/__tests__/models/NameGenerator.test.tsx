@@ -1,3 +1,4 @@
+import {expect, it} from 'vitest';
 import NameGenerator from "../../util/NameGenerator";
 
 it('NameGenerator throws error when initialized with 0', () => {

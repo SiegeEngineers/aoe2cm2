@@ -1,8 +1,8 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Transforms legacy draft replay format 1`] = `
-Object {
-  "events": Array [
+{
+  "events": [
     PlayerEvent {
       "actionType": "pick",
       "chosenOptionId": "Aztecs",
@@ -147,7 +147,7 @@ Object {
       "offset": 23261,
       "player": "GUEST",
     },
-    Object {
+    {
       "action": "REVEAL_SNIPES",
       "offset": 25269,
       "player": "NONE",
@@ -160,11 +160,11 @@ Object {
   "nameGuest": "Mohammad Shah",
   "nameHost": "Sultan Sanjar",
   "nextAction": 19,
-  "preset": Object {
+  "preset": {
     "encodedCivilisations": "7ffffffff",
     "name": "LAT AMERICA INVITAT",
-    "turns": Array [
-      Object {
+    "turns": [
+      {
         "action": "PICK",
         "exclusivity": "GLOBAL",
         "hidden": false,
@@ -172,7 +172,7 @@ Object {
         "parallel": false,
         "player": "HOST",
       },
-      Object {
+      {
         "action": "PICK",
         "exclusivity": "GLOBAL",
         "hidden": false,
@@ -180,7 +180,7 @@ Object {
         "parallel": false,
         "player": "GUEST",
       },
-      Object {
+      {
         "action": "PICK",
         "exclusivity": "GLOBAL",
         "hidden": false,
@@ -188,7 +188,7 @@ Object {
         "parallel": false,
         "player": "GUEST",
       },
-      Object {
+      {
         "action": "PICK",
         "exclusivity": "GLOBAL",
         "hidden": false,
@@ -196,7 +196,7 @@ Object {
         "parallel": false,
         "player": "HOST",
       },
-      Object {
+      {
         "action": "PICK",
         "exclusivity": "GLOBAL",
         "hidden": false,
@@ -204,7 +204,7 @@ Object {
         "parallel": false,
         "player": "HOST",
       },
-      Object {
+      {
         "action": "PICK",
         "exclusivity": "GLOBAL",
         "hidden": false,
@@ -212,7 +212,7 @@ Object {
         "parallel": false,
         "player": "GUEST",
       },
-      Object {
+      {
         "action": "PICK",
         "exclusivity": "GLOBAL",
         "hidden": false,
@@ -220,7 +220,7 @@ Object {
         "parallel": false,
         "player": "GUEST",
       },
-      Object {
+      {
         "action": "PICK",
         "exclusivity": "GLOBAL",
         "hidden": false,
@@ -228,7 +228,7 @@ Object {
         "parallel": false,
         "player": "HOST",
       },
-      Object {
+      {
         "action": "PICK",
         "exclusivity": "GLOBAL",
         "hidden": false,
@@ -236,7 +236,7 @@ Object {
         "parallel": false,
         "player": "HOST",
       },
-      Object {
+      {
         "action": "PICK",
         "exclusivity": "GLOBAL",
         "hidden": false,
@@ -244,7 +244,7 @@ Object {
         "parallel": false,
         "player": "GUEST",
       },
-      Object {
+      {
         "action": "PICK",
         "exclusivity": "GLOBAL",
         "hidden": false,
@@ -252,7 +252,7 @@ Object {
         "parallel": false,
         "player": "GUEST",
       },
-      Object {
+      {
         "action": "PICK",
         "exclusivity": "GLOBAL",
         "hidden": false,
@@ -260,7 +260,7 @@ Object {
         "parallel": false,
         "player": "HOST",
       },
-      Object {
+      {
         "action": "PICK",
         "exclusivity": "GLOBAL",
         "hidden": false,
@@ -268,7 +268,7 @@ Object {
         "parallel": false,
         "player": "HOST",
       },
-      Object {
+      {
         "action": "PICK",
         "exclusivity": "GLOBAL",
         "hidden": false,
@@ -276,7 +276,7 @@ Object {
         "parallel": false,
         "player": "GUEST",
       },
-      Object {
+      {
         "action": "SNIPE",
         "exclusivity": "GLOBAL",
         "hidden": true,
@@ -284,7 +284,7 @@ Object {
         "parallel": false,
         "player": "HOST",
       },
-      Object {
+      {
         "action": "SNIPE",
         "exclusivity": "GLOBAL",
         "hidden": true,
@@ -292,7 +292,7 @@ Object {
         "parallel": false,
         "player": "HOST",
       },
-      Object {
+      {
         "action": "SNIPE",
         "exclusivity": "GLOBAL",
         "hidden": true,
@@ -300,7 +300,7 @@ Object {
         "parallel": false,
         "player": "GUEST",
       },
-      Object {
+      {
         "action": "SNIPE",
         "exclusivity": "GLOBAL",
         "hidden": true,
@@ -308,7 +308,7 @@ Object {
         "parallel": false,
         "player": "GUEST",
       },
-      Object {
+      {
         "action": "REVEAL_SNIPES",
         "exclusivity": "GLOBAL",
         "hidden": false,

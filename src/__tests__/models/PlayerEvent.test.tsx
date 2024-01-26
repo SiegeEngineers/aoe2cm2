@@ -1,3 +1,4 @@
+import {expect, it} from 'vitest';
 import LegacyPlayerEvent from "../../models/LegacyPlayerEvent";
 
 it('LegacyPlayerEvent can deserialize old state', () => {
