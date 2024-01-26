@@ -26,12 +26,13 @@ import {initialReplayState} from "./reducers/replay";
 import {initialIconStyleState} from "./reducers/iconStyle";
 import {initialRecentDraftsState} from './reducers/recentDrafts';
 import {initialAdminState} from "./reducers/admin";
+import { Socket } from 'socket.io-client';
 
 const createMySocketMiddleware = () => {
 
     return (storeAPI: { dispatch: (action: Action) => void; getState: () => ApplicationState }) => {
-        let socket: SocketIOClient.Socket | null = null;
-        let lobbySocket: SocketIOClient.Socket | null = null; // These two sockets should be merged together
+        let socket: Socket | null = null;
+        let lobbySocket: Socket | null = null; // These two sockets should be merged together
 
         return (next: (arg0: any) => void) => (action: Action) => {
 
@@ -39,7 +40,7 @@ const createMySocketMiddleware = () => {
                 const { subscribeCount } = storeAPI.getState().recentDrafts;
                 console.log("SPECTATE_DRAFTS", lobbySocket, subscribeCount);
                 if (subscribeCount === 0) {
-                    lobbySocket = SocketUtil.initLobbySocketIfFirstUse(lobbySocket, storeAPI) as SocketIOClient.Socket;
+                    lobbySocket = SocketUtil.initLobbySocketIfFirstUse(lobbySocket, storeAPI) as Socket;
                     lobbySocket.emit('spectate_drafts', {}, (data: IRecentDraft[]) => {
                         console.log('spectate_drafts callback', data);
                         storeAPI.dispatch({type: ServerActions.UPDATE_DRAFTS, value: data} as IUpdateDrafts);
@@ -64,12 +65,12 @@ const createMySocketMiddleware = () => {
                     SocketUtil.disconnect(socket);
                 }
                 socket = null;
-                socket = SocketUtil.initSocketIfFirstUse(socket, storeAPI) as SocketIOClient.Socket;
+                socket = SocketUtil.initSocketIfFirstUse(socket, storeAPI) as Socket;
             }
 
             if (action.type === ClientActions.SEND_SET_ROLE) {
                 console.log("SET_ROLE", SocketUtil.initSocketIfFirstUse, socket, storeAPI);
-                socket = SocketUtil.initSocketIfFirstUse(socket, storeAPI) as SocketIOClient.Socket;
+                socket = SocketUtil.initSocketIfFirstUse(socket, storeAPI) as Socket;
                 if (socket.disconnected) {
                     return;
                 }
@@ -83,7 +84,7 @@ const createMySocketMiddleware = () => {
 
             if (action.type === ClientActions.SEND_SET_NAME) {
                 console.log("SEND_SET_NAME", SocketUtil.initSocketIfFirstUse, socket, storeAPI);
-                socket = SocketUtil.initSocketIfFirstUse(socket, storeAPI) as SocketIOClient.Socket;
+                socket = SocketUtil.initSocketIfFirstUse(socket, storeAPI) as Socket;
                 if (socket.disconnected) {
                     return;
                 }
@@ -94,7 +95,7 @@ const createMySocketMiddleware = () => {
             }
 
             if (action.type === ClientActions.SEND_READY) {
-                socket = SocketUtil.initSocketIfFirstUse(socket, storeAPI) as SocketIOClient.Socket;
+                socket = SocketUtil.initSocketIfFirstUse(socket, storeAPI) as Socket;
                 if (socket.disconnected) {
                     return;
                 }
@@ -106,7 +107,7 @@ const createMySocketMiddleware = () => {
             }
 
             if (action.type === ClientActions.SEND_CLICK_PANEL) {
-                socket = SocketUtil.initSocketIfFirstUse(socket, storeAPI) as SocketIOClient.Socket;
+                socket = SocketUtil.initSocketIfFirstUse(socket, storeAPI) as Socket;
                 if (socket.disconnected) {
                     return;
                 }

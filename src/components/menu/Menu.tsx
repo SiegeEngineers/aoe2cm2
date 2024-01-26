@@ -62,6 +62,7 @@ class Menu extends React.Component<WithTranslation, object> {
 interface IProps extends RouteComponentProps<any> {
     to: string;
     activeClassName: string;
+    children: any;
 }
 
 class TabLinkBase extends React.Component<IProps> {

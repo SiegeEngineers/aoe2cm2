@@ -324,39 +324,39 @@ class Messages extends React.Component<IProps, object> {
                     case Action.PICK:
                         return forOpponent ? (
                             <div><Trans i18nKey='messages.specPickAsOpponent'>Waiting
-                                for <b>{{playerName}}</b> to {PICK} a civilization for <b>{{targetPlayerName}}</b></Trans>
+                                for <b>{playerName}</b> to {PICK} a civilization for <b>{targetPlayerName}</b></Trans>
                                 <Countdown/></div>
                         ) : (
                             <div><Trans i18nKey='messages.specPick'>Waiting
-                                for <b>{{playerName}}</b> to {PICK} a civilization</Trans>
+                                for <b>{playerName}</b> to {PICK} a civilization</Trans>
                                 <Countdown/></div>
                         );
                     case Action.BAN:
                         return forOpponent ? (
                             <div><Trans i18nKey='messages.specBanAsOpponent'>Waiting
-                                for <b>{{playerName}}</b> to {BAN} a civilization in
-                                <b>{{targetPlayerName}}</b>'s place</Trans>
+                                for <b>{playerName}</b> to {BAN} a civilization in
+                                <b>{targetPlayerName}</b>'s place</Trans>
                                 <Countdown/></div>
                         ) : (
                             <div><Trans i18nKey='messages.specBan'>Waiting
-                                for <b>{{playerName}}</b> to {BAN} a civilization</Trans>
+                                for <b>{playerName}</b> to {BAN} a civilization</Trans>
                                 <Countdown/></div>
                         );
                     case Action.SNIPE:
                         return forOpponent ? (
                             <div><Trans i18nKey='messages.specSnipeAsOpponent'>Waiting
-                                for <b>{{playerName}}</b> to {SNIPE} one of their civilisations
-                                in <b>{{targetPlayerName}}</b>'s place</Trans> <Countdown/></div>
+                                for <b>{playerName}</b> to {SNIPE} one of their civilisations
+                                in <b>{targetPlayerName}</b>'s place</Trans> <Countdown/></div>
                         ) : (
                             <div><Trans i18nKey='messages.specSnipe'>Waiting
-                                for <b>{{playerName}}</b> to {SNIPE} a
-                                civilization of <b>{{targetPlayerName}}</b></Trans> <Countdown/></div>
+                                for <b>{playerName}</b> to {SNIPE} a
+                                civilization of <b>{targetPlayerName}</b></Trans> <Countdown/></div>
                         );
                     case Action.STEAL:
                         return (
                             <div><Trans i18nKey='messages.specSteal'>Waiting
-                                for <b>{{playerName}}</b> to {STEAL} a
-                                civilization from <b>{{targetPlayerName}}</b></Trans> <Countdown/></div>
+                                for <b>{playerName}</b> to {STEAL} a
+                                civilization from <b>{targetPlayerName}</b></Trans> <Countdown/></div>
                         );
                 }
             } else {
@@ -414,29 +414,29 @@ class Messages extends React.Component<IProps, object> {
             if (secondTurn.action === Action.PICK) {
                 return (
                     <div><Trans i18nKey='messages.specParallelTurnsPickPick'>Waiting
-                        for <b>{{firstTurnPlayer}}</b> to {PICK} and
-                        for <b>{{secondTurnPlayer}}</b> to {PICK} a civilisation</Trans>
+                        for <b>{firstTurnPlayer}</b> to {PICK} and
+                        for <b>{secondTurnPlayer}</b> to {PICK} a civilisation</Trans>
                         <Countdown/></div>
                 );
             } else if (secondTurn.action === Action.BAN) {
                 return (
                     <div><Trans i18nKey='messages.specParallelTurnsPickBan'>Waiting
-                        for <b>{{firstTurnPlayer}}</b> to {PICK} and
-                        for <b>{{secondTurnPlayer}}</b> to {BAN} a civilisation</Trans>
+                        for <b>{firstTurnPlayer}</b> to {PICK} and
+                        for <b>{secondTurnPlayer}</b> to {BAN} a civilisation</Trans>
                         <Countdown/></div>
                 );
             } else if (secondTurn.action === Action.SNIPE) {
                 return (
                     <div><Trans i18nKey='messages.specParallelTurnsPickSnipe'>Waiting
-                        for <b>{{firstTurnPlayer}}</b> to {PICK} and
-                        for <b>{{secondTurnPlayer}}</b> to {SNIPE} a civilisation</Trans>
+                        for <b>{firstTurnPlayer}</b> to {PICK} and
+                        for <b>{secondTurnPlayer}</b> to {SNIPE} a civilisation</Trans>
                         <Countdown/></div>
                 );
             } else if (secondTurn.action === Action.STEAL) {
                 return (
                     <div><Trans i18nKey='messages.specParallelTurnsPickSteal'>Waiting
-                        for <b>{{firstTurnPlayer}}</b> to {PICK} and
-                        for <b>{{secondTurnPlayer}}</b> to {STEAL} a civilisation</Trans>
+                        for <b>{firstTurnPlayer}</b> to {PICK} and
+                        for <b>{secondTurnPlayer}</b> to {STEAL} a civilisation</Trans>
                         <Countdown/></div>
                 );
             }
@@ -445,29 +445,29 @@ class Messages extends React.Component<IProps, object> {
             if (secondTurn.action === Action.PICK) {
                 return (
                     <div><Trans i18nKey='messages.specParallelTurnsBanPick'>Waiting
-                        for <b>{{firstTurnPlayer}}</b> to {BAN} and
-                        for <b>{{secondTurnPlayer}}</b> to {PICK} a civilisation</Trans>
+                        for <b>{firstTurnPlayer}</b> to {BAN} and
+                        for <b>{secondTurnPlayer}</b> to {PICK} a civilisation</Trans>
                         <Countdown/></div>
                 );
             } else if (secondTurn.action === Action.BAN) {
                 return (
                     <div><Trans i18nKey='messages.specParallelTurnsBanBan'>Waiting
-                        for <b>{{firstTurnPlayer}}</b> to {BAN} and
-                        for <b>{{secondTurnPlayer}}</b> to {BAN} a civilisation</Trans>
+                        for <b>{firstTurnPlayer}</b> to {BAN} and
+                        for <b>{secondTurnPlayer}</b> to {BAN} a civilisation</Trans>
                         <Countdown/></div>
                 );
             } else if (secondTurn.action === Action.SNIPE) {
                 return (
                     <div><Trans i18nKey='messages.specParallelTurnsBanSnipe'>Waiting
-                        for <b>{{firstTurnPlayer}}</b> to {BAN} and
-                        for <b>{{secondTurnPlayer}}</b> to {SNIPE} a civilisation</Trans>
+                        for <b>{firstTurnPlayer}</b> to {BAN} and
+                        for <b>{secondTurnPlayer}</b> to {SNIPE} a civilisation</Trans>
                         <Countdown/></div>
                 );
             } else if (secondTurn.action === Action.STEAL) {
                 return (
                     <div><Trans i18nKey='messages.specParallelTurnsBanSteal'>Waiting
-                        for <b>{{firstTurnPlayer}}</b> to {BAN} and
-                        for <b>{{secondTurnPlayer}}</b> to {STEAL} a civilisation</Trans>
+                        for <b>{firstTurnPlayer}</b> to {BAN} and
+                        for <b>{secondTurnPlayer}</b> to {STEAL} a civilisation</Trans>
                         <Countdown/></div>
                 );
             }
@@ -476,29 +476,29 @@ class Messages extends React.Component<IProps, object> {
             if (secondTurn.action === Action.PICK) {
                 return (
                     <div><Trans i18nKey='messages.specParallelTurnsSnipePick'>Waiting
-                        for <b>{{firstTurnPlayer}}</b> to {SNIPE} and
-                        for <b>{{secondTurnPlayer}}</b> to {PICK} a civilisation</Trans>
+                        for <b>{firstTurnPlayer}</b> to {SNIPE} and
+                        for <b>{secondTurnPlayer}</b> to {PICK} a civilisation</Trans>
                         <Countdown/></div>
                 );
             } else if (secondTurn.action === Action.BAN) {
                 return (
                     <div><Trans i18nKey='messages.specParallelTurnsSnipeBan'>Waiting
-                        for <b>{{firstTurnPlayer}}</b> to {SNIPE} and
-                        for <b>{{secondTurnPlayer}}</b> to {BAN} a civilisation</Trans>
+                        for <b>{firstTurnPlayer}</b> to {SNIPE} and
+                        for <b>{secondTurnPlayer}</b> to {BAN} a civilisation</Trans>
                         <Countdown/></div>
                 );
             } else if (secondTurn.action === Action.SNIPE) {
                 return (
                     <div><Trans i18nKey='messages.specParallelTurnsSnipeSnipe'>Waiting
-                        for <b>{{firstTurnPlayer}}</b> to {SNIPE} and
-                        for <b>{{secondTurnPlayer}}</b> to {SNIPE} a civilisation</Trans>
+                        for <b>{firstTurnPlayer}</b> to {SNIPE} and
+                        for <b>{secondTurnPlayer}</b> to {SNIPE} a civilisation</Trans>
                         <Countdown/></div>
                 );
             } else if (secondTurn.action === Action.STEAL) {
                 return (
                     <div><Trans i18nKey='messages.specParallelTurnsSnipeSnipe'>Waiting
-                        for <b>{{firstTurnPlayer}}</b> to {SNIPE} and
-                        for <b>{{secondTurnPlayer}}</b> to {STEAL} a civilisation</Trans>
+                        for <b>{firstTurnPlayer}</b> to {SNIPE} and
+                        for <b>{secondTurnPlayer}</b> to {STEAL} a civilisation</Trans>
                         <Countdown/></div>
                 );
             }
@@ -507,29 +507,29 @@ class Messages extends React.Component<IProps, object> {
             if (secondTurn.action === Action.PICK) {
                 return (
                     <div><Trans i18nKey='messages.specParallelTurnsSnipePick'>Waiting
-                        for <b>{{firstTurnPlayer}}</b> to {STEAL} and
-                        for <b>{{secondTurnPlayer}}</b> to {PICK} a civilisation</Trans>
+                        for <b>{firstTurnPlayer}</b> to {STEAL} and
+                        for <b>{secondTurnPlayer}</b> to {PICK} a civilisation</Trans>
                         <Countdown/></div>
                 );
             } else if (secondTurn.action === Action.BAN) {
                 return (
                     <div><Trans i18nKey='messages.specParallelTurnsSnipeBan'>Waiting
-                        for <b>{{firstTurnPlayer}}</b> to {STEAL} and
-                        for <b>{{secondTurnPlayer}}</b> to {BAN} a civilisation</Trans>
+                        for <b>{firstTurnPlayer}</b> to {STEAL} and
+                        for <b>{secondTurnPlayer}</b> to {BAN} a civilisation</Trans>
                         <Countdown/></div>
                 );
             } else if (secondTurn.action === Action.SNIPE) {
                 return (
                     <div><Trans i18nKey='messages.specParallelTurnsSnipeSnipe'>Waiting
-                        for <b>{{firstTurnPlayer}}</b> to {STEAL} and
-                        for <b>{{secondTurnPlayer}}</b> to {SNIPE} a civilisation</Trans>
+                        for <b>{firstTurnPlayer}</b> to {STEAL} and
+                        for <b>{secondTurnPlayer}</b> to {SNIPE} a civilisation</Trans>
                         <Countdown/></div>
                 );
             } else if (secondTurn.action === Action.STEAL) {
                 return (
                     <div><Trans i18nKey='messages.specParallelTurnsSnipeSnipe'>Waiting
-                        for <b>{{firstTurnPlayer}}</b> to {STEAL} and
-                        for <b>{{secondTurnPlayer}}</b> to {STEAL} a civilisation</Trans>
+                        for <b>{firstTurnPlayer}</b> to {STEAL} and
+                        for <b>{secondTurnPlayer}</b> to {STEAL} a civilisation</Trans>
                         <Countdown/></div>
                 );
             }

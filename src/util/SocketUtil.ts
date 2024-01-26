@@ -1,4 +1,4 @@
-import io from "socket.io-client";
+import io, { Socket } from "socket.io-client";
 import {
     Action,
     IActionCompleted,
@@ -23,7 +23,7 @@ import {ICountdownValues, IDraftState, IRecentDraft} from "../types";
 import {IDraftConfig} from "../types/IDraftConfig";
 
 export const SocketUtil = {
-    initLobbySocketIfFirstUse(socket: SocketIOClient.Socket | null, storeAPI: { dispatch: (arg0: Action) => void }): SocketIOClient.Socket {
+    initLobbySocketIfFirstUse(socket: Socket | null, storeAPI: { dispatch: (arg0: Action) => void }): Socket {
         if (socket !== null) {
             return socket;
         }
@@ -51,7 +51,7 @@ export const SocketUtil = {
 
         return socket;
     },
-    initSocketIfFirstUse(socket: SocketIOClient.Socket | null, storeAPI: { dispatch: (arg0: Action) => void }): SocketIOClient.Socket {
+    initSocketIfFirstUse(socket: Socket | null, storeAPI: { dispatch: (arg0: Action) => void }): Socket {
         if (socket !== null) {
             return socket;
         }
