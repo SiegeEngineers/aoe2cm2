@@ -35,6 +35,7 @@ import {RouteComponentProps} from "react-router";
 import CivilisationSet from "../../models/CivilisationSet";
 import Aoe2Map from "../../models/Aoe2Map";
 import Aoe1Civilisation from "../../models/Aoe1Civilisation";
+import Aoe4Map from "../../models/Aoe4Map";
 
 interface Props extends WithTranslation, RouteComponentProps<any> {
     preset: Preset | null,
@@ -226,6 +227,17 @@ class PresetEditor extends React.Component<Props, State> {
                                     this.props.onPresetDraftOptionsChange([...Aoe4Civilisation.ALL]);
                                 }}>
                                     <Trans i18nKey="presetEditor.aoe4Civs">AoE4 civs</Trans>
+                                </a>
+                            </li>
+                            <li className={this.state.activeCivilisationSet === CivilisationSet.AOE4MAPS ? "is-active" : ""}>
+                                <a href="#aoe4maps" onClick={() => {
+                                    this.setState({
+                                        defaultDraftOptions: Aoe4Map.ALL,
+                                        activeCivilisationSet: CivilisationSet.AOE4MAPS
+                                    });
+                                    this.props.onPresetDraftOptionsChange([]);
+                                }}>
+                                    <Trans i18nKey="presetEditor.aoe4Maps">AoE4 Maps</Trans>
                                 </a>
                             </li>
                             <li className={this.state.activeCivilisationSet === CivilisationSet.CUSTOM ? "is-active" : ""}>
