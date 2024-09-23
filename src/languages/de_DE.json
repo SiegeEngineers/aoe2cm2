@@ -111,6 +111,21 @@
       "ZhuXiLegacy": "Vermächtnis von Zhu Xi",
       "JeanneDArc": "Johanna von Orléans",
       "OrderOfTheDragon": "Orden des Drachen"
+    },
+    "aomgods": {
+      "Zeus": "Zeus",
+      "Poseidon": "Poseidon",
+      "Hades": "Hades",
+      "Ra": "Ra",
+      "Isis": "Isis",
+      "Set": "Set",
+      "Odin": "Odin",
+      "Thor": "Thor",
+      "Loki": "Loki",
+      "Freyr": "Freyr",
+      "Kronos": "Kronos",
+      "Gaia": "Gaia",
+      "Oranos": "Oranos"
     }
   },
   "messages": {
@@ -329,6 +344,7 @@
     "aoe3Civs": "AoE3-Zivilisationen",
     "aoe4Civs": "AoE4-Zivilisationen",
     "aoe4maps": "AoE4-Karten",
+    "aomgods": "AoM-Götter",
     "customOptions": "Individuell",
     "turns": "Züge",
     "turnCategories": "Kategorien",

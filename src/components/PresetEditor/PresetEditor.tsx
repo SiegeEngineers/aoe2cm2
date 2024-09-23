@@ -36,6 +36,7 @@ import CivilisationSet from "../../models/CivilisationSet";
 import Aoe2Map from "../../models/Aoe2Map";
 import Aoe1Civilisation from "../../models/Aoe1Civilisation";
 import Aoe4Map from "../../models/Aoe4Map";
+import AomGod from "../../models/AomGod";
 
 interface Props extends WithTranslation, RouteComponentProps<any> {
     preset: Preset | null,
@@ -84,6 +85,9 @@ class PresetEditor extends React.Component<Props, State> {
             case CivilisationSet.AOE4MAPS:
                 this.setState({defaultDraftOptions: Aoe4Map.ALL, activeCivilisationSet: CivilisationSet.AOE4MAPS});
                 break;
+            case CivilisationSet.AOMGODS:
+                this.setState({defaultDraftOptions: AomGod.ALL, activeCivilisationSet: CivilisationSet.AOMGODS});
+                break;
             case CivilisationSet.CUSTOM:
                 this.setState({defaultDraftOptions: [], activeCivilisationSet: CivilisationSet.CUSTOM});
                 break;
@@ -109,6 +113,9 @@ class PresetEditor extends React.Component<Props, State> {
                     break;
                 case CivilisationSet.AOE4MAPS:
                     this.props.onPresetDraftOptionsChange([]);
+                    break;
+                case CivilisationSet.AOMGODS:
+                    this.props.onPresetDraftOptionsChange([...AomGod.ALL]);
                     break;
                 case CivilisationSet.CUSTOM:
                     this.configureSampleDraftOption();
@@ -139,6 +146,8 @@ class PresetEditor extends React.Component<Props, State> {
                     return CivilisationSet.AOE4;
                 } else if (draftOptions.every(draftOption => Aoe4Map.ALL.some(aoe4map => DraftOption.equals(draftOption, aoe4map)))) {
                     return CivilisationSet.AOE4MAPS;
+                } else if (draftOptions.every(draftOption => AomGod.ALL.some(aomgod => DraftOption.equals(draftOption, aomgod)))) {
+                    return CivilisationSet.AOMGODS;
                 } else {
                     return CivilisationSet.CUSTOM;
                 }
@@ -246,6 +255,17 @@ class PresetEditor extends React.Component<Props, State> {
                                     this.props.onPresetDraftOptionsChange([]);
                                 }}>
                                     <Trans i18nKey="presetEditor.aoe4Maps">AoE4 Maps</Trans>
+                                </a>
+                            </li>
+                            <li className={this.state.activeCivilisationSet === CivilisationSet.AOMGODS ? "is-active" : ""}>
+                                <a href="#aomgods" onClick={() => {
+                                    this.setState({
+                                        defaultDraftOptions: AomGod.ALL,
+                                        activeCivilisationSet: CivilisationSet.AOMGODS
+                                    });
+                                    this.props.onPresetDraftOptionsChange([...AomGod.ALL]);
+                                }}>
+                                    <Trans i18nKey="presetEditor.aomgods">AoM Gods</Trans>
                                 </a>
                             </li>
                             <li className={this.state.activeCivilisationSet === CivilisationSet.CUSTOM ? "is-active" : ""}>
