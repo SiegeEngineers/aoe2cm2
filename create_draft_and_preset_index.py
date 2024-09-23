@@ -37,7 +37,7 @@ def create_preset_index(number_of_days: int, info: Dict):
             try:
                 data = json.loads(f.read_text())
                 preset_id = f.stem
-                name = data['name']
+                name = data['name'].replace('%', '%25')
                 if preset_id not in known_preset_ids:
                     info['presets'].append({'code':preset_id, 'name':name, 'created':mtime, 'last_draft': mtime})
                     known_preset_ids.add(preset_id)
@@ -64,7 +64,7 @@ def create_draft_index(number_of_days: int, info: Dict):
 
                     data = json.loads(f.read_text())
                     preset_id = data['preset'].get('presetId', '<none>')
-                    title = data['preset']['name']
+                    title = data['preset']['name'].replace('%','%25')
                     host = data['nameHost']
                     guest = data['nameGuest']
 
