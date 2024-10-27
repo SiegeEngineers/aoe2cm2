@@ -58,6 +58,10 @@ enum Name {
 
     ARMENIANS = "Armenians",
     GEORGIANS = "Georgians",
+
+    ACHAEMENIDS = "Achaemenids",
+    ATHENIANS = "Athenians",
+    SPARTANS = "Spartans",
 }
 
 class Civilisation extends DraftOption {
@@ -119,6 +123,10 @@ class Civilisation extends DraftOption {
     public static readonly ARMENIANS: Civilisation = new Civilisation(Name.ARMENIANS, GameVersion.THE_MOUNTAIN_ROYALS);
     public static readonly GEORGIANS: Civilisation = new Civilisation(Name.GEORGIANS, GameVersion.THE_MOUNTAIN_ROYALS);
 
+    public static readonly ACHAEMENIDS: Civilisation = new Civilisation(Name.ACHAEMENIDS, GameVersion.CHRONICLES_BATTLE_FOR_GREECE);
+    public static readonly ATHENIANS: Civilisation = new Civilisation(Name.ATHENIANS, GameVersion.CHRONICLES_BATTLE_FOR_GREECE);
+    public static readonly SPARTANS: Civilisation = new Civilisation(Name.SPARTANS, GameVersion.CHRONICLES_BATTLE_FOR_GREECE);
+
 
     // DO NOT CHANGE THE ORDER OF ELEMENTS IN THIS ARRAY!!!
     // ONLY APPEND NEW CIVILISATIONS AT THE END!!!
@@ -169,9 +177,13 @@ class Civilisation extends DraftOption {
         Civilisation.ROMANS,
         Civilisation.ARMENIANS,
         Civilisation.GEORGIANS,
+        Civilisation.ACHAEMENIDS,
+        Civilisation.ATHENIANS,
+        Civilisation.SPARTANS,
     ];
 
-    public static readonly ALL_ACTIVE = Civilisation.ALL.filter(value => value.name !== Name.INDIANS);
+    public static readonly ALL_ACTIVE = Civilisation.ALL.filter(value => value.name !== Name.INDIANS
+        && value.gameVersion != GameVersion.CHRONICLES_BATTLE_FOR_GREECE);
 
     public readonly gameVersion: GameVersion;
 

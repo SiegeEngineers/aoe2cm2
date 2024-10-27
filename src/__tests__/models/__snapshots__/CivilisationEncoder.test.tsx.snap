@@ -600,5 +600,44 @@ Array [
     },
     "name": "Georgians",
   },
+  Civilisation {
+    "category": "default",
+    "gameVersion": 12,
+    "i18nPrefix": "civs.",
+    "id": "Achemenids",
+    "imageUrls": Object {
+      "animated_left": "/images/units-animated/achemenids-left.apng",
+      "animated_right": "/images/units-animated/achemenids-right.apng",
+      "emblem": "/images/civemblems/achemenids.png",
+      "unit": "/images/civs/achemenids.png",
+    },
+    "name": "Achemenids",
+  },
+  Civilisation {
+    "category": "default",
+    "gameVersion": 12,
+    "i18nPrefix": "civs.",
+    "id": "Athenians",
+    "imageUrls": Object {
+      "animated_left": "/images/units-animated/athenians-left.apng",
+      "animated_right": "/images/units-animated/athenians-right.apng",
+      "emblem": "/images/civemblems/athenians.png",
+      "unit": "/images/civs/athenians.png",
+    },
+    "name": "Athenians",
+  },
+  Civilisation {
+    "category": "default",
+    "gameVersion": 12,
+    "i18nPrefix": "civs.",
+    "id": "Spartans",
+    "imageUrls": Object {
+      "animated_left": "/images/units-animated/spartans-left.apng",
+      "animated_right": "/images/units-animated/spartans-right.apng",
+      "emblem": "/images/civemblems/spartans.png",
+      "unit": "/images/civs/spartans.png",
+    },
+    "name": "Spartans",
+  },
 ]
 `;
