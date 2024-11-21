@@ -54,6 +54,7 @@ class DraftOptionPanel extends React.Component<IProps, IState> {
 
     public render() {
         const draftOption: DraftOption | undefined = this.props.draftOption;
+        const divId = this.props.turnNumber !== undefined ? 'panel-turn-' + this.props.turnNumber : undefined;
         let image = <></>;
         let imageSrc: string = "";
         let draftOptionKey = '';
@@ -204,7 +205,7 @@ class DraftOptionPanel extends React.Component<IProps, IState> {
         }
 
         return (
-            <div className={className} onClick={onClickAction}
+            <div id={divId} className={className} onClick={onClickAction}
                  onMouseEnter={onMouseEnter}
                  onMouseLeave={onMouseLeave}
             >
