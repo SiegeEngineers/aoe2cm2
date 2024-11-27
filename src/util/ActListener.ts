@@ -209,7 +209,6 @@ export class ActListener {
                                   draftId: string, roomLobby: string, roomHost: string, roomGuest: string, roomSpec: string, dataDirectory: string) {
         if (!draftViews.getActualDraft().hasNextAction()) {
             const draft = draftsStore.getDraftOrThrow(draftId);
-            draft.startTimestamp = 0;
             draft.hostConnected = false;
             draft.guestConnected = false;
             logger.info("Saving draft: %s", JSON.stringify(draft), {draftId});
