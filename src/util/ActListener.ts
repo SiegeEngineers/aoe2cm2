@@ -12,6 +12,7 @@ import AdminEvent from "../models/AdminEvent";
 import path from "path";
 import {Socket} from "socket.io";
 import DraftOption from "../models/DraftOption";
+import Draft from "../models/Draft";
 
 export class ActListener {
     readonly dataDirectory: string;
@@ -211,9 +212,11 @@ export class ActListener {
             const draft = draftsStore.getDraftOrThrow(draftId);
             draft.hostConnected = false;
             draft.guestConnected = false;
-            logger.info("Saving draft: %s", JSON.stringify(draft), {draftId});
+            const savedDraft = Draft.from(draft);
+            savedDraft.startTimestamp = 0;
+            logger.info("Saving draft: %s", JSON.stringify(savedDraft), {draftId});
             const draftPath = path.join(dataDirectory, `${draftId}.json`);
-            fs.writeFile(draftPath, JSON.stringify(draft), (err) => {
+            fs.writeFile(draftPath, JSON.stringify(savedDraft), (err) => {
                 logger.info("No further action expected. Disconnecting clients.", {draftId});
                 for (let room of [roomHost, roomGuest, roomSpec]) {
                     socket.nsp.in(room).allSockets().then(
