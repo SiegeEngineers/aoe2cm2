@@ -26,7 +26,7 @@ class Draft implements IDraftState {
         this.guestConnected = false;
         this.hostReady = false;
         this.guestReady = false;
-        this.startTimestamp = 0;
+        this.startTimestamp = Date.now();
     }
 
     public static from(source: Draft): Draft {

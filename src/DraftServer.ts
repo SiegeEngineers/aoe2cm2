@@ -246,6 +246,8 @@ export class DraftServer {
             if (!wasAlreadyReady && draftsStore.playersAreReady(draftId)) {
                 logger.info("Both Players are ready, starting countdown.", {draftId});
 
+                draftsStore.setStartTimestampIfNecessary(draftId);
+
                 const draftViews = draftsStore.getDraftViewsOrThrow(draftId);
                 let adminEventCounter = 0;
                 while (ActListener.nextActionIsAdminEvent(draftsStore, draftId, adminEventCounter)) {
@@ -266,7 +268,6 @@ export class DraftServer {
                 }
 
                 draftsStore.startCountdown(draftId, socket, this.currentDataDirectory);
-                draftsStore.setStartTimestampIfNecessary(draftId);
             }
             socket.nsp
                 .in(roomHost)

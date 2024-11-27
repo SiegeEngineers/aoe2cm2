@@ -369,7 +369,7 @@ export class DraftsStore {
 
     public setStartTimestampIfNecessary(draftId: string) {
         const draft = this.getDraftOrThrow(draftId);
-        if (!draft.startTimestamp) {
+        if (!draft.startTimestamp || draft.nextAction === 0) {
             draft.startTimestamp = Date.now();
         }
     }
