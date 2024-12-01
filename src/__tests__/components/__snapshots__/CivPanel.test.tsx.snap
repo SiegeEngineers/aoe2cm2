@@ -1150,6 +1150,81 @@ exports[`BAN CivPanels render correctly 46`] = `
 />
 `;
 
+exports[`BAN CivPanels render correctly 47`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 12,
+      "i18nPrefix": "civs.",
+      "id": "Achaemenids",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/achaemenids-left.apng",
+        "animated_right": "/images/units-animated/achaemenids-right.apng",
+        "emblem": "/images/civemblems/achaemenids.png",
+        "unit": "/images/civs/achaemenids.png",
+      },
+      "name": "Achaemenids",
+    }
+  }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`BAN CivPanels render correctly 48`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 12,
+      "i18nPrefix": "civs.",
+      "id": "Athenians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/athenians-left.apng",
+        "animated_right": "/images/units-animated/athenians-right.apng",
+        "emblem": "/images/civemblems/athenians.png",
+        "unit": "/images/civs/athenians.png",
+      },
+      "name": "Athenians",
+    }
+  }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`BAN CivPanels render correctly 49`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 12,
+      "i18nPrefix": "civs.",
+      "id": "Spartans",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/spartans-left.apng",
+        "animated_right": "/images/units-animated/spartans-right.apng",
+        "emblem": "/images/civemblems/spartans.png",
+        "unit": "/images/civs/spartans.png",
+      },
+      "name": "Spartans",
+    }
+  }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
 exports[`PICK CivPanels render correctly 1`] = `
 <DraftOptionPanel
   active={false}
@@ -2291,6 +2366,81 @@ exports[`PICK CivPanels render correctly 46`] = `
         "unit": "/images/civs/georgians.png",
       },
       "name": "Georgians",
+    }
+  }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 47`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 12,
+      "i18nPrefix": "civs.",
+      "id": "Achaemenids",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/achaemenids-left.apng",
+        "animated_right": "/images/units-animated/achaemenids-right.apng",
+        "emblem": "/images/civemblems/achaemenids.png",
+        "unit": "/images/civs/achaemenids.png",
+      },
+      "name": "Achaemenids",
+    }
+  }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 48`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 12,
+      "i18nPrefix": "civs.",
+      "id": "Athenians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/athenians-left.apng",
+        "animated_right": "/images/units-animated/athenians-right.apng",
+        "emblem": "/images/civemblems/athenians.png",
+        "unit": "/images/civs/athenians.png",
+      },
+      "name": "Athenians",
+    }
+  }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 49`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 12,
+      "i18nPrefix": "civs.",
+      "id": "Spartans",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/spartans-left.apng",
+        "animated_right": "/images/units-animated/spartans-right.apng",
+        "emblem": "/images/civemblems/spartans.png",
+        "unit": "/images/civs/spartans.png",
+      },
+      "name": "Spartans",
     }
   }
   draftOptionPanelType="pick"
