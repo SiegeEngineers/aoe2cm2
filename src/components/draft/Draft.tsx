@@ -84,16 +84,22 @@ class Draft extends React.Component<IProps, IState> {
                 this.setState({joined: true});
             }
         } else if (this.props.whoAmI !== Player.SPEC && !this.state.joined) {
-            let username: string | null = NameGenerator.getNameFromLocalStorage(this.props.ownName);
-            console.log("componentDidMount", this.props.triggerSetRole, username);
-            if (username !== null) {
-                this.props.triggerSetRole(username, this.props.whoAmI);
-                this.setState({joined: true});
-            } else {
-                this.props.showNameModal();
-            }
+            this.updateRole(this.props.whoAmI);
+        } else if (prevProps.whoAmI !== undefined && prevProps.whoAmI !== this.props.whoAmI && !this.state.joined) {
+            // Role was already set before we connected, must have been set via direct link, inform the server
+            this.updateRole(prevProps.whoAmI);
         }
         this.updateTitle();
+    }
+
+    private updateRole(player: Player) {
+        let username: string | null = NameGenerator.getNameFromLocalStorage(this.props.ownName);
+        if (username !== null) {
+            this.props.triggerSetRole(username, player);
+            this.setState({joined: true});
+        } else {
+            this.props.showNameModal();
+        }
     }
 
     private updateTitle() {

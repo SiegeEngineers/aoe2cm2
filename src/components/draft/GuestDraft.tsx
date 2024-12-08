@@ -10,10 +10,10 @@ interface IProps extends WithTranslation {
 }
 
 
-class SpectateDraft extends React.Component<IProps, object> {
+class GuestDraft extends React.Component<IProps, object> {
 
     componentDidMount(): void {
-        this.props.setOwnRole(Player.SPEC);
+        this.props.setOwnRole(Player.GUEST);
     }
 
     public render() {
@@ -24,4 +24,4 @@ class SpectateDraft extends React.Component<IProps, object> {
     }
 }
 
-export default withTranslation()(SpectateDraft);
+export default withTranslation()(GuestDraft);

@@ -29,7 +29,7 @@ export const Util = {
     },
 
     getIdFromUrl(): string {
-        const match: RegExpMatchArray | null = window.location.pathname.match(/\/(?:draft|spectate)\/([A-Za-z]+)\/?.*/);
+        const match: RegExpMatchArray | null = window.location.pathname.match(/\/(?:draft|spectate|guest|host)\/([A-Za-z]+)\/?.*/);
         if (match !== null) {
             return match[1];
         }
