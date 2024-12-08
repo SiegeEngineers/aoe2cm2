@@ -22,6 +22,8 @@ import {initialLanguageState} from "./reducers/language";
 import {initialModalState} from "./reducers/modal";
 import {initialPresetEditorState} from "./reducers/presetEditor";
 import SpectateDraft from "./containers/SpectateDraft";
+import HostDraft from "./containers/HostDraft";
+import GuestDraft from "./containers/GuestDraft";
 import {initialColorSchemeState} from "./reducers/colorScheme";
 import {initialReplayState} from "./reducers/replay";
 import {initialIconStyleState} from "./reducers/iconStyle";
@@ -158,6 +160,8 @@ ReactDOM.render(
                     <Route path="/preset/:id" component={Menu}/>
                     <Route path="/preset/:id/new" component={Menu}/>
                     <Route path="/spectate/:id" component={SpectateDraft}/>
+                    <Route path="/host/:id" component={HostDraft}/>
+                    <Route path="/guest/:id" component={GuestDraft}/>
                     <Route path="/spectate" component={Menu}/>
                     <Route path="/practice" component={Menu}/>
                     <Route path="/api" component={Menu}/>
