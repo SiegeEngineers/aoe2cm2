@@ -17,6 +17,7 @@ class Draft implements IDraftState {
     public nextAction: number = 0;
     public events: DraftEvent[] = [];
     public startTimestamp: number;
+    public fixedNames: boolean = false;
 
     constructor(nameHost: string, nameGuest: string, preset: Preset) {
         this.nameHost = nameHost;
