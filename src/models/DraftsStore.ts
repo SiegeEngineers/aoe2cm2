@@ -179,6 +179,11 @@ export class DraftsStore {
         }
     }
 
+    public setFixedPlayerNames(draftId: string, fixedNames: boolean) {
+        const draft: Draft = this.getDraftOrThrow(draftId);
+        draft.fixedNames = fixedNames;
+    }
+
     public setPlayerName(draftId: string, player: Player, name: string) {
         const draft: Draft = this.getDraftOrThrow(draftId);
         switch (player) {
@@ -198,13 +203,17 @@ export class DraftsStore {
         }
         switch (player) {
             case Player.HOST:
-                draft.nameHost = '…';
+                if (!draft.fixedNames) {
+                    draft.nameHost = '…';
+                }
                 draft.hostConnected = false;
                 draft.hostReady = false;
                 this.pauseCountdown(draftId);
                 break;
             case Player.GUEST:
-                draft.nameGuest = '…';
+                if (!draft.fixedNames) {
+                    draft.nameGuest = '…';
+                }
                 draft.guestConnected = false;
                 draft.guestReady = false;
                 this.pauseCountdown(draftId);

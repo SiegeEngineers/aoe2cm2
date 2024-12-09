@@ -30,8 +30,13 @@ class API extends React.Component<object, object> {
                             <dt>Endpoint</dt>
                             <dd><pre>POST https://aoe2cm.net/api/preset/new</pre></dd>
                             <dt>Payload</dt>
-                            <dd><pre>A JSON encoded valid <a
-                                href={'https://github.com/SiegeEngineers/aoe2cm2/blob/master/src/models/Preset.ts'}>Preset</a> object.</pre>
+                            <dd>
+                            <pre>{
+                                `{
+    "preset": `}(A JSON encoded valid <a
+                                href={'https://github.com/SiegeEngineers/aoe2cm2/blob/master/src/models/Preset.ts'}>Preset</a> object.){`
+}`}
+                            </pre>
                             </dd>
                             <dt>Sample Response</dt>
                             <dd><pre>{
@@ -83,9 +88,21 @@ class API extends React.Component<object, object> {
                         <dt>Endpoint</dt>
                         <dd><pre>POST https://aoe2cm.net/api/draft/new</pre></dd>
                         <dt>Payload</dt>
-                        <dd><pre>A JSON encoded valid <a
-                            href={'https://github.com/SiegeEngineers/aoe2cm2/blob/master/src/models/Preset.ts'}>Preset</a> object.
-                        </pre>
+                        <dd>
+                            <pre>{
+`{
+    "preset": `}(A JSON encoded valid <a
+                            href={'https://github.com/SiegeEngineers/aoe2cm2/blob/master/src/models/Preset.ts'}>Preset</a> object.){`
+}`}
+                            </pre>
+                            You can also set fixed names for Host and Guest by supplying then in the <code>participants</code> key:
+                            <pre>{
+`{
+    "preset": `}(A JSON encoded valid <a
+                            href={'https://github.com/SiegeEngineers/aoe2cm2/blob/master/src/models/Preset.ts'}>Preset</a> object.),{`
+    "participants": {"host": "Bohemond of Taranto", "guest": "Govind Tai"}
+}`
+                        }</pre>
                         </dd>
                         <dt>Sample Response</dt>
                         <dd><pre>{

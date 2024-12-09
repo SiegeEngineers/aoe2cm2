@@ -152,6 +152,13 @@ export class DraftServer {
                 socket.emit('message', 'This draft does not exist.');
                 return;
             }
+
+            const draft = draftsStore.getDraftOrThrow(draftId)
+            if (draft.fixedNames) {
+                logger.info("Draft is using fixed names. Setting roles but not changing names", {draftId});
+            }
+
+            let assignedName = message.name;
             const role: Player = Util.sanitizeRole(message.role);
             let assignedRole = Util.getAssignedRole(socket, roomHost, roomGuest);
             let hasAssignedRole = false;
@@ -160,14 +167,16 @@ export class DraftServer {
                     logger.info("Setting player role to 'HOST': %s", message.name, {draftId});
                     socket.join(roomHost); // async
                     socket.leave(roomSpec); // async
-                    draftsStore.connectPlayer(draftId, Player.HOST, message.name);
+                    assignedName = draft.fixedNames ? draft.nameHost : message.name;
+                    draftsStore.connectPlayer(draftId, Player.HOST, assignedName);
                     assignedRole = Player.HOST;
                     hasAssignedRole = true;
                 } else if (role === Player.GUEST && !draftsStore.isPlayerConnected(draftId, role)) {
                     logger.info("Setting player role to 'GUEST': %s", message.name, {draftId});
                     socket.join(roomGuest); // async
                     socket.leave(roomSpec); // async
-                    draftsStore.connectPlayer(draftId, Player.GUEST, message.name);
+                    assignedName = draft.fixedNames ? draft.nameGuest : message.name;
+                    draftsStore.connectPlayer(draftId, Player.GUEST, assignedName);
                     assignedRole = Player.GUEST;
                     hasAssignedRole = true;
                 } else {
@@ -187,7 +196,7 @@ export class DraftServer {
                 .in(roomHost)
                 .in(roomGuest)
                 .in(roomSpec)
-                .emit("player_set_role", {name: message.name, playerType: assignedRole});
+                .emit("player_set_role", {name: assignedName, playerType: assignedRole});
             fn({
                 ...draftsStore.getDraftViewsOrThrow(draftId).getDraftForPlayer(assignedRole),
                 yourPlayerType: assignedRole,
@@ -201,6 +210,13 @@ export class DraftServer {
                 socket.emit('message', 'This draft does not exist.');
                 return;
             }
+
+            const draft = draftsStore.getDraftOrThrow(draftId)
+            if(draft.fixedNames) {
+                logger.info("Draft is using fixed names. Not changing names", {draftId});
+                return;
+            }
+
             let assignedRole = Util.getAssignedRole(socket, roomHost, roomGuest);
             if (assignedRole === Player.HOST) {
                 logger.info("Setting HOST player name to: %s", message.name, {draftId});
@@ -400,6 +416,16 @@ export class DraftServer {
             const validationErrors = Validator.validatePreset(preset);
             if (validationErrors.length === 0) {
                 draftsStore.initDraft(draftId, preset as Preset);
+
+                const nameHost: string | null | undefined = req.body.participants?.host;
+                const nameGuest: string | null | undefined = req.body.participants?.guest;
+                if(nameHost && nameGuest) {
+                    logger.info('Setting names to "%s" and "%s"', nameHost, nameGuest, {draftId});
+                    draftsStore.setPlayerName(draftId, Player.HOST, nameHost);
+                    draftsStore.setPlayerName(draftId, Player.GUEST, nameGuest);
+                    draftsStore.setFixedPlayerNames(draftId, true);
+                }
+
                 res.json({status: 'ok', draftId});
                 logger.info('Created new draft with id: %s', draftId, {draftId});
             } else {
