@@ -179,6 +179,11 @@ export class DraftsStore {
         }
     }
 
+    public setFixedPlayerNames(draftId: string, fixedNames: boolean) {
+        const draft: Draft = this.getDraftOrThrow(draftId);
+        draft.fixedNames = fixedNames;
+    }
+
     public setPlayerName(draftId: string, player: Player, name: string) {
         const draft: Draft = this.getDraftOrThrow(draftId);
         switch (player) {
