@@ -2,8 +2,10 @@ import * as React from "react";
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
 import Player from "../../constants/Player";
 import CopyableInput from "./CopyableInput";
+import {RouteComponentProps} from "react-router";
+import {withRouter} from "react-router-dom";
 
-interface IProps extends WithTranslation {
+interface IProps extends WithTranslation, RouteComponentProps<any> {
     visible: boolean;
     setRoleCallback: (role: Player) => void;
     name: string | null;
@@ -12,6 +14,29 @@ interface IProps extends WithTranslation {
 }
 
 class RoleModal extends React.Component<IProps, object> {
+
+    componentDidUpdate(prevProps: Readonly<IProps>, prevState: Readonly<object>, snapshot?: any) {
+        if (this.props.visible) {
+            let query = new URLSearchParams(this.props.location.search);
+            const asHost = query.get('as') === 'host' || false;
+            const asGuest = query.get('as') === 'guest' || false;
+            if (!this.props.hostConnected && asHost) {
+                this.deleteAsFromParams(query);
+                this.props.setRoleCallback(Player.HOST);
+            }
+            if (!this.props.guestConnected && asGuest) {
+                this.deleteAsFromParams(query);
+                this.props.setRoleCallback(Player.GUEST);
+            }
+        }
+    }
+
+    private deleteAsFromParams(query: URLSearchParams) {
+        query.delete('as');
+        this.props.history.replace({
+            search: query.toString()
+        });
+    }
 
     public render() {
         if (this.props.visible) {
@@ -87,4 +112,4 @@ class RoleModal extends React.Component<IProps, object> {
     }
 }
 
-export default withTranslation()(RoleModal);
+export default withTranslation()(withRouter(RoleModal));
