@@ -17,6 +17,8 @@ enum Name {
     ZHUXILEGACY = "aoe4.ZhuXiLegacy",
     JEANNEDARC = "aoe4.JeanneDArc",
     ORDEROFTHEDRAGON = "aoe4.OrderOfTheDragon",
+    HOUSE_OF_LANCASTER = "aoe4.HouseOfLancaster",
+    KNIGHTS_TEMPLAR = "aoe4.KnightsTemplar",
 }
 
 class Aoe4Civilisation extends DraftOption {
@@ -37,6 +39,8 @@ class Aoe4Civilisation extends DraftOption {
     public static readonly ZHUXILEGACY: Aoe4Civilisation = new Aoe4Civilisation(Name.ZHUXILEGACY);
     public static readonly JEANNEDARC: Aoe4Civilisation = new Aoe4Civilisation(Name.JEANNEDARC);
     public static readonly ORDEROFTHEDRAGON: Aoe4Civilisation = new Aoe4Civilisation(Name.ORDEROFTHEDRAGON);
+    public static readonly HOUSE_OF_LANCASTER: Aoe4Civilisation = new Aoe4Civilisation(Name.HOUSE_OF_LANCASTER);
+    public static readonly KNIGHTS_TEMPLAR: Aoe4Civilisation = new Aoe4Civilisation(Name.KNIGHTS_TEMPLAR);
 
 
 
@@ -59,6 +63,8 @@ class Aoe4Civilisation extends DraftOption {
         Aoe4Civilisation.ZHUXILEGACY,
         Aoe4Civilisation.JEANNEDARC,
         Aoe4Civilisation.ORDEROFTHEDRAGON,
+        Aoe4Civilisation.HOUSE_OF_LANCASTER,
+        Aoe4Civilisation.KNIGHTS_TEMPLAR,
     ];
 
     private constructor(name: Name) {
