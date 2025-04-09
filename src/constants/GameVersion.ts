@@ -12,6 +12,7 @@ enum GameVersion {
     RETURN_OF_ROME,
     THE_MOUNTAIN_ROYALS,
     CHRONICLES_BATTLE_FOR_GREECE,
+    THE_THREE_KINGDOMS,
 }
 
 export default GameVersion;
