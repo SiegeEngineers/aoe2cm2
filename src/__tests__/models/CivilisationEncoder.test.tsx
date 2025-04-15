@@ -19,12 +19,11 @@ it('vikings only yields 2^30', () => {
     expect(encoded).toEqual('40000000');
 });
 
-it('all 45+1+3 civs yield 2^49-1', () => {
+it('all 45+1+3+5 civs yield 2^54-1', () => {
     const encoded = CivilisationEncoder.encodeCivilisationArray(Civilisation.ALL);
-    expect(Civilisation.ALL.length).toEqual(45+1+3);
+    expect(Civilisation.ALL.length).toEqual(45+1+3+5);
     expect(Civilisation.ALL_ACTIVE.length).toEqual(45);
-    expect(encoded).toEqual(CivilisationEncoder.toHexString(Math.pow(2, 49) - 1));
-    expect(encoded).toEqual('1ffffffffffff');
+    expect(encoded).toEqual('3fffffffffffff');
 });
 
 it('decode 0 yields empty array', () => {
@@ -44,8 +43,8 @@ it('decode 2^30 yields vikings', () => {
 
 });
 
-it('decode 2^49-1 yields all civs', () => {
-    const decoded = CivilisationEncoder.decodeCivilisationArray('1ffffffffffff');
+it('decode 2^54-1 yields all civs', () => {
+    const decoded = CivilisationEncoder.decodeCivilisationArray('3fffffffffffff');
     expect(decoded).toEqual([...Civilisation.ALL].sort((a, b) => a.name.localeCompare(b.name)));
 });
 
@@ -57,6 +56,7 @@ it('decode invalid yields empty array', () => {
 it('assert order of civilisations has not changed', () => {
     expect(Civilisation.ALL).toMatchSnapshot();
 });
+
 
 describe('The decoding shortcut does not lie', () => {
     it.each`
@@ -72,5 +72,23 @@ describe('The decoding shortcut does not lie', () => {
   `('$civilisationArray', ({civilisationArray, expectedLength}) => {
         const decoded = CivilisationEncoder.decodeCivilisationArray(civilisationArray);
         expect(decoded.length).toEqual(expectedLength);
+    });
+});
+
+describe('toBits works well', () => {
+    it.each`
+    encoded | result
+    ${''}    | ${[]}
+    ${'1'}    | ${[true]}
+    ${'2'}    | ${[true, false]}
+    ${'3'}    | ${[true, true]}
+    ${'4'}    | ${[true, false, false]}
+    ${'8'}    | ${[true, false, false, false]}
+    ${'f'}    | ${[true, true, true, true]}
+    ${'3f'}    | ${[true, true, true, true, true, true]}
+    ${'ff'}    | ${[true, true, true, true, true, true, true, true]}
+  `('$civilisationArray', ({encoded, result}) => {
+        const bits = CivilisationEncoder.toBits(encoded);
+        expect(bits).toEqual(result);
     });
 });
