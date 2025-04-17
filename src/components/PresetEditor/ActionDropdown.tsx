@@ -38,14 +38,16 @@ class ActionDropdown extends React.Component<Props, object> {
                 const t = this.props.turn;
                 const newAction = event.target.value as Action;
                 let player = t.player;
+                let hidden = t.hidden;
                 if (t.executingPlayer === Player.NONE) {
                     if (![Action.PICK, Action.BAN, Action.SNIPE, Action.STEAL].includes(newAction)) {
                         player = Player.NONE;
+                        hidden = false;
                     } else if (player === Player.NONE && [Action.SNIPE, Action.STEAL].includes(newAction)) {
                         player = Player.HOST;
                     }
                 }
-                const newTurn = new Turn(player, newAction, t.exclusivity, t.hidden, t.parallel, t.executingPlayer);
+                const newTurn = new Turn(player, newAction, t.exclusivity, hidden, t.parallel, t.executingPlayer);
                 this.props.onValueChange(newTurn, this.props.index)
             }}>{options}
             </select>
