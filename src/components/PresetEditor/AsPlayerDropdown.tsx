@@ -16,15 +16,22 @@ class AsPlayerDropdown extends React.Component<Props, object> {
     render() {
         const options = [];
         let i = 0;
-        options.push(<option key={i++} value={Player.NONE}>{Player.NONE}</option>);
-        if ([Action.PICK, Action.BAN].includes(this.props.turn.action)) {
+        if (![Action.SNIPE, Action.STEAL].includes(this.props.turn.action)) {
+            options.push(<option key={i++} value={Player.NONE}>{Player.NONE}</option>);
+        }
+        if ([Action.PICK, Action.BAN, Action.SNIPE, Action.STEAL].includes(this.props.turn.action)) {
             options.push(<option key={i++} value={Player.HOST}>{Player.HOST}</option>);
             options.push(<option key={i++} value={Player.GUEST}>{Player.GUEST}</option>);
         }
         return <div className="select is-small">
             <select value={this.props.turn.player} onChange={(event) => {
                 const t = this.props.turn;
-                const newTurn = new Turn((event.target.value as Player), t.action, t.exclusivity, t.hidden, t.parallel, t.executingPlayer);
+                const newPlayer = (event.target.value as Player);
+                let hidden = t.hidden;
+                if (newPlayer === Player.NONE) {
+                    hidden = false;
+                }
+                const newTurn = new Turn(newPlayer, t.action, t.exclusivity, hidden, t.parallel, t.executingPlayer);
                 this.props.onValueChange(newTurn, this.props.index)
             }}>{options}
             </select>

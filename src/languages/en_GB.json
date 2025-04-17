@@ -360,7 +360,7 @@
     "turnCategories": "Categories",
     "turnCategoriesAll": "all",
     "categoryLimits": "Category Limits",
-    "categoryLimitsExplanation": "Here you may, for each category, define a maximum number of times Draft Options from it can be picked or banned. Leave the input emtpy to set no limit for a category.",
+    "categoryLimitsExplanation": "Here you may, for each category, define a maximum number of times Draft Options from it can be picked or banned. Leave the input empty to set no limit for a category.",
     "categoryLimitsPick": "Pick",
     "categoryLimitsBan": "Ban",
     "createSaveDraft": "Create Draft or Save",

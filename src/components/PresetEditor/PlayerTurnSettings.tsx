@@ -21,11 +21,14 @@ class PlayerTurnSettings extends React.Component<Props, object> {
             return null;
         }
         if (this.props.turn.executingPlayer === Player.NONE) {
+            const canHide = this.props.turn.player !== Player.NONE;
             return <div>
                 <ActionDropdown turn={this.props.turn} index={this.props.index}/>
                 <ExclusivityDropdown turn={this.props.turn} index={this.props.index}/>
-                <br/>
-                <AsPlayerDropdown turn={this.props.turn} index={this.props.index}/>
+                <div className="option-row">
+                    <HiddenCheckbox turn={this.props.turn} index={this.props.index} disabled={!canHide}/>
+                    <AsPlayerDropdown turn={this.props.turn} index={this.props.index}/>
+                </div>
                 <TurnCategoriesInput turn={this.props.turn} index={this.props.index} key={'tci'+this.props.index}/>
             </div>;
         }

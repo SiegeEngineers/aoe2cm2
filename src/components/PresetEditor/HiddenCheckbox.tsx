@@ -8,13 +8,14 @@ import {ISetEditorTurn} from "../../actions";
 interface Props {
     turn: Turn,
     index: number,
+    disabled?: boolean,
     onValueChange: (turn: Turn, index: number) => ISetEditorTurn
 }
 
 class HiddenCheckbox extends React.Component<Props, object> {
     render() {
         return <label className="checkbox tag has-background-transparent">
-            <input type='checkbox' checked={this.props.turn.hidden} onChange={() => {
+            <input type='checkbox' checked={this.props.turn.hidden} disabled={!!this.props.disabled} onChange={() => {
                 const t = this.props.turn;
                 const newTurn = new Turn(t.player, t.action, t.exclusivity, !t.hidden, t.parallel, t.executingPlayer);
                 this.props.onValueChange(newTurn, this.props.index)
