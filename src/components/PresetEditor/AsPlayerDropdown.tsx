@@ -16,8 +16,10 @@ class AsPlayerDropdown extends React.Component<Props, object> {
     render() {
         const options = [];
         let i = 0;
-        options.push(<option key={i++} value={Player.NONE}>{Player.NONE}</option>);
-        if ([Action.PICK, Action.BAN].includes(this.props.turn.action)) {
+        if (![Action.SNIPE, Action.STEAL].includes(this.props.turn.action)) {
+            options.push(<option key={i++} value={Player.NONE}>{Player.NONE}</option>);
+        }
+        if ([Action.PICK, Action.BAN, Action.SNIPE, Action.STEAL].includes(this.props.turn.action)) {
             options.push(<option key={i++} value={Player.HOST}>{Player.HOST}</option>);
             options.push(<option key={i++} value={Player.GUEST}>{Player.GUEST}</option>);
         }

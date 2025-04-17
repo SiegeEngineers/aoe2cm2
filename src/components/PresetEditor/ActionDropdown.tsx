@@ -25,6 +25,8 @@ class ActionDropdown extends React.Component<Props, object> {
             options.push(<option key={i++} value={Action.PAUSE}>{Action.PAUSE}</option>);
             options.push(<option key={i++} value={Action.PICK}>{Action.PICK}</option>);
             options.push(<option key={i++} value={Action.BAN}>{Action.BAN}</option>);
+            options.push(<option key={i++} value={Action.SNIPE}>{Action.SNIPE}</option>);
+            options.push(<option key={i++} value={Action.STEAL}>{Action.STEAL}</option>);
         } else {
             options.push(<option key={i++} value={Action.PICK}>{Action.PICK}</option>);
             options.push(<option key={i++} value={Action.BAN}>{Action.BAN}</option>);
@@ -36,8 +38,12 @@ class ActionDropdown extends React.Component<Props, object> {
                 const t = this.props.turn;
                 const newAction = event.target.value as Action;
                 let player = t.player;
-                if (t.executingPlayer === Player.NONE && ![Action.PICK, Action.BAN].includes(newAction)) {
-                    player = Player.NONE;
+                if (t.executingPlayer === Player.NONE) {
+                    if (![Action.PICK, Action.BAN, Action.SNIPE, Action.STEAL].includes(newAction)) {
+                        player = Player.NONE;
+                    } else if (player === Player.NONE && [Action.SNIPE, Action.STEAL].includes(newAction)) {
+                        player = Player.HOST;
+                    }
                 }
                 const newTurn = new Turn(player, newAction, t.exclusivity, t.hidden, t.parallel, t.executingPlayer);
                 this.props.onValueChange(newTurn, this.props.index)
