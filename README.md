@@ -137,7 +137,7 @@ Or, share the file with `hszemi` or `jester_5115` on Discord.
 - `pt_BR`: marciocolombia
 - `pl_PL`: nerfoxingaround
 - `zh_CN`: heavenlychorus
-- `zh_TW`: ZeroCores#2180
+- `zh_TW`: zerocores
 
 ## Deploying
 
