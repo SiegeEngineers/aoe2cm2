@@ -482,6 +482,30 @@ export class DraftServer {
                 res.sendFile(draftId + '.json', {'root': this.currentDataDirectory}, DraftServer.plain404(res));
             }
         });
+        app.post('/api/draft/:id', (req, res) => {
+            if (!Util.isAuthenticatedRequest(req, sessionStore)) {
+                res.status(403).end();
+                return;
+            }
+            const draftId = req.params.id;
+            logger.info('Overriding draft %s', draftId);
+            let filePath = path.join(this.currentDataDirectory, draftId + '.json')
+            if (draftsStore.hasArchive(draftId)) {
+                const archiveDirectory = draftsStore.getArchiveFolder(draftId);
+                filePath = path.join(this.dataDirectory, archiveDirectory, draftId + '.json')
+            }
+            if (fs.existsSync(filePath)) {
+                logger.info('Draft file %s exists', filePath);
+                const backupFilePath = filePath + '.old';
+                if (!fs.existsSync(backupFilePath)) {
+                    logger.info('Backup file %s does not exist, renaming %s', backupFilePath, filePath);
+                    fs.renameSync(filePath, backupFilePath);
+                }
+            }
+            logger.info('Overwriting %s', filePath);
+            fs.writeFileSync(filePath, JSON.stringify(req.body));
+            res.json({status: 'ok', draftId});
+        });
 
         const indexPath = __dirname + '/index.html';
 

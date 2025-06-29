@@ -75,11 +75,12 @@ class DraftList extends React.Component<Props, State> {
                         <td><span className="tag is-info">{draft.host}</span></td>
                         <td><span className="tag is-warning">{draft.guest}</span></td>
                         <td>{Util.formatTimestamp(draft.created)}</td>
+                        <td><Link to={`/admin/edit-draft/${draftId}`}>edit</Link></td>
                     </tr>);
                 }
             } else {
                 draftRows = [<tr>
-                    <td colSpan={3}>No drafts.</td>
+                    <td colSpan={5}>No drafts.</td>
                 </tr>]
             }
         }
@@ -96,6 +97,7 @@ class DraftList extends React.Component<Props, State> {
                         <th>Host</th>
                         <th>Guest</th>
                         <th>Created</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>

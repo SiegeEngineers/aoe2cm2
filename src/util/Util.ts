@@ -46,6 +46,15 @@ export const Util = {
         return '';
     },
 
+    getDraftIdForEditFromUrl(): string {
+        const match: RegExpMatchArray | null = window.location.pathname.match(/\/admin\/edit-draft\/([^\/]+)\/?/);
+        if (match !== null) {
+            return decodeURI(match[1]);
+        }
+        alert('Could not get draft id from url');
+        return '';
+    },
+
     isPick(action: Action): boolean {
         return (action === Action.PICK);
     },

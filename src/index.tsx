@@ -27,6 +27,7 @@ import {initialReplayState} from "./reducers/replay";
 import {initialIconStyleState} from "./reducers/iconStyle";
 import {initialRecentDraftsState} from './reducers/recentDrafts';
 import {initialAdminState} from "./reducers/admin";
+import DraftEdit from "./components/admin/DraftEdit";
 
 const createMySocketMiddleware = () => {
 
@@ -163,6 +164,7 @@ ReactDOM.render(
                     <Route path="/api" component={Menu}/>
                     <Route path="/admin/login" component={Menu}/>
                     <Route path="/admin/draft/:draftName" component={Menu}/>
+                    <Route path="/admin/edit-draft/:draftId" component={DraftEdit}/>
                     <Route path="/admin" component={Menu}/>
                     <Route component={Menu}/>
                 </Switch>
