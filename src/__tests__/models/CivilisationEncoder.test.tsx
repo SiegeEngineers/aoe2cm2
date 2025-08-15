@@ -22,7 +22,7 @@ it('vikings only yields 2^30', () => {
 it('all 45+1+3+5 civs yield 2^54-1', () => {
     const encoded = CivilisationEncoder.encodeCivilisationArray(Civilisation.ALL);
     expect(Civilisation.ALL.length).toEqual(45+1+3+5);
-    expect(Civilisation.ALL_ACTIVE.length).toEqual(45);
+    expect(Civilisation.ALL_ACTIVE.length).toEqual(50);
     expect(encoded).toEqual('3fffffffffffff');
 });
 
@@ -69,6 +69,7 @@ describe('The decoding shortcut does not lie', () => {
     ${'fffffffefff'}   | ${43}
     ${'3fffffffefff'}   | ${45}
     ${'1ffffffffefff'}   | ${48}
+    ${'3e3fffffffefff'}   | ${50}
   `('$civilisationArray', ({civilisationArray, expectedLength}) => {
         const decoded = CivilisationEncoder.decodeCivilisationArray(civilisationArray);
         expect(decoded.length).toEqual(expectedLength);

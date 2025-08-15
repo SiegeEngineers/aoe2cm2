@@ -16,7 +16,7 @@ exports[`Draft renders correctly 1`] = `
         "pick": Object {},
       },
       "draftOptions": undefined,
-      "encodedCivilisations": "3fffffffefff",
+      "encodedCivilisations": "3e3fffffffefff",
       "name": "Default Preset",
       "presetId": undefined,
       "turns": Array [

@@ -7,7 +7,7 @@ Preset {
     "pick": Object {},
   },
   "draftOptions": undefined,
-  "encodedCivilisations": "1",
+  "encodedCivilisations": "0",
   "name": "some-name",
   "presetId": undefined,
   "turns": Array [

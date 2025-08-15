@@ -1225,6 +1225,131 @@ exports[`BAN CivPanels render correctly 49`] = `
 />
 `;
 
+exports[`BAN CivPanels render correctly 50`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 13,
+      "i18nPrefix": "civs.",
+      "id": "Shu",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/shu-left.apng",
+        "animated_right": "/images/units-animated/shu-right.apng",
+        "emblem": "/images/civemblems/shu.png",
+        "unit": "/images/civs/shu.png",
+      },
+      "name": "Shu",
+    }
+  }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`BAN CivPanels render correctly 51`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 13,
+      "i18nPrefix": "civs.",
+      "id": "Wu",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/wu-left.apng",
+        "animated_right": "/images/units-animated/wu-right.apng",
+        "emblem": "/images/civemblems/wu.png",
+        "unit": "/images/civs/wu.png",
+      },
+      "name": "Wu",
+    }
+  }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`BAN CivPanels render correctly 52`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 13,
+      "i18nPrefix": "civs.",
+      "id": "Wei",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/wei-left.apng",
+        "animated_right": "/images/units-animated/wei-right.apng",
+        "emblem": "/images/civemblems/wei.png",
+        "unit": "/images/civs/wei.png",
+      },
+      "name": "Wei",
+    }
+  }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`BAN CivPanels render correctly 53`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 13,
+      "i18nPrefix": "civs.",
+      "id": "Jurchens",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/jurchens-left.apng",
+        "animated_right": "/images/units-animated/jurchens-right.apng",
+        "emblem": "/images/civemblems/jurchens.png",
+        "unit": "/images/civs/jurchens.png",
+      },
+      "name": "Jurchens",
+    }
+  }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`BAN CivPanels render correctly 54`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 13,
+      "i18nPrefix": "civs.",
+      "id": "Khitans",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/khitans-left.apng",
+        "animated_right": "/images/units-animated/khitans-right.apng",
+        "emblem": "/images/civemblems/khitans.png",
+        "unit": "/images/civs/khitans.png",
+      },
+      "name": "Khitans",
+    }
+  }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
 exports[`PICK CivPanels render correctly 1`] = `
 <DraftOptionPanel
   active={false}
@@ -2441,6 +2566,131 @@ exports[`PICK CivPanels render correctly 49`] = `
         "unit": "/images/civs/spartans.png",
       },
       "name": "Spartans",
+    }
+  }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 50`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 13,
+      "i18nPrefix": "civs.",
+      "id": "Shu",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/shu-left.apng",
+        "animated_right": "/images/units-animated/shu-right.apng",
+        "emblem": "/images/civemblems/shu.png",
+        "unit": "/images/civs/shu.png",
+      },
+      "name": "Shu",
+    }
+  }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 51`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 13,
+      "i18nPrefix": "civs.",
+      "id": "Wu",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/wu-left.apng",
+        "animated_right": "/images/units-animated/wu-right.apng",
+        "emblem": "/images/civemblems/wu.png",
+        "unit": "/images/civs/wu.png",
+      },
+      "name": "Wu",
+    }
+  }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 52`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 13,
+      "i18nPrefix": "civs.",
+      "id": "Wei",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/wei-left.apng",
+        "animated_right": "/images/units-animated/wei-right.apng",
+        "emblem": "/images/civemblems/wei.png",
+        "unit": "/images/civs/wei.png",
+      },
+      "name": "Wei",
+    }
+  }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 53`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 13,
+      "i18nPrefix": "civs.",
+      "id": "Jurchens",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/jurchens-left.apng",
+        "animated_right": "/images/units-animated/jurchens-right.apng",
+        "emblem": "/images/civemblems/jurchens.png",
+        "unit": "/images/civs/jurchens.png",
+      },
+      "name": "Jurchens",
+    }
+  }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 54`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 13,
+      "i18nPrefix": "civs.",
+      "id": "Khitans",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/khitans-left.apng",
+        "animated_right": "/images/units-animated/khitans-right.apng",
+        "emblem": "/images/civemblems/khitans.png",
+        "unit": "/images/civs/khitans.png",
+      },
+      "name": "Khitans",
     }
   }
   draftOptionPanelType="pick"

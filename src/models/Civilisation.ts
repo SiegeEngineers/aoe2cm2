@@ -200,8 +200,7 @@ class Civilisation extends DraftOption {
     ];
 
     public static readonly ALL_ACTIVE = Civilisation.ALL.filter(value => value.name !== Name.INDIANS
-        && value.gameVersion != GameVersion.CHRONICLES_BATTLE_FOR_GREECE
-        && value.gameVersion != GameVersion.THE_THREE_KINGDOMS);
+        && value.gameVersion != GameVersion.CHRONICLES_BATTLE_FOR_GREECE);
 
     public readonly gameVersion: GameVersion;
 
