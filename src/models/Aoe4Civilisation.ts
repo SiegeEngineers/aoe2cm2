@@ -1,3 +1,4 @@
+import Aoe4GameVersion from "../constants/Aoe4GameVersion";
 import DraftOption from "./DraftOption";
 
 enum Name {
@@ -19,6 +20,10 @@ enum Name {
     ORDEROFTHEDRAGON = "aoe4.OrderOfTheDragon",
     HOUSE_OF_LANCASTER = "aoe4.HouseOfLancaster",
     KNIGHTS_TEMPLAR = "aoe4.KnightsTemplar",
+    GOLDEN_HORDE = "aoe4.GoldenHorde",
+    MACEDONIAN_DYNASTY = "aoe4.MacedonianDynasty",
+    SENGOKU_DAIMYO = "aoe4.SengokuDaimyo",
+    TUGHLAQ_DYNASTY = "aoe4.TughlaqDynasty",
 }
 
 class Aoe4Civilisation extends DraftOption {
@@ -33,16 +38,18 @@ class Aoe4Civilisation extends DraftOption {
     public static readonly FRENCH: Aoe4Civilisation = new Aoe4Civilisation(Name.FRENCH);
     public static readonly OTTOMANS: Aoe4Civilisation = new Aoe4Civilisation(Name.OTTOMANS);
     public static readonly MALIANS: Aoe4Civilisation = new Aoe4Civilisation(Name.MALIANS);
-    public static readonly BYZANTINES: Aoe4Civilisation = new Aoe4Civilisation(Name.BYZANTINES);
-    public static readonly JAPANESE: Aoe4Civilisation = new Aoe4Civilisation(Name.JAPANESE);
-    public static readonly AYYUBIDS: Aoe4Civilisation = new Aoe4Civilisation(Name.AYYUBIDS);
-    public static readonly ZHUXILEGACY: Aoe4Civilisation = new Aoe4Civilisation(Name.ZHUXILEGACY);
-    public static readonly JEANNEDARC: Aoe4Civilisation = new Aoe4Civilisation(Name.JEANNEDARC);
-    public static readonly ORDEROFTHEDRAGON: Aoe4Civilisation = new Aoe4Civilisation(Name.ORDEROFTHEDRAGON);
-    public static readonly HOUSE_OF_LANCASTER: Aoe4Civilisation = new Aoe4Civilisation(Name.HOUSE_OF_LANCASTER);
-    public static readonly KNIGHTS_TEMPLAR: Aoe4Civilisation = new Aoe4Civilisation(Name.KNIGHTS_TEMPLAR);
-
-
+    public static readonly BYZANTINES: Aoe4Civilisation = new Aoe4Civilisation(Name.BYZANTINES, Aoe4GameVersion.THE_SULTANS_ASCEND);
+    public static readonly JAPANESE: Aoe4Civilisation = new Aoe4Civilisation(Name.JAPANESE, Aoe4GameVersion.THE_SULTANS_ASCEND);
+    public static readonly AYYUBIDS: Aoe4Civilisation = new Aoe4Civilisation(Name.AYYUBIDS, Aoe4GameVersion.THE_SULTANS_ASCEND);
+    public static readonly ZHUXILEGACY: Aoe4Civilisation = new Aoe4Civilisation(Name.ZHUXILEGACY, Aoe4GameVersion.THE_SULTANS_ASCEND);
+    public static readonly JEANNEDARC: Aoe4Civilisation = new Aoe4Civilisation(Name.JEANNEDARC, Aoe4GameVersion.THE_SULTANS_ASCEND);
+    public static readonly ORDEROFTHEDRAGON: Aoe4Civilisation = new Aoe4Civilisation(Name.ORDEROFTHEDRAGON, Aoe4GameVersion.THE_SULTANS_ASCEND);
+    public static readonly HOUSE_OF_LANCASTER: Aoe4Civilisation = new Aoe4Civilisation(Name.HOUSE_OF_LANCASTER, Aoe4GameVersion.KNIGHTS_OF_CROSS_AND_ROSE);
+    public static readonly KNIGHTS_TEMPLAR: Aoe4Civilisation = new Aoe4Civilisation(Name.KNIGHTS_TEMPLAR, Aoe4GameVersion.KNIGHTS_OF_CROSS_AND_ROSE);
+    public static readonly GOLDEN_HORDE: Aoe4Civilisation = new Aoe4Civilisation(Name.GOLDEN_HORDE, Aoe4GameVersion.DYNASTIES_OF_THE_EAST);
+    public static readonly MACEDONIAN_DYNASTY: Aoe4Civilisation = new Aoe4Civilisation(Name.MACEDONIAN_DYNASTY, Aoe4GameVersion.DYNASTIES_OF_THE_EAST);
+    public static readonly SENGOKU_DAIMYO: Aoe4Civilisation = new Aoe4Civilisation(Name.SENGOKU_DAIMYO, Aoe4GameVersion.DYNASTIES_OF_THE_EAST);
+    public static readonly TUGHLAQ_DYNASTY: Aoe4Civilisation = new Aoe4Civilisation(Name.TUGHLAQ_DYNASTY, Aoe4GameVersion.DYNASTIES_OF_THE_EAST);
 
     // DO NOT CHANGE THE ORDER OF ELEMENTS IN THIS ARRAY!!!
     // ONLY APPEND NEW CIVILISATIONS AT THE END!!!
@@ -65,10 +72,19 @@ class Aoe4Civilisation extends DraftOption {
         Aoe4Civilisation.ORDEROFTHEDRAGON,
         Aoe4Civilisation.HOUSE_OF_LANCASTER,
         Aoe4Civilisation.KNIGHTS_TEMPLAR,
+        Aoe4Civilisation.GOLDEN_HORDE,
+        Aoe4Civilisation.MACEDONIAN_DYNASTY,
+        Aoe4Civilisation.SENGOKU_DAIMYO,
+        Aoe4Civilisation.TUGHLAQ_DYNASTY
     ];
 
-    private constructor(name: Name) {
+    public readonly aoe4GameVersion: Aoe4GameVersion;
+
+    public static readonly ALL_ACTIVE = Aoe4Civilisation.ALL.filter(value => value.aoe4GameVersion !== Aoe4GameVersion.DYNASTIES_OF_THE_EAST);
+
+    private constructor(name: Name, gameVersion: Aoe4GameVersion = Aoe4GameVersion.BASE) {
         super(name, name, Aoe4Civilisation.defaultImageUrlsForCivilisation(name));
+        this.aoe4GameVersion = gameVersion;
     }
 
     public static defaultImageUrlsForCivilisation(name: string) {

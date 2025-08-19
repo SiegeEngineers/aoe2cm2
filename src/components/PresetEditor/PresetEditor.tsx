@@ -241,7 +241,7 @@ class PresetEditor extends React.Component<Props, State> {
                                         defaultDraftOptions: Aoe4Civilisation.ALL,
                                         activeCivilisationSet: CivilisationSet.AOE4
                                     });
-                                    this.props.onPresetDraftOptionsChange([...Aoe4Civilisation.ALL]);
+                                    this.props.onPresetDraftOptionsChange([...Aoe4Civilisation.ALL_ACTIVE]);
                                 }}>
                                     <Trans i18nKey="presetEditor.aoe4Civs">AoE4 civs</Trans>
                                 </a>
