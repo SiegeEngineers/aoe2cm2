@@ -19,6 +19,10 @@ enum Name {
     ORDEROFTHEDRAGON = "aoe4.OrderOfTheDragon",
     HOUSE_OF_LANCASTER = "aoe4.HouseOfLancaster",
     KNIGHTS_TEMPLAR = "aoe4.KnightsTemplar",
+    GOLDEN_HORDE = "aoe4.GoldenHorde",
+    MACEDONIAN_DYNASTY = "aoe4.MacedonianDynasty",
+    SENGOKU_DAIMYO = "aoe4.SengokuDaimyo",
+    TUGHLAQ_DYNASTY = "aoe4.TughlaqDynasty",
 }
 
 class Aoe4Civilisation extends DraftOption {
@@ -41,8 +45,10 @@ class Aoe4Civilisation extends DraftOption {
     public static readonly ORDEROFTHEDRAGON: Aoe4Civilisation = new Aoe4Civilisation(Name.ORDEROFTHEDRAGON);
     public static readonly HOUSE_OF_LANCASTER: Aoe4Civilisation = new Aoe4Civilisation(Name.HOUSE_OF_LANCASTER);
     public static readonly KNIGHTS_TEMPLAR: Aoe4Civilisation = new Aoe4Civilisation(Name.KNIGHTS_TEMPLAR);
-
-
+    public static readonly GOLDEN_HORDE: Aoe4Civilisation = new Aoe4Civilisation(Name.GOLDEN_HORDE);
+    public static readonly MACEDONIAN_DYNASTY: Aoe4Civilisation = new Aoe4Civilisation(Name.MACEDONIAN_DYNASTY);
+    public static readonly SENGOKU_DAIMYO: Aoe4Civilisation = new Aoe4Civilisation(Name.SENGOKU_DAIMYO);
+    public static readonly TUGHLAQ_DYNASTY: Aoe4Civilisation = new Aoe4Civilisation(Name.TUGHLAQ_DYNASTY);
 
     // DO NOT CHANGE THE ORDER OF ELEMENTS IN THIS ARRAY!!!
     // ONLY APPEND NEW CIVILISATIONS AT THE END!!!
@@ -65,7 +71,14 @@ class Aoe4Civilisation extends DraftOption {
         Aoe4Civilisation.ORDEROFTHEDRAGON,
         Aoe4Civilisation.HOUSE_OF_LANCASTER,
         Aoe4Civilisation.KNIGHTS_TEMPLAR,
+        Aoe4Civilisation.GOLDEN_HORDE,
+        Aoe4Civilisation.MACEDONIAN_DYNASTY,
+        Aoe4Civilisation.SENGOKU_DAIMYO,
+        Aoe4Civilisation.TUGHLAQ_DYNASTY,
     ];
+
+    private static DISABLED_OPTIONS: string[] = [Name.GOLDEN_HORDE, Name.MACEDONIAN_DYNASTY, Name.SENGOKU_DAIMYO, Name.TUGHLAQ_DYNASTY];
+    public static readonly ALL_ACTIVE = Aoe4Civilisation.ALL.filter(value => !Aoe4Civilisation.DISABLED_OPTIONS.includes(value.name));
 
     private constructor(name: Name) {
         super(name, name, Aoe4Civilisation.defaultImageUrlsForCivilisation(name));

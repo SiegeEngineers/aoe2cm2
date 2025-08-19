@@ -120,7 +120,11 @@
       "JeanneDArc": "Jeanne d'Arc",
       "OrderOfTheDragon": "Order of the Dragon",
       "HouseOfLancaster": "House of Lancaster",
-      "KnightsTemplar": "Knights Templar"
+      "KnightsTemplar": "Knights Templar",
+      "GoldenHorde": "Golden Horde",
+      "SengokuDaimyo": "Sengoku Daimyo",
+      "MacedonianDynasty": "Macedonian Dynasty",
+      "TughlaqDynasty": "Tughlaq Dynasty"
     },
     "aomgods": {
       "Zeus": "Zeus",
