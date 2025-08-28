@@ -143,6 +143,7 @@ Or, share the file with `hszemi` or `jester_5115` on Discord.
 
 Locally:
 ```shell
+export NODE_OPTIONS=--openssl-legacy-provider
 npm run build-client
 rsync -avzP build/* aoe2cm:~/aoe2cm2/build
 # or rsync -avzP build/* aoe2se:~/aoe2cm2/build for the staging environment
