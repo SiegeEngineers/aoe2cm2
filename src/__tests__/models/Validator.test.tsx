@@ -191,6 +191,19 @@ it('VLD_010: opponent does not have a non-sniped pick of the civ to snipe', () =
     expect(errors).toEqual([ValidationId.VLD_010]);
 });
 
+it('VLD_010: both pick same civ hidden for opponent', () => {
+    let preset = new Preset("test", Civilisation.ALL, [
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, true, true, Player.GUEST),
+        new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, true, false, Player.HOST),
+        Turn.REVEAL_ALL,
+    ]);
+    const validator = new Validator(prepareReadyStore(preset, [
+        new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id, false, Player.GUEST),
+    ]));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.GUEST, ActionType.PICK, Civilisation.AZTECS.id, false, Player.HOST));
+    expect(errors).toEqual([]);
+});
+
 it('VLD_900: preset deserialisation failed', () => {
     const errors: ValidationId[] = Validator.validatePreset(undefined);
     expect(errors).toEqual([ValidationId.VLD_900]);
