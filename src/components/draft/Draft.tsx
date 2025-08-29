@@ -60,7 +60,7 @@ interface IState {
 class Draft extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
-        this.disconnectAndGoBack = this.disconnectAndGoBack.bind(this);
+        this.goBack = this.goBack.bind(this);
         let query = new URLSearchParams(this.props.location.search);
         const flipped = query.get('flipped') === 'true' || false;
         const smooch = query.get('smooch') === 'true' || false;
@@ -96,6 +96,10 @@ class Draft extends React.Component<IProps, IState> {
         this.updateTitle();
     }
 
+    componentWillUnmount() {
+        this.disconnect();
+    }
+
     private updateTitle() {
         const title = this.getTitle();
         if (document.title !== title) {
@@ -110,11 +114,7 @@ class Draft extends React.Component<IProps, IState> {
         return `${host} vs ${guest} – "${preset}" – AoE Captains Mode`;
     }
 
-    private disconnectAndGoBack(): void {
-        if (this.props.triggerDisconnect) {
-            this.props.triggerDisconnect();
-        }
-        ColorSchemeHelpers.removeThemeClassName('has-simple-ui')
+    private goBack(): void {
         if (this.props.history.length > 2 && document.referrer) {
             // go back if there is a possibility
             this.props.history.goBack();
@@ -122,6 +122,14 @@ class Draft extends React.Component<IProps, IState> {
             // else go to spectate
             this.props.history.push('/spectate');
         }
+    }
+
+    private disconnect(): void {
+        console.log('dicsonnect uwu')
+        if (this.props.triggerDisconnect) {
+            this.props.triggerDisconnect();
+        }
+        ColorSchemeHelpers.removeThemeClassName('has-simple-ui')
     }
 
     private flip():void{
@@ -190,7 +198,7 @@ class Draft extends React.Component<IProps, IState> {
                 <div id="container" className="container is-fluid">
                     <div className="columns is-mobile">
                         <div className="column is-1 py-0">
-                                <button onClick={this.disconnectAndGoBack} aria-label="Go back" className="button is-text back-icon header-navigation">
+                                <button onClick={this.goBack} aria-label="Go back" className="button is-text back-icon header-navigation">
                                     <KeyboardBackspaceIcon size={48} />
                                 </button>
                         </div>
