@@ -81,7 +81,7 @@ export class Validation {
 
         if (Util.isPlayerEvent(draftEvent)) {
             const draftViews = Validation.toDraftViews(draft);
-            let draftCopy = (draftEvent.player === Player.HOST) ? draftViews.getHostDraft() : draftViews.getGuestDraft();
+            let draftCopy = (draftEvent.executingPlayer === Player.HOST) ? draftViews.getHostDraft() : draftViews.getGuestDraft();
             const validCivs = new ValidCivs(draftCopy);
             return validCivs.validateDraftEvent(draftEvent);
         }
