@@ -68,6 +68,10 @@ enum Name {
     WEI="Wei",
     JURCHENS="Jurchens",
     KHITANS="Khitans",
+
+    MACEDONIANS = "Macedonians",
+    THRACIANS = "Thracians",
+    PURU = "Puru",
 }
 
 class Civilisation extends DraftOption {
@@ -139,6 +143,10 @@ class Civilisation extends DraftOption {
     public static readonly JURCHENS: Civilisation = new Civilisation(Name.JURCHENS, GameVersion.THE_THREE_KINGDOMS);
     public static readonly KHITANS: Civilisation = new Civilisation(Name.KHITANS, GameVersion.THE_THREE_KINGDOMS);
 
+    public static readonly MACEDONIANS: Civilisation = new Civilisation(Name.MACEDONIANS, GameVersion.CHRONICLES_ALEXANDER_THE_GREAT);
+    public static readonly THRACIANS: Civilisation = new Civilisation(Name.THRACIANS, GameVersion.CHRONICLES_ALEXANDER_THE_GREAT);
+    public static readonly PURU: Civilisation = new Civilisation(Name.PURU, GameVersion.CHRONICLES_ALEXANDER_THE_GREAT);
+
 
     // DO NOT CHANGE THE ORDER OF ELEMENTS IN THIS ARRAY!!!
     // ONLY APPEND NEW CIVILISATIONS AT THE END!!!
@@ -197,10 +205,15 @@ class Civilisation extends DraftOption {
         Civilisation.WEI,
         Civilisation.JURCHENS,
         Civilisation.KHITANS,
+        Civilisation.MACEDONIANS,
+        Civilisation.THRACIANS,
+        Civilisation.PURU,
     ];
 
     public static readonly ALL_ACTIVE = Civilisation.ALL.filter(value => value.name !== Name.INDIANS
-        && value.gameVersion != GameVersion.CHRONICLES_BATTLE_FOR_GREECE);
+        && value.gameVersion != GameVersion.CHRONICLES_BATTLE_FOR_GREECE
+        && value.gameVersion != GameVersion.CHRONICLES_ALEXANDER_THE_GREAT
+    );
 
     public readonly gameVersion: GameVersion;
 

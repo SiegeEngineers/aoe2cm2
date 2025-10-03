@@ -13,6 +13,7 @@ enum GameVersion {
     THE_MOUNTAIN_ROYALS,
     CHRONICLES_BATTLE_FOR_GREECE,
     THE_THREE_KINGDOMS,
+    CHRONICLES_ALEXANDER_THE_GREAT,
 }
 
 export default GameVersion;

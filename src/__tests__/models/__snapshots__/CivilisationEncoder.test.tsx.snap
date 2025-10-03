@@ -704,5 +704,44 @@ Array [
     },
     "name": "Khitans",
   },
+  Civilisation {
+    "category": "default",
+    "gameVersion": 14,
+    "i18nPrefix": "civs.",
+    "id": "Macedonians",
+    "imageUrls": Object {
+      "animated_left": "/images/units-animated/macedonians-left.apng",
+      "animated_right": "/images/units-animated/macedonians-right.apng",
+      "emblem": "/images/civemblems/macedonians.png",
+      "unit": "/images/civs/macedonians.png",
+    },
+    "name": "Macedonians",
+  },
+  Civilisation {
+    "category": "default",
+    "gameVersion": 14,
+    "i18nPrefix": "civs.",
+    "id": "Thracians",
+    "imageUrls": Object {
+      "animated_left": "/images/units-animated/thracians-left.apng",
+      "animated_right": "/images/units-animated/thracians-right.apng",
+      "emblem": "/images/civemblems/thracians.png",
+      "unit": "/images/civs/thracians.png",
+    },
+    "name": "Thracians",
+  },
+  Civilisation {
+    "category": "default",
+    "gameVersion": 14,
+    "i18nPrefix": "civs.",
+    "id": "Puru",
+    "imageUrls": Object {
+      "animated_left": "/images/units-animated/puru-left.apng",
+      "animated_right": "/images/units-animated/puru-right.apng",
+      "emblem": "/images/civemblems/puru.png",
+      "unit": "/images/civs/puru.png",
+    },
+    "name": "Puru",
+  },
 ]
 `;
