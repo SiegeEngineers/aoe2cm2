@@ -14,6 +14,12 @@ enum Name {
     KRONOS = "aomgods.Kronos",
     GAIA = "aomgods.Gaia",
     ORANOS = "aomgods.Oranos",
+    FUXI = "aomgods.Fuxi",
+    NUWA = "aomgods.Nuwa",
+    SHENNONG = "aomgods.Shennong",
+    AMATERASU = "aomgods.Amaterasu",
+    TSUKUYOMI = "aomgods.Tsukuyomi",
+    SUSANOO = "aomgods.Susanoo",
 }
 
 class AomGod extends DraftOption {
@@ -31,6 +37,12 @@ class AomGod extends DraftOption {
     public static readonly KRONOS: AomGod = new AomGod(Name.KRONOS);
     public static readonly GAIA: AomGod = new AomGod(Name.GAIA);
     public static readonly ORANOS: AomGod = new AomGod(Name.ORANOS);
+    public static readonly FUXI: AomGod = new AomGod(Name.FUXI);
+    public static readonly NUWA: AomGod = new AomGod(Name.NUWA);
+    public static readonly SHENNONG: AomGod = new AomGod(Name.SHENNONG);
+    public static readonly AMATERASU: AomGod = new AomGod(Name.AMATERASU);
+    public static readonly TSUKUYOMI: AomGod = new AomGod(Name.TSUKUYOMI);
+    public static readonly SUSANOO: AomGod = new AomGod(Name.SUSANOO);
 
 
 
@@ -50,6 +62,12 @@ class AomGod extends DraftOption {
         AomGod.KRONOS,
         AomGod.GAIA,
         AomGod.ORANOS,
+        AomGod.FUXI,
+        AomGod.NUWA,
+        AomGod.SHENNONG,
+        AomGod.AMATERASU,
+        AomGod.TSUKUYOMI,
+        AomGod.SUSANOO,
     ];
 
     private constructor(name: Name) {
