@@ -77,8 +77,7 @@ class Aoe4Civilisation extends DraftOption {
         Aoe4Civilisation.TUGHLAQ_DYNASTY,
     ];
 
-    private static DISABLED_OPTIONS: string[] = [Name.GOLDEN_HORDE, Name.MACEDONIAN_DYNASTY, Name.SENGOKU_DAIMYO, Name.TUGHLAQ_DYNASTY];
-    public static readonly ALL_ACTIVE = Aoe4Civilisation.ALL.filter(value => !Aoe4Civilisation.DISABLED_OPTIONS.includes(value.name));
+    public static readonly ALL_ACTIVE = Aoe4Civilisation.ALL
 
     private constructor(name: Name) {
         super(name, name, Aoe4Civilisation.defaultImageUrlsForCivilisation(name));
