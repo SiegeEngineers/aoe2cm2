@@ -14,6 +14,7 @@ enum GameVersion {
     CHRONICLES_BATTLE_FOR_GREECE,
     THE_THREE_KINGDOMS,
     CHRONICLES_ALEXANDER_THE_GREAT,
+    THE_LAST_CHIEFTAINS,
 }
 
 export default GameVersion;

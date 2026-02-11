@@ -72,6 +72,10 @@ enum Name {
     MACEDONIANS = "Macedonians",
     THRACIANS = "Thracians",
     PURU = "Puru",
+
+    MAPUCHE = "Mapuche",
+    MUISCA = "Muisca",
+    TUPI = "Tupi",
 }
 
 class Civilisation extends DraftOption {
@@ -147,6 +151,10 @@ class Civilisation extends DraftOption {
     public static readonly THRACIANS: Civilisation = new Civilisation(Name.THRACIANS, GameVersion.CHRONICLES_ALEXANDER_THE_GREAT);
     public static readonly PURU: Civilisation = new Civilisation(Name.PURU, GameVersion.CHRONICLES_ALEXANDER_THE_GREAT);
 
+    public static readonly MAPUCHE: Civilisation = new Civilisation(Name.MAPUCHE, GameVersion.THE_LAST_CHIEFTAINS);
+    public static readonly MUISCA: Civilisation = new Civilisation(Name.MUISCA, GameVersion.THE_LAST_CHIEFTAINS);
+    public static readonly TUPI: Civilisation = new Civilisation(Name.TUPI, GameVersion.THE_LAST_CHIEFTAINS);
+
 
     // DO NOT CHANGE THE ORDER OF ELEMENTS IN THIS ARRAY!!!
     // ONLY APPEND NEW CIVILISATIONS AT THE END!!!
@@ -208,6 +216,9 @@ class Civilisation extends DraftOption {
         Civilisation.MACEDONIANS,
         Civilisation.THRACIANS,
         Civilisation.PURU,
+        Civilisation.MAPUCHE,
+        Civilisation.MUISCA,
+        Civilisation.TUPI,
     ];
 
     public static readonly ALL_ACTIVE = Civilisation.ALL.filter(value => value.name !== Name.INDIANS

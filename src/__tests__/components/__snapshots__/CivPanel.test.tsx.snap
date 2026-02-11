@@ -1350,6 +1350,156 @@ exports[`BAN CivPanels render correctly 54`] = `
 />
 `;
 
+exports[`BAN CivPanels render correctly 55`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 14,
+      "i18nPrefix": "civs.",
+      "id": "Macedonians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/macedonians-left.apng",
+        "animated_right": "/images/units-animated/macedonians-right.apng",
+        "emblem": "/images/civemblems/macedonians.png",
+        "unit": "/images/civs/macedonians.png",
+      },
+      "name": "Macedonians",
+    }
+  }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`BAN CivPanels render correctly 56`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 14,
+      "i18nPrefix": "civs.",
+      "id": "Thracians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/thracians-left.apng",
+        "animated_right": "/images/units-animated/thracians-right.apng",
+        "emblem": "/images/civemblems/thracians.png",
+        "unit": "/images/civs/thracians.png",
+      },
+      "name": "Thracians",
+    }
+  }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`BAN CivPanels render correctly 57`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 14,
+      "i18nPrefix": "civs.",
+      "id": "Puru",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/puru-left.apng",
+        "animated_right": "/images/units-animated/puru-right.apng",
+        "emblem": "/images/civemblems/puru.png",
+        "unit": "/images/civs/puru.png",
+      },
+      "name": "Puru",
+    }
+  }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`BAN CivPanels render correctly 58`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 15,
+      "i18nPrefix": "civs.",
+      "id": "Mapuche",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/mapuche-left.apng",
+        "animated_right": "/images/units-animated/mapuche-right.apng",
+        "emblem": "/images/civemblems/mapuche.png",
+        "unit": "/images/civs/mapuche.png",
+      },
+      "name": "Mapuche",
+    }
+  }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`BAN CivPanels render correctly 59`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 15,
+      "i18nPrefix": "civs.",
+      "id": "Muisca",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/muisca-left.apng",
+        "animated_right": "/images/units-animated/muisca-right.apng",
+        "emblem": "/images/civemblems/muisca.png",
+        "unit": "/images/civs/muisca.png",
+      },
+      "name": "Muisca",
+    }
+  }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`BAN CivPanels render correctly 60`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 15,
+      "i18nPrefix": "civs.",
+      "id": "Tupi",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/tupi-left.apng",
+        "animated_right": "/images/units-animated/tupi-right.apng",
+        "emblem": "/images/civemblems/tupi.png",
+        "unit": "/images/civs/tupi.png",
+      },
+      "name": "Tupi",
+    }
+  }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
 exports[`PICK CivPanels render correctly 1`] = `
 <DraftOptionPanel
   active={false}
@@ -2691,6 +2841,156 @@ exports[`PICK CivPanels render correctly 54`] = `
         "unit": "/images/civs/khitans.png",
       },
       "name": "Khitans",
+    }
+  }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 55`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 14,
+      "i18nPrefix": "civs.",
+      "id": "Macedonians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/macedonians-left.apng",
+        "animated_right": "/images/units-animated/macedonians-right.apng",
+        "emblem": "/images/civemblems/macedonians.png",
+        "unit": "/images/civs/macedonians.png",
+      },
+      "name": "Macedonians",
+    }
+  }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 56`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 14,
+      "i18nPrefix": "civs.",
+      "id": "Thracians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/thracians-left.apng",
+        "animated_right": "/images/units-animated/thracians-right.apng",
+        "emblem": "/images/civemblems/thracians.png",
+        "unit": "/images/civs/thracians.png",
+      },
+      "name": "Thracians",
+    }
+  }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 57`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 14,
+      "i18nPrefix": "civs.",
+      "id": "Puru",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/puru-left.apng",
+        "animated_right": "/images/units-animated/puru-right.apng",
+        "emblem": "/images/civemblems/puru.png",
+        "unit": "/images/civs/puru.png",
+      },
+      "name": "Puru",
+    }
+  }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 58`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 15,
+      "i18nPrefix": "civs.",
+      "id": "Mapuche",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/mapuche-left.apng",
+        "animated_right": "/images/units-animated/mapuche-right.apng",
+        "emblem": "/images/civemblems/mapuche.png",
+        "unit": "/images/civs/mapuche.png",
+      },
+      "name": "Mapuche",
+    }
+  }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 59`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 15,
+      "i18nPrefix": "civs.",
+      "id": "Muisca",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/muisca-left.apng",
+        "animated_right": "/images/units-animated/muisca-right.apng",
+        "emblem": "/images/civemblems/muisca.png",
+        "unit": "/images/civs/muisca.png",
+      },
+      "name": "Muisca",
+    }
+  }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 60`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 15,
+      "i18nPrefix": "civs.",
+      "id": "Tupi",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/tupi-left.apng",
+        "animated_right": "/images/units-animated/tupi-right.apng",
+        "emblem": "/images/civemblems/tupi.png",
+        "unit": "/images/civs/tupi.png",
+      },
+      "name": "Tupi",
     }
   }
   draftOptionPanelType="pick"

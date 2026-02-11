@@ -743,5 +743,44 @@ Array [
     },
     "name": "Puru",
   },
+  Civilisation {
+    "category": "default",
+    "gameVersion": 15,
+    "i18nPrefix": "civs.",
+    "id": "Mapuche",
+    "imageUrls": Object {
+      "animated_left": "/images/units-animated/mapuche-left.apng",
+      "animated_right": "/images/units-animated/mapuche-right.apng",
+      "emblem": "/images/civemblems/mapuche.png",
+      "unit": "/images/civs/mapuche.png",
+    },
+    "name": "Mapuche",
+  },
+  Civilisation {
+    "category": "default",
+    "gameVersion": 15,
+    "i18nPrefix": "civs.",
+    "id": "Muisca",
+    "imageUrls": Object {
+      "animated_left": "/images/units-animated/muisca-left.apng",
+      "animated_right": "/images/units-animated/muisca-right.apng",
+      "emblem": "/images/civemblems/muisca.png",
+      "unit": "/images/civs/muisca.png",
+    },
+    "name": "Muisca",
+  },
+  Civilisation {
+    "category": "default",
+    "gameVersion": 15,
+    "i18nPrefix": "civs.",
+    "id": "Tupi",
+    "imageUrls": Object {
+      "animated_left": "/images/units-animated/tupi-left.apng",
+      "animated_right": "/images/units-animated/tupi-right.apng",
+      "emblem": "/images/civemblems/tupi.png",
+      "unit": "/images/civs/tupi.png",
+    },
+    "name": "Tupi",
+  },
 ]
 `;

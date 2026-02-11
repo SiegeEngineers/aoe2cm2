@@ -19,7 +19,7 @@ export const CivilisationEncoder = {
     },
 
     decodeCivilisationArray(encoded: string): Civilisation[] {
-        if (encoded === '3e3fffffffefff') {
+        if (encoded === 'e3e3fffffffefff') {
             const civilisations = [...Civilisation.ALL_ACTIVE];
             civilisations.sort((a, b) => a.name.localeCompare(b.name));
             return civilisations;

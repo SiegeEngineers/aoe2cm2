@@ -16,7 +16,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
             "pick": Object {},
           },
           "draftOptions": undefined,
-          "encodedCivilisations": "3e3fffffffefff",
+          "encodedCivilisations": "e3e3fffffffefff",
           "name": "Default Preset",
           "presetId": undefined,
           "turns": Array [
@@ -287,7 +287,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
             "pick": Object {},
           },
           "draftOptions": undefined,
-          "encodedCivilisations": "3e3fffffffefff",
+          "encodedCivilisations": "e3e3fffffffefff",
           "name": "Default Preset",
           "presetId": undefined,
           "turns": Array [
@@ -562,7 +562,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
             "pick": Object {},
           },
           "draftOptions": undefined,
-          "encodedCivilisations": "3e3fffffffefff",
+          "encodedCivilisations": "e3e3fffffffefff",
           "name": "Default Preset",
           "presetId": undefined,
           "turns": Array [
