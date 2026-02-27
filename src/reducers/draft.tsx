@@ -7,6 +7,7 @@ import AdminEvent from "../models/AdminEvent";
 import Action from "../constants/Action";
 
 export const initialDraftState: IDraftState = {
+    private: false,
     nameHost: "…",
     nameGuest: "…",
     hostReady: false,
@@ -60,6 +61,7 @@ export const draftReducer = (state: IDraftState = initialDraftState, action: Dra
             const preset = Preset.fromPojo(action.value.preset);
             return {
                 ...state,
+                private: action.value.private,
                 events: action.value.events,
                 nameGuest: action.value.nameGuest,
                 nameHost: action.value.nameHost,

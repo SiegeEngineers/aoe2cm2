@@ -1,5 +1,6 @@
 /data
 /presets
+/presetdrafts
 presets.json
 alerts.json
 recentDrafts.json

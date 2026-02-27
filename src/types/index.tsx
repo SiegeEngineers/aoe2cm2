@@ -4,6 +4,7 @@ import {DraftEvent} from "./DraftEvent";
 import {ColorScheme} from "../constants/ColorScheme";
 
 export interface IDraftState {
+    private: boolean | undefined;
     nameHost: string;
     nameGuest: string;
     hostConnected: boolean;
@@ -82,6 +83,14 @@ export interface IRecentDraft {
     nameHost: string;
     nameGuest: string;
     ongoing: boolean;
+}
+
+
+export interface IDraftForPreset {
+    draftId: string;
+    host: string;
+    guest: string;
+    ts: number;
 }
 
 export interface IAlert {

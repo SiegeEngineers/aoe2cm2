@@ -379,10 +379,13 @@ class PresetEditor extends React.Component<Props, State> {
                                    }}/>
                         </p>
                         <p className="control">
-                            <NewDraftButton preset={this.props.preset}/>
+                            <NewDraftButton preset={this.props.preset} private={false}/>
                         </p>
                         <p className="control">
                             <SavePresetButton preset={this.props.preset}/>
+                        </p>
+                        <p className="control">
+                            <NewDraftButton preset={this.props.preset} private={true}/>
                         </p>
                     </div>
                 </div>

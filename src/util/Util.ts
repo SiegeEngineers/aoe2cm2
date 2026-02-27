@@ -29,7 +29,7 @@ export const Util = {
     },
 
     getIdFromUrl(): string {
-        const match: RegExpMatchArray | null = window.location.pathname.match(/\/(?:draft|spectate)\/([A-Za-z]+)\/?.*/);
+        const match: RegExpMatchArray | null = window.location.pathname.match(/\/(?:draft|spectate)\/([_A-Za-z]+)\/?.*/);
         if (match !== null) {
             return match[1];
         }
@@ -149,8 +149,8 @@ export const Util = {
         return playerEvent;
     },
 
-    newDraftId(): string {
-        let id: string = '';
+    newDraftId(privateDraft: boolean): string {
+        let id: string = privateDraft ? '_' : '';
         for (let i = 0; i < 5; i++) {
             id += CHARACTERS.charAt(Math.floor(Math.random() * CHARACTERS.length));
         }

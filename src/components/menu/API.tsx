@@ -92,7 +92,8 @@ class API extends React.Component<object, object> {
                             <pre>{
 `{
     "preset": `}(A JSON encoded valid <a
-                            href={'https://github.com/SiegeEngineers/aoe2cm2/blob/master/src/models/Preset.ts'}>Preset</a> object.){`
+                            href={'https://github.com/SiegeEngineers/aoe2cm2/blob/master/src/models/Preset.ts'}>Preset</a> object.),{`
+    "private": false
 }`}
                             </pre>
                             You can also set fixed names for Host and Guest by supplying then in the <code>participants</code> key:
@@ -100,7 +101,8 @@ class API extends React.Component<object, object> {
 `{
     "preset": `}(A JSON encoded valid <a
                             href={'https://github.com/SiegeEngineers/aoe2cm2/blob/master/src/models/Preset.ts'}>Preset</a> object.),{`
-    "participants": {"host": "Bohemond of Taranto", "guest": "Govind Tai"}
+    "participants": {"host": "Bohemond of Taranto", "guest": "Govind Tai"},
+    "private": false
 }`
                         }</pre>
                         </dd>

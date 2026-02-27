@@ -10,13 +10,16 @@ import Civilisation from "../../models/Civilisation";
 import DraftOptionPanelType from "../../constants/DraftOptionPanelType";
 import DraftOptionPanel from "../draft/DraftOptionPanel";
 import DraftOption from "../../models/DraftOption";
-import {ApplicationState} from "../../types";
+import {ApplicationState, IDraftForPreset} from "../../types";
 import {Dispatch} from "redux";
 import * as actions from "../../actions";
 import {connect} from "react-redux";
+import DraftForPresetRow from "./DraftForPresetRow";
+import {Trans} from "react-i18next";
 
 interface IState {
     preset?: ModelPreset;
+    presetDrafts?: IDraftForPreset[];
     presetExists: boolean;
 }
 
@@ -32,6 +35,7 @@ class Preset extends React.Component<IProps, IState> {
         const presetId = PresetUtil.getIdFromUrl();
         if (presetId !== undefined) {
             this.loadPreset(presetId);
+            this.loadPresetDrafts(presetId);
         }
     }
 
@@ -60,29 +64,63 @@ class Preset extends React.Component<IProps, IState> {
                                       displayOnly={true} iconStyle={this.props.iconStyle}/>);
                 itemAlignment = ' flex-justify-center';
             }
+            let recentDrafts = null;
+            if (this.state.presetDrafts) {
+                recentDrafts = this.state.presetDrafts.reverse().map((value: IDraftForPreset) => <DraftForPresetRow
+                    draftForPreset={value}/>)
+            }
 
-            return (
-                <div className='content box'>
-                    <h3 className="has-text-centered">{this.state.preset.name}</h3>
+            return (<>
+                    <div className='content box'>
+                        <h3 className="has-text-centered">{this.state.preset.name}</h3>
 
-                    <TurnRow turns={this.state.preset.turns}/>
+                        <TurnRow turns={this.state.preset.turns}/>
 
-                    <div className={"is-flex" + itemAlignment} style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-                        {civs}
-                    </div>
-
-                    <div className="columns is-mobile mt-4">
-                        <div className="column is-7 buttons">
-                            <br/>
-                            <NewDraftButton preset={this.state.preset}/>
-                            <CustomisePresetButton preset={this.state.preset}/>
+                        <div className={"is-flex" + itemAlignment} style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+                            {civs}
                         </div>
-                        <div className="column is-5">
-                            <CopyableInput content={window.location.href} before={'preset.shareThisPreset'}
-                                           length={35}/>
+
+                        <div className="columns is-mobile mt-4">
+                            <div className="column is-7 buttons">
+                                <div>
+                                    <NewDraftButton preset={this.state.preset} private={false}/>
+                                    <CustomisePresetButton preset={this.state.preset}/>
+                                </div>
+                                <div>
+                                    <NewDraftButton preset={this.state.preset} private={true}/>
+                                </div>
+                            </div>
+                            <div className="column is-5">
+                                <CopyableInput content={window.location.href} before={'preset.shareThisPreset'}
+                                               length={35}/>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <div className='content box'>
+                        <h3 className="has-text-centered">
+                            <Trans i18nKey="preset.recentDraftsTitle">Recent Drafts for this Preset</Trans>
+                        </h3>
+
+                        <table className="table is-narrow is-hoverable is-fullwidth">
+                            <thead>
+                            <tr className="table-header">
+                                <th className="has-text-right"><Trans i18nKey="spectate.host">Host</Trans></th>
+                                <th className="has-text-centered"/>
+                                <th className="has-text-left"><Trans i18nKey="spectate.guest">Guest</Trans></th>
+                                <th className="has-text-right"/>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {
+                                !this.state.presetDrafts ?
+                                    <tr><td colSpan={4}><span><Trans i18nKey="preset.noDraftsAvailable">No Drafts available.</Trans></span></td></tr>
+                                    :
+                                    recentDrafts
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                </>
             );
         }
         return (
@@ -105,6 +143,19 @@ class Preset extends React.Component<IProps, IState> {
             } else if (request.readyState === XMLHttpRequest.DONE && request.status === 404) {
                 this.setState({presetExists: false});
                 document.title = 'Preset not found – AoE Captains Mode';
+            }
+        };
+        request.send();
+    };
+    private loadPresetDrafts = (presetId: string) => {
+        const request = new XMLHttpRequest();
+        request.open('GET', '/api/preset/' + presetId + '/drafts', true);
+        request.onreadystatechange = () => {
+            if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+                const presetDrafts = JSON.parse(request.responseText) as IDraftForPreset[];
+                this.setState({presetDrafts});
+            } else if (request.readyState === XMLHttpRequest.DONE && request.status === 404) {
+                this.setState({presetDrafts: undefined});
             }
         };
         request.send();

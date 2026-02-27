@@ -6,6 +6,7 @@ import {Util} from "../util/Util";
 
 interface IProps {
     preset: Preset;
+    private: boolean;
 }
 
 interface IState {
@@ -26,7 +27,17 @@ class NewDraftButton extends React.Component<IProps, IState> {
             const draftId = this.state.draftId;
             return (<Redirect push to={`/draft/${draftId}`}/>);
         }
-
+        if (this.props.private){
+        return (<>
+            <button className="button is-text mb-0" onClick={this.createDraft}>
+                <Trans i18nKey="createNewPrivateDraft">Create private practice Draft</Trans>
+            </button>
+            <ul className="is-size-7 mt-0">
+                <li><Trans i18nKey="privateDraftInfo1">Will be deleted after completion</Trans></li>
+                <li><Trans i18nKey="privateDraftInfo2">Does not show up in Recent Drafts on the Spectate page</Trans></li>
+            </ul>
+            </>);
+        }
         return (
             <button className="button is-link" onClick={this.createDraft}>
                 <Trans i18nKey="createNewDraft">Create new Draft</Trans>
@@ -56,7 +67,7 @@ class NewDraftButton extends React.Component<IProps, IState> {
                 }
             }
         };
-        request.send(JSON.stringify({preset: this.props.preset}));
+        request.send(JSON.stringify({preset: this.props.preset, private: this.props.private}));
     };
 }
 

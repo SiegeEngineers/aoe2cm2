@@ -327,7 +327,9 @@
     "draftName": "Nome do Draft"
   },
   "preset": {
-    "shareThisPreset": "Compartilhe esta definição:"
+    "shareThisPreset": "Compartilhe esta definição:",
+    "recentDraftsTitle": "Recent Drafts for this Preset",
+    "noDraftsAvailable": "No Drafts available."
   },
   "presetEditor": {
     "helpAndInstructions": "Ajuda e Instruções",
@@ -356,7 +358,11 @@
       "animatedUnitImageUrlRight": "URL da imgagem animada da unidade (direita)"
     }
   },
+  "topPrivateDraftWarning": "PRIVATE PRACTICE DRAFT – WILL NOT BE SAVED",
   "createNewDraft": "Crie um novo draft a partir desta Definição",
+  "createNewPrivateDraft": "Create private practice Draft",
+  "privateDraftInfo1": "Will be deleted after completion",
+  "privateDraftInfo2": "Does not show up in Recent Drafts on the Spectate page",
   "createNewPreset": "Crie uma nova Definição",
   "customiseThisPreset": "Customize esta Definição",
   "savePreset": "Salve esta Definição",

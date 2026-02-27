@@ -50,8 +50,8 @@ export class DraftsStore {
         this.drafts.set(draftId, new DraftViews(draft));
     }
 
-    public initDraft(draftId: string, preset: Preset) {
-        this.createDraft(draftId, new Draft('…', '…', preset));
+    public initDraft(draftId: string, preset: Preset, privateDraft: boolean) {
+        this.createDraft(draftId, new Draft('…', '…', preset, privateDraft));
     }
 
     public addDraftEvent(draftId: string, draftEvent: DraftEvent) {
@@ -101,6 +101,7 @@ export class DraftsStore {
                 return {...this.getDraftOrThrow(value), draftId: value};
             })
             .filter((draft) => !this.presetIdIsHidden(draft))
+            .filter((draft) => !draft.private)
             .filter((draft) => draft.hostConnected && draft.guestConnected)
             .sort((a, b) => (a.startTimestamp > b.startTimestamp) ? -1 : 1)
             .map((draft) => {
@@ -122,7 +123,7 @@ export class DraftsStore {
 
     public draftIsHidden(draftId: string) {
         const draft = this.getDraftGracefully(draftId);
-        return draft === undefined || this.presetIdIsHidden(draft);
+        return draft === undefined || this.presetIdIsHidden(draft) || draft.private;
     }
 
     public getDraftIds(): string[] {
@@ -323,7 +324,7 @@ export class DraftsStore {
         logger.info('Pausing countdown for draftId %s', draftId, {draftId});
     }
 
-    public startCountdown(draftId: string, socket: socketio.Socket, dataDirectory: string) {
+    public startCountdown(draftId: string, socket: socketio.Socket, dataDirectory: string, presetDraftsDirectory: string) {
         let countdown = this.countdowns.get(draftId);
         if (countdown && countdown.timeout) {
             return;
@@ -355,7 +356,7 @@ export class DraftsStore {
                     }
 
                     if (value === -1) {
-                        const actListener = new ActListener(dataDirectory).actListener(this, draftId, (draftId: string, message: DraftEvent) => {
+                        const actListener = new ActListener(dataDirectory, presetDraftsDirectory).actListener(this, draftId, (draftId: string, message: DraftEvent) => {
                             this.addDraftEvent(draftId, message);
                             return [];
                         }, socket, roomLobby, roomHost, roomGuest, roomSpec, true);
@@ -383,7 +384,7 @@ export class DraftsStore {
         }
     }
 
-    public restartOrCancelCountdown(draftId: string, dataDirectory: string) {
+    public restartOrCancelCountdown(draftId: string, dataDirectory: string, presetDraftsDirectory: string) {
         let countdown = this.countdowns.get(draftId);
         if (countdown !== undefined) {
             if (countdown.timeout !== undefined) {
@@ -401,7 +402,7 @@ export class DraftsStore {
                 .in(roomSpec)
                 .emit("countdown", {value: 0, display: false});
             if (expectedActions.length > 0) {
-                this.startCountdown(draftId, countdown.socket, dataDirectory);
+                this.startCountdown(draftId, countdown.socket, dataDirectory, presetDraftsDirectory);
             }
         }
     }
@@ -425,7 +426,7 @@ export class DraftsStore {
 
     addRecentDraft(draftId: string) {
         const draft = this.getDraftOrThrow(draftId);
-        if(this.presetIdIsHidden(draft)){
+        if(this.presetIdIsHidden(draft) || draft.private) {
             return;
         }
         const recentDrafts = this.loadRecentDrafts();

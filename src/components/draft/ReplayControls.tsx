@@ -117,6 +117,7 @@ class ReplayControls extends React.Component<IProps, IState> {
 
     private createDraftViews() {
         const draftState = {
+            private: false,
             nameHost: '…',
             nameGuest: '…',
             hostConnected: false,

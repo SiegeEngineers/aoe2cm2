@@ -16,10 +16,12 @@ import Draft from "../models/Draft";
 
 export class ActListener {
     readonly dataDirectory: string;
+    readonly presetDraftsDirectory: string;
     private static readonly adminTurnDelay = 2000;
 
-    constructor(dataDirectory: string) {
+    constructor(dataDirectory: string, presetDraftsDirectory: string) {
         this.dataDirectory = dataDirectory;
+        this.presetDraftsDirectory = presetDraftsDirectory;
     }
 
     actListener(draftsStore: DraftsStore, draftId: string, validateAndApply: (draftId: string, message: DraftEvent) => ValidationId[], socket: Socket, roomLobby: string, roomHost: string, roomGuest: string, roomSpec: string, skipSourceValidation = false) {
@@ -71,12 +73,12 @@ export class ActListener {
                 let adminEventCounter = 0;
                 while (ActListener.nextActionIsAdminEvent(draftsStore, draftId, adminEventCounter)) {
                     adminEventCounter++;
-                    ActListener.scheduleAdminEvent(adminEventCounter, draftsStore, draftId, draftViews, socket, roomLobby, roomHost, roomGuest, roomSpec, this.dataDirectory);
+                    ActListener.scheduleAdminEvent(adminEventCounter, draftsStore, draftId, draftViews, socket, roomLobby, roomHost, roomGuest, roomSpec, this.dataDirectory, this.presetDraftsDirectory);
                 }
                 if (draftViews.shouldRestartOrCancelCountdown()) {
-                    draftsStore.restartOrCancelCountdown(draftId, this.dataDirectory);
+                    draftsStore.restartOrCancelCountdown(draftId, this.dataDirectory, this.presetDraftsDirectory);
                 }
-                ActListener.finishDraftIfNoFurtherActions(draftViews, socket, draftsStore, draftId, roomLobby, roomHost, roomGuest, roomSpec, this.dataDirectory);
+                ActListener.finishDraftIfNoFurtherActions(draftViews, socket, draftsStore, draftId, roomLobby, roomHost, roomGuest, roomSpec, this.dataDirectory, this.presetDraftsDirectory);
             } else {
                 logger.info("Validation yielded errors: %s", JSON.stringify(validationErrors), {draftId});
                 fn({status: 'error', validationErrors});
@@ -93,7 +95,7 @@ export class ActListener {
     }
 
 
-    static scheduleAdminEvent(adminEventCounter: number, draftsStore: DraftsStore, draftId: string, draftViews: DraftViews, socket: Socket, roomLobby: string, roomHost: string, roomGuest: string, roomSpec: string, dataDirectory: string) {
+    static scheduleAdminEvent(adminEventCounter: number, draftsStore: DraftsStore, draftId: string, draftViews: DraftViews, socket: Socket, roomLobby: string, roomHost: string, roomGuest: string, roomSpec: string, dataDirectory: string, presetDraftsDirectory: string) {
         const expectedActions = draftsStore.getExpectedActions(draftId, adminEventCounter - 1);
         const expectedAction = expectedActions[0];
         if (expectedAction.executingPlayer === Player.NONE) { // Admin Event
@@ -121,8 +123,8 @@ export class ActListener {
                             events: draftViews.getSpecDraft().events
                         });
                     draftsStore.addDraftEvent(draftId, draftEvent);
-                    draftsStore.restartOrCancelCountdown(draftId, dataDirectory);
-                    ActListener.finishDraftIfNoFurtherActions(draftViews, socket, draftsStore, draftId, roomLobby, roomHost, roomGuest, roomSpec, dataDirectory);
+                    draftsStore.restartOrCancelCountdown(draftId, dataDirectory, presetDraftsDirectory);
+                    ActListener.finishDraftIfNoFurtherActions(draftViews, socket, draftsStore, draftId, roomLobby, roomHost, roomGuest, roomSpec, dataDirectory, presetDraftsDirectory);
                 }, adminEventCounter * this.adminTurnDelay);
             } else if (actionTypeFromAction(expectedAction.action) === ActionType.PAUSE) {
                 const draftEvent = new AdminEvent(expectedAction.player, expectedAction.action);
@@ -148,7 +150,7 @@ export class ActListener {
                             events: draftViews.getSpecDraft().events
                         });
                     draftsStore.addDraftEvent(draftId, draftEvent);
-                    ActListener.finishDraftIfNoFurtherActions(draftViews, socket, draftsStore, draftId, roomLobby, roomHost, roomGuest, roomSpec, dataDirectory);
+                    ActListener.finishDraftIfNoFurtherActions(draftViews, socket, draftsStore, draftId, roomLobby, roomHost, roomGuest, roomSpec, dataDirectory, presetDraftsDirectory);
                 }, adminEventCounter * this.adminTurnDelay);
             } else if (actionTypeFromAction(expectedAction.action) === ActionType.RESET_CL) {
                 const draftEvent = new AdminEvent(expectedAction.player, expectedAction.action);
@@ -173,7 +175,7 @@ export class ActListener {
                             events: draftViews.getSpecDraft().events
                         });
                     draftsStore.addDraftEvent(draftId, draftEvent);
-                    ActListener.finishDraftIfNoFurtherActions(draftViews, socket, draftsStore, draftId, roomLobby, roomHost, roomGuest, roomSpec, dataDirectory);
+                    ActListener.finishDraftIfNoFurtherActions(draftViews, socket, draftsStore, draftId, roomLobby, roomHost, roomGuest, roomSpec, dataDirectory, presetDraftsDirectory);
                 }, adminEventCounter * this.adminTurnDelay);
             } else if ([ActionType.PICK, ActionType.BAN, ActionType.STEAL, ActionType.SNIPE].includes(actionTypeFromAction(expectedAction.action))) {
                 setTimeout(() => {
@@ -197,8 +199,8 @@ export class ActListener {
                         .in(roomSpec)
                         .emit("playerEvent", draftViews.getLastEventForSpec());
 
-                    draftsStore.restartOrCancelCountdown(draftId, dataDirectory);
-                    ActListener.finishDraftIfNoFurtherActions(draftViews, socket, draftsStore, draftId, roomLobby, roomHost, roomGuest, roomSpec, dataDirectory);
+                    draftsStore.restartOrCancelCountdown(draftId, dataDirectory, presetDraftsDirectory);
+                    ActListener.finishDraftIfNoFurtherActions(draftViews, socket, draftsStore, draftId, roomLobby, roomHost, roomGuest, roomSpec, dataDirectory, presetDraftsDirectory);
                 }, adminEventCounter * this.adminTurnDelay);
             } else {
                 throw new Error("Unknown expected action! " + expectedAction);
@@ -207,10 +209,16 @@ export class ActListener {
     }
 
     static finishDraftIfNoFurtherActions(draftViews: DraftViews, socket: Socket, draftsStore: DraftsStore,
-                                  draftId: string, roomLobby: string, roomHost: string, roomGuest: string, roomSpec: string, dataDirectory: string) {
+                                         draftId: string, roomLobby: string, roomHost: string, roomGuest: string,
+                                         roomSpec: string, dataDirectory: string, presetDraftsDirectory: string) {
         if (!draftViews.getActualDraft().hasNextAction()) {
             const draft = draftsStore.getDraftOrThrow(draftId);
             const savedDraft = Draft.from(draft);
+            if (draft.private) {
+                logger.info("Discarding private draft: %s", JSON.stringify(savedDraft), {draftId});
+                draftsStore.finishDraft(draftId);
+                return;
+            }
             savedDraft.hostConnected = false;
             savedDraft.guestConnected = false;
             savedDraft.startTimestamp = 0;
@@ -230,6 +238,31 @@ export class ActListener {
                 }
                 if (err) throw err;
                 logger.info(`Draft saved to ${draftPath}`, {draftId});
+                if (draft.preset.presetId) {
+                    const presetId = draft.preset.presetId;
+                    if (presetId.match(/^[A-Za-z0-9_-]+$/)) {
+                        const dataPath = path.join(presetDraftsDirectory, presetId + '.json');
+                        const draftMetaData = {
+                            draftId,
+                            guest: savedDraft.nameGuest,
+                            host: savedDraft.nameHost,
+                            ts: draft.startTimestamp
+                        };
+                        if (fs.existsSync(dataPath)) {
+                            const content = JSON.parse(fs.readFileSync(dataPath).toString());
+                            content.push(draftMetaData)
+                            fs.writeFileSync(dataPath, JSON.stringify(content));
+                            logger.info(`Added draftId to preset drafts for preset ${presetId}`, {draftId});
+                        } else {
+                            fs.writeFileSync(dataPath, JSON.stringify([draftMetaData]));
+                            logger.info(`Created new file and added draftId to preset drafts for preset ${presetId}`, {draftId});
+                        }
+                    } else {
+                        logger.info(`Invalid presetId set: ${presetId}. Not adding draftId to preset drafts`, {draftId});
+                    }
+                } else {
+                    logger.info(`No presetId set, not adding draftId to preset drafts`, {draftId});
+                }
                 draftsStore.finishDraft(draftId);
             });
         }

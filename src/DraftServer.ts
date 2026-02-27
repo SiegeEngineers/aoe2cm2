@@ -29,6 +29,7 @@ export class DraftServer {
     readonly currentDataDirectory: string;
     readonly dataDirectory: string;
     readonly presetDirectory: string;
+    readonly presetDraftsDirectory: string;
     readonly usersFile: string;
     readonly sessionsFile: string;
 
@@ -38,6 +39,7 @@ export class DraftServer {
         this.dataDirectory = path.join(baseDir, 'data');
         this.currentDataDirectory = path.join(this.dataDirectory, 'current');
         this.presetDirectory = path.join(baseDir, 'presets');
+        this.presetDraftsDirectory = path.join(baseDir, 'presetdrafts');
         this.usersFile = path.join(baseDir, 'users.json');
         this.sessionsFile = path.join(baseDir, 'sessions.json');
     }
@@ -268,12 +270,12 @@ export class DraftServer {
                 let adminEventCounter = 0;
                 while (ActListener.nextActionIsAdminEvent(draftsStore, draftId, adminEventCounter)) {
                     adminEventCounter++;
-                    ActListener.scheduleAdminEvent(adminEventCounter, draftsStore, draftId, draftViews, socket, roomLobby, roomHost, roomGuest, roomSpec, this.currentDataDirectory);
+                    ActListener.scheduleAdminEvent(adminEventCounter, draftsStore, draftId, draftViews, socket, roomLobby, roomHost, roomGuest, roomSpec, this.currentDataDirectory, this.presetDraftsDirectory);
                 }
                 if (draftViews.shouldRestartOrCancelCountdown()) {
-                    draftsStore.restartOrCancelCountdown(draftId, this.currentDataDirectory);
+                    draftsStore.restartOrCancelCountdown(draftId, this.currentDataDirectory, this.presetDraftsDirectory);
                 }
-                ActListener.finishDraftIfNoFurtherActions(draftViews, socket, draftsStore, draftId, roomLobby, roomHost, roomGuest, roomSpec, this.currentDataDirectory);
+                ActListener.finishDraftIfNoFurtherActions(draftViews, socket, draftsStore, draftId, roomLobby, roomHost, roomGuest, roomSpec, this.currentDataDirectory, this.presetDraftsDirectory);
 
                 if (!draftViews.getActualDraft().hasNextAction()) {
                     return;
@@ -283,7 +285,7 @@ export class DraftServer {
                     socket.nsp.in(roomLobby).emit('draft_update', draftsStore.getLobbyDraft(draftId));
                 }
 
-                draftsStore.startCountdown(draftId, socket, this.currentDataDirectory);
+                draftsStore.startCountdown(draftId, socket, this.currentDataDirectory, this.presetDraftsDirectory);
             }
             socket.nsp
                 .in(roomHost)
@@ -302,7 +304,7 @@ export class DraftServer {
             return validator.validateAndApply(draftId, message);
         }
 
-        socket.on("act", new ActListener(this.currentDataDirectory).actListener(draftsStore, draftId, validateAndApply, socket, roomLobby, roomHost, roomGuest, roomSpec));
+        socket.on("act", new ActListener(this.currentDataDirectory, this.presetDraftsDirectory).actListener(draftsStore, draftId, validateAndApply, socket, roomLobby, roomHost, roomGuest, roomSpec));
 
         socket.on('disconnecting', function () {
             const assignedRole = Util.getAssignedRole(socket, roomHost, roomGuest);
@@ -407,7 +409,8 @@ export class DraftServer {
                 return;
             }
 
-            let draftId = Util.newDraftId();
+            const privateDraft: boolean = req.body.private as boolean;
+            let draftId = Util.newDraftId(privateDraft);
             while (draftsStore.draftIdExists(draftId)) {
                 draftId += Util.randomChar();
             }
@@ -415,7 +418,7 @@ export class DraftServer {
             let preset = Preset.fromPojo(pojo);
             const validationErrors = Validator.validatePreset(preset);
             if (validationErrors.length === 0) {
-                draftsStore.initDraft(draftId, preset as Preset);
+                draftsStore.initDraft(draftId, preset as Preset, privateDraft);
 
                 const nameHost: string | null | undefined = req.body.participants?.host;
                 const nameGuest: string | null | undefined = req.body.participants?.guest;
@@ -469,6 +472,9 @@ export class DraftServer {
         });
         app.get('/api/preset/:id', (req, res) => {
             res.sendFile(req.params.id + '.json', {'root': __dirname + '/../presets'}, DraftServer.plain404(res));
+        });
+        app.get('/api/preset/:id/drafts', (req, res) => {
+            res.sendFile(req.params.id + '.json', {'root': __dirname + '/../presetdrafts'}, DraftServer.plain404(res));
         });
         app.get('/api/recentdrafts', (req, res) => {
             res.json(draftsStore.getRecentDrafts());

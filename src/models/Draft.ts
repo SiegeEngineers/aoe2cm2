@@ -7,6 +7,7 @@ import {Util} from "../util/Util";
 import AdminEvent from "./AdminEvent";
 
 class Draft implements IDraftState {
+    public private: boolean | undefined;
     public nameHost: string;
     public nameGuest: string;
     public hostConnected: boolean;
@@ -19,7 +20,8 @@ class Draft implements IDraftState {
     public startTimestamp: number;
     public fixedNames: boolean = false;
 
-    constructor(nameHost: string, nameGuest: string, preset: Preset) {
+    constructor(nameHost: string, nameGuest: string, preset: Preset, privateDraft: boolean|undefined) {
+        this.private = privateDraft;
         this.nameHost = nameHost;
         this.nameGuest = nameGuest;
         this.preset = preset;
@@ -37,7 +39,7 @@ class Draft implements IDraftState {
     }
 
     public static fromDraftState(source: IDraftState): Draft {
-        const draft: Draft = new Draft(source.nameHost, source.nameGuest, source.preset as Preset);
+        const draft: Draft = new Draft(source.nameHost, source.nameGuest, source.preset as Preset, source.private as (boolean | undefined));
         draft.hostConnected = source.hostConnected;
         draft.guestConnected = source.guestConnected;
         draft.hostReady = source.hostReady;

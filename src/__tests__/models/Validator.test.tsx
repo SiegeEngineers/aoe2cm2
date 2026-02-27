@@ -1104,7 +1104,7 @@ it('Validator does not modify offsets', () => {
 });
 
 const prepareStore = (preset: Preset, events: DraftEvent[] = []): DraftsStore => {
-    const draft = new Draft(NAME_HOST, NAME_GUEST, preset);
+    const draft = new Draft(NAME_HOST, NAME_GUEST, preset, false);
     draft.events.push(...events);
     const draftsStore = new DraftsStore(null);
     draftsStore.createDraft(DRAFT_ID, draft);

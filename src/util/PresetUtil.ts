@@ -6,7 +6,7 @@ import path from "path";
 
 export const PresetUtil = {
     newPresetId(): string {
-        return Util.newDraftId();
+        return Util.newDraftId(false);
     },
 
     presetExists(presetId: string): boolean {

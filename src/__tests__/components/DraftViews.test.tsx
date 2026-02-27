@@ -15,7 +15,7 @@ it('Regular Draft looks the same for everyone', () => {
     const nameGuest = `guest`;
     const presetId = 'presetId'
     const preset = Preset.fromPojo({...Preset.SIMPLE, presetId}) as Preset;
-    const draft = new Draft(nameHost, nameGuest, preset);
+    const draft = new Draft(nameHost, nameGuest, preset, false);
     draft.events.push(new PlayerEvent(Player.HOST, ActionType.PICK, Civilisation.AZTECS.id));
     const draftViews = new DraftViews(draft);
 
@@ -27,7 +27,7 @@ function prepareDraftViews(turns: Turn[]) {
     const nameHost = `host`;
     const nameGuest = `guest`;
     const preset = new Preset('Hidden Preset', Civilisation.ALL, turns) as Preset;
-    const draft = new Draft(nameHost, nameGuest, preset);
+    const draft = new Draft(nameHost, nameGuest, preset, false);
     return new DraftViews(draft);
 }
 

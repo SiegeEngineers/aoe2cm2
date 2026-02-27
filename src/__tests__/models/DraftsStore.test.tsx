@@ -27,7 +27,7 @@ it('test get empty ongoing drafts', () => {
 
 it('test do not get drafts without both connected players', () => {
     const draftsStore = new DraftsStore(dirPath);
-    draftsStore.createDraft('draftId', new Draft('nameHost', 'nameGuest', Preset.SIMPLE));
+    draftsStore.createDraft('draftId', new Draft('nameHost', 'nameGuest', Preset.SIMPLE, false));
     expect(draftsStore.getOngoingDrafts()).toEqual([]);
 });
 
@@ -119,11 +119,50 @@ it('hidden live presets do not get displayed', () => {
         .toEqual(['draft2', 'draft1', 'draft0', 'draft8', 'draft7', 'draft6'])
 });
 
-function addDraft(draftId: string, i: number, draftsStore: DraftsStore, presetId: string|undefined = Preset.SIMPLE.presetId) {
+it('private drafts do not get stored', () => {
+    const draftsStore = new DraftsStore(dirPath, {maintenanceMode: false, hiddenPresetIds: []});
+    for (let i = 0; i < 3; i++) {
+        const draftId = `draft${i}`;
+        addDraft(draftId, i, draftsStore, undefined, false);
+    }
+    for (let i = 3; i < 6; i++) {
+        const draftId = `draft${i}`;
+        addDraft(draftId, i, draftsStore, undefined, true);
+        draftsStore.finishDraft(draftId);
+    }
+    for (let i = 6; i < 9; i++) {
+        const draftId = `draft${i}`;
+        addDraft(draftId, i, draftsStore, undefined, false);
+        draftsStore.finishDraft(draftId);
+    }
+    expect(draftsStore.getRecentDrafts().map((draft) => draft.draftId))
+        .toEqual(['draft2', 'draft1', 'draft0', 'draft8', 'draft7', 'draft6'])
+});
+
+it('private live drafts do not get displayed', () => {
+    const draftsStore = new DraftsStore(dirPath, {maintenanceMode: false, hiddenPresetIds: []});
+    for (let i = 0; i < 3; i++) {
+        const draftId = `draft${i}`;
+        addDraft(draftId, i, draftsStore, undefined, false);
+    }
+    for (let i = 3; i < 6; i++) {
+        const draftId = `draft${i}`;
+        addDraft(draftId, i, draftsStore, undefined, true);
+    }
+    for (let i = 6; i < 9; i++) {
+        const draftId = `draft${i}`;
+        addDraft(draftId, i, draftsStore, undefined, false);
+        draftsStore.finishDraft(draftId);
+    }
+    expect(draftsStore.getRecentDrafts().map((draft) => draft.draftId))
+        .toEqual(['draft2', 'draft1', 'draft0', 'draft8', 'draft7', 'draft6'])
+});
+
+function addDraft(draftId: string, i: number, draftsStore: DraftsStore, presetId: string|undefined = Preset.SIMPLE.presetId, privateDraft: boolean = false) {
     const nameHost = `host-${i}`;
     const nameGuest = `guest-${i}`;
     const preset = Preset.fromPojo({...Preset.SIMPLE, presetId}) as Preset;
-    draftsStore.createDraft(draftId, new Draft(nameHost, nameGuest, preset));
+    draftsStore.createDraft(draftId, new Draft(nameHost, nameGuest, preset, privateDraft));
     draftsStore.connectPlayer(draftId, Player.HOST, nameHost);
     draftsStore.connectPlayer(draftId, Player.GUEST, nameGuest);
     draftsStore.setPlayerReady(draftId, Player.HOST);

@@ -349,7 +349,9 @@
     "draftName": "Draft-Name"
   },
   "preset": {
-    "shareThisPreset": "Teile dieses Preset:"
+    "shareThisPreset": "Teile dieses Preset:",
+    "recentDraftsTitle": "Vergangene Drafts für dieses Preset",
+    "noDraftsAvailable": "Keine Drafts verfügbar."
   },
   "presetEditor": {
     "helpAndInstructions": "Hilfe und Anleitung",
@@ -386,7 +388,11 @@
       "categoryName": "Kategorie"
     }
   },
+  "topPrivateDraftWarning": "PRIVATER ÜBUNGS-DRAFT – WIRD NICHT GESPEICHERT",
   "createNewDraft": "Neuen Draft mit diesem Preset erstellen",
+  "createNewPrivateDraft": "Neuen privaten Übungs-Draft erstellen",
+  "privateDraftInfo1": "Wird gelöscht, sobald der Draft abgeschlossen ist",
+  "privateDraftInfo2": "Taucht nicht in der Liste der letzten Drafts auf der Zusehen-Seite auf",
   "createNewPreset": "Neues Preset erstellen",
   "customiseThisPreset": "Dieses Preset bearbeiten",
   "savePreset": "Preset speichern",

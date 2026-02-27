@@ -331,7 +331,9 @@
     "draftName": "BP名稱"
   },
   "preset": {
-    "shareThisPreset": "分享此規則："
+    "shareThisPreset": "分享此規則：",
+    "recentDraftsTitle": "Recent Drafts for this Preset",
+    "noDraftsAvailable": "No Drafts available."
   },
   "presetEditor": {
     "helpAndInstructions": "幫助/說明",
@@ -360,7 +362,11 @@
       "animatedUnitImageUrlRight": "右方動態單位的圖片連結"
     }
   },
+  "topPrivateDraftWarning": "PRIVATE PRACTICE DRAFT – WILL NOT BE SAVED",
   "createNewDraft": "用此規則建立",
+  "createNewPrivateDraft": "Create private practice Draft",
+  "privateDraftInfo1": "Will be deleted after completion",
+  "privateDraftInfo2": "Does not show up in Recent Drafts on the Spectate page",
   "createNewPreset": "創建新規則",
   "customiseThisPreset": "編輯此規則",
   "savePreset": "保存規則",

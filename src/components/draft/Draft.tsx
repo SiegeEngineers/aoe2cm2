@@ -21,6 +21,7 @@ import ReplayControls from "../../containers/ReplayControls";
 import {RouteComponentProps} from "react-router";
 import HowItWorks from "../menu/HowItWorks";
 import ColorSchemeHelpers from "../../util/ColorSchemeHelpers";
+import PrivateDraftWarning from "../../containers/PrivateDraftWarning";
 
 interface IProps extends WithTranslation, RouteComponentProps<any> {
     nameHost: string;
@@ -192,6 +193,7 @@ class Draft extends React.Component<IProps, IState> {
 
         return (
             <>
+            <PrivateDraftWarning/>
             <section className={className}>
                 <Modal inDraft={true}/>
                 <RoleModal/>

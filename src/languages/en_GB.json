@@ -359,7 +359,9 @@
     "draftName": "Draft Name"
   },
   "preset": {
-    "shareThisPreset": "Share this preset:"
+    "shareThisPreset": "Share this Preset:",
+    "recentDraftsTitle": "Recent Drafts for this Preset",
+    "noDraftsAvailable": "No Drafts available."
   },
   "presetEditor": {
     "helpAndInstructions": "Help and Instructions",
@@ -396,7 +398,11 @@
       "categoryName": "Category"
     }
   },
+  "topPrivateDraftWarning": "PRIVATE PRACTICE DRAFT – WILL NOT BE SAVED",
   "createNewDraft": "Create new draft from this Preset",
+  "createNewPrivateDraft": "Create private practice Draft",
+  "privateDraftInfo1": "Will be deleted after completion",
+  "privateDraftInfo2": "Does not show up in Recent Drafts on the Spectate page",
   "createNewPreset": "Create new Preset",
   "customiseThisPreset": "Customise this Preset",
   "savePreset": "Save Preset",

@@ -327,7 +327,9 @@
     "draftName": "Nom de la draft"
   },
   "preset": {
-    "shareThisPreset": "Partager ce préréglage :"
+    "shareThisPreset": "Partager ce Préréglage :",
+    "recentDraftsTitle": "Drafts récentes pour ce Préréglage",
+    "noDraftsAvailable": "Aucune Draft disponible."
   },
   "presetEditor": {
     "helpAndInstructions": "Aide et instructions",
@@ -355,7 +357,11 @@
       "animatedUnitImageUrlRight": "URL de l'unité animée (droite)"
     }
   },
+  "topPrivateDraftWarning": "DRAFT D'ENTRAÎNEMENT PRIVÉE – NE SERA PAS SAUVEGARDÉE",
   "createNewDraft": "Créer une nouvelle draft à partir de ce préréglage",
+  "createNewPrivateDraft": "Créer une Draft d'entraînement privée",
+  "privateDraftInfo1": "Sera supprimée une fois terminée",
+  "privateDraftInfo2": "N'est pas affichée parmi les Drafts récentes de l'onglet Regarder",
   "createNewPreset": "Créer un nouveau préréglage",
   "customiseThisPreset": "Modifie ce préréglage",
   "savePreset": "Sauvegarder ce préréglage",
