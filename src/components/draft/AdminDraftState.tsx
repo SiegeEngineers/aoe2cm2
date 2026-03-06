@@ -192,14 +192,14 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                         Admin
                     </div>
                     <div className="chosen">
-                        {pickPanels.length > 0 && <>
+                        {((pickPanels.length > 0) || (this.props.simplifiedUI && (banPanels.length > 0))) && <>
                             {!this.props.simplifiedUI && <div className="is-uppercase has-text-grey is-size-7 pb-2 sub-heading"><Trans>Picks</Trans></div>}
                             <div className="picks is-justify-content-center">
                                 {pickPanels}{this.props.simplifiedUI && banPanels.length > 0 && banPanels}
                             </div>
                         </>}
-                        {banPanels.length > 0 && <>
-                        {!this.props.simplifiedUI && <div className="is-uppercase has-text-grey is-size-7 py-2 sub-heading"><Trans>Bans</Trans></div>}
+                        {(banPanels.length > 0) && !this.props.simplifiedUI && <>
+                        {<div className="is-uppercase has-text-grey is-size-7 py-2 sub-heading"><Trans>Bans</Trans></div>}
                             <div className="bans is-justify-content-center">
                                 {banPanels}
                             </div>
