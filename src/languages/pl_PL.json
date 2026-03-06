@@ -335,8 +335,8 @@
   },
   "preset": {
     "shareThisPreset": "Udostępnij szablon:",
-    "recentDraftsTitle": "Recent Drafts for this Preset",
-    "noDraftsAvailable": "No Drafts available."
+    "recentDraftsTitle": "Najnowsze Drafty z tego Szablonu",
+    "noDraftsAvailable": "Brak Draftów do wyświetlenia."
   },
   "presetEditor": {
     "helpAndInstructions": "Pomoc i instrukcje",
@@ -372,11 +372,11 @@
       "categoryName": "Kategoria"
     }
   },
-  "topPrivateDraftWarning": "PRIVATE PRACTICE DRAFT – WILL NOT BE SAVED",
+  "topPrivateDraftWarning": "PRYWATNY DRAFT TESTOWY – NIE ZOSTANIE ZAPISANY",
   "createNewDraft": "Stwórz nowy draft z tego szablonu",
-  "createNewPrivateDraft": "Create private practice Draft",
-  "privateDraftInfo1": "Will be deleted after completion",
-  "privateDraftInfo2": "Does not show up in Recent Drafts on the Spectate page",
+  "createNewPrivateDraft": "Stwórz nowy prywatny Draft testowy",
+  "privateDraftInfo1": "Zostanie usunięty po jego zakończeniu",
+  "privateDraftInfo2": "Nie zostanie wyświetlony w rubryce 'Najnowsze Drafty' w zakładce 'Obserwuj'",
   "createNewPreset": "Stwórz nowy szablon",
   "customiseThisPreset": "Dostosuj szablon",
   "savePreset": "Zapisz szablon",
