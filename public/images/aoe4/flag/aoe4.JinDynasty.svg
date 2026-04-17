@@ -1,0 +1,7 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M540 540H0V1080H540V540Z" fill="#CD3634"/>
+<path d="M540 0H0V540H540V0Z" fill="#328106"/>
+<path d="M1080 0H540V540H1080V0Z" fill="#383838"/>
+<path d="M1080 540H540V1080H1080V540Z" fill="#D0D0D0"/>
+<circle cx="540.5" cy="539.5" r="361.5" fill="#FDD028"/>
+</svg>
