@@ -122,11 +122,15 @@
       "Byzantines": "Bizantinos",
       "Japanese": "Japonês",
       "Ayyubids": "Império Aiúbida",
-      "ZhuXiLegacy": "Império de Jade",
+      "ZhuXiLegacy": "O Legado de Zhu Xi",
       "JeanneDArc": "Joana D'Arc",
       "OrderOfTheDragon": "Ordem do Dragão",
-      "HouseOfLancaster": "House of Lancaster",
-      "KnightsTemplar": "Knights Templar"
+      "HouseOfLancaster": "Dinastia de Lencastre",
+      "KnightsTemplar": "Cavaleiros Templários",
+      "GoldenHorde": "Horda Dourada",
+      "SengokuDaimyo": "Sengoku Daimyo",
+      "MacedonianDynasty": "Dinastia Macedônica",
+      "TughlaqDynasty": "Dinastia Tughlaq"
     }
   },
   "messages": {

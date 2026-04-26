@@ -122,11 +122,15 @@
       "Byzantines": "拜占庭",
       "Japanese": "日语",
       "Ayyubids": "苏丹的军队",
-      "ZhuXiLegacy": "翡翠帝国",
+      "ZhuXiLegacy": "朱子遗训",
       "JeanneDArc": "圣女贞德",
       "OrderOfTheDragon": "龙之骑士团",
-      "HouseOfLancaster": "兰开斯特家族",
-      "KnightsTemplar": "圣殿骑士团"
+      "HouseOfLancaster": "兰开斯特王朝",
+      "KnightsTemplar": "圣殿骑士团",
+      "GoldenHorde": "金帐汗国",
+      "SengokuDaimyo": "战国大名",
+      "MacedonianDynasty": "马其顿王朝",
+      "TughlaqDynasty": "图格鲁克王朝"
     }
   },
   "messages": {

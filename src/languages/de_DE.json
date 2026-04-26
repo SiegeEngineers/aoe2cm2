@@ -122,11 +122,15 @@
       "Byzantines": "Byzantiner",
       "Japanese": "Japaner",
       "Ayyubids": "Ayyubiden",
-      "ZhuXiLegacy": "Vermächtnis von Zhu Xi",
-      "JeanneDArc": "Johanna von Orléans",
+      "ZhuXiLegacy": "Zhu Xis Vermächtnis",
+      "JeanneDArc": "Jeanne d‘Arc",
       "OrderOfTheDragon": "Orden des Drachen",
       "HouseOfLancaster": "Haus Lancaster",
-      "KnightsTemplar": "Knights Templar"
+      "KnightsTemplar": "Tempelritter",
+      "GoldenHorde": "Goldene Horde",
+      "SengokuDaimyo": "Sengoku Daimyo",
+      "MacedonianDynasty": "Makedonische Dynastie",
+      "TughlaqDynasty": "Tughluq-Dynastie"
     },
     "aomgods": {
       "Zeus": "Zeus",
