@@ -37,14 +37,16 @@ class DraftOption {
     public readonly imageUrls: ImageUrls;
     public readonly i18nPrefix: string;
     public readonly category: string;
+    public readonly tags: string[];
 
 
-    constructor(id: string, name: string = id, imageUrls: ImageUrls = DraftOption.defaultImageUrlsForCivilisation(id), i18nPrefix = 'civs.', category = 'default') {
+    constructor(id: string, name: string = id, imageUrls: ImageUrls = DraftOption.defaultImageUrlsForCivilisation(id), i18nPrefix = 'civs.', category = 'default', tags: string[] = []) {
         this.id = id;
         this.name = name;
         this.imageUrls = imageUrls;
         this.i18nPrefix = i18nPrefix;
         this.category = category;
+        this.tags = tags;
     }
 
     public static defaultImageUrlsForCivilisation(name: string): ImageUrls {
@@ -74,7 +76,7 @@ class DraftOption {
             Assert.isImageUrlsOrUndefined(draftOption.imageUrls);
             Assert.isOptionalString(draftOption.i18nPrefix);
             Assert.isOptionalString(draftOption.category);
-            retval.push(new DraftOption(draftOption.id, draftOption.name, draftOption.imageUrls, draftOption.i18nPrefix, draftOption.category));
+            retval.push(new DraftOption(draftOption.id, draftOption.name, draftOption.imageUrls, draftOption.i18nPrefix, draftOption.category, draftOption.tags ?? []));
         }
         return retval;
     }
