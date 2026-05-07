@@ -15,7 +15,22 @@ interface Props extends WithTranslation {
     onPresetDraftOptionsChange: (value: DraftOption[]) => ISetEditorDraftOptions,
 }
 
-class PresetEditorCivSelection extends React.Component<Props, object> {
+interface State {
+    searchQuery: string;
+}
+
+class PresetEditorCivSelection extends React.Component<Props, State> {
+
+    constructor(props: Props) {
+        super(props);
+        this.state = {searchQuery: ''};
+    }
+
+    componentDidUpdate(prevProps: Props) {
+        if (prevProps.availableOptions !== this.props.availableOptions) {
+            this.setState({searchQuery: ''});
+        }
+    }
 
     public render() {
         if (this.props.preset === null || this.props.preset === undefined) {
@@ -24,15 +39,38 @@ class PresetEditorCivSelection extends React.Component<Props, object> {
 
         const presetOptions = this.props.preset.options;
 
-        const civs = this.props.availableOptions.map((value: DraftOption, index: number) =>
+        const query = this.state.searchQuery.toLowerCase();
+        const filtered = query
+            ? this.props.availableOptions.filter(opt => opt.name.toLowerCase().includes(query))
+            : this.props.availableOptions;
+
+        const civs = filtered.map((value: DraftOption, index: number) =>
             <PresetOptionCheckbox presetOptions={presetOptions} value={value}
                                   key={index}
                                   disabled={false}
                                   onPresetDraftOptionsChange={this.props.onPresetDraftOptionsChange}/>);
 
         return (
-            <div className="is-flex" style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-                {civs}
+            <div>
+                <div className="control has-icons-right mb-2" style={{maxWidth: '20rem'}}>
+                    <input
+                        className="input is-small"
+                        type="text"
+                        placeholder={this.props.t('presetEditor.searchOptions', 'Search options…')}
+                        value={this.state.searchQuery}
+                        onChange={e => this.setState({searchQuery: e.target.value})}
+                    />
+                    {this.state.searchQuery && (
+                        <span className="icon is-right"
+                              style={{pointerEvents: 'all', cursor: 'pointer', color: 'white'}}
+                              onClick={() => this.setState({searchQuery: ''})}>
+                            <i>×</i>
+                        </span>
+                    )}
+                </div>
+                <div className="is-flex" style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+                    {civs}
+                </div>
             </div>
         );
     }
