@@ -15,20 +15,23 @@ interface Props extends WithTranslation {
     onPresetDraftOptionsChange: (value: DraftOption[]) => ISetEditorDraftOptions,
 }
 
+type SortOrder = 'default' | 'az' | 'za';
+
 interface State {
     searchQuery: string;
+    sortOrder: SortOrder;
 }
 
 class PresetEditorCivSelection extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
-        this.state = {searchQuery: ''};
+        this.state = {searchQuery: '', sortOrder: 'default'};
     }
 
     componentDidUpdate(prevProps: Props) {
         if (prevProps.availableOptions !== this.props.availableOptions) {
-            this.setState({searchQuery: ''});
+            this.setState({searchQuery: '', sortOrder: 'default'});
         }
     }
 
@@ -40,9 +43,15 @@ class PresetEditorCivSelection extends React.Component<Props, State> {
         const presetOptions = this.props.preset.options;
 
         const query = this.state.searchQuery.toLowerCase();
-        const filtered = query
+        let filtered = query
             ? this.props.availableOptions.filter(opt => opt.name.toLowerCase().includes(query))
-            : this.props.availableOptions;
+            : [...this.props.availableOptions];
+
+        if (this.state.sortOrder === 'az') {
+            filtered.sort((a, b) => a.name.localeCompare(b.name));
+        } else if (this.state.sortOrder === 'za') {
+            filtered.sort((a, b) => b.name.localeCompare(a.name));
+        }
 
         const civs = filtered.map((value: DraftOption, index: number) =>
             <PresetOptionCheckbox presetOptions={presetOptions} value={value}
@@ -52,21 +61,31 @@ class PresetEditorCivSelection extends React.Component<Props, State> {
 
         return (
             <div>
-                <div className="control has-icons-right mb-2" style={{maxWidth: '20rem'}}>
-                    <input
-                        className="input is-small"
-                        type="text"
-                        placeholder={this.props.t('presetEditor.filterOptions', 'Filter options…')}
-                        value={this.state.searchQuery}
-                        onChange={e => this.setState({searchQuery: e.target.value})}
-                    />
-                    {this.state.searchQuery && (
-                        <span className="icon is-right"
-                              style={{pointerEvents: 'all', cursor: 'pointer', color: 'white'}}
-                              onClick={() => this.setState({searchQuery: ''})}>
-                            <i>×</i>
-                        </span>
-                    )}
+                <div className="is-flex mb-2" style={{gap: '0.5rem', alignItems: 'center'}}>
+                    <div className="control has-icons-right" style={{maxWidth: '20rem'}}>
+                        <input
+                            className="input is-small"
+                            type="text"
+                            placeholder={this.props.t('presetEditor.filterOptions', 'Filter options…')}
+                            value={this.state.searchQuery}
+                            onChange={e => this.setState({searchQuery: e.target.value})}
+                        />
+                        {this.state.searchQuery && (
+                            <span className="icon is-right"
+                                  style={{pointerEvents: 'all', cursor: 'pointer', color: 'white'}}
+                                  onClick={() => this.setState({searchQuery: ''})}>
+                                <i>×</i>
+                            </span>
+                        )}
+                    </div>
+                    <div className="select is-small">
+                        <select value={this.state.sortOrder}
+                                onChange={e => this.setState({sortOrder: e.target.value as SortOrder})}>
+                            <option value="default">{this.props.t('presetEditor.sortDefault', 'Default')}</option>
+                            <option value="az">A → Z</option>
+                            <option value="za">Z → A</option>
+                        </select>
+                    </div>
                 </div>
                 <div className="is-flex" style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                     {civs}

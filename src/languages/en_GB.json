@@ -326,7 +326,8 @@
       "2": "Each turn has an acting player: The Host, the Guest, or neither of those (so called \"Admin\" turns).",
       "3": "You can add a Host/Admin/Guest turn by clicking the <1>+ New</1> button below the respective column.",
       "4": "You can remove a turn by clicking the <1/> button to the right of the turn.",
-      "filterOptions": "Filter options…"
+      "filterOptions": "Filter options…",
+      "sortDefault": "Default"
     },
     "presetModifiers": {
       "title": "Modifiers",
