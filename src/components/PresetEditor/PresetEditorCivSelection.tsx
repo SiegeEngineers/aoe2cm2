@@ -24,14 +24,36 @@ interface State {
 
 class PresetEditorCivSelection extends React.Component<Props, State> {
 
+    private static readonly SORT_STORAGE_KEY = 'presetEditor.sortOrder';
+
     constructor(props: Props) {
         super(props);
-        this.state = {searchQuery: '', sortOrder: 'default'};
+        const storedSortOrder = this.getStoredSortOrder();
+        this.state = {searchQuery: '', sortOrder: storedSortOrder ?? 'default'};
     }
 
-    componentDidUpdate(prevProps: Props) {
+    componentDidUpdate(prevProps: Props, prevState: State) {
         if (prevProps.availableOptions !== this.props.availableOptions) {
-            this.setState({searchQuery: '', sortOrder: 'default'});
+            this.setState({searchQuery: ''});
+        }
+        if (prevState.sortOrder !== this.state.sortOrder) {
+            this.setStoredSortOrder()
+        }
+    }
+
+    private getStoredSortOrder(): SortOrder | null {
+        try {
+            return localStorage.getItem(PresetEditorCivSelection.SORT_STORAGE_KEY) as SortOrder | null
+        } catch (e) {
+            return null;
+        }
+    }
+
+    private setStoredSortOrder() {
+        try {
+            localStorage.setItem(PresetEditorCivSelection.SORT_STORAGE_KEY, this.state.sortOrder);
+        } catch (e) {
+            // pass
         }
     }
 
