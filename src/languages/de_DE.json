@@ -318,7 +318,8 @@
       "1": "Presets bestehen aus einzelnen Zügen.",
       "2": "Jeder Zug hat eine handelnde Person: Host, Guest, oder keine der beiden (\"Admin\"-Züge).",
       "3": "Durch Klick auf den <1>+ New</1>-Knopf unter der entsprechenden Spalte kann ein neuer Host/Guest/Admin-Zug hinzugefügt werden.",
-      "4": "Durch Klick auf den <1/>-Knopf rechts neben einem Zug kann dieser entfernt werden."
+      "4": "Durch Klick auf den <1/>-Knopf rechts neben einem Zug kann dieser entfernt werden.",
+      "filterOptions": "Optionen filtern…"
     },
     "presetModifiers": {
       "title": "Zug-Typen",
