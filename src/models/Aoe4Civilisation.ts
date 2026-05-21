@@ -23,10 +23,39 @@ enum Name {
     MACEDONIAN_DYNASTY = "aoe4.MacedonianDynasty",
     SENGOKU_DAIMYO = "aoe4.SengokuDaimyo",
     TUGHLAQ_DYNASTY = "aoe4.TughlaqDynasty",
-	JIN_DYNASTY = "aoe4.JinDynasty",
+    JIN_DYNASTY = "aoe4.JinDynasty",
 }
 
 class Aoe4Civilisation extends DraftOption {
+
+    // Add tags here as you go — any civ not listed defaults to no tags.
+    // MUST stay before the static civ instances (initialization order).
+    public static readonly TAGS: Partial<Record<Name, string[]>> = {
+        // [Name.ENGLISH]: ['Beginner Friendly', 'Defensive'],
+        [Name.RUS]: ['Release'],
+        [Name.HOLY_ROMAN_EMPIRE]: ['Release'],
+        [Name.CHINESE]: ['Release'],
+        [Name.ENGLISH]: ['Release'],
+        [Name.DELHI_SULTANATE]: ['Release'],
+        [Name.MONGOLS]: ['Release'],
+        [Name.ABBASID_DYNASTY]: ['Release'],
+        [Name.FRENCH]: ['Release'],
+        [Name.OTTOMANS]: ['Anniversary Edition'],
+        [Name.MALIANS]: ['Anniversary Edition'],
+        [Name.BYZANTINES]: ['The Sultans Ascend'],
+        [Name.JAPANESE]: ['The Sultans Ascend'],
+        [Name.AYYUBIDS]: ['The Sultans Ascend'],
+        [Name.ZHUXILEGACY]: ['The Sultans Ascend'],
+        [Name.JEANNEDARC]: ['The Sultans Ascend'],
+        [Name.ORDEROFTHEDRAGON]: ['The Sultans Ascend'],
+        [Name.HOUSE_OF_LANCASTER]: ['Knights of Cross and Rose'],
+        [Name.KNIGHTS_TEMPLAR]: ['Knights of Cross and Rose'],
+        [Name.GOLDEN_HORDE]: ['Dynasties of the East'],
+        [Name.MACEDONIAN_DYNASTY]: ['Dynasties of the East'],
+        [Name.SENGOKU_DAIMYO]: ['Dynasties of the East'],
+        [Name.TUGHLAQ_DYNASTY]: ['Dynasties of the East'],
+        [Name.JIN_DYNASTY]: ['Yue Fei\'s Legacy'],
+    };
 
     public static readonly RUS: Aoe4Civilisation = new Aoe4Civilisation(Name.RUS);
     public static readonly HOLY_ROMAN_EMPIRE: Aoe4Civilisation = new Aoe4Civilisation(Name.HOLY_ROMAN_EMPIRE);
@@ -84,7 +113,7 @@ class Aoe4Civilisation extends DraftOption {
     public static readonly ALL_ACTIVE = Aoe4Civilisation.ALL
 
     private constructor(name: Name) {
-        super(name, name, Aoe4Civilisation.defaultImageUrlsForCivilisation(name));
+        super(name, name, Aoe4Civilisation.defaultImageUrlsForCivilisation(name), 'civs.', 'default', Aoe4Civilisation?.TAGS[name] ?? []);
     }
 
     public static defaultImageUrlsForCivilisation(name: string) {
@@ -99,4 +128,4 @@ class Aoe4Civilisation extends DraftOption {
 }
 
 export default Aoe4Civilisation;
-export {Name};
+export { Name };
