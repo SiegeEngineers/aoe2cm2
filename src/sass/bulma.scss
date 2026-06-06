@@ -1016,7 +1016,8 @@ html.has-simple-ui {
 }
 
 .highlighted,
-.highlighted .stretchy-background {
+.highlighted .stretchy-background,
+.by-opponent.highlighted .stretchy-background {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
   animation: gradient 3s ease infinite;

@@ -56,9 +56,9 @@ class PlayerDraftState extends React.Component<IProps, IState> {
         for (let i = 0; i < this.props.preset.turns.length; i++) {
             const turn: Turn = this.props.preset.turns[i];
             const actionType = actionTypeFromAction(turn.action);
+            const isThisPanelHighlighted = this.props.highlightedAction === i;
             if (this.props.player === turn.player) {
                 const isThisPanelActive = this.isActive(i);
-                const isThisPanelHighlighted = this.props.highlightedAction === i;
                 hasActivePanel = hasActivePanel || isThisPanelActive;
                 const validDraftOptions = [...this.props.preset.options, ...DraftOption.TECHNICAL_DRAFT_OPTIONS];
                 if (actionType === ActionType.PICK) {
