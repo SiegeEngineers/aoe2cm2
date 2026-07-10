@@ -333,8 +333,8 @@
   },
   "preset": {
     "shareThisPreset": "分享此規則：",
-    "recentDraftsTitle": "Recent Drafts for this Preset",
-    "noDraftsAvailable": "No Drafts available."
+    "recentDraftsTitle": "近期使用此規則的Ban Pick",
+    "noDraftsAvailable": "無使用紀錄"
   },
   "presetEditor": {
     "helpAndInstructions": "幫助/說明",
@@ -363,11 +363,11 @@
       "animatedUnitImageUrlRight": "右方動態單位的圖片連結"
     }
   },
-  "topPrivateDraftWarning": "PRIVATE PRACTICE DRAFT – WILL NOT BE SAVED",
-  "createNewDraft": "用此規則建立",
-  "createNewPrivateDraft": "Create private practice Draft",
-  "privateDraftInfo1": "Will be deleted after completion",
-  "privateDraftInfo2": "Does not show up in Recent Drafts on the Spectate page",
+  "topPrivateDraftWarning": "非公開Ban Pick – 不保留紀錄",
+  "createNewDraft": "用此規則建立BP",
+  "createNewPrivateDraft": "建立非公開BP",
+  "privateDraftInfo1": "完成後將刪除",
+  "privateDraftInfo2": "將不顯示在觀戰頁面",
   "createNewPreset": "創建新規則",
   "customiseThisPreset": "編輯此規則",
   "savePreset": "保存規則",
