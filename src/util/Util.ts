@@ -18,6 +18,12 @@ import {SessionStore} from "../models/SessionStore";
 
 const CHARACTERS: string = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
+const CHAT_FILTER: RegExp[] = [
+    /\S*n[i!]gg+(er|a)\S*/ig,
+    /\S*nice\S*/ig,
+    /\S*dock\S*/ig,
+]
+
 export const Util = {
     notUndefined(...args: any[]): boolean {
         for (const arg of args) {
@@ -265,7 +271,7 @@ export const Util = {
 
     writeApiKeyToLocalStorage(apiKey: string | undefined) {
         try {
-            if(apiKey){
+            if (apiKey) {
                 localStorage.setItem('apiKey', apiKey);
             } else {
                 localStorage.removeItem('apiKey');
@@ -275,7 +281,7 @@ export const Util = {
         }
     },
 
-    formatTimestamp(ts: number){
+    formatTimestamp(ts: number) {
         const date = new Date(ts * 1000);
         return date.toISOString();
     },
@@ -297,6 +303,13 @@ export const Util = {
             copy[key] = limits[key];
         }
         return copy;
+    },
+
+    applyChatFilter(text: string): string {
+        for (const regExp of CHAT_FILTER) {
+            text = text.replace(regExp, (match) => "#".repeat(match.length));
+        }
+        return text;
     },
 
     draftToPreviewPage(draftId: string, draft: IDraftState): string {

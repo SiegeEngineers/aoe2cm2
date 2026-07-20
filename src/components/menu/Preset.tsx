@@ -16,6 +16,7 @@ import * as actions from "../../actions";
 import {connect} from "react-redux";
 import DraftForPresetRow from "./DraftForPresetRow";
 import {Trans} from "react-i18next";
+import CustomName from "../draft/CustomName";
 
 interface IState {
     preset?: ModelPreset;
@@ -72,7 +73,7 @@ class Preset extends React.Component<IProps, IState> {
 
             return (<>
                     <div className='content box'>
-                        <h3 className="has-text-centered">{this.state.preset.name}</h3>
+                        <h3 className="has-text-centered"><CustomName name={this.state.preset.name} length={200}/></h3>
 
                         <TurnRow turns={this.state.preset.turns}/>
 

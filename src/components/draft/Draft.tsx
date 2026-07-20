@@ -22,6 +22,7 @@ import {RouteComponentProps} from "react-router";
 import HowItWorks from "../menu/HowItWorks";
 import ColorSchemeHelpers from "../../util/ColorSchemeHelpers";
 import PrivateDraftWarning from "../../containers/PrivateDraftWarning";
+import CustomName from "./CustomName";
 
 interface IProps extends WithTranslation, RouteComponentProps<any> {
     nameHost: string;
@@ -174,9 +175,9 @@ class Draft extends React.Component<IProps, IState> {
     }
 
     public render() {
-        let presetName: JSX.Element = <>{this.props.preset.name}</>;
+        let presetName: JSX.Element = <CustomName name={this.props.preset.name} length={200}/>;
         if(this.props.preset.presetId){
-            presetName = <Link to={'/preset/'+this.props.preset.presetId}>{presetName}</Link>;
+            presetName = <Link to={'/preset/'+this.props.preset.presetId}><CustomName name={this.props.preset.name} length={200}/></Link>;
         }
         const turns = this.props.preset.turns;
 

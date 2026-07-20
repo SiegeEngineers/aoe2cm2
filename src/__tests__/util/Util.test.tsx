@@ -96,3 +96,17 @@ it('Test getting random ID from zero DraftOptions', () => {
     const randomOption = Util.getRandomDraftOption(draftOptions);
     expect(randomOption.id).toEqual('RANDOM');
 });
+
+describe('test chat filter', () => {
+    it.each([
+        ["King of Niger", "King of Niger"],
+        ["King of the Nigger", "King of the ######"],
+        ["King of the nigger", "King of the ######"],
+        ["King of the Nigggger", "King of the ########"],
+        ["King of the N!gggger", "King of the ########"],
+        ["myniggarulez", "############"],
+        ["nice dock", "#### ####"],
+    ])("when the input is '%s'", (text: string, expected: string) => {
+        expect(Util.applyChatFilter(text)).toEqual(expected);
+    });
+});
