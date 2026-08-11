@@ -97,7 +97,9 @@ export class DraftServer {
             const roomLobby: string = 'lobby';
 
             socket.join(roomLobby);
-            fn(draftsStore.getRecentDrafts());
+            if (typeof fn === 'function') {
+                fn(draftsStore.getRecentDrafts());
+            }
         });
     }
 
@@ -199,10 +201,12 @@ export class DraftServer {
                 .in(roomGuest)
                 .in(roomSpec)
                 .emit("player_set_role", {name: assignedName, playerType: assignedRole});
-            fn({
-                ...draftsStore.getDraftViewsOrThrow(draftId).getDraftForPlayer(assignedRole),
-                yourPlayerType: assignedRole,
-            });
+            if (typeof fn === 'function') {
+                fn({
+                    ...draftsStore.getDraftViewsOrThrow(draftId).getDraftForPlayer(assignedRole),
+                    yourPlayerType: assignedRole,
+                });
+            }
         });
 
         socket.on("set_name", (message: ISetNameMessage, fn: () => void) => {
@@ -242,7 +246,9 @@ export class DraftServer {
                 .in(roomGuest)
                 .in(roomSpec)
                 .emit("player_set_name", {name: message.name, playerType: assignedRole});
-            fn();
+            if (typeof fn === 'function') {
+                fn();
+            }
         });
 
         socket.on("ready", (message: {}, fn: (dc: IDraftConfig) => void) => {
@@ -292,10 +298,12 @@ export class DraftServer {
                 .in(roomGuest)
                 .in(roomSpec)
                 .emit("player_ready", {playerType: assignedRole});
-            fn({
-                ...draftsStore.getDraftViewsOrThrow(draftId).getDraftForPlayer(assignedRole),
-                yourPlayerType: assignedRole
-            });
+            if (typeof fn === 'function') {
+                fn({
+                    ...draftsStore.getDraftViewsOrThrow(draftId).getDraftForPlayer(assignedRole),
+                    yourPlayerType: assignedRole
+                });
+            }
         });
 
         const validator = new Validator(draftsStore);

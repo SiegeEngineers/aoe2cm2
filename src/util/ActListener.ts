@@ -26,6 +26,9 @@ export class ActListener {
 
     actListener(draftsStore: DraftsStore, draftId: string, validateAndApply: (draftId: string, message: DraftEvent) => ValidationId[], socket: Socket, roomLobby: string, roomHost: string, roomGuest: string, roomSpec: string, skipSourceValidation = false) {
         return (message: PlayerEvent, fn: (retval: any) => void) => {
+            if (typeof fn !== "function") {
+                return;
+            }
             logger.info("Got act message: %s", JSON.stringify(message), {draftId});
 
             const assignedRole = Util.getAssignedRole(socket, roomHost, roomGuest);
