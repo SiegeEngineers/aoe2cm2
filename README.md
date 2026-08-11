@@ -9,7 +9,7 @@ and it is not endorsed by or affiliated with Microsoft.
 
 ## Setup
 
-The app runs on Node 16
+The app runs on Node 18
 
 ```bash
 cp presets.json.template presets.json
