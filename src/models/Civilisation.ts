@@ -76,6 +76,10 @@ enum Name {
     MAPUCHE = "Mapuche",
     MUISCA = "Muisca",
     TUPI = "Tupi",
+
+    DANES = "Danes",
+    SAXONS = "Saxons",
+    VARANGIANS = "Varangians",
 }
 
 class Civilisation extends DraftOption {
@@ -155,6 +159,10 @@ class Civilisation extends DraftOption {
     public static readonly MUISCA: Civilisation = new Civilisation(Name.MUISCA, GameVersion.THE_LAST_CHIEFTAINS);
     public static readonly TUPI: Civilisation = new Civilisation(Name.TUPI, GameVersion.THE_LAST_CHIEFTAINS);
 
+    public static readonly DANES: Civilisation = new Civilisation(Name.DANES, GameVersion.THE_VIKING_SAGAS);
+    public static readonly SAXONS: Civilisation = new Civilisation(Name.SAXONS, GameVersion.THE_VIKING_SAGAS);
+    public static readonly VARANGIANS: Civilisation = new Civilisation(Name.VARANGIANS, GameVersion.THE_VIKING_SAGAS);
+
 
     // DO NOT CHANGE THE ORDER OF ELEMENTS IN THIS ARRAY!!!
     // ONLY APPEND NEW CIVILISATIONS AT THE END!!!
@@ -219,11 +227,15 @@ class Civilisation extends DraftOption {
         Civilisation.MAPUCHE,
         Civilisation.MUISCA,
         Civilisation.TUPI,
+        Civilisation.DANES,
+        Civilisation.SAXONS,
+        Civilisation.VARANGIANS,
     ];
 
     public static readonly ALL_ACTIVE = Civilisation.ALL.filter(value => value.name !== Name.INDIANS
         && value.gameVersion != GameVersion.CHRONICLES_BATTLE_FOR_GREECE
         && value.gameVersion != GameVersion.CHRONICLES_ALEXANDER_THE_GREAT
+        && value.gameVersion != GameVersion.THE_VIKING_SAGAS
     );
 
     public readonly gameVersion: GameVersion;

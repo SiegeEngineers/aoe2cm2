@@ -782,5 +782,44 @@ Array [
     },
     "name": "Tupi",
   },
+  Civilisation {
+    "category": "default",
+    "gameVersion": 16,
+    "i18nPrefix": "civs.",
+    "id": "Danes",
+    "imageUrls": Object {
+      "animated_left": "/images/units-animated/danes-left.apng",
+      "animated_right": "/images/units-animated/danes-right.apng",
+      "emblem": "/images/civemblems/danes.png",
+      "unit": "/images/civs/danes.png",
+    },
+    "name": "Danes",
+  },
+  Civilisation {
+    "category": "default",
+    "gameVersion": 16,
+    "i18nPrefix": "civs.",
+    "id": "Saxons",
+    "imageUrls": Object {
+      "animated_left": "/images/units-animated/saxons-left.apng",
+      "animated_right": "/images/units-animated/saxons-right.apng",
+      "emblem": "/images/civemblems/saxons.png",
+      "unit": "/images/civs/saxons.png",
+    },
+    "name": "Saxons",
+  },
+  Civilisation {
+    "category": "default",
+    "gameVersion": 16,
+    "i18nPrefix": "civs.",
+    "id": "Varangians",
+    "imageUrls": Object {
+      "animated_left": "/images/units-animated/varangians-left.apng",
+      "animated_right": "/images/units-animated/varangians-right.apng",
+      "emblem": "/images/civemblems/varangians.png",
+      "unit": "/images/civs/varangians.png",
+    },
+    "name": "Varangians",
+  },
 ]
 `;

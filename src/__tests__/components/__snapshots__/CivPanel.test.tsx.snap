@@ -1500,6 +1500,81 @@ exports[`BAN CivPanels render correctly 60`] = `
 />
 `;
 
+exports[`BAN CivPanels render correctly 61`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 16,
+      "i18nPrefix": "civs.",
+      "id": "Danes",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/danes-left.apng",
+        "animated_right": "/images/units-animated/danes-right.apng",
+        "emblem": "/images/civemblems/danes.png",
+        "unit": "/images/civs/danes.png",
+      },
+      "name": "Danes",
+    }
+  }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`BAN CivPanels render correctly 62`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 16,
+      "i18nPrefix": "civs.",
+      "id": "Saxons",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/saxons-left.apng",
+        "animated_right": "/images/units-animated/saxons-right.apng",
+        "emblem": "/images/civemblems/saxons.png",
+        "unit": "/images/civs/saxons.png",
+      },
+      "name": "Saxons",
+    }
+  }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`BAN CivPanels render correctly 63`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 16,
+      "i18nPrefix": "civs.",
+      "id": "Varangians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/varangians-left.apng",
+        "animated_right": "/images/units-animated/varangians-right.apng",
+        "emblem": "/images/civemblems/varangians.png",
+        "unit": "/images/civs/varangians.png",
+      },
+      "name": "Varangians",
+    }
+  }
+  draftOptionPanelType="ban"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
 exports[`PICK CivPanels render correctly 1`] = `
 <DraftOptionPanel
   active={false}
@@ -2991,6 +3066,81 @@ exports[`PICK CivPanels render correctly 60`] = `
         "unit": "/images/civs/tupi.png",
       },
       "name": "Tupi",
+    }
+  }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 61`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 16,
+      "i18nPrefix": "civs.",
+      "id": "Danes",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/danes-left.apng",
+        "animated_right": "/images/units-animated/danes-right.apng",
+        "emblem": "/images/civemblems/danes.png",
+        "unit": "/images/civs/danes.png",
+      },
+      "name": "Danes",
+    }
+  }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 62`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 16,
+      "i18nPrefix": "civs.",
+      "id": "Saxons",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/saxons-left.apng",
+        "animated_right": "/images/units-animated/saxons-right.apng",
+        "emblem": "/images/civemblems/saxons.png",
+        "unit": "/images/civs/saxons.png",
+      },
+      "name": "Saxons",
+    }
+  }
+  draftOptionPanelType="pick"
+  iconStyle="units"
+  nextAction={0}
+  t={[Function]}
+/>
+`;
+
+exports[`PICK CivPanels render correctly 63`] = `
+<DraftOptionPanel
+  active={false}
+  draftOption={
+    Civilisation {
+      "category": "default",
+      "gameVersion": 16,
+      "i18nPrefix": "civs.",
+      "id": "Varangians",
+      "imageUrls": Object {
+        "animated_left": "/images/units-animated/varangians-left.apng",
+        "animated_right": "/images/units-animated/varangians-right.apng",
+        "emblem": "/images/civemblems/varangians.png",
+        "unit": "/images/civs/varangians.png",
+      },
+      "name": "Varangians",
     }
   }
   draftOptionPanelType="pick"
