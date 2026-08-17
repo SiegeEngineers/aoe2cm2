@@ -332,8 +332,8 @@
   },
   "preset": {
     "shareThisPreset": "Compartir este Borrador:",
-    "recentDraftsTitle": "Recent Drafts for this Preset",
-    "noDraftsAvailable": "No Drafts available."
+    "recentDraftsTitle": "Drafts Recientes para este Borrador",
+    "noDraftsAvailable": "No hay Drafts disponibles."
   },
   "presetEditor": {
     "helpAndInstructions": "Ayuda y instrucciónes",
@@ -362,11 +362,11 @@
       "unitImageUrl": "URL de la imágen de la unidad"
     }
   },
-  "topPrivateDraftWarning": "PRIVATE PRACTICE DRAFT – WILL NOT BE SAVED",
+  "topPrivateDraftWarning": "DRAFT PRIVADO – NO SE GUARDARÁ",
   "createNewDraft": "Crear un Draft",
-  "createNewPrivateDraft": "Create private practice Draft",
-  "privateDraftInfo1": "Will be deleted after completion",
-  "privateDraftInfo2": "Does not show up in Recent Drafts on the Spectate page",
+  "createNewPrivateDraft": "Create un Draft privado",
+  "privateDraftInfo1": "Será eliminado luego de finalizar",
+  "privateDraftInfo2": "No se mostrará en los Drafts recientes en la sección de Espectar",
   "createNewPreset": "Crear un nuevo Borrador",
   "customiseThisPreset": "Customizar este Borrador",
   "savePreset": "Guardar Borrador",
