@@ -33,7 +33,7 @@ class NewDraftButton extends React.Component<IProps, IState> {
                 <Trans i18nKey="createNewPrivateDraft">Create private practice Draft</Trans>
             </button>
             <ul className="is-size-7 mt-0">
-                <li><Trans i18nKey="privateDraftInfo1">Will be deleted after completion</Trans></li>
+                <li><del><Trans i18nKey="privateDraftInfo1">Will be deleted after completion</Trans></del> <i>actually, we'll save it for you</i></li>
                 <li><Trans i18nKey="privateDraftInfo2">Does not show up in Recent Drafts on the Spectate page</Trans></li>
             </ul>
             </>);

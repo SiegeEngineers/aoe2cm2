@@ -362,7 +362,7 @@
       "animatedUnitImageUrlRight": "URL da imgagem animada da unidade (direita)"
     }
   },
-  "topPrivateDraftWarning": "PRIVATE PRACTICE DRAFT – WILL NOT BE SAVED",
+  "topPrivateDraftWarning": "PRIVATE PRACTICE DRAFT",
   "createNewDraft": "Crie um novo draft a partir desta Definição",
   "createNewPrivateDraft": "Create private practice Draft",
   "privateDraftInfo1": "Will be deleted after completion",

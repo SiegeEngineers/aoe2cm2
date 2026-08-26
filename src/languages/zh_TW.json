@@ -363,7 +363,7 @@
       "animatedUnitImageUrlRight": "右方動態單位的圖片連結"
     }
   },
-  "topPrivateDraftWarning": "非公開Ban Pick – 不保留紀錄",
+  "topPrivateDraftWarning": "非公開Ban Pick",
   "createNewDraft": "用此規則建立BP",
   "createNewPrivateDraft": "建立非公開BP",
   "privateDraftInfo1": "完成後將刪除",

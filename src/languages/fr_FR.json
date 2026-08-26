@@ -361,7 +361,7 @@
       "animatedUnitImageUrlRight": "URL de l'unité animée (droite)"
     }
   },
-  "topPrivateDraftWarning": "DRAFT D'ENTRAÎNEMENT PRIVÉE – NE SERA PAS SAUVEGARDÉE",
+  "topPrivateDraftWarning": "DRAFT D'ENTRAÎNEMENT PRIVÉE",
   "createNewDraft": "Créer une nouvelle draft à partir de ce préréglage",
   "createNewPrivateDraft": "Créer une Draft d'entraînement privée",
   "privateDraftInfo1": "Sera supprimée une fois terminée",

@@ -404,7 +404,7 @@
       "categoryName": "Category"
     }
   },
-  "topPrivateDraftWarning": "PRIVATE PRACTICE DRAFT – WILL NOT BE SAVED",
+  "topPrivateDraftWarning": "PRIVATE PRACTICE DRAFT",
   "createNewDraft": "Create new draft from this Preset",
   "createNewPrivateDraft": "Create private practice Draft",
   "privateDraftInfo1": "Will be deleted after completion",

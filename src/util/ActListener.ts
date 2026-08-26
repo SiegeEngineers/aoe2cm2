@@ -217,11 +217,6 @@ export class ActListener {
         if (!draftViews.getActualDraft().hasNextAction()) {
             const draft = draftsStore.getDraftOrThrow(draftId);
             const savedDraft = Draft.from(draft);
-            if (draft.private) {
-                logger.info("Discarding private draft: %s", JSON.stringify(savedDraft), {draftId});
-                draftsStore.finishDraft(draftId);
-                return;
-            }
             savedDraft.hostConnected = false;
             savedDraft.guestConnected = false;
             savedDraft.startTimestamp = 0;
@@ -241,7 +236,9 @@ export class ActListener {
                 }
                 if (err) throw err;
                 logger.info(`Draft saved to ${draftPath}`, {draftId});
-                if (draft.preset.presetId) {
+                if (draftsStore.draftIsHidden(draftId)) {
+                    logger.info(`Draft is hidden, not adding draftId to preset drafts`, {draftId});
+                } else if (draft.preset.presetId) {
                     const presetId = draft.preset.presetId;
                     if (presetId.match(/^[A-Za-z0-9_-]+$/)) {
                         const dataPath = path.join(presetDraftsDirectory, presetId + '.json');

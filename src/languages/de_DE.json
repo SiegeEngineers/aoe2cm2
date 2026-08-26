@@ -394,7 +394,7 @@
       "categoryName": "Kategorie"
     }
   },
-  "topPrivateDraftWarning": "PRIVATER ÜBUNGS-DRAFT – WIRD NICHT GESPEICHERT",
+  "topPrivateDraftWarning": "PRIVATER ÜBUNGS-DRAFT",
   "createNewDraft": "Neuen Draft mit diesem Preset erstellen",
   "createNewPrivateDraft": "Neuen privaten Übungs-Draft erstellen",
   "privateDraftInfo1": "Wird gelöscht, sobald der Draft abgeschlossen ist",

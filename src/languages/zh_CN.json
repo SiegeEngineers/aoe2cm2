@@ -362,7 +362,7 @@
       "animatedUnitImageUrlRight": "动态单位（右） 图片链接"
     }
   },
-  "topPrivateDraftWarning": "练习用的私密BP - 不存留记录",
+  "topPrivateDraftWarning": "练习用的私密BP",
   "createNewDraft": "用此预设建立",
   "createNewPrivateDraft": "建立练习用私密BP",
   "privateDraftInfo1": "用完即自动删除",

@@ -1,11 +1,11 @@
 import * as React from "react";
-import {Trans} from "react-i18next";
+import {Trans, withTranslation} from "react-i18next";
 
 interface IProps {
     display: boolean | undefined,
 }
 
-class CustomName extends React.Component<IProps, object> {
+class PrivateDraftWarning extends React.Component<IProps, object> {
     public render() {
         if (!this.props.display) {
             return null;
@@ -16,4 +16,4 @@ class CustomName extends React.Component<IProps, object> {
     }
 }
 
-export default CustomName;
+export default withTranslation()(PrivateDraftWarning);
