@@ -104,6 +104,30 @@ show all hidden snipes to all players and spectators
 
 reveal picks, bans, and snipes
 
+## Option pools
+
+A preset can split its draft options into several named pools, so that a single
+draft covers more than one kind of option, typically maps and
+civilisations. Each turn belongs to exactly one pool and only accepts options
+from it, and the pools may be interleaved freely, for example civilisation bans,
+then a map draft, then civilisation picks. An admin `PAUSE` turn between two
+pools holds the draft until both captains are ready again.
+
+Pools are created in the preset editor with *Split into several option pools*,
+and each turn then gets a *Pool* dropdown. Two existing presets can also be
+joined into one with *Combine into one draft* on a preset's page. Draft option
+ids have to be unique across pools. Presets without pools behave exactly as
+before and are stored unchanged.
+
+A draft with more than one pool puts the captains down the sides of the page and
+the options of the pool being drafted in the middle, and sizes the panels to the
+room the screen leaves them, so that a long draft still fits on one screen.
+
+Two examples ship with the app, served the same way `simple.json` is.
+`presets/pools.json` is nine turns at `/preset/pools`: five maps, a pause, then
+civilisations. `presets/tournament.json` at `/preset/tournament` is the shape a
+real tournament draft has, 57 turns over fifteen maps and the civilisation set.
+
 ## Validations
 
 Each action gets validated by the server before it is broadcasted.
