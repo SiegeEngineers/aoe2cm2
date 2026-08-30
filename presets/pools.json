@@ -1,0 +1,146 @@
+{
+  "name": "Maps and Civilisations",
+  "presetId": "pools",
+  "segments": [
+    {
+      "id": "default",
+      "name": "Maps",
+      "draftOptions": [
+        {
+          "id": "arabia",
+          "name": "Arabia",
+          "imageUrls": {
+            "unit": "/images/maps/arabia.png",
+            "emblem": "/images/maps/arabia.png",
+            "animated_left": "/images/maps/arabia.png",
+            "animated_right": "/images/maps/arabia.png"
+          },
+          "i18nPrefix": "",
+          "category": "default"
+        },
+        {
+          "id": "arena",
+          "name": "Arena",
+          "imageUrls": {
+            "unit": "/images/maps/arena.png",
+            "emblem": "/images/maps/arena.png",
+            "animated_left": "/images/maps/arena.png",
+            "animated_right": "/images/maps/arena.png"
+          },
+          "i18nPrefix": "",
+          "category": "default"
+        },
+        {
+          "id": "black-forest",
+          "name": "Black Forest",
+          "imageUrls": {
+            "unit": "/images/maps/black-forest.png",
+            "emblem": "/images/maps/black-forest.png",
+            "animated_left": "/images/maps/black-forest.png",
+            "animated_right": "/images/maps/black-forest.png"
+          },
+          "i18nPrefix": "",
+          "category": "default"
+        },
+        {
+          "id": "islands",
+          "name": "Islands",
+          "imageUrls": {
+            "unit": "/images/maps/islands.png",
+            "emblem": "/images/maps/islands.png",
+            "animated_left": "/images/maps/islands.png",
+            "animated_right": "/images/maps/islands.png"
+          },
+          "i18nPrefix": "",
+          "category": "default"
+        },
+        {
+          "id": "nomad",
+          "name": "Nomad",
+          "imageUrls": {
+            "unit": "/images/maps/nomad.png",
+            "emblem": "/images/maps/nomad.png",
+            "animated_left": "/images/maps/nomad.png",
+            "animated_right": "/images/maps/nomad.png"
+          },
+          "i18nPrefix": "",
+          "category": "default"
+        }
+      ]
+    },
+    {
+      "id": "segment-2",
+      "name": "Civilisations",
+      "encodedCivilisations": "7ffffffff"
+    }
+  ],
+  "turns": [
+    {
+      "player": "HOST",
+      "action": "BAN",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false
+    },
+    {
+      "player": "GUEST",
+      "action": "BAN",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false
+    },
+    {
+      "player": "HOST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false
+    },
+    {
+      "player": "GUEST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false
+    },
+    {
+      "player": "NONE",
+      "action": "PAUSE",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false
+    },
+    {
+      "player": "HOST",
+      "action": "BAN",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "GUEST",
+      "action": "BAN",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "GUEST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "HOST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    }
+  ]
+}

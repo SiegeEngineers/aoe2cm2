@@ -1,0 +1,642 @@
+{
+  "name": "Maps and civilisations, tournament length",
+  "presetId": "tournament",
+  "segments": [
+    {
+      "id": "default",
+      "name": "Maps",
+      "draftOptions": [
+        {
+          "id": "arabia",
+          "name": "Arabia",
+          "imageUrls": {
+            "unit": "/images/maps/arabia.png",
+            "emblem": "/images/maps/arabia.png",
+            "animated_left": "/images/maps/arabia.png",
+            "animated_right": "/images/maps/arabia.png"
+          },
+          "i18nPrefix": "",
+          "category": "default"
+        },
+        {
+          "id": "arena",
+          "name": "Arena",
+          "imageUrls": {
+            "unit": "/images/maps/arena.png",
+            "emblem": "/images/maps/arena.png",
+            "animated_left": "/images/maps/arena.png",
+            "animated_right": "/images/maps/arena.png"
+          },
+          "i18nPrefix": "",
+          "category": "default"
+        },
+        {
+          "id": "black-forest",
+          "name": "Black Forest",
+          "imageUrls": {
+            "unit": "/images/maps/black-forest.png",
+            "emblem": "/images/maps/black-forest.png",
+            "animated_left": "/images/maps/black-forest.png",
+            "animated_right": "/images/maps/black-forest.png"
+          },
+          "i18nPrefix": "",
+          "category": "default"
+        },
+        {
+          "id": "golden-pit",
+          "name": "Golden Pit",
+          "imageUrls": {
+            "unit": "/images/maps/golden-pit.png",
+            "emblem": "/images/maps/golden-pit.png",
+            "animated_left": "/images/maps/golden-pit.png",
+            "animated_right": "/images/maps/golden-pit.png"
+          },
+          "i18nPrefix": "",
+          "category": "default"
+        },
+        {
+          "id": "gold-rush",
+          "name": "Gold Rush",
+          "imageUrls": {
+            "unit": "/images/maps/gold-rush.png",
+            "emblem": "/images/maps/gold-rush.png",
+            "animated_left": "/images/maps/gold-rush.png",
+            "animated_right": "/images/maps/gold-rush.png"
+          },
+          "i18nPrefix": "",
+          "category": "default"
+        },
+        {
+          "id": "hideout",
+          "name": "Hideout",
+          "imageUrls": {
+            "unit": "/images/maps/hideout.png",
+            "emblem": "/images/maps/hideout.png",
+            "animated_left": "/images/maps/hideout.png",
+            "animated_right": "/images/maps/hideout.png"
+          },
+          "i18nPrefix": "",
+          "category": "default"
+        },
+        {
+          "id": "islands",
+          "name": "Islands",
+          "imageUrls": {
+            "unit": "/images/maps/islands.png",
+            "emblem": "/images/maps/islands.png",
+            "animated_left": "/images/maps/islands.png",
+            "animated_right": "/images/maps/islands.png"
+          },
+          "i18nPrefix": "",
+          "category": "default"
+        },
+        {
+          "id": "land-madness",
+          "name": "Land Madness",
+          "imageUrls": {
+            "unit": "/images/maps/land-madness.png",
+            "emblem": "/images/maps/land-madness.png",
+            "animated_left": "/images/maps/land-madness.png",
+            "animated_right": "/images/maps/land-madness.png"
+          },
+          "i18nPrefix": "",
+          "category": "default"
+        },
+        {
+          "id": "mediterranean",
+          "name": "Mediterranean",
+          "imageUrls": {
+            "unit": "/images/maps/mediterranean.png",
+            "emblem": "/images/maps/mediterranean.png",
+            "animated_left": "/images/maps/mediterranean.png",
+            "animated_right": "/images/maps/mediterranean.png"
+          },
+          "i18nPrefix": "",
+          "category": "default"
+        },
+        {
+          "id": "megarandom",
+          "name": "MegaRandom",
+          "imageUrls": {
+            "unit": "/images/maps/megarandom.png",
+            "emblem": "/images/maps/megarandom.png",
+            "animated_left": "/images/maps/megarandom.png",
+            "animated_right": "/images/maps/megarandom.png"
+          },
+          "i18nPrefix": "",
+          "category": "default"
+        },
+        {
+          "id": "mountain-pass",
+          "name": "Mountain Pass",
+          "imageUrls": {
+            "unit": "/images/maps/mountain-pass.png",
+            "emblem": "/images/maps/mountain-pass.png",
+            "animated_left": "/images/maps/mountain-pass.png",
+            "animated_right": "/images/maps/mountain-pass.png"
+          },
+          "i18nPrefix": "",
+          "category": "default"
+        },
+        {
+          "id": "nomad",
+          "name": "Nomad",
+          "imageUrls": {
+            "unit": "/images/maps/nomad.png",
+            "emblem": "/images/maps/nomad.png",
+            "animated_left": "/images/maps/nomad.png",
+            "animated_right": "/images/maps/nomad.png"
+          },
+          "i18nPrefix": "",
+          "category": "default"
+        },
+        {
+          "id": "runestones",
+          "name": "Runestones",
+          "imageUrls": {
+            "unit": "/images/maps/runestones.png",
+            "emblem": "/images/maps/runestones.png",
+            "animated_left": "/images/maps/runestones.png",
+            "animated_right": "/images/maps/runestones.png"
+          },
+          "i18nPrefix": "",
+          "category": "default"
+        },
+        {
+          "id": "serengeti",
+          "name": "Serengeti",
+          "imageUrls": {
+            "unit": "/images/maps/serengeti.png",
+            "emblem": "/images/maps/serengeti.png",
+            "animated_left": "/images/maps/serengeti.png",
+            "animated_right": "/images/maps/serengeti.png"
+          },
+          "i18nPrefix": "",
+          "category": "default"
+        },
+        {
+          "id": "team-islands",
+          "name": "Team Islands",
+          "imageUrls": {
+            "unit": "/images/maps/team-islands.png",
+            "emblem": "/images/maps/team-islands.png",
+            "animated_left": "/images/maps/team-islands.png",
+            "animated_right": "/images/maps/team-islands.png"
+          },
+          "i18nPrefix": "",
+          "category": "default"
+        }
+      ]
+    },
+    {
+      "id": "segment-2",
+      "name": "Civilisations",
+      "encodedCivilisations": "e3e3fffffffefff"
+    }
+  ],
+  "turns": [
+    {
+      "player": "HOST",
+      "action": "BAN",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false
+    },
+    {
+      "player": "GUEST",
+      "action": "BAN",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false
+    },
+    {
+      "player": "GUEST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false
+    },
+    {
+      "player": "HOST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false
+    },
+    {
+      "player": "HOST",
+      "action": "BAN",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false
+    },
+    {
+      "player": "GUEST",
+      "action": "BAN",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false
+    },
+    {
+      "player": "GUEST",
+      "action": "BAN",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false
+    },
+    {
+      "player": "HOST",
+      "action": "BAN",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false
+    },
+    {
+      "player": "HOST",
+      "action": "BAN",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false
+    },
+    {
+      "player": "GUEST",
+      "action": "BAN",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false
+    },
+    {
+      "player": "GUEST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false
+    },
+    {
+      "player": "HOST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false
+    },
+    {
+      "player": "NONE",
+      "action": "PAUSE",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false
+    },
+    {
+      "player": "NONE",
+      "action": "BAN",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "NONE",
+      "action": "BAN",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "NONE",
+      "action": "BAN",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "NONE",
+      "action": "BAN",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "NONE",
+      "action": "BAN",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "NONE",
+      "action": "BAN",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "NONE",
+      "action": "BAN",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "NONE",
+      "action": "BAN",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "NONE",
+      "action": "BAN",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "NONE",
+      "action": "BAN",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "HOST",
+      "action": "BAN",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "GUEST",
+      "action": "BAN",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "GUEST",
+      "action": "BAN",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "HOST",
+      "action": "BAN",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "HOST",
+      "action": "BAN",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "GUEST",
+      "action": "BAN",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "HOST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "GUEST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "GUEST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "HOST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "HOST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "GUEST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "GUEST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "HOST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "HOST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "GUEST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "GUEST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "HOST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "HOST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "GUEST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "GUEST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "HOST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "HOST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "GUEST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "GUEST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "HOST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "HOST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "GUEST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "GUEST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "HOST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "HOST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "GUEST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "GUEST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    },
+    {
+      "player": "HOST",
+      "action": "PICK",
+      "exclusivity": "GLOBAL",
+      "hidden": false,
+      "parallel": false,
+      "segmentId": "segment-2"
+    }
+  ]
+}
