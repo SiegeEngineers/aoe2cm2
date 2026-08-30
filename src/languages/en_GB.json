@@ -376,6 +376,13 @@
     "noDraftsAvailable": "No Drafts available."
   },
   "presetEditor": {
+    "splitIntoSegments": "Split into several option pools",
+    "addSegment": "+ Add pool",
+    "removeSegment": "Remove pool",
+    "segmentName": "Pool name",
+    "segmentDefaultName": "Pool {{number}}",
+    "turnSegment": "Pool",
+    "newInPool": "New in {{pool}}",
     "helpAndInstructions": "Help and Instructions",
     "availableDraftOptions": "Available Draft Options",
     "aoe1Civs": "AoE1 civs",

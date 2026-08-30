@@ -18,7 +18,7 @@ class AsOpponentCheckbox extends React.Component<Props, object> {
             <input type='checkbox' checked={this.props.turn.player !== this.props.turn.executingPlayer} onChange={() => {
                 const t = this.props.turn;
                 const newPlayer = (t.player === Player.HOST) ? Player.GUEST : Player.HOST;
-                const newTurn = new Turn(newPlayer, t.action, t.exclusivity, t.hidden, t.parallel, t.executingPlayer);
+                const newTurn = new Turn(newPlayer, t.action, t.exclusivity, t.hidden, t.parallel, t.executingPlayer, undefined, undefined, t.segmentId);
                 this.props.onValueChange(newTurn, this.props.index)
             }}/>&nbsp;AS&nbsp;OPPONENT
         </label>

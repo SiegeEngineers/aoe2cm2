@@ -6,6 +6,7 @@ import {Dispatch} from "redux";
 import * as actions from "../../actions";
 import {ISetEditorDraftOptions} from "../../actions";
 import {connect} from "react-redux";
+import {EditorSegments} from "../../util/EditorSegments";
 import Preset from "../../models/Preset";
 import DragIcon from "mdi-react/DragIcon";
 import DraftOptionPanel from "../draft/DraftOptionPanel";
@@ -15,16 +16,17 @@ import Player from "../../constants/Player";
 interface IProps extends WithTranslation {
     draftOptionIndex: number,
     preset: Preset | null,
+    segmentOptions: DraftOption[],
     onPresetDraftOptionsChange: (value: DraftOption[]) => ISetEditorDraftOptions
 }
 
 class PresetOption extends React.Component<IProps, object> {
 
     public render() {
-        if (this.props.preset === null || this.props.preset === undefined || this.props.preset.options === undefined) {
+        if (this.props.preset === null || this.props.preset === undefined) {
             return null;
         }
-        const draftOption = this.props.preset.options[this.props.draftOptionIndex];
+        const draftOption = this.props.segmentOptions[this.props.draftOptionIndex];
         return (
             <div className={'columns'}>
                 <div className="column is-1 has-text-vcentered is-size-5 has-text-grey has-text-left">
@@ -148,10 +150,10 @@ class PresetOption extends React.Component<IProps, object> {
                 </div>
                 <div className="column is-1 has-text-vcentered flex-justify-center">
                     <button className="delete is-medium" onClick={() => {
-                        if (this.props.preset === undefined || this.props.preset === null || this.props.preset.options === undefined) {
+                        if (this.props.preset === undefined || this.props.preset === null) {
                             return;
                         }
-                        const draftOptions = [...this.props.preset.options];
+                        const draftOptions = [...this.props.segmentOptions];
                         draftOptions.splice(this.props.draftOptionIndex, 1);
                         this.props.onPresetDraftOptionsChange(draftOptions);
                     }}/>
@@ -161,20 +163,20 @@ class PresetOption extends React.Component<IProps, object> {
     }
 
     private updateName(value: string) {
-        if (this.props.preset === null || this.props.preset === undefined || this.props.preset.options === undefined) {
+        if (this.props.preset === null || this.props.preset === undefined) {
             return;
         }
-        const draftOptions = [...this.props.preset?.options];
+        const draftOptions = [...this.props.segmentOptions];
         const oldDraftOption = draftOptions[this.props.draftOptionIndex];
         draftOptions[this.props.draftOptionIndex] = new DraftOption(value, value, oldDraftOption.imageUrls);
         this.props.onPresetDraftOptionsChange(draftOptions);
     }
 
     private updateImageUrlUnit(value: string) {
-        if (this.props.preset === null || this.props.preset === undefined || this.props.preset.options === undefined) {
+        if (this.props.preset === null || this.props.preset === undefined) {
             return;
         }
-        const draftOptions = [...this.props.preset?.options];
+        const draftOptions = [...this.props.segmentOptions];
         const oldDraftOption = draftOptions[this.props.draftOptionIndex];
         draftOptions[this.props.draftOptionIndex] = new DraftOption(oldDraftOption.id, oldDraftOption.name, {
             unit: value,
@@ -186,10 +188,10 @@ class PresetOption extends React.Component<IProps, object> {
     }
 
     private updateImageUrlEmblem(value: string) {
-        if (this.props.preset === null || this.props.preset === undefined || this.props.preset.options === undefined) {
+        if (this.props.preset === null || this.props.preset === undefined) {
             return;
         }
-        const draftOptions = [...this.props.preset?.options];
+        const draftOptions = [...this.props.segmentOptions];
         const oldDraftOption = draftOptions[this.props.draftOptionIndex];
         draftOptions[this.props.draftOptionIndex] = new DraftOption(oldDraftOption.id, oldDraftOption.name, {
             unit: oldDraftOption.imageUrls.unit,
@@ -201,10 +203,10 @@ class PresetOption extends React.Component<IProps, object> {
     }
 
     private updateImageUrlAnimatedLeft(value: string) {
-        if (this.props.preset === null || this.props.preset === undefined || this.props.preset.options === undefined) {
+        if (this.props.preset === null || this.props.preset === undefined) {
             return;
         }
-        const draftOptions = [...this.props.preset?.options];
+        const draftOptions = [...this.props.segmentOptions];
         const oldDraftOption = draftOptions[this.props.draftOptionIndex];
         draftOptions[this.props.draftOptionIndex] = new DraftOption(oldDraftOption.id, oldDraftOption.name, {
             unit: oldDraftOption.imageUrls.unit,
@@ -216,10 +218,10 @@ class PresetOption extends React.Component<IProps, object> {
     }
 
     private updateImageUrlAnimatedRight(value: string) {
-        if (this.props.preset === null || this.props.preset === undefined || this.props.preset.options === undefined) {
+        if (this.props.preset === null || this.props.preset === undefined) {
             return;
         }
-        const draftOptions = [...this.props.preset?.options];
+        const draftOptions = [...this.props.segmentOptions];
         const oldDraftOption = draftOptions[this.props.draftOptionIndex];
         draftOptions[this.props.draftOptionIndex] = new DraftOption(oldDraftOption.id, oldDraftOption.name, {
             unit: oldDraftOption.imageUrls.unit,
@@ -230,10 +232,10 @@ class PresetOption extends React.Component<IProps, object> {
         this.props.onPresetDraftOptionsChange(draftOptions);
     }
     private updateCategory(value: string) {
-        if (this.props.preset === null || this.props.preset === undefined || this.props.preset.options === undefined) {
+        if (this.props.preset === null || this.props.preset === undefined) {
             return;
         }
-        const draftOptions = [...this.props.preset?.options];
+        const draftOptions = [...this.props.segmentOptions];
         const oldDraftOption = draftOptions[this.props.draftOptionIndex];
         draftOptions[this.props.draftOptionIndex] = new DraftOption(oldDraftOption.id, oldDraftOption.name, oldDraftOption.imageUrls, oldDraftOption.i18nPrefix, value);
         this.props.onPresetDraftOptionsChange(draftOptions);
@@ -242,7 +244,8 @@ class PresetOption extends React.Component<IProps, object> {
 
 export function mapStateToProps(state: ApplicationState) {
     return {
-        preset: state.presetEditor.editorPreset
+        preset: state.presetEditor.editorPreset,
+        segmentOptions: EditorSegments.activeOptions(state)
     }
 }
 

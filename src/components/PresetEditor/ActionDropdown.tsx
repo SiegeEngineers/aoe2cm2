@@ -47,7 +47,7 @@ class ActionDropdown extends React.Component<Props, object> {
                         player = Player.HOST;
                     }
                 }
-                const newTurn = new Turn(player, newAction, t.exclusivity, hidden, t.parallel, t.executingPlayer);
+                const newTurn = new Turn(player, newAction, t.exclusivity, hidden, t.parallel, t.executingPlayer, undefined, undefined, t.segmentId);
                 this.props.onValueChange(newTurn, this.props.index)
             }}>{options}
             </select>

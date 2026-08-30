@@ -47,14 +47,14 @@ class TurnCategoriesInput extends React.Component<Props, object> {
 
     private updateAllowedCategories(value: string) {
         const t = this.props.turn;
-        const newTurn = new Turn(t.player, t.action, t.exclusivity, t.hidden, t.parallel, t.executingPlayer, value.split(this.delimiter), t.id);
+        const newTurn = new Turn(t.player, t.action, t.exclusivity, t.hidden, t.parallel, t.executingPlayer, value.split(this.delimiter), t.id, t.segmentId);
         this.props.onValueChange(newTurn, this.props.index);
     }
 
     private setAllCategoriesAsAllowed() {
         const categories = [...new Set(this.props.preset?.options.map(value => value.category))].sort();
         const t = this.props.turn;
-        const newTurn = new Turn(t.player, t.action, t.exclusivity, t.hidden, t.parallel, t.executingPlayer, categories, t.id);
+        const newTurn = new Turn(t.player, t.action, t.exclusivity, t.hidden, t.parallel, t.executingPlayer, categories, t.id, t.segmentId);
         this.props.onValueChange(newTurn, this.props.index);
     }
 }

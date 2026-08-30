@@ -7,11 +7,13 @@ import DraftOption from "../../models/DraftOption";
 import {ApplicationState} from "../../types";
 import {Dispatch} from "redux";
 import {connect} from "react-redux";
+import {EditorSegments} from "../../util/EditorSegments";
 import PresetOption from "./PresetOption";
 import {ReactSortable} from "react-sortablejs";
 
 interface Props extends WithTranslation {
     preset: Preset | null,
+    segmentOptions: DraftOption[],
     onPresetDraftOptionsChange: (value: DraftOption[]) => ISetEditorDraftOptions
 }
 
@@ -22,7 +24,7 @@ class PresetEditorCustomOptions extends React.Component<Props, object> {
             return null;
         }
 
-        const presetOptions = this.props.preset.options;
+        const presetOptions = this.props.segmentOptions;
 
         const options = presetOptions.map((value: DraftOption, index: number) => <PresetOption draftOptionIndex={index}
                                                                                                key={index}/>);
@@ -59,7 +61,7 @@ class PresetEditorCustomOptions extends React.Component<Props, object> {
         }
         this.props.onPresetDraftOptionsChange(
             [
-                ...this.props.preset.options,
+                ...this.props.segmentOptions,
                 new DraftOption('', '', {
                     unit: '',
                     emblem: '',
@@ -73,7 +75,8 @@ class PresetEditorCustomOptions extends React.Component<Props, object> {
 
 export function mapStateToProps(state: ApplicationState) {
     return {
-        preset: state.presetEditor.editorPreset
+        preset: state.presetEditor.editorPreset,
+        segmentOptions: EditorSegments.activeOptions(state)
     }
 }
 

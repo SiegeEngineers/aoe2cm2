@@ -9,6 +9,7 @@ import Preset from "../models/Preset";
 import Turn from "../models/Turn";
 import {ColorScheme} from "../constants/ColorScheme";
 import DraftOption from "../models/DraftOption";
+import Segment from "../models/Segment";
 
 export interface IActionCompleted {
     type: ServerActions.EXECUTE_ACTION,
@@ -175,6 +176,16 @@ export interface ISetEditorDraftOptions {
     value: DraftOption[]
 }
 
+export interface ISetEditorSegments {
+    type: Actions.SET_EDITOR_SEGMENTS
+    value: Segment[]
+}
+
+export interface ISetEditorActiveSegment {
+    type: Actions.SET_EDITOR_ACTIVE_SEGMENT
+    value: number
+}
+
 export interface ISetEditorCategoryLimitPick {
     type: Actions.SET_EDITOR_CATEGORY_LIMIT_PICK
     key: string
@@ -268,6 +279,8 @@ export type PresetEditorAction = ISetEditorPreset
     | ISetEditorTurnOrder
     | ISetEditorName
     | ISetEditorDraftOptions
+    | ISetEditorSegments
+    | ISetEditorActiveSegment
     | ISetEditorCategoryLimitPick
     | ISetEditorCategoryLimitBan;
 
@@ -501,6 +514,20 @@ export function setEditorDraftOptions(value: DraftOption[]): ISetEditorDraftOpti
     return {
         value,
         type: Actions.SET_EDITOR_DRAFT_OPTIONS
+    }
+}
+
+export function setEditorSegments(value: Segment[]): ISetEditorSegments {
+    return {
+        value,
+        type: Actions.SET_EDITOR_SEGMENTS
+    }
+}
+
+export function setEditorActiveSegment(value: number): ISetEditorActiveSegment {
+    return {
+        value,
+        type: Actions.SET_EDITOR_ACTIVE_SEGMENT
     }
 }
 
