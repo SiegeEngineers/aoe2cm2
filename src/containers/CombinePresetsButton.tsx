@@ -1,0 +1,19 @@
+import {ApplicationState} from '../types';
+import {connect} from 'react-redux';
+import CombinePresetsButton from "../components/menu/CombinePresetsButton";
+import Preset from "../models/Preset";
+import * as actions from "../actions";
+import {Dispatch} from "react";
+
+
+export function mapStateToProps(state: ApplicationState) {
+    return {};
+}
+
+export function mapDispatchToProps(dispatch: Dispatch<actions.Action>) {
+    return {
+        onSetEditorPreset: (preset: Preset) => dispatch(actions.setEditorPreset(preset)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CombinePresetsButton);

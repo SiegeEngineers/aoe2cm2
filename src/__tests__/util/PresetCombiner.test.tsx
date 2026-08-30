@@ -1,0 +1,86 @@
+import Preset from "../../models/Preset";
+import Turn from "../../models/Turn";
+import DraftOption from "../../models/DraftOption";
+import Player from "../../constants/Player";
+import Action from "../../constants/Action";
+import Exclusivity from "../../constants/Exclusivity";
+import {PresetCombiner} from "../../util/PresetCombiner";
+import {Validator} from "../../models/Validator";
+
+const pick = (player: Player) => new Turn(player, Action.PICK, Exclusivity.GLOBAL);
+const maps = () => new Preset('Maps', [new DraftOption('arabia'), new DraftOption('arena')],
+    [pick(Player.HOST), pick(Player.GUEST)]);
+const civs = () => new Preset('Civilisations', [new DraftOption('Franks'), new DraftOption('Britons')],
+    [pick(Player.GUEST), pick(Player.HOST)]);
+
+it('combines two presets into one with a pool each', () => {
+    const combined = PresetCombiner.combine(maps(), civs(), 'Maps + Civilisations');
+    const segments = combined.segmentsOrDefault();
+    expect(segments.map(value => value.name)).toEqual(['Maps', 'Civilisations']);
+    expect(segments[0].options.map(value => value.id)).toEqual(['arabia', 'arena']);
+    expect(segments[1].options.map(value => value.id)).toEqual(['Franks', 'Britons']);
+});
+
+it('keeps the turns of both presets in order and pauses between them', () => {
+    const combined = PresetCombiner.combine(maps(), civs(), 'Maps + Civilisations');
+    expect(combined.turns.map(value => value.action)).toEqual(
+        [Action.PICK, Action.PICK, Action.PAUSE, Action.PICK, Action.PICK]);
+    expect(combined.turns.map(value => value.segmentIdOrDefault())).toEqual(
+        ['default', 'default', 'default', 'segment-2', 'segment-2']);
+    expect(combined.turns.map(value => value.player)).toEqual(
+        [Player.HOST, Player.GUEST, Player.NONE, Player.GUEST, Player.HOST]);
+});
+
+it('produces a preset the server accepts', () => {
+    const combined = PresetCombiner.combine(maps(), civs(), 'Maps + Civilisations');
+    expect(Validator.validatePreset(combined)).toEqual([]);
+});
+
+it('does not carry the turn ids of either preset into the combined one', () => {
+    const shared = new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, false, Player.HOST,
+        ['default'], 'shared-id');
+    const first = new Preset('First', [new DraftOption('arabia')], [shared]);
+    const second = new Preset('Second', [new DraftOption('Franks')], [shared]);
+    const combined = PresetCombiner.combine(first, second, 'Both');
+    expect(combined.turns.map(value => value.id)).not.toContain('shared-id');
+});
+
+it('reports a category limit that would reach the other preset', () => {
+    const limited = new Preset('Maps', [new DraftOption('arabia')], [pick(Player.HOST)], undefined,
+        {pick: {default: 2}, ban: {}});
+    const unlimited = new Preset('Civs', [new DraftOption('Franks')], [pick(Player.GUEST)]);
+    // Both presets leave their options in the default category, so the limit would bind both halves.
+    expect(PresetCombiner.leakingCategories(limited, unlimited)).toEqual(['default']);
+});
+
+it('leaves presets alone whose limited categories the other one does not use', () => {
+    const maps = new Preset('Maps', [new DraftOption('arabia', 'arabia', undefined, '', 'land')],
+        [pick(Player.HOST)], undefined, {pick: {land: 2}, ban: {}});
+    const civs = new Preset('Civs', [new DraftOption('Franks', 'Franks', undefined, '', 'civ')],
+        [pick(Player.GUEST)]);
+    expect(PresetCombiner.leakingCategories(maps, civs)).toEqual([]);
+});
+
+it('takes the looser of two limits on the same category', () => {
+    const first = new Preset('First', [new DraftOption('arabia')], [pick(Player.HOST)], undefined,
+        {pick: {default: 1}, ban: {}});
+    const second = new Preset('Second', [new DraftOption('Franks')], [pick(Player.GUEST)], undefined,
+        {pick: {default: 3}, ban: {other: 2}});
+    const combined = PresetCombiner.combine(first, second, 'Both');
+    expect(combined.categoryLimits).toEqual({pick: {default: 3}, ban: {other: 2}});
+});
+
+it('reports option ids that both presets use', () => {
+    const clashing = new Preset('Other maps', [new DraftOption('arabia')], [pick(Player.HOST)]);
+    expect(PresetCombiner.sharedOptionIds(maps(), clashing)).toEqual(['arabia']);
+    expect(PresetCombiner.sharedOptionIds(maps(), civs())).toEqual([]);
+});
+
+it('keeps the category limits of both presets', () => {
+    const first = new Preset('Maps', [new DraftOption('arabia')], [pick(Player.HOST)], undefined,
+        {pick: {default: 2}, ban: {}});
+    const second = new Preset('Civilisations', [new DraftOption('Franks')], [pick(Player.GUEST)], undefined,
+        {pick: {}, ban: {default: 1}});
+    const combined = PresetCombiner.combine(first, second, 'Both');
+    expect(combined.categoryLimits).toEqual({pick: {default: 2}, ban: {default: 1}});
+});

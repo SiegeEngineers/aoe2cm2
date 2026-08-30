@@ -375,6 +375,15 @@
     "recentDraftsTitle": "Recent Drafts for this Preset",
     "noDraftsAvailable": "No Drafts available."
   },
+  "combinePresets": {
+    "explanation": "Play this preset and another one as a single draft, each on its own option pool, with a pause in between.",
+    "placeholder": "Other preset code",
+    "action": "Combine into one draft",
+    "notFound": "There is no preset with the code {{code}}.",
+    "sharedOptions": "Both presets use these draft options: {{options}}. Every option has to belong to a single pool.",
+    "alreadySplit": "A preset that is already split into option pools cannot be combined with another one.",
+    "sharedCategories": "A category limit is spent over the whole draft, so {{categories}} would also limit the other preset. Remove the limit, or give one preset's options a category of their own."
+  },
   "presetEditor": {
     "splitIntoSegments": "Split into several option pools",
     "addSegment": "+ Add pool",
