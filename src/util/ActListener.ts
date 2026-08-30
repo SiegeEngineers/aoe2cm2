@@ -5,6 +5,7 @@ import {ValidationId} from "../constants/ValidationId";
 import {Util} from "./Util";
 import Player from "../constants/Player";
 import ActionType, {actionTypeFromAction} from "../constants/ActionType";
+import Action from "../constants/Action";
 import DraftViews from "../models/DraftViews";
 import fs from "fs";
 import {logger} from "./Logger";
@@ -53,7 +54,11 @@ export class ActListener {
                 }
             }
 
-            const civilisationsList = draftsStore.getDraftOrThrow(draftId).preset.options.slice();
+            const draft = draftsStore.getDraftOrThrow(draftId);
+            const expectedTurn = draft.getExpectedActions().find(turn => turn.player === message.player);
+            const civilisationsList = (expectedTurn === undefined
+                ? draft.preset.options
+                : draft.preset.optionsForTurn(expectedTurn)).slice();
             message = Util.setRandomDraftOptionIfNeeded(message, draftId, draftsStore, civilisationsList);
             logger.info("Augmented message: %s", JSON.stringify(message), {draftId});
 
@@ -75,8 +80,12 @@ export class ActListener {
 
                 let adminEventCounter = 0;
                 while (ActListener.nextActionIsAdminEvent(draftsStore, draftId, adminEventCounter)) {
+                    const holds = ActListener.nextAdminActionHoldsDraft(draftsStore, draftId, adminEventCounter);
                     adminEventCounter++;
                     ActListener.scheduleAdminEvent(adminEventCounter, draftsStore, draftId, draftViews, socket, roomLobby, roomHost, roomGuest, roomSpec, this.dataDirectory, this.presetDraftsDirectory);
+                    if (holds) {
+                        break;
+                    }
                 }
                 if (draftViews.shouldRestartOrCancelCountdown()) {
                     draftsStore.restartOrCancelCountdown(draftId, this.dataDirectory, this.presetDraftsDirectory);
@@ -87,6 +96,17 @@ export class ActListener {
                 fn({status: 'error', validationErrors});
             }
         };
+    }
+
+    /**
+     * Whether the next admin turn is the pause that separates two option pools. The draft stops
+     * there until both captains are ready again; a preset without pools keeps the scheduler it
+     * has always had.
+     */
+    static nextAdminActionHoldsDraft(draftsStore: DraftsStore, draftId: string, offset: number) {
+        const expectedActions = draftsStore.getExpectedActions(draftId, offset);
+        return expectedActions.length === 1 && expectedActions[0].action === Action.PAUSE
+            && draftsStore.getDraftOrThrow(draftId).preset.segmentsOrDefault().length > 1;
     }
 
     static nextActionIsAdminEvent(draftsStore: DraftsStore, draftId: string, offset: number) {
@@ -183,7 +203,8 @@ export class ActListener {
             } else if ([ActionType.PICK, ActionType.BAN, ActionType.STEAL, ActionType.SNIPE].includes(actionTypeFromAction(expectedAction.action))) {
                 setTimeout(() => {
                     let draftEvent = new PlayerEvent(expectedAction.player, actionTypeFromAction(expectedAction.action), DraftOption.RANDOM.id, false, Player.NONE);
-                    const civilisationsList = draftsStore.getDraftOrThrow(draftId).preset.options.slice();
+                    const civilisationsList = draftsStore.getDraftOrThrow(draftId)
+                        .preset.optionsForTurn(expectedAction).slice();
                     draftEvent = Util.setRandomDraftOptionIfNeeded(draftEvent, draftId, draftsStore, civilisationsList);
                     draftEvent.isRandomlyChosen = (expectedAction.player !== Player.NONE);
                     logger.info('Executing admin event: %s', JSON.stringify(draftEvent), {draftId});

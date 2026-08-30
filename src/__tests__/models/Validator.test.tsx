@@ -13,6 +13,7 @@ import {DraftEvent} from "../../types/DraftEvent";
 import AdminEvent from "../../models/AdminEvent";
 import Exclusivity from "../../constants/Exclusivity";
 import DraftOption from "../../models/DraftOption";
+import Segment from "../../models/Segment";
 
 const NAME_HOST: string = 'Yodit';
 const NAME_GUEST: string = 'Saladin';
@@ -1117,3 +1118,56 @@ const prepareReadyStore = (preset: Preset, events: DraftEvent[] = []): DraftsSto
     draftsStore.setPlayerReady(DRAFT_ID, Player.GUEST);
     return draftsStore;
 };
+
+
+const MAPS_SEGMENT = new Segment('maps', 'Maps', [new DraftOption('arabia'), new DraftOption('arena')]);
+const CIVS_SEGMENT = new Segment('civs', 'Civilisations', [new DraftOption('Franks'), new DraftOption('Britons')]);
+
+const segmentedPreset = (...segmentIds: string[]): Preset => {
+    const turns = segmentIds.map(segmentId =>
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, false, Player.HOST, ['default'], undefined, segmentId));
+    return new Preset('Segmented Preset', [], turns, undefined, undefined, [MAPS_SEGMENT, CIVS_SEGMENT]);
+};
+
+it('VLD_010: option from the segment of the current turn is accepted', () => {
+    const validator = new Validator(prepareReadyStore(segmentedPreset('maps')));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID,
+        new PlayerEvent(Player.HOST, ActionType.PICK, 'arabia'));
+    expect(errors).toEqual([]);
+});
+
+it('VLD_010: option from another segment is rejected', () => {
+    const validator = new Validator(prepareReadyStore(segmentedPreset('maps')));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID,
+        new PlayerEvent(Player.HOST, ActionType.PICK, 'Franks'));
+    expect(errors).toEqual([ValidationId.VLD_010]);
+});
+
+it('VLD_010: segments are enforced independently per turn', () => {
+    const draftsStore = prepareReadyStore(segmentedPreset('maps', 'civs'));
+    const validator = new Validator(draftsStore);
+    expect(validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, 'arabia'))).toEqual([]);
+    expect(validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, 'arena')))
+        .toEqual([ValidationId.VLD_010]);
+    expect(validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, 'Franks'))).toEqual([]);
+});
+
+it('VLD_010: presets without segments are unaffected', () => {
+    const validator = new Validator(prepareReadyStore(Preset.SIMPLE));
+    const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID,
+        new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS.id));
+    expect(errors).toEqual([]);
+});
+
+
+it('VLD_010: an option repeated in another pool is judged by the pool of the turn', () => {
+    const shared = new DraftOption('arabia');
+    const first = new Segment('maps', 'Maps', [shared]);
+    const second = new Segment('other', 'Other', [shared]);
+    const turns = [
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, false, Player.HOST, ['default'], undefined, 'other'),
+    ];
+    const preset = new Preset('Shared option preset', [], turns, undefined, undefined, [first, second]);
+    const validator = new Validator(prepareReadyStore(preset));
+    expect(validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, 'arabia'))).toEqual([]);
+});

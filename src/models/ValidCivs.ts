@@ -356,6 +356,22 @@ class ValidCivs {
         return true;
     }
 
+    /** A player may only choose from the pool of the turn they are acting on. */
+    private isFromValidSegment(draftEvent: PlayerEvent): boolean {
+        const preset = this.draft.preset;
+        if (preset.segments === undefined || preset.segments.length === 0) {
+            return true;
+        }
+        // Technical options such as random and hidden belong to no pool.
+        if (!preset.options.some(option => option.id === draftEvent.chosenOptionId)) {
+            return true;
+        }
+        return this.draft.getExpectedActions()
+            .filter(turn => turn.player === draftEvent.player)
+            .every(turn => preset.optionsForTurn(turn)
+                .some(option => option.id === draftEvent.chosenOptionId));
+    }
+
     private getCategoryForEvent(draftEvent: PlayerEvent): string | undefined {
         const option = this.draft.preset.options.find((option) => option.id === draftEvent.chosenOptionId);
         return option?.category;
@@ -363,6 +379,9 @@ class ValidCivs {
 
     validateDraftEvent(draftEvent: PlayerEvent): boolean {
         if (!this.isFromValidCategory(draftEvent)) {
+            return false;
+        }
+        if (!this.isFromValidSegment(draftEvent)) {
             return false;
         }
         let validOptions = this.host;
