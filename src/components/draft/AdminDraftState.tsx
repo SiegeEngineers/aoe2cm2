@@ -10,6 +10,7 @@ import DraftOptionPanelType from "../../constants/DraftOptionPanelType";
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
 import DraftOption from "../../models/DraftOption";
 import Action from "../../constants/Action";
+import {PanelAspect} from "../../util/PanelAspect";
 
 interface IProps extends WithTranslation {
     preset: ModelPreset;
@@ -21,6 +22,10 @@ interface IProps extends WithTranslation {
     smooch: boolean;
     simplifiedUI?: boolean;
     highlightedAction: number | null;
+    /** Shows only the turns of this pool. Without it, every turn of the preset is shown. */
+    segmentId?: string;
+    /** Set when the strip is headed elsewhere, once for all the pools; it carries the id too. */
+    hideHeader?: boolean;
 }
 
 interface IState {
@@ -31,6 +36,7 @@ interface IState {
 }
 
 class PlayerDraftState extends React.Component<IProps, IState> {
+    private readonly chosen = React.createRef<HTMLDivElement>();
 
     constructor(props: IProps) {
         super(props);
@@ -41,15 +47,32 @@ class PlayerDraftState extends React.Component<IProps, IState> {
         this.setState(eventsToState(nextProps.events, nextProps.player));
     }
 
+    public componentDidMount(): void {
+        this.shapePanels();
+    }
+
+    public componentDidUpdate(): void {
+        this.shapePanels();
+    }
+
+    private shapePanels(): void {
+        PanelAspect.apply(this.chosen.current, this.props.preset.optionsForSegment(this.props.segmentId));
+    }
+
     private hasAdminPicksAndBans(){
         for (let turn of this.props.preset.turns) {
-            if(turn.player === Player.NONE) {
+            if(turn.player === Player.NONE && this.isShown(turn)) {
                 if(turn.action === Action.PICK || turn.action === Action.BAN){
                     return true;
                 }
             }
         }
         return false;
+    }
+
+    private isShown(turn?: Turn): boolean {
+        return this.props.segmentId === undefined
+            || (turn !== undefined && turn.segmentIdOrDefault() === this.props.segmentId);
     }
 
     public render() {
@@ -182,26 +205,30 @@ class PlayerDraftState extends React.Component<IProps, IState> {
             }
         }
 
+        const inPool = (panel: JSX.Element) => this.isShown(this.props.preset.turns[panel.props.turnNumber]);
+        const visiblePickPanels = pickPanels.filter(inPool);
+        const visibleBanPanels = banPanels.filter(inPool);
+
         const draftIsOngoing = this.isDraftOngoing();
         const playerClass = (draftIsOngoing && !hasActivePanel) ? 'player player-inactive' : 'player';
 
         return (
-            <div id={playerId} className="column has-text-centered">
+            <div id={this.props.hideHeader ? undefined : playerId} className="column has-text-centered">
                 <div className={playerClass + " box content is-inline-block"}>
-                    <div className="is-uppercase has-text-grey is-size-7 pb-2 captains-line is-justify-content-center">
+                    {!this.props.hideHeader && <div className="is-uppercase has-text-grey is-size-7 pb-2 captains-line is-justify-content-center">
                         Admin
-                    </div>
-                    <div className="chosen">
-                        {((pickPanels.length > 0) || (this.props.simplifiedUI && (banPanels.length > 0))) && <>
+                    </div>}
+                    <div className="chosen" ref={this.chosen}>
+                        {((visiblePickPanels.length > 0) || (this.props.simplifiedUI && (visibleBanPanels.length > 0))) && <>
                             {!this.props.simplifiedUI && <div className="is-uppercase has-text-grey is-size-7 pb-2 sub-heading"><Trans>Picks</Trans></div>}
                             <div className="picks is-justify-content-center">
-                                {pickPanels}{this.props.simplifiedUI && banPanels.length > 0 && banPanels}
+                                {visiblePickPanels}{this.props.simplifiedUI && visibleBanPanels.length > 0 && visibleBanPanels}
                             </div>
                         </>}
-                        {(banPanels.length > 0) && !this.props.simplifiedUI && <>
+                        {(visibleBanPanels.length > 0) && !this.props.simplifiedUI && <>
                         {<div className="is-uppercase has-text-grey is-size-7 py-2 sub-heading"><Trans>Bans</Trans></div>}
                             <div className="bans is-justify-content-center">
-                                {banPanels}
+                                {visibleBanPanels}
                             </div>
                         </>}
                     </div>

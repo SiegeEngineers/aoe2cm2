@@ -1,0 +1,64 @@
+import {shallow} from "enzyme";
+import SegmentedDraftBoard from "../../components/draft/SegmentedDraftBoard";
+import DraftOptionGrid from "../../components/draft/DraftOptionGrid";
+import Preset from "../../models/Preset";
+import Segment from "../../models/Segment";
+import Turn from "../../models/Turn";
+import DraftOption from "../../models/DraftOption";
+import Player from "../../constants/Player";
+import Action from "../../constants/Action";
+import Exclusivity from "../../constants/Exclusivity";
+
+const maps = new Segment('maps', 'Maps', [new DraftOption('arabia'), new DraftOption('arena')]);
+const civs = new Segment('civs', 'Civilisations', [new DraftOption('Franks')]);
+
+const turnIn = (segmentId: string, parallel: boolean = false) =>
+    new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, parallel, Player.HOST, ['default'], undefined, segmentId);
+
+const preset = (...turns: Turn[]) =>
+    new Preset('Segmented Preset', [], turns, undefined, undefined, [maps, civs]);
+
+it('renders the grid for the pool of the current turn only', () => {
+    const component = shallow(<SegmentedDraftBoard preset={preset(turnIn('maps'), turnIn('civs'))}
+                                                   nextAction={0}/>);
+    expect(component.find(DraftOptionGrid)).toHaveLength(1);
+    expect(component.find(DraftOptionGrid).prop('draftOptions')).toEqual(maps.options);
+});
+
+it('follows the active segment as the draft advances', () => {
+    const component = shallow(<SegmentedDraftBoard preset={preset(turnIn('maps'), turnIn('civs'))}
+                                                   nextAction={1}/>);
+    expect(component.find(DraftOptionGrid).prop('draftOptions')).toEqual(civs.options);
+});
+
+it('shows both pools of a parallel pair that spans two of them', () => {
+    const component = shallow(<SegmentedDraftBoard preset={preset(turnIn('maps', true), turnIn('civs'))}
+                                                   nextAction={0}/>);
+    expect(component.find(DraftOptionGrid)).toHaveLength(2);
+});
+
+it('shows nothing once the draft is over', () => {
+    const component = shallow(<SegmentedDraftBoard preset={preset(turnIn('maps'), turnIn('civs'))}
+                                                   nextAction={2}/>);
+    expect(component.find(DraftOptionGrid)).toHaveLength(0);
+});
+
+it('keeps both pools up until a parallel pair has been taken by both players', () => {
+    const hostTurn = new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, true, Player.HOST, ['default'], undefined, 'maps');
+    const guestTurn = new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, false, false, Player.GUEST, ['default'], undefined, 'civs');
+    const parallelPreset = new Preset('Parallel', [], [hostTurn, guestTurn], undefined, undefined, [maps, civs]);
+
+    const component = shallow(<SegmentedDraftBoard preset={parallelPreset} nextAction={1}/>);
+
+    expect(component.find(DraftOptionGrid)).toHaveLength(2);
+});
+
+it('shows the pool waiting behind a pause', () => {
+    const pause = new Turn(Player.NONE, Action.PAUSE, Exclusivity.GLOBAL);
+    const pausedPreset = new Preset('Paused', [], [turnIn('maps'), pause, turnIn('civs')], undefined, undefined, [maps, civs]);
+
+    const component = shallow(<SegmentedDraftBoard preset={pausedPreset} nextAction={1}/>);
+
+    expect(component.find(DraftOptionGrid)).toHaveLength(1);
+    expect(component.find(DraftOptionGrid).prop('draftOptions')).toEqual(civs.options);
+});

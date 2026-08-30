@@ -12,6 +12,7 @@ import PlayerOnlineStatus from "../../containers/PlayerOnlineStatus";
 import WhoAmIIndicator from "../../containers/WhoAmIIndicator";
 import DraftOption from "../../models/DraftOption";
 import CustomName from './CustomName';
+import {PanelAspect} from "../../util/PanelAspect";
 
 interface IProps extends WithTranslation {
     preset: ModelPreset;
@@ -23,6 +24,10 @@ interface IProps extends WithTranslation {
     smooch: boolean;
     simplifiedUI?: boolean;
     highlightedAction: number | null;
+    /** Shows only the turns of this pool. Without it, every turn of the preset is shown. */
+    segmentId?: string;
+    /** Set when the name is written above, once for all the pools; it carries the id with it. */
+    hideHeader?: boolean;
 }
 
 interface IState {
@@ -33,6 +38,7 @@ interface IState {
 }
 
 class PlayerDraftState extends React.Component<IProps, IState> {
+    private readonly chosen = React.createRef<HTMLDivElement>();
 
     constructor(props: IProps) {
         super(props);
@@ -41,6 +47,18 @@ class PlayerDraftState extends React.Component<IProps, IState> {
 
     public componentWillReceiveProps(nextProps: Readonly<IProps>, nextContext: any): void {
         this.setState(eventsToState(nextProps.events, nextProps.player));
+    }
+
+    public componentDidMount(): void {
+        this.shapePanels();
+    }
+
+    public componentDidUpdate(): void {
+        this.shapePanels();
+    }
+
+    private shapePanels(): void {
+        PanelAspect.apply(this.chosen.current, this.props.preset.optionsForSegment(this.props.segmentId));
     }
 
     public render() {
@@ -173,36 +191,48 @@ class PlayerDraftState extends React.Component<IProps, IState> {
         const draftIsOngoing = this.isDraftOngoing();
         const playerClass = (draftIsOngoing && !hasActivePanel) ? 'player player-inactive' : 'player';
 
+        const inPool = (panel: JSX.Element) => this.isShown(panel.props.turnNumber);
+        const visiblePickPanels = pickPanels.filter(inPool);
+        const visibleBanPanels = banPanels.filter(inPool);
+
         return (
-            <div id={playerId} className="column is-half">
+            <div id={this.props.hideHeader ? undefined : playerId} className="column is-half">
                 <div className={playerClass + " box content is-inline-block"}>
-                    <div className="is-uppercase has-text-grey is-size-7 pb-2 captains-line">
-                        {!this.props.simplifiedUI && <>
-                            <span className={'player-type'}><Trans>{this.props.player}</Trans></span>&nbsp;
-                            <WhoAmIIndicator forPlayer={this.props.player}/>&nbsp;
-                            <PlayerOnlineStatus forPlayer={this.props.player}/>
-                        </>}
-                    </div>
-                    <div className="player-head">
-                        <h4 className="player-name"><CustomName name={this.props.name}/></h4>
-                    </div>
-                    <div className="chosen">
-                        {pickPanels.length > 0 && <>
+                    {!this.props.hideHeader && <>
+                        <div className="is-uppercase has-text-grey is-size-7 pb-2 captains-line">
+                            {!this.props.simplifiedUI && <>
+                                <span className={'player-type'}><Trans>{this.props.player}</Trans></span>&nbsp;
+                                <WhoAmIIndicator forPlayer={this.props.player}/>&nbsp;
+                                <PlayerOnlineStatus forPlayer={this.props.player}/>
+                            </>}
+                        </div>
+                        <div className="player-head">
+                            <h4 className="player-name"><CustomName name={this.props.name}/></h4>
+                        </div>
+                    </>}
+                    <div className="chosen" ref={this.chosen}>
+                        {visiblePickPanels.length > 0 && <>
                             {!this.props.simplifiedUI && <div className="is-uppercase has-text-grey is-size-7 pb-2 sub-heading"><Trans>Picks</Trans></div>}
                             <div className="picks">
-                                {pickPanels}{this.props.simplifiedUI && banPanels.length > 0 && banPanels}
+                                {visiblePickPanels}{this.props.simplifiedUI && visibleBanPanels.length > 0 && visibleBanPanels}
                             </div>
                         </>}
-                        {!this.props.simplifiedUI && banPanels.length > 0 && <>
+                        {!this.props.simplifiedUI && visibleBanPanels.length > 0 && <>
                             <div className="is-uppercase has-text-grey is-size-7 py-2 sub-heading"><Trans>Bans</Trans></div>
                             <div className="bans">
-                                {banPanels}
+                                {visibleBanPanels}
                             </div>
                         </>}
                     </div>
                 </div>
             </div>
         );
+    }
+
+    private isShown(turnNumber: number): boolean {
+        const turn = this.props.preset.turns[turnNumber];
+        return this.props.segmentId === undefined
+            || (turn !== undefined && turn.segmentIdOrDefault() === this.props.segmentId);
     }
 
     private isDraftOngoing() {

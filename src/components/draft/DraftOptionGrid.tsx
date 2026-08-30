@@ -4,12 +4,23 @@ import DraftOptionPanelType from "../../constants/DraftOptionPanelType";
 import DraftOption from "../../models/DraftOption";
 import i18next from "i18next";
 import i18n from "i18next";
+import {PanelAspect} from "../../util/PanelAspect";
 
 interface IProps {
     draftOptions: DraftOption[]
 }
 
 class DraftOptionGrid extends React.Component<IProps, object> {
+    private readonly grid = React.createRef<HTMLDivElement>();
+
+    public componentDidMount(): void {
+        PanelAspect.apply(this.grid.current, this.props.draftOptions);
+    }
+
+    public componentDidUpdate(): void {
+        PanelAspect.apply(this.grid.current, this.props.draftOptions);
+    }
+
     public render() {
 
         const panels = this.props.draftOptions.sort(this.compareDraftOptions).map((draftOption, index) => {
@@ -31,7 +42,7 @@ class DraftOptionGrid extends React.Component<IProps, object> {
         });
 
         return (
-            <div id="civgrid" className="chooser">
+            <div id="civgrid" className="chooser" ref={this.grid}>
                 <div className="chooser-grid">
                     {randomOption}
                     {panels}
