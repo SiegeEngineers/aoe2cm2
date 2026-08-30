@@ -114,25 +114,21 @@ export class PresetValidation {
     });
 
     public static readonly VLD_910: PresetValidation = new PresetValidation(ValidationId.VLD_910, (preset: Preset) => {
-        if (preset.draftOptions) {
-            for (let draftOption of preset.draftOptions) {
-                if (!draftOption.id) {
-                    return false;
-                }
+        for (let draftOption of preset.options) {
+            if (!draftOption.id) {
+                return false;
             }
         }
         return true;
     });
 
     public static readonly VLD_911: PresetValidation = new PresetValidation(ValidationId.VLD_911, (preset: Preset) => {
-        if (preset.draftOptions) {
-            const ids = new Set();
-            for (let draftOption of preset.draftOptions) {
-                if (ids.has(draftOption.id)) {
-                    return false;
-                }
-                ids.add(draftOption.id);
+        const ids = new Set();
+        for (let draftOption of preset.options) {
+            if (ids.has(draftOption.id)) {
+                return false;
             }
+            ids.add(draftOption.id);
         }
         return true;
     });
@@ -204,6 +200,47 @@ export class PresetValidation {
     });
 
 
+    public static readonly VLD_919: PresetValidation = new PresetValidation(ValidationId.VLD_919, (preset: Preset) => {
+        const segmentIds: string[] = preset.segmentsOrDefault().map(value => value.id);
+        return preset.turns
+            .filter(value => value.choosesDraftOption())
+            .every(value => segmentIds.includes(value.segmentIdOrDefault()));
+    });
+
+    public static readonly VLD_920: PresetValidation = new PresetValidation(ValidationId.VLD_920, (preset: Preset) => {
+        const segmentIds: string[] = preset.segmentsOrDefault().map(value => value.id);
+        return new Set(segmentIds).size === segmentIds.length;
+    });
+
+    public static readonly VLD_921: PresetValidation = new PresetValidation(ValidationId.VLD_921, (preset: Preset) => {
+        // Without pools the same ground is covered by VLD_916 against the whole preset.
+        return preset.segments === undefined || preset.turns
+            .filter(value => value.choosesDraftOption())
+            .every(value => preset.optionsForTurn(value)
+                .some(option => value.categories.includes(option.category)));
+    });
+
+    public static readonly VLD_922: PresetValidation = new PresetValidation(ValidationId.VLD_922, (preset: Preset) => {
+        return preset.turns.every((turn, index) => !turn.parallel
+            || index + 1 >= preset.turns.length
+            || turn.segmentIdOrDefault() === preset.turns[index + 1].segmentIdOrDefault());
+    });
+
+    public static readonly VLD_923: PresetValidation = new PresetValidation(ValidationId.VLD_923, (preset: Preset) => {
+        return preset.segments === undefined || preset.segments.every(segment => segment.name.trim().length > 0);
+    });
+
+    public static readonly VLD_924: PresetValidation = new PresetValidation(ValidationId.VLD_924, (preset: Preset) => {
+        // The twin of VLD_917 for a pool: an option nobody can take there is one nobody can take.
+        return preset.segments === undefined || preset.segments.every(segment => {
+            const categories = preset.turns
+                .filter(turn => turn.choosesDraftOption() && turn.segmentIdOrDefault() === segment.id)
+                .reduce<string[]>((all, turn) => all.concat(turn.categories), []);
+            return categories.length === 0
+                || segment.options.every(option => categories.includes(option.category));
+        });
+    });
+
     public static readonly ALL: PresetValidation[] = [
         PresetValidation.VLD_901,
         PresetValidation.VLD_902,
@@ -223,6 +260,12 @@ export class PresetValidation {
         PresetValidation.VLD_916,
         PresetValidation.VLD_917,
         PresetValidation.VLD_918,
+        PresetValidation.VLD_919,
+        PresetValidation.VLD_920,
+        PresetValidation.VLD_921,
+        PresetValidation.VLD_922,
+        PresetValidation.VLD_923,
+        PresetValidation.VLD_924,
     ];
 
     private readonly validationId: ValidationId;

@@ -3,6 +3,8 @@ import Player from "../constants/Player";
 import {Assert} from "../util/Assert";
 import { v4 as uuidv4 } from 'uuid';
 import Exclusivity from "../constants/Exclusivity";
+import ActionType, {actionTypeFromAction} from "../constants/ActionType";
+import Segment from "./Segment";
 
 class Turn {
     public static readonly HOST_NONEXCLUSIVE_PICK = new Turn(Player.HOST, Action.PICK, Exclusivity.NONEXCLUSIVE);
@@ -48,8 +50,9 @@ class Turn {
     public readonly executingPlayer: Player;
     public readonly id: string;
     public readonly categories: string[];
+    public readonly segmentId?: string;
 
-    constructor(player: Player, action: Action, exclusivity: Exclusivity, hidden: boolean = false, parallel: boolean = false, executingPlayer: Player = player, categories: string[] = ['default'], id: string = uuidv4()) {
+    constructor(player: Player, action: Action, exclusivity: Exclusivity, hidden: boolean = false, parallel: boolean = false, executingPlayer: Player = player, categories: string[] = ['default'], id: string = uuidv4(), segmentId?: string) {
         this.id = id;
         this.player = player;
         this.action = action;
@@ -58,6 +61,24 @@ class Turn {
         this.executingPlayer = executingPlayer;
         this.parallel = parallel;
         this.categories = categories;
+        if (segmentId !== undefined && segmentId !== Segment.DEFAULT_ID) {
+            this.segmentId = segmentId;
+        }
+    }
+
+    public static withSegmentId(turn: Turn, segmentId: string): Turn {
+        return new Turn(turn.player, turn.action, turn.exclusivity, turn.hidden, turn.parallel,
+            turn.executingPlayer, turn.categories, turn.id, segmentId);
+    }
+
+    public choosesDraftOption(): boolean {
+        const actionType = actionTypeFromAction(this.action);
+        return actionType === ActionType.PICK || actionType === ActionType.BAN
+            || actionType === ActionType.SNIPE || actionType === ActionType.STEAL;
+    }
+
+    public segmentIdOrDefault(): string {
+        return this.segmentId === undefined ? Segment.DEFAULT_ID : this.segmentId;
     }
 
     static fromPojoArray(turns: Turn[]) {
@@ -70,7 +91,8 @@ class Turn {
             Assert.isBoolean(turn.hidden);
             Assert.isBoolean(turn.parallel);
             Assert.isOptionalStringArray(turn.categories);
-            retval.push(new Turn(turn.player, turn.action, turn.exclusivity, turn.hidden, turn.parallel, turn.executingPlayer, turn.categories, turn.id));
+            Assert.isOptionalString(turn.segmentId);
+            retval.push(new Turn(turn.player, turn.action, turn.exclusivity, turn.hidden, turn.parallel, turn.executingPlayer, turn.categories, turn.id, turn.segmentId));
         }
         return retval;
     }

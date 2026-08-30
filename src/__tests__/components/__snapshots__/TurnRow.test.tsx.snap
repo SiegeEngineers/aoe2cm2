@@ -16,6 +16,7 @@ exports[`TurnRow renders correctly 1`] = `
         "id": "mocked-uuid",
         "parallel": false,
         "player": "HOST",
+        "segmentId": undefined,
       },
       Turn {
         "action": "BAN",
@@ -28,6 +29,7 @@ exports[`TurnRow renders correctly 1`] = `
         "id": "mocked-uuid",
         "parallel": false,
         "player": "GUEST",
+        "segmentId": undefined,
       },
       Turn {
         "action": "BAN",
@@ -40,6 +42,7 @@ exports[`TurnRow renders correctly 1`] = `
         "id": "mocked-uuid",
         "parallel": false,
         "player": "HOST",
+        "segmentId": undefined,
       },
       Turn {
         "action": "BAN",
@@ -52,6 +55,7 @@ exports[`TurnRow renders correctly 1`] = `
         "id": "mocked-uuid",
         "parallel": false,
         "player": "GUEST",
+        "segmentId": undefined,
       },
       Turn {
         "action": "REVEAL_ALL",
@@ -64,6 +68,7 @@ exports[`TurnRow renders correctly 1`] = `
         "id": "mocked-uuid",
         "parallel": false,
         "player": "NONE",
+        "segmentId": undefined,
       },
       Turn {
         "action": "PICK",
@@ -76,6 +81,7 @@ exports[`TurnRow renders correctly 1`] = `
         "id": "mocked-uuid",
         "parallel": false,
         "player": "HOST",
+        "segmentId": undefined,
       },
       Turn {
         "action": "PICK",
@@ -88,6 +94,7 @@ exports[`TurnRow renders correctly 1`] = `
         "id": "mocked-uuid",
         "parallel": false,
         "player": "GUEST",
+        "segmentId": undefined,
       },
       Turn {
         "action": "PICK",
@@ -100,6 +107,7 @@ exports[`TurnRow renders correctly 1`] = `
         "id": "mocked-uuid",
         "parallel": false,
         "player": "HOST",
+        "segmentId": undefined,
       },
       Turn {
         "action": "PICK",
@@ -112,6 +120,7 @@ exports[`TurnRow renders correctly 1`] = `
         "id": "mocked-uuid",
         "parallel": false,
         "player": "GUEST",
+        "segmentId": undefined,
       },
       Turn {
         "action": "PICK",
@@ -124,6 +133,7 @@ exports[`TurnRow renders correctly 1`] = `
         "id": "mocked-uuid",
         "parallel": false,
         "player": "HOST",
+        "segmentId": undefined,
       },
       Turn {
         "action": "PICK",
@@ -136,6 +146,7 @@ exports[`TurnRow renders correctly 1`] = `
         "id": "mocked-uuid",
         "parallel": false,
         "player": "GUEST",
+        "segmentId": undefined,
       },
       Turn {
         "action": "PICK",
@@ -148,6 +159,7 @@ exports[`TurnRow renders correctly 1`] = `
         "id": "mocked-uuid",
         "parallel": false,
         "player": "HOST",
+        "segmentId": undefined,
       },
       Turn {
         "action": "PICK",
@@ -160,6 +172,7 @@ exports[`TurnRow renders correctly 1`] = `
         "id": "mocked-uuid",
         "parallel": false,
         "player": "GUEST",
+        "segmentId": undefined,
       },
       Turn {
         "action": "PICK",
@@ -172,6 +185,7 @@ exports[`TurnRow renders correctly 1`] = `
         "id": "mocked-uuid",
         "parallel": false,
         "player": "HOST",
+        "segmentId": undefined,
       },
       Turn {
         "action": "PICK",
@@ -184,6 +198,7 @@ exports[`TurnRow renders correctly 1`] = `
         "id": "mocked-uuid",
         "parallel": false,
         "player": "GUEST",
+        "segmentId": undefined,
       },
       Turn {
         "action": "PICK",
@@ -196,6 +211,7 @@ exports[`TurnRow renders correctly 1`] = `
         "id": "mocked-uuid",
         "parallel": false,
         "player": "HOST",
+        "segmentId": undefined,
       },
       Turn {
         "action": "PICK",
@@ -208,6 +224,7 @@ exports[`TurnRow renders correctly 1`] = `
         "id": "mocked-uuid",
         "parallel": false,
         "player": "GUEST",
+        "segmentId": undefined,
       },
       Turn {
         "action": "REVEAL_ALL",
@@ -220,6 +237,7 @@ exports[`TurnRow renders correctly 1`] = `
         "id": "mocked-uuid",
         "parallel": false,
         "player": "NONE",
+        "segmentId": undefined,
       },
       Turn {
         "action": "SNIPE",
@@ -232,6 +250,7 @@ exports[`TurnRow renders correctly 1`] = `
         "id": "mocked-uuid",
         "parallel": false,
         "player": "HOST",
+        "segmentId": undefined,
       },
       Turn {
         "action": "SNIPE",
@@ -244,6 +263,7 @@ exports[`TurnRow renders correctly 1`] = `
         "id": "mocked-uuid",
         "parallel": false,
         "player": "GUEST",
+        "segmentId": undefined,
       },
       Turn {
         "action": "REVEAL_ALL",
@@ -256,6 +276,7 @@ exports[`TurnRow renders correctly 1`] = `
         "id": "mocked-uuid",
         "parallel": false,
         "player": "NONE",
+        "segmentId": undefined,
       },
     ]
   }

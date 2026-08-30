@@ -10,6 +10,7 @@ Preset {
   "encodedCivilisations": "0",
   "name": "some-name",
   "presetId": undefined,
+  "segments": undefined,
   "turns": Array [
     Turn {
       "action": "PICK",
@@ -22,6 +23,7 @@ Preset {
       "id": "mocked-uuid",
       "parallel": false,
       "player": "GUEST",
+      "segmentId": undefined,
     },
   ],
 }

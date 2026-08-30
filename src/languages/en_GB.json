@@ -269,6 +269,12 @@
     "VLD_916": "There is a category in the allowed categories for a Turn which is not the category of any Draft Option",
     "VLD_917": "There is a Draft Option which has a category that cannot be used in any Turn",
     "VLD_918": "The Category Limits contain a category that cannot be used in any Turn",
+    "VLD_919": "There is a Turn that belongs to an Option Pool which does not exist in this Preset",
+    "VLD_920": "There are two Option Pools with the same id",
+    "VLD_921": "There is a Turn whose Option Pool contains no Draft Option of a category the Turn allows",
+    "VLD_922": "There is a parallel Turn that does not share its Option Pool with the Turn it runs with",
+    "VLD_923": "There is an Option Pool without a name",
+    "VLD_924": "There is a Draft Option in an Option Pool whose category no Turn of that Pool allows",
     "VLD_999": "Something went very wrong during validation"
   },
   "menu": {
