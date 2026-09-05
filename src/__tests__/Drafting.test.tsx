@@ -359,7 +359,7 @@ it('draft with pause', (done) => {
     });
 });
 
-it('a pause between two pools holds the admin turns after it until both are ready again', (done) => {
+it('a pause holds the admin turns after it until both captains are ready again', (done) => {
     Reflect.set(ActListener, "adminTurnDelay", 0);
     const preset = new Preset('preset with two pools', [], [
         new Turn(Player.HOST, Action.PICK, Exclusivity.NONEXCLUSIVE),
@@ -372,6 +372,49 @@ it('a pause between two pools holds the admin turns after it until both are read
     const settle = () => new Promise(resolve => setTimeout(resolve, 50));
     createDraftForPreset(preset).then(value => {
         // The pause arrives as an admin event; a ban the admin plays arrives as a player event.
+        const played: string[] = [];
+        spectatorSocket.on('adminEvent', (message: any) => played.push(message.action));
+        spectatorSocket.on('playerEvent', (message: any) => {
+            if (message.executingPlayer === Player.NONE) {
+                played.push(message.actionType);
+            }
+        });
+
+        hostEmit('set_role', {name: 'Saladin', role: Player.HOST})
+            .then(() => guestEmit('set_role', {name: 'Barbarossa', role: Player.GUEST}))
+            .then(() => guestEmit('ready', {}))
+            .then(() => hostEmit('ready', {}))
+            .then(() => hostEmit('act', {
+                "player": "HOST",
+                "executingPlayer": "HOST",
+                "actionType": "pick",
+                "chosenOptionId": "Aztecs",
+                "isRandomlyChosen": false,
+            }))
+            .then(settle)
+            .then(() => {
+                expect(played).toEqual([Action.PAUSE]);
+            })
+            .then(() => guestEmit('ready', {}))
+            .then(() => hostEmit('ready', {}))
+            .then(settle)
+            .then(() => {
+                expect(played).toEqual([Action.PAUSE, ActionType.BAN]);
+                done();
+            });
+    });
+});
+
+
+it('a pause holds the admin turns after it in a preset with one pool as well', (done) => {
+    Reflect.set(ActListener, "adminTurnDelay", 0);
+    const preset = new Preset('preset with a pause before an admin ban', [Civilisation.AZTECS, Civilisation.BRITONS], [
+        new Turn(Player.HOST, Action.PICK, Exclusivity.NONEXCLUSIVE),
+        new Turn(Player.NONE, Action.PAUSE, Exclusivity.NONEXCLUSIVE),
+        new Turn(Player.NONE, Action.BAN, Exclusivity.NONEXCLUSIVE),
+    ]);
+    const settle = () => new Promise(resolve => setTimeout(resolve, 50));
+    createDraftForPreset(preset).then(value => {
         const played: string[] = [];
         spectatorSocket.on('adminEvent', (message: any) => played.push(message.action));
         spectatorSocket.on('playerEvent', (message: any) => {

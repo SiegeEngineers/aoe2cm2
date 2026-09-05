@@ -5,12 +5,10 @@ import {Trans, withTranslation, WithTranslation} from "react-i18next";
 import * as actions from "../../actions";
 import {ISetEditorActiveSegment, ISetEditorSegments} from "../../actions";
 import {ApplicationState} from "../../types";
-import Preset from "../../models/Preset";
 import Segment from "../../models/Segment";
 import {EditorSegments} from "../../util/EditorSegments";
 
 interface Props extends WithTranslation {
-    preset: Preset | null,
     segments: Segment[],
     activeSegment: number,
     onSegmentsChange: (value: Segment[]) => ISetEditorSegments,
@@ -20,14 +18,15 @@ interface Props extends WithTranslation {
 class PresetEditorSegments extends React.Component<Props, object> {
 
     public render() {
-        if (this.props.preset === null) {
+        if (this.props.segments.length === 0) {
             return null;
         }
-        if (this.props.segments.length === 0) {
+        // One pool is the ordinary preset, and it is not worth a row of tabs until there are two.
+        if (this.props.segments.length < 2) {
             return (
                 <div className="mb-3">
-                    <button className="button is-small" onClick={() => this.split()}>
-                        <Trans i18nKey="presetEditor.splitIntoSegments">Split into several option pools</Trans>
+                    <button className="button is-small" onClick={() => this.add()}>
+                        <Trans i18nKey="presetEditor.addSegment">+ Add pool</Trans>
                     </button>
                 </div>
             );
@@ -64,32 +63,24 @@ class PresetEditorSegments extends React.Component<Props, object> {
                                aria-label={this.props.t('presetEditor.segmentName', 'Pool name')}
                                onChange={event => this.rename(active, event.target.value)}/>
                     </p>
-                    {this.props.segments.length > 1 && <p className="control">
+                    <p className="control">
                         <button className="button is-small is-danger is-outlined"
                                 onClick={() => this.remove(active)}>
                             <Trans i18nKey="presetEditor.removeSegment">Remove pool</Trans>
                         </button>
-                    </p>}
+                    </p>
                 </div>
             </div>
         );
     }
 
-    private split() {
-        const preset = this.props.preset as Preset;
-        const first = new Segment(EditorSegments.nextSegmentId([]), this.defaultName(1), preset.options);
-        this.props.onSegmentsChange([
-            first,
-            new Segment(EditorSegments.nextSegmentId([first]), this.defaultName(2), []),
-        ]);
-        this.props.onActiveSegmentChange(0);
-    }
-
     private add() {
-        const segments = this.props.segments;
-        const id = EditorSegments.nextSegmentId(segments);
-        // Named after the id it was given: counting the pools would repeat a name after a removal.
-        this.props.onSegmentsChange([...segments, new Segment(id, this.defaultName(EditorSegments.numberOf(id)), [])]);
+        // A lone pool has had no name to give; it gets one once there is a second pool to tell apart.
+        const segments = this.props.segments.map((segment, index) =>
+            index === 0 && segment.name === '' ? new Segment(segment.id, this.defaultName(1), segment.options) : segment);
+        // Named after its number rather than a count of the pools, which would repeat a name after a removal.
+        const number = EditorSegments.nextSegmentNumber(segments);
+        this.props.onSegmentsChange([...segments, new Segment(Segment.idFor(number), this.defaultName(number), [])]);
         this.props.onActiveSegmentChange(segments.length);
     }
 
@@ -109,9 +100,8 @@ class PresetEditorSegments extends React.Component<Props, object> {
 
 export function mapStateToProps(state: ApplicationState) {
     return {
-        preset: state.presetEditor.editorPreset,
-        segments: EditorSegments.segments(state),
-        activeSegment: EditorSegments.activeIndex(state),
+        segments: EditorSegments.segments(state.presetEditor),
+        activeSegment: EditorSegments.activeIndex(state.presetEditor),
     }
 }
 

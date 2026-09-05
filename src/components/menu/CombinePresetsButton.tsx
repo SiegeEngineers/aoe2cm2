@@ -65,31 +65,9 @@ class CombinePresetsButton extends React.Component<IProps, IState> {
                 if (other === undefined) {
                     throw new Error('not found');
                 }
-                if (this.props.preset.segments !== undefined || other.segments !== undefined) {
-                    this.setState({
-                        message: this.props.t('combinePresets.alreadySplit',
-                            'A preset that is already split into option pools cannot be combined with another one.')
-                    });
-                    return;
-                }
-                const leaking = PresetCombiner.leakingCategories(this.props.preset, other);
-                if (leaking.length > 0) {
-                    this.setState({
-                        message: this.props.t('combinePresets.sharedCategories', {
-                            defaultValue: 'A category limit is spent over the whole draft, so {{categories}} would also limit the other preset. Remove the limit, or give one preset\'s options a category of their own.',
-                            categories: leaking.join(', '),
-                        })
-                    });
-                    return;
-                }
-                const shared = PresetCombiner.sharedOptionIds(this.props.preset, other);
-                if (shared.length > 0) {
-                    this.setState({
-                        message: this.props.t('combinePresets.sharedOptions', {
-                            defaultValue: 'Both presets use these draft options: {{options}}. Every option has to belong to a single pool.',
-                            options: shared.slice(0, 5).join(', '),
-                        })
-                    });
+                const problem = this.problemWith(other);
+                if (problem !== null) {
+                    this.setState({message: problem});
                     return;
                 }
                 const name = `${this.props.preset.name} + ${other.name}`;
@@ -104,6 +82,25 @@ class CombinePresetsButton extends React.Component<IProps, IState> {
                     })
                 });
             });
+    }
+
+    /** Why the two presets cannot be played as one draft, or null when they can. */
+    private problemWith(other: Preset): string | null {
+        const leaking = PresetCombiner.leakingCategories(this.props.preset, other);
+        if (leaking.length > 0) {
+            return this.props.t('combinePresets.sharedCategories', {
+                defaultValue: 'A category limit is spent over the whole draft, so {{categories}} would also limit the other preset. Remove the limit, or give one preset\'s options a category of their own.',
+                categories: leaking.join(', '),
+            });
+        }
+        const shared = PresetCombiner.sharedOptionIds(this.props.preset, other);
+        if (shared.length > 0) {
+            return this.props.t('combinePresets.sharedOptions', {
+                defaultValue: 'Both presets use these draft options: {{options}}. Every option has to belong to a single pool.',
+                options: shared.slice(0, 5).join(', '),
+            });
+        }
+        return null;
     }
 }
 

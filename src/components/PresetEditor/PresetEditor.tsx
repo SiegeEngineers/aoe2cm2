@@ -155,28 +155,36 @@ class PresetEditor extends React.Component<Props, State> {
     }
 
     private static shownPoolKey(props: Props): string {
-        const segments = props.preset === null ? undefined : props.preset.segments;
-        return PresetEditor.shownPoolId(props) + '/' + (segments === undefined ? 0 : segments.length);
+        const pool = PresetEditor.shownPool(props);
+        return (pool === undefined ? '' : pool.id) + '/' + (props.preset === null ? 0 : props.preset.segments.length);
     }
 
     private static shownPool(props: Props): Segment | undefined {
-        const segments = props.preset === null ? undefined : props.preset.segments;
-        return segments === undefined ? undefined : segments[props.activeSegment];
+        return props.preset === null ? undefined : props.preset.segments[props.activeSegment];
     }
 
-    private static shownPoolId(props: Props): string | undefined {
-        const pool = PresetEditor.shownPool(props);
-        return pool === undefined ? undefined : pool.id;
-    }
+    /** A pool name fits on the new-turn button up to this many characters. */
+    private static readonly POOL_NAME_ON_BUTTON = 18;
 
     /** Which pool a new turn joins is decided a section further up the page, so the button says it. */
     private newTurnLabel() {
         const pool = PresetEditor.shownPool(this.props);
-        if (pool === undefined) {
+        if (pool === undefined || this.props.preset === null || !this.props.preset.hasSeveralSegments()) {
             return <Trans i18nKey="presetEditor.new">New</Trans>;
         }
-        const name = pool.name.length > 18 ? pool.name.substring(0, 18) + '…' : pool.name;
+        const limit = PresetEditor.POOL_NAME_ON_BUTTON;
+        const name = pool.name.length > limit ? pool.name.substring(0, limit) + '…' : pool.name;
         return this.props.t('presetEditor.newInPool', {defaultValue: 'New in {{pool}}', pool: name});
+    }
+
+    /** A new turn is a pick, and it belongs to the pool the editor is showing. */
+    private addPlayerTurn(player: Player) {
+        const pool = PresetEditor.shownPool(this.props);
+        if (this.props.preset === null || pool === undefined) {
+            return;
+        }
+        const turn = new Turn(player, Action.PICK, Exclusivity.GLOBAL, false, false);
+        this.props.onValueChange(Turn.withSegmentId(turn, pool.id), this.props.preset.turns.length);
     }
 
     /** The tab a pool belongs to, or the custom one if its options are not all from a single set. */
@@ -356,15 +364,8 @@ class PresetEditor extends React.Component<Props, State> {
                         <div className="columns is-mobile pt-3">
                             <div className="column is-1"/>
                             <div className="column has-text-centered">
-                                <button className="button" onClick={() => {
-                                    if (this.props.preset === undefined || this.props.preset === null) {
-                                        return;
-                                    }
-                                    // A new turn belongs to the pool the editor is showing.
-                                    const newTurn = new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, false,
-                                        Player.HOST, ['default'], undefined, PresetEditor.shownPoolId(this.props));
-                                    this.props.onValueChange(newTurn, this.props.preset.turns.length);
-                                }}>+ {this.newTurnLabel()}
+                                <button className="button" onClick={() => this.addPlayerTurn(Player.HOST)}>
+                                    + {this.newTurnLabel()}
                                 </button>
                             </div>
                             <div className="column has-text-centered">
@@ -378,15 +379,8 @@ class PresetEditor extends React.Component<Props, State> {
                                 </button>
                             </div>
                             <div className="column has-text-centered">
-                                <button className="button" onClick={() => {
-                                    if (this.props.preset === undefined || this.props.preset === null) {
-                                        return;
-                                    }
-                                    // A new turn belongs to the pool the editor is showing.
-                                    const newTurn = new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, false, false,
-                                        Player.GUEST, ['default'], undefined, PresetEditor.shownPoolId(this.props));
-                                    this.props.onValueChange(newTurn, this.props.preset.turns.length);
-                                }}>+ {this.newTurnLabel()}
+                                <button className="button" onClick={() => this.addPlayerTurn(Player.GUEST)}>
+                                    + {this.newTurnLabel()}
                                 </button>
                             </div>
                             <div className="column is-1"/>
@@ -454,8 +448,8 @@ class PresetEditor extends React.Component<Props, State> {
 export function mapStateToProps(state: ApplicationState) {
     return {
         preset: state.presetEditor.editorPreset,
-        activeSegment: EditorSegments.activeIndex(state),
-        segmentOptions: EditorSegments.activeOptions(state),
+        activeSegment: EditorSegments.activeIndex(state.presetEditor),
+        segmentOptions: EditorSegments.activeOptions(state.presetEditor),
     }
 }
 

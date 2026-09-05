@@ -1,12 +1,9 @@
 import Turn from "./Turn";
-import {CivilisationEncoder} from "../util/CivilisationEncoder";
 import {Assert} from "../util/Assert";
 import Civilisation from "./Civilisation";
 import DraftOption from "./DraftOption";
-import {Util} from "../util/Util";
 import {ICategoryLimits} from "../types";
 import Segment from "./Segment";
-import Player from "../constants/Player";
 
 class Preset {
 
@@ -47,23 +44,16 @@ class Preset {
 
     public readonly name: string;
     public presetId?: string
-    public readonly encodedCivilisations?: string;
-    public readonly draftOptions?: DraftOption[];
     public readonly turns: Turn[];
     public readonly categoryLimits: ICategoryLimits;
-    public readonly segments?: Segment[];
+    /** The pools the draft options are drawn from, never fewer than one. */
+    public readonly segments: Segment[];
 
     constructor(name: string, draftOptions: DraftOption[], turns: Turn[] = [], presetId?: string,
                 categoryLimits: ICategoryLimits = {pick: {}, ban: {}}, segments?: Segment[]) {
         this.name = name;
         this.presetId = presetId;
-        if (segments !== undefined && segments.length > 0) {
-            this.segments = segments;
-        } else if (Util.isCivilisationArray(draftOptions)) {
-            this.encodedCivilisations = CivilisationEncoder.encodeCivilisationArray(draftOptions);
-        } else {
-            this.draftOptions = draftOptions;
-        }
+        this.segments = segments !== undefined && segments.length > 0 ? segments : [Segment.defaultWith(draftOptions)];
         this.turns = turns;
         this.categoryLimits = categoryLimits;
     }
@@ -83,56 +73,36 @@ class Preset {
         Assert.isString(preset.name);
         Assert.isOptionalString(preset.encodedCivilisations);
         Assert.isOptionalString(preset.presetId);
-        let draftOptions: DraftOption[] = [];
-        if (preset.encodedCivilisations) {
-            draftOptions = CivilisationEncoder.decodeCivilisationArray(preset.encodedCivilisations);
-        } else if (preset.draftOptions) {
-            draftOptions = DraftOption.fromPojoArray(preset.draftOptions);
-        }
-        let turns: Turn[] = Turn.fromPojoArray(preset.turns);
-        let segments: Segment[] | undefined = undefined;
-        if (Array.isArray(preset.segments) && preset.segments.length > 1) {
-            segments = Segment.fromPojoArray(preset.segments);
-        } else if (Array.isArray(preset.segments) && preset.segments.length === 1) {
-            // A single pool is an ordinary preset: its options and its turns come away with it.
-            draftOptions = Segment.fromPojoArray(preset.segments)[0].options;
-            turns = turns.map(turn => Turn.withSegmentId(turn, Segment.DEFAULT_ID));
-        }
+        // A preset stored before there were pools carries its options itself; they become its one pool.
+        const segments = Array.isArray(preset.segments) && preset.segments.length > 0
+            ? Segment.fromPojoArray(preset.segments)
+            : [Segment.defaultWith(Segment.optionsFromPojo(preset))];
         Assert.isCategoryLimitsOrUndefined(preset.categoryLimits)
-        return new Preset(preset.name, draftOptions, turns, preset.presetId, preset.categoryLimits, segments);
+        return new Preset(preset.name, [], Turn.fromPojoArray(preset.turns), preset.presetId, preset.categoryLimits, segments);
     }
 
     public addTurn(turn: Turn) {
         this.turns.push(turn);
     }
 
+    /** The options of every pool, in the order the pools are declared. */
     get options(): DraftOption[] {
-        if (this.segments !== undefined && this.segments.length > 0) {
-            return this.segments.reduce<DraftOption[]>((acc, segment) => acc.concat(segment.options), []);
-        }
-        if (this.encodedCivilisations) {
-            return CivilisationEncoder.decodeCivilisationArray(this.encodedCivilisations);
-        }
-        if (this.draftOptions) {
-            return this.draftOptions;
-        }
-        throw new Error('Invalid Preset without either encodedCivilisations or draftOptions');
+        return Segment.optionsOf(this.segments);
     }
 
     public optionsForTurn(turn: Turn): DraftOption[] {
-        return this.optionsForSegment(turn.segmentIdOrDefault());
+        return this.optionsForSegment(turn.segmentId);
     }
 
-    /** The options of one pool. A preset without pools offers all of its options to every turn. */
-    public optionsForSegment(segmentId?: string): DraftOption[] {
-        if (this.segments === undefined) {
-            return this.options;
-        }
-        if (segmentId === undefined) {
-            return this.options;
-        }
+    /** The options of one pool, and none for a pool the preset does not have. */
+    public optionsForSegment(segmentId: string): DraftOption[] {
         const segment = this.segments.find(value => value.id === segmentId);
         return segment === undefined ? [] : segment.options;
+    }
+
+    /** Whether the options are split up at all, which is when a pool is worth naming and showing. */
+    public hasSeveralSegments(): boolean {
+        return this.segments.length > 1;
     }
 
     /**
@@ -142,24 +112,10 @@ class Preset {
     public segmentIdInPlay(nextAction: number): string | undefined {
         for (let i = Math.max(nextAction, 0); i < this.turns.length; i++) {
             if (this.turns[i].choosesDraftOption()) {
-                return this.turns[i].segmentIdOrDefault();
+                return this.turns[i].segmentId;
             }
         }
         return undefined;
-    }
-
-    /** The pools an admin turn takes options out of, in the order the preset declares them. */
-    public segmentsWithAdminTurns(): Segment[] {
-        return this.segmentsOrDefault().filter(segment => this.turns.some(turn =>
-            turn.player === Player.NONE && turn.choosesDraftOption()
-            && turn.segmentIdOrDefault() === segment.id));
-    }
-
-    public segmentsOrDefault(): Segment[] {
-        if (this.segments !== undefined && this.segments.length > 0) {
-            return this.segments;
-        }
-        return [Segment.legacyDefault(this.encodedCivilisations, this.draftOptions)];
     }
 }
 

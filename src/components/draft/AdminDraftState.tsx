@@ -6,11 +6,11 @@ import DraftOptionPanel from "../../containers/DraftOptionPanel";
 import {DraftEvent} from "../../types/DraftEvent";
 import PlayerEvent from "../../models/PlayerEvent";
 import Turn from "../../models/Turn";
+import Segment from "../../models/Segment";
 import DraftOptionPanelType from "../../constants/DraftOptionPanelType";
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
 import DraftOption from "../../models/DraftOption";
 import Action from "../../constants/Action";
-import {PanelAspect} from "../../util/PanelAspect";
 
 interface IProps extends WithTranslation {
     preset: ModelPreset;
@@ -22,10 +22,6 @@ interface IProps extends WithTranslation {
     smooch: boolean;
     simplifiedUI?: boolean;
     highlightedAction: number | null;
-    /** Shows only the turns of this pool. Without it, every turn of the preset is shown. */
-    segmentId?: string;
-    /** Set when the strip is headed elsewhere, once for all the pools; it carries the id too. */
-    hideHeader?: boolean;
 }
 
 interface IState {
@@ -36,7 +32,6 @@ interface IState {
 }
 
 class PlayerDraftState extends React.Component<IProps, IState> {
-    private readonly chosen = React.createRef<HTMLDivElement>();
 
     constructor(props: IProps) {
         super(props);
@@ -47,32 +42,15 @@ class PlayerDraftState extends React.Component<IProps, IState> {
         this.setState(eventsToState(nextProps.events, nextProps.player));
     }
 
-    public componentDidMount(): void {
-        this.shapePanels();
-    }
-
-    public componentDidUpdate(): void {
-        this.shapePanels();
-    }
-
-    private shapePanels(): void {
-        PanelAspect.apply(this.chosen.current, this.props.preset.optionsForSegment(this.props.segmentId));
-    }
-
     private hasAdminPicksAndBans(){
         for (let turn of this.props.preset.turns) {
-            if(turn.player === Player.NONE && this.isShown(turn)) {
+            if(turn.player === Player.NONE) {
                 if(turn.action === Action.PICK || turn.action === Action.BAN){
                     return true;
                 }
             }
         }
         return false;
-    }
-
-    private isShown(turn?: Turn): boolean {
-        return this.props.segmentId === undefined
-            || (turn !== undefined && turn.segmentIdOrDefault() === this.props.segmentId);
     }
 
     public render() {
@@ -83,8 +61,8 @@ class PlayerDraftState extends React.Component<IProps, IState> {
 
         let picksIndex = 0;
         let bansIndex = 0;
-        const pickPanels = [];
-        const banPanels = [];
+        const pickPanels: JSX.Element[] = [];
+        const banPanels: JSX.Element[] = [];
         const snipes: PlayerEvent[] = [...this.state.snipes];
         const steals: PlayerEvent[] = [...this.state.steals];
         let hasActivePanel = false;
@@ -205,35 +183,47 @@ class PlayerDraftState extends React.Component<IProps, IState> {
             }
         }
 
-        const inPool = (panel: JSX.Element) => this.isShown(this.props.preset.turns[panel.props.turnNumber]);
-        const visiblePickPanels = pickPanels.filter(inPool);
-        const visibleBanPanels = banPanels.filter(inPool);
-
         const draftIsOngoing = this.isDraftOngoing();
         const playerClass = (draftIsOngoing && !hasActivePanel) ? 'player player-inactive' : 'player';
 
         return (
-            <div id={this.props.hideHeader ? undefined : playerId} className="column has-text-centered">
+            <div id={playerId} className="column has-text-centered">
                 <div className={playerClass + " box content is-inline-block"}>
-                    {!this.props.hideHeader && <div className="is-uppercase has-text-grey is-size-7 pb-2 captains-line is-justify-content-center">
+                    <div className="is-uppercase has-text-grey is-size-7 pb-2 captains-line is-justify-content-center">
                         Admin
-                    </div>}
-                    <div className="chosen" ref={this.chosen}>
-                        {((visiblePickPanels.length > 0) || (this.props.simplifiedUI && (visibleBanPanels.length > 0))) && <>
-                            {!this.props.simplifiedUI && <div className="is-uppercase has-text-grey is-size-7 pb-2 sub-heading"><Trans>Picks</Trans></div>}
-                            <div className="picks is-justify-content-center">
-                                {visiblePickPanels}{this.props.simplifiedUI && visibleBanPanels.length > 0 && visibleBanPanels}
-                            </div>
-                        </>}
-                        {(visibleBanPanels.length > 0) && !this.props.simplifiedUI && <>
-                        {<div className="is-uppercase has-text-grey is-size-7 py-2 sub-heading"><Trans>Bans</Trans></div>}
-                            <div className="bans is-justify-content-center">
-                                {visibleBanPanels}
-                            </div>
-                        </>}
+                    </div>
+                    <div className="chosen">
+                        {this.props.preset.segments.map(segment => this.pool(segment, pickPanels, banPanels))}
                     </div>
                 </div>
             </div>
+        );
+    }
+
+    /** The picks and bans of one pool, under its name when there are several pools to tell apart. */
+    private pool(segment: Segment, pickPanels: JSX.Element[], banPanels: JSX.Element[]) {
+        const inPool = (panel: JSX.Element) => this.props.preset.turns[panel.props.turnNumber].segmentId === segment.id;
+        const picks = pickPanels.filter(inPool);
+        const bans = banPanels.filter(inPool);
+        if (picks.length === 0 && bans.length === 0) {
+            return null;
+        }
+        return (
+            <React.Fragment key={segment.id}>
+                {this.props.preset.hasSeveralSegments() && <div className="pool-name">{segment.name}</div>}
+                {((picks.length > 0) || (this.props.simplifiedUI && (bans.length > 0))) && <>
+                    {!this.props.simplifiedUI && <div className="is-uppercase has-text-grey is-size-7 pb-2 sub-heading"><Trans>Picks</Trans></div>}
+                    <div className="picks is-justify-content-center">
+                        {picks}{this.props.simplifiedUI && bans.length > 0 && bans}
+                    </div>
+                </>}
+                {(bans.length > 0) && !this.props.simplifiedUI && <>
+                    <div className="is-uppercase has-text-grey is-size-7 py-2 sub-heading"><Trans>Bans</Trans></div>
+                    <div className="bans is-justify-content-center">
+                        {bans}
+                    </div>
+                </>}
+            </React.Fragment>
         );
     }
 

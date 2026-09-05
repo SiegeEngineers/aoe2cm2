@@ -31,7 +31,7 @@ class PlayerTurnSettings extends React.Component<Props, object> {
                     <AsPlayerDropdown turn={this.props.turn} index={this.props.index}/>
                 </div>
                 <TurnCategoriesInput turn={this.props.turn} index={this.props.index} key={'tci'+this.props.index}/>
-            <TurnSegmentDropdown turn={this.props.turn} index={this.props.index} key={'tsd'+this.props.index}/>
+                <TurnSegmentDropdown turn={this.props.turn} index={this.props.index} key={'tsd'+this.props.index}/>
             </div>;
         }
         return <React.Fragment>
@@ -44,7 +44,7 @@ class PlayerTurnSettings extends React.Component<Props, object> {
             &nbsp;
             <AsOpponentCheckbox turn={this.props.turn} index={this.props.index}/>
             <TurnCategoriesInput turn={this.props.turn} index={this.props.index} key={'tci'+this.props.index}/>
-                <TurnSegmentDropdown turn={this.props.turn} index={this.props.index} key={'tsd'+this.props.index}/>
+            <TurnSegmentDropdown turn={this.props.turn} index={this.props.index} key={'tsd'+this.props.index}/>
         </React.Fragment>;
     }
 }

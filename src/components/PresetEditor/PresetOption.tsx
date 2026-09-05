@@ -245,7 +245,7 @@ class PresetOption extends React.Component<IProps, object> {
 export function mapStateToProps(state: ApplicationState) {
     return {
         preset: state.presetEditor.editorPreset,
-        segmentOptions: EditorSegments.activeOptions(state)
+        segmentOptions: EditorSegments.activeOptions(state.presetEditor)
     }
 }
 

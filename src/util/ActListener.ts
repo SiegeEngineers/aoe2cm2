@@ -80,10 +80,11 @@ export class ActListener {
 
                 let adminEventCounter = 0;
                 while (ActListener.nextActionIsAdminEvent(draftsStore, draftId, adminEventCounter)) {
-                    const holds = ActListener.nextAdminActionHoldsDraft(draftsStore, draftId, adminEventCounter);
+                    const isPause = ActListener.nextAdminActionIsPause(draftsStore, draftId, adminEventCounter);
                     adminEventCounter++;
                     ActListener.scheduleAdminEvent(adminEventCounter, draftsStore, draftId, draftViews, socket, roomLobby, roomHost, roomGuest, roomSpec, this.dataDirectory, this.presetDraftsDirectory);
-                    if (holds) {
+                    // A pause holds the draft until both captains are ready again, admin turns included.
+                    if (isPause) {
                         break;
                     }
                 }
@@ -98,15 +99,9 @@ export class ActListener {
         };
     }
 
-    /**
-     * Whether the next admin turn is the pause that separates two option pools. The draft stops
-     * there until both captains are ready again; a preset without pools keeps the scheduler it
-     * has always had.
-     */
-    static nextAdminActionHoldsDraft(draftsStore: DraftsStore, draftId: string, offset: number) {
+    static nextAdminActionIsPause(draftsStore: DraftsStore, draftId: string, offset: number) {
         const expectedActions = draftsStore.getExpectedActions(draftId, offset);
-        return expectedActions.length === 1 && expectedActions[0].action === Action.PAUSE
-            && draftsStore.getDraftOrThrow(draftId).preset.segmentsOrDefault().length > 1;
+        return expectedActions.length === 1 && expectedActions[0].action === Action.PAUSE;
     }
 
     static nextActionIsAdminEvent(draftsStore: DraftsStore, draftId: string, offset: number) {
@@ -200,7 +195,7 @@ export class ActListener {
                     draftsStore.addDraftEvent(draftId, draftEvent);
                     ActListener.finishDraftIfNoFurtherActions(draftViews, socket, draftsStore, draftId, roomLobby, roomHost, roomGuest, roomSpec, dataDirectory, presetDraftsDirectory);
                 }, adminEventCounter * this.adminTurnDelay);
-            } else if ([ActionType.PICK, ActionType.BAN, ActionType.STEAL, ActionType.SNIPE].includes(actionTypeFromAction(expectedAction.action))) {
+            } else if (expectedAction.choosesDraftOption()) {
                 setTimeout(() => {
                     let draftEvent = new PlayerEvent(expectedAction.player, actionTypeFromAction(expectedAction.action), DraftOption.RANDOM.id, false, Player.NONE);
                     const civilisationsList = draftsStore.getDraftOrThrow(draftId)

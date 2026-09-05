@@ -56,7 +56,7 @@ class PresetEditorCustomOptions extends React.Component<Props, object> {
     }
 
     private addNewDraftOption() {
-        if (this.props.preset === null || this.props.preset === undefined || this.props.preset.options === undefined) {
+        if (this.props.preset === null || this.props.preset === undefined) {
             return;
         }
         this.props.onPresetDraftOptionsChange(
@@ -76,7 +76,7 @@ class PresetEditorCustomOptions extends React.Component<Props, object> {
 export function mapStateToProps(state: ApplicationState) {
     return {
         preset: state.presetEditor.editorPreset,
-        segmentOptions: EditorSegments.activeOptions(state)
+        segmentOptions: EditorSegments.activeOptions(state.presetEditor)
     }
 }
 

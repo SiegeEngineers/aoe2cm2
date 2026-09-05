@@ -6,11 +6,16 @@ Preset {
     "ban": Object {},
     "pick": Object {},
   },
-  "draftOptions": undefined,
-  "encodedCivilisations": "0",
   "name": "some-name",
   "presetId": undefined,
-  "segments": undefined,
+  "segments": Array [
+    Segment {
+      "draftOptions": Array [],
+      "encodedCivilisations": undefined,
+      "id": "default",
+      "name": "",
+    },
+  ],
   "turns": Array [
     Turn {
       "action": "PICK",
@@ -23,7 +28,7 @@ Preset {
       "id": "mocked-uuid",
       "parallel": false,
       "player": "GUEST",
-      "segmentId": undefined,
+      "segmentId": "default",
     },
   ],
 }

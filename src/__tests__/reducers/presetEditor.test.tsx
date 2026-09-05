@@ -18,19 +18,19 @@ const stateWith = (preset: Preset, activeSegment: number = 0): IPresetEditorStat
 const maps = () => new Segment('default', 'Maps', [new DraftOption('arabia')]);
 const civs = () => new Segment('segment-2', 'Civilisations', [new DraftOption('Franks')]);
 
-it('splitting a flat preset into pools keeps its turns valid', () => {
+it('adding a pool to a preset keeps its turns in the first one', () => {
     const flat = new Preset('P', [new DraftOption('arabia')], [turnIn(), turnIn()]);
     const state = presetEditorReducer(stateWith(flat), actions.setEditorSegments([maps(), civs()]));
     const preset = state.editorPreset as Preset;
-    expect(preset.segmentsOrDefault().map(value => value.id)).toEqual(['default', 'segment-2']);
-    expect(preset.turns.map(value => value.segmentIdOrDefault())).toEqual(['default', 'default']);
+    expect(preset.segments.map(value => value.id)).toEqual(['default', 'segment-2']);
+    expect(preset.turns.map(value => value.segmentId)).toEqual(['default', 'default']);
 });
 
 it('draft options are written into the active pool only', () => {
     const preset = new Preset('P', [], [turnIn('default')], undefined, undefined, [maps(), civs()]);
     const state = presetEditorReducer(stateWith(preset, 1),
         actions.setEditorDraftOptions([new DraftOption('Britons'), new DraftOption('Mayans')]));
-    const segments = (state.editorPreset as Preset).segmentsOrDefault();
+    const segments = (state.editorPreset as Preset).segments;
     expect(segments[0].options.map(value => value.id)).toEqual(['arabia']);
     expect(segments[1].options.map(value => value.id)).toEqual(['Britons', 'Mayans']);
 });
@@ -40,17 +40,23 @@ it('removing a pool moves its turns to the first remaining pool', () => {
         [maps(), civs(), new Segment('segment-3', 'Third', [new DraftOption('nomad')])]);
     const state = presetEditorReducer(stateWith(preset), actions.setEditorSegments([maps(), new Segment('segment-3', 'Third', [])]));
     const result = state.editorPreset as Preset;
-    expect(result.segmentsOrDefault().map(value => value.id)).toEqual(['default', 'segment-3']);
-    expect(result.turns.map(value => value.segmentIdOrDefault())).toEqual(['default', 'default']);
+    expect(result.segments.map(value => value.id)).toEqual(['default', 'segment-3']);
+    expect(result.turns.map(value => value.segmentId)).toEqual(['default', 'default']);
 });
 
-it('collapsing to a single pool restores a plain preset', () => {
+it('the one pool left takes the default id, and every turn goes with it', () => {
     const preset = new Preset('P', [], [turnIn('default'), turnIn('segment-2')], undefined, undefined, [maps(), civs()]);
     const state = presetEditorReducer(stateWith(preset), actions.setEditorSegments([civs()]));
     const result = state.editorPreset as Preset;
-    expect(result.segments).toBeUndefined();
+    expect(result.segments.map(value => value.id)).toEqual(['default']);
     expect(result.options.map(value => value.id)).toEqual(['Franks']);
-    expect(JSON.parse(JSON.stringify(result.turns[0]))).not.toHaveProperty('segmentId');
+    expect(result.turns.map(value => value.segmentId)).toEqual(['default', 'default']);
+});
+
+it('a preset is never left without a pool', () => {
+    const preset = new Preset('P', [], [turnIn('default')], undefined, undefined, [maps(), civs()]);
+    const state = presetEditorReducer(stateWith(preset), actions.setEditorSegments([]));
+    expect((state.editorPreset as Preset).segments).toHaveLength(2);
 });
 
 it('reveal turns are left alone when pools change', () => {
@@ -58,7 +64,7 @@ it('reveal turns are left alone when pools change', () => {
     const preset = new Preset('P', [], [reveal], undefined, undefined, [maps(), civs()]);
     const state = presetEditorReducer(stateWith(preset), actions.setEditorSegments([civs(), maps()]));
     const result = state.editorPreset as Preset;
-    expect(result.turns[0].segmentId).toBeUndefined();
+    expect(result.turns[0].segmentId).toEqual('default');
 });
 
 it('the active pool index is clamped and reset with a new preset', () => {
@@ -76,9 +82,9 @@ it('the first pool keeps the id that turns without one point at', () => {
     const state = presetEditorReducer(stateWith(preset), actions.setEditorSegments([civs(),
         new Segment('segment-3', 'Third', [new DraftOption('Britons')])]));
     const result = state.editorPreset as Preset;
-    expect(result.segmentsOrDefault().map(value => value.id)).toEqual(['default', 'segment-3']);
+    expect(result.segments.map(value => value.id)).toEqual(['default', 'segment-3']);
     // The turns of the pool that took the default id come with it.
-    expect(result.turns.map(value => value.segmentIdOrDefault())).toEqual(['default', 'default']);
+    expect(result.turns.map(value => value.segmentId)).toEqual(['default', 'default']);
 });
 
 it('a category limit goes when the pool that used the category does', () => {
@@ -110,7 +116,7 @@ it('a duplicated turn stays in its pool', () => {
     const state = presetEditorReducer(stateWith(preset), actions.duplicateEditorTurn(0));
     const turns = (state.editorPreset as Preset).turns;
     expect(turns).toHaveLength(2);
-    expect(turns.map(value => value.segmentIdOrDefault())).toEqual(['segment-2', 'segment-2']);
+    expect(turns.map(value => value.segmentId)).toEqual(['segment-2', 'segment-2']);
 });
 
 it('category limits of other pools survive editing the active pool', () => {
@@ -129,7 +135,7 @@ it('every pool gets a numbered name, not its id', () => {
     const two = [new Segment('default', 'Pool 1', []), new Segment('segment-2', 'Pool 2', [])];
     const state = presetEditorReducer(stateWith(new Preset('P', [], [turnIn('default')], undefined, undefined, two)),
         actions.setEditorSegments([...two, new Segment('segment-3', 'Pool 3', [])]));
-    expect(named((state.editorPreset as Preset).segmentsOrDefault())).toEqual(['Pool 1', 'Pool 2', 'Pool 3']);
+    expect(named((state.editorPreset as Preset).segments)).toEqual(['Pool 1', 'Pool 2', 'Pool 3']);
 });
 
 it('turns handed back by the drag-and-drop list are rebuilt as real turns', () => {
@@ -138,6 +144,6 @@ it('turns handed back by the drag-and-drop list are rebuilt as real turns', () =
     const dragged = JSON.parse(JSON.stringify([turnIn('segment-2'), turnIn('default')])) as Turn[];
     const state = presetEditorReducer(stateWith(preset), actions.setEditorTurnOrder(dragged));
     const turns = (state.editorPreset as Preset).turns;
-    expect(turns.map(value => value.segmentIdOrDefault())).toEqual(['segment-2', 'default']);
+    expect(turns.map(value => value.segmentId)).toEqual(['segment-2', 'default']);
     expect(turns.every(value => typeof value.choosesDraftOption === 'function')).toBe(true);
 });

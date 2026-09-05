@@ -201,40 +201,35 @@ export class PresetValidation {
 
 
     public static readonly VLD_919: PresetValidation = new PresetValidation(ValidationId.VLD_919, (preset: Preset) => {
-        const segmentIds: string[] = preset.segmentsOrDefault().map(value => value.id);
+        const segmentIds: string[] = preset.segments.map(value => value.id);
         return preset.turns
             .filter(value => value.choosesDraftOption())
-            .every(value => segmentIds.includes(value.segmentIdOrDefault()));
+            .every(value => segmentIds.includes(value.segmentId));
     });
 
     public static readonly VLD_920: PresetValidation = new PresetValidation(ValidationId.VLD_920, (preset: Preset) => {
-        const segmentIds: string[] = preset.segmentsOrDefault().map(value => value.id);
+        const segmentIds: string[] = preset.segments.map(value => value.id);
         return new Set(segmentIds).size === segmentIds.length;
     });
 
     public static readonly VLD_921: PresetValidation = new PresetValidation(ValidationId.VLD_921, (preset: Preset) => {
-        // Without pools the same ground is covered by VLD_916 against the whole preset.
-        return preset.segments === undefined || preset.turns
+        // With a single pool the same ground is covered by VLD_916 against the whole preset.
+        return !preset.hasSeveralSegments() || preset.turns
             .filter(value => value.choosesDraftOption())
             .every(value => preset.optionsForTurn(value)
                 .some(option => value.categories.includes(option.category)));
     });
 
     public static readonly VLD_922: PresetValidation = new PresetValidation(ValidationId.VLD_922, (preset: Preset) => {
-        return preset.turns.every((turn, index) => !turn.parallel
-            || index + 1 >= preset.turns.length
-            || turn.segmentIdOrDefault() === preset.turns[index + 1].segmentIdOrDefault());
+        // A name tells pools apart, so a preset with one pool needs none.
+        return !preset.hasSeveralSegments() || preset.segments.every(segment => segment.name.trim().length > 0);
     });
 
     public static readonly VLD_923: PresetValidation = new PresetValidation(ValidationId.VLD_923, (preset: Preset) => {
-        return preset.segments === undefined || preset.segments.every(segment => segment.name.trim().length > 0);
-    });
-
-    public static readonly VLD_924: PresetValidation = new PresetValidation(ValidationId.VLD_924, (preset: Preset) => {
-        // The twin of VLD_917 for a pool: an option nobody can take there is one nobody can take.
-        return preset.segments === undefined || preset.segments.every(segment => {
+        // The twin of VLD_917 for a pool: an option no turn of its pool can take is one nobody can take.
+        return !preset.hasSeveralSegments() || preset.segments.every(segment => {
             const categories = preset.turns
-                .filter(turn => turn.choosesDraftOption() && turn.segmentIdOrDefault() === segment.id)
+                .filter(turn => turn.choosesDraftOption() && turn.segmentId === segment.id)
                 .reduce<string[]>((all, turn) => all.concat(turn.categories), []);
             return categories.length === 0
                 || segment.options.every(option => categories.includes(option.category));
@@ -265,7 +260,6 @@ export class PresetValidation {
         PresetValidation.VLD_921,
         PresetValidation.VLD_922,
         PresetValidation.VLD_923,
-        PresetValidation.VLD_924,
     ];
 
     private readonly validationId: ValidationId;

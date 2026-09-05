@@ -37,10 +37,18 @@ it('shows both pools of a parallel pair that spans two of them', () => {
     expect(component.find(DraftOptionGrid)).toHaveLength(2);
 });
 
-it('shows nothing once the draft is over', () => {
+it('shows every pool once the draft is over, so what was taken stays on view', () => {
     const component = shallow(<SegmentedDraftBoard preset={preset(turnIn('maps'), turnIn('civs'))}
                                                    nextAction={2}/>);
-    expect(component.find(DraftOptionGrid)).toHaveLength(0);
+    expect(component.find('.pool-name').map(name => name.text())).toEqual(['Maps', 'Civilisations']);
+    expect(component.find(DraftOptionGrid)).toHaveLength(2);
+});
+
+it('keeps the one grid of a plain preset up after the draft, as it always was', () => {
+    const plain = new Preset('Plain', [new DraftOption('Franks')], [new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL)]);
+    const component = shallow(<SegmentedDraftBoard preset={plain} nextAction={1}/>);
+    expect(component.find(DraftOptionGrid)).toHaveLength(1);
+    expect(component.find(DraftOptionGrid).prop('draftOptions')).toEqual(plain.options);
 });
 
 it('keeps both pools up until a parallel pair has been taken by both players', () => {
@@ -61,4 +69,14 @@ it('shows the pool waiting behind a pause', () => {
 
     expect(component.find(DraftOptionGrid)).toHaveLength(1);
     expect(component.find(DraftOptionGrid).prop('draftOptions')).toEqual(civs.options);
+});
+
+it('names the pool over its options only when there are several pools', () => {
+    const pooled = shallow(<SegmentedDraftBoard preset={preset(turnIn('maps'), turnIn('civs'))} nextAction={0}/>);
+    expect(pooled.find('.pool-name').text()).toEqual('Maps');
+
+    const plain = new Preset('Plain', [new DraftOption('Franks')], [new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL)]);
+    const single = shallow(<SegmentedDraftBoard preset={plain} nextAction={0}/>);
+    expect(single.find('.pool-name')).toHaveLength(0);
+    expect(single.find(DraftOptionGrid).prop('draftOptions')).toEqual(plain.options);
 });

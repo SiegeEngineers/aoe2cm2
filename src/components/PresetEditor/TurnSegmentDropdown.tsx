@@ -34,7 +34,7 @@ class TurnSegmentDropdown extends React.Component<Props, object> {
                         <div className="control">
                             <div className="select is-small">
                                 <select id={'segmentinput-' + this.props.index}
-                                        value={this.props.turn.segmentIdOrDefault()}
+                                        value={this.props.turn.segmentId}
                                         onChange={event => this.updateSegment(event.target.value)}>
                                     {this.props.segments.map(segment =>
                                         <option value={segment.id} key={segment.id}>{segment.name}</option>)}
@@ -54,7 +54,7 @@ class TurnSegmentDropdown extends React.Component<Props, object> {
 
 export function mapStateToProps(state: ApplicationState) {
     return {
-        segments: EditorSegments.segments(state),
+        segments: EditorSegments.segments(state.presetEditor),
     }
 }
 

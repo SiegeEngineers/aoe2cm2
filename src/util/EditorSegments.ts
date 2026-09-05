@@ -1,52 +1,36 @@
-import {ApplicationState} from "../types";
+import {IPresetEditorState} from "../types";
 import DraftOption from "../models/DraftOption";
 import Segment from "../models/Segment";
 
+/** What the preset editor shows of the pools of the preset being edited. */
 export const EditorSegments = {
-    segments(state: ApplicationState): Segment[] {
-        const preset = state.presetEditor.editorPreset;
-        if (preset === null || preset.segments === undefined) {
-            return [];
-        }
-        return preset.segments;
+    segments(state: IPresetEditorState): Segment[] {
+        const preset = state.editorPreset;
+        return preset === null ? [] : preset.segments;
     },
 
-    activeIndex(state: ApplicationState): number {
+    /** The index of the pool on show, held within the pools there are. */
+    activeIndex(state: IPresetEditorState): number {
         const segments = EditorSegments.segments(state);
-        if (segments.length === 0) {
-            return 0;
-        }
-        return Math.min(state.presetEditor.activeSegment, segments.length - 1);
+        return Math.max(0, Math.min(state.activeSegment, segments.length - 1));
     },
 
-    activeOptions(state: ApplicationState): DraftOption[] {
-        const preset = state.presetEditor.editorPreset;
-        if (preset === null) {
-            return [];
-        }
+    /** The options of the pool on show. */
+    activeOptions(state: IPresetEditorState): DraftOption[] {
         const segments = EditorSegments.segments(state);
-        if (segments.length === 0) {
-            return preset.options;
-        }
-        return segments[EditorSegments.activeIndex(state)].options;
+        return segments.length === 0 ? [] : segments[EditorSegments.activeIndex(state)].options;
     },
 
-    /** The first pool keeps the default id, so turns that carry none of their own belong to it. */
-    nextSegmentId(segments: Segment[]): string {
-        if (segments.length === 0) {
-            return Segment.DEFAULT_ID;
-        }
+    /**
+     * The number of a pool added to these: the lowest one, from two, whose id none of them carries.
+     * The first pool is the default one, so a new pool is never the first.
+     */
+    nextSegmentNumber(segments: Segment[]): number {
         const existing = segments.map(value => value.id);
-        let index = 2;
-        while (existing.includes(`segment-${index}`)) {
-            index++;
+        let number = 2;
+        while (existing.includes(Segment.idFor(number))) {
+            number++;
         }
-        return `segment-${index}`;
-    },
-
-    /** The number in a pool id, which is what a pool made with it is named after. */
-    numberOf(segmentId: string): number {
-        const number = Number(segmentId.replace('segment-', ''));
-        return isNaN(number) ? 1 : number;
+        return number;
     },
 };

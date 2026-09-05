@@ -6,7 +6,6 @@ import Action from "../../constants/Action";
 import Segment from "../../models/Segment";
 import DraftOption from "../../models/DraftOption";
 import Civilisation from "../../models/Civilisation";
-import {Validator} from "../../models/Validator";
 
 it('preset from invalid pojo throws', () => {
     expect(() => {
@@ -150,48 +149,58 @@ it('new preset with presetID categoryLimits can be deserialised', () => {
 });
 
 
+it('a preset made of options has one pool, the default one, which needs no name', () => {
+    const preset = new Preset('Preset name', [new DraftOption('arabia')], [Turn.HOST_PICK]);
+    expect(preset.segments).toHaveLength(1);
+    expect(preset.segments[0].id).toEqual(Segment.DEFAULT_ID);
+    expect(preset.segments[0].name).toEqual('');
+    expect(preset.segments[0].options.map(value => value.id)).toEqual(['arabia']);
+    expect(preset.hasSeveralSegments()).toBe(false);
+});
 
-it('legacy preset with encoded civilisations exposes one implicit default segment', () => {
+
+it('a preset stored before there were pools loads its civilisations into the default pool', () => {
+    const preset = Preset.fromPojo({name: 'Old', encodedCivilisations: '7ffffffff', turns: []}) as Preset;
+    expect(preset.segments.map(value => value.id)).toEqual([Segment.DEFAULT_ID]);
+    expect(preset.options.length).toBeGreaterThan(0);
+    expect(preset.options.every(value => value.category === 'default')).toBe(true);
+});
+
+
+it('a preset stored before there were pools loads its draft options into the default pool', () => {
+    const preset = Preset.fromPojo({name: 'Old', draftOptions: [{id: 'arabia', name: 'arabia'} as DraftOption], turns: []}) as Preset;
+    expect(preset.segments.map(value => value.id)).toEqual([Segment.DEFAULT_ID]);
+    expect(preset.options.map(value => value.id)).toEqual(['arabia']);
+});
+
+
+it('a preset is stored as its pools, never as the options of old', () => {
     const preset = new Preset('Preset name', Civilisation.ALL_ACTIVE, [Turn.HOST_PICK]);
-    const segments = preset.segmentsOrDefault();
-    expect(segments).toHaveLength(1);
-    expect(segments[0].id).toEqual(Segment.DEFAULT_ID);
-    expect(segments[0].options.map(value => value.id)).toEqual(preset.options.map(value => value.id));
+    const pojo = JSON.parse(JSON.stringify(preset));
+    expect(pojo.segments).toHaveLength(1);
+    expect(pojo.segments[0]).toHaveProperty('encodedCivilisations');
+    expect(pojo).not.toHaveProperty('encodedCivilisations');
+    expect(pojo).not.toHaveProperty('draftOptions');
 });
 
 
-it('legacy preset with draft options exposes one implicit default segment', () => {
-    const preset = new Preset('Preset name', [new DraftOption('arabia')], [Turn.HOST_PICK]);
-    const segments = preset.segmentsOrDefault();
-    expect(segments).toHaveLength(1);
-    expect(segments[0].id).toEqual(Segment.DEFAULT_ID);
-    expect(segments[0].options.map(value => value.id)).toEqual(['arabia']);
+it('a preset stored as pools loads them as they are, one pool included', () => {
+    const one = Preset.fromPojo({
+        name: 'One pool', turns: [],
+        segments: [{id: 'maps', name: 'Maps', draftOptions: [{id: 'arabia', name: 'arabia'}]}] as unknown as Segment[],
+    }) as Preset;
+    expect(one.segments.map(value => value.id)).toEqual(['maps']);
+    expect(one.options.map(value => value.id)).toEqual(['arabia']);
 });
 
 
-it('legacy preset does not serialise a segments property', () => {
-    const preset = new Preset('Preset name', [new DraftOption('arabia')], [Turn.HOST_PICK]);
-    expect(JSON.parse(JSON.stringify(preset))).not.toHaveProperty('segments');
-});
-
-
-it('segmented preset flattens its segment options in order', () => {
+it('the options of a preset are those of its pools in order', () => {
     const preset = new Preset('Preset name', [], [Turn.HOST_PICK], undefined, undefined, [
         new Segment('maps', 'Maps', [new DraftOption('arabia'), new DraftOption('arena')]),
         new Segment('civs', 'Civilisations', [new DraftOption('Franks')]),
     ]);
     expect(preset.options.map(value => value.id)).toEqual(['arabia', 'arena', 'Franks']);
-});
-
-
-it('segmented preset does not serialise legacy option fields', () => {
-    const preset = new Preset('Preset name', [], [Turn.HOST_PICK], undefined, undefined, [
-        new Segment('maps', 'Maps', [new DraftOption('arabia')]),
-    ]);
-    const pojo = JSON.parse(JSON.stringify(preset));
-    expect(pojo).toHaveProperty('segments');
-    expect(pojo).not.toHaveProperty('encodedCivilisations');
-    expect(pojo).not.toHaveProperty('draftOptions');
+    expect(preset.hasSeveralSegments()).toBe(true);
 });
 
 
@@ -214,9 +223,9 @@ it('segmented preset can be deserialised', () => {
         } as Turn]
     };
     const preset = Preset.fromPojo(pojo) as Preset;
-    expect(preset.segmentsOrDefault().map(value => value.id)).toEqual(['maps', 'civs']);
+    expect(preset.segments.map(value => value.id)).toEqual(['maps', 'civs']);
     expect(preset.options.map(value => value.id)).toEqual(['arabia', 'Franks']);
-    expect(preset.turns[0].segmentIdOrDefault()).toEqual('maps');
+    expect(preset.turns[0].segmentId).toEqual('maps');
 });
 
 
@@ -229,7 +238,7 @@ it('a turn only offers the options of its own pool', () => {
 });
 
 
-it('a turn of a preset without pools offers every option', () => {
+it('a turn of a preset with one pool offers every option', () => {
     const preset = new Preset('P', [new DraftOption('arabia'), new DraftOption('arena')], [Turn.HOST_PICK]);
     expect(preset.optionsForTurn(Turn.HOST_PICK).map(value => value.id)).toEqual(['arabia', 'arena']);
 });
@@ -244,28 +253,10 @@ it('an admin ban only draws from its own pool', () => {
 });
 
 
-it('a pool can be asked for its options by id', () => {
+it('a pool can be asked for its options by id, and a pool the preset lacks has none', () => {
     const maps = new Segment('maps', 'Maps', [new DraftOption('arabia')]);
     const civs = new Segment('civs', 'Civilisations', [new DraftOption('Franks'), new DraftOption('Britons')]);
     const preset = new Preset('P', [], [], undefined, undefined, [maps, civs]);
     expect(preset.optionsForSegment('civs').map(value => value.id)).toEqual(['Franks', 'Britons']);
-    expect(preset.optionsForSegment(undefined).map(value => value.id)).toEqual(['arabia', 'Franks', 'Britons']);
     expect(preset.optionsForSegment('gone')).toEqual([]);
-});
-
-
-it('a single pool comes away with its turns, so the preset it becomes is valid', () => {
-    const pojo = {
-        name: 'One pool called maps',
-        turns: [{
-            player: Player.HOST, action: Action.PICK, exclusivity: Exclusivity.GLOBAL, hidden: false,
-            parallel: false, executingPlayer: Player.HOST, categories: ['default'], segmentId: 'maps',
-        }],
-        segments: [{id: 'maps', name: 'Maps', draftOptions: [{id: 'arabia', name: 'arabia'}]}],
-    };
-    const preset = Preset.fromPojo(pojo as any) as Preset;
-    expect(preset.segments).toBeUndefined();
-    expect(preset.options.map(value => value.id)).toEqual(['arabia']);
-    expect(preset.turns[0].segmentId).toBeUndefined();
-    expect(Validator.validatePreset(preset)).toEqual([]);
 });

@@ -6,6 +6,7 @@ import Turn from "../models/Turn";
 import Segment from "../models/Segment";
 import DraftOption from "../models/DraftOption";
 import {ICategoryLimits} from "../types";
+import {EditorSegments} from "../util/EditorSegments";
 
 export const initialPresetEditorState: IPresetEditorState = {
     editorPreset: null,
@@ -26,16 +27,25 @@ const prunedCategoryLimits = (limits: ICategoryLimits, options: DraftOption[]): 
  * that means exactly that, and the turns of the pool it replaces come with it.
  */
 const withDefaultFirst = (segments: Segment[], turns: Turn[]): { segments: Segment[], turns: Turn[] } => {
-    if (segments.length === 0 || segments.some(segment => segment.id === Segment.DEFAULT_ID)) {
+    if (segments.some(segment => segment.id === Segment.DEFAULT_ID)) {
         return {segments, turns};
     }
     const renamed = segments[0];
     return {
         segments: [new Segment(Segment.DEFAULT_ID, renamed.name, renamed.options), ...segments.slice(1)],
-        turns: turns.map(turn => turn.segmentIdOrDefault() === renamed.id
+        turns: turns.map(turn => turn.segmentId === renamed.id
             ? Turn.withSegmentId(turn, Segment.DEFAULT_ID) : turn),
     };
 };
+
+/** The preset with some of its parts replaced. */
+const changed = (preset: Preset, changes: { name?: string, turns?: Turn[], categoryLimits?: ICategoryLimits, segments?: Segment[] }): Preset =>
+    new Preset(changes.name ?? preset.name, [], changes.turns ?? preset.turns, preset.presetId,
+        changes.categoryLimits ?? preset.categoryLimits, changes.segments ?? preset.segments);
+
+/** The preset drawing from these pools, its limits on categories no option carries any more dropped. */
+const withSegments = (preset: Preset, segments: Segment[], turns: Turn[] = preset.turns): Preset =>
+    changed(preset, {turns, segments, categoryLimits: prunedCategoryLimits(preset.categoryLimits, Segment.optionsOf(segments))});
 
 export const presetEditorReducer = (state: IPresetEditorState = initialPresetEditorState, action: PresetEditorAction) => {
     switch (action.type) {
@@ -91,16 +101,10 @@ export const presetEditorReducer = (state: IPresetEditorState = initialPresetEdi
             if (state.editorPreset === null) {
                 return state;
             }
+            // The sortable list hands the turns back as plain objects, without the methods of a Turn.
             return {
                 ...state,
-                editorPreset: new Preset(
-                    state.editorPreset.name,
-                    state.editorPreset.options,
-                    Turn.fromPojoArray(action.turns),
-                    state.editorPreset.presetId,
-                    state.editorPreset.categoryLimits,
-                    state.editorPreset.segments,
-                )
+                editorPreset: changed(state.editorPreset, {turns: Turn.fromPojoArray(action.turns)})
             };
 
         case Actions.SET_EDITOR_NAME:
@@ -110,14 +114,7 @@ export const presetEditorReducer = (state: IPresetEditorState = initialPresetEdi
             } else {
                 return {
                     ...state,
-                    editorPreset: new Preset(
-                        action.value,
-                        state.editorPreset.options,
-                        state.editorPreset.turns,
-                        state.editorPreset.presetId,
-                        state.editorPreset.categoryLimits,
-                        state.editorPreset.segments,
-                    )
+                    editorPreset: changed(state.editorPreset, {name: action.value})
                 };
             }
 
@@ -126,50 +123,29 @@ export const presetEditorReducer = (state: IPresetEditorState = initialPresetEdi
             if (state.editorPreset === null) {
                 return state;
             } else {
-                const segments = state.editorPreset.segments;
                 // The options being set are those of the pool the editor is showing.
-                const activeIndex = segments === undefined ? -1 : Math.min(state.activeSegment, segments.length - 1);
-                const updatedSegments = segments === undefined ? undefined : segments.map((segment, index) =>
+                const activeIndex = EditorSegments.activeIndex(state);
+                const segments = state.editorPreset.segments.map((segment, index) =>
                     index === activeIndex ? new Segment(segment.id, segment.name, action.value) : segment);
-                const remainingOptions = updatedSegments === undefined ? action.value
-                    : updatedSegments.reduce<DraftOption[]>((all, segment) => all.concat(segment.options), []);
                 return {
                     ...state,
-                    editorPreset: new Preset(
-                        state.editorPreset.name,
-                        updatedSegments === undefined ? action.value : [],
-                        state.editorPreset.turns,
-                        state.editorPreset.presetId,
-                        prunedCategoryLimits(state.editorPreset.categoryLimits, remainingOptions),
-                        updatedSegments,
-                    )
+                    editorPreset: withSegments(state.editorPreset, segments)
                 };
             }
         case Actions.SET_EDITOR_SEGMENTS: {
-            if (state.editorPreset === null) {
+            if (state.editorPreset === null || action.value.length === 0) {
                 return state;
             }
+            // The turns of a pool that is gone move to the first one; other turns draw from no pool.
             const segmentIds = action.value.map(value => value.id);
-            const fallbackId = segmentIds.length > 0 ? segmentIds[0] : Segment.DEFAULT_ID;
             const kept = withDefaultFirst(action.value, state.editorPreset.turns.map(turn =>
-                !turn.choosesDraftOption() || segmentIds.includes(turn.segmentIdOrDefault())
+                !turn.choosesDraftOption() || segmentIds.includes(turn.segmentId)
                     ? turn
-                    : Turn.withSegmentId(turn, fallbackId)));
-            const flat = kept.segments.length <= 1;
-            const options = flat
-                ? (kept.segments.length === 1 ? kept.segments[0].options : [])
-                : kept.segments.reduce<DraftOption[]>((all, segment) => all.concat(segment.options), []);
+                    : Turn.withSegmentId(turn, segmentIds[0])));
             return {
                 ...state,
-                activeSegment: flat ? 0 : Math.min(state.activeSegment, kept.segments.length - 1),
-                editorPreset: new Preset(
-                    state.editorPreset.name,
-                    flat ? options : [],
-                    flat ? kept.turns.map(turn => Turn.withSegmentId(turn, Segment.DEFAULT_ID)) : kept.turns,
-                    state.editorPreset.presetId,
-                    prunedCategoryLimits(state.editorPreset.categoryLimits, options),
-                    flat ? undefined : kept.segments,
-                )
+                activeSegment: Math.min(state.activeSegment, kept.segments.length - 1),
+                editorPreset: withSegments(state.editorPreset, kept.segments, kept.turns)
             };
         }
         case Actions.SET_EDITOR_ACTIVE_SEGMENT:
@@ -187,14 +163,7 @@ export const presetEditorReducer = (state: IPresetEditorState = initialPresetEdi
                 }
                 return {
                     ...state,
-                    editorPreset: new Preset(
-                        state.editorPreset.name,
-                        state.editorPreset.options,
-                        state.editorPreset.turns,
-                        state.editorPreset.presetId,
-                        categoryLimits,
-                        state.editorPreset.segments,
-                    )
+                    editorPreset: changed(state.editorPreset, {categoryLimits})
                 };
             }
         case Actions.SET_EDITOR_CATEGORY_LIMIT_BAN:
@@ -213,14 +182,7 @@ export const presetEditorReducer = (state: IPresetEditorState = initialPresetEdi
                 }
                 return {
                     ...state,
-                    editorPreset: new Preset(
-                        state.editorPreset.name,
-                        state.editorPreset.options,
-                        state.editorPreset.turns,
-                        state.editorPreset.presetId,
-                        categoryLimits,
-                        state.editorPreset.segments,
-                    )
+                    editorPreset: changed(state.editorPreset, {categoryLimits})
                 };
             }
 

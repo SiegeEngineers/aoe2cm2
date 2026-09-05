@@ -37,17 +37,11 @@ it('segment from pojo without name throws', () => {
     }).toThrowError("Expected argument to be string, but was undefined");
 });
 
-it('legacy default segment wraps draft options', () => {
-    const segment = Segment.legacyDefault(undefined, [mapOption('arabia')]);
+it('the default pool of a preset carries the default id and no name', () => {
+    const segment = Segment.defaultWith([mapOption('arabia')]);
     expect(segment.id).toEqual(Segment.DEFAULT_ID);
+    expect(segment.name).toEqual('');
     expect(segment.options.map(value => value.id)).toEqual(['arabia']);
-});
-
-it('legacy default segment decodes encoded civilisations', () => {
-    const segment = Segment.legacyDefault('7ffffffff', undefined);
-    expect(segment.id).toEqual(Segment.DEFAULT_ID);
-    expect(segment.options.length).toBeGreaterThan(0);
-    expect(segment.options.every(value => value.category === 'default')).toBe(true);
 });
 
 it('a pool made of civilisations is stored as a bitmask', () => {

@@ -1,5 +1,5 @@
 import * as React from "react";
-import DraftOptionGrid from "./DraftOptionGrid";
+import SegmentedDraftBoard from "./SegmentedDraftBoard";
 import Messages from "../../containers/Messages";
 import DraftState from "./DraftState";
 import TurnRow from "./TurnRow";
@@ -23,11 +23,6 @@ import HowItWorks from "../menu/HowItWorks";
 import ColorSchemeHelpers from "../../util/ColorSchemeHelpers";
 import PrivateDraftWarning from "../../containers/PrivateDraftWarning";
 import CustomName from "./CustomName";
-import Segment from "../../models/Segment";
-import SegmentedDraftBoard from "./SegmentedDraftBoard";
-import CaptainColumn from "./CaptainColumn";
-import FitPanels from "./FitPanels";
-import AdminDraftState from "../../containers/AdminDraftState";
 
 interface IProps extends WithTranslation, RouteComponentProps<any> {
     nameHost: string;
@@ -65,19 +60,6 @@ interface IState {
 }
 
 class Draft extends React.Component<IProps, IState> {
-    /** The admin bans are read, not clicked, so they get a band at the foot of the page. */
-    private static readonly ADMIN_BAND = 150;
-    private static readonly ADMIN_BAND_GAP = 24;
-    private static readonly BOTTOM_GAP = 16;
-    private static readonly BAN_RATIO = 0.8;
-
-    /** What a finished draft holds its panels at rather than shrinking them; it scrolls instead. */
-    private static readonly READABLE_PANEL = 88;
-
-    /** Heights of what the page draws under the stage: the draft code, and the replay controls. */
-    private static readonly DRAFT_CODE = 30;
-    private static readonly REPLAY_CONTROLS = 84;
-
     constructor(props: IProps) {
         super(props);
         this.goBack = this.goBack.bind(this);
@@ -192,97 +174,6 @@ class Draft extends React.Component<IProps, IState> {
         this.setState({...this.state, enlarged: newEnlargedValue});
     }
 
-    /**
-     * A draft with more than one option pool has too many panels to stack down the middle of the
-     * page, so the captains take the sides and the options the centre.
-     */
-    private stage() {
-        const finished = this.isFinished();
-        // The options are clicked while the draft runs and only read once it is over.
-        const panel = finished ? {max: Draft.READABLE_PANEL, min: 72} : {max: 144, min: 72};
-        const band = finished && this.adminPools().length > 0 ? Draft.ADMIN_BAND : 0;
-        return (
-            <div className={'draft-stage' + (finished ? ' is-finished' : '')}>
-                <div className="stage-status">
-                    <div id="messages" className="columns is-mobile">
-                        <div id="action-text" className="column has-text-centered is-size-4">
-                            <Messages/>
-                        </div>
-                    </div>
-                </div>
-                <div className="stage-host">
-                    {this.captainColumn(Player.HOST, this.props.nameHost, band)}
-                </div>
-                <div className="stage-main">
-                    <FitPanels max={panel.max} min={panel.min} banRatio={Draft.BAN_RATIO}
-                               bottomGap={Draft.BOTTOM_GAP + this.belowStage()}
-                               space={finished ? band : undefined}>
-                        <SegmentedDraftBoard preset={this.props.preset}
-                                             nextAction={this.props.nextAction}/>
-                        {this.adminStrip()}
-                    </FitPanels>
-                </div>
-                <div className="stage-guest">
-                    {this.captainColumn(Player.GUEST, this.props.nameGuest, band)}
-                </div>
-            </div>
-        );
-    }
-
-    private captainColumn(player: Player, name: string, band: number) {
-        const finished = this.isFinished();
-        return <CaptainColumn preset={this.props.preset} player={player} name={name}
-                              flipped={this.state.flipped} smooch={this.state.smooch}
-                              simplifiedUI={this.state.simplifiedUI}
-                              reserve={this.belowStage() + (band > 0 ? band + Draft.ADMIN_BAND_GAP : 0)}
-                              minPanel={finished ? Draft.READABLE_PANEL : undefined}/>;
-    }
-
-    /** The stage ends above what the page draws under it rather than pushing it off the screen. */
-    private belowStage(): number {
-        return (this.state.simplifiedUI ? 0 : Draft.DRAFT_CODE)
-            + (this.props.replayEvents.length > 0 ? Draft.REPLAY_CONTROLS : 0);
-    }
-
-    private adminStrip() {
-        const finished = this.isFinished();
-        const pools = this.adminPools();
-        return (
-            <div className="admin-strips">
-                {/* Side by side at the end, the pools share one caption and go by name. */}
-                {finished && pools.length > 0 &&
-                    <div className="admin-strips-name is-uppercase has-text-grey is-size-7">Admin</div>}
-                {pools.map(segment => (
-                    <div className="admin-strip" key={segment.id}>
-                        {finished && <h3 className="segment-name">{segment.name}</h3>}
-                        <AdminDraftState preset={this.props.preset} player={Player.NONE} name={'Admin'}
-                                         segmentId={segment.id} hideHeader={finished}
-                                         flipped={this.state.flipped} smooch={this.state.smooch}
-                                         simplifiedUI={this.state.simplifiedUI}/>
-                    </div>
-                ))}
-            </div>
-        );
-    }
-
-    /** The pool being drafted, under its own options; every pool with removals once it is over. */
-    private adminPools(): Segment[] {
-        const preset = this.props.preset;
-        if (this.isFinished()) {
-            return preset.segmentsWithAdminTurns();
-        }
-        const inPlay = preset.segmentIdInPlay(this.props.nextAction);
-        return preset.segmentsOrDefault().filter(segment => segment.id === inPlay);
-    }
-
-    private isFinished(): boolean {
-        return this.props.nextAction >= this.props.preset.turns.length;
-    }
-
-    private hasSegments(): boolean {
-        return this.props.preset.segments !== undefined;
-    }
-
     public render() {
         let presetName: JSX.Element = <CustomName name={this.props.preset.name} length={200}/>;
         if(this.props.preset.presetId){
@@ -322,26 +213,24 @@ class Draft extends React.Component<IProps, IState> {
 
                     <TurnRow turns={turns}/>
 
-                    {this.hasSegments() ? this.stage() : <>
-                        <DraftState nameHost={this.props.nameHost}
-                                    nameGuest={this.props.nameGuest}
-                                    preset={this.props.preset}
-                                    flipped={this.state.flipped}
-                                    smooch={this.state.smooch}
-                                    simplifiedUI={this.state.simplifiedUI}/>
+                    <DraftState nameHost={this.props.nameHost}
+                                nameGuest={this.props.nameGuest}
+                                preset={this.props.preset}
+                                flipped={this.state.flipped}
+                                smooch={this.state.smooch}
+                                simplifiedUI={this.state.simplifiedUI}/>
 
-                        <div id="messages" className="columns is-mobile">
-                            <div id="action-text" className="column has-text-centered is-size-4">
-                                <Messages/>
-                            </div>
+                    <div id="messages" className="columns is-mobile">
+                        <div id="action-text" className="column has-text-centered is-size-4">
+                            <Messages/>
                         </div>
-                    </>}
+                    </div>
 
                     <ReplayControls/>
 
                     {!this.state.simplifiedUI && <DraftIdInfo/>}
 
-                    {!this.hasSegments() && <DraftOptionGrid draftOptions={this.props.preset.options}/>}
+                    <SegmentedDraftBoard preset={this.props.preset} nextAction={this.props.nextAction}/>
                 </div>
             </section>
 

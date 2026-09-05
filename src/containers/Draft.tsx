@@ -11,6 +11,7 @@ import {default as ModelAction} from "../constants/Action";
 
 export function mapStateToProps(state: ApplicationState) {
     return {
+        events: state.draft.events,
         nameGuest: state.draft.nameGuest as string,
         nameHost: state.draft.nameHost as string,
         hostConnected: state.draft.hostConnected,

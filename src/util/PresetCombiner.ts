@@ -6,27 +6,30 @@ import Action from "../constants/Action";
 import Exclusivity from "../constants/Exclusivity";
 import {ICategoryLimits} from "../types";
 
-/** The first pool keeps the default id, so turns that carry none of their own belong to it. */
-const FIRST_SEGMENT_ID = Segment.DEFAULT_ID;
-const SECOND_SEGMENT_ID = 'segment-2';
-
 export const PresetCombiner = {
 
     /**
-     * One preset that plays the turns of both in order, each on its own pool, with a pause between
-     * them. Only presets that leakingCategories() and sharedOptionIds() both clear may be combined.
+     * One preset that plays the turns of both in order, with a pause between them. Every pool of
+     * either preset becomes a pool of the combined one, under a fresh id so that the two cannot
+     * clash. Only presets that leakingCategories() and sharedOptionIds() both clear may be combined.
      */
     combine(first: Preset, second: Preset, name: string): Preset {
-        const segments = [
-            new Segment(FIRST_SEGMENT_ID, first.name, first.options),
-            new Segment(SECOND_SEGMENT_ID, second.name, second.options),
+        const pools = [
+            ...first.segments.map(segment => ({preset: first, segment})),
+            ...second.segments.map(segment => ({preset: second, segment})),
         ];
+        // The pools are numbered through, so the first keeps the default id and the rest cannot clash.
+        const idOf = (preset: Preset, segmentId: string) =>
+            Segment.idFor(1 + pools.findIndex(pool => pool.preset === preset && pool.segment.id === segmentId));
+        // A pool that was a preset's only one has no name of its own, so it goes by the preset's.
+        const segments = pools.map(pool => new Segment(idOf(pool.preset, pool.segment.id),
+            pool.segment.name || pool.preset.name, pool.segment.options));
         const turns: Turn[] = [
-            ...first.turns.map(turn => PresetCombiner.copy(turn, FIRST_SEGMENT_ID)),
+            ...first.turns.map(turn => PresetCombiner.copy(turn, idOf(first, turn.segmentId))),
             // The pause chooses nothing, so it carries no category: the default one would have to
             // be a category of some option, which neither half of the draft need have.
             new Turn(Player.NONE, Action.PAUSE, Exclusivity.GLOBAL, false, false, Player.NONE, []),
-            ...second.turns.map(turn => PresetCombiner.copy(turn, SECOND_SEGMENT_ID)),
+            ...second.turns.map(turn => PresetCombiner.copy(turn, idOf(second, turn.segmentId))),
         ];
         return new Preset(name, [], turns, undefined,
             PresetCombiner.mergeCategoryLimits(first.categoryLimits, second.categoryLimits), segments);
@@ -69,7 +72,6 @@ export const PresetCombiner = {
                 .concat(Object.keys(preset.categoryLimits.ban))
                 .filter(category => categories.includes(category));
         };
-        const all = reaching(first, second).concat(reaching(second, first));
-        return all.filter((category, index) => all.indexOf(category) === index);
+        return [...new Set(reaching(first, second).concat(reaching(second, first)))];
     },
 };

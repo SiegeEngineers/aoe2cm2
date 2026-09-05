@@ -106,22 +106,29 @@ reveal picks, bans, and snipes
 
 ## Option pools
 
-A preset can split its draft options into several named pools, so that a single
-draft covers more than one kind of option, typically maps and
-civilisations. Each turn belongs to exactly one pool and only accepts options
-from it, and the pools may be interleaved freely, for example civilisation bans,
-then a map draft, then civilisation picks. An admin `PAUSE` turn between two
-pools holds the draft until both captains are ready again.
+The draft options of a preset are held in named pools, so that a single draft
+can cover more than one kind of option, typically maps and civilisations. Every
+preset has at least one pool, and every turn belongs to exactly one pool and
+only accepts options from it. Pools may be interleaved freely, for example
+civilisation bans, then a map draft, then civilisation picks, and a parallel
+pair of turns may draw from two different pools. An admin `PAUSE` turn holds
+the draft until both captains are ready again.
 
-Pools are created in the preset editor with *Split into several option pools*,
-and each turn then gets a *Pool* dropdown. Two existing presets can also be
-joined into one with *Combine into one draft* on a preset's page. Draft option
-ids have to be unique across pools. Presets without pools behave exactly as
-before and are stored unchanged.
+A preset stores its pools as `segments`, and a turn names its pool as
+`segmentId`. A preset stored before there were pools is loaded into a single
+pool with the id `default`, which is also the pool a turn without a `segmentId`
+belongs to, so older presets and drafts keep working as they are.
 
-A draft with more than one pool puts the captains down the sides of the page and
-the options of the pool being drafted in the middle, and sizes the panels to the
-room the screen leaves them, so that a long draft still fits on one screen.
+Pools are added in the preset editor with *+ Add pool*, which turns the option
+list into a row of pool tabs, and each turn then gets a *Pool* dropdown. Two
+existing presets can also be joined into one with *Combine into one draft* on
+a preset's page. Draft option ids have to be unique across pools, and a
+category limit counts over the whole draft, so a limit meant for one pool needs
+the options of that pool to carry a category of their own.
+
+On the draft page each captain's panel and the admin panel show a section per
+pool, and the options below the board are those of the pool being drafted, or
+of every pool once the draft is over.
 
 Two examples ship with the app, served the same way `simple.json` is.
 `presets/pools.json` is nine turns at `/preset/pools`: five maps, a pause, then

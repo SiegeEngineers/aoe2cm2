@@ -36,24 +36,3 @@ it('names no pool when only pauses remain', () => {
         [new Segment('maps', 'Maps', [new DraftOption('arabia')])]);
     expect(trailing.segmentIdInPlay(1)).toBeUndefined();
 });
-
-const adminBanIn = (segmentId: string) =>
-    Turn.withSegmentId(new Turn(Player.NONE, Action.BAN, Exclusivity.GLOBAL), segmentId);
-
-it('names every pool an admin turn takes options out of', () => {
-    const withAdminTurns = new Preset('Admin bans in both pools', [],
-        [adminBanIn('maps'), mapTurn(), adminBanIn('civs'), civTurn()], undefined, undefined, preset.segments);
-    expect(withAdminTurns.segmentsWithAdminTurns().map(segment => segment.id)).toEqual(['maps', 'civs']);
-});
-
-it('leaves out the pools no admin turn touches', () => {
-    const withAdminTurns = new Preset('Admin bans in one pool', [],
-        [adminBanIn('civs'), mapTurn(), civTurn()], undefined, undefined, preset.segments);
-    expect(withAdminTurns.segmentsWithAdminTurns().map(segment => segment.id)).toEqual(['civs']);
-});
-
-it('does not count an admin pause as taking an option', () => {
-    const withPause = new Preset('Admin pause only', [], [mapTurn(), pause(), civTurn()], undefined, undefined,
-        preset.segments);
-    expect(withPause.segmentsWithAdminTurns()).toEqual([]);
-});

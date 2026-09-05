@@ -50,9 +50,10 @@ class Turn {
     public readonly executingPlayer: Player;
     public readonly id: string;
     public readonly categories: string[];
-    public readonly segmentId?: string;
+    /** The pool the turn draws its options from. */
+    public readonly segmentId: string;
 
-    constructor(player: Player, action: Action, exclusivity: Exclusivity, hidden: boolean = false, parallel: boolean = false, executingPlayer: Player = player, categories: string[] = ['default'], id: string = uuidv4(), segmentId?: string) {
+    constructor(player: Player, action: Action, exclusivity: Exclusivity, hidden: boolean = false, parallel: boolean = false, executingPlayer: Player = player, categories: string[] = ['default'], id: string = uuidv4(), segmentId: string = Segment.DEFAULT_ID) {
         this.id = id;
         this.player = player;
         this.action = action;
@@ -61,9 +62,7 @@ class Turn {
         this.executingPlayer = executingPlayer;
         this.parallel = parallel;
         this.categories = categories;
-        if (segmentId !== undefined && segmentId !== Segment.DEFAULT_ID) {
-            this.segmentId = segmentId;
-        }
+        this.segmentId = segmentId;
     }
 
     public static withSegmentId(turn: Turn, segmentId: string): Turn {
@@ -71,14 +70,10 @@ class Turn {
             turn.executingPlayer, turn.categories, turn.id, segmentId);
     }
 
+    /** Whether the turn takes a draft option, as opposed to revealing or pausing. */
     public choosesDraftOption(): boolean {
-        const actionType = actionTypeFromAction(this.action);
-        return actionType === ActionType.PICK || actionType === ActionType.BAN
-            || actionType === ActionType.SNIPE || actionType === ActionType.STEAL;
-    }
-
-    public segmentIdOrDefault(): string {
-        return this.segmentId === undefined ? Segment.DEFAULT_ID : this.segmentId;
+        return [ActionType.PICK, ActionType.BAN, ActionType.SNIPE, ActionType.STEAL]
+            .includes(actionTypeFromAction(this.action));
     }
 
     static fromPojoArray(turns: Turn[]) {

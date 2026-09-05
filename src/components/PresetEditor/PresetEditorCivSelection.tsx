@@ -122,7 +122,7 @@ class PresetEditorCivSelection extends React.Component<Props, State> {
 export function mapStateToProps(state: ApplicationState) {
     return {
         preset: state.presetEditor.editorPreset,
-        segmentOptions: EditorSegments.activeOptions(state)
+        segmentOptions: EditorSegments.activeOptions(state.presetEditor)
     }
 }
 

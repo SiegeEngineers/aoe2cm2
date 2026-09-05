@@ -6,6 +6,7 @@ import Action from "../../constants/Action";
 import Exclusivity from "../../constants/Exclusivity";
 import {PresetCombiner} from "../../util/PresetCombiner";
 import {Validator} from "../../models/Validator";
+import Segment from "../../models/Segment";
 
 const pick = (player: Player) => new Turn(player, Action.PICK, Exclusivity.GLOBAL);
 const maps = () => new Preset('Maps', [new DraftOption('arabia'), new DraftOption('arena')],
@@ -15,7 +16,7 @@ const civs = () => new Preset('Civilisations', [new DraftOption('Franks'), new D
 
 it('combines two presets into one with a pool each', () => {
     const combined = PresetCombiner.combine(maps(), civs(), 'Maps + Civilisations');
-    const segments = combined.segmentsOrDefault();
+    const segments = combined.segments;
     expect(segments.map(value => value.name)).toEqual(['Maps', 'Civilisations']);
     expect(segments[0].options.map(value => value.id)).toEqual(['arabia', 'arena']);
     expect(segments[1].options.map(value => value.id)).toEqual(['Franks', 'Britons']);
@@ -25,7 +26,7 @@ it('keeps the turns of both presets in order and pauses between them', () => {
     const combined = PresetCombiner.combine(maps(), civs(), 'Maps + Civilisations');
     expect(combined.turns.map(value => value.action)).toEqual(
         [Action.PICK, Action.PICK, Action.PAUSE, Action.PICK, Action.PICK]);
-    expect(combined.turns.map(value => value.segmentIdOrDefault())).toEqual(
+    expect(combined.turns.map(value => value.segmentId)).toEqual(
         ['default', 'default', 'default', 'segment-2', 'segment-2']);
     expect(combined.turns.map(value => value.player)).toEqual(
         [Player.HOST, Player.GUEST, Player.NONE, Player.GUEST, Player.HOST]);
@@ -83,4 +84,20 @@ it('keeps the category limits of both presets', () => {
         {pick: {}, ban: {default: 1}});
     const combined = PresetCombiner.combine(first, second, 'Both');
     expect(combined.categoryLimits).toEqual({pick: {default: 2}, ban: {default: 1}});
+});
+
+it('keeps the pools a preset already has, under ids of the combined preset', () => {
+    const pooled = new Preset('Pooled', [], [
+        Turn.withSegmentId(pick(Player.HOST), 'default'),
+        Turn.withSegmentId(pick(Player.GUEST), 'segment-2'),
+    ], undefined, undefined, [
+        new Segment('default', 'Land', [new DraftOption('arabia')]),
+        new Segment('segment-2', 'Water', [new DraftOption('islands')]),
+    ]);
+    const combined = PresetCombiner.combine(pooled, civs(), 'Pooled + Civilisations');
+    expect(combined.segments.map(value => value.id)).toEqual(['default', 'segment-2', 'segment-3']);
+    expect(combined.segments.map(value => value.name)).toEqual(['Land', 'Water', 'Civilisations']);
+    expect(combined.turns.map(value => value.segmentId)).toEqual(
+        ['default', 'segment-2', 'default', 'segment-3', 'segment-3']);
+    expect(Validator.validatePreset(combined)).toEqual([]);
 });

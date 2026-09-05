@@ -17,8 +17,9 @@ const segmentedPreset = (segments: Segment[], turns: Turn[]) =>
 const maps = new Segment('maps', 'Maps', [new DraftOption('arabia')]);
 const civs = new Segment('civs', 'Civilisations', [new DraftOption('Franks')]);
 
-it('legacy preset without segments is valid', () => {
+it('a preset with one pool is valid, and the pool needs no name', () => {
     const preset = new Preset('Preset name', [new DraftOption('arabia')], [turnInSegment()]);
+    expect(preset.segments[0].name).toEqual('');
     expect(Validator.validatePreset(preset)).toEqual([]);
 });
 
@@ -94,24 +95,17 @@ it('a turn whose pool holds no option of its categories is rejected', () => {
     expect(Validator.validatePreset(preset)).toContain(ValidationId.VLD_921);
 });
 
-it('a parallel pair split across two pools is rejected', () => {
+it('a parallel pair may span two pools', () => {
     const parallel = new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, true, Player.HOST, ['default'], undefined, 'maps');
     const partner = new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, false, false, Player.GUEST, ['default'], undefined, 'civs');
     const preset = segmentedPreset([maps, civs], [parallel, partner]);
-    expect(Validator.validatePreset(preset)).toContain(ValidationId.VLD_922);
-});
-
-it('a parallel pair inside one pool is accepted', () => {
-    const parallel = new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, true, Player.HOST, ['default'], undefined, 'maps');
-    const partner = new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, false, false, Player.GUEST, ['default'], undefined, 'maps');
-    const preset = segmentedPreset([maps, civs], [parallel, partner, turnInSegment('civs')]);
     expect(Validator.validatePreset(preset)).toEqual([]);
 });
 
 it('a pool without a name is rejected', () => {
     const nameless = new Segment('civs', '  ', [new DraftOption('Franks')]);
     const preset = segmentedPreset([maps, nameless], [turnInSegment('maps'), turnInSegment('civs')]);
-    expect(Validator.validatePreset(preset)).toContain(ValidationId.VLD_923);
+    expect(Validator.validatePreset(preset)).toContain(ValidationId.VLD_922);
 });
 
 it('an option no turn of its own pool could take is rejected', () => {
@@ -120,7 +114,7 @@ it('an option no turn of its own pool could take is rejected', () => {
     const pool = new Segment('maps', 'Maps', [land, water]);
     const turn = new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, false, Player.HOST, ['land'], undefined, 'maps');
     const preset = segmentedPreset([pool, civs], [turn, turnInSegment('civs')]);
-    expect(Validator.validatePreset(preset)).toContain(ValidationId.VLD_924);
+    expect(Validator.validatePreset(preset)).toContain(ValidationId.VLD_923);
 });
 
 it('a pool nobody drafts from keeps its options', () => {

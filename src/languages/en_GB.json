@@ -272,9 +272,8 @@
     "VLD_919": "There is a Turn that belongs to an Option Pool which does not exist in this Preset",
     "VLD_920": "There are two Option Pools with the same id",
     "VLD_921": "There is a Turn whose Option Pool contains no Draft Option of a category the Turn allows",
-    "VLD_922": "There is a parallel Turn that does not share its Option Pool with the Turn it runs with",
-    "VLD_923": "There is an Option Pool without a name",
-    "VLD_924": "There is a Draft Option in an Option Pool whose category no Turn of that Pool allows",
+    "VLD_922": "There is an Option Pool without a name",
+    "VLD_923": "There is a Draft Option in an Option Pool whose category no Turn of that Pool allows",
     "VLD_999": "Something went very wrong during validation"
   },
   "menu": {
@@ -381,11 +380,9 @@
     "action": "Combine into one draft",
     "notFound": "There is no preset with the code {{code}}.",
     "sharedOptions": "Both presets use these draft options: {{options}}. Every option has to belong to a single pool.",
-    "alreadySplit": "A preset that is already split into option pools cannot be combined with another one.",
     "sharedCategories": "A category limit is spent over the whole draft, so {{categories}} would also limit the other preset. Remove the limit, or give one preset's options a category of their own."
   },
   "presetEditor": {
-    "splitIntoSegments": "Split into several option pools",
     "addSegment": "+ Add pool",
     "removeSegment": "Remove pool",
     "segmentName": "Pool name",

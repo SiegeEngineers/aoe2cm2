@@ -11,6 +11,7 @@ import Civilisation from "../../models/Civilisation";
 import DraftOptionPanelType from "../../constants/DraftOptionPanelType";
 import DraftOptionPanel from "../draft/DraftOptionPanel";
 import DraftOption from "../../models/DraftOption";
+import Segment from "../../models/Segment";
 import {ApplicationState, IDraftForPreset} from "../../types";
 import {Dispatch} from "redux";
 import * as actions from "../../actions";
@@ -41,22 +42,14 @@ class Preset extends React.Component<IProps, IState> {
         }
     }
 
-    /** The draft options of the preset, split by pool when it has any. */
-    private pools(): { name?: string, options: DraftOption[], encoded: boolean }[] {
-        const preset = this.state.preset as ModelPreset;
-        if (preset.segments === undefined) {
-            return [{options: preset.options, encoded: preset.encodedCivilisations !== undefined}];
-        }
-        return preset.segments.map(segment =>
-            ({name: segment.name, options: segment.options, encoded: segment.encodedCivilisations !== undefined}));
-    }
-
-    private options(pool: { options: DraftOption[], encoded: boolean }) {
-        if (pool.encoded) {
+    /** The options of one pool: every civilisation with the chosen ones ticked, or the options as panels. */
+    private options(segment: Segment) {
+        const options = segment.options;
+        if (segment.encodedCivilisations !== undefined) {
             return Civilisation.ALL.map((value: Civilisation, index: number) =>
-                <PresetOptionCheckbox presetOptions={pool.options} value={value} key={index} disabled={true}/>);
+                <PresetOptionCheckbox presetOptions={options} value={value} key={index} disabled={true}/>);
         }
-        return pool.options.map((value: DraftOption, index: number) =>
+        return options.map((value: DraftOption, index: number) =>
             <DraftOptionPanel draftOption={value} active={false} highlighted={false}
                               draftOptionPanelType={DraftOptionPanelType.CHOICE} nextAction={0}
                               displayOnly={true} iconStyle={this.props.iconStyle}/>);
@@ -71,7 +64,7 @@ class Preset extends React.Component<IProps, IState> {
             );
         }
         if (this.state.preset !== undefined) {
-
+            const preset = this.state.preset;
             let recentDrafts = null;
             if (this.state.presetDrafts) {
                 recentDrafts = this.state.presetDrafts.reverse().map((value: IDraftForPreset) => <DraftForPresetRow
@@ -84,12 +77,12 @@ class Preset extends React.Component<IProps, IState> {
 
                         <TurnRow turns={this.state.preset.turns}/>
 
-                        {this.pools().map(pool => (
-                            <React.Fragment key={pool.name === undefined ? '' : pool.name}>
-                                {pool.name !== undefined && <h4 className="segment-name">{pool.name}</h4>}
-                                <div className={"is-flex" + (pool.encoded ? '' : ' flex-justify-center')}
+                        {preset.segments.map(segment => (
+                            <React.Fragment key={segment.id}>
+                                {preset.hasSeveralSegments() && <h4 className="pool-name">{segment.name}</h4>}
+                                <div className={"is-flex" + (segment.encodedCivilisations === undefined ? ' flex-justify-center' : '')}
                                      style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-                                    {this.options(pool)}
+                                    {this.options(segment)}
                                 </div>
                             </React.Fragment>
                         ))}
