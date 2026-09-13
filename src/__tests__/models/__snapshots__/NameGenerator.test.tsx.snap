@@ -3,14 +3,14 @@
 exports[`NameGenerator yields deterministic results 1`] = `
 Array [
   "King Alfonso",
-  "Soumaoro Kante",
-  "Yakub",
+  "Soumaba Cisse",
+  "General Khalid",
   "King Alfonso",
-  "Tairano Kiyomori",
-  "Lu Xun",
-  "Kwanggaeto the Great",
-  "Flint Sky God",
-  "Hunzahua",
-  "Sangrama",
+  "Mu Gui-ying",
+  "Wenshunu",
+  "General Kim Yu-shin",
+  "Lady Great Skull Zero",
+  "Temimino",
+  "Dharmasetu",
 ]
 `;
