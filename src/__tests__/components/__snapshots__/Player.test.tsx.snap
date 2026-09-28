@@ -17,7 +17,7 @@ exports[`Player renders correctly 1`] = `
           "draftOptions": undefined,
           "encodedCivilisations": "e3e3fffffffefff",
           "id": "default",
-          "name": "",
+          "name": "Default",
         },
       ],
       "turns": Array [

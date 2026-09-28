@@ -37,10 +37,10 @@ it('segment from pojo without name throws', () => {
     }).toThrowError("Expected argument to be string, but was undefined");
 });
 
-it('the default pool of a preset carries the default id and no name', () => {
+it('the default pool of a preset carries the default id and name', () => {
     const segment = Segment.defaultWith([mapOption('arabia')]);
     expect(segment.id).toEqual(Segment.DEFAULT_ID);
-    expect(segment.name).toEqual('');
+    expect(segment.name).toEqual('Default');
     expect(segment.options.map(value => value.id)).toEqual(['arabia']);
 });
 

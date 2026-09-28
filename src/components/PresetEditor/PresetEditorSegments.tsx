@@ -15,7 +15,7 @@ interface Props extends WithTranslation {
     onActiveSegmentChange: (value: number) => ISetEditorActiveSegment,
 }
 
-class PresetEditorSegments extends React.Component<Props, object> {
+export class PresetEditorSegments extends React.Component<Props, object> {
 
     public render() {
         // One pool is the ordinary preset, and it is not worth a row of tabs until there are two.
@@ -72,9 +72,7 @@ class PresetEditorSegments extends React.Component<Props, object> {
     }
 
     private add() {
-        // A lone pool has had no name to give; it gets one once there is a second pool to tell apart.
-        const segments = this.props.segments.map((segment, index) =>
-            index === 0 && segment.name === '' ? new Segment(segment.id, this.defaultName(1), segment.options) : segment);
+        const segments = this.props.segments;
         // Named after its number rather than a count of the pools, which would repeat a name after a removal.
         const number = EditorSegments.nextSegmentNumber(segments);
         this.props.onSegmentsChange([...segments, new Segment(Segment.idFor(number), this.defaultName(number), [])]);

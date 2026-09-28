@@ -221,8 +221,8 @@ export class PresetValidation {
     });
 
     public static readonly VLD_922: PresetValidation = new PresetValidation(ValidationId.VLD_922, (preset: Preset) => {
-        // A name tells pools apart, so a preset with one pool needs none.
-        return !preset.hasSeveralSegments() || preset.segments.every(segment => segment.name.trim().length > 0);
+        // Every pool is born with a name, so a blank one only comes from a preset put together by hand.
+        return preset.segments.every(segment => segment.name.trim().length > 0);
     });
 
     public static readonly VLD_923: PresetValidation = new PresetValidation(ValidationId.VLD_923, (preset: Preset) => {

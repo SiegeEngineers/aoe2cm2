@@ -116,8 +116,9 @@ the draft until both captains are ready again.
 
 A preset stores its pools as `segments`, and a turn names its pool as
 `segmentId`. A preset stored before there were pools is loaded into a single
-pool with the id `default`, which is also the pool a turn without a `segmentId`
-belongs to, so older presets and drafts keep working as they are.
+pool with the id `default` and the name *Default*, which is also the pool a turn
+without a `segmentId` belongs to, so older presets and drafts keep working as
+they are.
 
 Pools are added in the preset editor with *+ Add pool*, which turns the option
 list into a row of pool tabs, and each turn then gets a *Pool* dropdown. Two

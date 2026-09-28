@@ -78,7 +78,7 @@ class Preset {
         Assert.isOptionalString(preset.presetId);
         // A preset stored before there were pools carries its options itself; they become its one pool.
         const segments = Array.isArray(preset.segments) && preset.segments.length > 0
-            ? Segment.fromPojoArray(preset.segments)
+            ? Segment.namedWhenAlone(Segment.fromPojoArray(preset.segments))
             : [Segment.defaultWith(Segment.optionsFromPojo(preset))];
         Assert.isCategoryLimitsOrUndefined(preset.categoryLimits)
         return new Preset(preset.name, segments, Turn.fromPojoArray(preset.turns), preset.presetId, preset.categoryLimits);

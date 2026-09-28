@@ -149,11 +149,11 @@ it('new preset with presetID categoryLimits can be deserialised', () => {
 });
 
 
-it('a preset made of options has one pool, the default one, which needs no name', () => {
+it('a preset made of options has one pool, the default one', () => {
     const preset = new Preset('Preset name', [Segment.defaultWith([new DraftOption('arabia')])], [Turn.HOST_PICK]);
     expect(preset.segments).toHaveLength(1);
     expect(preset.segments[0].id).toEqual(Segment.DEFAULT_ID);
-    expect(preset.segments[0].name).toEqual('');
+    expect(preset.segments[0].name).toEqual('Default');
     expect(preset.segments[0].options.map(value => value.id)).toEqual(['arabia']);
     expect(preset.hasSeveralSegments()).toBe(false);
 });
@@ -263,4 +263,17 @@ it('a pool can be asked for its options by id, and a pool the preset lacks has n
 
 it('a preset cannot be built without a pool', () => {
     expect(() => new Preset('No pools', [], [Turn.HOST_PICK])).toThrow();
+});
+
+it('a lone pool stored without a name is loaded as the Default one', () => {
+    const loaded = Preset.fromPojo({
+        name: 'Nameless', turns: [],
+        segments: [{id: 'default', name: '', draftOptions: [{id: 'arabia', name: 'arabia'}]}] as unknown as Segment[],
+    }) as Preset;
+    expect(loaded.segments[0].name).toEqual('Default');
+    const two = Preset.fromPojo({
+        name: 'Two', turns: [],
+        segments: [{id: 'default', name: '', draftOptions: []}, {id: 'segment-2', name: 'Civs', draftOptions: []}] as unknown as Segment[],
+    }) as Preset;
+    expect(two.segments.map(value => value.name)).toEqual(['', 'Civs']);
 });

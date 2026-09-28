@@ -21,9 +21,11 @@ export const PresetCombiner = {
         // The pools are numbered through, so the first keeps the default id and the rest cannot clash.
         const idOf = (preset: Preset, segmentId: string) =>
             Segment.idFor(1 + pools.findIndex(pool => pool.preset === preset && pool.segment.id === segmentId));
-        // A pool that was a preset's only one has no name of its own, so it goes by the preset's.
-        const segments = pools.map(pool => new Segment(idOf(pool.preset, pool.segment.id),
-            pool.segment.name || pool.preset.name, pool.segment.options));
+        // A pool with no name of its own, or only the default one, goes by the name of its preset.
+        const nameOf = (pool: { preset: Preset, segment: Segment }) =>
+            pool.segment.name.trim() === '' || pool.segment.name === Segment.DEFAULT_NAME
+                ? pool.preset.name : pool.segment.name;
+        const segments = pools.map(pool => new Segment(idOf(pool.preset, pool.segment.id), nameOf(pool), pool.segment.options));
         const turns: Turn[] = [
             ...first.turns.map(turn => PresetCombiner.copy(turn, idOf(first, turn.segmentId))),
             // The pause chooses nothing, so it carries no category: the default one would have to

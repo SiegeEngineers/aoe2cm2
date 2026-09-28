@@ -142,10 +142,11 @@ export const presetEditorReducer = (state: IPresetEditorState = initialPresetEdi
                 !turn.choosesDraftOption() || segmentIds.includes(turn.segmentId)
                     ? turn
                     : Turn.withSegmentId(turn, segmentIds[0])));
+            const segments = Segment.namedWhenAlone(kept.segments);
             return {
                 ...state,
-                activeSegment: Math.min(state.activeSegment, kept.segments.length - 1),
-                editorPreset: withSegments(state.editorPreset, kept.segments, kept.turns)
+                activeSegment: Math.min(state.activeSegment, segments.length - 1),
+                editorPreset: withSegments(state.editorPreset, segments, kept.turns)
             };
         }
         case Actions.SET_EDITOR_ACTIVE_SEGMENT:

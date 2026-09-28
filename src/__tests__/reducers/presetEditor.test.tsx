@@ -143,3 +143,11 @@ it('turns handed back by the drag-and-drop list are rebuilt as real turns', () =
     expect(turns.map(value => value.segmentId)).toEqual(['segment-2', 'default']);
     expect(turns.every(value => typeof value.choosesDraftOption === 'function')).toBe(true);
 });
+
+it('a pool left alone without a name goes by the default one', () => {
+    const blank = new Segment('default', '', [new DraftOption('arabia')]);
+    const preset = new Preset('P', [blank, civs()], [turnIn('default'), turnIn('segment-2')]);
+    const state = presetEditorReducer(stateWith(preset, 1), actions.setEditorSegments([blank]));
+    expect((state.editorPreset as Preset).segments.map(value => value.name)).toEqual(['Default']);
+    expect(state.activeSegment).toEqual(0);
+});

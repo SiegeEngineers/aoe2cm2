@@ -101,3 +101,9 @@ it('keeps the pools a preset already has, under ids of the combined preset', () 
         ['default', 'segment-2', 'default', 'segment-3', 'segment-3']);
     expect(Validator.validatePreset(combined)).toEqual([]);
 });
+
+it('a pool with a name of its own keeps it, even as the only pool of its preset', () => {
+    const named = new Preset('Water maps', [new Segment('default', 'Islands', [new DraftOption('islands')])], [pick(Player.HOST)]);
+    const combined = PresetCombiner.combine(named, civs(), 'Water + Civilisations');
+    expect(combined.segments.map(value => value.name)).toEqual(['Islands', 'Civilisations']);
+});

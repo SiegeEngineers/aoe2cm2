@@ -17,10 +17,15 @@ const segmentedPreset = (segments: Segment[], turns: Turn[]) =>
 const maps = new Segment('maps', 'Maps', [new DraftOption('arabia')]);
 const civs = new Segment('civs', 'Civilisations', [new DraftOption('Franks')]);
 
-it('a preset with one pool is valid, and the pool needs no name', () => {
+it('a preset with one pool is valid, its pool named Default', () => {
     const preset = new Preset('Preset name', [Segment.defaultWith([new DraftOption('arabia')])], [turnInSegment()]);
-    expect(preset.segments[0].name).toEqual('');
+    expect(preset.segments[0].name).toEqual('Default');
     expect(Validator.validatePreset(preset)).toEqual([]);
+});
+
+it('VLD_922: a lone pool without a name is rejected too', () => {
+    const preset = new Preset('Preset name', [new Segment('default', ' ', [new DraftOption('arabia')])], [turnInSegment()]);
+    expect(Validator.validatePreset(preset)).toContain(ValidationId.VLD_922);
 });
 
 it('segmented preset whose turns reference existing segments is valid', () => {

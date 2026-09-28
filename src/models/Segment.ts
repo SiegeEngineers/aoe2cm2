@@ -7,6 +7,8 @@ import {Util} from "../util/Util";
 class Segment {
     /** The id of the pool a turn belongs to when it names none, and of a preset's only pool. */
     public static readonly DEFAULT_ID: string = 'default';
+    /** The name the default pool goes by. It is data, so it is not translated, like the default category. */
+    public static readonly DEFAULT_NAME: string = 'Default';
 
     public readonly id: string;
     public readonly name: string;
@@ -30,9 +32,17 @@ class Segment {
         return this.draftOptions === undefined ? [] : this.draftOptions;
     }
 
-    /** The one pool of a preset that names none. It needs no name until there is a second one. */
+    /** The one pool of a preset that names none. */
     public static defaultWith(draftOptions: DraftOption[]): Segment {
-        return new Segment(Segment.DEFAULT_ID, '', draftOptions);
+        return new Segment(Segment.DEFAULT_ID, Segment.DEFAULT_NAME, draftOptions);
+    }
+
+    /** A lone pool without a name goes by the default one, since the editor does not show the name of a lone pool. */
+    public static namedWhenAlone(segments: Segment[]): Segment[] {
+        if (segments.length === 1 && segments[0].name.trim().length === 0) {
+            return [new Segment(segments[0].id, Segment.DEFAULT_NAME, segments[0].options)];
+        }
+        return segments;
     }
 
     /** The id of the pool at this position when pools are numbered: the first one is the default. */
