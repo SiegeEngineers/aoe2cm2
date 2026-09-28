@@ -31,8 +31,8 @@ export const PresetCombiner = {
             new Turn(Player.NONE, Action.PAUSE, Exclusivity.GLOBAL, false, false, Player.NONE, []),
             ...second.turns.map(turn => PresetCombiner.copy(turn, idOf(second, turn.segmentId))),
         ];
-        return new Preset(name, [], turns, undefined,
-            PresetCombiner.mergeCategoryLimits(first.categoryLimits, second.categoryLimits), segments);
+        return new Preset(name, segments, turns, undefined,
+            PresetCombiner.mergeCategoryLimits(first.categoryLimits, second.categoryLimits));
     },
 
     /** Both presets may descend from the same one, so the turns are copied under fresh ids. */

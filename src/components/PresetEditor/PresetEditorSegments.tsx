@@ -18,9 +18,6 @@ interface Props extends WithTranslation {
 class PresetEditorSegments extends React.Component<Props, object> {
 
     public render() {
-        if (this.props.segments.length === 0) {
-            return null;
-        }
         // One pool is the ordinary preset, and it is not worth a row of tabs until there are two.
         if (this.props.segments.length < 2) {
             return (

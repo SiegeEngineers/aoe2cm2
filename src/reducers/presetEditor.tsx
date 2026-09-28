@@ -40,8 +40,8 @@ const withDefaultFirst = (segments: Segment[], turns: Turn[]): { segments: Segme
 
 /** The preset with some of its parts replaced. */
 const changed = (preset: Preset, changes: { name?: string, turns?: Turn[], categoryLimits?: ICategoryLimits, segments?: Segment[] }): Preset =>
-    new Preset(changes.name ?? preset.name, [], changes.turns ?? preset.turns, preset.presetId,
-        changes.categoryLimits ?? preset.categoryLimits, changes.segments ?? preset.segments);
+    new Preset(changes.name ?? preset.name, changes.segments ?? preset.segments, changes.turns ?? preset.turns, preset.presetId,
+        changes.categoryLimits ?? preset.categoryLimits);
 
 /** The preset drawing from these pools, its limits on categories no option carries any more dropped. */
 const withSegments = (preset: Preset, segments: Segment[], turns: Turn[] = preset.turns): Preset =>

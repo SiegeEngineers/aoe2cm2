@@ -15,10 +15,8 @@ const adminBan = (segmentId: string) =>
 const adminPick = (segmentId: string) =>
     Turn.withSegmentId(new Turn(Player.NONE, Action.PICK, Exclusivity.GLOBAL), segmentId);
 
-const pooled = new Preset('Maps and civs', [], [adminBan('maps'), adminBan('civs'), adminPick('civs')],
-    undefined, undefined,
-    [new Segment('maps', 'Maps', [new DraftOption('arabia'), new DraftOption('arena')]),
-     new Segment('civs', 'Civilisations', [new DraftOption('Franks'), new DraftOption('Britons')])]);
+const pooled = new Preset('Maps and civs', [new Segment('maps', 'Maps', [new DraftOption('arabia'), new DraftOption('arena')]),
+     new Segment('civs', 'Civilisations', [new DraftOption('Franks'), new DraftOption('Britons')])], [adminBan('maps'), adminBan('civs'), adminPick('civs')]);
 
 const render = (preset: Preset, events: PlayerEvent[] = [], nextAction = 0, simplifiedUI = false) => shallow(
     <AdminDraftState preset={preset} player={Player.NONE} name="Admin" events={events} simplifiedUI={simplifiedUI}
@@ -36,14 +34,14 @@ it('draws a section per pool, each with the admin turns of that pool', () => {
 });
 
 it('names no pool when the preset has a single one', () => {
-    const plain = new Preset('Plain', [new DraftOption('Franks')], [adminBan(Segment.DEFAULT_ID)]);
+    const plain = new Preset('Plain', [Segment.defaultWith([new DraftOption('Franks')])], [adminBan(Segment.DEFAULT_ID)]);
     const component = render(plain);
     expect(component.find('.pool-name')).toHaveLength(0);
     expect(component.find('.bans')).toHaveLength(1);
 });
 
 it('leaves out a pool the admin has no turn in', () => {
-    const civsOnly = new Preset('Civs only', [], [adminBan('civs')], undefined, undefined, pooled.segments);
+    const civsOnly = new Preset('Civs only', pooled.segments, [adminBan('civs')]);
     expect(render(civsOnly).find('.pool-name').map(name => name.text())).toEqual(['Civilisations']);
 });
 

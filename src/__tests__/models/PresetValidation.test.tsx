@@ -12,13 +12,13 @@ const turnInSegment = (segmentId?: string) =>
     new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, false, Player.HOST, ['default'], undefined, segmentId);
 
 const segmentedPreset = (segments: Segment[], turns: Turn[]) =>
-    new Preset('Preset name', [], turns, undefined, undefined, segments);
+    new Preset('Preset name', segments, turns);
 
 const maps = new Segment('maps', 'Maps', [new DraftOption('arabia')]);
 const civs = new Segment('civs', 'Civilisations', [new DraftOption('Franks')]);
 
 it('a preset with one pool is valid, and the pool needs no name', () => {
-    const preset = new Preset('Preset name', [new DraftOption('arabia')], [turnInSegment()]);
+    const preset = new Preset('Preset name', [Segment.defaultWith([new DraftOption('arabia')])], [turnInSegment()]);
     expect(preset.segments[0].name).toEqual('');
     expect(Validator.validatePreset(preset)).toEqual([]);
 });

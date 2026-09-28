@@ -14,10 +14,8 @@ const mapPick = () => Turn.withSegmentId(new Turn(Player.HOST, Action.PICK, Excl
 const mapBan = () => Turn.withSegmentId(new Turn(Player.HOST, Action.BAN, Exclusivity.GLOBAL), 'maps');
 const civPick = () => Turn.withSegmentId(new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL), 'civs');
 
-const pooled = new Preset('Maps and civs', [], [mapBan(), mapPick(), civPick(), civPick()],
-    undefined, undefined,
-    [new Segment('maps', 'Maps', [new DraftOption('arabia'), new DraftOption('arena')]),
-     new Segment('civs', 'Civilisations', [new DraftOption('Franks')])]);
+const pooled = new Preset('Maps and civs', [new Segment('maps', 'Maps', [new DraftOption('arabia'), new DraftOption('arena')]),
+     new Segment('civs', 'Civilisations', [new DraftOption('Franks')])], [mapBan(), mapPick(), civPick(), civPick()]);
 
 const render = (preset: Preset, events: PlayerEvent[] = [], nextAction = 0, simplifiedUI = false) => shallow(
     <PlayerDraftState preset={preset} player={Player.HOST} name="Alice" events={events} simplifiedUI={simplifiedUI}
@@ -36,7 +34,7 @@ it('draws a section per pool, each with the panels of its own turns, played or n
 });
 
 it('names no pool and draws one section when the preset has a single pool', () => {
-    const plain = new Preset('Plain', [new DraftOption('Franks')],
+    const plain = new Preset('Plain', [Segment.defaultWith([new DraftOption('Franks')])],
         [new Turn(Player.HOST, Action.BAN, Exclusivity.GLOBAL), new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL)]);
     const component = render(plain);
     expect(component.find('.pool-name')).toHaveLength(0);
@@ -45,9 +43,8 @@ it('names no pool and draws one section when the preset has a single pool', () =
 });
 
 it('leaves out a pool the player has no turn in', () => {
-    const spectating = new Preset('Guest only civs', [], [mapPick(),
-        Turn.withSegmentId(new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL), 'civs')],
-        undefined, undefined, pooled.segments);
+    const spectating = new Preset('Guest only civs', pooled.segments, [mapPick(),
+        Turn.withSegmentId(new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL), 'civs')]);
     expect(render(spectating).find('.pool-name').map(name => name.text())).toEqual(['Maps']);
 });
 

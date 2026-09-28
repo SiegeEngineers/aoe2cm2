@@ -19,7 +19,7 @@ const maps = () => new Segment('default', 'Maps', [new DraftOption('arabia')]);
 const civs = () => new Segment('segment-2', 'Civilisations', [new DraftOption('Franks')]);
 
 it('adding a pool to a preset keeps its turns in the first one', () => {
-    const flat = new Preset('P', [new DraftOption('arabia')], [turnIn(), turnIn()]);
+    const flat = new Preset('P', [Segment.defaultWith([new DraftOption('arabia')])], [turnIn(), turnIn()]);
     const state = presetEditorReducer(stateWith(flat), actions.setEditorSegments([maps(), civs()]));
     const preset = state.editorPreset as Preset;
     expect(preset.segments.map(value => value.id)).toEqual(['default', 'segment-2']);
@@ -27,7 +27,7 @@ it('adding a pool to a preset keeps its turns in the first one', () => {
 });
 
 it('draft options are written into the active pool only', () => {
-    const preset = new Preset('P', [], [turnIn('default')], undefined, undefined, [maps(), civs()]);
+    const preset = new Preset('P', [maps(), civs()], [turnIn('default')]);
     const state = presetEditorReducer(stateWith(preset, 1),
         actions.setEditorDraftOptions([new DraftOption('Britons'), new DraftOption('Mayans')]));
     const segments = (state.editorPreset as Preset).segments;
@@ -36,8 +36,7 @@ it('draft options are written into the active pool only', () => {
 });
 
 it('removing a pool moves its turns to the first remaining pool', () => {
-    const preset = new Preset('P', [], [turnIn('default'), turnIn('segment-2')], undefined, undefined,
-        [maps(), civs(), new Segment('segment-3', 'Third', [new DraftOption('nomad')])]);
+    const preset = new Preset('P', [maps(), civs(), new Segment('segment-3', 'Third', [new DraftOption('nomad')])], [turnIn('default'), turnIn('segment-2')]);
     const state = presetEditorReducer(stateWith(preset), actions.setEditorSegments([maps(), new Segment('segment-3', 'Third', [])]));
     const result = state.editorPreset as Preset;
     expect(result.segments.map(value => value.id)).toEqual(['default', 'segment-3']);
@@ -45,7 +44,7 @@ it('removing a pool moves its turns to the first remaining pool', () => {
 });
 
 it('the one pool left takes the default id, and every turn goes with it', () => {
-    const preset = new Preset('P', [], [turnIn('default'), turnIn('segment-2')], undefined, undefined, [maps(), civs()]);
+    const preset = new Preset('P', [maps(), civs()], [turnIn('default'), turnIn('segment-2')]);
     const state = presetEditorReducer(stateWith(preset), actions.setEditorSegments([civs()]));
     const result = state.editorPreset as Preset;
     expect(result.segments.map(value => value.id)).toEqual(['default']);
@@ -54,22 +53,21 @@ it('the one pool left takes the default id, and every turn goes with it', () => 
 });
 
 it('a preset is never left without a pool', () => {
-    const preset = new Preset('P', [], [turnIn('default')], undefined, undefined, [maps(), civs()]);
+    const preset = new Preset('P', [maps(), civs()], [turnIn('default')]);
     const state = presetEditorReducer(stateWith(preset), actions.setEditorSegments([]));
     expect((state.editorPreset as Preset).segments).toHaveLength(2);
 });
 
 it('reveal turns are left alone when pools change', () => {
     const reveal = new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL);
-    const preset = new Preset('P', [], [reveal], undefined, undefined, [maps(), civs()]);
+    const preset = new Preset('P', [maps(), civs()], [reveal]);
     const state = presetEditorReducer(stateWith(preset), actions.setEditorSegments([civs(), maps()]));
     const result = state.editorPreset as Preset;
     expect(result.turns[0].segmentId).toEqual('default');
 });
 
 it('the active pool index is clamped and reset with a new preset', () => {
-    const three = new Preset('P', [], [turnIn('default')], undefined, undefined,
-        [maps(), civs(), new Segment('segment-3', 'Third', [new DraftOption('Britons')])]);
+    const three = new Preset('P', [maps(), civs(), new Segment('segment-3', 'Third', [new DraftOption('Britons')])], [turnIn('default')]);
     const shrunk = presetEditorReducer(stateWith(three, 2), actions.setEditorSegments([maps(), civs()]));
     expect(shrunk.activeSegment).toEqual(1);
     const reloaded = presetEditorReducer(stateWith(three, 2), actions.setEditorPreset(Preset.SIMPLE));
@@ -77,8 +75,7 @@ it('the active pool index is clamped and reset with a new preset', () => {
 });
 
 it('the first pool keeps the id that turns without one point at', () => {
-    const preset = new Preset('P', [], [turnIn('default'), turnIn('segment-2')], undefined, undefined,
-        [maps(), civs(), new Segment('segment-3', 'Third', [new DraftOption('Britons')])]);
+    const preset = new Preset('P', [maps(), civs(), new Segment('segment-3', 'Third', [new DraftOption('Britons')])], [turnIn('default'), turnIn('segment-2')]);
     const state = presetEditorReducer(stateWith(preset), actions.setEditorSegments([civs(),
         new Segment('segment-3', 'Third', [new DraftOption('Britons')])]));
     const result = state.editorPreset as Preset;
@@ -90,14 +87,14 @@ it('the first pool keeps the id that turns without one point at', () => {
 it('a category limit goes when the pool that used the category does', () => {
     const land = new Segment('default', 'Maps', [new DraftOption('arabia', 'arabia', undefined, '', 'land')]);
     const civ = new Segment('segment-2', 'Civs', [new DraftOption('Franks', 'Franks', undefined, '', 'civ')]);
-    const preset = new Preset('P', [], [turnIn('default')], undefined,
-        {pick: {land: 2, civ: 1}, ban: {}}, [land, civ]);
+    const preset = new Preset('P', [land, civ], [turnIn('default')], undefined,
+        {pick: {land: 2, civ: 1}, ban: {}});
     const state = presetEditorReducer(stateWith(preset), actions.setEditorSegments([civ]));
     expect((state.editorPreset as Preset).categoryLimits).toEqual({pick: {civ: 1}, ban: {}});
 });
 
 it('pools survive renaming, reordering and category limit edits', () => {
-    const preset = new Preset('P', [], [turnIn('default'), turnIn('segment-2')], undefined, undefined, [maps(), civs()]);
+    const preset = new Preset('P', [maps(), civs()], [turnIn('default'), turnIn('segment-2')]);
     const renamed = presetEditorReducer(stateWith(preset), actions.setEditorName('New name'));
     expect((renamed.editorPreset as Preset).segments).toHaveLength(2);
 
@@ -112,7 +109,7 @@ it('pools survive renaming, reordering and category limit edits', () => {
 });
 
 it('a duplicated turn stays in its pool', () => {
-    const preset = new Preset('P', [], [turnIn('segment-2')], undefined, undefined, [maps(), civs()]);
+    const preset = new Preset('P', [maps(), civs()], [turnIn('segment-2')]);
     const state = presetEditorReducer(stateWith(preset), actions.duplicateEditorTurn(0));
     const turns = (state.editorPreset as Preset).turns;
     expect(turns).toHaveLength(2);
@@ -122,10 +119,9 @@ it('a duplicated turn stays in its pool', () => {
 it('category limits of other pools survive editing the active pool', () => {
     const tagged = (id: string, category: string) =>
         new DraftOption(id, id, DraftOption.defaultImageUrlsForCivilisation(id), '', category);
-    const preset = new Preset('P', [], [turnIn('default'), turnIn('segment-2')], undefined,
-        {pick: {maps: 2, civs: 1}, ban: {}},
-        [new Segment('default', 'Maps', [tagged('arabia', 'maps')]),
-         new Segment('segment-2', 'Civilisations', [tagged('Franks', 'civs')])]);
+    const preset = new Preset('P', [new Segment('default', 'Maps', [tagged('arabia', 'maps')]),
+         new Segment('segment-2', 'Civilisations', [tagged('Franks', 'civs')])], [turnIn('default'), turnIn('segment-2')], undefined,
+        {pick: {maps: 2, civs: 1}, ban: {}});
     const state = presetEditorReducer(stateWith(preset, 1), actions.setEditorDraftOptions([tagged('Britons', 'civs')]));
     expect((state.editorPreset as Preset).categoryLimits.pick).toEqual({maps: 2, civs: 1});
 });
@@ -133,13 +129,13 @@ it('category limits of other pools survive editing the active pool', () => {
 it('every pool gets a numbered name, not its id', () => {
     const named = (segments: Segment[]) => segments.map(value => value.name);
     const two = [new Segment('default', 'Pool 1', []), new Segment('segment-2', 'Pool 2', [])];
-    const state = presetEditorReducer(stateWith(new Preset('P', [], [turnIn('default')], undefined, undefined, two)),
+    const state = presetEditorReducer(stateWith(new Preset('P', two, [turnIn('default')])),
         actions.setEditorSegments([...two, new Segment('segment-3', 'Pool 3', [])]));
     expect(named((state.editorPreset as Preset).segments)).toEqual(['Pool 1', 'Pool 2', 'Pool 3']);
 });
 
 it('turns handed back by the drag-and-drop list are rebuilt as real turns', () => {
-    const preset = new Preset('P', [], [turnIn('default')], undefined, undefined, [maps(), civs()]);
+    const preset = new Preset('P', [maps(), civs()], [turnIn('default')]);
     // react-sortablejs spreads the items, so they come back as plain objects
     const dragged = JSON.parse(JSON.stringify([turnIn('segment-2'), turnIn('default')])) as Turn[];
     const state = presetEditorReducer(stateWith(preset), actions.setEditorTurnOrder(dragged));

@@ -10,10 +10,10 @@ const civs = new Segment('segment-2', 'Civilisations', [new DraftOption('Franks'
 const stateWith = (preset: Preset | null, activeSegment: number = 0): IPresetEditorState =>
     ({editorPreset: preset, activeSegment});
 
-const segmented = new Preset('P', [], [], undefined, undefined, [maps, civs]);
+const segmented = new Preset('P', [maps, civs], []);
 
 it('a preset offers its pools, and no preset offers none', () => {
-    const flat = new Preset('P', [new DraftOption('arabia')], []);
+    const flat = new Preset('P', [Segment.defaultWith([new DraftOption('arabia')])], []);
     expect(EditorSegments.segments(stateWith(flat)).map(value => value.id)).toEqual([Segment.DEFAULT_ID]);
     expect(EditorSegments.segments(stateWith(null))).toEqual([]);
 });
@@ -23,7 +23,7 @@ it('the options shown are those of the pool on show', () => {
 });
 
 it('a preset with one pool offers all of its options whatever the index', () => {
-    const flat = new Preset('P', [new DraftOption('arabia'), new DraftOption('arena')], []);
+    const flat = new Preset('P', [Segment.defaultWith([new DraftOption('arabia'), new DraftOption('arena')])], []);
     expect(EditorSegments.activeOptions(stateWith(flat, 3)).map(value => value.id)).toEqual(['arabia', 'arena']);
 });
 

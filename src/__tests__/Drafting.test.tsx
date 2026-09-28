@@ -289,7 +289,7 @@ it('fully execute sample draft', (done) => {
 
 it('preset consisting only of admin action', (done) => {
     Reflect.set(ActListener, "adminTurnDelay", 10);
-    const preset = new Preset('Admin only preset', Civilisation.ALL_ACTIVE, [
+    const preset = new Preset('Admin only preset', [Segment.defaultWith(Civilisation.ALL_ACTIVE)], [
         new Turn(Player.NONE, Action.PICK, Exclusivity.NONEXCLUSIVE),
         new Turn(Player.HOST, Action.PICK, Exclusivity.NONEXCLUSIVE, false, false, Player.NONE),
         new Turn(Player.HOST, Action.PICK, Exclusivity.NONEXCLUSIVE, false, false, Player.NONE),
@@ -322,7 +322,7 @@ it('preset consisting only of admin action', (done) => {
 
 it('draft with pause', (done) => {
     Reflect.set(ActListener, "adminTurnDelay", 0);
-    const preset = new Preset('preset with pause', Civilisation.ALL_ACTIVE, [
+    const preset = new Preset('preset with pause', [Segment.defaultWith(Civilisation.ALL_ACTIVE)], [
         new Turn(Player.HOST, Action.PICK, Exclusivity.NONEXCLUSIVE),
         new Turn(Player.NONE, Action.PAUSE, Exclusivity.NONEXCLUSIVE),
         new Turn(Player.GUEST, Action.PICK, Exclusivity.NONEXCLUSIVE),
@@ -361,13 +361,13 @@ it('draft with pause', (done) => {
 
 it('a pause holds the admin turns after it until both captains are ready again', (done) => {
     Reflect.set(ActListener, "adminTurnDelay", 0);
-    const preset = new Preset('preset with two pools', [], [
+    const preset = new Preset('preset with two pools', [
+        new Segment(Segment.DEFAULT_ID, 'Maps', [Civilisation.AZTECS]),
+        new Segment('segment-2', 'Civilisations', [Civilisation.BRITONS]),
+    ], [
         new Turn(Player.HOST, Action.PICK, Exclusivity.NONEXCLUSIVE),
         new Turn(Player.NONE, Action.PAUSE, Exclusivity.NONEXCLUSIVE),
         Turn.withSegmentId(new Turn(Player.NONE, Action.BAN, Exclusivity.NONEXCLUSIVE), 'segment-2'),
-    ], undefined, undefined, [
-        new Segment(Segment.DEFAULT_ID, 'Maps', [Civilisation.AZTECS]),
-        new Segment('segment-2', 'Civilisations', [Civilisation.BRITONS]),
     ]);
     const settle = () => new Promise(resolve => setTimeout(resolve, 50));
     createDraftForPreset(preset).then(value => {
@@ -408,7 +408,7 @@ it('a pause holds the admin turns after it until both captains are ready again',
 
 it('a pause holds the admin turns after it in a preset with one pool as well', (done) => {
     Reflect.set(ActListener, "adminTurnDelay", 0);
-    const preset = new Preset('preset with a pause before an admin ban', [Civilisation.AZTECS, Civilisation.BRITONS], [
+    const preset = new Preset('preset with a pause before an admin ban', [Segment.defaultWith([Civilisation.AZTECS, Civilisation.BRITONS])], [
         new Turn(Player.HOST, Action.PICK, Exclusivity.NONEXCLUSIVE),
         new Turn(Player.NONE, Action.PAUSE, Exclusivity.NONEXCLUSIVE),
         new Turn(Player.NONE, Action.BAN, Exclusivity.NONEXCLUSIVE),
@@ -451,7 +451,7 @@ it('a pause holds the admin turns after it in a preset with one pool as well', (
 
 it('draft with categorylimit reset', (done) => {
     Reflect.set(ActListener, "adminTurnDelay", 0);
-    const preset = new Preset('preset with pause', [Civilisation.AZTECS], [
+    const preset = new Preset('preset with pause', [Segment.defaultWith([Civilisation.AZTECS])], [
         new Turn(Player.HOST, Action.PICK, Exclusivity.NONEXCLUSIVE),
         new Turn(Player.NONE, Action.RESET_CL, Exclusivity.NONEXCLUSIVE),
         new Turn(Player.GUEST, Action.PICK, Exclusivity.NONEXCLUSIVE),

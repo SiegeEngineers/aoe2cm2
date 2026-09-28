@@ -150,7 +150,7 @@ it('new preset with presetID categoryLimits can be deserialised', () => {
 
 
 it('a preset made of options has one pool, the default one, which needs no name', () => {
-    const preset = new Preset('Preset name', [new DraftOption('arabia')], [Turn.HOST_PICK]);
+    const preset = new Preset('Preset name', [Segment.defaultWith([new DraftOption('arabia')])], [Turn.HOST_PICK]);
     expect(preset.segments).toHaveLength(1);
     expect(preset.segments[0].id).toEqual(Segment.DEFAULT_ID);
     expect(preset.segments[0].name).toEqual('');
@@ -175,7 +175,7 @@ it('a preset stored before there were pools loads its draft options into the def
 
 
 it('a preset is stored as its pools, never as the options of old', () => {
-    const preset = new Preset('Preset name', Civilisation.ALL_ACTIVE, [Turn.HOST_PICK]);
+    const preset = new Preset('Preset name', [Segment.defaultWith(Civilisation.ALL_ACTIVE)], [Turn.HOST_PICK]);
     const pojo = JSON.parse(JSON.stringify(preset));
     expect(pojo.segments).toHaveLength(1);
     expect(pojo.segments[0]).toHaveProperty('encodedCivilisations');
@@ -195,10 +195,10 @@ it('a preset stored as pools loads them as they are, one pool included', () => {
 
 
 it('the options of a preset are those of its pools in order', () => {
-    const preset = new Preset('Preset name', [], [Turn.HOST_PICK], undefined, undefined, [
+    const preset = new Preset('Preset name', [
         new Segment('maps', 'Maps', [new DraftOption('arabia'), new DraftOption('arena')]),
         new Segment('civs', 'Civilisations', [new DraftOption('Franks')]),
-    ]);
+    ], [Turn.HOST_PICK]);
     expect(preset.options.map(value => value.id)).toEqual(['arabia', 'arena', 'Franks']);
     expect(preset.hasSeveralSegments()).toBe(true);
 });
@@ -233,13 +233,13 @@ it('a turn only offers the options of its own pool', () => {
     const maps = new Segment('maps', 'Maps', [new DraftOption('arabia')]);
     const civs = new Segment('civs', 'Civilisations', [new DraftOption('Franks'), new DraftOption('Britons')]);
     const mapTurn = new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, false, Player.HOST, ['default'], undefined, 'maps');
-    const preset = new Preset('P', [], [mapTurn], undefined, undefined, [maps, civs]);
+    const preset = new Preset('P', [maps, civs], [mapTurn]);
     expect(preset.optionsForTurn(mapTurn).map(value => value.id)).toEqual(['arabia']);
 });
 
 
 it('a turn of a preset with one pool offers every option', () => {
-    const preset = new Preset('P', [new DraftOption('arabia'), new DraftOption('arena')], [Turn.HOST_PICK]);
+    const preset = new Preset('P', [Segment.defaultWith([new DraftOption('arabia'), new DraftOption('arena')])], [Turn.HOST_PICK]);
     expect(preset.optionsForTurn(Turn.HOST_PICK).map(value => value.id)).toEqual(['arabia', 'arena']);
 });
 
@@ -248,7 +248,7 @@ it('an admin ban only draws from its own pool', () => {
     const maps = new Segment('maps', 'Maps', [new DraftOption('arabia')]);
     const civs = new Segment('civs', 'Civilisations', [new DraftOption('Franks'), new DraftOption('Britons')]);
     const adminBan = new Turn(Player.NONE, Action.BAN, Exclusivity.GLOBAL, false, false, Player.NONE, ['default'], undefined, 'civs');
-    const preset = new Preset('P', [], [adminBan], undefined, undefined, [maps, civs]);
+    const preset = new Preset('P', [maps, civs], [adminBan]);
     expect(preset.optionsForTurn(adminBan).map(value => value.id)).toEqual(['Franks', 'Britons']);
 });
 
@@ -256,7 +256,11 @@ it('an admin ban only draws from its own pool', () => {
 it('a pool can be asked for its options by id, and a pool the preset lacks has none', () => {
     const maps = new Segment('maps', 'Maps', [new DraftOption('arabia')]);
     const civs = new Segment('civs', 'Civilisations', [new DraftOption('Franks'), new DraftOption('Britons')]);
-    const preset = new Preset('P', [], [], undefined, undefined, [maps, civs]);
+    const preset = new Preset('P', [maps, civs], []);
     expect(preset.optionsForSegment('civs').map(value => value.id)).toEqual(['Franks', 'Britons']);
     expect(preset.optionsForSegment('gone')).toEqual([]);
+});
+
+it('a preset cannot be built without a pool', () => {
+    expect(() => new Preset('No pools', [], [Turn.HOST_PICK])).toThrow();
 });

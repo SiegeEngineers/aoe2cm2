@@ -7,11 +7,11 @@ import Segment from "./Segment";
 
 class Preset {
 
-    public static readonly EMPTY: Preset = new Preset('', [], []);
+    public static readonly EMPTY: Preset = new Preset('', [Segment.defaultWith([])], []);
 
-    public static readonly NEW: Preset = new Preset('', Civilisation.ALL_ACTIVE, []);
+    public static readonly NEW: Preset = new Preset('', [Segment.defaultWith(Civilisation.ALL_ACTIVE)], []);
 
-    public static readonly SAMPLE: Preset = new Preset('Default Preset', Civilisation.ALL_ACTIVE, [
+    public static readonly SAMPLE: Preset = new Preset('Default Preset', [Segment.defaultWith(Civilisation.ALL_ACTIVE)], [
         Turn.HOST_GLOBAL_BAN,
         Turn.GUEST_GLOBAL_BAN,
         Turn.HOST_HIDDEN_BAN,
@@ -35,7 +35,7 @@ class Preset {
         Turn.REVEAL_ALL
     ]);
 
-    public static readonly SIMPLE: Preset = new Preset('Simple Preset', Civilisation.ALL_ACTIVE, [
+    public static readonly SIMPLE: Preset = new Preset('Simple Preset', [Segment.defaultWith(Civilisation.ALL_ACTIVE)], [
         Turn.HOST_NONEXCLUSIVE_BAN,
         Turn.GUEST_NONEXCLUSIVE_BAN,
         Turn.GUEST_NONEXCLUSIVE_PICK,
@@ -49,11 +49,14 @@ class Preset {
     /** The pools the draft options are drawn from, never fewer than one. */
     public readonly segments: Segment[];
 
-    constructor(name: string, draftOptions: DraftOption[], turns: Turn[] = [], presetId?: string,
-                categoryLimits: ICategoryLimits = {pick: {}, ban: {}}, segments?: Segment[]) {
+    constructor(name: string, segments: Segment[], turns: Turn[] = [], presetId?: string,
+                categoryLimits: ICategoryLimits = {pick: {}, ban: {}}) {
+        if (segments.length === 0) {
+            throw new Error('A preset needs at least one pool');
+        }
         this.name = name;
         this.presetId = presetId;
-        this.segments = segments !== undefined && segments.length > 0 ? segments : [Segment.defaultWith(draftOptions)];
+        this.segments = segments;
         this.turns = turns;
         this.categoryLimits = categoryLimits;
     }
@@ -78,7 +81,7 @@ class Preset {
             ? Segment.fromPojoArray(preset.segments)
             : [Segment.defaultWith(Segment.optionsFromPojo(preset))];
         Assert.isCategoryLimitsOrUndefined(preset.categoryLimits)
-        return new Preset(preset.name, [], Turn.fromPojoArray(preset.turns), preset.presetId, preset.categoryLimits, segments);
+        return new Preset(preset.name, segments, Turn.fromPojoArray(preset.turns), preset.presetId, preset.categoryLimits);
     }
 
     public addTurn(turn: Turn) {
