@@ -104,19 +104,6 @@ class Preset {
     public hasSeveralSegments(): boolean {
         return this.segments.length > 1;
     }
-
-    /**
-     * A pause reveals nothing and drafts nothing, so the pool on show while one is running is the
-     * pool of the next turn that does draft something. Undefined once the draft is over.
-     */
-    public segmentIdInPlay(nextAction: number): string | undefined {
-        for (let i = Math.max(nextAction, 0); i < this.turns.length; i++) {
-            if (this.turns[i].choosesDraftOption()) {
-                return this.turns[i].segmentId;
-            }
-        }
-        return undefined;
-    }
 }
 
 export default Preset;

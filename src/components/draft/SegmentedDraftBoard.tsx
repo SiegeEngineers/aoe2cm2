@@ -10,7 +10,7 @@ interface IProps {
 
 /**
  * The options of the pool being drafted, of both pools when a parallel pair spans two, and of
- * every pool once the draft is over, as a record of what was taken.
+ * every pool once there is nothing left to draft, as a record of what was taken.
  */
 class SegmentedDraftBoard extends React.Component<IProps, object> {
     public render() {
@@ -31,27 +31,35 @@ class SegmentedDraftBoard extends React.Component<IProps, object> {
 
     private segmentIdsInPlay(): string[] {
         const preset = this.props.preset;
-        if (this.props.nextAction >= preset.turns.length) {
+        if (this.nextChoosingTurn() >= preset.turns.length) {
             return preset.segments.map(segment => segment.id);
         }
         const ids = new Set(preset.turns
-            .filter((turn, index) => turn.choosesDraftOption() && this.isInPlay(index))
+            .filter((turn, index) => this.isInPlay(index))
             .map(turn => turn.segmentId));
-        if (ids.size > 0) {
-            return [...ids];
-        }
-        // A pause drafts nothing, so the pool waiting behind it is the one worth showing.
-        const waiting = preset.segmentIdInPlay(this.props.nextAction);
-        return waiting === undefined ? [] : [waiting];
+        return [...ids];
     }
 
-    /** The turns being played, by the same reckoning the panels use: the next one and its pair. */
+    /**
+     * The turns being played, by the same reckoning the panels use: the next one and its pair.
+     * A reveal or a pause drafts nothing, so while one runs the turn in play is the one behind it.
+     */
     private isInPlay(index: number): boolean {
         const turns = this.props.preset.turns;
-        const next = this.props.nextAction;
+        const next = this.nextChoosingTurn();
         return index === next
             || (index + 1 === next && turns[index].parallel)
             || (index - 1 === next && index >= 1 && turns[index - 1].parallel);
+    }
+
+    /** The first turn from the next action on that takes an option, or the turn count when none is left. */
+    private nextChoosingTurn(): number {
+        const turns = this.props.preset.turns;
+        let next = Math.max(this.props.nextAction, 0);
+        while (next < turns.length && !turns[next].choosesDraftOption()) {
+            next++;
+        }
+        return next;
     }
 }
 

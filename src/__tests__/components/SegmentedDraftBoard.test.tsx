@@ -71,6 +71,37 @@ it('shows the pool waiting behind a pause', () => {
     expect(component.find(DraftOptionGrid).prop('draftOptions')).toEqual(civs.options);
 });
 
+it('shows both pools of a parallel pair waiting behind a pause', () => {
+    const pause = new Turn(Player.NONE, Action.PAUSE, Exclusivity.GLOBAL);
+    const paused = new Preset('Paused', [], [turnIn('maps'), pause, turnIn('maps', true), turnIn('civs')],
+        undefined, undefined, [maps, civs]);
+    const component = shallow(<SegmentedDraftBoard preset={paused} nextAction={1}/>);
+    expect(component.find(DraftOptionGrid)).toHaveLength(2);
+});
+
+it('shows both pools of a parallel pair waiting behind a reveal and a pause', () => {
+    const reveal = new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL);
+    const pause = new Turn(Player.NONE, Action.PAUSE, Exclusivity.GLOBAL);
+    const held = new Preset('Held', [], [turnIn('maps'), reveal, pause, turnIn('civs', true), turnIn('maps')],
+        undefined, undefined, [maps, civs]);
+    const component = shallow(<SegmentedDraftBoard preset={held} nextAction={1}/>);
+    expect(component.find(DraftOptionGrid)).toHaveLength(2);
+});
+
+it('shows every pool while a trailing reveal runs, as nothing is left to draft', () => {
+    const reveal = new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL);
+    const revealed = new Preset('Revealed', [], [turnIn('maps'), turnIn('civs'), reveal],
+        undefined, undefined, [maps, civs]);
+    const component = shallow(<SegmentedDraftBoard preset={revealed} nextAction={2}/>);
+    expect(component.find(DraftOptionGrid)).toHaveLength(2);
+});
+
+it('shows the first pool before the draft has started', () => {
+    const component = shallow(<SegmentedDraftBoard preset={preset(turnIn('civs'), turnIn('maps'))} nextAction={-1}/>);
+    expect(component.find(DraftOptionGrid)).toHaveLength(1);
+    expect(component.find(DraftOptionGrid).prop('draftOptions')).toEqual(civs.options);
+});
+
 it('names the pool over its options only when there are several pools', () => {
     const pooled = shallow(<SegmentedDraftBoard preset={preset(turnIn('maps'), turnIn('civs'))} nextAction={0}/>);
     expect(pooled.find('.pool-name').text()).toEqual('Maps');
