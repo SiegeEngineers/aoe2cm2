@@ -5,6 +5,7 @@ import Turn from "./Turn";
 import PlayerEvent from "./PlayerEvent";
 import {Util} from "../util/Util";
 import AdminEvent from "./AdminEvent";
+import Player from "../constants/Player";
 
 class Draft implements IDraftState {
     public private: boolean | undefined;
@@ -105,6 +106,14 @@ class Draft implements IDraftState {
             return expectedActions;
         }
         return [];
+    }
+
+    /**
+     * The expected action this player is to execute. The two halves of a parallel pair may be for
+     * the same player (one of them "as opponent"), so the executing player is what tells them apart.
+     */
+    public getExpectedActionFor(executingPlayer: Player): Turn | undefined {
+        return this.getExpectedActions().find(turn => turn.executingPlayer === executingPlayer);
     }
 
     public getOffset() {

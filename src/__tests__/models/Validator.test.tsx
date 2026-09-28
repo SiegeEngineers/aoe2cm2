@@ -14,6 +14,7 @@ import AdminEvent from "../../models/AdminEvent";
 import Exclusivity from "../../constants/Exclusivity";
 import DraftOption from "../../models/DraftOption";
 import Segment from "../../models/Segment";
+import {Util} from "../../util/Util";
 
 const NAME_HOST: string = 'Yodit';
 const NAME_GUEST: string = 'Saladin';
@@ -1170,4 +1171,37 @@ it('VLD_010: an option repeated in another pool is judged by the pool of the tur
     const preset = new Preset('Shared option preset', [], turns, undefined, undefined, [first, second]);
     const validator = new Validator(prepareReadyStore(preset));
     expect(validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, 'arabia'))).toEqual([]);
+});
+
+/** A parallel pair for the same player: the host picks a map, the guest picks a civilisation for the host. */
+const sharedPlayerPair = (): Preset => new Preset('Shared player pair', [], [
+    new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, true, Player.HOST, ['default'], undefined, 'maps'),
+    new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, false, Player.GUEST, ['default'], undefined, 'civs'),
+], undefined, undefined, [MAPS_SEGMENT, CIVS_SEGMENT]);
+
+it('VLD_010: in a parallel pair for the same player, each half draws from the pool of its executing player', () => {
+    const validator = new Validator(prepareReadyStore(sharedPlayerPair()));
+    expect(validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, 'Franks', false, Player.HOST)))
+        .toEqual([ValidationId.VLD_010]);
+    expect(validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, 'arabia', false, Player.HOST)))
+        .toEqual([]);
+    expect(validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, 'Franks', false, Player.GUEST)))
+        .toEqual([]);
+});
+
+it('a random pick in a parallel pair for the same player is drawn from the pool of its executing player', () => {
+    const draftsStore = prepareReadyStore(sharedPlayerPair());
+    const event = new PlayerEvent(Player.HOST, ActionType.PICK, DraftOption.RANDOM.id, false, Player.HOST);
+    const picked = Util.setRandomDraftOptionIfNeeded(event, DRAFT_ID, draftsStore, [...MAPS_SEGMENT.options]);
+    expect(MAPS_SEGMENT.options.map(value => value.id)).toContain(picked.chosenOptionId);
+    expect(picked.isRandomlyChosen).toBe(true);
+});
+
+it('the expected action of an executing player is their own half of a parallel pair', () => {
+    const draft = new Draft(NAME_HOST, NAME_GUEST, sharedPlayerPair(), false);
+    draft.hostReady = true;
+    draft.guestReady = true;
+    expect(draft.getExpectedActionFor(Player.HOST)?.segmentId).toEqual('maps');
+    expect(draft.getExpectedActionFor(Player.GUEST)?.segmentId).toEqual('civs');
+    expect(draft.getExpectedActionFor(Player.NONE)).toBeUndefined();
 });

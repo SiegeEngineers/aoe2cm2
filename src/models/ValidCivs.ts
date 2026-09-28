@@ -356,17 +356,16 @@ class ValidCivs {
         return true;
     }
 
-    /** A player may only choose from the pool of the turn they are acting on. */
+    /** A player may only choose from the pool of the turn they are executing. */
     private isFromValidSegment(draftEvent: PlayerEvent): boolean {
         const preset = this.draft.preset;
         // Technical options such as random and hidden belong to no pool.
         if (!preset.options.some(option => option.id === draftEvent.chosenOptionId)) {
             return true;
         }
-        return this.draft.getExpectedActions()
-            .filter(turn => turn.player === draftEvent.player)
-            .every(turn => preset.optionsForTurn(turn)
-                .some(option => option.id === draftEvent.chosenOptionId));
+        const turn = this.draft.getExpectedActionFor(draftEvent.executingPlayer);
+        return turn === undefined
+            || preset.optionsForTurn(turn).some(option => option.id === draftEvent.chosenOptionId);
     }
 
     private getCategoryForEvent(draftEvent: PlayerEvent): string | undefined {

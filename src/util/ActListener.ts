@@ -55,7 +55,7 @@ export class ActListener {
             }
 
             const draft = draftsStore.getDraftOrThrow(draftId);
-            const expectedTurn = draft.getExpectedActions().find(turn => turn.player === message.player);
+            const expectedTurn = draft.getExpectedActionFor(message.executingPlayer);
             const civilisationsList = (expectedTurn === undefined
                 ? draft.preset.options
                 : draft.preset.optionsForTurn(expectedTurn)).slice();
