@@ -73,8 +73,8 @@ export class PresetEditorPools extends React.Component<Props, object> {
 
     private add() {
         const pools = this.props.pools;
-        // Named after its number rather than a count of the pools, which would repeat a name after a removal.
-        const number = EditorPools.nextPoolNumber(pools);
+        // Named after the first number that is free as an id and as a name, which a count of the pools is not.
+        const number = EditorPools.nextPoolNumber(pools, value => this.defaultName(value));
         this.props.onPoolsChange([...pools, new Pool(Pool.idFor(number), this.defaultName(number), [])]);
         this.props.onActivePoolChange(pools.length);
     }

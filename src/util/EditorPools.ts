@@ -22,13 +22,15 @@ export const EditorPools = {
     },
 
     /**
-     * The number of a pool added to these: the lowest one, from two, whose id none of them carries.
-     * The first pool is the default one, so a new pool is never the first.
+     * The number of a pool added to these: the lowest one, from two, whose id and name none of them
+     * carries. The first pool is the default one, so a new pool is never the first; a pool may have
+     * ended up with a number's name under another id, once the pool before it was removed.
      */
-    nextPoolNumber(pools: Pool[]): number {
-        const existing = pools.map(value => value.id);
+    nextPoolNumber(pools: Pool[], nameFor: (number: number) => string): number {
+        const ids = pools.map(value => value.id);
+        const names = pools.map(value => value.name);
         let number = 2;
-        while (existing.includes(Pool.idFor(number))) {
+        while (ids.includes(Pool.idFor(number)) || names.includes(nameFor(number))) {
             number++;
         }
         return number;

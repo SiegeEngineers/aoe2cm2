@@ -33,7 +33,14 @@ it('an index past the last pool is read as the last one', () => {
 });
 
 it('a new pool takes the lowest number from two that no pool carries', () => {
-    expect(EditorPools.nextPoolNumber([maps])).toEqual(2);
-    expect(EditorPools.nextPoolNumber([maps, civs])).toEqual(3);
-    expect(EditorPools.nextPoolNumber([maps, new Pool('pool-3', 'Third', [])])).toEqual(2);
+    const nameFor = (number: number) => `Pool ${number}`;
+    expect(EditorPools.nextPoolNumber([maps], nameFor)).toEqual(2);
+    expect(EditorPools.nextPoolNumber([maps, civs], nameFor)).toEqual(3);
+    expect(EditorPools.nextPoolNumber([maps, new Pool('pool-3', 'Third', [])], nameFor)).toEqual(2);
+});
+
+it('a number whose name a pool already carries under another id is skipped too', () => {
+    const nameFor = (number: number) => `Pool ${number}`;
+    // The pool before it was removed, so the second pool has the default id under its old name.
+    expect(EditorPools.nextPoolNumber([new Pool('default', 'Pool 2', [])], nameFor)).toEqual(3);
 });
