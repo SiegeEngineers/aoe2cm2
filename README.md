@@ -121,7 +121,8 @@ without a `segmentId` belongs to, so older presets and drafts keep working as
 they are.
 
 Pools are added in the preset editor with *+ Add pool*, which turns the option
-list into a row of pool tabs, and each turn then gets a *Pool* dropdown. Two
+list into a row of pool tabs; each turn that picks, bans, snipes or steals has
+a *Pool* dropdown. Two
 existing presets can also be joined into one with *Combine into one draft* on
 a preset's page. Draft option ids have to be unique across pools, and a
 category limit counts over the whole draft, so a limit meant for one pool needs

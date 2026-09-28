@@ -16,10 +16,11 @@ interface Props {
     onValueChange: (turn: Turn, index: number) => ISetEditorTurn,
 }
 
-class TurnSegmentDropdown extends React.Component<Props, object> {
+export class TurnSegmentDropdown extends React.Component<Props, object> {
 
     public render() {
-        if (this.props.segments.length < 2 || !this.props.turn.choosesDraftOption()) {
+        // A reveal or a pause takes no option, so it has no pool.
+        if (!this.props.turn.choosesDraftOption()) {
             return null;
         }
         return (
