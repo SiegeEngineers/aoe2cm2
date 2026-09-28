@@ -271,6 +271,11 @@ it('a lone pool stored without a name is loaded as the Default one', () => {
         pools: [{id: 'default', name: '', draftOptions: [{id: 'arabia', name: 'arabia'}]}] as unknown as Pool[],
     }) as Preset;
     expect(loaded.pools[0].name).toEqual('Default');
+    const blank = Preset.fromPojo({
+        name: 'Blank', turns: [],
+        pools: [{id: 'default', name: '   ', draftOptions: []}] as unknown as Pool[],
+    }) as Preset;
+    expect(blank.pools[0].name).toEqual('Default');
     const two = Preset.fromPojo({
         name: 'Two', turns: [],
         pools: [{id: 'default', name: '', draftOptions: []}, {id: 'pool-2', name: 'Civs', draftOptions: []}] as unknown as Pool[],

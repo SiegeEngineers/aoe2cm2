@@ -221,7 +221,7 @@ export class PresetValidation {
     });
 
     public static readonly VLD_922: PresetValidation = new PresetValidation(ValidationId.VLD_922, (preset: Preset) => {
-        // Every pool is born with a name, so a blank one only comes from a preset put together by hand.
+        // Every pool is born with a name; a blank one comes from clearing it in the editor or from a preset put together by hand.
         return preset.pools.every(pool => pool.name.trim().length > 0);
     });
 

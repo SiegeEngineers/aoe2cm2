@@ -11,6 +11,8 @@ import Exclusivity from "../../constants/Exclusivity";
 
 const maps = new Pool('maps', 'Maps', [new DraftOption('arabia'), new DraftOption('arena')]);
 const civs = new Pool('civs', 'Civilisations', [new DraftOption('Franks')]);
+// A third pool no turn of these presets draws from, so "every pool" is not the same as "both in play".
+const gods = new Pool('gods', 'Gods', [new DraftOption('Zeus')]);
 
 const turnIn = (poolId: string, parallel: boolean = false) =>
     new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, parallel, Player.HOST, ['default'], undefined, poolId);
@@ -73,17 +75,17 @@ it('shows the pool waiting behind a pause', () => {
 
 it('shows both pools of a parallel pair waiting behind a pause', () => {
     const pause = new Turn(Player.NONE, Action.PAUSE, Exclusivity.GLOBAL);
-    const paused = new Preset('Paused', [maps, civs], [turnIn('maps'), pause, turnIn('maps', true), turnIn('civs')]);
+    const paused = new Preset('Paused', [maps, civs, gods], [turnIn('maps'), pause, turnIn('maps', true), turnIn('civs')]);
     const component = shallow(<PooledDraftBoard preset={paused} nextAction={1}/>);
-    expect(component.find(DraftOptionGrid)).toHaveLength(2);
+    expect(component.find('.pool-name').map(name => name.text())).toEqual(['Maps', 'Civilisations']);
 });
 
 it('shows both pools of a parallel pair waiting behind a reveal and a pause', () => {
     const reveal = new Turn(Player.NONE, Action.REVEAL_ALL, Exclusivity.GLOBAL);
     const pause = new Turn(Player.NONE, Action.PAUSE, Exclusivity.GLOBAL);
-    const held = new Preset('Held', [maps, civs], [turnIn('maps'), reveal, pause, turnIn('civs', true), turnIn('maps')]);
+    const held = new Preset('Held', [maps, civs, gods], [turnIn('maps'), reveal, pause, turnIn('civs', true), turnIn('maps')]);
     const component = shallow(<PooledDraftBoard preset={held} nextAction={1}/>);
-    expect(component.find(DraftOptionGrid)).toHaveLength(2);
+    expect(component.find('.pool-name').map(name => name.text())).toEqual(['Maps', 'Civilisations']);
 });
 
 it('shows every pool while a trailing reveal runs, as nothing is left to draft', () => {

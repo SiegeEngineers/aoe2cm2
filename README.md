@@ -120,13 +120,13 @@ pool with the id `default` and the name *Default*, which is also the pool a turn
 without a `poolId` belongs to, so older presets and drafts keep working as
 they are.
 
-Pools are added in the preset editor with *+ Add pool*, which turns the option
-list into a row of pool tabs; each turn that picks, bans, snipes or steals has
-a *Pool* dropdown. Two
-existing presets can also be joined into one with *Combine into one draft* on
-a preset's page. Draft option ids have to be unique across pools, and a
-category limit counts over the whole draft, so a limit meant for one pool needs
-the options of that pool to carry a category of their own.
+Every turn that picks, bans, snipes or steals has a *Pool* dropdown in the
+preset editor. Pools are added with *+ Add pool*, which turns the option list
+into a row of pool tabs. Two existing presets can also be joined into one with
+*Combine into one draft* on a preset's page. Draft option ids have to be unique
+across pools, and a category limit counts over the whole draft, so a limit
+meant for one pool needs the options of that pool to carry a category of their
+own.
 
 On the draft page each captain's panel and the admin panel show a section per
 pool, and the options below the board are those of the pool being drafted, or

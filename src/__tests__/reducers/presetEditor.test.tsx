@@ -126,12 +126,12 @@ it('category limits of other pools survive editing the active pool', () => {
     expect((state.editorPreset as Preset).categoryLimits.pick).toEqual({maps: 2, civs: 1});
 });
 
-it('every pool gets a numbered name, not its id', () => {
+it('the names of the pools pass through as they are', () => {
     const named = (pools: Pool[]) => pools.map(value => value.name);
-    const two = [new Pool('default', 'Pool 1', []), new Pool('pool-2', 'Pool 2', [])];
+    const two = [new Pool('default', 'Default', []), new Pool('pool-2', 'Pool 2', [])];
     const state = presetEditorReducer(stateWith(new Preset('P', two, [turnIn('default')])),
         actions.setEditorPools([...two, new Pool('pool-3', 'Pool 3', [])]));
-    expect(named((state.editorPreset as Preset).pools)).toEqual(['Pool 1', 'Pool 2', 'Pool 3']);
+    expect(named((state.editorPreset as Preset).pools)).toEqual(['Default', 'Pool 2', 'Pool 3']);
 });
 
 it('turns handed back by the drag-and-drop list are rebuilt as real turns', () => {

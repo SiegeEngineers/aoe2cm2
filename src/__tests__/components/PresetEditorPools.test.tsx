@@ -52,3 +52,9 @@ it('renames the pool on show and removes it, leaving the other one', () => {
     component.find('button').simulate('click');
     expect(onPoolsChange.mock.calls[1][0].map((value: Pool) => value.id)).toEqual(['default']);
 });
+
+it('offers the add button even without any pool, which the model never hands it', () => {
+    const {component} = render([]);
+    expect(component.find('button')).toHaveLength(1);
+    expect(component.find('.pool-tabs')).toHaveLength(0);
+});

@@ -5,7 +5,7 @@ import {Util} from "../util/Util";
 
 /** A named pool of draft options. Every preset has at least one, and a turn draws from exactly one. */
 class Pool {
-    /** The id of the pool a turn belongs to when it names none, and of a preset's only pool. */
+    /** The id of the pool a turn belongs to when it names none, and of the pool a preset stored without pools is loaded into. */
     public static readonly DEFAULT_ID: string = 'default';
     /** The name the default pool goes by. It is data, so it is not translated, like the default category. */
     public static readonly DEFAULT_NAME: string = 'Default';
@@ -37,7 +37,7 @@ class Pool {
         return new Pool(Pool.DEFAULT_ID, Pool.DEFAULT_NAME, draftOptions);
     }
 
-    /** A lone pool without a name goes by the default one, since the editor does not show the name of a lone pool. */
+    /** A lone pool without a name goes by the default one, since the editor shows no name input for a lone pool. */
     public static namedWhenAlone(pools: Pool[]): Pool[] {
         if (pools.length === 1 && pools[0].name.trim().length === 0) {
             return [new Pool(pools[0].id, Pool.DEFAULT_NAME, pools[0].options)];

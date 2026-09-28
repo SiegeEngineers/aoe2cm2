@@ -3,6 +3,16 @@ import * as fs from "fs";
 import path from "path";
 import Civilisation from "../../models/Civilisation";
 import DraftOption from "../../models/DraftOption";
+import {DraftsStore} from "../../models/DraftsStore";
+import Draft from "../../models/Draft";
+import Preset from "../../models/Preset";
+import Pool from "../../models/Pool";
+import Turn from "../../models/Turn";
+import PlayerEvent from "../../models/PlayerEvent";
+import Player from "../../constants/Player";
+import Action from "../../constants/Action";
+import ActionType from "../../constants/ActionType";
+import Exclusivity from "../../constants/Exclusivity";
 
 it('sanitize handles common cases', () => {
     expect(Util.sanitizeDraftId('')).toEqual('');
@@ -109,4 +119,21 @@ describe('test chat filter', () => {
     ])("when the input is '%s'", (text: string, expected: string) => {
         expect(Util.applyChatFilter(text)).toEqual(expected);
     });
+});
+
+it('a random pick in a parallel pair for the same player is drawn from the pool of its executing player', () => {
+    const maps = new Pool('maps', 'Maps', [new DraftOption('arabia'), new DraftOption('arena')]);
+    const civs = new Pool('civs', 'Civilisations', [new DraftOption('Franks'), new DraftOption('Britons')]);
+    const pair = new Preset('Shared player pair', [maps, civs], [
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, true, Player.HOST, ['default'], undefined, 'maps'),
+        new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, false, Player.GUEST, ['default'], undefined, 'civs'),
+    ]);
+    const draftsStore = new DraftsStore(null);
+    draftsStore.createDraft('draftId', new Draft('Yodit', 'Saladin', pair, false));
+    draftsStore.setPlayerReady('draftId', Player.HOST);
+    draftsStore.setPlayerReady('draftId', Player.GUEST);
+    const event = new PlayerEvent(Player.HOST, ActionType.PICK, DraftOption.RANDOM.id, false, Player.HOST);
+    const picked = Util.setRandomDraftOptionIfNeeded(event, 'draftId', draftsStore, [...maps.options]);
+    expect(maps.options.map(value => value.id)).toContain(picked.chosenOptionId);
+    expect(picked.isRandomlyChosen).toBe(true);
 });

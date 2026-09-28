@@ -14,7 +14,6 @@ import AdminEvent from "../../models/AdminEvent";
 import Exclusivity from "../../constants/Exclusivity";
 import DraftOption from "../../models/DraftOption";
 import Pool from "../../models/Pool";
-import {Util} from "../../util/Util";
 
 const NAME_HOST: string = 'Yodit';
 const NAME_GUEST: string = 'Saladin';
@@ -1153,7 +1152,7 @@ it('VLD_010: pools are enforced independently per turn', () => {
     expect(validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, 'Franks'))).toEqual([]);
 });
 
-it('VLD_010: presets without pools are unaffected', () => {
+it('VLD_010: a preset with a single pool is unaffected', () => {
     const validator = new Validator(prepareReadyStore(Preset.SIMPLE));
     const errors: ValidationId[] = validator.validateAndApply(DRAFT_ID,
         new PlayerEvent(Player.HOST, ActionType.BAN, Civilisation.AZTECS.id));
@@ -1187,21 +1186,4 @@ it('VLD_010: in a parallel pair for the same player, each half draws from the po
         .toEqual([]);
     expect(validator.validateAndApply(DRAFT_ID, new PlayerEvent(Player.HOST, ActionType.PICK, 'Franks', false, Player.GUEST)))
         .toEqual([]);
-});
-
-it('a random pick in a parallel pair for the same player is drawn from the pool of its executing player', () => {
-    const draftsStore = prepareReadyStore(sharedPlayerPair());
-    const event = new PlayerEvent(Player.HOST, ActionType.PICK, DraftOption.RANDOM.id, false, Player.HOST);
-    const picked = Util.setRandomDraftOptionIfNeeded(event, DRAFT_ID, draftsStore, [...MAPS_POOL.options]);
-    expect(MAPS_POOL.options.map(value => value.id)).toContain(picked.chosenOptionId);
-    expect(picked.isRandomlyChosen).toBe(true);
-});
-
-it('the expected action of an executing player is their own half of a parallel pair', () => {
-    const draft = new Draft(NAME_HOST, NAME_GUEST, sharedPlayerPair(), false);
-    draft.hostReady = true;
-    draft.guestReady = true;
-    expect(draft.getExpectedActionFor(Player.HOST)?.poolId).toEqual('maps');
-    expect(draft.getExpectedActionFor(Player.GUEST)?.poolId).toEqual('civs');
-    expect(draft.getExpectedActionFor(Player.NONE)).toBeUndefined();
 });
