@@ -21,9 +21,10 @@ export const PresetCombiner = {
         // The pools are numbered through, so the first keeps the default id and the rest cannot clash.
         const idOf = (preset: Preset, poolId: string) =>
             Pool.idFor(1 + sources.findIndex(source => source.preset === preset && source.pool.id === poolId));
-        // A pool with no name of its own, or only the default one, goes by the name of its preset.
+        // The only pool of a preset, when it has no name of its own or just the default one, goes by
+        // the name of its preset. A pool called Default among several is named so on purpose.
         const nameOf = (source: { preset: Preset, pool: Pool }) =>
-            source.pool.name.trim() === '' || source.pool.name === Pool.DEFAULT_NAME
+            !source.preset.hasSeveralPools() && (source.pool.name.trim() === '' || source.pool.name === Pool.DEFAULT_NAME)
                 ? source.preset.name : source.pool.name;
         const pools = sources.map(source => new Pool(idOf(source.preset, source.pool.id), nameOf(source), source.pool.options));
         const turns: Turn[] = [

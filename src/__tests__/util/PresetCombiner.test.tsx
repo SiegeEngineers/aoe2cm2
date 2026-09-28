@@ -107,3 +107,10 @@ it('a pool with a name of its own keeps it, even as the only pool of its preset'
     const combined = PresetCombiner.combine(named, civs(), 'Water + Civilisations');
     expect(combined.pools.map(value => value.name)).toEqual(['Islands', 'Civilisations']);
 });
+
+it('a pool called Default among several keeps its name, since it was named so on purpose', () => {
+    const named = new Preset('Two pools', [new Pool('default', 'Default', [new DraftOption('arabia')]),
+        new Pool('pool-2', 'Water', [new DraftOption('islands')])], [pick(Player.HOST)]);
+    const combined = PresetCombiner.combine(named, civs(), 'Two + Civilisations');
+    expect(combined.pools.map(value => value.name)).toEqual(['Default', 'Water', 'Civilisations']);
+});
