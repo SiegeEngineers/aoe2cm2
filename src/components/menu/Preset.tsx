@@ -11,7 +11,7 @@ import Civilisation from "../../models/Civilisation";
 import DraftOptionPanelType from "../../constants/DraftOptionPanelType";
 import DraftOptionPanel from "../draft/DraftOptionPanel";
 import DraftOption from "../../models/DraftOption";
-import Segment from "../../models/Segment";
+import Pool from "../../models/Pool";
 import {ApplicationState, IDraftForPreset} from "../../types";
 import {Dispatch} from "redux";
 import * as actions from "../../actions";
@@ -43,9 +43,9 @@ class Preset extends React.Component<IProps, IState> {
     }
 
     /** The options of one pool: every civilisation with the chosen ones ticked, or the options as panels. */
-    private options(segment: Segment) {
-        const options = segment.options;
-        if (segment.encodedCivilisations !== undefined) {
+    private options(pool: Pool) {
+        const options = pool.options;
+        if (pool.encodedCivilisations !== undefined) {
             return Civilisation.ALL.map((value: Civilisation, index: number) =>
                 <PresetOptionCheckbox presetOptions={options} value={value} key={index} disabled={true}/>);
         }
@@ -77,12 +77,12 @@ class Preset extends React.Component<IProps, IState> {
 
                         <TurnRow turns={this.state.preset.turns}/>
 
-                        {preset.segments.map(segment => (
-                            <React.Fragment key={segment.id}>
-                                {preset.hasSeveralSegments() && <h4 className="pool-name">{segment.name}</h4>}
-                                <div className={"is-flex" + (segment.encodedCivilisations === undefined ? ' flex-justify-center' : '')}
+                        {preset.pools.map(pool => (
+                            <React.Fragment key={pool.id}>
+                                {preset.hasSeveralPools() && <h4 className="pool-name">{pool.name}</h4>}
+                                <div className={"is-flex" + (pool.encodedCivilisations === undefined ? ' flex-justify-center' : '')}
                                      style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-                                    {this.options(segment)}
+                                    {this.options(pool)}
                                 </div>
                             </React.Fragment>
                         ))}

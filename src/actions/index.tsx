@@ -9,7 +9,7 @@ import Preset from "../models/Preset";
 import Turn from "../models/Turn";
 import {ColorScheme} from "../constants/ColorScheme";
 import DraftOption from "../models/DraftOption";
-import Segment from "../models/Segment";
+import Pool from "../models/Pool";
 
 export interface IActionCompleted {
     type: ServerActions.EXECUTE_ACTION,
@@ -176,13 +176,13 @@ export interface ISetEditorDraftOptions {
     value: DraftOption[]
 }
 
-export interface ISetEditorSegments {
-    type: Actions.SET_EDITOR_SEGMENTS
-    value: Segment[]
+export interface ISetEditorPools {
+    type: Actions.SET_EDITOR_POOLS
+    value: Pool[]
 }
 
-export interface ISetEditorActiveSegment {
-    type: Actions.SET_EDITOR_ACTIVE_SEGMENT
+export interface ISetEditorActivePool {
+    type: Actions.SET_EDITOR_ACTIVE_POOL
     value: number
 }
 
@@ -279,8 +279,8 @@ export type PresetEditorAction = ISetEditorPreset
     | ISetEditorTurnOrder
     | ISetEditorName
     | ISetEditorDraftOptions
-    | ISetEditorSegments
-    | ISetEditorActiveSegment
+    | ISetEditorPools
+    | ISetEditorActivePool
     | ISetEditorCategoryLimitPick
     | ISetEditorCategoryLimitBan;
 
@@ -517,17 +517,17 @@ export function setEditorDraftOptions(value: DraftOption[]): ISetEditorDraftOpti
     }
 }
 
-export function setEditorSegments(value: Segment[]): ISetEditorSegments {
+export function setEditorPools(value: Pool[]): ISetEditorPools {
     return {
         value,
-        type: Actions.SET_EDITOR_SEGMENTS
+        type: Actions.SET_EDITOR_POOLS
     }
 }
 
-export function setEditorActiveSegment(value: number): ISetEditorActiveSegment {
+export function setEditorActivePool(value: number): ISetEditorActivePool {
     return {
         value,
-        type: Actions.SET_EDITOR_ACTIVE_SEGMENT
+        type: Actions.SET_EDITOR_ACTIVE_POOL
     }
 }
 

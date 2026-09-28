@@ -26,11 +26,11 @@ import {Trans, withTranslation, WithTranslation} from "react-i18next";
 import {ReactSortable} from "react-sortablejs";
 import {PresetEditorTurn} from "./PresetEditorTurn";
 import DraftOption from "../../models/DraftOption";
-import Segment from "../../models/Segment";
+import Pool from "../../models/Pool";
 import PresetEditorCivSelection from "./PresetEditorCivSelection";
 import PresetEditorCustomOptions from "./PresetEditorCustomOptions";
-import PresetEditorSegments from "./PresetEditorSegments";
-import {EditorSegments} from "../../util/EditorSegments";
+import PresetEditorPools from "./PresetEditorPools";
+import {EditorPools} from "../../util/EditorPools";
 import Civilisation from "../../models/Civilisation";
 import Aoe3Civilisation from "../../models/Aoe3Civilisation";
 import Aoe4Civilisation from "../../models/Aoe4Civilisation";
@@ -51,8 +51,8 @@ interface Props extends WithTranslation, RouteComponentProps<any> {
     onPresetDraftOptionsChange: (value: DraftOption[]) => ISetEditorDraftOptions
     onSetCategoryLimitPick: (key: string, value: number | null) => ISetEditorCategoryLimitPick
     onSetCategoryLimitBan: (key: string, value: number | null) => ISetEditorCategoryLimitBan
-    activeSegment: number,
-    segmentOptions: DraftOption[],
+    activePool: number,
+    poolOptions: DraftOption[],
 }
 
 interface State {
@@ -146,7 +146,7 @@ class PresetEditor extends React.Component<Props, State> {
         if (PresetEditor.shownPoolKey(prevProps) === PresetEditor.shownPoolKey(this.props)) {
             return;
         }
-        const set = this.civilisationSetFor(this.props.segmentOptions);
+        const set = this.civilisationSetFor(this.props.poolOptions);
         const match = PresetEditor.OPTION_SETS.find(([name]) => name === set);
         this.setState({
             activeCivilisationSet: set,
@@ -156,11 +156,11 @@ class PresetEditor extends React.Component<Props, State> {
 
     private static shownPoolKey(props: Props): string {
         const pool = PresetEditor.shownPool(props);
-        return (pool === undefined ? '' : pool.id) + '/' + (props.preset === null ? 0 : props.preset.segments.length);
+        return (pool === undefined ? '' : pool.id) + '/' + (props.preset === null ? 0 : props.preset.pools.length);
     }
 
-    private static shownPool(props: Props): Segment | undefined {
-        return props.preset === null ? undefined : props.preset.segments[props.activeSegment];
+    private static shownPool(props: Props): Pool | undefined {
+        return props.preset === null ? undefined : props.preset.pools[props.activePool];
     }
 
     /** A pool name fits on the new-turn button up to this many characters. */
@@ -169,7 +169,7 @@ class PresetEditor extends React.Component<Props, State> {
     /** Which pool a new turn joins is decided a section further up the page, so the button says it. */
     private newTurnLabel() {
         const pool = PresetEditor.shownPool(this.props);
-        if (pool === undefined || this.props.preset === null || !this.props.preset.hasSeveralSegments()) {
+        if (pool === undefined || this.props.preset === null || !this.props.preset.hasSeveralPools()) {
             return <Trans i18nKey="presetEditor.new">New</Trans>;
         }
         const limit = PresetEditor.POOL_NAME_ON_BUTTON;
@@ -184,7 +184,7 @@ class PresetEditor extends React.Component<Props, State> {
             return;
         }
         const turn = new Turn(player, Action.PICK, Exclusivity.GLOBAL, false, false);
-        this.props.onValueChange(Turn.withSegmentId(turn, pool.id), this.props.preset.turns.length);
+        this.props.onValueChange(Turn.withPoolId(turn, pool.id), this.props.preset.turns.length);
     }
 
     /** The tab a pool belongs to, or the custom one if its options are not all from a single set. */
@@ -201,7 +201,7 @@ class PresetEditor extends React.Component<Props, State> {
         if (this.props.location.hash) {
             return this.props.location.hash.replace("#", '');
         }
-        return this.civilisationSetFor(this.props.segmentOptions);
+        return this.civilisationSetFor(this.props.poolOptions);
     }
 
     public render() {
@@ -237,7 +237,7 @@ class PresetEditor extends React.Component<Props, State> {
                 <div className={'content box'}>
                     <h3>1. <Trans i18nKey="presetEditor.availableDraftOptions">Available Draft Options</Trans></h3>
 
-                    <PresetEditorSegments/>
+                    <PresetEditorPools/>
 
                     <div className="tabs is-boxed is-small civ-selector-tabs">
                         <ul>
@@ -448,8 +448,8 @@ class PresetEditor extends React.Component<Props, State> {
 export function mapStateToProps(state: ApplicationState) {
     return {
         preset: state.presetEditor.editorPreset,
-        activeSegment: EditorSegments.activeIndex(state.presetEditor),
-        segmentOptions: EditorSegments.activeOptions(state.presetEditor),
+        activePool: EditorPools.activeIndex(state.presetEditor),
+        poolOptions: EditorPools.activeOptions(state.presetEditor),
     }
 }
 

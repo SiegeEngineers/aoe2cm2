@@ -2,7 +2,7 @@ import {shallow} from "enzyme";
 import AdminDraftState from "../../components/draft/AdminDraftState";
 import Preset from "../../models/Preset";
 import Turn from "../../models/Turn";
-import Segment from "../../models/Segment";
+import Pool from "../../models/Pool";
 import DraftOption from "../../models/DraftOption";
 import PlayerEvent from "../../models/PlayerEvent";
 import Player from "../../constants/Player";
@@ -10,13 +10,13 @@ import Action from "../../constants/Action";
 import ActionType from "../../constants/ActionType";
 import Exclusivity from "../../constants/Exclusivity";
 
-const adminBan = (segmentId: string) =>
-    Turn.withSegmentId(new Turn(Player.NONE, Action.BAN, Exclusivity.GLOBAL), segmentId);
-const adminPick = (segmentId: string) =>
-    Turn.withSegmentId(new Turn(Player.NONE, Action.PICK, Exclusivity.GLOBAL), segmentId);
+const adminBan = (poolId: string) =>
+    Turn.withPoolId(new Turn(Player.NONE, Action.BAN, Exclusivity.GLOBAL), poolId);
+const adminPick = (poolId: string) =>
+    Turn.withPoolId(new Turn(Player.NONE, Action.PICK, Exclusivity.GLOBAL), poolId);
 
-const pooled = new Preset('Maps and civs', [new Segment('maps', 'Maps', [new DraftOption('arabia'), new DraftOption('arena')]),
-     new Segment('civs', 'Civilisations', [new DraftOption('Franks'), new DraftOption('Britons')])], [adminBan('maps'), adminBan('civs'), adminPick('civs')]);
+const pooled = new Preset('Maps and civs', [new Pool('maps', 'Maps', [new DraftOption('arabia'), new DraftOption('arena')]),
+     new Pool('civs', 'Civilisations', [new DraftOption('Franks'), new DraftOption('Britons')])], [adminBan('maps'), adminBan('civs'), adminPick('civs')]);
 
 const render = (preset: Preset, events: PlayerEvent[] = [], nextAction = 0, simplifiedUI = false) => shallow(
     <AdminDraftState preset={preset} player={Player.NONE} name="Admin" events={events} simplifiedUI={simplifiedUI}
@@ -34,14 +34,14 @@ it('draws a section per pool, each with the admin turns of that pool', () => {
 });
 
 it('names no pool when the preset has a single one', () => {
-    const plain = new Preset('Plain', [Segment.defaultWith([new DraftOption('Franks')])], [adminBan(Segment.DEFAULT_ID)]);
+    const plain = new Preset('Plain', [Pool.defaultWith([new DraftOption('Franks')])], [adminBan(Pool.DEFAULT_ID)]);
     const component = render(plain);
     expect(component.find('.pool-name')).toHaveLength(0);
     expect(component.find('.bans')).toHaveLength(1);
 });
 
 it('leaves out a pool the admin has no turn in', () => {
-    const civsOnly = new Preset('Civs only', pooled.segments, [adminBan('civs')]);
+    const civsOnly = new Preset('Civs only', pooled.pools, [adminBan('civs')]);
     expect(render(civsOnly).find('.pool-name').map(name => name.text())).toEqual(['Civilisations']);
 });
 

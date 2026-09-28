@@ -3,14 +3,14 @@ import {PresetEditorAction} from "../actions";
 import {Actions} from "../constants";
 import Preset from "../models/Preset";
 import Turn from "../models/Turn";
-import Segment from "../models/Segment";
+import Pool from "../models/Pool";
 import DraftOption from "../models/DraftOption";
 import {ICategoryLimits} from "../types";
-import {EditorSegments} from "../util/EditorSegments";
+import {EditorPools} from "../util/EditorPools";
 
 export const initialPresetEditorState: IPresetEditorState = {
     editorPreset: null,
-    activeSegment: 0
+    activePool: 0
 };
 
 /** Drops the limits of categories no draft option carries any more. */
@@ -26,26 +26,26 @@ const prunedCategoryLimits = (limits: ICategoryLimits, options: DraftOption[]): 
  * A turn that carries no pool of its own belongs to the first one, so the first pool keeps the id
  * that means exactly that, and the turns of the pool it replaces come with it.
  */
-const withDefaultFirst = (segments: Segment[], turns: Turn[]): { segments: Segment[], turns: Turn[] } => {
-    if (segments.some(segment => segment.id === Segment.DEFAULT_ID)) {
-        return {segments, turns};
+const withDefaultFirst = (pools: Pool[], turns: Turn[]): { pools: Pool[], turns: Turn[] } => {
+    if (pools.some(pool => pool.id === Pool.DEFAULT_ID)) {
+        return {pools, turns};
     }
-    const renamed = segments[0];
+    const renamed = pools[0];
     return {
-        segments: [new Segment(Segment.DEFAULT_ID, renamed.name, renamed.options), ...segments.slice(1)],
-        turns: turns.map(turn => turn.segmentId === renamed.id
-            ? Turn.withSegmentId(turn, Segment.DEFAULT_ID) : turn),
+        pools: [new Pool(Pool.DEFAULT_ID, renamed.name, renamed.options), ...pools.slice(1)],
+        turns: turns.map(turn => turn.poolId === renamed.id
+            ? Turn.withPoolId(turn, Pool.DEFAULT_ID) : turn),
     };
 };
 
 /** The preset with some of its parts replaced. */
-const changed = (preset: Preset, changes: { name?: string, turns?: Turn[], categoryLimits?: ICategoryLimits, segments?: Segment[] }): Preset =>
-    new Preset(changes.name ?? preset.name, changes.segments ?? preset.segments, changes.turns ?? preset.turns, preset.presetId,
+const changed = (preset: Preset, changes: { name?: string, turns?: Turn[], categoryLimits?: ICategoryLimits, pools?: Pool[] }): Preset =>
+    new Preset(changes.name ?? preset.name, changes.pools ?? preset.pools, changes.turns ?? preset.turns, preset.presetId,
         changes.categoryLimits ?? preset.categoryLimits);
 
 /** The preset drawing from these pools, its limits on categories no option carries any more dropped. */
-const withSegments = (preset: Preset, segments: Segment[], turns: Turn[] = preset.turns): Preset =>
-    changed(preset, {turns, segments, categoryLimits: prunedCategoryLimits(preset.categoryLimits, Segment.optionsOf(segments))});
+const withPools = (preset: Preset, pools: Pool[], turns: Turn[] = preset.turns): Preset =>
+    changed(preset, {turns, pools, categoryLimits: prunedCategoryLimits(preset.categoryLimits, Pool.optionsOf(pools))});
 
 export const presetEditorReducer = (state: IPresetEditorState = initialPresetEditorState, action: PresetEditorAction) => {
     switch (action.type) {
@@ -53,7 +53,7 @@ export const presetEditorReducer = (state: IPresetEditorState = initialPresetEdi
             console.log(Actions.SET_EDITOR_PRESET, action.value);
             return {
                 ...state,
-                activeSegment: 0,
+                activePool: 0,
                 editorPreset: action.value
             };
 
@@ -86,7 +86,7 @@ export const presetEditorReducer = (state: IPresetEditorState = initialPresetEdi
             } else {
                 if (editorPreset2.turns.length > action.index) {
                     const t = editorPreset2.turns[action.index];
-                    const turnCopy = new Turn(t.player, t.action, t.exclusivity, t.hidden, t.parallel, t.executingPlayer, t.categories, undefined, t.segmentId);
+                    const turnCopy = new Turn(t.player, t.action, t.exclusivity, t.hidden, t.parallel, t.executingPlayer, t.categories, undefined, t.poolId);
                     editorPreset2.turns.splice(action.index, 0, turnCopy);
                 }
                 return {
@@ -124,33 +124,33 @@ export const presetEditorReducer = (state: IPresetEditorState = initialPresetEdi
                 return state;
             } else {
                 // The options being set are those of the pool the editor is showing.
-                const activeIndex = EditorSegments.activeIndex(state);
-                const segments = state.editorPreset.segments.map((segment, index) =>
-                    index === activeIndex ? new Segment(segment.id, segment.name, action.value) : segment);
+                const activeIndex = EditorPools.activeIndex(state);
+                const pools = state.editorPreset.pools.map((pool, index) =>
+                    index === activeIndex ? new Pool(pool.id, pool.name, action.value) : pool);
                 return {
                     ...state,
-                    editorPreset: withSegments(state.editorPreset, segments)
+                    editorPreset: withPools(state.editorPreset, pools)
                 };
             }
-        case Actions.SET_EDITOR_SEGMENTS: {
+        case Actions.SET_EDITOR_POOLS: {
             if (state.editorPreset === null || action.value.length === 0) {
                 return state;
             }
             // The turns of a pool that is gone move to the first one; other turns draw from no pool.
-            const segmentIds = action.value.map(value => value.id);
+            const poolIds = action.value.map(value => value.id);
             const kept = withDefaultFirst(action.value, state.editorPreset.turns.map(turn =>
-                !turn.choosesDraftOption() || segmentIds.includes(turn.segmentId)
+                !turn.choosesDraftOption() || poolIds.includes(turn.poolId)
                     ? turn
-                    : Turn.withSegmentId(turn, segmentIds[0])));
-            const segments = Segment.namedWhenAlone(kept.segments);
+                    : Turn.withPoolId(turn, poolIds[0])));
+            const pools = Pool.namedWhenAlone(kept.pools);
             return {
                 ...state,
-                activeSegment: Math.min(state.activeSegment, segments.length - 1),
-                editorPreset: withSegments(state.editorPreset, segments, kept.turns)
+                activePool: Math.min(state.activePool, pools.length - 1),
+                editorPreset: withPools(state.editorPreset, pools, kept.turns)
             };
         }
-        case Actions.SET_EDITOR_ACTIVE_SEGMENT:
-            return {...state, activeSegment: Math.max(0, action.value)};
+        case Actions.SET_EDITOR_ACTIVE_POOL:
+            return {...state, activePool: Math.max(0, action.value)};
         case Actions.SET_EDITOR_CATEGORY_LIMIT_PICK:
             console.log(Actions.SET_EDITOR_CATEGORY_LIMIT_PICK, action.key, action.value);
             if (state.editorPreset === null) {

@@ -201,20 +201,20 @@ export class PresetValidation {
 
 
     public static readonly VLD_919: PresetValidation = new PresetValidation(ValidationId.VLD_919, (preset: Preset) => {
-        const segmentIds: string[] = preset.segments.map(value => value.id);
+        const poolIds: string[] = preset.pools.map(value => value.id);
         return preset.turns
             .filter(value => value.choosesDraftOption())
-            .every(value => segmentIds.includes(value.segmentId));
+            .every(value => poolIds.includes(value.poolId));
     });
 
     public static readonly VLD_920: PresetValidation = new PresetValidation(ValidationId.VLD_920, (preset: Preset) => {
-        const segmentIds: string[] = preset.segments.map(value => value.id);
-        return new Set(segmentIds).size === segmentIds.length;
+        const poolIds: string[] = preset.pools.map(value => value.id);
+        return new Set(poolIds).size === poolIds.length;
     });
 
     public static readonly VLD_921: PresetValidation = new PresetValidation(ValidationId.VLD_921, (preset: Preset) => {
         // With a single pool the same ground is covered by VLD_916 against the whole preset.
-        return !preset.hasSeveralSegments() || preset.turns
+        return !preset.hasSeveralPools() || preset.turns
             .filter(value => value.choosesDraftOption())
             .every(value => preset.optionsForTurn(value)
                 .some(option => value.categories.includes(option.category)));
@@ -222,17 +222,17 @@ export class PresetValidation {
 
     public static readonly VLD_922: PresetValidation = new PresetValidation(ValidationId.VLD_922, (preset: Preset) => {
         // Every pool is born with a name, so a blank one only comes from a preset put together by hand.
-        return preset.segments.every(segment => segment.name.trim().length > 0);
+        return preset.pools.every(pool => pool.name.trim().length > 0);
     });
 
     public static readonly VLD_923: PresetValidation = new PresetValidation(ValidationId.VLD_923, (preset: Preset) => {
         // The twin of VLD_917 for a pool: an option no turn of its pool can take is one nobody can take.
-        return !preset.hasSeveralSegments() || preset.segments.every(segment => {
+        return !preset.hasSeveralPools() || preset.pools.every(pool => {
             const categories = preset.turns
-                .filter(turn => turn.choosesDraftOption() && turn.segmentId === segment.id)
+                .filter(turn => turn.choosesDraftOption() && turn.poolId === pool.id)
                 .reduce<string[]>((all, turn) => all.concat(turn.categories), []);
             return categories.length === 0
-                || segment.options.every(option => categories.includes(option.category));
+                || pool.options.every(option => categories.includes(option.category));
         });
     });
 

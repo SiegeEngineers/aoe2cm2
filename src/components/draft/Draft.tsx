@@ -1,5 +1,5 @@
 import * as React from "react";
-import SegmentedDraftBoard from "./SegmentedDraftBoard";
+import PooledDraftBoard from "./PooledDraftBoard";
 import Messages from "../../containers/Messages";
 import DraftState from "./DraftState";
 import TurnRow from "./TurnRow";
@@ -230,7 +230,7 @@ class Draft extends React.Component<IProps, IState> {
 
                     {!this.state.simplifiedUI && <DraftIdInfo/>}
 
-                    <SegmentedDraftBoard preset={this.props.preset} nextAction={this.props.nextAction}/>
+                    <PooledDraftBoard preset={this.props.preset} nextAction={this.props.nextAction}/>
                 </div>
             </section>
 

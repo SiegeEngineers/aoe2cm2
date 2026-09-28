@@ -357,7 +357,7 @@ class ValidCivs {
     }
 
     /** A player may only choose from the pool of the turn they are executing. */
-    private isFromValidSegment(draftEvent: PlayerEvent): boolean {
+    private isFromValidPool(draftEvent: PlayerEvent): boolean {
         const preset = this.draft.preset;
         // Technical options such as random and hidden belong to no pool.
         if (!preset.options.some(option => option.id === draftEvent.chosenOptionId)) {
@@ -377,7 +377,7 @@ class ValidCivs {
         if (!this.isFromValidCategory(draftEvent)) {
             return false;
         }
-        if (!this.isFromValidSegment(draftEvent)) {
+        if (!this.isFromValidPool(draftEvent)) {
             return false;
         }
         let validOptions = this.host;

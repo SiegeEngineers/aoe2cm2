@@ -1,7 +1,7 @@
 import * as React from 'react';
 import DraftOptionGrid from "./DraftOptionGrid";
 import Preset from "../../models/Preset";
-import Segment from "../../models/Segment";
+import Pool from "../../models/Pool";
 
 interface IProps {
     preset: Preset;
@@ -12,31 +12,31 @@ interface IProps {
  * The options of the pool being drafted, of both pools when a parallel pair spans two, and of
  * every pool once there is nothing left to draft, as a record of what was taken.
  */
-class SegmentedDraftBoard extends React.Component<IProps, object> {
+class PooledDraftBoard extends React.Component<IProps, object> {
     public render() {
-        const inPlay = this.segmentIdsInPlay();
+        const inPlay = this.poolIdsInPlay();
         return (
             <>
-                {this.props.preset.segments
-                    .filter((segment: Segment) => inPlay.includes(segment.id))
-                    .map((segment: Segment) => (
-                        <React.Fragment key={segment.id}>
-                            {this.props.preset.hasSeveralSegments() && <h4 className="pool-name has-text-centered">{segment.name}</h4>}
-                            <DraftOptionGrid draftOptions={segment.options}/>
+                {this.props.preset.pools
+                    .filter((pool: Pool) => inPlay.includes(pool.id))
+                    .map((pool: Pool) => (
+                        <React.Fragment key={pool.id}>
+                            {this.props.preset.hasSeveralPools() && <h4 className="pool-name has-text-centered">{pool.name}</h4>}
+                            <DraftOptionGrid draftOptions={pool.options}/>
                         </React.Fragment>
                     ))}
             </>
         );
     }
 
-    private segmentIdsInPlay(): string[] {
+    private poolIdsInPlay(): string[] {
         const preset = this.props.preset;
         if (this.nextChoosingTurn() >= preset.turns.length) {
-            return preset.segments.map(segment => segment.id);
+            return preset.pools.map(pool => pool.id);
         }
         const ids = new Set(preset.turns
             .filter((turn, index) => this.isInPlay(index))
-            .map(turn => turn.segmentId));
+            .map(turn => turn.poolId));
         return [...ids];
     }
 
@@ -63,4 +63,4 @@ class SegmentedDraftBoard extends React.Component<IProps, object> {
     }
 }
 
-export default SegmentedDraftBoard;
+export default PooledDraftBoard;

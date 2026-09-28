@@ -114,10 +114,10 @@ civilisation bans, then a map draft, then civilisation picks, and a parallel
 pair of turns may draw from two different pools. An admin `PAUSE` turn holds
 the draft until both captains are ready again.
 
-A preset stores its pools as `segments`, and a turn names its pool as
-`segmentId`. A preset stored before there were pools is loaded into a single
+A preset stores its pools as `pools`, and a turn names its pool as
+`poolId`. A preset stored before there were pools is loaded into a single
 pool with the id `default` and the name *Default*, which is also the pool a turn
-without a `segmentId` belongs to, so older presets and drafts keep working as
+without a `poolId` belongs to, so older presets and drafts keep working as
 they are.
 
 Pools are added in the preset editor with *+ Add pool*, which turns the option

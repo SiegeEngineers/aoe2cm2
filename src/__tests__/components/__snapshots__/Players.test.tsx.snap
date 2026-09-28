@@ -16,15 +16,15 @@ exports[`DraftOptionGrid renders correctly 1`] = `
             "pick": Object {},
           },
           "name": "Default Preset",
-          "presetId": undefined,
-          "segments": Array [
-            Segment {
+          "pools": Array [
+            Pool {
               "draftOptions": undefined,
               "encodedCivilisations": "e3e3fffffffefff",
               "id": "default",
               "name": "Default",
             },
           ],
+          "presetId": undefined,
           "turns": Array [
             Turn {
               "action": "BAN",
@@ -37,7 +37,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "HOST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "BAN",
@@ -50,7 +50,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "GUEST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "BAN",
@@ -63,7 +63,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "HOST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "BAN",
@@ -76,7 +76,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "GUEST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "REVEAL_ALL",
@@ -89,7 +89,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "NONE",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -102,7 +102,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "HOST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -115,7 +115,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "GUEST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -128,7 +128,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "HOST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -141,7 +141,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "GUEST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -154,7 +154,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "HOST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -167,7 +167,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "GUEST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -180,7 +180,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "HOST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -193,7 +193,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "GUEST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -206,7 +206,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "HOST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -219,7 +219,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "GUEST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -232,7 +232,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "HOST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -245,7 +245,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "GUEST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "REVEAL_ALL",
@@ -258,7 +258,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "NONE",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "SNIPE",
@@ -271,7 +271,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "HOST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "SNIPE",
@@ -284,7 +284,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "GUEST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "REVEAL_ALL",
@@ -297,7 +297,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "NONE",
-              "segmentId": "default",
+              "poolId": "default",
             },
           ],
         }
@@ -314,15 +314,15 @@ exports[`DraftOptionGrid renders correctly 1`] = `
             "pick": Object {},
           },
           "name": "Default Preset",
-          "presetId": undefined,
-          "segments": Array [
-            Segment {
+          "pools": Array [
+            Pool {
               "draftOptions": undefined,
               "encodedCivilisations": "e3e3fffffffefff",
               "id": "default",
               "name": "Default",
             },
           ],
+          "presetId": undefined,
           "turns": Array [
             Turn {
               "action": "BAN",
@@ -335,7 +335,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "HOST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "BAN",
@@ -348,7 +348,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "GUEST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "BAN",
@@ -361,7 +361,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "HOST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "BAN",
@@ -374,7 +374,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "GUEST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "REVEAL_ALL",
@@ -387,7 +387,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "NONE",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -400,7 +400,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "HOST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -413,7 +413,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "GUEST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -426,7 +426,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "HOST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -439,7 +439,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "GUEST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -452,7 +452,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "HOST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -465,7 +465,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "GUEST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -478,7 +478,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "HOST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -491,7 +491,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "GUEST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -504,7 +504,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "HOST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -517,7 +517,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "GUEST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -530,7 +530,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "HOST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -543,7 +543,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "GUEST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "REVEAL_ALL",
@@ -556,7 +556,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "NONE",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "SNIPE",
@@ -569,7 +569,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "HOST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "SNIPE",
@@ -582,7 +582,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "GUEST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "REVEAL_ALL",
@@ -595,7 +595,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "NONE",
-              "segmentId": "default",
+              "poolId": "default",
             },
           ],
         }
@@ -616,15 +616,15 @@ exports[`DraftOptionGrid renders correctly 1`] = `
             "pick": Object {},
           },
           "name": "Default Preset",
-          "presetId": undefined,
-          "segments": Array [
-            Segment {
+          "pools": Array [
+            Pool {
               "draftOptions": undefined,
               "encodedCivilisations": "e3e3fffffffefff",
               "id": "default",
               "name": "Default",
             },
           ],
+          "presetId": undefined,
           "turns": Array [
             Turn {
               "action": "BAN",
@@ -637,7 +637,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "HOST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "BAN",
@@ -650,7 +650,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "GUEST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "BAN",
@@ -663,7 +663,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "HOST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "BAN",
@@ -676,7 +676,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "GUEST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "REVEAL_ALL",
@@ -689,7 +689,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "NONE",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -702,7 +702,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "HOST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -715,7 +715,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "GUEST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -728,7 +728,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "HOST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -741,7 +741,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "GUEST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -754,7 +754,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "HOST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -767,7 +767,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "GUEST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -780,7 +780,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "HOST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -793,7 +793,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "GUEST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -806,7 +806,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "HOST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -819,7 +819,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "GUEST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -832,7 +832,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "HOST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "PICK",
@@ -845,7 +845,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "GUEST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "REVEAL_ALL",
@@ -858,7 +858,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "NONE",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "SNIPE",
@@ -871,7 +871,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "HOST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "SNIPE",
@@ -884,7 +884,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "GUEST",
-              "segmentId": "default",
+              "poolId": "default",
             },
             Turn {
               "action": "REVEAL_ALL",
@@ -897,7 +897,7 @@ exports[`DraftOptionGrid renders correctly 1`] = `
               "id": "mocked-uuid",
               "parallel": false,
               "player": "NONE",
-              "segmentId": "default",
+              "poolId": "default",
             },
           ],
         }

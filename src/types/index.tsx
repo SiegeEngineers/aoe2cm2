@@ -56,7 +56,7 @@ export interface IModalState {
 
 export interface IPresetEditorState {
     editorPreset: Preset | null;
-    activeSegment: number;
+    activePool: number;
 }
 
 export interface ILanguageState {

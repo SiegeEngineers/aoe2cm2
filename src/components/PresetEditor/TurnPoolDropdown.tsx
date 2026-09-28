@@ -5,18 +5,18 @@ import {Trans} from "react-i18next";
 import * as actions from "../../actions";
 import {ISetEditorTurn} from "../../actions";
 import {ApplicationState} from "../../types";
-import Segment from "../../models/Segment";
+import Pool from "../../models/Pool";
 import Turn from "../../models/Turn";
-import {EditorSegments} from "../../util/EditorSegments";
+import {EditorPools} from "../../util/EditorPools";
 
 interface Props {
     turn: Turn,
     index: number,
-    segments: Segment[],
+    pools: Pool[],
     onValueChange: (turn: Turn, index: number) => ISetEditorTurn,
 }
 
-export class TurnSegmentDropdown extends React.Component<Props, object> {
+export class TurnPoolDropdown extends React.Component<Props, object> {
 
     public render() {
         // A reveal or a pause takes no option, so it has no pool.
@@ -26,19 +26,19 @@ export class TurnSegmentDropdown extends React.Component<Props, object> {
         return (
             <div className="field is-horizontal">
                 <div className="field-label is-small">
-                    <label htmlFor={'segmentinput-' + this.props.index} className="label">
-                        <Trans i18nKey="presetEditor.turnSegment">Pool</Trans>
+                    <label htmlFor={'poolinput-' + this.props.index} className="label">
+                        <Trans i18nKey="presetEditor.turnPool">Pool</Trans>
                     </label>
                 </div>
                 <div className="field-body">
                     <div className="field">
                         <div className="control">
                             <div className="select is-small">
-                                <select id={'segmentinput-' + this.props.index}
-                                        value={this.props.turn.segmentId}
-                                        onChange={event => this.updateSegment(event.target.value)}>
-                                    {this.props.segments.map(segment =>
-                                        <option value={segment.id} key={segment.id}>{segment.name}</option>)}
+                                <select id={'poolinput-' + this.props.index}
+                                        value={this.props.turn.poolId}
+                                        onChange={event => this.updatePool(event.target.value)}>
+                                    {this.props.pools.map(pool =>
+                                        <option value={pool.id} key={pool.id}>{pool.name}</option>)}
                                 </select>
                             </div>
                         </div>
@@ -48,14 +48,14 @@ export class TurnSegmentDropdown extends React.Component<Props, object> {
         );
     }
 
-    private updateSegment(segmentId: string) {
-        this.props.onValueChange(Turn.withSegmentId(this.props.turn, segmentId), this.props.index);
+    private updatePool(poolId: string) {
+        this.props.onValueChange(Turn.withPoolId(this.props.turn, poolId), this.props.index);
     }
 }
 
 export function mapStateToProps(state: ApplicationState) {
     return {
-        segments: EditorSegments.segments(state.presetEditor),
+        pools: EditorPools.pools(state.presetEditor),
     }
 }
 
@@ -65,4 +65,4 @@ export function mapDispatchToProps(dispatch: Dispatch<actions.Action>) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TurnSegmentDropdown);
+export default connect(mapStateToProps, mapDispatchToProps)(TurnPoolDropdown);

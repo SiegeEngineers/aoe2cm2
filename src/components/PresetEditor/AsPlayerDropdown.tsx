@@ -31,7 +31,7 @@ class AsPlayerDropdown extends React.Component<Props, object> {
                 if (newPlayer === Player.NONE) {
                     hidden = false;
                 }
-                const newTurn = new Turn(newPlayer, t.action, t.exclusivity, hidden, t.parallel, t.executingPlayer, undefined, undefined, t.segmentId);
+                const newTurn = new Turn(newPlayer, t.action, t.exclusivity, hidden, t.parallel, t.executingPlayer, undefined, undefined, t.poolId);
                 this.props.onValueChange(newTurn, this.props.index)
             }}>{options}
             </select>

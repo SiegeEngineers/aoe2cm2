@@ -17,7 +17,7 @@ class HiddenCheckbox extends React.Component<Props, object> {
         return <label className="checkbox tag has-background-transparent">
             <input type='checkbox' checked={this.props.turn.hidden} disabled={!!this.props.disabled} onChange={() => {
                 const t = this.props.turn;
-                const newTurn = new Turn(t.player, t.action, t.exclusivity, !t.hidden, t.parallel, t.executingPlayer, undefined, undefined, t.segmentId);
+                const newTurn = new Turn(t.player, t.action, t.exclusivity, !t.hidden, t.parallel, t.executingPlayer, undefined, undefined, t.poolId);
                 this.props.onValueChange(newTurn, this.props.index)
             }}/>
             &nbsp;HIDDEN

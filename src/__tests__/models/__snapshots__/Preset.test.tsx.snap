@@ -7,15 +7,15 @@ Preset {
     "pick": Object {},
   },
   "name": "some-name",
-  "presetId": undefined,
-  "segments": Array [
-    Segment {
+  "pools": Array [
+    Pool {
       "draftOptions": Array [],
       "encodedCivilisations": undefined,
       "id": "default",
       "name": "Default",
     },
   ],
+  "presetId": undefined,
   "turns": Array [
     Turn {
       "action": "PICK",
@@ -28,7 +28,7 @@ Preset {
       "id": "mocked-uuid",
       "parallel": false,
       "player": "GUEST",
-      "segmentId": "default",
+      "poolId": "default",
     },
   ],
 }

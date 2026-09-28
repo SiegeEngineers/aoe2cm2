@@ -2,7 +2,7 @@ import {shallow} from "enzyme";
 import PlayerDraftState from "../../components/draft/PlayerDraftState";
 import Preset from "../../models/Preset";
 import Turn from "../../models/Turn";
-import Segment from "../../models/Segment";
+import Pool from "../../models/Pool";
 import DraftOption from "../../models/DraftOption";
 import PlayerEvent from "../../models/PlayerEvent";
 import Player from "../../constants/Player";
@@ -10,12 +10,12 @@ import Action from "../../constants/Action";
 import ActionType from "../../constants/ActionType";
 import Exclusivity from "../../constants/Exclusivity";
 
-const mapPick = () => Turn.withSegmentId(new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL), 'maps');
-const mapBan = () => Turn.withSegmentId(new Turn(Player.HOST, Action.BAN, Exclusivity.GLOBAL), 'maps');
-const civPick = () => Turn.withSegmentId(new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL), 'civs');
+const mapPick = () => Turn.withPoolId(new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL), 'maps');
+const mapBan = () => Turn.withPoolId(new Turn(Player.HOST, Action.BAN, Exclusivity.GLOBAL), 'maps');
+const civPick = () => Turn.withPoolId(new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL), 'civs');
 
-const pooled = new Preset('Maps and civs', [new Segment('maps', 'Maps', [new DraftOption('arabia'), new DraftOption('arena')]),
-     new Segment('civs', 'Civilisations', [new DraftOption('Franks')])], [mapBan(), mapPick(), civPick(), civPick()]);
+const pooled = new Preset('Maps and civs', [new Pool('maps', 'Maps', [new DraftOption('arabia'), new DraftOption('arena')]),
+     new Pool('civs', 'Civilisations', [new DraftOption('Franks')])], [mapBan(), mapPick(), civPick(), civPick()]);
 
 const render = (preset: Preset, events: PlayerEvent[] = [], nextAction = 0, simplifiedUI = false) => shallow(
     <PlayerDraftState preset={preset} player={Player.HOST} name="Alice" events={events} simplifiedUI={simplifiedUI}
@@ -34,7 +34,7 @@ it('draws a section per pool, each with the panels of its own turns, played or n
 });
 
 it('names no pool and draws one section when the preset has a single pool', () => {
-    const plain = new Preset('Plain', [Segment.defaultWith([new DraftOption('Franks')])],
+    const plain = new Preset('Plain', [Pool.defaultWith([new DraftOption('Franks')])],
         [new Turn(Player.HOST, Action.BAN, Exclusivity.GLOBAL), new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL)]);
     const component = render(plain);
     expect(component.find('.pool-name')).toHaveLength(0);
@@ -43,8 +43,8 @@ it('names no pool and draws one section when the preset has a single pool', () =
 });
 
 it('leaves out a pool the player has no turn in', () => {
-    const spectating = new Preset('Guest only civs', pooled.segments, [mapPick(),
-        Turn.withSegmentId(new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL), 'civs')]);
+    const spectating = new Preset('Guest only civs', pooled.pools, [mapPick(),
+        Turn.withPoolId(new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL), 'civs')]);
     expect(render(spectating).find('.pool-name').map(name => name.text())).toEqual(['Maps']);
 });
 

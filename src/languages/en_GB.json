@@ -383,11 +383,11 @@
     "sharedCategories": "A category limit is spent over the whole draft, so {{categories}} would also limit the other preset. Remove the limit, or give one preset's options a category of their own."
   },
   "presetEditor": {
-    "addSegment": "+ Add pool",
-    "removeSegment": "Remove pool",
-    "segmentName": "Pool name",
-    "segmentDefaultName": "Pool {{number}}",
-    "turnSegment": "Pool",
+    "addPool": "+ Add pool",
+    "removePool": "Remove pool",
+    "poolName": "Pool name",
+    "poolDefaultName": "Pool {{number}}",
+    "turnPool": "Pool",
     "newInPool": "New in {{pool}}",
     "helpAndInstructions": "Help and Instructions",
     "availableDraftOptions": "Available Draft Options",

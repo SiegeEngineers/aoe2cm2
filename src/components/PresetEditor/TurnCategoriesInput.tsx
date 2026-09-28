@@ -47,7 +47,7 @@ class TurnCategoriesInput extends React.Component<Props, object> {
 
     private updateAllowedCategories(value: string) {
         const t = this.props.turn;
-        const newTurn = new Turn(t.player, t.action, t.exclusivity, t.hidden, t.parallel, t.executingPlayer, value.split(this.delimiter), t.id, t.segmentId);
+        const newTurn = new Turn(t.player, t.action, t.exclusivity, t.hidden, t.parallel, t.executingPlayer, value.split(this.delimiter), t.id, t.poolId);
         this.props.onValueChange(newTurn, this.props.index);
     }
 
@@ -55,7 +55,7 @@ class TurnCategoriesInput extends React.Component<Props, object> {
         const t = this.props.turn;
         // All the categories of the turn's own pool: a category of another pool is nothing the turn can take.
         const categories = [...new Set(this.props.preset?.optionsForTurn(t).map(value => value.category))].sort();
-        const newTurn = new Turn(t.player, t.action, t.exclusivity, t.hidden, t.parallel, t.executingPlayer, categories, t.id, t.segmentId);
+        const newTurn = new Turn(t.player, t.action, t.exclusivity, t.hidden, t.parallel, t.executingPlayer, categories, t.id, t.poolId);
         this.props.onValueChange(newTurn, this.props.index);
     }
 }

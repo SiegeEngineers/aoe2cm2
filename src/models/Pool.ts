@@ -4,7 +4,7 @@ import {CivilisationEncoder} from "../util/CivilisationEncoder";
 import {Util} from "../util/Util";
 
 /** A named pool of draft options. Every preset has at least one, and a turn draws from exactly one. */
-class Segment {
+class Pool {
     /** The id of the pool a turn belongs to when it names none, and of a preset's only pool. */
     public static readonly DEFAULT_ID: string = 'default';
     /** The name the default pool goes by. It is data, so it is not translated, like the default category. */
@@ -33,26 +33,26 @@ class Segment {
     }
 
     /** The one pool of a preset that names none. */
-    public static defaultWith(draftOptions: DraftOption[]): Segment {
-        return new Segment(Segment.DEFAULT_ID, Segment.DEFAULT_NAME, draftOptions);
+    public static defaultWith(draftOptions: DraftOption[]): Pool {
+        return new Pool(Pool.DEFAULT_ID, Pool.DEFAULT_NAME, draftOptions);
     }
 
     /** A lone pool without a name goes by the default one, since the editor does not show the name of a lone pool. */
-    public static namedWhenAlone(segments: Segment[]): Segment[] {
-        if (segments.length === 1 && segments[0].name.trim().length === 0) {
-            return [new Segment(segments[0].id, Segment.DEFAULT_NAME, segments[0].options)];
+    public static namedWhenAlone(pools: Pool[]): Pool[] {
+        if (pools.length === 1 && pools[0].name.trim().length === 0) {
+            return [new Pool(pools[0].id, Pool.DEFAULT_NAME, pools[0].options)];
         }
-        return segments;
+        return pools;
     }
 
     /** The id of the pool at this position when pools are numbered: the first one is the default. */
     public static idFor(number: number): string {
-        return number === 1 ? Segment.DEFAULT_ID : `segment-${number}`;
+        return number === 1 ? Pool.DEFAULT_ID : `pool-${number}`;
     }
 
     /** The options of these pools, in the order the pools are declared. */
-    public static optionsOf(segments: Segment[]): DraftOption[] {
-        return segments.reduce<DraftOption[]>((all, segment) => all.concat(segment.options), []);
+    public static optionsOf(pools: Pool[]): DraftOption[] {
+        return pools.reduce<DraftOption[]>((all, pool) => all.concat(pool.options), []);
     }
 
     /** The options a pool, or a preset from before there were pools, holds: civilisations encoded, anything else plain. */
@@ -63,16 +63,16 @@ class Segment {
         return DraftOption.fromPojoArray(holder.draftOptions || []);
     }
 
-    public static fromPojoArray(segments: Segment[]): Segment[] {
-        let retval: Segment[] = [];
-        for (let segment of segments) {
-            Assert.isString(segment.id);
-            Assert.isString(segment.name);
-            Assert.isOptionalString(segment.encodedCivilisations);
-            retval.push(new Segment(segment.id, segment.name, Segment.optionsFromPojo(segment)));
+    public static fromPojoArray(pools: Pool[]): Pool[] {
+        let retval: Pool[] = [];
+        for (let pool of pools) {
+            Assert.isString(pool.id);
+            Assert.isString(pool.name);
+            Assert.isOptionalString(pool.encodedCivilisations);
+            retval.push(new Pool(pool.id, pool.name, Pool.optionsFromPojo(pool)));
         }
         return retval;
     }
 }
 
-export default Segment;
+export default Pool;

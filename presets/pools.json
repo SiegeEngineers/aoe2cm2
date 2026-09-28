@@ -1,7 +1,7 @@
 {
   "name": "Maps and Civilisations",
   "presetId": "pools",
-  "segments": [
+  "pools": [
     {
       "id": "default",
       "name": "Maps",
@@ -69,7 +69,7 @@
       ]
     },
     {
-      "id": "segment-2",
+      "id": "pool-2",
       "name": "Civilisations",
       "encodedCivilisations": "7ffffffff"
     }
@@ -116,7 +116,7 @@
       "exclusivity": "GLOBAL",
       "hidden": false,
       "parallel": false,
-      "segmentId": "segment-2"
+      "poolId": "pool-2"
     },
     {
       "player": "GUEST",
@@ -124,7 +124,7 @@
       "exclusivity": "GLOBAL",
       "hidden": false,
       "parallel": false,
-      "segmentId": "segment-2"
+      "poolId": "pool-2"
     },
     {
       "player": "GUEST",
@@ -132,7 +132,7 @@
       "exclusivity": "GLOBAL",
       "hidden": false,
       "parallel": false,
-      "segmentId": "segment-2"
+      "poolId": "pool-2"
     },
     {
       "player": "HOST",
@@ -140,7 +140,7 @@
       "exclusivity": "GLOBAL",
       "hidden": false,
       "parallel": false,
-      "segmentId": "segment-2"
+      "poolId": "pool-2"
     }
   ]
 }

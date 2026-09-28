@@ -6,7 +6,7 @@ import DraftOptionPanel from "../../containers/DraftOptionPanel";
 import {DraftEvent} from "../../types/DraftEvent";
 import PlayerEvent from "../../models/PlayerEvent";
 import Turn from "../../models/Turn";
-import Segment from "../../models/Segment";
+import Pool from "../../models/Pool";
 import DraftOptionPanelType from "../../constants/DraftOptionPanelType";
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
 import PlayerOnlineStatus from "../../containers/PlayerOnlineStatus";
@@ -188,7 +188,7 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                         <h4 className="player-name"><CustomName name={this.props.name}/></h4>
                     </div>
                     <div className="chosen">
-                        {this.props.preset.segments.map(segment => this.pool(segment, pickPanels, banPanels))}
+                        {this.props.preset.pools.map(pool => this.pool(pool, pickPanels, banPanels))}
                     </div>
                 </div>
             </div>
@@ -196,16 +196,16 @@ class PlayerDraftState extends React.Component<IProps, IState> {
     }
 
     /** The picks and bans of one pool, under its name when there are several pools to tell apart. */
-    private pool(segment: Segment, pickPanels: JSX.Element[], banPanels: JSX.Element[]) {
-        const inPool = (panel: JSX.Element) => this.props.preset.turns[panel.props.turnNumber].segmentId === segment.id;
+    private pool(pool: Pool, pickPanels: JSX.Element[], banPanels: JSX.Element[]) {
+        const inPool = (panel: JSX.Element) => this.props.preset.turns[panel.props.turnNumber].poolId === pool.id;
         const picks = pickPanels.filter(inPool);
         const bans = banPanels.filter(inPool);
         if (picks.length === 0 && bans.length === 0) {
             return null;
         }
         return (
-            <React.Fragment key={segment.id}>
-                {this.props.preset.hasSeveralSegments() && <div className="pool-name">{segment.name}</div>}
+            <React.Fragment key={pool.id}>
+                {this.props.preset.hasSeveralPools() && <div className="pool-name">{pool.name}</div>}
                 {(picks.length > 0 || (this.props.simplifiedUI && bans.length > 0)) && <>
                     {!this.props.simplifiedUI && <div className="is-uppercase has-text-grey is-size-7 pb-2 sub-heading"><Trans>Picks</Trans></div>}
                     <div className="picks">
