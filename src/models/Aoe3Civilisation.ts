@@ -23,6 +23,8 @@ enum Name {
     MEXICO = "aoe3.Mexico",
     ITALIAN = "aoe3.Italian",
     MALTESE = "aoe3.Maltese",
+    DANES = "aoe3.Danes",
+    POLES = "aoe3.Poles",
 }
 
 class Aoe3Civilisation extends DraftOption {
@@ -49,6 +51,8 @@ class Aoe3Civilisation extends DraftOption {
     public static readonly MEXICO: Aoe3Civilisation = new Aoe3Civilisation(Name.MEXICO);
     public static readonly ITALIAN: Aoe3Civilisation = new Aoe3Civilisation(Name.ITALIAN);
     public static readonly MALTESE: Aoe3Civilisation = new Aoe3Civilisation(Name.MALTESE);
+    public static readonly DANES: Aoe3Civilisation = new Aoe3Civilisation(Name.DANES);
+    public static readonly POLES: Aoe3Civilisation = new Aoe3Civilisation(Name.POLES);
 
 
 
@@ -77,6 +81,8 @@ class Aoe3Civilisation extends DraftOption {
         Aoe3Civilisation.MEXICO,
         Aoe3Civilisation.ITALIAN,
         Aoe3Civilisation.MALTESE,
+        Aoe3Civilisation.DANES,
+        Aoe3Civilisation.POLES,
     ];
 
     private constructor(name: Name) {
