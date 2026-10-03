@@ -3,6 +3,8 @@ import Player from "../constants/Player";
 import {Assert} from "../util/Assert";
 import { v4 as uuidv4 } from 'uuid';
 import Exclusivity from "../constants/Exclusivity";
+import ActionType, {actionTypeFromAction} from "../constants/ActionType";
+import Pool from "./Pool";
 
 class Turn {
     public static readonly HOST_NONEXCLUSIVE_PICK = new Turn(Player.HOST, Action.PICK, Exclusivity.NONEXCLUSIVE);
@@ -48,8 +50,10 @@ class Turn {
     public readonly executingPlayer: Player;
     public readonly id: string;
     public readonly categories: string[];
+    /** The pool the turn draws its options from. */
+    public readonly poolId: string;
 
-    constructor(player: Player, action: Action, exclusivity: Exclusivity, hidden: boolean = false, parallel: boolean = false, executingPlayer: Player = player, categories: string[] = ['default'], id: string = uuidv4()) {
+    constructor(player: Player, action: Action, exclusivity: Exclusivity, hidden: boolean = false, parallel: boolean = false, executingPlayer: Player = player, categories: string[] = ['default'], id: string = uuidv4(), poolId: string = Pool.DEFAULT_ID) {
         this.id = id;
         this.player = player;
         this.action = action;
@@ -58,9 +62,21 @@ class Turn {
         this.executingPlayer = executingPlayer;
         this.parallel = parallel;
         this.categories = categories;
+        this.poolId = poolId;
     }
 
-    static fromPojoArray(turns: Turn[]) {
+    public static withPoolId(turn: Turn, poolId: string): Turn {
+        return new Turn(turn.player, turn.action, turn.exclusivity, turn.hidden, turn.parallel,
+            turn.executingPlayer, turn.categories, turn.id, poolId);
+    }
+
+    /** Whether the turn takes a draft option, as opposed to revealing or pausing. */
+    public choosesDraftOption(): boolean {
+        return [ActionType.PICK, ActionType.BAN, ActionType.SNIPE, ActionType.STEAL]
+            .includes(actionTypeFromAction(this.action));
+    }
+
+    static fromPojoArray(turns: (Turn & { segmentId?: string })[]) {
         let retval: Turn[] = [];
         for (let turn of turns) {
             Assert.isPlayer(turn.player);
@@ -70,7 +86,11 @@ class Turn {
             Assert.isBoolean(turn.hidden);
             Assert.isBoolean(turn.parallel);
             Assert.isOptionalStringArray(turn.categories);
-            retval.push(new Turn(turn.player, turn.action, turn.exclusivity, turn.hidden, turn.parallel, turn.executingPlayer, turn.categories, turn.id));
+            Assert.isOptionalString(turn.poolId);
+            Assert.isOptionalString(turn.segmentId);
+            retval.push(new Turn(turn.player, turn.action, turn.exclusivity, turn.hidden, turn.parallel, turn.executingPlayer, turn.categories, turn.id,
+                // A build of this branch before the rename named the pool of a turn segmentId.
+                turn.poolId ?? turn.segmentId));
         }
         return retval;
     }

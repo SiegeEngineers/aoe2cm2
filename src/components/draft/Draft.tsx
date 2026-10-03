@@ -1,5 +1,5 @@
 import * as React from "react";
-import DraftOptionGrid from "./DraftOptionGrid";
+import PooledDraftBoard from "./PooledDraftBoard";
 import Messages from "../../containers/Messages";
 import DraftState from "./DraftState";
 import TurnRow from "./TurnRow";
@@ -230,7 +230,7 @@ class Draft extends React.Component<IProps, IState> {
 
                     {!this.state.simplifiedUI && <DraftIdInfo/>}
 
-                    <DraftOptionGrid draftOptions={this.props.preset.options}/>
+                    <PooledDraftBoard preset={this.props.preset} nextAction={this.props.nextAction}/>
                 </div>
             </section>
 

@@ -15,6 +15,7 @@ exports[`labels the turn with GPICK 1`] = `
       "id": "mocked-uuid",
       "parallel": false,
       "player": "HOST",
+      "poolId": "default",
     }
   }
   turnNumber={0}
@@ -36,6 +37,7 @@ exports[`labels the turn with PICK 1`] = `
       "id": "mocked-uuid",
       "parallel": false,
       "player": "HOST",
+      "poolId": "default",
     }
   }
   turnNumber={0}
@@ -57,6 +59,7 @@ exports[`labels the turn with xPICK 1`] = `
       "id": "mocked-uuid",
       "parallel": false,
       "player": "HOST",
+      "poolId": "default",
     }
   }
   turnNumber={0}

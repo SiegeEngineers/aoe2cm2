@@ -6,6 +6,7 @@ import DraftOptionPanel from "../../containers/DraftOptionPanel";
 import {DraftEvent} from "../../types/DraftEvent";
 import PlayerEvent from "../../models/PlayerEvent";
 import Turn from "../../models/Turn";
+import Pool from "../../models/Pool";
 import DraftOptionPanelType from "../../constants/DraftOptionPanelType";
 import {Trans, WithTranslation, withTranslation} from "react-i18next";
 import PlayerOnlineStatus from "../../containers/PlayerOnlineStatus";
@@ -48,8 +49,8 @@ class PlayerDraftState extends React.Component<IProps, IState> {
 
         let picksIndex = 0;
         let bansIndex = 0;
-        const pickPanels = [];
-        const banPanels = [];
+        const pickPanels: JSX.Element[] = [];
+        const banPanels: JSX.Element[] = [];
         const snipes: PlayerEvent[] = [...this.state.snipes];
         const steals: PlayerEvent[] = [...this.state.steals];
         let hasActivePanel = false;
@@ -187,21 +188,37 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                         <h4 className="player-name"><CustomName name={this.props.name}/></h4>
                     </div>
                     <div className="chosen">
-                        {pickPanels.length > 0 && <>
-                            {!this.props.simplifiedUI && <div className="is-uppercase has-text-grey is-size-7 pb-2 sub-heading"><Trans>Picks</Trans></div>}
-                            <div className="picks">
-                                {pickPanels}{this.props.simplifiedUI && banPanels.length > 0 && banPanels}
-                            </div>
-                        </>}
-                        {!this.props.simplifiedUI && banPanels.length > 0 && <>
-                            <div className="is-uppercase has-text-grey is-size-7 py-2 sub-heading"><Trans>Bans</Trans></div>
-                            <div className="bans">
-                                {banPanels}
-                            </div>
-                        </>}
+                        {this.props.preset.pools.map(pool => this.pool(pool, pickPanels, banPanels))}
                     </div>
                 </div>
             </div>
+        );
+    }
+
+    /** The picks and bans of one pool, under its name when there are several pools to tell apart. */
+    private pool(pool: Pool, pickPanels: JSX.Element[], banPanels: JSX.Element[]) {
+        const inPool = (panel: JSX.Element) => this.props.preset.turns[panel.props.turnNumber].poolId === pool.id;
+        const picks = pickPanels.filter(inPool);
+        const bans = banPanels.filter(inPool);
+        if (picks.length === 0 && bans.length === 0) {
+            return null;
+        }
+        return (
+            <React.Fragment key={pool.id}>
+                {this.props.preset.hasSeveralPools() && <div className="pool-name">{pool.name}</div>}
+                {(picks.length > 0 || (this.props.simplifiedUI && bans.length > 0)) && <>
+                    {!this.props.simplifiedUI && <div className="is-uppercase has-text-grey is-size-7 pb-2 sub-heading"><Trans>Picks</Trans></div>}
+                    <div className="picks">
+                        {picks}{this.props.simplifiedUI && bans.length > 0 && bans}
+                    </div>
+                </>}
+                {!this.props.simplifiedUI && bans.length > 0 && <>
+                    <div className="is-uppercase has-text-grey is-size-7 py-2 sub-heading"><Trans>Bans</Trans></div>
+                    <div className="bans">
+                        {bans}
+                    </div>
+                </>}
+            </React.Fragment>
         );
     }
 

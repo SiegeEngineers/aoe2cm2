@@ -9,6 +9,7 @@ import Preset from "../models/Preset";
 import Turn from "../models/Turn";
 import {ColorScheme} from "../constants/ColorScheme";
 import DraftOption from "../models/DraftOption";
+import Pool from "../models/Pool";
 
 export interface IActionCompleted {
     type: ServerActions.EXECUTE_ACTION,
@@ -175,6 +176,16 @@ export interface ISetEditorDraftOptions {
     value: DraftOption[]
 }
 
+export interface ISetEditorPools {
+    type: Actions.SET_EDITOR_POOLS
+    value: Pool[]
+}
+
+export interface ISetEditorActivePool {
+    type: Actions.SET_EDITOR_ACTIVE_POOL
+    value: number
+}
+
 export interface ISetEditorCategoryLimitPick {
     type: Actions.SET_EDITOR_CATEGORY_LIMIT_PICK
     key: string
@@ -268,6 +279,8 @@ export type PresetEditorAction = ISetEditorPreset
     | ISetEditorTurnOrder
     | ISetEditorName
     | ISetEditorDraftOptions
+    | ISetEditorPools
+    | ISetEditorActivePool
     | ISetEditorCategoryLimitPick
     | ISetEditorCategoryLimitBan;
 
@@ -501,6 +514,20 @@ export function setEditorDraftOptions(value: DraftOption[]): ISetEditorDraftOpti
     return {
         value,
         type: Actions.SET_EDITOR_DRAFT_OPTIONS
+    }
+}
+
+export function setEditorPools(value: Pool[]): ISetEditorPools {
+    return {
+        value,
+        type: Actions.SET_EDITOR_POOLS
+    }
+}
+
+export function setEditorActivePool(value: number): ISetEditorActivePool {
+    return {
+        value,
+        type: Actions.SET_EDITOR_ACTIVE_POOL
     }
 }
 

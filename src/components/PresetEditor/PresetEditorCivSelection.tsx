@@ -8,10 +8,12 @@ import DraftOption from "../../models/DraftOption";
 import {ApplicationState} from "../../types";
 import {Dispatch} from "redux";
 import {connect} from "react-redux";
+import {EditorPools} from "../../util/EditorPools";
 
 interface Props extends WithTranslation {
     preset: Preset | null,
     availableOptions: DraftOption[],
+    poolOptions: DraftOption[],
     onPresetDraftOptionsChange: (value: DraftOption[]) => ISetEditorDraftOptions,
 }
 
@@ -62,7 +64,7 @@ class PresetEditorCivSelection extends React.Component<Props, State> {
             return null;
         }
 
-        const presetOptions = this.props.preset.options;
+        const presetOptions = this.props.poolOptions;
 
         const query = this.state.searchQuery.toLowerCase();
         let filtered = query
@@ -119,7 +121,8 @@ class PresetEditorCivSelection extends React.Component<Props, State> {
 
 export function mapStateToProps(state: ApplicationState) {
     return {
-        preset: state.presetEditor.editorPreset
+        preset: state.presetEditor.editorPreset,
+        poolOptions: EditorPools.activeOptions(state.presetEditor)
     }
 }
 

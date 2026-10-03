@@ -6,9 +6,15 @@ Preset {
     "ban": Object {},
     "pick": Object {},
   },
-  "draftOptions": undefined,
-  "encodedCivilisations": "0",
   "name": "some-name",
+  "pools": Array [
+    Pool {
+      "draftOptions": Array [],
+      "encodedCivilisations": undefined,
+      "id": "default",
+      "name": "Default",
+    },
+  ],
   "presetId": undefined,
   "turns": Array [
     Turn {
@@ -22,6 +28,7 @@ Preset {
       "id": "mocked-uuid",
       "parallel": false,
       "player": "GUEST",
+      "poolId": "default",
     },
   ],
 }

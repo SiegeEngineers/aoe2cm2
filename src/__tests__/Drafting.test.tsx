@@ -16,7 +16,9 @@ import Civilisation from "../models/Civilisation";
 import Turn from "../models/Turn";
 import Action from "../constants/Action";
 import Exclusivity from "../constants/Exclusivity";
+import ActionType from "../constants/ActionType";
 import {ActListener} from "../util/ActListener";
+import Pool from "../models/Pool";
 
 let hostSocket: any;
 let hostEmit: any;
@@ -287,7 +289,7 @@ it('fully execute sample draft', (done) => {
 
 it('preset consisting only of admin action', (done) => {
     Reflect.set(ActListener, "adminTurnDelay", 10);
-    const preset = new Preset('Admin only preset', Civilisation.ALL_ACTIVE, [
+    const preset = new Preset('Admin only preset', [Pool.defaultWith(Civilisation.ALL_ACTIVE)], [
         new Turn(Player.NONE, Action.PICK, Exclusivity.NONEXCLUSIVE),
         new Turn(Player.HOST, Action.PICK, Exclusivity.NONEXCLUSIVE, false, false, Player.NONE),
         new Turn(Player.HOST, Action.PICK, Exclusivity.NONEXCLUSIVE, false, false, Player.NONE),
@@ -320,7 +322,7 @@ it('preset consisting only of admin action', (done) => {
 
 it('draft with pause', (done) => {
     Reflect.set(ActListener, "adminTurnDelay", 0);
-    const preset = new Preset('preset with pause', Civilisation.ALL_ACTIVE, [
+    const preset = new Preset('preset with pause', [Pool.defaultWith(Civilisation.ALL_ACTIVE)], [
         new Turn(Player.HOST, Action.PICK, Exclusivity.NONEXCLUSIVE),
         new Turn(Player.NONE, Action.PAUSE, Exclusivity.NONEXCLUSIVE),
         new Turn(Player.GUEST, Action.PICK, Exclusivity.NONEXCLUSIVE),
@@ -357,9 +359,99 @@ it('draft with pause', (done) => {
     });
 });
 
+it('a pause holds the admin turns after it until both captains are ready again', (done) => {
+    Reflect.set(ActListener, "adminTurnDelay", 0);
+    const preset = new Preset('preset with two pools', [
+        new Pool(Pool.DEFAULT_ID, 'Maps', [Civilisation.AZTECS]),
+        new Pool('pool-2', 'Civilisations', [Civilisation.BRITONS]),
+    ], [
+        new Turn(Player.HOST, Action.PICK, Exclusivity.NONEXCLUSIVE),
+        new Turn(Player.NONE, Action.PAUSE, Exclusivity.NONEXCLUSIVE),
+        Turn.withPoolId(new Turn(Player.NONE, Action.BAN, Exclusivity.NONEXCLUSIVE), 'pool-2'),
+    ]);
+    const settle = () => new Promise(resolve => setTimeout(resolve, 50));
+    createDraftForPreset(preset).then(value => {
+        // The pause arrives as an admin event; a ban the admin plays arrives as a player event.
+        const played: string[] = [];
+        spectatorSocket.on('adminEvent', (message: any) => played.push(message.action));
+        spectatorSocket.on('playerEvent', (message: any) => {
+            if (message.executingPlayer === Player.NONE) {
+                played.push(message.actionType);
+            }
+        });
+
+        hostEmit('set_role', {name: 'Saladin', role: Player.HOST})
+            .then(() => guestEmit('set_role', {name: 'Barbarossa', role: Player.GUEST}))
+            .then(() => guestEmit('ready', {}))
+            .then(() => hostEmit('ready', {}))
+            .then(() => hostEmit('act', {
+                "player": "HOST",
+                "executingPlayer": "HOST",
+                "actionType": "pick",
+                "chosenOptionId": "Aztecs",
+                "isRandomlyChosen": false,
+            }))
+            .then(settle)
+            .then(() => {
+                expect(played).toEqual([Action.PAUSE]);
+            })
+            .then(() => guestEmit('ready', {}))
+            .then(() => hostEmit('ready', {}))
+            .then(settle)
+            .then(() => {
+                expect(played).toEqual([Action.PAUSE, ActionType.BAN]);
+                done();
+            });
+    });
+});
+
+
+it('a pause holds the admin turns after it in a preset with one pool as well', (done) => {
+    Reflect.set(ActListener, "adminTurnDelay", 0);
+    const preset = new Preset('preset with a pause before an admin ban', [Pool.defaultWith([Civilisation.AZTECS, Civilisation.BRITONS])], [
+        new Turn(Player.HOST, Action.PICK, Exclusivity.NONEXCLUSIVE),
+        new Turn(Player.NONE, Action.PAUSE, Exclusivity.NONEXCLUSIVE),
+        new Turn(Player.NONE, Action.BAN, Exclusivity.NONEXCLUSIVE),
+    ]);
+    const settle = () => new Promise(resolve => setTimeout(resolve, 50));
+    createDraftForPreset(preset).then(value => {
+        const played: string[] = [];
+        spectatorSocket.on('adminEvent', (message: any) => played.push(message.action));
+        spectatorSocket.on('playerEvent', (message: any) => {
+            if (message.executingPlayer === Player.NONE) {
+                played.push(message.actionType);
+            }
+        });
+
+        hostEmit('set_role', {name: 'Saladin', role: Player.HOST})
+            .then(() => guestEmit('set_role', {name: 'Barbarossa', role: Player.GUEST}))
+            .then(() => guestEmit('ready', {}))
+            .then(() => hostEmit('ready', {}))
+            .then(() => hostEmit('act', {
+                "player": "HOST",
+                "executingPlayer": "HOST",
+                "actionType": "pick",
+                "chosenOptionId": "Aztecs",
+                "isRandomlyChosen": false,
+            }))
+            .then(settle)
+            .then(() => {
+                expect(played).toEqual([Action.PAUSE]);
+            })
+            .then(() => guestEmit('ready', {}))
+            .then(() => hostEmit('ready', {}))
+            .then(settle)
+            .then(() => {
+                expect(played).toEqual([Action.PAUSE, ActionType.BAN]);
+                done();
+            });
+    });
+});
+
+
 it('draft with categorylimit reset', (done) => {
     Reflect.set(ActListener, "adminTurnDelay", 0);
-    const preset = new Preset('preset with pause', [Civilisation.AZTECS], [
+    const preset = new Preset('preset with pause', [Pool.defaultWith([Civilisation.AZTECS])], [
         new Turn(Player.HOST, Action.PICK, Exclusivity.NONEXCLUSIVE),
         new Turn(Player.NONE, Action.RESET_CL, Exclusivity.NONEXCLUSIVE),
         new Turn(Player.GUEST, Action.PICK, Exclusivity.NONEXCLUSIVE),

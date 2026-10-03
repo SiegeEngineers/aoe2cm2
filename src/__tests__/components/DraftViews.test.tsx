@@ -1,5 +1,6 @@
 import Draft from "../../models/Draft";
 import Preset from "../../models/Preset";
+import Pool from "../../models/Pool";
 import DraftViews from "../../models/DraftViews";
 import PlayerEvent from "../../models/PlayerEvent";
 import Player from "../../constants/Player";
@@ -26,7 +27,7 @@ it('Regular Draft looks the same for everyone', () => {
 function prepareDraftViews(turns: Turn[]) {
     const nameHost = `host`;
     const nameGuest = `guest`;
-    const preset = new Preset('Hidden Preset', Civilisation.ALL, turns) as Preset;
+    const preset = new Preset('Hidden Preset', [Pool.defaultWith(Civilisation.ALL)], turns) as Preset;
     const draft = new Draft(nameHost, nameGuest, preset, false);
     return new DraftViews(draft);
 }

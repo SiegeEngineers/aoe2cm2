@@ -5,6 +5,7 @@ import Turn from "../../models/Turn";
 import Action from "../../constants/Action";
 import Exclusivity from "../../constants/Exclusivity";
 import Preset from "../../models/Preset";
+import Pool from "../../models/Pool";
 import Civilisation from "../../models/Civilisation";
 import PlayerEvent from "../../models/PlayerEvent";
 import ActionType from "../../constants/ActionType";
@@ -22,7 +23,7 @@ describe('initialisation', () => {
     ${Player.GUEST} | ${false}  | ${true}
     ${Player.GUEST} | ${true}   | ${false}
   `('$player waiting while hostReady=$hostReady and guestReady=$guestReady', ({player, hostReady, guestReady}) => {
-        const preset = new Preset('Preset name', Civilisation.ALL, []);
+        const preset = new Preset('Preset name', [Pool.defaultWith(Civilisation.ALL)], []);
         const component = render(<Messages whoAmI={player} hostReady={hostReady} guestReady={guestReady}
                                            nameHost={'nameHost'}
                                            nameGuest={'nameGuest'}
@@ -54,7 +55,7 @@ describe('picks, bans, and snipes:', () => {
     ${Player.GUEST} | ${Player.GUEST} | ${Action.SNIPE}
   `('$whoAmI sees prompt for $turnPlayer turn ($action)', ({whoAmI, turnPlayer, action}) => {
         const nextTurn = new Turn(turnPlayer, action, Exclusivity.GLOBAL);
-        const preset = new Preset('Preset name', Civilisation.ALL, [nextTurn]);
+        const preset = new Preset('Preset name', [Pool.defaultWith(Civilisation.ALL)], [nextTurn]);
         const component = shallow(<Messages whoAmI={whoAmI} hostReady={true} guestReady={true}
                                             nameHost={'nameHost'}
                                             nameGuest={'nameGuest'}
@@ -76,7 +77,7 @@ describe('parallel turn H-G: Step 1', () => {
   `('perspective: $whoAmI', ({whoAmI}) => {
         const firstTurn = new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, true);
         const secondTurn = new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL);
-        const preset = new Preset('Preset name', Civilisation.ALL, [firstTurn, secondTurn]);
+        const preset = new Preset('Preset name', [Pool.defaultWith(Civilisation.ALL)], [firstTurn, secondTurn]);
         const component = shallow(<Messages whoAmI={Player.HOST} hostReady={true} guestReady={true}
                                             nameHost={'nameHost'}
                                             nameGuest={'nameGuest'}
@@ -97,7 +98,7 @@ describe('parallel turn H-G: Step 2, Host picks before Guest', () => {
   `('perspective: $whoAmI', ({whoAmI}) => {
         const firstTurn = new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, true);
         const secondTurn = new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL);
-        const preset = new Preset('Preset name', Civilisation.ALL, [firstTurn, secondTurn]);
+        const preset = new Preset('Preset name', [Pool.defaultWith(Civilisation.ALL)], [firstTurn, secondTurn]);
         const component = shallow(<Messages whoAmI={whoAmI} hostReady={true} guestReady={true}
                                             nameHost={'nameHost'}
                                             nameGuest={'nameGuest'}
@@ -118,7 +119,7 @@ describe('parallel turn H-G: Step 2, Guest picks before Host', () => {
   `('perspective: $whoAmI', ({whoAmI}) => {
         const firstTurn = new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, true);
         const secondTurn = new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL);
-        const preset = new Preset('Preset name', Civilisation.ALL, [firstTurn, secondTurn]);
+        const preset = new Preset('Preset name', [Pool.defaultWith(Civilisation.ALL)], [firstTurn, secondTurn]);
         const component = shallow(<Messages whoAmI={whoAmI} hostReady={true} guestReady={true}
                                             nameHost={'nameHost'}
                                             nameGuest={'nameGuest'}
@@ -139,7 +140,7 @@ describe('parallel turn G-H: Step 1', () => {
   `('perspective: $whoAmI', ({whoAmI}) => {
         const firstTurn = new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, false, true);
         const secondTurn = new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL);
-        const preset = new Preset('Preset name', Civilisation.ALL, [firstTurn, secondTurn]);
+        const preset = new Preset('Preset name', [Pool.defaultWith(Civilisation.ALL)], [firstTurn, secondTurn]);
         const component = shallow(<Messages whoAmI={whoAmI} hostReady={true} guestReady={true}
                                             nameHost={'nameHost'}
                                             nameGuest={'nameGuest'}
@@ -160,7 +161,7 @@ describe('parallel turn G-H: Step 2, Host picks before Guest', () => {
   `('perspective: $whoAmI', ({whoAmI}) => {
         const firstTurn = new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, false, true);
         const secondTurn = new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL);
-        const preset = new Preset('Preset name', Civilisation.ALL, [firstTurn, secondTurn]);
+        const preset = new Preset('Preset name', [Pool.defaultWith(Civilisation.ALL)], [firstTurn, secondTurn]);
         const component = shallow(<Messages whoAmI={whoAmI} hostReady={true} guestReady={true}
                                             nameHost={'nameHost'}
                                             nameGuest={'nameGuest'}
@@ -181,7 +182,7 @@ describe('parallel turn G-H: Step 2, Guest picks before Host,', () => {
   `('perspective: $whoAmI', ({whoAmI}) => {
         const firstTurn = new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, false, true);
         const secondTurn = new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL);
-        const preset = new Preset('Preset name', Civilisation.ALL, [firstTurn, secondTurn]);
+        const preset = new Preset('Preset name', [Pool.defaultWith(Civilisation.ALL)], [firstTurn, secondTurn]);
         const component = shallow(<Messages whoAmI={whoAmI} hostReady={true} guestReady={true}
                                             nameHost={'nameHost'}
                                             nameGuest={'nameGuest'}

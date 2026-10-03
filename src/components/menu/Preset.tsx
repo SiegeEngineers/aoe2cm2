@@ -4,12 +4,14 @@ import {default as ModelPreset} from "../../models/Preset"
 import TurnRow from "../draft/TurnRow";
 import NewDraftButton from "../NewDraftButton";
 import CustomisePresetButton from "../../containers/CustomisePresetButton";
+import CombinePresetsButton from "../../containers/CombinePresetsButton";
 import CopyableInput from "../draft/CopyableInput";
 import {PresetOptionCheckbox} from "../PresetEditor/PresetOptionCheckbox";
 import Civilisation from "../../models/Civilisation";
 import DraftOptionPanelType from "../../constants/DraftOptionPanelType";
 import DraftOptionPanel from "../draft/DraftOptionPanel";
 import DraftOption from "../../models/DraftOption";
+import Pool from "../../models/Pool";
 import {ApplicationState, IDraftForPreset} from "../../types";
 import {Dispatch} from "redux";
 import * as actions from "../../actions";
@@ -40,6 +42,19 @@ class Preset extends React.Component<IProps, IState> {
         }
     }
 
+    /** The options of one pool: every civilisation with the chosen ones ticked, or the options as panels. */
+    private options(pool: Pool) {
+        const options = pool.options;
+        if (pool.encodedCivilisations !== undefined) {
+            return Civilisation.ALL.map((value: Civilisation, index: number) =>
+                <PresetOptionCheckbox presetOptions={options} value={value} key={index} disabled={true}/>);
+        }
+        return options.map((value: DraftOption, index: number) =>
+            <DraftOptionPanel draftOption={value} active={false} highlighted={false}
+                              draftOptionPanelType={DraftOptionPanelType.CHOICE} nextAction={0}
+                              displayOnly={true} iconStyle={this.props.iconStyle}/>);
+    }
+
     public render() {
         if (!this.state.presetExists) {
             return (
@@ -49,22 +64,7 @@ class Preset extends React.Component<IProps, IState> {
             );
         }
         if (this.state.preset !== undefined) {
-
-            const presetCivilisations = this.state.preset.options;
-            let civs;
-            let itemAlignment = '';
-            if (this.state.preset.encodedCivilisations) {
-                civs = Civilisation.ALL.map((value: Civilisation, index: number) =>
-                    <PresetOptionCheckbox presetOptions={presetCivilisations} value={value}
-                                          key={index}
-                                          disabled={true}/>)
-            } else {
-                civs = presetCivilisations.map((value: DraftOption, index: number) =>
-                    <DraftOptionPanel draftOption={value} active={false} highlighted={false}
-                                      draftOptionPanelType={DraftOptionPanelType.CHOICE} nextAction={0}
-                                      displayOnly={true} iconStyle={this.props.iconStyle}/>);
-                itemAlignment = ' flex-justify-center';
-            }
+            const preset = this.state.preset;
             let recentDrafts = null;
             if (this.state.presetDrafts) {
                 recentDrafts = this.state.presetDrafts.reverse().map((value: IDraftForPreset) => <DraftForPresetRow
@@ -77,15 +77,22 @@ class Preset extends React.Component<IProps, IState> {
 
                         <TurnRow turns={this.state.preset.turns}/>
 
-                        <div className={"is-flex" + itemAlignment} style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-                            {civs}
-                        </div>
+                        {preset.pools.map(pool => (
+                            <React.Fragment key={pool.id}>
+                                {preset.hasSeveralPools() && <h4 className="pool-name">{pool.name}</h4>}
+                                <div className={"is-flex" + (pool.encodedCivilisations === undefined ? ' flex-justify-center' : '')}
+                                     style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+                                    {this.options(pool)}
+                                </div>
+                            </React.Fragment>
+                        ))}
 
                         <div className="columns is-mobile mt-4">
                             <div className="column is-7 buttons">
                                 <div>
                                     <NewDraftButton preset={this.state.preset} private={false}/>
                                     <CustomisePresetButton preset={this.state.preset}/>
+                                    <CombinePresetsButton preset={this.state.preset}/>
                                 </div>
                                 <div>
                                     <NewDraftButton preset={this.state.preset} private={true}/>

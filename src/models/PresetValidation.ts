@@ -114,25 +114,21 @@ export class PresetValidation {
     });
 
     public static readonly VLD_910: PresetValidation = new PresetValidation(ValidationId.VLD_910, (preset: Preset) => {
-        if (preset.draftOptions) {
-            for (let draftOption of preset.draftOptions) {
-                if (!draftOption.id) {
-                    return false;
-                }
+        for (let draftOption of preset.options) {
+            if (!draftOption.id) {
+                return false;
             }
         }
         return true;
     });
 
     public static readonly VLD_911: PresetValidation = new PresetValidation(ValidationId.VLD_911, (preset: Preset) => {
-        if (preset.draftOptions) {
-            const ids = new Set();
-            for (let draftOption of preset.draftOptions) {
-                if (ids.has(draftOption.id)) {
-                    return false;
-                }
-                ids.add(draftOption.id);
+        const ids = new Set();
+        for (let draftOption of preset.options) {
+            if (ids.has(draftOption.id)) {
+                return false;
             }
+            ids.add(draftOption.id);
         }
         return true;
     });
@@ -204,6 +200,42 @@ export class PresetValidation {
     });
 
 
+    public static readonly VLD_919: PresetValidation = new PresetValidation(ValidationId.VLD_919, (preset: Preset) => {
+        const poolIds: string[] = preset.pools.map(value => value.id);
+        return preset.turns
+            .filter(value => value.choosesDraftOption())
+            .every(value => poolIds.includes(value.poolId));
+    });
+
+    public static readonly VLD_920: PresetValidation = new PresetValidation(ValidationId.VLD_920, (preset: Preset) => {
+        const poolIds: string[] = preset.pools.map(value => value.id);
+        return new Set(poolIds).size === poolIds.length;
+    });
+
+    public static readonly VLD_921: PresetValidation = new PresetValidation(ValidationId.VLD_921, (preset: Preset) => {
+        // With a single pool the same ground is covered by VLD_916 against the whole preset.
+        return !preset.hasSeveralPools() || preset.turns
+            .filter(value => value.choosesDraftOption())
+            .every(value => preset.optionsForTurn(value)
+                .some(option => value.categories.includes(option.category)));
+    });
+
+    public static readonly VLD_922: PresetValidation = new PresetValidation(ValidationId.VLD_922, (preset: Preset) => {
+        // Every pool is born with a name; a blank one comes from clearing it in the editor or from a preset put together by hand.
+        return preset.pools.every(pool => pool.name.trim().length > 0);
+    });
+
+    public static readonly VLD_923: PresetValidation = new PresetValidation(ValidationId.VLD_923, (preset: Preset) => {
+        // The twin of VLD_917 for a pool: an option no turn of its pool can take is one nobody can take.
+        return !preset.hasSeveralPools() || preset.pools.every(pool => {
+            const categories = preset.turns
+                .filter(turn => turn.choosesDraftOption() && turn.poolId === pool.id)
+                .reduce<string[]>((all, turn) => all.concat(turn.categories), []);
+            return categories.length === 0
+                || pool.options.every(option => categories.includes(option.category));
+        });
+    });
+
     public static readonly ALL: PresetValidation[] = [
         PresetValidation.VLD_901,
         PresetValidation.VLD_902,
@@ -223,6 +255,11 @@ export class PresetValidation {
         PresetValidation.VLD_916,
         PresetValidation.VLD_917,
         PresetValidation.VLD_918,
+        PresetValidation.VLD_919,
+        PresetValidation.VLD_920,
+        PresetValidation.VLD_921,
+        PresetValidation.VLD_922,
+        PresetValidation.VLD_923,
     ];
 
     private readonly validationId: ValidationId;

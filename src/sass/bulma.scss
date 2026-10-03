@@ -1057,3 +1057,17 @@ html.has-simple-ui {
 .choice-host.choice-guest {
   background: linear-gradient(to right, $guest-gold 50%, $host-cyan 50%);
 }
+
+// A pool is named wherever its options or its panels are shown, but only once there are several.
+.pool-name {
+  margin: 0.5rem 0 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $grey;
+}
+
+.pool-tabs ul {
+  margin-left: 0;
+}

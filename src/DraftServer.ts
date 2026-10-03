@@ -275,8 +275,12 @@ export class DraftServer {
                 const draftViews = draftsStore.getDraftViewsOrThrow(draftId);
                 let adminEventCounter = 0;
                 while (ActListener.nextActionIsAdminEvent(draftsStore, draftId, adminEventCounter)) {
+                    const isPause = ActListener.nextAdminActionIsPause(draftsStore, draftId, adminEventCounter);
                     adminEventCounter++;
                     ActListener.scheduleAdminEvent(adminEventCounter, draftsStore, draftId, draftViews, socket, roomLobby, roomHost, roomGuest, roomSpec, this.currentDataDirectory, this.presetDraftsDirectory);
+                    if (isPause) {
+                        break;
+                    }
                 }
                 if (draftViews.shouldRestartOrCancelCountdown()) {
                     draftsStore.restartOrCancelCountdown(draftId, this.currentDataDirectory, this.presetDraftsDirectory);

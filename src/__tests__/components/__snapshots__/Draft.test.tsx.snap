@@ -15,9 +15,15 @@ exports[`Draft renders correctly 1`] = `
         "ban": Object {},
         "pick": Object {},
       },
-      "draftOptions": undefined,
-      "encodedCivilisations": "e3e3fffffffefff",
       "name": "Default Preset",
+      "pools": Array [
+        Pool {
+          "draftOptions": undefined,
+          "encodedCivilisations": "e3e3fffffffefff",
+          "id": "default",
+          "name": "Default",
+        },
+      ],
       "presetId": undefined,
       "turns": Array [
         Turn {
@@ -31,6 +37,7 @@ exports[`Draft renders correctly 1`] = `
           "id": "mocked-uuid",
           "parallel": false,
           "player": "HOST",
+          "poolId": "default",
         },
         Turn {
           "action": "BAN",
@@ -43,6 +50,7 @@ exports[`Draft renders correctly 1`] = `
           "id": "mocked-uuid",
           "parallel": false,
           "player": "GUEST",
+          "poolId": "default",
         },
         Turn {
           "action": "BAN",
@@ -55,6 +63,7 @@ exports[`Draft renders correctly 1`] = `
           "id": "mocked-uuid",
           "parallel": false,
           "player": "HOST",
+          "poolId": "default",
         },
         Turn {
           "action": "BAN",
@@ -67,6 +76,7 @@ exports[`Draft renders correctly 1`] = `
           "id": "mocked-uuid",
           "parallel": false,
           "player": "GUEST",
+          "poolId": "default",
         },
         Turn {
           "action": "REVEAL_ALL",
@@ -79,6 +89,7 @@ exports[`Draft renders correctly 1`] = `
           "id": "mocked-uuid",
           "parallel": false,
           "player": "NONE",
+          "poolId": "default",
         },
         Turn {
           "action": "PICK",
@@ -91,6 +102,7 @@ exports[`Draft renders correctly 1`] = `
           "id": "mocked-uuid",
           "parallel": false,
           "player": "HOST",
+          "poolId": "default",
         },
         Turn {
           "action": "PICK",
@@ -103,6 +115,7 @@ exports[`Draft renders correctly 1`] = `
           "id": "mocked-uuid",
           "parallel": false,
           "player": "GUEST",
+          "poolId": "default",
         },
         Turn {
           "action": "PICK",
@@ -115,6 +128,7 @@ exports[`Draft renders correctly 1`] = `
           "id": "mocked-uuid",
           "parallel": false,
           "player": "HOST",
+          "poolId": "default",
         },
         Turn {
           "action": "PICK",
@@ -127,6 +141,7 @@ exports[`Draft renders correctly 1`] = `
           "id": "mocked-uuid",
           "parallel": false,
           "player": "GUEST",
+          "poolId": "default",
         },
         Turn {
           "action": "PICK",
@@ -139,6 +154,7 @@ exports[`Draft renders correctly 1`] = `
           "id": "mocked-uuid",
           "parallel": false,
           "player": "HOST",
+          "poolId": "default",
         },
         Turn {
           "action": "PICK",
@@ -151,6 +167,7 @@ exports[`Draft renders correctly 1`] = `
           "id": "mocked-uuid",
           "parallel": false,
           "player": "GUEST",
+          "poolId": "default",
         },
         Turn {
           "action": "PICK",
@@ -163,6 +180,7 @@ exports[`Draft renders correctly 1`] = `
           "id": "mocked-uuid",
           "parallel": false,
           "player": "HOST",
+          "poolId": "default",
         },
         Turn {
           "action": "PICK",
@@ -175,6 +193,7 @@ exports[`Draft renders correctly 1`] = `
           "id": "mocked-uuid",
           "parallel": false,
           "player": "GUEST",
+          "poolId": "default",
         },
         Turn {
           "action": "PICK",
@@ -187,6 +206,7 @@ exports[`Draft renders correctly 1`] = `
           "id": "mocked-uuid",
           "parallel": false,
           "player": "HOST",
+          "poolId": "default",
         },
         Turn {
           "action": "PICK",
@@ -199,6 +219,7 @@ exports[`Draft renders correctly 1`] = `
           "id": "mocked-uuid",
           "parallel": false,
           "player": "GUEST",
+          "poolId": "default",
         },
         Turn {
           "action": "PICK",
@@ -211,6 +232,7 @@ exports[`Draft renders correctly 1`] = `
           "id": "mocked-uuid",
           "parallel": false,
           "player": "HOST",
+          "poolId": "default",
         },
         Turn {
           "action": "PICK",
@@ -223,6 +245,7 @@ exports[`Draft renders correctly 1`] = `
           "id": "mocked-uuid",
           "parallel": false,
           "player": "GUEST",
+          "poolId": "default",
         },
         Turn {
           "action": "REVEAL_ALL",
@@ -235,6 +258,7 @@ exports[`Draft renders correctly 1`] = `
           "id": "mocked-uuid",
           "parallel": false,
           "player": "NONE",
+          "poolId": "default",
         },
         Turn {
           "action": "SNIPE",
@@ -247,6 +271,7 @@ exports[`Draft renders correctly 1`] = `
           "id": "mocked-uuid",
           "parallel": false,
           "player": "HOST",
+          "poolId": "default",
         },
         Turn {
           "action": "SNIPE",
@@ -259,6 +284,7 @@ exports[`Draft renders correctly 1`] = `
           "id": "mocked-uuid",
           "parallel": false,
           "player": "GUEST",
+          "poolId": "default",
         },
         Turn {
           "action": "REVEAL_ALL",
@@ -271,6 +297,7 @@ exports[`Draft renders correctly 1`] = `
           "id": "mocked-uuid",
           "parallel": false,
           "player": "NONE",
+          "poolId": "default",
         },
       ],
     }

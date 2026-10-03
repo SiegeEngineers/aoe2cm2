@@ -26,8 +26,11 @@ import {Trans, withTranslation, WithTranslation} from "react-i18next";
 import {ReactSortable} from "react-sortablejs";
 import {PresetEditorTurn} from "./PresetEditorTurn";
 import DraftOption from "../../models/DraftOption";
+import Pool from "../../models/Pool";
 import PresetEditorCivSelection from "./PresetEditorCivSelection";
 import PresetEditorCustomOptions from "./PresetEditorCustomOptions";
+import PresetEditorPools from "./PresetEditorPools";
+import {EditorPools} from "../../util/EditorPools";
 import Civilisation from "../../models/Civilisation";
 import Aoe3Civilisation from "../../models/Aoe3Civilisation";
 import Aoe4Civilisation from "../../models/Aoe4Civilisation";
@@ -48,6 +51,8 @@ interface Props extends WithTranslation, RouteComponentProps<any> {
     onPresetDraftOptionsChange: (value: DraftOption[]) => ISetEditorDraftOptions
     onSetCategoryLimitPick: (key: string, value: number | null) => ISetEditorCategoryLimitPick
     onSetCategoryLimitBan: (key: string, value: number | null) => ISetEditorCategoryLimitBan
+    activePool: number,
+    poolOptions: DraftOption[],
 }
 
 interface State {
@@ -124,36 +129,79 @@ class PresetEditor extends React.Component<Props, State> {
         }
     }
 
+    /** The option list behind each tab of the editor, in the order the tabs offer them. */
+    private static readonly OPTION_SETS: Array<[CivilisationSet, DraftOption[]]> = [
+        [CivilisationSet.AOE1, Aoe1Civilisation.ALL],
+        [CivilisationSet.AOE2, Civilisation.ALL],
+        [CivilisationSet.AOE2MAPS, Aoe2Map.ALL],
+        [CivilisationSet.AOE3, Aoe3Civilisation.ALL],
+        [CivilisationSet.AOE4, Aoe4Civilisation.ALL],
+        [CivilisationSet.AOE4MAPS, Aoe4Map.ALL],
+        [CivilisationSet.AOMGODS, AomGod.ALL],
+    ];
+
+    componentDidUpdate(prevProps: Props): void {
+        // Removing the pool on show leaves the index where it was, and the first pool always
+        // carries the default id, so neither the index nor the id alone says the pool has changed.
+        if (PresetEditor.shownPoolKey(prevProps) === PresetEditor.shownPoolKey(this.props)) {
+            return;
+        }
+        const set = this.civilisationSetFor(this.props.poolOptions);
+        const match = PresetEditor.OPTION_SETS.find(([name]) => name === set);
+        this.setState({
+            activeCivilisationSet: set,
+            defaultDraftOptions: match === undefined ? [] : match[1],
+        });
+    }
+
+    private static shownPoolKey(props: Props): string {
+        const pool = PresetEditor.shownPool(props);
+        return (pool === undefined ? '' : pool.id) + '/' + (props.preset === null ? 0 : props.preset.pools.length);
+    }
+
+    private static shownPool(props: Props): Pool | undefined {
+        return props.preset === null ? undefined : props.preset.pools[props.activePool];
+    }
+
+    /** A pool name fits on the new-turn button up to this many characters. */
+    private static readonly POOL_NAME_ON_BUTTON = 18;
+
+    /** Which pool a new turn joins is decided a section further up the page, so the button says it. */
+    private newTurnLabel() {
+        const pool = PresetEditor.shownPool(this.props);
+        if (pool === undefined || this.props.preset === null || !this.props.preset.hasSeveralPools()) {
+            return <Trans i18nKey="presetEditor.new">New</Trans>;
+        }
+        const limit = PresetEditor.POOL_NAME_ON_BUTTON;
+        const name = pool.name.length > limit ? pool.name.substring(0, limit) + '…' : pool.name;
+        return this.props.t('presetEditor.newInPool', {defaultValue: 'New in {{pool}}', pool: name});
+    }
+
+    /** A new turn is a pick, and it belongs to the pool the editor is showing. */
+    private addPlayerTurn(player: Player) {
+        const pool = PresetEditor.shownPool(this.props);
+        if (this.props.preset === null || pool === undefined) {
+            return;
+        }
+        const turn = new Turn(player, Action.PICK, Exclusivity.GLOBAL, false, false);
+        this.props.onValueChange(Turn.withPoolId(turn, pool.id), this.props.preset.turns.length);
+    }
+
+    /** The tab a pool belongs to, or the custom one if its options are not all from a single set. */
+    private civilisationSetFor(draftOptions: DraftOption[]): CivilisationSet {
+        if (draftOptions.length === 0) {
+            return CivilisationSet.AOE2;
+        }
+        const match = PresetEditor.OPTION_SETS.find(([, known]) => draftOptions.every(
+            draftOption => known.some(value => DraftOption.equals(draftOption, value))));
+        return match === undefined ? CivilisationSet.CUSTOM : match[0];
+    }
+
     private getInitialCivilisationSet() {
         if (this.props.location.hash) {
             return this.props.location.hash.replace("#", '');
         }
-        if (this.props.preset) {
-            if (this.props.preset.encodedCivilisations) {
-                return CivilisationSet.AOE2;
-            }
-            if (this.props.preset.draftOptions) {
-                const draftOptions = this.props.preset.draftOptions;
-                if (draftOptions.every(draftOption => Aoe1Civilisation.ALL.some(aoe1civ => DraftOption.equals(draftOption, aoe1civ)))) {
-                    return CivilisationSet.AOE1;
-                } else if (draftOptions.every(draftOption => Civilisation.ALL.some(aoe2civ => DraftOption.equals(draftOption, aoe2civ)))) {
-                    return CivilisationSet.AOE2;
-                } else if (draftOptions.every(draftOption => Aoe2Map.ALL.some(aoe2map => DraftOption.equals(draftOption, aoe2map)))) {
-                    return CivilisationSet.AOE2MAPS;
-                } else if (draftOptions.every(draftOption => Aoe3Civilisation.ALL.some(aoe3civ => DraftOption.equals(draftOption, aoe3civ)))) {
-                    return CivilisationSet.AOE3;
-                } else if (draftOptions.every(draftOption => Aoe4Civilisation.ALL.some(aoe4civ => DraftOption.equals(draftOption, aoe4civ)))) {
-                    return CivilisationSet.AOE4;
-                } else if (draftOptions.every(draftOption => Aoe4Map.ALL.some(aoe4map => DraftOption.equals(draftOption, aoe4map)))) {
-                    return CivilisationSet.AOE4MAPS;
-                } else if (draftOptions.every(draftOption => AomGod.ALL.some(aomgod => DraftOption.equals(draftOption, aomgod)))) {
-                    return CivilisationSet.AOMGODS;
-                } else {
-                    return CivilisationSet.CUSTOM;
-                }
-            }
-        }
-        return CivilisationSet.AOE2;
+        return this.civilisationSetFor(this.props.poolOptions);
     }
 
     public render() {
@@ -188,6 +236,8 @@ class PresetEditor extends React.Component<Props, State> {
             <React.Fragment>
                 <div className={'content box'}>
                     <h3>1. <Trans i18nKey="presetEditor.availableDraftOptions">Available Draft Options</Trans></h3>
+
+                    <PresetEditorPools/>
 
                     <div className="tabs is-boxed is-small civ-selector-tabs">
                         <ul>
@@ -314,13 +364,8 @@ class PresetEditor extends React.Component<Props, State> {
                         <div className="columns is-mobile pt-3">
                             <div className="column is-1"/>
                             <div className="column has-text-centered">
-                                <button className="button" onClick={() => {
-                                    if (this.props.preset === undefined || this.props.preset === null) {
-                                        return;
-                                    }
-                                    const newTurn = new Turn(Player.HOST, Action.PICK, Exclusivity.GLOBAL, false, false);
-                                    this.props.onValueChange(newTurn, this.props.preset.turns.length);
-                                }}>+ <Trans i18nKey="presetEditor.new">New</Trans>
+                                <button className="button" onClick={() => this.addPlayerTurn(Player.HOST)}>
+                                    + {this.newTurnLabel()}
                                 </button>
                             </div>
                             <div className="column has-text-centered">
@@ -334,13 +379,8 @@ class PresetEditor extends React.Component<Props, State> {
                                 </button>
                             </div>
                             <div className="column has-text-centered">
-                                <button className="button" onClick={() => {
-                                    if (this.props.preset === undefined || this.props.preset === null) {
-                                        return;
-                                    }
-                                    const newTurn = new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL, false, false);
-                                    this.props.onValueChange(newTurn, this.props.preset.turns.length);
-                                }}>+ <Trans i18nKey="presetEditor.new">New</Trans>
+                                <button className="button" onClick={() => this.addPlayerTurn(Player.GUEST)}>
+                                    + {this.newTurnLabel()}
                                 </button>
                             </div>
                             <div className="column is-1"/>
@@ -407,7 +447,9 @@ class PresetEditor extends React.Component<Props, State> {
 
 export function mapStateToProps(state: ApplicationState) {
     return {
-        preset: state.presetEditor.editorPreset
+        preset: state.presetEditor.editorPreset,
+        activePool: EditorPools.activeIndex(state.presetEditor),
+        poolOptions: EditorPools.activeOptions(state.presetEditor),
     }
 }
 

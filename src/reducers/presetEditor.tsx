@@ -3,10 +3,49 @@ import {PresetEditorAction} from "../actions";
 import {Actions} from "../constants";
 import Preset from "../models/Preset";
 import Turn from "../models/Turn";
+import Pool from "../models/Pool";
+import DraftOption from "../models/DraftOption";
+import {ICategoryLimits} from "../types";
+import {EditorPools} from "../util/EditorPools";
 
 export const initialPresetEditorState: IPresetEditorState = {
-    editorPreset: null
+    editorPreset: null,
+    activePool: 0
 };
+
+/** Drops the limits of categories no draft option carries any more. */
+const prunedCategoryLimits = (limits: ICategoryLimits, options: DraftOption[]): ICategoryLimits => {
+    const categories = options.map(option => option.category);
+    const keep = (limit: { [category: string]: number }) => Object.keys(limit)
+        .filter(category => categories.includes(category))
+        .reduce((kept, category) => ({...kept, [category]: limit[category]}), {});
+    return {pick: keep(limits.pick), ban: keep(limits.ban)};
+};
+
+/**
+ * A turn that carries no pool of its own belongs to the first one, so the first pool keeps the id
+ * that means exactly that, and the turns of the pool it replaces come with it.
+ */
+const withDefaultFirst = (pools: Pool[], turns: Turn[]): { pools: Pool[], turns: Turn[] } => {
+    if (pools.some(pool => pool.id === Pool.DEFAULT_ID)) {
+        return {pools, turns};
+    }
+    const renamed = pools[0];
+    return {
+        pools: [new Pool(Pool.DEFAULT_ID, renamed.name, renamed.options), ...pools.slice(1)],
+        turns: turns.map(turn => turn.poolId === renamed.id
+            ? Turn.withPoolId(turn, Pool.DEFAULT_ID) : turn),
+    };
+};
+
+/** The preset with some of its parts replaced. */
+const changed = (preset: Preset, changes: { name?: string, turns?: Turn[], categoryLimits?: ICategoryLimits, pools?: Pool[] }): Preset =>
+    new Preset(changes.name ?? preset.name, changes.pools ?? preset.pools, changes.turns ?? preset.turns, preset.presetId,
+        changes.categoryLimits ?? preset.categoryLimits);
+
+/** The preset drawing from these pools, its limits on categories no option carries any more dropped. */
+const withPools = (preset: Preset, pools: Pool[], turns: Turn[] = preset.turns): Preset =>
+    changed(preset, {turns, pools, categoryLimits: prunedCategoryLimits(preset.categoryLimits, Pool.optionsOf(pools))});
 
 export const presetEditorReducer = (state: IPresetEditorState = initialPresetEditorState, action: PresetEditorAction) => {
     switch (action.type) {
@@ -14,6 +53,7 @@ export const presetEditorReducer = (state: IPresetEditorState = initialPresetEdi
             console.log(Actions.SET_EDITOR_PRESET, action.value);
             return {
                 ...state,
+                activePool: 0,
                 editorPreset: action.value
             };
 
@@ -46,7 +86,7 @@ export const presetEditorReducer = (state: IPresetEditorState = initialPresetEdi
             } else {
                 if (editorPreset2.turns.length > action.index) {
                     const t = editorPreset2.turns[action.index];
-                    const turnCopy = new Turn(t.player, t.action, t.exclusivity, t.hidden, t.parallel, t.executingPlayer, t.categories);
+                    const turnCopy = new Turn(t.player, t.action, t.exclusivity, t.hidden, t.parallel, t.executingPlayer, t.categories, undefined, t.poolId);
                     editorPreset2.turns.splice(action.index, 0, turnCopy);
                 }
                 return {
@@ -61,15 +101,10 @@ export const presetEditorReducer = (state: IPresetEditorState = initialPresetEdi
             if (state.editorPreset === null) {
                 return state;
             }
+            // The sortable list hands the turns back as plain objects, without the methods of a Turn.
             return {
                 ...state,
-                editorPreset: new Preset(
-                    state.editorPreset.name,
-                    state.editorPreset.options,
-                    action.turns,
-                    state.editorPreset.presetId,
-                    state.editorPreset.categoryLimits,
-                )
+                editorPreset: changed(state.editorPreset, {turns: Turn.fromPojoArray(action.turns)})
             };
 
         case Actions.SET_EDITOR_NAME:
@@ -79,13 +114,7 @@ export const presetEditorReducer = (state: IPresetEditorState = initialPresetEdi
             } else {
                 return {
                     ...state,
-                    editorPreset: new Preset(
-                        action.value,
-                        state.editorPreset.options,
-                        state.editorPreset.turns,
-                        state.editorPreset.presetId,
-                        state.editorPreset.categoryLimits,
-                    )
+                    editorPreset: changed(state.editorPreset, {name: action.value})
                 };
             }
 
@@ -94,29 +123,34 @@ export const presetEditorReducer = (state: IPresetEditorState = initialPresetEdi
             if (state.editorPreset === null) {
                 return state;
             } else {
-                const categoryLimits = JSON.parse(JSON.stringify(state.editorPreset.categoryLimits));;
-                const categories = [...new Set(action.value.map(value => value.category))].sort();
-                for (let cat in categoryLimits.pick) {
-                    if (!categories.includes(cat)) {
-                        delete categoryLimits.pick[cat];
-                    }
-                }
-                for (let cat in categoryLimits.ban) {
-                    if (!categories.includes(cat)) {
-                        delete categoryLimits.ban[cat];
-                    }
-                }
+                // The options being set are those of the pool the editor is showing.
+                const activeIndex = EditorPools.activeIndex(state);
+                const pools = state.editorPreset.pools.map((pool, index) =>
+                    index === activeIndex ? new Pool(pool.id, pool.name, action.value) : pool);
                 return {
                     ...state,
-                    editorPreset: new Preset(
-                        state.editorPreset.name,
-                        action.value,
-                        state.editorPreset.turns,
-                        state.editorPreset.presetId,
-                        categoryLimits,
-                    )
+                    editorPreset: withPools(state.editorPreset, pools)
                 };
             }
+        case Actions.SET_EDITOR_POOLS: {
+            if (state.editorPreset === null || action.value.length === 0) {
+                return state;
+            }
+            // The turns of a pool that is gone move to the first one; other turns draw from no pool.
+            const poolIds = action.value.map(value => value.id);
+            const kept = withDefaultFirst(action.value, state.editorPreset.turns.map(turn =>
+                !turn.choosesDraftOption() || poolIds.includes(turn.poolId)
+                    ? turn
+                    : Turn.withPoolId(turn, poolIds[0])));
+            const pools = Pool.namedWhenAlone(kept.pools);
+            return {
+                ...state,
+                activePool: Math.min(state.activePool, pools.length - 1),
+                editorPreset: withPools(state.editorPreset, pools, kept.turns)
+            };
+        }
+        case Actions.SET_EDITOR_ACTIVE_POOL:
+            return {...state, activePool: Math.max(0, action.value)};
         case Actions.SET_EDITOR_CATEGORY_LIMIT_PICK:
             console.log(Actions.SET_EDITOR_CATEGORY_LIMIT_PICK, action.key, action.value);
             if (state.editorPreset === null) {
@@ -130,13 +164,7 @@ export const presetEditorReducer = (state: IPresetEditorState = initialPresetEdi
                 }
                 return {
                     ...state,
-                    editorPreset: new Preset(
-                        state.editorPreset.name,
-                        state.editorPreset.options,
-                        state.editorPreset.turns,
-                        state.editorPreset.presetId,
-                        categoryLimits,
-                    )
+                    editorPreset: changed(state.editorPreset, {categoryLimits})
                 };
             }
         case Actions.SET_EDITOR_CATEGORY_LIMIT_BAN:
@@ -155,13 +183,7 @@ export const presetEditorReducer = (state: IPresetEditorState = initialPresetEdi
                 }
                 return {
                     ...state,
-                    editorPreset: new Preset(
-                        state.editorPreset.name,
-                        state.editorPreset.options,
-                        state.editorPreset.turns,
-                        state.editorPreset.presetId,
-                        categoryLimits,
-                    )
+                    editorPreset: changed(state.editorPreset, {categoryLimits})
                 };
             }
 

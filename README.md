@@ -104,6 +104,39 @@ show all hidden snipes to all players and spectators
 
 reveal picks, bans, and snipes
 
+## Option pools
+
+The draft options of a preset are held in named pools, so that a single draft
+can cover more than one kind of option, typically maps and civilisations. Every
+preset has at least one pool, and every turn belongs to exactly one pool and
+only accepts options from it. Pools may be interleaved freely, for example
+civilisation bans, then a map draft, then civilisation picks, and a parallel
+pair of turns may draw from two different pools. An admin `PAUSE` turn holds
+the draft until both captains are ready again.
+
+A preset stores its pools as `pools`, and a turn names its pool as
+`poolId`. A preset stored before there were pools is loaded into a single
+pool with the id `default` and the name *Default*, which is also the pool a turn
+without a `poolId` belongs to, so older presets and drafts keep working as
+they are.
+
+Every turn that picks, bans, snipes or steals has a *Pool* dropdown in the
+preset editor. Pools are added with *+ Add pool*, which turns the option list
+into a row of pool tabs. Two existing presets can also be joined into one with
+*Combine into one draft* on a preset's page. Draft option ids have to be unique
+across pools, and a category limit counts over the whole draft, so a limit
+meant for one pool needs the options of that pool to carry a category of their
+own.
+
+On the draft page each captain's panel and the admin panel show a section per
+pool, and the options below the board are those of the pool being drafted, or
+of every pool once the draft is over.
+
+Two examples ship with the app, served the same way `simple.json` is.
+`presets/pools.json` is nine turns at `/preset/pools`: five maps, a pause, then
+civilisations. `presets/tournament.json` at `/preset/tournament` is the shape a
+real tournament draft has, 57 turns over fifteen maps and the civilisation set.
+
 ## Validations
 
 Each action gets validated by the server before it is broadcasted.
