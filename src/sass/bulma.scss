@@ -279,8 +279,17 @@ label.civ-select:hover {
 
 /** grid stuff **/
 
+// The grid takes as much of the width as its options need, up to a limit, so a long list of
+// civilisations needs fewer rows and a handful of maps sits in a small box in the middle. The
+// limit keeps a row on a very wide screen to 17 tiles, which can still be scanned at a glance.
+// When the rows wrap, the box is cut down to whole tiles (80 pixels with their margins, plus its
+// 16 pixels of padding), so full rows have the same space on the left and on the right. The pixel
+// of slack keeps a zoomed page, whose widths are not whole pixels, from losing a tile. A browser
+// without round() keeps the plain limit and the uneven space.
 .chooser {
-  max-width: 898px;
+  width: fit-content;
+  max-width: 1400px;
+  max-width: calc(round(down, min(100%, 1400px) - 15px, 80px) + 16px);
   display: block;
   margin: 8px auto;
   border-radius: 2px;
