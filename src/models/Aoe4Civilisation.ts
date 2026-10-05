@@ -24,6 +24,8 @@ enum Name {
     SENGOKU_DAIMYO = "aoe4.SengokuDaimyo",
     TUGHLAQ_DYNASTY = "aoe4.TughlaqDynasty",
 	JIN_DYNASTY = "aoe4.JinDynasty",
+	SCOTS = "aoe4.Scots",
+	VIKINGS = "aoe4.Vikings", 
 }
 
 class Aoe4Civilisation extends DraftOption {
@@ -51,6 +53,8 @@ class Aoe4Civilisation extends DraftOption {
     public static readonly SENGOKU_DAIMYO: Aoe4Civilisation = new Aoe4Civilisation(Name.SENGOKU_DAIMYO);
     public static readonly TUGHLAQ_DYNASTY: Aoe4Civilisation = new Aoe4Civilisation(Name.TUGHLAQ_DYNASTY);
     public static readonly JIN_DYNASTY: Aoe4Civilisation = new Aoe4Civilisation(Name.JIN_DYNASTY);
+	public static readonly SCOTS: Aoe4Civilisation = new Aoe4Civilisation(Name.SCOTS);
+	public static readonly VIKINGS: Aoe4Civilisation = new Aoe4Civilisation(Name.VIKINGS);
 
     // DO NOT CHANGE THE ORDER OF ELEMENTS IN THIS ARRAY!!!
     // ONLY APPEND NEW CIVILISATIONS AT THE END!!!
@@ -78,6 +82,8 @@ class Aoe4Civilisation extends DraftOption {
         Aoe4Civilisation.SENGOKU_DAIMYO,
         Aoe4Civilisation.TUGHLAQ_DYNASTY,
         Aoe4Civilisation.JIN_DYNASTY,
+        Aoe4Civilisation.SCOTS,
+        Aoe4Civilisation.VIKINGS,
 
     ];
 
