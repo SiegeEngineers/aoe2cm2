@@ -209,7 +209,7 @@ class PlayerDraftState extends React.Component<IProps, IState> {
             return null;
         }
         return (
-            <React.Fragment key={pool.id}>
+            <div className="pool-section" key={pool.id}>
                 {this.props.preset.hasSeveralPools() && <div className="pool-name">{pool.name}</div>}
                 {((picks.length > 0) || (this.props.simplifiedUI && (bans.length > 0))) && <>
                     {!this.props.simplifiedUI && <div className="is-uppercase has-text-grey is-size-7 pb-2 sub-heading"><Trans>Picks</Trans></div>}
@@ -223,7 +223,7 @@ class PlayerDraftState extends React.Component<IProps, IState> {
                         {bans}
                     </div>
                 </>}
-            </React.Fragment>
+            </div>
         );
     }
 

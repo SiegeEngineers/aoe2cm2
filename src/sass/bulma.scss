@@ -815,6 +815,33 @@ $draft-board-breakpoint: 1620px;
   margin: 0;
 }
 
+// A captain's pools sit next to each other where there is room, each at its usual size, so many
+// small pools take a few rows instead of one long column. A single pool fills the column as before.
+.draft-board .chosen {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  column-gap: 1rem;
+}
+
+.draft-board .pool-section {
+  max-width: 100%;
+}
+
+// A captain's sections line up towards the middle of the board, in the order of the pools.
+#player-host .chosen,
+.flipped #player-guest .chosen {
+  justify-content: flex-end;
+}
+
+.flipped #player-host .chosen {
+  justify-content: flex-start;
+}
+
+#player-none .chosen {
+  justify-content: center;
+}
+
 @media screen and (min-width: $draft-board-breakpoint) {
   .draft-board {
     // A captain's column holds at least the 400 pixels of .player, and the options at least eight
