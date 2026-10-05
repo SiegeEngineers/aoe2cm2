@@ -135,7 +135,9 @@
       "GoldenHorde": "Horde d'or",
       "SengokuDaimyo": "Daimyo de l'époque Sengoku",
       "MacedonianDynasty": "Dynastie macédonienne",
-      "TughlaqDynasty": "Dynastie des Tughlûq"
+      "TughlaqDynasty": "Dynastie des Tughlûq",
+	  "Vikings": "Vikings",
+	  "Scots": "Écossais"
     }
   },
   "messages": {

@@ -135,7 +135,9 @@
       "GoldenHorde": "金帐汗国",
       "SengokuDaimyo": "战国大名",
       "MacedonianDynasty": "马其顿王朝",
-      "TughlaqDynasty": "图格鲁克王朝"
+      "TughlaqDynasty": "图格鲁克王朝",
+	  "Vikings": "维京",
+	  "Scots": "苏格兰"
     }
   },
   "messages": {
