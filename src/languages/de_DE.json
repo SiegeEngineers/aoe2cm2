@@ -135,7 +135,9 @@
       "GoldenHorde": "Goldene Horde",
       "SengokuDaimyo": "Sengoku Daimyo",
       "MacedonianDynasty": "Makedonische Dynastie",
-      "TughlaqDynasty": "Tughluq-Dynastie"
+      "TughlaqDynasty": "Tughluq-Dynastie",
+	  "Vikings": "Wikinger",
+	  "Scots": "Schotten"
     },
     "aomgods": {
       "Zeus": "Zeus",

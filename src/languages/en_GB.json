@@ -136,7 +136,9 @@
       "SengokuDaimyo": "Sengoku Daimyo",
       "MacedonianDynasty": "Macedonian Dynasty",
       "TughlaqDynasty": "Tughlaq Dynasty",
-      "JinDynasty": "Jin Dynasty"
+      "JinDynasty": "Jin Dynasty",
+	  "Vikings": "Vikings",
+	  "Scots": "Scots"
     },
     "aomgods": {
       "Zeus": "Zeus",
