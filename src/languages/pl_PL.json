@@ -135,7 +135,10 @@
       "GoldenHorde": "Złota Orda",
       "SengokuDaimyo": "Sengoku Daimyo",
       "MacedonianDynasty": "Dynastia macedońska",
-      "TughlaqDynasty": "Dynastia Tughlaków"
+      "TughlaqDynasty": "Dynastia Tughlaków",
+	  "JinDynasty": "Dynastia Jin",
+	  "Vikings": "wikingowie",
+	  "Scots": "Szkoci"
     }
   },
   "messages": {
