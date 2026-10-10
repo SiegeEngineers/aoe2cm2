@@ -64,3 +64,20 @@ it('in the simplified view, a pool with bans alone still shows them, in the one 
     expect(rows.at(0).children()).toHaveLength(2);
     expect(rows.at(1).children()).toHaveLength(2);
 });
+
+it('wraps each pool in a section of its own, holding its name, picks and bans', () => {
+    const sections = render(pooled).find('.pool-section');
+    expect(sections).toHaveLength(2);
+    expect(sections.at(0).find('.pool-name').text()).toEqual('Maps');
+    expect(sections.at(0).find('.picks').children()).toHaveLength(1);
+    expect(sections.at(0).find('.bans').children()).toHaveLength(1);
+    expect(sections.at(1).find('.pool-name').text()).toEqual('Civilisations');
+    expect(sections.at(1).find('.picks').children()).toHaveLength(2);
+    expect(sections.at(1).find('.bans')).toHaveLength(0);
+});
+
+it('draws no section for a pool the player has no turn in', () => {
+    const guestOnlyCivs = new Preset('Guest only civs', pooled.pools, [mapPick(),
+        Turn.withPoolId(new Turn(Player.GUEST, Action.PICK, Exclusivity.GLOBAL), 'civs')]);
+    expect(render(guestOnlyCivs).find('.pool-section')).toHaveLength(1);
+});

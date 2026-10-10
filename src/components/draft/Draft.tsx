@@ -59,7 +59,7 @@ interface IState {
     simplifiedUI: boolean;
 }
 
-class Draft extends React.Component<IProps, IState> {
+export class Draft extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
         this.goBack = this.goBack.bind(this);
@@ -218,19 +218,18 @@ class Draft extends React.Component<IProps, IState> {
                                 preset={this.props.preset}
                                 flipped={this.state.flipped}
                                 smooch={this.state.smooch}
-                                simplifiedUI={this.state.simplifiedUI}/>
-
-                    <div id="messages" className="columns is-mobile">
-                        <div id="action-text" className="column has-text-centered is-size-4">
-                            <Messages/>
+                                simplifiedUI={this.state.simplifiedUI}
+                                draftCode={!this.state.simplifiedUI && <DraftIdInfo/>}>
+                        <div id="messages" className="columns is-mobile">
+                            <div id="action-text" className="column has-text-centered is-size-4">
+                                <Messages/>
+                            </div>
                         </div>
-                    </div>
 
-                    <ReplayControls/>
+                        <ReplayControls/>
 
-                    {!this.state.simplifiedUI && <DraftIdInfo/>}
-
-                    <PooledDraftBoard preset={this.props.preset} nextAction={this.props.nextAction}/>
+                        <PooledDraftBoard preset={this.props.preset} nextAction={this.props.nextAction}/>
+                    </DraftState>
                 </div>
             </section>
 

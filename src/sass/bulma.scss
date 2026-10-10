@@ -279,8 +279,17 @@ label.civ-select:hover {
 
 /** grid stuff **/
 
+// The grid takes as much of the width as its options need, up to a limit, so a long list of
+// civilisations needs fewer rows and a handful of maps sits in a small box in the middle. The
+// limit keeps a row on a very wide screen to 17 tiles, which can still be scanned at a glance.
+// When the rows wrap, the box is cut down to whole tiles (80 pixels with their margins, plus its
+// 16 pixels of padding), so full rows have the same space on the left and on the right. The pixel
+// of slack keeps a zoomed page, whose widths are not whole pixels, from losing a tile. A browser
+// without round() keeps the plain limit and the uneven space.
 .chooser {
-  max-width: 898px;
+  width: fit-content;
+  max-width: 1400px;
+  max-width: calc(round(down, min(100%, 1400px) - 15px, 80px) + 16px);
   display: block;
   margin: 8px auto;
   border-radius: 2px;
@@ -739,8 +748,123 @@ html.has-simple-ui .ban div.stretchy-wrapper > div.stretchy-text{
   flex-direction: row-reverse;
 }
 
-.flipped .player-panels {
-  flex-direction: row-reverse;
+// The board is the same for every preset and is arranged by the width of the window only: the
+// options between the captains with the admin box under them, or, below the breakpoint, the
+// options first and the captains side by side under them. Named areas only, since libsass reads
+// `a / b` as a division.
+// Wide enough for both captains' 400 pixels, an option grid of eight tiles (656 pixels, see below),
+// the two gaps, the padding of the section and of the fluid container (48 and 64) and a scrollbar.
+$draft-board-breakpoint: 1620px;
+
+.draft-board {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-areas: "centre centre" "code code" "host guest" "admin admin";
+  gap: 1rem;
+  align-items: start;
+}
+
+.flipped .draft-board {
+  grid-template-areas: "centre centre" "code code" "guest host" "admin admin";
+}
+
+// The grid's gap separates the columns, so they need no padding of their own. The captains keep
+// Bulma's column class for the rules and stream styles that name it.
+.draft-board > .column {
+  padding: 0;
+}
+
+#player-host {
+  grid-area: host;
+}
+
+#player-guest {
+  grid-area: guest;
+}
+
+#player-none {
+  grid-area: admin;
+}
+
+// The code to send to the players before the start stays near the options: under the admin box
+// beside the captains, or straight under the options when the captains are under them.
+.draft-board-code {
+  grid-area: code;
+  min-width: 0;
+}
+
+// A captain's box keeps to its column; a long name without spaces wraps instead of widening it.
+.draft-board .player {
+  max-width: 100%;
+}
+
+.draft-board h4.player-name,
+.draft-board .pool-name {
+  overflow-wrap: anywhere;
+}
+
+.draft-board-centre {
+  grid-area: centre;
+  min-width: 0;
+}
+
+// The message line, the replay controls and the draft code are Bulma rows, whose negative margins
+// would reach into the captains' columns.
+.draft-board-centre > .columns,
+.draft-board-code > .columns {
+  margin: 0;
+}
+
+// A captain's pools sit next to each other where there is room, each at its usual size, so many
+// small pools take a few rows instead of one long column. A single pool fills the column as before.
+.draft-board .chosen {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  column-gap: 1rem;
+}
+
+.draft-board .pool-section {
+  max-width: 100%;
+}
+
+// A captain's sections line up towards the middle of the board, in the order of the pools.
+#player-host .chosen,
+.flipped #player-guest .chosen {
+  justify-content: flex-end;
+}
+
+.flipped #player-host .chosen {
+  justify-content: flex-start;
+}
+
+#player-none .chosen {
+  justify-content: center;
+}
+
+@media screen and (min-width: $draft-board-breakpoint) {
+  .draft-board {
+    // A captain's column holds at least the 400 pixels of .player, and the options at least eight
+    // tiles of 72 pixels with their margins and the grid's padding: 8 * 80 + 16 = 656. The options
+    // take a little more of the extra width than each captain, so a 1920 pixel window gives them
+    // eight tiles a row and each captain four picks.
+    grid-template-columns: minmax(400px, 1fr) minmax(656px, 1.3fr) minmax(400px, 1fr);
+    grid-template-areas: "host centre guest" "host admin guest" "host code guest";
+    grid-template-rows: auto auto 1fr;
+  }
+
+  .flipped .draft-board {
+    grid-template-areas: "guest centre host" "guest admin host" "guest code host";
+  }
+
+  // Room for two lines of the message (two lines of 1.5rem text at a line height of 1.5, and the
+  // column's padding), which holds every message a captain sees in the centre column, so the options
+  // do not move under a captain's cursor. Below the breakpoint the message has the whole width and a
+  // captain's takes one line. A spectator's message for a parallel turn between long names can take
+  // more.
+  .draft-board-centre #action-text {
+    min-height: 6rem;
+  }
 }
 
 .smooch #player-host .stretchy-image img {
@@ -985,11 +1109,6 @@ html.has-simple-ui {
   .player.box {
     max-width: 650px;
     padding: 0;
-  }
-
-  #player-guest.column, #player-host.column {
-    margin: 0;
-    padding: 0.6rem;
   }
 
   .footer {

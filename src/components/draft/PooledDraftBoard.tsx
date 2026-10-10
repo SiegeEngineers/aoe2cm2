@@ -22,11 +22,19 @@ class PooledDraftBoard extends React.Component<IProps, object> {
                     .map((pool: Pool) => (
                         <React.Fragment key={pool.id}>
                             {this.props.preset.hasSeveralPools() && <h4 className="pool-name has-text-centered">{pool.name}</h4>}
-                            <DraftOptionGrid draftOptions={pool.options}/>
+                            <DraftOptionGrid draftOptions={pool.options} id={PooledDraftBoard.gridId(pool)}/>
                         </React.Fragment>
                     ))}
             </>
         );
+    }
+
+    /**
+     * Several grids can be shown at once, for a parallel pair across pools and for every pool once the
+     * draft is over; the grid of the default pool keeps the id it has always had.
+     */
+    private static gridId(pool: Pool): string {
+        return pool.id === Pool.DEFAULT_ID ? 'civgrid' : `civgrid-${pool.id}`;
     }
 
     private poolIdsInPlay(): string[] {

@@ -61,3 +61,20 @@ it('fills the panels of the pool with what the admin took there', () => {
     expect(component.find('.bans').at(0).children().at(0).prop('draftOption')).toEqual(new DraftOption('arabia'));
     expect(component.find('.bans').at(1).children().at(0).prop('draftOption')).toEqual(new DraftOption('Franks'));
 });
+
+it('wraps each pool in a section of its own, holding its name, picks and bans', () => {
+    const sections = render(pooled).find('.pool-section');
+    expect(sections).toHaveLength(2);
+    expect(sections.at(0).find('.pool-name').text()).toEqual('Maps');
+    expect(sections.at(0).find('.picks')).toHaveLength(0);
+    expect(sections.at(0).find('.bans').children()).toHaveLength(1);
+    expect(sections.at(1).find('.pool-name').text()).toEqual('Civilisations');
+    expect(sections.at(1).find('.picks').children()).toHaveLength(1);
+    expect(sections.at(1).find('.bans').children()).toHaveLength(1);
+});
+
+it('in the simplified view, a section with bans alone keeps them in its one row', () => {
+    const sections = render(pooled, [], 0, true).find('.pool-section');
+    expect(sections.at(0).find('.picks').children()).toHaveLength(1);
+    expect(sections.at(0).find('.bans')).toHaveLength(0);
+});

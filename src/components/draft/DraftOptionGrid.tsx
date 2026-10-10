@@ -7,6 +7,7 @@ import i18n from "i18next";
 
 interface IProps {
     draftOptions: DraftOption[]
+    id: string
 }
 
 class DraftOptionGrid extends React.Component<IProps, object> {
@@ -31,7 +32,7 @@ class DraftOptionGrid extends React.Component<IProps, object> {
         });
 
         return (
-            <div id="civgrid" className="chooser">
+            <div id={this.props.id} className="chooser">
                 <div className="chooser-grid">
                     {randomOption}
                     {panels}

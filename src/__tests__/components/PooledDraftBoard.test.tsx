@@ -110,3 +110,15 @@ it('names the pool over its options only when there are several pools', () => {
     expect(single.find('.pool-name')).toHaveLength(0);
     expect(single.find(DraftOptionGrid).prop('draftOptions')).toEqual(plain.options);
 });
+
+it('gives every grid it shows its own id, the default pool keeping the one it always had', () => {
+    const second = new Pool(Pool.idFor(2), 'Civilisations', [new DraftOption('Franks')]);
+    const first = Pool.defaultWith([new DraftOption('arabia')]);
+    const pair = new Preset('Pair', [first, second], [turnIn(Pool.DEFAULT_ID, true), turnIn(Pool.idFor(2))]);
+    const ids = shallow(<PooledDraftBoard preset={pair} nextAction={0}/>).find(DraftOptionGrid).map(grid => grid.prop('id'));
+    expect(ids).toEqual(['civgrid', 'civgrid-pool-2']);
+});
+
+it('puts the id it is given on the grid', () => {
+    expect(shallow(<DraftOptionGrid draftOptions={[]} id="civgrid-pool-2"/>).find('#civgrid-pool-2')).toHaveLength(1);
+});
