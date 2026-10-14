@@ -1,6 +1,7 @@
 import {shallow} from "enzyme";
 import {Trans, WithTranslation} from "react-i18next";
 import {PresetEditorPools} from "../../components/PresetEditor/PresetEditorPools";
+import {PresetEditorPoolSelector} from "../../components/PresetEditor/PresetEditorPoolSelector";
 import Pool from "../../models/Pool";
 import DraftOption from "../../models/DraftOption";
 
@@ -32,14 +33,17 @@ it('adding a pool to the default one names the new pool after its number and sho
 it('offers only the add button while there is one pool, and tabs with a name and a remove button from two', () => {
     const one = render([Pool.defaultWith([])]).component;
     expect(one.find('button')).toHaveLength(1);
-    expect(one.find('.pool-tabs')).toHaveLength(0);
+    expect(one.find(PresetEditorPoolSelector)).toHaveLength(0);
 
     const two = render([Pool.defaultWith([]), new Pool('pool-2', 'Civs', [])], 1).component;
-    const tabs = two.find('.pool-tabs li');
+    const selector = two.find(PresetEditorPoolSelector);
+    expect(selector.prop('pools').map((pool: Pool) => pool.name)).toEqual(['Default', 'Civs']);
+    expect(selector.prop('activePool')).toEqual(1);
+    const tabs = selector.dive().find('li');
     expect(tabs).toHaveLength(3);
     expect(tabs.slice(0, 2).map(item => item.text())).toEqual(['Default (0)', 'Civs (0)']);
     expect(tabs.at(2).find(Trans).prop('i18nKey')).toEqual('presetEditor.addPool');
-    expect(two.find('.pool-tabs li.is-active').text()).toEqual('Civs (0)');
+    expect(selector.dive().find('li.is-active').text()).toEqual('Civs (0)');
     expect(two.find('input').prop('value')).toEqual('Civs');
     expect(two.find('button')).toHaveLength(1);
 });
@@ -56,5 +60,5 @@ it('renames the pool on show and removes it, leaving the other one', () => {
 it('offers the add button even without any pool, which the model never hands it', () => {
     const {component} = render([]);
     expect(component.find('button')).toHaveLength(1);
-    expect(component.find('.pool-tabs')).toHaveLength(0);
+    expect(component.find(PresetEditorPoolSelector)).toHaveLength(0);
 });
