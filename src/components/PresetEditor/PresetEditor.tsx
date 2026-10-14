@@ -30,6 +30,7 @@ import Pool from "../../models/Pool";
 import PresetEditorCivSelection from "./PresetEditorCivSelection";
 import PresetEditorCustomOptions from "./PresetEditorCustomOptions";
 import PresetEditorPools from "./PresetEditorPools";
+import PresetEditorPoolSelector from "./PresetEditorPoolSelector";
 import {EditorPools} from "../../util/EditorPools";
 import Civilisation from "../../models/Civilisation";
 import Aoe3Civilisation from "../../models/Aoe3Civilisation";
@@ -386,6 +387,8 @@ class PresetEditor extends React.Component<Props, State> {
                             <div className="column is-1"/>
                         </div>
                     </div>
+
+                    <PresetEditorPoolSelector/>
                     <hr/>
 
                     <h3>3. <Trans i18nKey="presetEditor.categoryLimits">Category Limits</Trans></h3>

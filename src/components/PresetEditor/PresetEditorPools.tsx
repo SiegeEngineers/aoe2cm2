@@ -7,6 +7,7 @@ import {ISetEditorActivePool, ISetEditorPools} from "../../actions";
 import {ApplicationState} from "../../types";
 import Pool from "../../models/Pool";
 import {EditorPools} from "../../util/EditorPools";
+import {PresetEditorPoolSelector} from "./PresetEditorPoolSelector";
 
 interface Props extends WithTranslation {
     pools: Pool[],
@@ -33,27 +34,18 @@ export class PresetEditorPools extends React.Component<Props, object> {
 
         return (
             <div className="mb-3">
-                <div className="tabs is-toggle is-small pool-tabs">
-                    <ul>
-                        {this.props.pools.map((pool, index) =>
-                            <li key={pool.id} className={pool.id === active.id ? "is-active" : ""}>
-                                <a href={'#pool-' + pool.id} onClick={event => {
-                                    event.preventDefault();
-                                    this.props.onActivePoolChange(index);
-                                }}>
-                                    {pool.name} ({pool.options.length})
-                                </a>
-                            </li>)}
-                        <li>
-                            <a href="#add-pool" onClick={event => {
-                                event.preventDefault();
-                                this.add();
-                            }}>
-                                <Trans i18nKey="presetEditor.addPool">+ Add pool</Trans>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                <PresetEditorPoolSelector pools={this.props.pools} activePool={this.props.activePool}
+                                           onActivePoolChange={this.props.onActivePoolChange}
+                                           trailing={
+                                               <li>
+                                                   <a href="#add-pool" onClick={event => {
+                                                       event.preventDefault();
+                                                       this.add();
+                                                   }}>
+                                                       <Trans i18nKey="presetEditor.addPool">+ Add pool</Trans>
+                                                   </a>
+                                               </li>
+                                           }/>
                 <div className="field is-grouped">
                     <p className="control">
                         <input className="input is-small" value={active.name}
